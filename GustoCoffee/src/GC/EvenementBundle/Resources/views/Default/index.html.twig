@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block firstImg %}
+    style='background-image: url({{ asset('img/backEvenement.jpg') }});'>
+{% endblock %}
+
+{% block firstTitle %}
+    <h2 class="titleHome">Evénement CoWorking</h2>
+{% endblock %}
+
+{% block firstBlock %}
+    <div class="row">
+        <div class="col-md-12 listMedia">
+            <h2 class="titleMedia">Ils ont parlé de GustoCoffee</h2>
+            <a target="_blank" class="imgMedia" href="https://www.tf1.fr/"><img alt="TF1" src="{{ asset('img/tf1.png') }}"/></a>
+
+            <a target="_blank" class="imgMedia" href="http://www.leparisien.fr/"><img alt="Le Parisien" src="{{ asset('img/parisien.jpg') }}"/></a>
+
+            <a target="_blank" class="imgMedia" href="https://www.rtl.fr/"><img alt="RTL" src="{{ asset('img/rtl.png') }}"/></a>
+
+            <a target="_blank" class="imgMedia" href="http://www.la-croix.com"><img alt="La Croix" src="{{ asset('img/la-croix.png') }}"/></a>
+        </div>
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block secondBlock %}
+    <div class="row">
+        <div class="col-md-7">
+            <h2 class="titlePara">Ouverture !!! =D</h2>
+            <p>Récemment, GustoCoffee a organisé un grand événement afin de fêter l'ouverture du <strong>Coffe-Shop CoWorking !!</strong><br>
+                Au programme, musique, danse, visite et consommation à volonté !
+            </p>
+        </div>
+        <div class="col-md-3">
+            <img alt="GustoCoffee" src="{{ asset('img/evenement.jpg') }}">
+            </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block thirdBlock %}
+    <div class="row">
+        <div class="col-md-10">
+            <p><strong>TODO : JE SAIS PAS QUOI DIRE</strong></p>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="clear"></div>
+{% endblock %}

@@ -62,6 +62,7 @@ class ComposerStaticInit971b5e6116b27919d64e874daadd79b3
         'G' => 
         array (
             'GC\\HomeBundle\\' => 14,
+            'GC\\EvenementBundle\\' => 19,
         ),
         'F' => 
         array (
@@ -189,6 +190,10 @@ class ComposerStaticInit971b5e6116b27919d64e874daadd79b3
         'GC\\HomeBundle\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/GC/HomeBundle',
+        ),
+        'GC\\EvenementBundle\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/GC/EvenementBundle',
         ),
         'Fig\\Link\\' => 
         array (

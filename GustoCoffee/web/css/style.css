@@ -36,6 +36,20 @@
     margin-left: 40%;
 }
 
+.listMedia{
+    background-color: rgb(229, 229, 229);
+    text-align: center;
+    padding: 8px
+}
+
+.imgMedia {
+    padding: 25px;
+}
+
+.titleMedia {
+    padding-bottom: 10px;
+}
+
 .footer {
     border-top-style: solid;
     border-color: rgba(0,0,0,.1);

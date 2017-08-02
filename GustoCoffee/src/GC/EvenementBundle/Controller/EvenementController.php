@@ -1,14 +1,14 @@
 <?php
 
-namespace GC\HomeBundle\Controller;
+namespace GC\EvenementBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class HomeController extends Controller
+class EvenementController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('GCHomeBundle:Default:index.html.twig');
+        return $this->render('GCEvenementBundle:Default:index.html.twig');
     }
 }

@@ -1,3 +1,7 @@
+gc_evenement:
+    resource: "@GCEvenementBundle/Resources/config/routing.yml"
+    prefix:   /
+
 bc_home:
     resource: "@GCHomeBundle/Resources/config/routing.yml"
     prefix:   /

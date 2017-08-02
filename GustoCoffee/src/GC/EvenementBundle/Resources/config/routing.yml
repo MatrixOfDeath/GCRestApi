@@ -1,0 +1,3 @@
+gc_evenement_page:
+    path:    /evenement
+    defaults: { _controller: GCEvenementBundle:Evenement:index }

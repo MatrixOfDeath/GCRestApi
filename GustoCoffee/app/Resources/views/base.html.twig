@@ -49,7 +49,7 @@
                                     <a class="page-scroll" href="{{ path('gc_home_page') }}">Accueil</a>
                                 </li>
                                 <li>
-                                    <a class="page-scroll" href="#">Evénements</a>
+                                    <a class="page-scroll" href="{{ path('gc_evenement_page') }}">Evénements</a>
                                 </li>
                                 <li>
                                     <a class="page-scroll" href="#">Réservation</a>
@@ -77,6 +77,7 @@
         </div>
         </div>
     <div class="clear"></div>
+    {% block firstBlock %}
     <div class="row">
         <div class="col-md-8">
             <h2 class="titlePara">GustoCoffee</h2>
@@ -91,9 +92,11 @@
         </div>
     </div>
     <div class="clear"></div>
+    {% endblock %}
+    {% block secondBlock %}
     <div class="row">
         <div class="col-md-8">
-            <h2 class="titlePara">Nos Servces</h2>
+            <h2 class="titlePara">Nos Services</h2>
             <p>GustoCoffee vous propose des <strong>services bureautiques</strong> comme un espace de stockage privé en ligne, la vented de support numérique, ainsi qu'une impression. De plus, la consommation de <strong>café, thé, crêpes et gaufres sont à volonté !</strong><br>
             Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner tout en continuant votre travail de la journée.
             </p>
@@ -105,6 +108,8 @@
         </div>
     </div>
     <div class="clear"></div>
+    {% endblock %}
+    {% block thirdBlock %}
     <div class="row">
         <div class="col-md-10">
             <p><strong>TODO : FRANCHISE DU GROUPE</strong></p>
@@ -113,6 +118,8 @@
         </div>
     </div>
     <div class="clear"></div>
+    {% endblock %}
+    {% block footer %}
     <footer class="footer">
         <div class="row">
             <div class="col-md-12">
@@ -120,11 +127,14 @@
             </div>
         </div>
     </footer>
+    {% endblock %}
 </div>
 
+{% block script %}
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/scripts.js') }}"></script>
+{% endblock %}
 </body>
 </html>
 

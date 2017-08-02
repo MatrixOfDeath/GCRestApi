@@ -5,7 +5,8 @@
     "autoload": {
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
-            "GC\\HomeBundle\\": "src/GC/HomeBundle"
+            "GC\\HomeBundle\\": "src/GC/HomeBundle",
+	    "GC\\EvenementBundle\\": "src/GC/EvenementBundle"
         },
         "classmap": [
             "app/AppKernel.php",
