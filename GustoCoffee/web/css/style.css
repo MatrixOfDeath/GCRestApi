@@ -31,3 +31,14 @@
 .clear {
     padding: 30px 60px
 }
+
+.titlePara {
+    margin-left: 40%;
+}
+
+.footer {
+    border-top-style: solid;
+    border-color: rgba(0,0,0,.1);
+    padding-top: 10px;
+    text-align: center;
+}
