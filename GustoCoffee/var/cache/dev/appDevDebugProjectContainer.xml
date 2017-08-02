@@ -17,6 +17,7 @@
       <parameter key="DoctrineBundle">Doctrine\Bundle\DoctrineBundle\DoctrineBundle</parameter>
       <parameter key="SensioFrameworkExtraBundle">Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle</parameter>
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
+      <parameter key="GCHomeBundle">GC\HomeBundle\GCHomeBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -63,6 +64,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/src/AppBundle</parameter>
         <parameter key="namespace">AppBundle</parameter>
+      </parameter>
+      <parameter key="GCHomeBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/src/GC/HomeBundle</parameter>
+        <parameter key="namespace">GC\HomeBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -601,7 +607,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>q3b0Qm+wWuLM+oSt60A0Sh</argument>
+      <argument>QGmJfgCbabr6rQ0ixttajg</argument>
       <argument>/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -611,7 +617,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>q3b0Qm+wWuLM+oSt60A0Sh</argument>
+      <argument>QGmJfgCbabr6rQ0ixttajg</argument>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       </call>
@@ -1368,6 +1374,14 @@
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
+        <argument type="collection">
+          <argument type="service" id="debug.debug_handlers_listener"/>
+          <argument>configure</argument>
+        </argument>
+        <argument>2048</argument>
+      </call>
+      <call method="addListener">
+        <argument>console.command</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
           <argument>configure</argument>
@@ -2153,12 +2167,12 @@
     </service>
     <service id="security.authentication.listener.anonymous.main" class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
       <argument type="service" id="security.token_storage"/>
-      <argument>5981abf834e1f0.42070617</argument>
+      <argument>5981eb511d4171.44462619</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument type="service" id="security.authentication.manager"/>
     </service>
     <service id="security.authentication.provider.anonymous.main" class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-      <argument>5981abf834e1f0.42070617</argument>
+      <argument>5981eb511d4171.44462619</argument>
     </service>
     <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
       <argument type="service" id="security.token_storage"/>
@@ -2336,6 +2350,10 @@
         <argument>Doctrine</argument>
       </call>
       <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/src/GC/HomeBundle/Resources/views</argument>
+        <argument>GCHome</argument>
+      </call>
+      <call method="addPath">
         <argument>/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
         <argument>Debug</argument>
       </call>
@@ -2476,6 +2494,10 @@
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/vendor/doctrine/doctrine-bundle/Resources/views</argument>
         <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/src/GC/HomeBundle/Resources/views</argument>
+        <argument>GCHome</argument>
       </call>
       <call method="addPath">
         <argument>/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views</argument>
@@ -3343,7 +3365,7 @@
     <service id="cache.system.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>-nKmw1CJ7o</argument>
       <argument>0</argument>
-      <argument>q3b0Qm+wWuLM+oSt60A0Sh</argument>
+      <argument>QGmJfgCbabr6rQ0ixttajg</argument>
       <argument>/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3351,7 +3373,7 @@
     <service id="cache.validator.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>2yf3Ky8kU-</argument>
       <argument>0</argument>
-      <argument>q3b0Qm+wWuLM+oSt60A0Sh</argument>
+      <argument>QGmJfgCbabr6rQ0ixttajg</argument>
       <argument>/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3359,7 +3381,7 @@
     <service id="cache.serializer.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>nO2IZ2z6ec</argument>
       <argument>0</argument>
-      <argument>q3b0Qm+wWuLM+oSt60A0Sh</argument>
+      <argument>QGmJfgCbabr6rQ0ixttajg</argument>
       <argument>/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
@@ -3367,7 +3389,7 @@
     <service id="cache.annotations.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false" lazy="true">
       <argument>mwXRkHZURF</argument>
       <argument>0</argument>
-      <argument>q3b0Qm+wWuLM+oSt60A0Sh</argument>
+      <argument>QGmJfgCbabr6rQ0ixttajg</argument>
       <argument>/Applications/MAMP/htdocs/GustoCoffee/GustoCoffee/var/cache/dev/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>

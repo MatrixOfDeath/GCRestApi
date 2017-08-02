@@ -1,13 +1,133 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="fr">
+    {% block head %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GustoCoffee</title>
+
+    <meta name="description" content="GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. ">
+    <meta name="KASAgency" content="KASAgency est une jeune agence web.">
+
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/agency.min.css') }}" rel="stylesheet">
+
+</head>
+
+    {% endblock %}
+
+<body>
+
+<div class="container-fluid">
+    {% block firstImg %}
+    <div class="row topPage" style='background-image: url("http://ravindecor.com/i/2016/02/comfortable-ethan-allen-brown-leather-sofa_top-grain-leather-construction_walnut-finish-legs_glass-top-cofee-table_round-maple-side-table_soft-square-decorative-pillows_deep-seat-sofa-cushion.jpg");'>
+        {% endblock %}
+        <div class="col-md-12">
+                <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+                    <div class="container">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header page-scroll">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                            </button>
+                            <div class="home"><a class="navbar-brand page-scroll" href="#">
+                                        <img alt="GustoCoffee" src="{{ asset('img/gc_textuel.png') }}" />
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav navbar-left">
+                                <li class="hidden">
+                                    <a href="#page-top"></a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="#">Accueil</a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="#">Evénements</a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="#">Réservation</a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="#">Annonces</a>
+                                </li>
+                                <li>
+                                    <a class="page-scroll" href="#">Contact</a>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-default">
+                                        Connexion
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        <div>
+            {% block firstTitle %}
+            <h2 class="titleHome">Café CoWorking</h2>
+            {% endblock %}
+        </div>
+        </div>
+    <div class="clear"></div>
+    <div class="row">
+        <div class="col-md-8">
+            <h2>GustoCoffee</h2>
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        </div>
+        <div class="col-md-2">
+            <iframe src="https://www.youtube.com/embed/F7va26Wy5bw" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="row">
+        <div class="col-md-8">
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        </div>
+        <div class="col-md-2">
+            <img alt="Bootstrap Image Preview" src="http://lorempixel.com/140/140/">
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="row">
+        <div class="col-md-10">
+            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="row">
+        <div class="col-md-10">
+            <h2>
+                FOOTER
+            </h2>
+            <p>
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            </p>
+            <p>
+                <a class="btn" href="#">View details »</a>
+            </p>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
+
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/scripts.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+</body>
 </html>
