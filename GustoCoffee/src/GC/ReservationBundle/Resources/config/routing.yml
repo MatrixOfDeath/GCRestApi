@@ -1,0 +1,3 @@
+gc_reservation_page:
+    path:    /reservation
+    defaults: { _controller: GCReservationBundle:Default:index }
