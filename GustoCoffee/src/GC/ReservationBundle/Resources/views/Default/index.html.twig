@@ -27,8 +27,8 @@
         <div class="clear"></div>
         <div class="col-md-5 cardReservation">
             <div class="card placeIndividuelle">
-                <img src="{{ asset('img/groupPlace.jpg') }}" alt="Place individuelle" style="width:100%">
-                <div class="container">
+                <img src="{{ asset('place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
+                <div class="containerCard">
                     <h4><b>Place individuelle</b></h4>
                     <p>Choisir une place</p>
                 </div>
@@ -37,8 +37,8 @@
         <div class="col-md-2"></div>
         <div class="col-md-5 cardReservation">
             <div class="card">
-                <img src="{{ asset('img/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
-                <div class="container">
+                <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                <div class="containerCard">
                     <h4><b>Salle privatisée</b></h4>
                     <p>Choisir une salle</p>
                 </div>
@@ -46,4 +46,8 @@
         </div>
     </div>
     <div class="clear"></div>
+{% endblock %}
+
+{% block thirdBlock %}
+
 {% endblock %}

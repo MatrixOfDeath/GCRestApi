@@ -32,8 +32,8 @@
     text-shadow: 0px 2px rgba(0,0,0,0.4);
 }
 
-.titlePara {
-    margin-left: 40%;
+.titlePara, .titleReservation, .textReservation, .listMedia{
+    text-align: center;
 }
 
 .clear {
@@ -44,13 +44,8 @@
     padding: 15px 60px
 }
 
-.titleReservation {
-    margin-left: 35%;
-}
-
 .listMedia{
     background-color: rgb(229, 229, 229);
-    text-align: center;
     padding: 8px
 }
 
@@ -60,10 +55,6 @@
 
 .titleMedia {
     padding-bottom: 10px;
-}
-
-.textReservation {
-    margin-left: 17%;
 }
 
 .footer {
@@ -125,7 +116,7 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.container {
+.containerCard {
     padding: 2px 16px;
 }
 
@@ -134,9 +125,38 @@
 }
 
 .placeQuestion {
-    margin-left: 18%;
+    text-align: center;
 }
 
 .cardReservation {
     padding-top: 40px;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    background-color: #008CBA;
+    overflow: hidden;
+    width: 100%;
+    height:0;
+    transition: .5s ease;
+}
+
+.containerCard:hover .overlay {
+    bottom: 0;
+    height: 100%;
+}
+
+.text {
+    white-space: nowrap;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
 }
