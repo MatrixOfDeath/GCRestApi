@@ -1,3 +1,7 @@
+gc_reservation:
+    resource: "@GCReservationBundle/Resources/config/routing.yml"
+    prefix:   /
+
 gc_evenement:
     resource: "@GCEvenementBundle/Resources/config/routing.yml"
     prefix:   /
