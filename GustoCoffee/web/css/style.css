@@ -197,3 +197,9 @@
 .foodImg img {
     width: 100%;
 }
+
+.userConnexion {
+    margin: 5px;
+    background-color: transparent;
+    border-style: none;
+}
