@@ -6,7 +6,8 @@
         "psr-4": {
             "AppBundle\\": "src/AppBundle",
             "GC\\HomeBundle\\": "src/GC/HomeBundle",
-	    "GC\\EvenementBundle\\": "src/GC/EvenementBundle"
+	    "GC\\EvenementBundle\\": "src/GC/EvenementBundle",
+	    "GC\\ReservationBundle\\": "src/GC/ReservationBundle"
         },
         "classmap": [
             "app/AppKernel.php",

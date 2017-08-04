@@ -6,9 +6,10 @@ gc_evenement:
     resource: "@GCEvenementBundle/Resources/config/routing.yml"
     prefix:   /
 
-bc_home:
+gc_home:
     resource: "@GCHomeBundle/Resources/config/routing.yml"
     prefix:   /
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation

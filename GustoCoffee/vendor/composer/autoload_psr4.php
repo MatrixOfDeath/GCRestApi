@@ -32,6 +32,7 @@ return array(
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Incenteev\\ParameterHandler\\' => array($vendorDir . '/incenteev/composer-parameter-handler'),
     'GC\\ReservationBundle\\' => array($baseDir . '/src/GC/ReservationBundle'),
+    'GC\\OtherBundle\\' => array($baseDir . '/src/GC/OtherBundle'),
     'GC\\HomeBundle\\' => array($baseDir . '/src/GC/HomeBundle'),
     'GC\\EvenementBundle\\' => array($baseDir . '/src/GC/EvenementBundle'),
     'Fig\\Link\\' => array($vendorDir . '/fig/link-util/src'),
