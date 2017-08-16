@@ -1,3 +1,7 @@
 gc_login_page:
     path:    /connexion
-    defaults: { _controller: GCUserBundle:Login:inscription }
+    defaults: { _controller: GCUserBundle:Login:connexion }
+
+gc_inscription_page:
+    path:    /inscription
+    defaults: { _controller: GCUserBundle:Inscription:inscription }

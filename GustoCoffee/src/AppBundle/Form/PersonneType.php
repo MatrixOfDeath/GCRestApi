@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -20,11 +21,11 @@ class PersonneType extends AbstractType
         $builder
             ->add('indentifiant', TextType::class, array('attr' => array('placeholder' => '  Identifiant')))
             ->add('motdepasse', PasswordType::class, array('attr' => array('placeholder' => '  Mot de passe')))
-            ->add('nom')
-            ->add('prenom')
-            ->add('email')
-            ->add('adresse')
-            ->add('codepostal')
+            ->add('nom', TextType::class, array('attr' => array('placeholder' => '  Nom')))
+            ->add('prenom', TextType::class, array('attr' => array('placeholder' => '  Prénom')))
+            ->add('email', TextType::class, array('attr' => array('placeholder' => '  Email')))
+            ->add('adresse', TextType::class, array('attr' => array('placeholder' => '  Adresse')))
+            ->add('codepostal', NumberType::class, array('attr' => array('placeholder' => '  Code Postal')))
             ->add('statutpersonne')
             ->add('pointscumules')
             ->add('rulepersonne')
