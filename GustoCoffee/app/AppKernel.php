@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new GC\HomeBundle\GCHomeBundle(),
             new GC\EvenementBundle\GCEvenementBundle(),
             new GC\ReservationBundle\GCReservationBundle(),
+            new GC\UserBundle\GCUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

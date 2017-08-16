@@ -61,8 +61,8 @@ class ComposerStaticInit971b5e6116b27919d64e874daadd79b3
         ),
         'G' => 
         array (
+            'GC\\UserBundle\\' => 14,
             'GC\\ReservationBundle\\' => 21,
-            'GC\\OtherBundle\\' => 15,
             'GC\\HomeBundle\\' => 14,
             'GC\\EvenementBundle\\' => 19,
         ),
@@ -189,13 +189,13 @@ class ComposerStaticInit971b5e6116b27919d64e874daadd79b3
         array (
             0 => __DIR__ . '/..' . '/incenteev/composer-parameter-handler',
         ),
+        'GC\\UserBundle\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/GC/UserBundle',
+        ),
         'GC\\ReservationBundle\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src/GC/ReservationBundle',
-        ),
-        'GC\\OtherBundle\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src/GC/OtherBundle',
         ),
         'GC\\HomeBundle\\' => 
         array (

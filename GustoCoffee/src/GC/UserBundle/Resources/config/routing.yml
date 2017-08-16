@@ -1,0 +1,3 @@
+gc_login_page:
+    path:    /login
+    defaults: { _controller: GCUserBundle:Login:inscription }

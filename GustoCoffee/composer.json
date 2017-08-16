@@ -8,7 +8,7 @@
             "GC\\HomeBundle\\": "src/GC/HomeBundle",
 	    "GC\\EvenementBundle\\": "src/GC/EvenementBundle",
 	    "GC\\ReservationBundle\\": "src/GC/ReservationBundle",
-	    "GC\\OtherBundle\\": "src/GC/OtherBundle"
+	    "GC\\UserBundle\\": "src/GC/UserBundle"
         },
         "classmap": [
             "app/AppKernel.php",

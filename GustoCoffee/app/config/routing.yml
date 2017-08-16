@@ -1,3 +1,7 @@
+gc_user:
+    resource: "@GCUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 gc_reservation:
     resource: "@GCReservationBundle/Resources/config/routing.yml"
     prefix:   /
