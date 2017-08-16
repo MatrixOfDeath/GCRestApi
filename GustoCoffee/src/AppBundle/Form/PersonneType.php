@@ -3,9 +3,11 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
 class PersonneType extends AbstractType
@@ -16,8 +18,8 @@ class PersonneType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('indentifiant')
-            ->add('motdepasse')
+            ->add('indentifiant', TextType::class, array('attr' => array('placeholder' => '  Identifiant')))
+            ->add('motdepasse', PasswordType::class, array('attr' => array('placeholder' => '  Mot de passe')))
             ->add('nom')
             ->add('prenom')
             ->add('email')

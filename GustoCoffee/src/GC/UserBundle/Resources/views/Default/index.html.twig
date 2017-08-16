@@ -1,37 +1,77 @@
 {% extends 'base.html.twig' %}
 
 {% block firstImg %}
-    style='background-image: url({{ asset('img/backEvenement2.jpg') }});'>
+    style='background-image: url({{ asset('img/connexion.jpg') }});'>
 {% endblock %}
 
 {% block firstTitle %}
-    <h2 class="titleHome">Evénement CoWorking</h2>
+    <h2 class="titleHome">Connexion CoWorking</h2>
 {% endblock %}
 
 {% block firstBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="titlePara">Se Connecter</h2>
+        </div>
+        <div class="col-md-5">
+            <button class="loginBtn loginBtn--facebook">
+                Login with Facebook
+            </button>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
+            <button class="loginBtn loginBtn--google">
+                Login with Google
+            </button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block secondBlock %}
+<div class="row addPadding">
+    <div class="col-md-12">
+        <h2 class="titlePara">OU</h2>
+    </div>
+</div>
     {{ form_start(form) }}
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            {% block email %}
                 <div class="form-group">
-                    <div class="col-sm-12">
-                        {{ form_label(form.indentifiant) }}
+                    <div class="col-sm-12 form-connexion">
                         {{ form_errors(form.indentifiant) }}
                         {{ form_widget(form.indentifiant) }}
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-12">
-                        {{ form_label(form.motdepasse) }}
+                    <div class="col-sm-12 form-connexion">
                         {{ form_errors(form.motdepasse) }}
                         {{ form_widget(form.motdepasse) }}
                     </div>
                 </div>
-            {% endblock %}
         </div>
         <div class="col-md-3"></div>
-    </div>
-    {{ form_end(form) }}
 
+        <div class="col-md-4"></div>
+        <div class="col-md-4 mdpOublie">Mot de passe oublié</div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-sm-12 form-connexion">
+                    {{ form_widget(form.Valider) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4 sinscrire">Pas encore inscrit ? <a href="{{ path('gc_login_page') }}">S'inscrire</a> </div>
+        <div class="col-md-4"></div>
+    </div>
+
+{% endblock %}
+
+{% block thirdBlock %}
 {% endblock %}
