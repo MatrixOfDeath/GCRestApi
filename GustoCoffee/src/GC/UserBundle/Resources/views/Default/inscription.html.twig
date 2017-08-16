@@ -17,65 +17,96 @@
     {{ form_start(form) }}
     <div class="row">
         <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-sm-12 form-connexion">
-                    {{ form_errors(form.indentifiant) }}
-                    {{ form_widget(form.indentifiant) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12 form-connexion">
-                    {{ form_errors(form.motdepasse) }}
-                    {{ form_widget(form.motdepasse) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12 form-connexion">
-                    {{ form_errors(form.nom) }}
-                    {{ form_widget(form.nom) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12 form-connexion">
-                    {{ form_errors(form.prenom) }}
-                    {{ form_widget(form.prenom) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12 form-connexion">
-                    {{ form_errors(form.email) }}
-                    {{ form_widget(form.email) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12 form-connexion">
-                    {{ form_errors(form.adresse) }}
-                    {{ form_widget(form.adresse) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12 form-connexion">
-                    {{ form_errors(form.codepostal) }}
-                    {{ form_widget(form.codepostal) }}
-                </div>
-            </div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.nom) }}
+            {{ form_widget(form.nom) }}
+        </div>
+        <div class="col-md-3 form-prenom">
+            {{ form_errors(form.prenom) }}
+            {{ form_widget(form.prenom) }}
         </div>
         <div class="col-md-3"></div>
-
     </div>
     <div class="row">
         <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-sm-12 form-connexion">
-                    {{ form_widget(form.Valider) }}
-                </div>
-            </div>
+        <div class="col-md-6 form-connexion">
+            {{ form_errors(form.indentifiant) }}
+            {{ form_widget(form.indentifiant) }}
         </div>
         <div class="col-md-3"></div>
     </div>
-    {{ form_end(form) }}
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.motdepasse) }}
+            {{ form_widget(form.motdepasse.first, {'attr': {'placeholder': 'Mot de passe'}}) }}
+        </div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.motdepasse) }}
+            {{ form_widget(form.motdepasse.second, {'attr': {'placeholder': 'Confirmer Mot de passe'}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            {{ form_errors(form.adresse) }}
+            {{ form_widget(form.adresse) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.codepostal) }}
+            {{ form_widget(form.codepostal) }}
+        </div>
+        <div class="col-md-3 form-prenom">
+            {{ form_errors(form.ville) }}
+            {{ form_widget(form.ville) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexionHide">
+            {{ form_errors(form.statutpersonne) }}
+            {{ form_widget(form.statutpersonne) }}
+
+            {{ form_errors(form.pointscumules) }}
+            {{ form_widget(form.pointscumules) }}
+
+            {{ form_errors(form.rulepersonne) }}
+            {{ form_widget(form.rulepersonne) }}
+
+
+            {{ form_errors(form.newsletter) }}
+            {{ form_widget(form.newsletter) }}
+
+
+            {{ form_errors(form.idrule) }}
+            {{ form_widget(form.idrule) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            {{ form_widget(form.Valider) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+        <div class="col-md-3"></div>
+    </div>
+        {{ form_end(form) }}
 
 {% endblock %}
 

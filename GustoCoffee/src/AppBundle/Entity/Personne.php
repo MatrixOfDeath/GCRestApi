@@ -64,7 +64,14 @@ class Personne
     /**
      * @var string
      *
-     * @ORM\Column(name="statutPersonne", type="string", length=25, nullable=false)
+     * @ORM\Column(name="ville", type="string", length=25, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="statutPersonne", type="string", length=25, nullable=true)
      */
     private $statutpersonne;
 
@@ -276,6 +283,30 @@ class Personne
     public function getCodepostal()
     {
         return $this->codepostal;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Personne
+     */
+    public function setVille($ville)
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille()
+    {
+        return $this->ville;
     }
 
     /**

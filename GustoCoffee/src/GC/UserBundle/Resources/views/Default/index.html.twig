@@ -45,8 +45,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12 form-connexion">
-                        {{ form_errors(form.motdepasse) }}
-                        {{ form_widget(form.motdepasse) }}
+                        {{ form_errors(form.motdepasse.first) }}
+                        {{ form_widget(form.motdepasse.first, {'attr': {'placeholder': 'Mot de passe'}}) }}
                     </div>
                 </div>
         </div>

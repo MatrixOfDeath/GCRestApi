@@ -301,6 +301,15 @@
     background: #E74B37;
 }
 
+.form-nom {
+    padding: 10px;
+    text-align: left;
+}
+
+.form-prenom {
+    padding: 10px;
+}
+
 .form-connexion {
     text-align: center;
     padding: 10px;
@@ -312,4 +321,12 @@
 
 .sinscrire {
     text-align: center;
+}
+
+.form-connexionHide {
+    display: none;
+}
+
+.adresseIdentifiant {
+    padding: 5px;
 }
