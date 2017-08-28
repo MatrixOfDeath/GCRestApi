@@ -11,7 +11,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    
+
 # Nelmio CORS Configuration
 nelmio_cors:
     defaults:
