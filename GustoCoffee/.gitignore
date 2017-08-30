@@ -1,3 +1,4 @@
+#Ignoring files
 /.web-server-pid
 /app/config/parameters.yml
 /build/
@@ -16,4 +17,7 @@ var/logs/.gitkeep
 var/sessions/.gitkeep
 var/SymfonyRequirements.php
 /vendor/
+/vendor/*
 /web/bundles/
+.idea/
+var/

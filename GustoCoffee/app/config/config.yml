@@ -10,7 +10,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
 
 framework:
     #esi: ~
@@ -22,7 +22,7 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
+    serializer: { enable_annotations: false }
     templating:
         engines: ['twig']
     default_locale: '%locale%'
@@ -71,3 +71,40 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+nelmio_api_doc: ~
+
+fos_rest:
+    routing_loader:
+        default_format: json                           # All responses should be JSON formated
+        include_format: false                           # We do not include format in request, so that all responses
+    format_listener:
+        enabled: true
+        rules:
+            # setting fallback_format to json means that instead of considering the next rule in case of a priority mismatch, json will be used
+            #- { path: '^/', host: 'api.%domain%', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+            # you can specifically target the exception controller
+            - { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+            #- { priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+            - { path: '^/', stop: true }
+    view:
+        view_response_listener: true
+
+fos_user:
+    db_driver: orm
+    firewall_name: api                                  # Seems to be used when registering user/reseting password,
+                                                        # but since there is no "login", as so it seems to be useless in
+                                                        # our particular context, but still required by "FOSUserBundle"
+    user_class: AppBundle\Entity\Personne
+    from_email:
+        address: boubrit.karim@gmail.com
+        sender_name: Karim BOUBRIT
+
+fos_oauth_server:
+    db_driver:           orm
+    client_class:        AppBundle\Entity\Client
+    access_token_class:  AppBundle\Entity\AccessToken
+    refresh_token_class: AppBundle\Entity\RefreshToken
+    auth_code_class:     AppBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation

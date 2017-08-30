@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="Personne", indexes={@ORM\Index(name="rulePersonne", columns={"rulePersonne"}), @ORM\Index(name="FK_Personne_idRule", columns={"idRule"})})
  * @ORM\Entity
  */
-class Personne
+class Personne extends BaseUser
 {
     /**
      * @var string
@@ -45,7 +46,7 @@ class Personne
      *
      * @ORM\Column(name="email", type="string", length=25, nullable=true)
      */
-    private $email;
+    //protected $email;
 
     /**
      * @var string
@@ -99,11 +100,11 @@ class Personne
     /**
      * @var integer
      *
-     * @ORM\Column(name="idPersonne", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idpersonne;
+    protected $id;
 
     /**
      * @var \AppBundle\Entity\RuleUtilisateur
@@ -406,13 +407,13 @@ class Personne
     }
 
     /**
-     * Get idpersonne
+     * Get id
      *
      * @return integer
      */
-    public function getIdpersonne()
+    public function getId()
     {
-        return $this->idpersonne;
+        return $this->id;
     }
 
     /**

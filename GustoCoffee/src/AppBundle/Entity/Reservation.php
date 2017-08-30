@@ -101,7 +101,7 @@ class Reservation
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="idPersonne")
+     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="id")
      * })
      */
     private $idpersonne;
