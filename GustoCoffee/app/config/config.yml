@@ -77,6 +77,22 @@ jms_i18n_routing:
     locales: [fr, en]
     strategy: prefix
 
+jms_di_extra:
+    locations:
+        all_bundles: false
+        bundles: [AppBundle, UserBundle, HomeBundle, EvenementBundle, ReservationBundle]
+        directories: ["%kernel.root_dir%/../src"]
+
+jms_translation:
+    configs:
+        app:
+            dirs: ["%kernel.root_dir%", "%kernel.root_dir%/../src"]
+            output_dir: "%kernel.root_dir%/Resources/translations"
+            ignored_domains: [routes]
+            excluded_names: ["*TestCase.php", "*Test.php"]
+            excluded_dirs: [cache, data, logs]
+            extractors: [alias_of_the_extractor]
+
 nelmio_api_doc: ~
 
 fos_rest:
