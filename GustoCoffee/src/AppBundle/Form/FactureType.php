@@ -6,14 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PersonneType extends AbstractType
+class FactureType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('indentifiant')->add('motdepasse')->add('nom')->add('prenom')->add('adresse')->add('codepostal')->add('ville')->add('statutpersonne')->add('pointscumules')->add('rulepersonne')->add('newsletter')->add('idrule');
+        $builder->add('datefacturation')->add('nomfichierfacture')->add('idcommande')->add('idreservation')->add('idtransaction')->add('idmodepaiement');
     }
     
     /**
@@ -22,7 +22,7 @@ class PersonneType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Personne'
+            'data_class' => 'AppBundle\Entity\Facture'
         ));
     }
 
@@ -31,7 +31,7 @@ class PersonneType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_personne';
+        return 'appbundle_facture';
     }
 
 

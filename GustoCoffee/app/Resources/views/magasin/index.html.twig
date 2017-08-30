@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Magasins list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nommagasin</th>
+                <th>Adresse</th>
+                <th>Idmagasin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for magasin in magasins %}
+            <tr>
+                <td><a href="{{ path('magasin_show', { 'idmagasin': magasin.idmagasin }) }}">{{ magasin.nommagasin }}</a></td>
+                <td>{{ magasin.adresse }}</td>
+                <td>{{ magasin.idmagasin }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('magasin_show', { 'idmagasin': magasin.idmagasin }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('magasin_edit', { 'idmagasin': magasin.idmagasin }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('magasin_new') }}">Create a new magasin</a>
+        </li>
+    </ul>
+{% endblock %}

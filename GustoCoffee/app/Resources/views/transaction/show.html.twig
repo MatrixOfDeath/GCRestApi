@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Transaction</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Datetrans</th>
+                <td>{% if transaction.datetrans %}{{ transaction.datetrans|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Statuttransaction</th>
+                <td>{{ transaction.statuttransaction }}</td>
+            </tr>
+            <tr>
+                <th>Commentairetransaction</th>
+                <td>{{ transaction.commentairetransaction }}</td>
+            </tr>
+            <tr>
+                <th>Idtransaction</th>
+                <td>{{ transaction.idtransaction }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('transaction_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('transaction_edit', { 'idtransaction': transaction.idtransaction }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Modedepaiement</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Modepaiement</th>
+                <td>{{ modeDePaiement.modepaiement }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ modeDePaiement.description }}</td>
+            </tr>
+            <tr>
+                <th>Idmodepaiement</th>
+                <td>{{ modeDePaiement.idmodepaiement }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('modedepaiement_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('modedepaiement_edit', { 'idmodepaiement': modeDePaiement.idmodepaiement }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

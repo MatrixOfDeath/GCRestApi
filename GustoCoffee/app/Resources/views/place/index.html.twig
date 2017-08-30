@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Places list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nomplace</th>
+                <th>Statutplace</th>
+                <th>Idplace</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for place in places %}
+            <tr>
+                <td><a href="{{ path('place_show', { 'idplace': place.idplace }) }}">{{ place.nomplace }}</a></td>
+                <td>{{ place.statutplace }}</td>
+                <td>{{ place.idplace }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('place_show', { 'idplace': place.idplace }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('place_edit', { 'idplace': place.idplace }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('place_new') }}">Create a new place</a>
+        </li>
+    </ul>
+{% endblock %}
