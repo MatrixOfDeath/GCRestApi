@@ -39,10 +39,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('personne_show', { 'id': personne.id }) }}">show</a>
+                            <a href="{{ path('personne_show', { 'id': personne.id }) }}">{{ show|trans }}</a>
                         </li>
                         <li>
-                            <a href="{{ path('personne_edit', { 'id': personne.id }) }}">edit</a>
+                            <a href="{{ path('personne_edit', { 'id': personne.id }) }}">{{ edit|trans }}</a>
                         </li>
                     </ul>
                 </td>
@@ -53,7 +53,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('personne_new') }}">Create a new personne</a>
+            <a href="{{ path('personne_new') }}">{{ Create a new personne|trans }}</a>
         </li>
     </ul>
 {% endblock %}
