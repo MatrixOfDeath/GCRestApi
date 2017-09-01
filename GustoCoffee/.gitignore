@@ -4,6 +4,10 @@
 /build/
 /phpunit.xml
 
+
+#Styling
+/node_modules/
+/app/Resources/lib
 # Cache logs
 /var/*
 /var/cache

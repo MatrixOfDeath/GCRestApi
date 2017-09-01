@@ -14,7 +14,8 @@
 
     <link rel="icon" type="image/png" href="{{ asset('img/gc_design.png')}}" />
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('build/app.js')}}" rel="stylesheet">
+    <link href="{{ asset('build/global.css') }}" rel="stylesheet">
 
 </head>
 
@@ -62,7 +63,7 @@
                                 <li>
                                     <a class="page-scroll" href="#">Contact</a>
                                 </li>
-				<li>
+                                <li>
                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                         <a href="{{ path('fos_user_security_logout') }}">
                                             {{ 'Déconnexion'|trans({}, 'FOSUserBundle') }}
@@ -73,6 +74,23 @@
                                     </a>
                                    {% endif %}
                                 </li>
+                                {% set req = app.request %}
+                                {% for locale in "fr" %}
+                                    {% if locale != req.getLocale() %}
+                                        test
+                                        <link rel="alternate" hreflang="{{ locale }}" href="{{
+                                        absolute_url(
+                                        path(
+                                        req.attributes.get('_route'),
+                                        req.attributes.get('_route_params')|merge({'_locale': locale})
+                                        )
+                                        ) }}" />
+                                    {% endif %}
+                                {% endfor %}
+                                {% for locale in locales %}
+                                    <li><a href="{{ path(app.request.attributes.get("_route"), app.request.query.all|merge({"_locale": locale})) }}">{{ locale }}</a></li>
+                                {% endfor %}
+
                                 <li>
                                     <button type="button" class="btn btn-default userConnexion">
                                         <img src="{{ asset('img/france.png') }}" alt="France">
@@ -115,8 +133,9 @@
     <div class="row addPadding">
         <div class="col-md-9">
             <h2 class="titlePara">GustoCoffee</h2>
-            <p class="textDescription">La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "<strong>Coffee-Shop CoWorking"</strong>.<br>
+            <p class="textDescription">{% trans %}La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "<strong>Coffee-Shop CoWorking"</strong>.<br>
             Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.
+            {% endtrans %}
             </p>
         </div>
         <div class="col-md-3 videoContainer">
@@ -129,8 +148,9 @@
     <div class="row addPadding">
         <div class="col-md-9">
             <h2 class="titlePara">Nos Services</h2>
-            <p class="textDescription">GustoCoffee vous propose des <strong>services bureautiques</strong> comme un espace de stockage privé en ligne, la vented de support numérique, ainsi qu'une impression. De plus, la consommation de <strong>café, thé, crêpes et gaufres sont à volonté !</strong><br>
+            <p class="textDescription">{% trans %}GustoCoffee vous propose des <strong>services bureautiques</strong> comme un espace de stockage privé en ligne, la vented de support numérique, ainsi qu'une impression. De plus, la consommation de <strong>café, thé, crêpes et gaufres sont à volonté !</strong><br>
             Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner tout en continuant votre travail de la journée.
+            {% endtrans %}
             </p>
         </div>
         <div class="col-md-3 foodImg">
@@ -142,10 +162,12 @@
     {% block thirdBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <p class="textDescription franchiseGroupe">La société <strong>GustoCoffee</strong> est spécialisée dans la <strong>vente de produit autour du café</strong>, machine automatique, machine expresso,
+            <p class="textDescription franchiseGroupe">{% trans %}La société <strong>GustoCoffee</strong> est spécialisée dans la <strong>vente de produit autour du café</strong>, machine automatique, machine expresso,
             moulin à café, café en grains, café en dosette, etc. <br>
             Monsieur Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des <strong>coffee-shops</strong> en Italie,
-            ainsi qu'en Angleterre et se sont implantés il y a peu sur Paris avec un nouveau concept de "<strong>Coffee-Shop Coworking</strong>".</p>
+            ainsi qu'en Angleterre et se sont implantés il y a peu sur Paris avec un nouveau concept de "<strong>Coffee-Shop Coworking</strong>".
+            {% endtrans %}
+            </p>
         </div>
         <div class="col-md-2">
         </div>
@@ -157,13 +179,13 @@
         <div class="row">
             <div class="col-md-12">
                 <p>
-                    <a href="{{ asset('pdf/mentionsLegales.pdf') }}" target="_blank">Mentions Légales</a><br>
-                    <a href="{{ asset('pdf/CGU.pdf') }}" target="_blank">Conditions Générales d'Utilisation</a><br>
-                    <a href="{{ asset('pdf/CGV.pdf') }}" target="_blank">Conditions Générales de Vente</a><br>
-                    FAQ <br>
-                    Newsletter <br>
-                    Recrutement <br>
-                    infos
+                    <a href="{{ asset('pdf/mentionsLegales.pdf') }}" target="_blank">{{ "Mentions Légales"|trans }}</a><br>
+                    <a href="{{ asset('pdf/CGU.pdf') }}" target="_blank">{{ "Conditions Générales d'Utilisation"|trans }}</a><br>
+                    <a href="{{ asset('pdf/CGV.pdf') }}" target="_blank">{{ "Conditions Générales de Vente"|trans }}</a><br>
+                    {{ "FAQ"|trans }} <br>
+                    {{ "Newsletter"|trans }} <br>
+                    {{ "Recrutement"|trans }} <br>
+                    {{ "Infos"|trans }}
                 </p>
             </div>
         </div>

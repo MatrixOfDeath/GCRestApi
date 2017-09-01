@@ -71,3 +71,4 @@ fos_oauth_server_token:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
