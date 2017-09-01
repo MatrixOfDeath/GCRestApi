@@ -17,7 +17,8 @@ Encore
     // will output as web/build/global.css
     .addStyleEntry('global', [
         './web/assets/scss/global.scss',
-        './web/assets/scss/helper.scss'
+        './web/assets/scss/helper.scss',
+        './web/assets/scss/main.scss'
     ])
 
     // allow sass/scss files to be processed
