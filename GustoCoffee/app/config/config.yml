@@ -15,7 +15,7 @@ parameters:
 
 framework:
     #esi: ~
-    translator: { fallbacks: [fr] }
+    translator: { fallbacks: [en] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -35,7 +35,7 @@ framework:
     fragments: ~
     http_method_override: true
     assets:
-        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'  #Point le hash
+        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
     php_errors:
         log: true
 
