@@ -2,10 +2,7 @@ var Encore = require('@symfony/webpack-encore');
 
 Encore
 
-    // allow sass/scss files to be processed
-    .enableSassLoader()
 
-    .enableLessLoader()
 
     // directory where all compiled assets will be stored
     .setOutputPath('web/build/')
@@ -17,11 +14,15 @@ Encore
     .cleanupOutputBeforeBuild()
 
     // will output as web/build/app.js
-    .addEntry('app', './assets/js/main.js')
+    .addEntry('app', '.web/assets/js/scripts.js')
 
     // will output as web/build/global.css
-    .addStyleEntry('global', './assets/css/global.scss')
+    .addStyleEntry('global', '.web/assets/scss/global.scss')
 
+    // allow sass/scss files to be processed
+    .enableSassLoader()
+
+    .enableLessLoader()
     // allow legacy applications to use $/jQuery as a global variable
     .autoProvidejQuery()
 
