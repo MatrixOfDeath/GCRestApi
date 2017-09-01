@@ -1,1 +1,5 @@
-// Empty JS for your own code to be here
+var $ = require('jquery');
+
+(function() {
+    $('body').html('Using jQuery');
+})();
