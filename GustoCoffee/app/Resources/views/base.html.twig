@@ -101,6 +101,13 @@
                                         <img src="{{ asset('img/usa.png') }}" alt="Etats-Unis d'Amérique">
                                     </button>
                                 </li>
+                                <li>
+                                    {% if is_granted("ROLE_ADMIN") %}
+                                        <a href="{{ path('/admin') }}">
+                                            {{ 'Backoffice'|trans }}
+                                        </a>
+                                    {% endif %}
+                                </li>
                             </ul>
                         </div>
                     </div>

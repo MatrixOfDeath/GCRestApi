@@ -69,6 +69,12 @@ NelmioApiDocBundle:
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
 
+
+#Tihs is routes for GustoCoffee Backoffice
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-
