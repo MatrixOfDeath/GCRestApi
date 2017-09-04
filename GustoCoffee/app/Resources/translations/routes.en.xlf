@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-09-01T20:32:46Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2017-09-04T17:59:14Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="d033e22ae348aeb5660fc2140aec35850c4da997" resname="admin">
+        <source>/backoffice/</source>
+        <target>/backoffice/</target>
+      </trans-unit>
       <trans-unit id="180e49989d61e4a775052a3993d443acbe36c35e" resname="annonce_delete">
         <source>/annonce/{idannonce}</source>
         <target>/annonce/{idannonce}</target>
@@ -49,6 +53,10 @@
       <trans-unit id="4ffa89e2322d455a94b4f9f9037df8a21ca96c61" resname="commande_show">
         <source>/commande/{idcommande}</source>
         <target>/commande/{idcommande}</target>
+      </trans-unit>
+      <trans-unit id="7c67bb5767d93378c2ad10ef33814b323302fe56" resname="easyadmin">
+        <source>/backoffice/</source>
+        <target>/backoffice/</target>
       </trans-unit>
       <trans-unit id="da37d11b4340a2cf2390103ebe8bdfb865da7ac2" resname="facture_delete">
         <source>/facture/{idfacture}</source>

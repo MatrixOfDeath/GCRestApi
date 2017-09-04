@@ -20,16 +20,25 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+            form_login:
+                provider: fos_userbundle
+                #csrf_token_generator: security.csrf.token_manager
+                always_use_default_target_path: true
+                default_target_path: /reservation
         main:
-
             pattern: ^/
             form_login:
                 provider: fos_userbundle
+                #check_path: fos_user_security_login_check
+                #login_path: fos_user_security_login
                 csrf_token_generator: security.csrf.token_manager
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
                 always_use_default_target_path: true
-                default_target_path: /reservation
+                default_target_path: /%locale%/reservation
 
-            logout:    true
+            logout:
+                path: fos_user_security_logout
             anonymous: true
 
         oauth_token:                                   # Everyone can access the access token URL.
@@ -45,6 +54,11 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
-        - { path: ^/api, roles: [ IS_AUTHENTICATED_FULLY ] }
+        - { path: ^/backoffice/, role: ROLE_ADMIN }
+        #- { path: ^/[^/]+/login$,     host: ^%domain_name%$,    role: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/[^/]+/register,   host: ^%domain_name%$,    role: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/[^/]+/resetting,  host: ^%domain_name%$,    role: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/[^/]+/admin/,     host: ^%domain_name%$,    role: ROLE_ADMIN }
+        #- { path: ^/[^/]+/api,        host: ^%domain_name%$,    role: [ IS_AUTHENTICATED_FULLY ] }
+       # - { path: ^/[^/]+/,  host: ^%domain_name%$, role: IS_AUTHENTICATED_ANONYMOUSLY }
 

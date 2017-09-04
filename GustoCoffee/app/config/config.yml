@@ -15,7 +15,7 @@ parameters:
 
 framework:
     #esi: ~
-    translator: { fallbacks: [en] }
+    translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -122,9 +122,58 @@ fos_rest:
     view:
         view_response_listener: true
 
+
+sensio_framework_extra:
+    router:      { annotations: true }
+    request:     { converters: true, auto_convert: true }
+    view:        { annotations: true }
+    cache:       { annotations: true }
+    security:    { annotations: true }
+    psr_message: { enabled: false } # Defaults to true if the PSR-7 bridge is installed
+
+#Configuration of our BackOffice
+easy_admin:
+    site_name: '<img alt="GustoCoffee" width="100px" src="/img/gc_design.png" /> BackOffice'
+    design:
+        assets:
+            favicon: '/img/gc_design.png'
+    entities:
+        Personne:
+            class: AppBundle\Entity\Personne
+            label: 'Utilisateurs'
+            list:
+                title: 'Les utilisateurs'
+        Produit:
+            class: AppBundle\Entity\Produit
+            label: 'Produits'
+            list:
+                title: 'Les Produits'
+
+        Commande:
+            class: AppBundle\Entity\Commande
+            label: 'Les Commandes'
+            list:
+                title: 'Les Commandes'
+
+        Reservation:
+            class: AppBundle\Entity\Reservation
+            label: 'Les dernières réservation'
+            list:
+                title: 'Les Réservations'
+        Magasin:
+            class: AppBundle\Entity\Magasin
+            label: 'Les Magasins'
+            list:
+                title: 'Les Magasins'
+        JoursOuvert:
+            class: AppBundle\Entity\JoursOuvert
+            label: 'Les jours d''ouverture'
+            list:
+                title: 'Les jours d''ouverture'
+
 fos_user:
     db_driver: orm
-    firewall_name: api                                  # Seems to be used when registering user/reseting password,
+    firewall_name: main                                 # Seems to be used when registering user/reseting password,
                                                         # but since there is no "login", as so it seems to be useless in
                                                         # our particular context, but still required by "FOSUserBundle"
     user_class: AppBundle\Entity\Personne
@@ -140,11 +189,3 @@ fos_oauth_server:
     auth_code_class:     AppBundle\Entity\AuthCode
     service:
         user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
-
-sensio_framework_extra:
-    router:      { annotations: true }
-    request:     { converters: true, auto_convert: true }
-    view:        { annotations: true }
-    cache:       { annotations: true }
-    security:    { annotations: true }
-    psr_message: { enabled: false } # Defaults to true if the PSR-7 bridge is installed
