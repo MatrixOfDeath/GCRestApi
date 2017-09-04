@@ -135,14 +135,25 @@ sensio_framework_extra:
 easy_admin:
     site_name: '<img alt="GustoCoffee" width="100px" src="/img/gc_design.png" /> BackOffice'
     design:
+        brand_color: rgba(166, 133, 77, 1)
+
         assets:
             favicon: '/img/gc_design.png'
     entities:
         Personne:
             class: AppBundle\Entity\Personne
             label: 'Utilisateurs'
+            form:
+                fields: ['id', 'username', 'email', 'nom', 'prenom', 'motdepasse', 'enabled', 'lastLogin', 'statutpersonne', 'newsletter']
             list:
-                title: 'Les utilisateurs'
+                title: 'Les Utilisateurs'
+                fields: ['id', 'username', 'email', 'nom', 'prenom', 'enabled', 'lastLogin', 'statutpersonne', 'newsletter', { property: 'email', label: 'Contact Email' }]
+            edit:
+                - { property: 'username', icon: 'user' }
+                - { property: 'email', css_class: 'input-large', type_options: { required: false } }
+            new:
+                - { property: 'username', icon: 'user' }
+                - { property: 'email', css_class: 'input-large', type_options: { required: false } }
         Produit:
             class: AppBundle\Entity\Produit
             label: 'Produits'
