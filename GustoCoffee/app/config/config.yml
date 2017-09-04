@@ -15,7 +15,7 @@ parameters:
 
 framework:
     #esi: ~
-    translator: { fallbacks: [fr] }
+    #translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -83,10 +83,10 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
-jms_i18n_routing:
-    default_locale: fr
-    locales: [fr, en]
-    strategy: prefix
+#jms_i18n_routing:
+ #   default_locale: fr
+ #   locales: [fr, en]
+#    strategy: prefix
 
 jms_di_extra:
     locations:
@@ -122,26 +122,6 @@ fos_rest:
     view:
         view_response_listener: true
 
-fos_user:
-    db_driver: orm
-    firewall_name: api                                  # Seems to be used when registering user/reseting password,
-                                                        # but since there is no "login", as so it seems to be useless in
-                                                        # our particular context, but still required by "FOSUserBundle"
-    user_class: AppBundle\Entity\Personne
-    service:
-        mailer: fos_user.mailer.twig_swift
-    from_email:
-        address: boubrit.karim@gmail.com
-        sender_name: Karim BOUBRIT
-
-fos_oauth_server:
-    db_driver:           orm
-    client_class:        AppBundle\Entity\Client
-    access_token_class:  AppBundle\Entity\AccessToken
-    refresh_token_class: AppBundle\Entity\RefreshToken
-    auth_code_class:     AppBundle\Entity\AuthCode
-    service:
-        user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
 
 sensio_framework_extra:
     router:      { annotations: true }
@@ -163,7 +143,7 @@ easy_admin:
             label: 'Utilisateurs'
             list:
                 title: 'Les utilisateurs'
-        Peroduit:
+        Produit:
             class: AppBundle\Entity\Produit
             label: 'Produits'
             list:
@@ -190,3 +170,22 @@ easy_admin:
             label: 'Les jours d''ouverture'
             list:
                 title: 'Les jours d''ouverture'
+
+fos_user:
+    db_driver: orm
+    firewall_name: main                                 # Seems to be used when registering user/reseting password,
+                                                        # but since there is no "login", as so it seems to be useless in
+                                                        # our particular context, but still required by "FOSUserBundle"
+    user_class: AppBundle\Entity\Personne
+    from_email:
+        address: boubrit.karim@gmail.com
+        sender_name: Karim BOUBRIT
+
+fos_oauth_server:
+    db_driver:           orm
+    client_class:        AppBundle\Entity\Client
+    access_token_class:  AppBundle\Entity\AccessToken
+    refresh_token_class: AppBundle\Entity\RefreshToken
+    auth_code_class:     AppBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation

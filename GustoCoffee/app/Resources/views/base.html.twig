@@ -75,18 +75,7 @@
                                    {% endif %}
                                 </li>
                                 {% set req = app.request %}
-                                {% for locale in "fr" %}
-                                    {% if locale != req.getLocale() %}
-                                        test
-                                        <link rel="alternate" hreflang="{{ locale }}" href="{{
-                                        absolute_url(
-                                        path(
-                                        req.attributes.get('_route'),
-                                        req.attributes.get('_route_params')|merge({'_locale': locale})
-                                        )
-                                        ) }}" />
-                                    {% endif %}
-                                {% endfor %}
+
                                 {% for locale in locales %}
                                     <li><a href="{{ path(app.request.attributes.get("_route"), app.request.query.all|merge({"_locale": locale})) }}">{{ locale }}</a></li>
                                 {% endfor %}
@@ -103,7 +92,7 @@
                                 </li>
                                 <li>
                                     {% if is_granted("ROLE_ADMIN") %}
-                                        <a href="{{ path('/admin') }}">
+                                        <a href="{{ path('easyadmin') }}">
                                             {{ 'Backoffice'|trans }}
                                         </a>
                                     {% endif %}
