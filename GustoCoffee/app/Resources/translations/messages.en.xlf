@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-09-01T20:41:47Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2017-09-04T17:59:14Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -9,36 +9,49 @@
       <trans-unit id="bacfad2ced64e61804771117efac878653e562c1" resname="Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.">
         <source>Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.</source>
         <target>Thus, we offer a space specially arranged for individual or group work within Paris, near the Gare du Nord accessible via the RER B or RER D.</target>
+        <jms:reference-file line="133">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eada74090316b7c048a6d02fd262f846784e1776" resname="Backoffice">
+        <source>Backoffice</source>
+        <target state="new">Backoffice</target>
+        <jms:reference-file line="96">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e9fcbdf4eb786e578d57e17073d5fcf08d7fa3c5" resname="Coffee-Shop CoWorking">
         <source>Coffee-Shop CoWorking</source>
         <target>Co-Working Coffee-Shop</target>
+        <jms:reference-file line="132">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e4fd5c2bb747735d3c3577fb8b43af178610ce2b" resname="Conditions Générales d'Utilisation">
         <source>Conditions Générales d'Utilisation</source>
         <target>Terms of Use</target>
+        <jms:reference-file line="178">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3bce2c5eeaf94cfccd903eb6cf1ab2588435f96a" resname="Conditions Générales de Vente">
         <source>Conditions Générales de Vente</source>
         <target>Terms of Sales</target>
+        <jms:reference-file line="179">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="81ff6d8ccc2abbddeba89168fa385d613745e185" resname="Create a new personne">
         <source>Create a new personne</source>
         <target>Créer une nouvelle personne</target>
+        <jms:reference-file line="56">/../../../../../../.././app/Resources/views/personne/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="03688ba6aa340b87549088aa5739944cb6b1dc73" resname="FAQ">
         <source>FAQ</source>
         <target>FAQ</target>
+        <jms:reference-file line="180">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="30fe29f0a982989e9ee2e631547c7c66b2441dc3" resname="GustoCoffee vous propose des &lt;strong&gt;services bureautiques&lt;/strong&gt; comme un espace de stockage privé en ligne, la vented de support numérique, ainsi qu'une impression. De plus, la consommation de &lt;strong&gt;café, thé, crêpes et gaufres sont à volonté !&lt;/strong&gt;&lt;br&gt;&#10;            Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner tout en continuant votre travail de la journée.&#10;            ">
         <source><![CDATA[GustoCoffee vous propose des <strong>services bureautiques</strong> comme un espace de stockage privé en ligne, la vented de support numérique, ainsi qu'une impression. De plus, la consommation de <strong>café, thé, crêpes et gaufres sont à volonté !</strong><br>
             Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner tout en continuant votre travail de la journée.
             ]]></source>
         <target><![CDATA[GustoCoffee offers <strong> office services </strong> as an online private storage space, digital media vented as well as printing. Moreover, the consumption of <strong> coffee, tea, pancakes and waffles is at will! </strong> <br>]]></target>
+        <jms:reference-file line="146">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="df9161f6d31ab83bd9f8747da99bb7176c042fc1" resname="Infos">
         <source>Infos</source>
         <target>Infos</target>
+        <jms:reference-file line="183">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0b63725cc9d285e05cebc3c01ee8c54c5410af3d" resname="La société &lt;strong&gt;GustoCoffee&lt;/strong&gt; est spécialisée dans la &lt;strong&gt;vente de produit autour du café&lt;/strong&gt;, machine automatique, machine expresso,&#10;            moulin à café, café en grains, café en dosette, etc. &lt;br&gt;&#10;            Monsieur Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des &lt;strong&gt;coffee-shops&lt;/strong&gt; en Italie,&#10;            ainsi qu'en Angleterre et se sont implantés il y a peu sur Paris avec un nouveau concept de &quot;&lt;strong&gt;Coffee-Shop Coworking&lt;/strong&gt;&quot;.&#10;            ">
         <source><![CDATA[La société <strong>GustoCoffee</strong> est spécialisée dans la <strong>vente de produit autour du café</strong>, machine automatique, machine expresso,
@@ -50,30 +63,37 @@
             Coffee grinder, coffee beans, coffee in pods, etc. <br>
             Mr. Philippe Landemaine, Director and Alain Bellucci, Associate Director, have for some ten years established <strong> coffee-shops </ strong> in Italy,
             As well as in England, and have recently set up shop in Paris with a new concept of "<strong> Coffee-Shop Coworking </strong>".]]></target>
+        <jms:reference-file line="160">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="dee4d84ed5c46bd61d1d163f7503294e561b4094" resname="La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de &quot;">
         <source>La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "</source>
         <target>The company GustoCoffee specializes in the sale of products around coffee, automatic machine, espresso machine, coffee grinder, coffee beans, coffee in pods, etc. Today, GustoCoffee offers a new concept of "</target>
+        <jms:reference-file line="132">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cbc7c7de0c2b17c1a6ec7116977d3ef6943c52bd" resname="Mentions Légales">
         <source>Mentions Légales</source>
         <target>Legal Notice</target>
+        <jms:reference-file line="177">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6ed05e720ccc3ef269db1b38201da8b873acc895" resname="Newsletter">
         <source>Newsletter</source>
         <target>Newsletter</target>
+        <jms:reference-file line="181">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="77b73ea8c3098bef8a24ad67a01ee1935dec93c2" resname="Recrutement">
         <source>Recrutement</source>
         <target>Recruitment</target>
+        <jms:reference-file line="182">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9ead47a82a0d25985f22f10651d1f93b3abba317" resname="edit">
         <source>edit</source>
         <target>edit</target>
+        <jms:reference-file line="45">/../../../../../../.././app/Resources/views/personne/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9fb29051f2217270a7b253a39f820310d85a78f0" resname="show">
         <source>show</source>
         <target>show</target>
+        <jms:reference-file line="42">/../../../../../../.././app/Resources/views/personne/index.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>

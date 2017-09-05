@@ -13,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Personne extends BaseUser
 {
+
+    /*const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_USER = 'ROLE_USER';*/
     /**
      * @var string
      *
