@@ -156,31 +156,84 @@ easy_admin:
                 - { property: 'email', css_class: 'input-large', type_options: { required: false } }
         Produit:
             class: AppBundle\Entity\Produit
-            label: 'Produits'
+            label: 'Les Produits'
+            form:
+                fields: ['nomProduit', 'prixProduit', 'description', 'quantiteEnStock', 'statutProduit']
             list:
                 title: 'Les Produits'
-
         Commande:
             class: AppBundle\Entity\Commande
             label: 'Les Commandes'
+            form:
+                fields: ['dateCommande', 'idDemandeProduit', 'idModePaiement', 'idPersonne']
             list:
                 title: 'Les Commandes'
+                fields: ['dateCommande', 'idDemandeProduit', 'idModePaiement', 'idPersonne']
 
         Reservation:
             class: AppBundle\Entity\Reservation
-            label: 'Les dernières réservation'
+            label: 'Les dernières réservations'
+            form:
+                fields: ['dateReservation', 'heureDebut', 'heureFin', 'remarqueReservation', 'commentaireClient', 'idMagasin', 'idModePaiement']
             list:
                 title: 'Les Réservations'
+                fields: ['dateReservation', 'heureDebut', 'heureFin', 'remarqueReservation', 'commentaireClient', 'idMagasin', 'idModePaiement']
         Magasin:
             class: AppBundle\Entity\Magasin
             label: 'Les Magasins'
+            form:
+                fields: ['nomMagasin', 'adresse']
             list:
                 title: 'Les Magasins'
+                fields: ['nomMagasin', 'adresse']
         JoursOuvert:
             class: AppBundle\Entity\JoursOuvert
-            label: 'Les jours d''ouverture'
+            label: 'Ouverture'
+            form:
+                fields: ['jours', 'heureDebut', 'heureFin', 'titre']
             list:
                 title: 'Les jours d''ouverture'
+                fields: ['jours', 'heureDebut', 'heureFin', 'titre']
+        FermetureCafe:
+          class: AppBundle\Entity\FermetureDuCafe
+          label: 'Fermeture'
+          form:
+              fields: ['dateDebut', 'dateFin', 'heureDebut', 'heureFin', 'titre', 'raison', 'jourFerie']
+          list:
+              title: 'Les jours d''ouverture'
+              fields: ['dateDebut', 'dateFin', 'heureDebut', 'heureFin', 'titre', 'raison', 'jourFerie']
+        Services:
+          class: AppBundle\Entity\Service
+          label: 'Les Services'
+          form:
+              fields: ['nomService', 'prixService', 'description', 'quantiteEnStock', 'statutService']
+          list:
+              title: 'Services'
+              fields: ['nomService', 'prixService', 'description', 'quantiteEnStock', 'statutService']
+        Place:
+          class: AppBundle\Entity\Place
+          label: 'Les Places'
+          form:
+              fields: ['nomPlace', 'statutPlace', 'idSalle']
+          list:
+              title: 'Places'
+              fields: ['nomPlace', 'statutPlace', 'idSalle']
+        Salle:
+          class: AppBundle\Entity\Salle
+          label: 'Les Salles'
+          form:
+              fields: ['nomSalle', 'capacityMax']
+          list:
+              title: 'Salles'
+              fields: ['nomSalle', 'capacityMax']
+        Annonces:
+          class: AppBundle\Entity\Annonce
+          label: 'Les dernières Annonces'
+          form:
+              fields: ['titre', 'corps', 'dateCreation']
+          list:
+              title: 'Annonces'
+              fields: ['titre', 'corps', 'dateCreation']
 
 fos_user:
     db_driver: orm
