@@ -1,5 +1,169 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Profile/edit_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block firstImg %}
+    style='background-image: url({{ asset('img/dashboard2.jpg') }});'>
+{% endblock %}
+
+{% block firstTitle %}
+    <h1 class="titleHome">Dashboard CoWorking</h1>
+{% endblock %}
+
+{% block firstBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="titlePara">Vos dernières réservations</h2>
+            <p class="textDescription textFacture">Vous trouverez ci-dessous vous 3 dernières réservations effectuées chez GustoCoffee.<br>
+                Ils sont téléchargeables en cliquant sous le bouton en dessous.
+            </p>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="row">
+        <div class="col-md-7">
+            <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
+        </div>
+        <div class="col-md-5">
+            <button class="buttonInscription">Télécharger la facture</button>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="col-md-7">
+            <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
+        </div>
+        <div class="col-md-5">
+            <button class="buttonInscription">Télécharger la facture</button>
+        </div>
+
+        <div class="clear"></div>
+
+
+        <div class="col-md-7">
+            <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
+        </div>
+        <div class="col-md-5">
+            <button class="buttonInscription">Télécharger la facture</button>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block secondBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12" style="font-size: 100px; text-align: center;">TODO : STATISTIQUE ! </div>
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block thirdBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_profile_edit'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3 form-nom">
+                    {{ form_label(form.nom) }}
+                    {{ form_errors(form.nom) }}
+                    {{ form_widget(form.nom) }}
+                </div>
+                <div class="col-md-3 form-prenom">
+                    {{ form_label(form.prenom) }}
+                    {{ form_errors(form.prenom) }}
+                    {{ form_widget(form.prenom) }}
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 form-connexion">
+                    {{ form_label(form.username, 'Username') }}
+                    {{ form_widget(form.username, { 'attr': {'placeholder': ' Username', 'style':'width: 100%;' } }) }}
+                    {{ form_errors(form.username) }}
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 form-connexion">
+                    {{ form_label(form.email) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email) }}
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 form-connexion">
+                    {{ form_label(form.adresse) }}
+                    {{ form_errors(form.adresse) }}
+                    {{ form_widget(form.adresse) }}
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3 form-nom">
+                    {{ form_label(form.codepostal) }}
+                    {{ form_errors(form.codepostal) }}
+                    {{ form_widget(form.codepostal) }}
+                </div>
+                <div class="col-md-3 form-prenom">
+                    {{ form_label(form.ville) }}
+                    {{ form_errors(form.ville) }}
+                    {{ form_widget(form.ville) }}
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 form-connexionHide">
+                    {{ form_errors(form.statutpersonne) }}
+                    {{ form_widget(form.statutpersonne) }}
+
+                    {{ form_errors(form.pointscumules) }}
+                    {{ form_widget(form.pointscumules) }}
+
+                    {{ form_errors(form.rulepersonne) }}
+                    {{ form_widget(form.rulepersonne) }}
+
+
+                    {{ form_errors(form.newsletter) }}
+                    {{ form_widget(form.newsletter) }}
+
+
+                    {{ form_errors(form.idrule) }}
+                    {{ form_widget(form.idrule) }}
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 form-connexion">
+                    {{ form_label(form.current_password, 'Mot de passe actuel') }}
+                    {{ form_widget(form.current_password, { 'attr': {'placeholder': ' Mot de passe', 'style':'width: 100%;' } }) }}
+                    {{ form_widget(form.current_password) }}
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 form-connexion">
+                    <input class="buttonInscription" type="submit" value="{{ 'Enregistrer les modifications'|trans }}" />
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6 form-connexion">
+                    <a href="{{ path('fos_user_change_password') }}">Modifier mot de passe</a>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+            {{ form_end(form) }}
+        <div class="clear"></div>
+        </div>
+    </div>
+
+{% endblock %}

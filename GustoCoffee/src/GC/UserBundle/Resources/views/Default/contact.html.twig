@@ -1,0 +1,69 @@
+{% extends'base.html.twig' %}
+
+{% block firstImg %}
+    style='background-image: url({{ asset('img/backcontact.jpeg') }});'>
+{% endblock %}
+
+{% block firstTitle %}
+<h1 class="titleHome">Contact CoWorking</h1>
+{% endblock %}
+
+{% block firstBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="titlePara">Contactez-nous</h2>
+        </div>
+    </div>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_widget(form.name) }}
+                        {{ form_errors(form.name) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_widget(form.subject) }}
+                        {{ form_errors(form.subject) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_widget(form.message) }}
+                        {{ form_errors(form.message) }}
+                    </div>
+                    <div class="form-group" style="display: none;">
+                        {{ form_rest(form) }}
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-12 form-connexion">
+                    <div class="clear"></div>
+                    <input class="buttonInscription centerText" type="submit" value="Envoyer le message">
+                </div>
+                <div class="col-md-3"></div>
+                <div class="col-md-12 clear"></div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block secondBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="titlePara">Téléphonez-nous</h2>
+            <div class="clear"></div>
+            <p class="sizeBigFont centerText"><b>01.15.54.15.18</b></p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block thirdBlock %} {% endblock %}

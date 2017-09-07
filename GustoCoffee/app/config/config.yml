@@ -176,10 +176,20 @@ fos_user:
     firewall_name: api                                 # Seems to be used when registering user/reseting password,
                                                         # but since there is no "login", as so it seems to be useless in
                                                         # our particular context, but still required by "FOSUserBundle"
+
     user_class: AppBundle\Entity\Personne
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+        confirmation:
+            enabled: true
+    profile:
+        form:
+            type: AppBundle\Form\ProfileFormType
+            name: fos_user_profile_form
     from_email:
-        address: boubrit.karim@gmail.com
-        sender_name: Karim BOUBRIT
+        address: "%mailer_user%"
+        sender_name: "L'Équipe Gusto Coffee"
 
 fos_oauth_server:
     db_driver:           orm
@@ -188,4 +198,4 @@ fos_oauth_server:
     refresh_token_class: AppBundle\Entity\RefreshToken
     auth_code_class:     AppBundle\Entity\AuthCode
     service:
-        user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
+        user_provider: fos_user.user_provider.username             # This property will be used when valid credentials are given to load the user upon access token creation
