@@ -32,8 +32,10 @@ class ContactController extends Controller
     }
 
     private function sendEmail($data){
-        $myappContactMail = 'adnghia@gmail.com';
-        $myappContactPassword = 'Alexis31';
+        $myappContactMail = $this->container->getParameter('mailer_user');
+        $myappContactPassword = $this->container->getParameter('mailer_password');
+        #$myappContactMail = 'gustocoffee.official@gmail.com';
+        #$myappContactPassword = 'adminkasa';
 
 
         $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')->setUsername($myappContactMail)->setPassword($myappContactPassword);
