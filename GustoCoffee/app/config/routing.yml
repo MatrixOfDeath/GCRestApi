@@ -65,16 +65,21 @@ app:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+    options: { i18n: false }
+
 
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
 
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
 
 #Tihs is routes for GustoCoffee Backoffice
 easy_admin_bundle:
     resource: "@EasyAdminBundle/Controller/"
     type:     annotation
     prefix:   /backoffice
+
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -89,6 +94,9 @@ fos_user_resetting:
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
     prefix: /
 
 fos_user_profile:

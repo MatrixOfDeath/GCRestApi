@@ -14,7 +14,6 @@
 
     <link rel="icon" type="image/png" href="{{ asset('img/gc_design.png')}}" />
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('build/app.js')}}" rel="stylesheet">
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
 
 </head>
@@ -22,13 +21,16 @@
     {% endblock %}
 
 <body>
+{% block body %}
 
-<div class="container-fluid">
+    <div class="container-fluid">
     <div class="row topPage"
             {% block firstImg %}
                 style='background-image: url({{ asset('img/background-home.jpg') }});'>
             {% endblock %}
+
         <div class="col-md-12">
+            {% block menu %}
                 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
@@ -106,7 +108,9 @@
                         </div>
                     </div>
                 </nav>
-            </div>
+            {% endblock %}
+
+        </div>
         <div class="sticky-container">
             <ul class="sticky">
                 <li>
@@ -123,11 +127,13 @@
                 </li>
             </ul>
         </div>
-        <div>
+
             {% block firstTitle %}
-            <h2 class="titleHome">Café CoWorking</h2>
+            <div>
+                <h2 class="titleHome">Café CoWorking</h2>
+            </div>
             {% endblock %}
-        </div>
+
         </div>
     <div class="clear"></div>
     {% block firstBlock %}
@@ -160,44 +166,45 @@
     <div class="clear"></div>
     {% endblock %}
     {% block thirdBlock %}
-    <div class="row addPadding">
-        <div class="col-md-12">
-            <p class="textDescription franchiseGroupe">{% trans %}La société <strong>GustoCoffee</strong> est spécialisée dans la <strong>vente de produit autour du café</strong>, machine automatique, machine expresso,
-            moulin à café, café en grains, café en dosette, etc. <br>
-            Monsieur Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des <strong>coffee-shops</strong> en Italie,
-            ainsi qu'en Angleterre et se sont implantés il y a peu sur Paris avec un nouveau concept de "<strong>Coffee-Shop Coworking</strong>".
-            {% endtrans %}
-            </p>
-        </div>
-        <div class="col-md-2">
-        </div>
-    </div>
-    <div class="clear"></div>
-    {% endblock %}
-    {% block footer %}
-    <footer class="footer">
-        <div class="row">
+        <div class="row addPadding">
             <div class="col-md-12">
-                <p>
-                    <a href="{{ asset('pdf/mentionsLegales.pdf') }}" target="_blank">{{ "Mentions Légales"|trans }}</a><br>
-                    <a href="{{ asset('pdf/CGU.pdf') }}" target="_blank">{{ "Conditions Générales d'Utilisation"|trans }}</a><br>
-                    <a href="{{ asset('pdf/CGV.pdf') }}" target="_blank">{{ "Conditions Générales de Vente"|trans }}</a><br>
-                    {{ "FAQ"|trans }} <br>
-                    {{ "Newsletter"|trans }} <br>
-                    {{ "Recrutement"|trans }} <br>
-                    {{ "Infos"|trans }}
+                <p class="textDescription franchiseGroupe">{% trans %}La société <strong>GustoCoffee</strong> est spécialisée dans la <strong>vente de produit autour du café</strong>, machine automatique, machine expresso,
+                moulin à café, café en grains, café en dosette, etc. <br>
+                Monsieur Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des <strong>coffee-shops</strong> en Italie,
+                ainsi qu'en Angleterre et se sont implantés il y a peu sur Paris avec un nouveau concept de "<strong>Coffee-Shop Coworking</strong>".
+                {% endtrans %}
                 </p>
             </div>
+            <div class="col-md-2">
+            </div>
         </div>
-    </footer>
+        <div class="clear"></div>
+    {% endblock %}
+    {% block footer %}
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>
+                        <a href="{{ asset('pdf/mentionsLegales.pdf') }}" target="_blank">{{ "Mentions Légales"|trans }}</a><br>
+                        <a href="{{ asset('pdf/CGU.pdf') }}" target="_blank">{{ "Conditions Générales d'Utilisation"|trans }}</a><br>
+                        <a href="{{ asset('pdf/CGV.pdf') }}" target="_blank">{{ "Conditions Générales de Vente"|trans }}</a><br>
+                        {{ "FAQ"|trans }} <br>
+                        {{ "Newsletter"|trans }} <br>
+                        {{ "Recrutement"|trans }} <br>
+                        {{ "Infos"|trans }}
+                    </p>
+                </div>
+            </div>
+        </footer>
     {% endblock %}
 </div>
-
-{% block script %}
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/scripts.js') }}"></script>
 {% endblock %}
+    {% block script %}
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('build/app.js') }}"></script>
+    {% endblock %}
+
 </body>
 </html>
 
