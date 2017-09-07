@@ -1,8 +1,8 @@
 registration:
     check_email: |
-        Un e-mail a été envoyé à l''adresse %email%.
+        Un e-mail a été envoyé à l'adresse %email%.
 
-        Il contient un lien d''activation sur lequel il vous faudra cliquer afin d''activer votre compte.
+        Il contient un lien d''activation sur lequel il vous faudra cliquer afin d'activer votre compte.
 
     confirmed: |
 
