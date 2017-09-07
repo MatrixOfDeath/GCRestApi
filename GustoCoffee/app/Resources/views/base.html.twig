@@ -81,9 +81,9 @@
                                 </li>
                                 {% set req = app.request %}
 
-                                {% for locale in locales %}
+                                {# {% for locale in locales %}
                                     <li><a href="{{ path(app.request.attributes.get("_route"), app.request.query.all|merge({"_locale": locale})) }}">{{ locale }}</a></li>
-                                {% endfor %}
+                                {% endfor %}#}
 
                                 <li>
                                     <button type="button" class="btn btn-default userConnexion">
