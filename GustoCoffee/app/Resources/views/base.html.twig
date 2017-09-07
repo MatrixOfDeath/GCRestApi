@@ -83,9 +83,9 @@
                                 </li>
                                 {% set req = app.request %}
 
-                                {# {% for locale in locales %}
-                                    <li><a href="{{ path(app.request.attributes.get("_route"), app.request.query.all|merge({"_locale": locale})) }}">{{ locale }}</a></li>
-                                {% endfor %}#}
+                                {% for locale in locales %}
+                                    <li><a href="{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}">{{ locale }}</a></li>
+                                {% endfor %}
 
                                 <li>
                                     <button type="button" class="btn btn-default userConnexion">
@@ -198,6 +198,11 @@
         </footer>
     {% endblock %}
 </div>
+
+{% block script %}
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('build/app.js') }}"></script>
 {% endblock %}
     {% block script %}
         <script src="{{ asset('js/jquery.min.js') }}"></script>

@@ -1,4 +1,8 @@
 {
   "build/app.js": "/build/app.6e6914191acb64e195ac.js",
+<<<<<<< HEAD
   "build/global.css": "/build/global.43623635a27f8cc4af216810a6b27a1c.css"
+=======
+  "build/global.css": "/build/global.4acb1ed5bea198067d6124f2e665177f.css"
+>>>>>>> 27060e02a4bdf4168380635730fabd8776124252
 }
