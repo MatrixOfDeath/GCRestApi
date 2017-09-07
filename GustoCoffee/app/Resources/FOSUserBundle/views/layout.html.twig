@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block connexion %}
-    <a class="page-scroll" href="logout">
+    <a class="page-scroll" href="{{ path(fos_user_security_logout) }}">
 
     </a>
 {% endblock %}
@@ -43,29 +43,21 @@
 
 {% block thirdBlock %}
     <div class="form-connexion">
-        <form action="{{ path("fos_user_security_check") }}" method="post">
-            {% if csrf_token %}
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            {% endif %}
-
+        <div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <a href="{{ path('fos_user_security_logout') }}">
                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                 </a>
             {% else %}
-                <a href="{{ path('fos_user_security_login') }}"></a>
+                <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             {% endif %}
+        </div>
 
 
-            <input type="text" placeholder="username" id="username" name="_username" value="{{ last_username }}" required="required" />
-
-            <input type="password" placeholder="Mot de passe" id="password" name="_password" required="required" />
-
-            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-            <label for="remember_me">{{ 'Se rappeler de moi' }}</label>
-
-            <input type="submit" id="_submit" name="_submit" value="{{ 'Connexion' }}" />
-        </form>
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
     </div>
     <style>
         input {
@@ -77,8 +69,6 @@
             width: 100%;
         }
 
-        #remember_me {
-            width: 7%;
-        }
+
     </style>
 {% endblock %}
