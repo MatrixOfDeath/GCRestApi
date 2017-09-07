@@ -18,7 +18,8 @@ Encore
     .addStyleEntry('global', [
         './web/assets/scss/global.scss',
         './web/assets/scss/helper.scss',
-        './web/assets/scss/main.scss'
+        './web/assets/scss/main.scss',
+        './web/assets/scss/coffee-animation.scss'
     ])
 
     // allow sass/scss files to be processed

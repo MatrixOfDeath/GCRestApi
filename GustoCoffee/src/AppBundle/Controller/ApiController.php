@@ -4,21 +4,28 @@ namespace AppBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\HttpFoundation\Request;
+
 
 class ApiController extends FOSRestController
 {
     /**
-     * @Route("/api")
+     * @Route("/api", options={"i18n"=false})
      */
     public function indexAction()
     {
+        /*if (false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw new AccessDeniedException();
+        }*/
         $data = array("hello" => "world");
-        $view = $this->view($data);
+        $view = $this->view($data, 200);
         return $this->handleView($view);
     }
 
     public function createClient()
     {
+        /*
         $clientManager = $this->container->get('fos_oauth_server.client_manager.default');
         $client = $clientManager->createClient();
         $client->setRedirectUris(array('http://dev.gc.fr'));
@@ -29,6 +36,6 @@ class ApiController extends FOSRestController
             'client_id'     => $client->getPublicId(),
             'redirect_uri'  => 'http://dev.gc.fr',
             'response_type' => 'code'
-        )));
+        )));*/
     }
 }
