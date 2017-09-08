@@ -15,6 +15,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class AnnonceController extends Controller
 {
+    private $dateCreation;
+
     /**
      * Lists all annonce entities.
      *
@@ -46,6 +48,7 @@ class AnnonceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $annonce->setDatecreation(new \DateTime(date('d-m-Y h:m')));
             $em->persist($annonce);
             $em->flush();
 
