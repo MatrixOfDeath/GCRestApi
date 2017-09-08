@@ -1,8 +1,10 @@
 {
-  "build/app.js": "/build/app.6e6914191acb64e195ac.js",
-<<<<<<< HEAD
-  "build/global.css": "/build/global.43623635a27f8cc4af216810a6b27a1c.css"
-=======
-  "build/global.css": "/build/global.4acb1ed5bea198067d6124f2e665177f.css"
->>>>>>> 27060e02a4bdf4168380635730fabd8776124252
+  "build/app.js": "/build/app.2fd5a8b9fd7187865132.js",
+  "build/global.css": "/build/global.077a41166abfcbee812f7a45c6338c19.css",
+  "build/images/backContact.jpeg": "/build/images/backContact.78de4675.jpeg",
+  "build/images/backEvenement2.jpg": "/build/images/backEvenement2.812c546b.jpg",
+  "build/images/backReservation.jpeg": "/build/images/backReservation.0fc94fba.jpeg",
+  "build/images/background-home.jpg": "/build/images/background-home.a838d7e7.jpg",
+  "build/images/connexion.jpg": "/build/images/connexion.e51a7384.jpg",
+  "build/images/dashboard2.jpg": "/build/images/dashboard2.0151efe7.jpg"
 }

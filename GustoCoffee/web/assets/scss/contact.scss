@@ -1,0 +1,26 @@
+.topPageContact {
+  background-image: url("../img/backContact.jpeg");
+}
+
+.form-connexion {
+  text-align: center;
+  padding: 10px;
+}
+
+#contact_name, #contact_email, #contact_subject, #contact_message {
+  display: block;
+  width: 100%;
+  height: 68px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#contact_message {
+  height: 234px !important;
+}

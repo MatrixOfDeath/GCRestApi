@@ -1,19 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block firstImg %}
-    style='background-image: url({{ asset('img/backReservation.jpeg') }});'>
+{% block customCss %}
+    <link href="{{ asset('build/reservation.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block firstTitle %}
-    <h1 class="titleHome">Réservation CoWorking</h1>
+{% block firstImg %}
+<div class="row topPage topPageReservation">
+{% endblock %}
+
+{% block titleHome %}
+    Réservation CoWorking
 {% endblock %}
 
 {% block firstBlock %}
     <div class="row customPadding">
         <div class="col-md-12 ">
-            <h2 class="titleReservation">Réservez votre place !!</h2>
+            <h2 class="centerText">Réservez votre place !!</h2>
             <div class="clearText"></div>
-            <p class="textReservation textDescription"><strong>Consommez à volonté, chez GustoCoffee !</strong> Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.<br>
+            <p class="centerText textDescription"><strong>Consommez à volonté, chez GustoCoffee !</strong> Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.<br>
             </p>
             <div class="clearText"></div>
         </div>
@@ -56,7 +60,7 @@
 
             </div>
             <div class="clearText"></div>
-            <p class="textReservation textDescription">
+            <p class="centerText textDescription">
                 <br>Obtenez <strong>10% de réduction</strong> sur la restauration, les services bureautique en réservant directement sur notre site internet !<br>
                 Les gaufres, les crêpes, le café ainsi que le thé sont <strong>à volonté</strong> !!
             </p>
@@ -64,33 +68,29 @@
     </div>
 {% endblock %}
 
-{% block secondBlock %}
-    <div class="row addPadding">
-        <h2 class="col-md-12 placeQuestion">Quelle place souhaitez vous avoir au sein de GustoCoffee ?</h2>
+    {% block secondBlock %}
+        <div class="row addPadding">
+            <h2 class="col-md-12 placeQuestion">Quelle place souhaitez vous avoir au sein de GustoCoffee ?</h2>
+            <div class="clear"></div>
+            <div class="col-md-5 cardReservation">
+                <div class="card placeIndividuelle">
+                    <img src="{{ asset('place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
+                    <div class="containerCard">
+                        <h4 class="cardTitle"><strong>Place individuelle</strong></h4>
+                        <p>Choisir une place</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-5 cardReservation">
+                <div class="card">
+                    <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                    <div class="containerCard">
+                        <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
+                        <p>Choisir une salle</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="clear"></div>
-        <div class="col-md-5 cardReservation">
-            <div class="card placeIndividuelle">
-                <img src="{{ asset('place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
-                <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Place individuelle</strong></h4>
-                    <p>Choisir une place</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-5 cardReservation">
-            <div class="card">
-                <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
-                <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
-                    <p>Choisir une salle</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="clear"></div>
-{% endblock %}
-
-{% block thirdBlock %}
-
-{% endblock %}
+    {% endblock %}

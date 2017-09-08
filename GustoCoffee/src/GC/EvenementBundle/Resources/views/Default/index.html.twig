@@ -1,17 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block firstImg %}
-    style='background-image: url({{ asset('img/backEvenement2.jpg') }});'>
+{% block customCss %}
+    <link href="{{ asset('build/evenement.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block firstTitle %}
-    <h1 class="titleHome">Evénement CoWorking</h1>
+{% block title %}
+    <title>GustoCoffee Evenement</title>
+{% endblock %}
+
+{% block firstImg %}
+    <div class="row topPage topPageEvenement">
+{% endblock %}
+
+{% block titleHome %}
+    Evénement CoWorking
 {% endblock %}
 
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-9">
-            <h2 class="titlePara">Ouverture !!! =D</h2>
+            <h2 class="centerText">Ouverture !!! =D</h2>
             <p class="textDescription">Récemment, GustoCoffee a organisé un grand événement afin de fêter l'ouverture du <strong>Coffe-Shop CoWorking !!</strong><br>
                 Au programme, musique, danse, visite et consommation à volonté ! <br>
                 Ce fut l'occasion pour <strong>GustoCoffee</strong> de se faire connaître auprès de <strong>grandes sociétes comme la Société Générale</strong> souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants
@@ -33,16 +41,16 @@
                 familiariser avec l'espace que nous vous proposons.
             </p>
         </div>
-        <div class="col-md-3">
-        </div>
+        <div class="col-md-3"></div>
     </div>
     <div class="clear"></div>
 {% endblock %}
 
+
 {% block thirdBlock %}
     <div class="row">
         <div class="col-md-12">
-            <h2 class="titleMedia">Ils ont parlé de GustoCoffee</h2>
+            <h2 class="centerText">Ils ont parlé de GustoCoffee</h2>
         </div>
         <div class="col-md-12 listMedia">
 
@@ -61,4 +69,5 @@
         </div>
     </div>
     <div class="clear"></div>
+    </div>
 {% endblock %}
