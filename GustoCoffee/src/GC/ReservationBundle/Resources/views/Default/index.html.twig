@@ -5,15 +5,17 @@
 {% endblock %}
 
 {% block firstTitle %}
-    <h1 class="titleHome">Réservation CoWorking</h1>
+    <h2 class="titleHome">{{ 'Réservation CoWorking'|trans }}</h2>
 {% endblock %}
 
 {% block firstBlock %}
     <div class="row customPadding">
         <div class="col-md-12 ">
-            <h2 class="titleReservation">Réservez votre place !!</h2>
+            <h2 class="titleReservation">{{ 'Réservez votre place'|trans }}</h2>
             <div class="clearText"></div>
-            <p class="textReservation textDescription"><strong>Consommez à volonté, chez GustoCoffee !</strong> Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.<br>
+
+            <p class="textReservation textDescription"><strong>{% trans %}Ne payez que le temps passé et consommez à volonté chez GustoCoffee.</strong>
+                Demandez, en complément, à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.{% endtrans %}<br>
             </p>
             <div class="clearText"></div>
         </div>
@@ -22,34 +24,34 @@
                 <table>
                     <thead>
                     <tr class="firstLine">
-                        <th class="lineRow"> Nos services </th>
-                        <th class="tablePriceSecondRow lineRow"> Prix / personne</th>
+                        <th class="lineRow"> {{ 'Nos services'|trans }} </th>
+                        <th class="tablePriceSecondRow lineRow"> {{ 'Prix / personne'|trans }}</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="lineRow"> Première heure </td>
+                        <td class="lineRow"> {{ 'Première heure'|trans }} </td>
                         <td class="tablePriceSecondRow lineRow"> 5€ </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> 1/2 heure supplémentaires </td>
+                        <td class="lineRow"> {{ '1/2 heure supplémentaire'|trans }} </td>
                         <td class="tablePriceSecondRow lineRow"> 2€ </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> Troisième heures </td>
-                        <td class="tablePriceSecondRow lineRow"> Offerte </td>
+                        <td class="lineRow"> {{ 'Troisième heure'|trans }} </td>
+                        <td class="tablePriceSecondRow lineRow"> {{ 'Offerte après 2 heures consécutives'|trans }}</td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> Journée </td>
+                        <td class="lineRow"> {{ 'Forfait Journée'|trans }} </td>
                         <td class="tablePriceSecondRow lineRow"> 20€ </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> Service bureautique </td>
-                        <td class="tablePriceSecondRow lineRow"> 10€ / groupe </td>
+                        <td class="lineRow"> {{ 'Services bureautique'|trans }} </td>
+                        <td class="tablePriceSecondRow lineRow"> 10€ </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> Petit déjeuner, déjeuner & dîner </td>
-                        <td class="tablePriceSecondRow lineRow"> 5€ </td>
+                        <td class="lineRow"> {{ 'Forfait "Petit Déjeuner, Déjeuner & Dîner"'|trans }} </td>
+                        <td class="tablePriceSecondRow lineRow"> 15€ </td>
                     </tr>
                     </tbody>
                 </table>
@@ -57,8 +59,10 @@
             </div>
             <div class="clearText"></div>
             <p class="textReservation textDescription">
+                {% trans %}
                 <br>Obtenez <strong>10% de réduction</strong> sur la restauration, les services bureautique en réservant directement sur notre site internet !<br>
-                Les gaufres, les crêpes, le café ainsi que le thé sont <strong>à volonté</strong> !!
+                Les gaufres, les crêpes, le café ainsi que le thé sont <strong>à volonté</strong> !
+                {% endtrans %}
             </p>
         </div>
     </div>
@@ -66,14 +70,14 @@
 
 {% block secondBlock %}
     <div class="row addPadding">
-        <h2 class="col-md-12 placeQuestion">Quelle place souhaitez vous avoir au sein de GustoCoffee ?</h2>
+        <h2 class="col-md-12 placeQuestion">{{ 'Quelle place souhaitez-vous avoir au sein de GustoCoffee ?'|trans }}</h2>
         <div class="clear"></div>
         <div class="col-md-5 cardReservation">
             <div class="card placeIndividuelle">
                 <img src="{{ asset('place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Place individuelle</strong></h4>
-                    <p>Choisir une place</p>
+                    <h4 class="cardTitle"><strong>{{ 'Place individuelle'|trans }}</strong></h4>
+                    <p>{{ 'Choisir une place'|trans }}</p>
                 </div>
             </div>
         </div>
@@ -82,8 +86,8 @@
             <div class="card">
                 <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
-                    <p>Choisir une salle</p>
+                    <h4 class="cardTitle"><strong>{{ 'Salle privatisée'|trans }}</strong></h4>
+                    <p>{{ 'Choisir une salle'|trans }}</p>
                 </div>
             </div>
         </div>
