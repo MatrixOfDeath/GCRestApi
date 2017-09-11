@@ -5,11 +5,8 @@
 {% endblock %}
 
 {% block firstImg %}
-<div class="row topPage topPageReservation">
+    <div class="row topPage topPageReservation">
 {% endblock %}
-
-{% block firstTitle %}
-    <h2 class="titleHome">{{ 'Réservation CoWorking'|trans }}</h2>
 
 {% block titleHome %}
     Réservation CoWorking
@@ -18,11 +15,9 @@
 {% block firstBlock %}
     <div class="row customPadding">
         <div class="col-md-12 ">
-            <h2 class="titleReservation">{{ 'Réservez votre place'|trans }}</h2>
+            <h2 class="titleReservation">Réservez votre place !!</h2>
             <div class="clearText"></div>
-
-            <p class="textReservation textDescription"><strong>{% trans %}Ne payez que le temps passé et consommez à volonté chez GustoCoffee.</strong>
-                Demandez, en complément, à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.{% endtrans %}<br>
+            <p class="textReservation textDescription"><strong>Consommez à volonté, chez GustoCoffee !</strong> Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.<br>
             </p>
             <div class="clearText"></div>
         </div>
@@ -38,43 +33,43 @@
                     <p>17 Rue Dunkerque, 75010 Paris</p>
                 </div>
                 <div class="google-maps">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.88053681877!2d2.353911115805676!3d48.87955387928948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e6dbddc4fe1%3A0xcc08be2d420511b!2s17+Rue+de+Dunkerque%2C+75010+Paris!5e0!3m2!1sfr!2sfr!4v1505123389379" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.8805368187677!2d2.3539111156751145!3d48.879553879289524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e6dbddc4fe1%3A0xcc08be2d420511b!2s17+Rue+de+Dunkerque%2C+75010+Paris!5e0!3m2!1sfr!2sfr!4v1505141708046" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" >
             <div class="tablePrice">
                 <table>
                     <thead>
                     <tr class="firstLine">
-                        <th class="lineRow"> {{ 'Nos services'|trans }} </th>
-                        <th class="tablePriceSecondRow lineRow"> {{ 'Prix / personne'|trans }}</th>
+                        <th class="lineRow"> Nos services </th>
+                        <th class="tablePriceSecondRow lineRow"> Prix / personne</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="lineRow"> {{ 'Première heure'|trans }} </td>
+                        <td class="lineRow"> Première heure </td>
                         <td class="tablePriceSecondRow lineRow"> 5€ </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> {{ '1/2 heure supplémentaire'|trans }} </td>
+                        <td class="lineRow"> 1/2 heure supplémentaires </td>
                         <td class="tablePriceSecondRow lineRow"> 2€ </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> {{ 'Troisième heure'|trans }} </td>
-                        <td class="tablePriceSecondRow lineRow"> {{ 'Offerte après 2 heures consécutives'|trans }}</td>
+                        <td class="lineRow"> Troisième heures </td>
+                        <td class="tablePriceSecondRow lineRow"> Offerte </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> {{ 'Forfait Journée'|trans }} </td>
+                        <td class="lineRow"> Journée </td>
                         <td class="tablePriceSecondRow lineRow"> 20€ </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> {{ 'Services bureautique'|trans }} </td>
-                        <td class="tablePriceSecondRow lineRow"> 10€ </td>
+                        <td class="lineRow"> Service bureautique </td>
+                        <td class="tablePriceSecondRow lineRow"> 10€ / groupe </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> {{ 'Forfait "Petit Déjeuner, Déjeuner & Dîner"'|trans }} </td>
-                        <td class="tablePriceSecondRow lineRow"> 15€ </td>
+                        <td class="lineRow"> Petit déjeuner, déjeuner & dîner </td>
+                        <td class="tablePriceSecondRow lineRow"> 5€ </td>
                     </tr>
                     </tbody>
                 </table>
@@ -82,7 +77,8 @@
             </div>
             <div class="clearText"></div>
             <p class="textReservation textDescription">
-                {% trans %}
+                <br>Obtenez <strong>10% de réduction</strong> sur la restauration, les services bureautique en réservant directement sur notre site internet !<br>
+                Les gaufres, les crêpes, le café ainsi que le thé sont <strong>à volonté</strong> !!
             </p>
         </div>
     </div>
@@ -90,14 +86,14 @@
 
 {% block secondBlock %}
     <div class="row addPadding">
-        <h2 class="col-md-12 placeQuestion">{{ 'Quelle place souhaitez-vous avoir au sein de GustoCoffee ?'|trans }}</h2>
+        <h2 class="col-md-12 placeQuestion">Quelle place souhaitez vous avoir au sein de GustoCoffee ?</h2>
         <div class="clear"></div>
         <div class="col-md-5 cardReservation">
             <div class="card placeIndividuelle">
                 <img src="{{ asset('place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>{{ 'Place individuelle'|trans }}</strong></h4>
-                    <p>{{ 'Choisir une place'|trans }}</p>
+                    <h4 class="cardTitle"><strong>Place individuelle</strong></h4>
+                    <p>Choisir une place</p>
                 </div>
             </div>
         </div>
@@ -106,11 +102,15 @@
             <div class="card">
                 <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>{{ 'Salle privatisée'|trans }}</strong></h4>
-                    <p>{{ 'Choisir une salle'|trans }}</p>
-
+                    <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
+                    <p>Choisir une salle</p>
                 </div>
             </div>
         </div>
-        <div class="clear"></div>
-    {% endblock %}
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block thirdBlock %}
+
+{% endblock %}
