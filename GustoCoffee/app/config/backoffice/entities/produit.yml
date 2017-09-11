@@ -1,0 +1,9 @@
+easy_admin:
+    entities:
+        Produit:
+            class: AppBundle\Entity\Produit
+            label: 'Les Produits'
+            form:
+                fields: ['nomProduit', 'prixProduit', 'description', 'quantiteEnStock', 'statutProduit']
+            list:
+                title: 'Les Produits'

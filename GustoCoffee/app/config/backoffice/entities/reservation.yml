@@ -1,0 +1,10 @@
+easy_admin:
+    entities:
+        Reservation:
+            class: AppBundle\Entity\Reservation
+            label: 'Les dernières réservations'
+            form:
+                fields: ['dateReservation', 'heureDebut', 'heureFin', 'remarqueReservation', 'commentaireClient', 'idMagasin', 'idModePaiement']
+            list:
+                title: 'Les Réservations'
+                fields: ['dateReservation', 'heureDebut', 'heureFin', 'remarqueReservation', 'commentaireClient', 'idMagasin', 'idModePaiement']

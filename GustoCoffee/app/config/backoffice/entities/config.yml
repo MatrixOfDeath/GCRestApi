@@ -1,0 +1,59 @@
+easy_admin:
+    translation_domain: 'backoffice-messages'
+    entities:
+        Magasin:
+            class: AppBundle\Entity\Magasin
+            label: 'Les Magasins'
+            form:
+                fields: ['nomMagasin', 'adresse']
+            list:
+                title: 'Les Magasins'
+                fields: ['nomMagasin', 'adresse']
+        JoursOuvert:
+            class: AppBundle\Entity\JoursOuvert
+            label: 'Ouverture'
+            form:
+                fields: ['jours', 'heureDebut', 'heureFin', 'titre']
+            list:
+                title: 'Les jours d''ouverture'
+                fields: ['jours', 'heureDebut', 'heureFin', 'titre']
+        FermetureCafe:
+          class: AppBundle\Entity\FermetureDuCafe
+          label: 'Fermeture'
+          form:
+              fields: ['dateDebut', 'dateFin', 'heureDebut', 'heureFin', 'titre', 'raison', 'jourFerie']
+          list:
+              title: 'Les jours d''ouverture'
+              fields: ['dateDebut', 'dateFin', 'heureDebut', 'heureFin', 'titre', 'raison', 'jourFerie']
+        Service:
+          class: AppBundle\Entity\Service
+          label: 'Les Services'
+          form:
+              fields: ['nomService', 'prixService', 'description', 'quantiteEnStock', 'statutService']
+          list:
+              title: 'Services'
+              fields: ['nomService', 'prixService', 'description', 'quantiteEnStock', 'statutService']
+        Place:
+          class: AppBundle\Entity\Place
+          label: 'Les Places'
+          form:
+              fields: ['nomPlace', 'statutPlace', 'idSalle']
+          list:
+              title: 'Places'
+              fields: ['nomPlace', 'statutPlace', 'idSalle']
+        Salle:
+          class: AppBundle\Entity\Salle
+          label: 'Les Salles'
+          form:
+              fields: ['nomSalle', 'capacityMax']
+          list:
+              title: 'Salles'
+              fields: ['nomSalle', 'capacityMax']
+        Annonce:
+          class: AppBundle\Entity\Annonce
+          label: 'Les dernières Annonces'
+          form:
+              fields: ['titre', 'corps', 'dateCreation']
+          list:
+              title: 'Annonces'
+              fields: ['titre', 'corps', 'dateCreation']
