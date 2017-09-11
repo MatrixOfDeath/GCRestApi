@@ -1,0 +1,98 @@
+.topPageReservation {
+  background-image: url("../img/backReservation.jpeg");
+}
+
+
+.tablePrice {
+  display: flex;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-top: 10px;
+}
+
+.tablePriceSecondRow {
+  padding-left: 30px;
+  text-align: center;
+}
+
+.lineRow {
+  padding-top: 10px;
+
+}
+
+.firstLine {
+  border-bottom: solid 1px rgba(10,10,10,0.05);
+}
+
+.placeIndividuelle {
+  float: right;
+}
+
+.placeQuestion {
+  text-align: center;
+  padding-bottom: 40px;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 45%;
+  text-align: center;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.containerCard {
+  padding: 2px 16px;
+}
+
+.containerCard:hover .overlay {
+  bottom: 0;
+  height: 100%;
+}
+
+
+.cardTitle {
+  font-size: inherit;
+}
+
+.slider {
+  background: white;
+  -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5), 0 1px 0 0 rgba(0, 0, 0, 0.03);
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5), 0 1px 0 0 rgba(0, 0, 0, 0.03);
+  margin-left: auto;
+}
+
+
+.status {
+    padding: 10px 0;
+    text-align: center;
+    background: #deba6b;
+}
+
+.shop-name {
+  padding: 15px;
+}
+
+.shop-address {
+    padding: 5px 15px 10px 15px;
+}
+
+.google-maps {
+  position: relative;
+  padding-bottom: 75%; // This is the aspect ratio
+  height: 0;
+  overflow: hidden;
+}
+.google-maps iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}

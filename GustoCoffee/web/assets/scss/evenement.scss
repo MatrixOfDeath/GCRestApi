@@ -1,0 +1,35 @@
+.topPageEvenement {
+  background-image: url("../img/backEvenement2.jpg");
+}
+
+.listMedia{
+  background-color: rgb(229, 229, 229);
+  padding: 0 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.imgMedia {
+  padding: 25px;
+  padding-top: 20px;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+}
+
+.imgMedia:hover {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+}
+
+.titleMedia {
+  padding-bottom: 10px;
+}

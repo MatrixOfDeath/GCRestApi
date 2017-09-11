@@ -1,17 +1,26 @@
 {% extends'base.html.twig' %}
 
-{% block firstImg %}
-    style='background-image: url({{ asset('img/backcontact.jpeg') }});'>
+{% block customCss %}
+    <link href="{{ asset('build/contact.scss') }}" rel="stylesheet">
 {% endblock %}
 
-{% block firstTitle %}
-<h1 class="titleHome">Contact CoWorking</h1>
+{% block title %}
+    <title>GustoCoffee Contact</title>
 {% endblock %}
+
+{% block firstImg %}
+    <div class="row topPage topPageContact">
+{% endblock %}
+
+{% block titleHome %}
+    Contact CoWorking
+{% endblock %}
+
 
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="titlePara">Contactez-nous</h2>
+            <h2 class="centerText">Contactez-nous</h2>
         </div>
     </div>
     {{ form_start(form) }}
@@ -41,13 +50,10 @@
                         {{ form_rest(form) }}
                     </div>
                 </div>
-                <div class="col-md-3"></div>
                 <div class="col-md-12 form-connexion">
                     <div class="clear"></div>
                     <input class="buttonInscription centerText" type="submit" value="Envoyer le message">
                 </div>
-                <div class="col-md-3"></div>
-                <div class="col-md-12 clear"></div>
             </div>
         </div>
     </div>
@@ -55,15 +61,14 @@
     {{ form_end(form) }}
 {% endblock %}
 
+
 {% block secondBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="titlePara">Téléphonez-nous</h2>
+            <h2 class="centerText">Téléphonez-nous</h2>
             <div class="clear"></div>
             <p class="sizeBigFont centerText"><b>01.15.54.15.18</b></p>
         </div>
     </div>
-
+    </div>
 {% endblock %}
-
-{% block thirdBlock %} {% endblock %}

@@ -1,1 +1,74 @@
 {% extends 'base.html.twig' %}
+
+{% block customCss %}
+    <link href="{{ asset('build/home.scss') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    <title>GustoCoffee Home</title>
+{% endblock %}
+
+{% block firstImg %}
+    <div class="row topPage topPageHome">
+{% endblock %}
+
+{% block titleHome %}
+    Café CoWorking
+{% endblock %}
+
+{% block firstBlock %}
+ {# ---------- First Block ---------- #}
+    <div class="row addPadding">
+        <div class="col-md-9">
+            <h2 class="centerText">GustoCoffee</h2>
+            <p class="textDescription">{% trans %}La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "{% endtrans %}<strong>{{ "Coffee-Shop CoWorking"|trans }}</strong>".<br>
+                {% trans %}Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.{% endtrans %}
+            </p>
+        </div>
+        <div class="col-md-3 videoContainer">
+            <iframe class="videoContent" src="https://www.youtube.com/embed/F7va26Wy5bw" frameborder="0" width="560" height="349" allowfullscreen></iframe>
+        </div>
+    </div>
+    <div class="clear"></div>
+{# ---------- End First Block ---------- #}
+{% endblock %}
+
+{% block secondBlock %}
+    {# ---------- Second Block ---------- #}
+
+    <div class="row addPadding">
+        <div class="col-md-9">
+            <h2 class="centerText">Nos Services</h2>
+            <p class="textDescription">{% trans %}GustoCoffee vous propose des <strong>services bureautiques</strong> comme un espace de stockage privé en ligne, la vented de support numérique, ainsi qu'une impression. De plus, la consommation de <strong>café, thé, crêpes et gaufres sont à volonté !</strong><br>
+                Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner tout en continuant votre travail de la journée.
+                {% endtrans %}
+            </p>
+        </div>
+        <div class="col-md-3 foodImg">
+            <img alt="Restauration GustoCoffee" src="{{ asset('img/servicesResto.jpg') }}">
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    {# ---------- End Second Block ---------- #}
+{% endblock %}
+
+{% block thirdBlock %}
+    {# ---------- Third Block ---------- #}
+
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <p class="textDescription franchiseGroupe">{% trans %}La société <strong>GustoCoffee</strong> est spécialisée dans la <strong>vente de produit autour du café</strong>, machine automatique, machine expresso,
+                moulin à café, café en grains, café en dosette, etc. <br>
+                Monsieur Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des <strong>coffee-shops</strong> en Italie,
+                ainsi qu'en Angleterre et se sont implantés il y a peu sur Paris avec un nouveau concept de "<strong>Coffee-Shop Coworking</strong>".
+                {% endtrans %}
+            </p>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+    <div class="clear"></div>
+
+    {# ---------- End Third Block ---------- #}
+{% endblock %}

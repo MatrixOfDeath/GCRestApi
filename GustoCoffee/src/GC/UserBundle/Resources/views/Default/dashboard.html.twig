@@ -1,17 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block firstImg %}
-    style='background-image: url({{ asset('img/dashboard2.jpg') }});'>
+{% block customCss %}
+    <link href="{{ asset('build/dashboard.scss') }}" rel="stylesheet">
 {% endblock %}
 
-{% block firstTitle %}
-    <h1 class="titleHome">Dashboard CoWorking</h1>
+{% block title %}
+    <title>GustoCoffee Dashboard</title>
 {% endblock %}
+
+{% block firstImg %}
+<div class="row topPage topPageDashboard">
+    {% endblock %}
+
+    {% block titleHome %}
+        Dashboard CoWorking
+    {% endblock %}
 
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="titlePara">Vos dernières réservations</h2>
+            <h2 class="centerText">Vos dernières réservations</h2>
             <p class="textDescription textFacture">Vous trouverez ci-dessous vous 3 dernières réservations effectuées chez GustoCoffee.<br>
                 Ils sont téléchargeables en cliquant sous le bouton en dessous.
             </p>
@@ -64,5 +72,5 @@
         </div>
         <div class="clear"></div>
     </div>
+</div>
 {% endblock %}
-

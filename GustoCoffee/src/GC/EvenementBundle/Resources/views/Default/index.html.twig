@@ -1,16 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block firstImg %}
-    style='background-image: url({{ asset('img/backEvenement2.jpg') }});'>
+{% block customCss %}
+    <link href="{{ asset('build/evenement.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block firstTitle %}
-    <h1 class="titleHome">Evénement CoWorking</h1>
+{% block title %}
+    <title>GustoCoffee Evenement</title>
+{% endblock %}
+
+{% block firstImg %}
+    <div class="row topPage topPageEvenement">
+{% endblock %}
+
+{% block titleHome %}
+    Evénement CoWorking
 {% endblock %}
 
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-9">
+<<<<<<< HEAD
             <h2 class="titlePara">{{ 'Ouverture du nouveau café coworking'|trans }} </h2>
             <p class="textDescription">{% trans %}Récemment, GustoCoffee a organisé un grand événement afin de fêter l'ouverture du <strong>Coffe-Shop CoWorking !!</strong><br>
                 Au programme, musique, danse, visite et consommation à volonté ! <br>
@@ -36,11 +45,11 @@
                 {% endtrans %}
             </p>
         </div>
-        <div class="col-md-3">
-        </div>
+        <div class="col-md-3"></div>
     </div>
     <div class="clear"></div>
 {% endblock %}
+
 
 {% block thirdBlock %}
     <div class="row">
@@ -64,4 +73,5 @@
         </div>
     </div>
     <div class="clear"></div>
+    </div>
 {% endblock %}
