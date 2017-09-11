@@ -1,0 +1,12 @@
+easy_admin:
+    entities:
+        Commande:
+            class: AppBundle\Entity\Commande
+            #controller: AppBundle\Controller\Backoffice\CommandeController
+            disabled_actions: ['delete']
+            label: 'Les Commandes'
+            form:
+                fields: ['dateCommande', 'idDemandeProduit', 'idModePaiement', 'idPersonne']
+            list:
+                title: 'Les Commandes'
+                fields: ['dateCommande', 'idDemandeProduit', 'idModePaiement', 'idPersonne']
