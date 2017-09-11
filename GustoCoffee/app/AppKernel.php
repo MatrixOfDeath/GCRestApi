@@ -16,7 +16,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new AppBundle\AppBundle(),
             new GC\HomeBundle\GCHomeBundle(),
             new GC\EvenementBundle\GCEvenementBundle(),
             new GC\ReservationBundle\GCReservationBundle(),
@@ -31,6 +30,7 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
+            new AppBundle\AppBundle(),
 
         ];
 

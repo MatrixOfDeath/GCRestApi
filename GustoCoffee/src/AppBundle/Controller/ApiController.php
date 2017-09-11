@@ -15,11 +15,13 @@ class ApiController extends FOSRestController
      */
     public function indexAction()
     {
-        /*if (false === $this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            throw new AccessDeniedException();
-        }*/
+        if (false === $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            #$data = array("not" => "world");
+
+            #throw new AccessDeniedException();
+        }
         $data = array("hello" => "world");
-        $view = $this->view($data, 200);
+        $view = $this->view($data);
         return $this->handleView($view);
     }
 
