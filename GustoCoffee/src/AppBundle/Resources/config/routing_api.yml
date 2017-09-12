@@ -1,0 +1,65 @@
+api_magasin:
+    resource: "@AppBundle/Controller/MagasinController.php"
+    type:     rest
+    defaults: {_format: json}
+    name_prefix: api_
+
+api_transaction:
+    resource: "@AppBundle/Controller/TransactionController.php"
+    type:     rest
+    name_prefix: api_
+    defaults: {_format: json}
+
+api_modedepaiement:
+    resource: "@AppBundle/Controller/ModeDePaiementController.php"
+    type:     rest
+    name_prefix: api_
+    defaults: {_format: json}
+
+api_service:
+    resource: "@AppBundle/Controller/ServiceController.php"
+    type:     rest
+    name_prefix: api_
+    defaults: {_format: json}
+
+api_produit:
+    resource: "@AppBundle/Controller/ProduitController.php"
+    type:     rest
+    defaults: {_format: json}
+    name_prefix: api_
+
+api_salle:
+    resource: "@AppBundle/Controller/SalleController.php"
+    defaults: {_format: json}
+    type:     rest
+    name_prefix: api_
+
+api_annonce:
+    resource: "@AppBundle/Controller/AnnonceController.php"
+    type:     rest
+    defaults: {_format: json}
+    name_prefix: api_
+
+api_facture:
+    resource: "@AppBundle/Controller/FactureController.php"
+    type:     rest
+    defaults: {_format: json}
+    name_prefix: api_
+
+api_commande:
+    resource: "@AppBundle/Controller/CommandeController.php"
+    type:     rest
+    name_prefix: api_
+    defaults: {_format: json}
+
+api_reservation:
+    resource: "@AppBundle/Controller/ReservationController.php"
+    type:     rest
+    name_prefix: api_
+    defaults: {_format: json}
+
+api_place:
+    resource: "@AppBundle/Controller/PlaceController.php"
+    type:     rest
+    name_prefix: api_    
+    defaults: {_format: json}
