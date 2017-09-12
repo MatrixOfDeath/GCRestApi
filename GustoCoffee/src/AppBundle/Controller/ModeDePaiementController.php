@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\ModeDePaiement;
+use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -13,8 +14,17 @@ use Symfony\Component\HttpFoundation\Request;
  *
  * @Route("modedepaiement")
  */
-class ModeDePaiementController extends Controller
+class ModeDePaiementController extends FOSRestController
 {
+
+
+    public function getModeDePaiementAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $modeDePaiements = $em->getRepository('AppBundle:ModeDePaiement')->findAll();
+        $view = $this->view($modeDePaiements);
+        return $view;
+    }
     /**
      * Lists all modeDePaiement entities.
      *

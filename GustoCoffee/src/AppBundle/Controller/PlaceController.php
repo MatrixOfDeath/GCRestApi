@@ -3,17 +3,56 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Place;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use FOS\RestBundle\Controller\Annotations as Rest;
+use FOS\RestBundle\Controller\FOSRestController;
+#use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations\RouteResource;
+use FOS\RestBundle\Routing\ClassResourceInterface;
+
 
 /**
  * Place controller.
- *
+ * @RouteResource("Place")
  * @Route("place")
  */
-class PlaceController extends Controller
+class PlaceController extends FOSRestController implements ClassResourceInterface
 {
+    /** @ApiDoc(
+     *
+     * )
+     * @return \FOS\RestBundle\View\View
+     *
+     */
+    public function cgetAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $place = $em->getRepository('Place')->findAll();
+        $view = $this->view($place);
+        return $view;
+    }
+
+//    public function getPlaceAction($slug){
+//
+//    }
+//
+//    public function putPlaceAction($slug){
+//
+//    }
+//
+//    public function postPlaceAction()
+//    {
+//
+//    }
+//
+//    public function deletePlaceAction($slug)
+//    {
+//
+//    }
+
     /**
      * Lists all place entities.
      *
