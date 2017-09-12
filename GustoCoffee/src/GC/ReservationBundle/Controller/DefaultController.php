@@ -14,4 +14,9 @@ class DefaultController extends Controller
     {
         return $this->render('GCReservationBundle:Default:index.html.twig');
     }
+
+    public function privateAction()
+    {
+        return $this->render('GCReservationBundle:Default:reservation-private.html.twig');
+    }
 }

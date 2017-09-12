@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block firstImg %}
-    style='background-image: url({{ asset('img/backReservation.jpeg') }});'>
+{% block customCss %}
+    <link href="{{ asset('build/reservation.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block firstTitle %}
-    <h1 class="titleHome">Réservation CoWorking</h1>
+{% block firstImg %}
+    topPageReservation
+{% endblock %}
+
+{% block titleHome %}
+    Réservation CoWorking
 {% endblock %}
 
 {% block firstBlock %}
@@ -17,7 +21,23 @@
             </p>
             <div class="clearText"></div>
         </div>
-        <div class="col-md-12" >
+        <div class="col-md-6">
+            <div class="slider">
+                <div class="status">
+                    <h3> C'est Ouvert ! </h3>
+                </div>
+                <div class="shop-name centerText">
+                    <h2> GustoCoffee </h2>
+                </div>
+                <div class="shop-address centerText">
+                    <p>17 Rue Dunkerque, 75010 Paris</p>
+                </div>
+                <div class="google-maps">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.8805368187677!2d2.3539111156751145!3d48.879553879289524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e6dbddc4fe1%3A0xcc08be2d420511b!2s17+Rue+de+Dunkerque%2C+75010+Paris!5e0!3m2!1sfr!2sfr!4v1505141708046" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" >
             <div class="tablePrice">
                 <table>
                     <thead>
@@ -57,7 +77,7 @@
             </div>
             <div class="clearText"></div>
             <p class="textReservation textDescription">
-                <br>Obtenez <strong>10% de réduction</strong> sur la restauration, les services bureautique en réservant directement sur notre site internet !<br>
+                <br>Obtenez <strong>10% de réduction</strong> sur la restauration, les services bureautique en <br>réservant directement sur notre site internet !<br>
                 Les gaufres, les crêpes, le café ainsi que le thé sont <strong>à volonté</strong> !!
             </p>
         </div>
@@ -80,7 +100,9 @@
         <div class="col-md-2"></div>
         <div class="col-md-5 cardReservation">
             <div class="card">
-                <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                <a href="{{ path('gc_private_page') }}">
+                    <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                </a>
                 <div class="containerCard">
                     <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
                     <p>Choisir une salle</p>

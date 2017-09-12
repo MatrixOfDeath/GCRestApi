@@ -1,17 +1,23 @@
 {% extends 'base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 
+{% block customCss %}
+    <link href="{{ asset('build/confirmed.scss') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    <title>Confirmed registerGustoCoffee</title>
+{% endblock %}
+
 {% block firstImg %}
-    style='background-image: url({{ asset('img/connexion.jpg') }});'>
-{% endblock %}
+<div class="row topPage topPageLogin">
+    {% endblock %}
 
-{% block connexion %}
-    <a class="page-scroll" href="{{ path(fos_user_security_logout) }}"></a>
-{% endblock %}
+    {% block titleHome %}
+        Inscription CoWorking
+    {% endblock %}
 
-{% block firstTitle %}
-    <h2 class="titleHome">Inscription CoWorking</h2>
-{% endblock %}
+
 
 {% block firstBlock %}
     <div class="row addPadding">
@@ -27,8 +33,3 @@
     </div>
 
 {% endblock %}
-
-
-{% block secondBlock %}{% endblock %}
-
-{% block thirdBlock %}{% endblock %}

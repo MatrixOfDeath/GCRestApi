@@ -2,12 +2,12 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: backoffice/ } #Configuration de notre BackOffice
     - { resource: "@GCHomeBundle/Resources/config/services.yml" }
     - { resource: "@GCEvenementBundle/Resources/config/services.yml" }
     - { resource: "@GCReservationBundle/Resources/config/services.yml" }
     - { resource: "@GCUserBundle/Resources/config/services.yml" }
 
-# Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
@@ -152,52 +152,11 @@ sensio_framework_extra:
     security:    { annotations: true }
     psr_message: { enabled: false } # Defaults to true if the PSR-7 bridge is installed
 
-#Configuration of our BackOffice
-easy_admin:
-    site_name: '<img alt="GustoCoffee" width="100px" src="/img/gc_logo.png" /> BackOffice'
-    design:
-        assets:
-            favicon: '/img/gc_logo.png'
-    entities:
-        Personne:
-            class: AppBundle\Entity\Personne
-            label: 'Utilisateurs'
-            list:
-                title: 'Les utilisateurs'
-        Produit:
-            class: AppBundle\Entity\Produit
-            label: 'Produits'
-            list:
-                title: 'Les Produits'
-
-        Commande:
-            class: AppBundle\Entity\Commande
-            label: 'Les Commandes'
-            list:
-                title: 'Les Commandes'
-
-        Reservation:
-            class: AppBundle\Entity\Reservation
-            label: 'Les dernières réservation'
-            list:
-                title: 'Les Réservations'
-        Magasin:
-            class: AppBundle\Entity\Magasin
-            label: 'Les Magasins'
-            list:
-                title: 'Les Magasins'
-        JoursOuvert:
-            class: AppBundle\Entity\JoursOuvert
-            label: 'Les jours d''ouverture'
-            list:
-                title: 'Les jours d''ouverture'
-
 fos_user:
     db_driver: orm
     firewall_name: main                                 # Seems to be used when registering user/reseting password,
                                                         # but since there is no "login", as so it seems to be useless in
                                                         # our particular context, but still required by "FOSUserBundle"
-
     user_class: AppBundle\Entity\Personne
     registration:
         form:

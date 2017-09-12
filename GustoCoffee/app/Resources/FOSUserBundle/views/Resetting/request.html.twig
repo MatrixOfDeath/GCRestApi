@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 
-
-
-{% block firstImg %}
-    style='background-image: url({{ asset('img/connexion.jpg') }});'>
+{% block customCss %}
+    <link href="{{ asset('build/request.scss') }}" rel="stylesheet">
 {% endblock %}
 
-{% block connexion %}
-    <a class="page-scroll" href="{{ path(fos_user_security_logout) }}">
+{% block title %}
+    <title>GustoCoffee Réinitialisation Mot de passe</title>
+{% endblock %}
 
-    </a>
+{% block firstImg %}
+topPageRequest
+{% endblock %}
+
+{% block titleHome %}
+        Password CoWorking
 {% endblock %}
 
 {% block firstTitle %}
@@ -20,7 +24,7 @@
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="titlePara">Réinitialiser le mot de passe</h2>
+            <h2 class="centerText">Réinitialiser le mot de passe</h2>
         </div>
     </div>
     <div class="row">
@@ -40,7 +44,3 @@
         <div class="col-md-3"></div>
     </div>
 {% endblock %}
-
-{% block secondBlock %}{% endblock %}
-
-{% block thirdBlock %}{% endblock %}

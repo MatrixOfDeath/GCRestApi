@@ -2,19 +2,20 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 
+{% block customCss %}
+    <link href="{{ asset('build/login.scss') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    <title>GustoCoffee Change Password</title>
+{% endblock %}
 
 {% block firstImg %}
-    style='background-image: url({{ asset('img/connexion.jpg') }});'>
+    topPageLogin
 {% endblock %}
 
-{% block connexion %}
-    <a class="page-scroll" href="{{ path(fos_user_security_logout) }}">
-
-    </a>
-{% endblock %}
-
-{% block firstTitle %}
-    <h2 class="titleHome">Réinitialisation CoWorking</h2>
+{% block titleHome %}
+    Password CoWorking
 {% endblock %}
 
 {% block firstBlock %}

@@ -1,0 +1,22 @@
+easy_admin:
+    design:
+        menu:
+            - label: 'menu.product'
+              icon: 'shopping-basket'
+              children:
+                  - { entity: 'Produit', icon: 'th-list', label: 'menu.product.list', params: { sortField: 'nomproduit' }, default: true }
+                  - { entity: 'Service', icon: 'tags', label: 'menu.service' }
+                  - { entity: 'Produit', icon: 'plus-circle', label: 'menu.product.add', params: { action: 'new' } }
+            - { label: 'menu.personne', entity: 'Personne', icon: 'users' }
+            - { label: 'menu.commande', entity: 'Commande', icon: 'credit-card', params: { sortField: 'datecommande' } }
+            - { label: 'menu.reservation', entity: 'Reservation', icon: 'users' }
+            - { label: 'menu.magasin', entity: 'Magasin', icon: 'users' }
+            - { label: 'menu.salle', entity: 'Salle', icon: 'users' }
+            - { label: 'menu.place', entity: 'Place', icon: 'users' }
+            - { label: 'menu.annonce', entity: 'Annonce', icon: 'users' }
+            - { label: 'menu.jours.ouvert', entity: 'JoursOuvert', icon: 'calendar-check-o' }
+            - { label: 'menu.jours.fermee', entity: 'FermetureCafe', icon: 'calendar-times-o' }
+            - { label: 'menu.about' }
+            - { label: 'menu.about.home', url: 'https://google.com', icon: 'home', target: '_blank' }
+            - { label: 'menu.about.docs', url: 'https://google.com', icon: 'book', target: '_blank' }
+            - { label: 'menu.about.issues', url: 'https://google.com', icon: 'github', target: '_blank' }

@@ -81,6 +81,7 @@ class AnnonceController extends FOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $annonce->setDatecreation(new \DateTime(date('d-m-Y h:m')));
             $em->persist($annonce);
             $em->flush();
 

@@ -1,4 +1,20 @@
 #Ignoring files
+
+
+# Residus and temps
+*~
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
 /.web-server-pid
 /app/config/parameters.yml
 /phpunit.xml
@@ -6,7 +22,9 @@
 
 #Styling
 /node_modules/
+/web/node_modules/
 /app/Resources/lib
+
 # Cache logs
 /var/*
 /var/cache

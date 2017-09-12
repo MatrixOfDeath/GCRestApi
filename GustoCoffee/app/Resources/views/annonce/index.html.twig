@@ -18,7 +18,7 @@
             <tr>
                 <td><a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ annonce.titre }}</a></td>
                 <td>{{ annonce.corps }}</td>
-                <td>{% if annonce.datecreation %}{{ annonce.datecreation|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</td>
                 <td>{{ annonce.idannonce }}</td>
                 <td>
                     <ul>

@@ -3,8 +3,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
     database_host: 127.0.0.1
-    database_port: 3306
-    database_name: Gu
+    database_port: 8889
+    database_name: gustocoffee
     database_user: root
     database_password: root
     # You should uncomment this if you want to use pdo_sqlite
