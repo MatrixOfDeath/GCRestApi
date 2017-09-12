@@ -36,6 +36,7 @@
   text-align: center;
   padding-bottom: 40px;
 }
+
 .card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -66,6 +67,7 @@
   -webkit-box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5), 0 1px 0 0 rgba(0, 0, 0, 0.03);
   box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.5), 0 1px 0 0 rgba(0, 0, 0, 0.03);
   margin-left: auto;
+  width: 70%;
 }
 
 
@@ -73,10 +75,6 @@
     padding: 10px 0;
     text-align: center;
     background: #deba6b;
-}
-
-.shop-name {
-  padding: 15px;
 }
 
 .shop-address {
@@ -96,3 +94,4 @@
   width: 100% !important;
   height: 100% !important;
 }
+
