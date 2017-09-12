@@ -1,0 +1,47 @@
+app_magasin:
+    resource: "@AppBundle/Controller/MagasinController.php"
+    type:     annotation
+
+app_transaction:
+    resource: "@AppBundle/Controller/TransactionController.php"
+    type:     annotation
+
+app_mode_de_paiement:
+    resource: "@AppBundle/Controller/ModeDePaiementController.php"
+    type:     annotation
+
+app_service:
+    resource: "@AppBundle/Controller/ServiceController.php"
+    type:     annotation
+
+app_produit:
+    resource: "@AppBundle/Controller/ProduitController.php"
+    type:     annotation
+
+app_salle:
+    resource: "@AppBundle/Controller/SalleController.php"
+    type:     annotation
+
+app_annonce:
+    resource: "@AppBundle/Controller/AnnonceController.php"
+    type:     annotation
+
+app_facture:
+    resource: "@AppBundle/Controller/FactureController.php"
+    type:     annotation
+
+app_commande:
+    resource: "@AppBundle/Controller/CommandeController.php"
+    type:     annotation
+
+app_reservation:
+    resource: "@AppBundle/Controller/ReservationController.php"
+    type:     annotation
+
+app_place:
+    resource: "@AppBundle/Controller/PlaceController.php"
+    type:     annotation
+
+app:
+    resource: '@AppBundle/Controller/'
+    type:     annotation
