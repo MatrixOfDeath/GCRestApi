@@ -42,6 +42,3 @@ app_place:
     resource: "@AppBundle/Controller/PlaceController.php"
     type:     annotation
 
-app:
-    resource: '@AppBundle/Controller/'
-    type:     annotation
