@@ -80,19 +80,12 @@
                                 {% set req = app.request %}
 
                                 {% for locale in locales %}
-                                    <li><a href="{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}">{{ locale }}</a></li>
+                                    <li>
+                                        <button type="button" class="btn btn-default btn-locale-flag {{ locale == app.request.getLocale() ? 'active' : '' }}" onclick="location.href='{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}'">
+                                            <img src="{{ asset('img/'~ locale ~'.png') }}" alt="{{ locale }}">
+                                    </li>
                                 {% endfor %}
-
-                                <li>
-                                    <button type="button" class="btn btn-default userConnexion">
-                                        <img src="{{ asset('img/france.png') }}" alt="France">
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-default userConnexion">
-                                        <img src="{{ asset('img/usa.png') }}" alt="Etats-Unis d'Amérique">
-                                    </button>
-                                </li>
+                                
                                 <li>
                                     {% if is_granted("ROLE_ADMIN") %}
                                         <a href="{{ path('easyadmin') }}">
