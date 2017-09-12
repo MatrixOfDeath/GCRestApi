@@ -14,66 +14,165 @@
 
 {% block firstBlock %}
     <div class="row addPadding">
+
+        {# ---------- Première card ---------- #}
         <div class="col-md-4 cardReservation">
-            <div class="card">
+            <div class="chooseCard">
+                <a href="{{ path('gc_private_page') }}">
+                    <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                    <span class="overlay">
+                        <span class="text">
+                            Plus d'infos
+                        </span>
+                    </span>
+                </a>
+                <div class="containerCard">
+                    <h4 class="cardTitle"><strong>Salle A</strong></h4>
+                    <p>4 places</p>
+                </div>
+            </div>
+        </div>
+        {# ---------- End Première card ---------- #}
+
+        {# ---------- Seconde card ---------- #}
+        <div class="col-md-4 cardReservation">
+            <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
                 </a>
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
-                    <p>Choisir une salle</p>
+                    <h4 class="cardTitle"><strong>Salle B</strong></h4>
+                    <p>4 places</p>
                 </div>
             </div>
         </div>
+        {# ---------- End Seconde card ---------- #}
 
+        {# ---------- Troisième card ---------- #}
         <div class="col-md-4 cardReservation">
-            <div class="card">
+            <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
                 </a>
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
-                    <p>Choisir une salle</p>
+                    <h4 class="cardTitle"><strong>Salle C</strong></h4>
+                    <p>4 places</p>
                 </div>
             </div>
         </div>
+        {# ---------- End Troisième card ---------- #}
 
+    </div>
+
+    <div class="row addPadding">
+        {# ---------- Quatrième card ---------- #}
         <div class="col-md-4 cardReservation">
-            <div class="card">
+            <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
                 </a>
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
-                    <p>Choisir une salle</p>
+                    <h4 class="cardTitle"><strong>Salle D</strong></h4>
+                    <p>4 places</p>
                 </div>
             </div>
         </div>
+        {# ---------- End Quatrième card ---------- #}
 
+        {# ---------- Cinquième card ---------- #}
         <div class="col-md-4 cardReservation">
-            <div class="card">
+            <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
                 </a>
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
-                    <p>Choisir une salle</p>
+                    <h4 class="cardTitle"><strong>Salle E</strong></h4>
+                    <p>4 places</p>
                 </div>
             </div>
         </div>
+        {# ---------- End Cinquième card ---------- #}
 
-        <div class="col-md-4 cardReservation">
-            <div class="card">
-                <a href="{{ path('gc_private_page') }}">
-                    <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
-                </a>
-                <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
-                    <p>Choisir une salle</p>
-                </div>
-            </div>
-        </div>
-
+        <div class="col-md-4"></div>
     </div>
 {% endblock %}
 
+{% block secondBlock %}
+    <div class="row addPadding">
+
+        {# ---------- Première card ---------- #}
+        <div class="col-md-4 cardReservation">
+            <div class="chooseCard">
+                <a href="{{ path('gc_private_page') }}">
+                    <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                </a>
+                <div class="containerCard">
+                    <h4 class="cardTitle"><strong>Salle F</strong></h4>
+                    <p>6 places</p>
+                </div>
+            </div>
+        </div>
+        {# ---------- End Première card ---------- #}
+
+        {# ---------- Seconde card ---------- #}
+        <div class="col-md-4 cardReservation">
+            <div class="chooseCard">
+                <a href="{{ path('gc_private_page') }}">
+                    <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                </a>
+                <div class="containerCard">
+                    <h4 class="cardTitle"><strong>Salle G</strong></h4>
+                    <p>6 places</p>
+                </div>
+            </div>
+        </div>
+        {# ---------- End Seconde card ---------- #}
+
+        {# ---------- Troisième card ---------- #}
+        <div class="col-md-4 cardReservation">
+            <div class="chooseCard">
+                <a href="{{ path('gc_private_page') }}">
+                    <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                </a>
+                <div class="containerCard">
+                    <h4 class="cardTitle"><strong>Salle H</strong></h4>
+                    <p>6 places</p>
+                </div>
+            </div>
+        </div>
+        {# ---------- End Troisième card ---------- #}
+
+    </div>
+
+    <div class="row addPadding">
+        {# ---------- Quatrième card ---------- #}
+        <div class="col-md-4 cardReservation">
+            <div class="chooseCard">
+                <a href="{{ path('gc_private_page') }}">
+                    <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                </a>
+                <div class="containerCard">
+                    <h4 class="cardTitle"><strong>Salle I</strong></h4>
+                    <p>6 places</p>
+                </div>
+            </div>
+        </div>
+        {# ---------- End Quatrième card ---------- #}
+
+        {# ---------- Cinquième card ---------- #}
+        <div class="col-md-4 cardReservation">
+            <div class="chooseCard">
+                <a href="{{ path('gc_private_page') }}">
+                    <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                </a>
+                <div class="containerCard">
+                    <h4 class="cardTitle"><strong>Salle J</strong></h4>
+                    <p>6 places</p>
+                </div>
+            </div>
+        </div>
+        {# ---------- End Cinquième card ---------- #}
+
+        <div class="col-md-4"></div>
+    </div>
+{% endblock %}
