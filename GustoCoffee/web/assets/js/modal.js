@@ -15,7 +15,7 @@ btn.onclick = function() {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     hideDiv();
-    updateDiv();
+    //updateDiv();
 }
 
 
@@ -30,9 +30,4 @@ window.onclick = function(event) {
 function hideDiv() {
     $( "#myModal" ).hide(window.location.href + "#myModal" );
 
-}
-
-function updateDiv()
-{
-    alert("reload");
 }
