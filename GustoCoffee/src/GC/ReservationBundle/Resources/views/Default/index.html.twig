@@ -4,6 +4,10 @@
     <link href="{{ asset('build/reservation.css') }}" rel="stylesheet">
 {% endblock %}
 
+{% block title %}
+    <title>GustoCoffee Réservation</title>
+{% endblock %}
+
 {% block firstImg %}
     topPageReservation
 {% endblock %}
@@ -86,30 +90,7 @@
 
 {% block secondBlock %}
     <div class="row addPadding">
-        <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation"><br>
 
-            <form id="room-search-form">
-                <div id="reservation-date" class="form-group">
-                    <label> Date </label>
-                    <input style="width: 100%" type="text" name="reservation-date">
-                </div>
-            </form>
-
-            <div class="row">
-                <div class="col-xs-12">
-                    <button onclick="HubsyPage.search()" class="btn btn-block btn-primary">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Recherher
-                    </button>
-                </div>
-
-                <div class="col-xs-12">
-                    <button onclick="HubsyPage.reset()" class="btn btn-block btn-default">
-                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Annuler
-                    </button>
-                </div>
-
-            </div>
-        </div>
         <h2 class="col-md-12 placeQuestion">Quelle place souhaitez vous avoir au sein de GustoCoffee ?</h2>
         <div class="clear"></div>
         <div class="col-md-5 cardReservation">
