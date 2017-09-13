@@ -67,6 +67,8 @@ api:
     prefix: /api
     type: rest
     options: { i18n: false }
+    defaults:
+        _format: json
 
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing/swaggerui.xml"

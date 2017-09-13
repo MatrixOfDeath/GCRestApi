@@ -161,7 +161,7 @@ sensio_framework_extra:
 
 fos_user:
     db_driver: orm
-    firewall_name: main                                 # Seems to be used when registering user/reseting password,
+    firewall_name: main                                  # Seems to be used when registering user/reseting password,
                                                         # but since there is no "login", as so it seems to be useless in
                                                         # our particular context, but still required by "FOSUserBundle"
     user_class: AppBundle\Entity\Personne
@@ -187,3 +187,8 @@ fos_oauth_server:
     service:
         user_provider: fos_user.user_provider.username            # This property will be used when valid credentials are given to load the user upon access token creation
 
+lexik_jwt_authentication:
+    private_key_path: %kernel.root_dir%/../var/jwt/private.pem
+    public_key_path:  %kernel.root_dir%/../var/jwt/public.pem
+    pass_phrase:      %jwt_key_pass_phrase%
+    token_ttl:        3600

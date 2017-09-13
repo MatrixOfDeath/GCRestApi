@@ -14,9 +14,19 @@ use Doctrine\ORM\Mapping as ORM;
 class Personne extends BaseUser
 {
 
-    /*const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+    const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
     const ROLE_ADMIN = 'ROLE_ADMIN';
-    const ROLE_USER = 'ROLE_USER';*/
+    const ROLE_USER = 'ROLE_USER';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
     /**
      * @var string
      *
@@ -101,14 +111,6 @@ class Personne extends BaseUser
      */
     private $newsletter;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    protected $id;
 
     /**
      * @var \AppBundle\Entity\RuleUtilisateur

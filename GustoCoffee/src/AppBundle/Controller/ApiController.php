@@ -22,7 +22,7 @@ class ApiController extends FOSRestController
         }
         $data = array("GustoCoffee Api" => "v1.0",
             "Api Doc link" => "/api/doc");
-        $view = $this->view($data);
+        return $this->view($data);
         return $this->handleView($view);
     }
 
