@@ -104,8 +104,15 @@ jms_translation:
             excluded_dirs: [cache, data, logs]
             extractors: [alias_of_the_extractor]
 
-nelmio_api_doc: ~
-
+nelmio_api_doc:
+    routes:
+        path_patterns: # an array of regexps
+            - ^/api/
+    documentation:
+        info:
+            title: GustCofee Api
+            description: REST Api pour réserver sur GustoCoffee!
+            version: 1.0.0
 fos_rest:
     param_fetcher_listener: true
     body_listener: true

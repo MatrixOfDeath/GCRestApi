@@ -69,7 +69,7 @@ api:
     options: { i18n: false }
 
 NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    resource: "@NelmioApiDocBundle/Resources/config/routing/swaggerui.xml"
     prefix:   /api/doc
     options: { i18n: false }
 

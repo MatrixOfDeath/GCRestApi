@@ -20,7 +20,8 @@ class ApiController extends FOSRestController
 
             #throw new AccessDeniedException();
         }
-        $data = array("hello" => "world");
+        $data = array("GustoCoffee Api" => "v1.0",
+            "Api Doc link" => "/api/doc");
         $view = $this->view($data);
         return $this->handleView($view);
     }
