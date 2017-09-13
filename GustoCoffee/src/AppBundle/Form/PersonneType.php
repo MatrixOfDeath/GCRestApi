@@ -13,7 +13,19 @@ class PersonneType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('indentifiant')->add('motdepasse')->add('nom')->add('prenom')->add('adresse')->add('codepostal')->add('ville')->add('statutpersonne')->add('pointscumules')->add('rulepersonne')->add('newsletter')->add('idrule');
+        $builder
+            ->add('indentifiant')
+            ->add('motdepasse')
+            ->add('nom')
+            ->add('prenom')
+            ->add('adresse')
+            ->add('codepostal')
+            ->add('ville')
+            ->add('statutpersonne')
+            ->add('pointscumules')
+            ->add('rulepersonne')
+            ->add('newsletter')
+            ->add('idrule');
     }
     
     /**

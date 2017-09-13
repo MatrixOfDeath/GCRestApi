@@ -1,25 +1,122 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Annonces list</h1>
+{% block customCss %}
+    <link href="{{ asset('build/annonce.scss') }}" rel="stylesheet">
+{% endblock %}
 
-    <table>
+{% block title %}
+    <title>GustoCoffee - Annonces</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPageAnnonce
+{% endblock %}
+
+{% block titleHome %}
+    GustoCoffee - Annonces
+{% endblock %}
+{# ---------- First Block ---------- #}
+{% block firstBlock %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <a href="{{ path('fos_user_security_logout') }}"></a>
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="centerText">Déposez votre annonce</h2>
+        </div>
+    </div>
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                {{ form_label(form.titre) }}
+                {{ form_widget(form.titre) }}
+                {{ form_errors(form.titre) }}
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                {{ form_label(form.corps) }}
+                {{ form_widget(form.corps) }}
+                {{ form_errors(form.corps) }}
+            </div>
+            <div class="col-md-3"></div>
+    </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <input type="checkbox" id="showPhone" name="subscribe" value="CheckboxValue">
+                <label for="showPhone">Souhaitez-vous montrer votre prénom ?</label>
+            </div>
+            <div class="col-md-3"></div>
+
+            <div class="col-md-12">
+                <div class="datecreationAnnonce" style="display: none">
+                        {{ form_label(form.datecreation) }}
+                        {{ form_widget(form.datecreation) }}
+                        {{ form_errors(form.datecreation) }}
+
+                    {{ form_label(form.corps) }}
+                    {{ form_widget(form.corps) }}
+                    {{ form_errors(form.corps) }}
+
+                 </div>
+                 <div class="idpersonneAnnonce" style="display: none">
+                    {{ form_label(form.idpersonne) }}
+                    {{ form_widget(form.idpersonne) }}
+                    {{ form_errors(form.idpersonne) }}
+                </div>
+            </div>
+        </div>
+    {{ form_end(form) }}
+    <div class="col-md-12 form-connexion">
+        <input type="submit" class="buttonInscription centerText" value="Postez votre annonce" />
+    </div>
+
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('annonce_index') }}">Back to the list</a>#}
+        {#</li>#}
+    {#</ul>#}
+    {% else %}
+        <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+{% endblock %}
+{# ---------- End First Block ---------- #}
+
+{% block secondBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="centerText">Liste des Annonces</h2>
+        </div>
+    </div>
+    <table class="tableAnnonceList" align="center">
         <thead>
             <tr>
                 <th>Titre</th>
-                <th>Corps</th>
-                <th>Datecreation</th>
-                <th>Idannonce</th>
+                <th>Corps du message</th>
+                <th>Date de création</th>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <a href="{{ path('fos_user_security_logout') }}"></a>
                 <th>Actions</th>
+                {% else %}
+                    <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
         {% for annonce in annonces %}
             <tr>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <a href="{{ path('fos_user_security_logout') }}"></a>
                 <td><a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ annonce.titre }}</a></td>
+                {% else %}
+                    <td>{{ annonce.titre }}</td>
+                {% endif %}
                 <td>{{ annonce.corps }}</td>
                 <td>{% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</td>
-                <td>{{ annonce.idannonce }}</td>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <a href="{{ path('fos_user_security_logout') }}"></a>
                 <td>
                     <ul>
                         <li>
@@ -30,14 +127,17 @@
                         </li>
                     </ul>
                 </td>
+                {% else %}
+                    <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('annonce_new') }}">Create a new annonce</a>
-        </li>
-    </ul>
+    {#<ul>#}
+        {#<li>#}
+            {#<a href="{{ path('annonce_new') }}">Create a new annonce</a>#}
+        {#</li>#}
+    {#</ul>#}
 {% endblock %}

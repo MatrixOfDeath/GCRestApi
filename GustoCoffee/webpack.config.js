@@ -23,6 +23,7 @@ Encore
         './web/assets/scss/reservation-private.scss',
         './web/assets/scss/contact.scss',
         './web/assets/scss/login.scss',
+        './web/assets/scss/annonce.scss',
         './web/assets/scss/request.scss',
         './web/assets/scss/register.scss',
         './web/assets/scss/dashboard.scss',

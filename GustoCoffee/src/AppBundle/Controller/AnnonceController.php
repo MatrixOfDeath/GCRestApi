@@ -30,6 +30,7 @@ class AnnonceController extends FOSRestController
      * @return array
      */
     public function cgetAnnonceAction(){
+
         $em = $this->getDoctrine()->getManager();
 
         $annonces = $em->getRepository('AppBundle:Annonce')->findAll();
@@ -54,17 +55,32 @@ class AnnonceController extends FOSRestController
     /**
      * Lists all annonce entities.
      * @Route("/", name="annonce_index")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
         $annonces = $em->getRepository('AppBundle:Annonce')->findAll();
 
+        $annonce = new Annonce();
+        $form = $this->createForm('AppBundle\Form\AnnonceType', $annonce);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $annonce->setDatecreation(new \DateTime(date('d-m-Y H:i:s')));
+            $em->persist($annonce);
+            $em->flush();
+
+            return $this->redirectToRoute('annonce_show', array('idannonce' => $annonce->getIdannonce()));
+        }
+
         return $this->render('annonce/index.html.twig', array(
             'annonces' => $annonces,
+            'form' => $form->createView(),
         ));
+
     }
 
     /**
@@ -88,7 +104,7 @@ class AnnonceController extends FOSRestController
             return $this->redirectToRoute('annonce_show', array('idannonce' => $annonce->getIdannonce()));
         }
 
-        return $this->render('annonce/new.html.twig', array(
+        return $this->render('annonce/index.html.twig', array(
             'annonce' => $annonce,
             'form' => $form->createView(),
         ));
