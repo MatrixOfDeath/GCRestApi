@@ -1,9 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block customCss %}
-    <link href="{{ asset('build/reservation-private.css') }}" rel="stylesheet">
-{% endblock %}
-
 {% block title %}
     <title>GustoCoffee Réservation</title>
 {% endblock %}
@@ -207,12 +203,4 @@
 
         <div class="col-md-4"></div>
     </div>
-{% endblock %}
-
-{% block script %}
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-    <script src="{{ asset('assets/js/fixdiv.js') }}"></script>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('build/app.js') }}"></script>
 {% endblock %}

@@ -1,5 +1,1 @@
 var $ = require('jquery');
-
-(function() {
-
-})();
