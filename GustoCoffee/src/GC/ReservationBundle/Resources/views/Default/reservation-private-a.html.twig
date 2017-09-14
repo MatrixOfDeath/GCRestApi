@@ -13,19 +13,23 @@
 {% endblock %}
 
 {% block titleHome %}
-    Réservationnnnnn CoWorking
+    Réservation CoWorking
 {% endblock %}
 
 {% block firstBlock %}
-
-    <p>
-        <label for="amount">Price range:</label>
-        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-    </p>
-
-    <div id="slider-range"></div>
-
+<p>OKK</p>
 {% endblock %}
+
+{% block secondBlock %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_start(form) }}
+            
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
 
 {% block script %}
     <script src="{{ asset('js/jquery.min.js') }}"></script>

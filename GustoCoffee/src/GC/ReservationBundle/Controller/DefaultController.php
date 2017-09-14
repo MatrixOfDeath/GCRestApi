@@ -2,7 +2,10 @@
 
 namespace GC\ReservationBundle\Controller;
 
+use AppBundle\Entity\JoursOuvert;
+use AppBundle\Entity\Reservation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DefaultController extends Controller
@@ -20,8 +23,20 @@ class DefaultController extends Controller
         return $this->render('GCReservationBundle:Default:reservation-private.html.twig');
     }
 
-    public function salleaAction()
+    public function salleaAction(Request $request)
     {
-        return $this->render('GCReservationBundle:Default:reservation-private-a.html.twig');
+        $reservation = new Reservation();
+        $form = $this->createForm('AppBundle\Form\ReservationType', $reservation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($reservation);
+            $em->flush();
+        }
+
+        return $this->render('GCReservationBundle:Default:reservation-private-a.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }

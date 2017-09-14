@@ -22,14 +22,14 @@ class Reservation
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heureDebut", type="date", nullable=true)
+     * @ORM\Column(name="heureDebut", type="datetime", nullable=true)
      */
     private $heuredebut;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heureFin", type="date", nullable=true)
+     * @ORM\Column(name="heureFin", type="datetime", nullable=true)
      */
     private $heurefin;
 

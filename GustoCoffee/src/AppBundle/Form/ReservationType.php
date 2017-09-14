@@ -13,7 +13,17 @@ class ReservationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('datereservation')->add('heuredebut')->add('heurefin')->add('remarquereservation')->add('commentaireclient')->add('idfermeture')->add('idmagasin')->add('idmodepaiement')->add('idouverture')->add('idpersonne');
+        $builder
+            ->add('datereservation')
+            ->add('heuredebut')
+            ->add('heurefin')
+            ->add('remarquereservation')
+            ->add('commentaireclient')
+            ->add('idfermeture')
+            ->add('idmagasin')
+            ->add('idmodepaiement')
+            ->add('idouverture')
+            ->add('idpersonne');
     }
     
     /**
