@@ -15,7 +15,7 @@ class RestLoginControllerTest extends ApiTestCaseBase
 {
     public function testPOSTLoginUser()
     {
-        $userName = "testuser";
+        $userName = "karim.boubrit";
         $password = "test";
 
         $user = $this->createUser($userName, $password);
@@ -40,9 +40,9 @@ class RestLoginControllerTest extends ApiTestCaseBase
 
     public function testPOSTLoginUserWitAddOnEmail()
     {
-        $userName = "mate@misho.com";
-        $password = "ja_sam_Dalmatino_1950";
-        $addOnEmail = "majlo.hrnic@du.hr";
+        $userName = "karim.boubrit";
+        $password = "test";
+        $addOnEmail = "kboubrit2@gmail.com";
         $user = $this->createUser($userName, $password, $addOnEmail);
         $this->client->request(
             'POST',
@@ -62,8 +62,8 @@ class RestLoginControllerTest extends ApiTestCaseBase
 
         public function testPOSTLoginUserWithWrongUsername()
     {
-        $userName = "mate.misho";
-        $password = "ja_sam_Dalmatino_1950";
+        $userName = "krim";
+        $password = "test";
         $user = $this->createUser($userName, $password);
         $response = $this->client->request(
             'POST',

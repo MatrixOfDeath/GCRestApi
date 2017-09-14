@@ -15,10 +15,10 @@ class RestRegistrationControllerTest extends WebTestCase
     public function testPostRegisterNewUser()
     {
         $data = [
-            'username' => 'matko3',
-            'email' => 'matko3@gmail.com',
+            'username' => 'testuser',
+            'email' => 'testuser@gmail.com',
             'plainPassword' => [
-                'first' => 'test123', 'second' => 'test123'
+                'first' => 'test', 'second' => 'test'
             ]
         ];
 
@@ -28,13 +28,13 @@ class RestRegistrationControllerTest extends WebTestCase
 
     }
 
-    public function testPostRegsiterNewUserWithInvalidEmail()
+    public function testPostRegisterNewUserWithInvalidEmail()
     {
         $data = [
-            'username' => 'matko',
-            'email' => 'matkasgasgashgamail.com',
+            'username' => 'karim.boubrit',
+            'email' => 'testusergmail.com',
             'plainPassword' => [
-                'first' => 'test123', 'second' => 'test123'
+                'first' => 'test', 'second' => 'test'
             ]
         ];
 
