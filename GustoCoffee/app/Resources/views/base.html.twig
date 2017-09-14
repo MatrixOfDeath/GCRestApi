@@ -12,8 +12,9 @@
     <meta name="description" content="GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. ">
     <meta name="KASAgency" content="KASAgency est une jeune agence web.">
 
-    <link rel="icon" type="image/png" href="{{ asset('img/gc_logp.png')}}" />
+    <link rel="icon" type="image/png" href="{{ asset('img/gc_logo.png')}}" />
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
     {% block customCss %}{% endblock %}
 
@@ -82,7 +83,8 @@
                                 {% for locale in locales %}
                                     <li>
                                         <button type="button" class="btn btn-default btn-locale-flag {{ locale == app.request.getLocale() ? 'active' : '' }}" onclick="location.href='{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}'">
-                                            <img src="{{ asset('img/'~ locale ~'.png') }}" alt="{{ locale }}">
+                                            <img src="{{ asset('img/'~ locale ~'.png') }}" alt="{{ locale }}"/>
+                                        </button>
                                     </li>
                                 {% endfor %}
                                 

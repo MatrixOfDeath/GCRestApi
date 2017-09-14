@@ -3,18 +3,63 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Salle;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\Operation;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
+use FOS\RestBundle\Controller\Annotations\Get;
 
 /**
  * Salle controller.
- *
+ * @Rest\RouteResource("Salle")
  * @Route("salle")
  */
 class SalleController extends FOSRestController
 {
+
+
+    /**
+     * Cette fonction retourne toutes les salles
+     *
+     * @Operation(
+     *     tags={""},
+     *     summary="Retourne les annonces",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Returned when successful"
+     *     )
+     * )
+     *
+     *
+     * @return array
+     */
+    public function cgetAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $salles= $em->getRepository('AppBundle:Salle')->findAll();
+
+        $view = $this->view($salles);
+        return $view;
+    }
+
+    /**
+     * On retourne les informatinos d'une salle en fonction de l'id
+     * @param $id
+     * @return \FOS\RestBundle\View\View
+     */
+    public function getAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $salle = $em->getRepository('AppBundle:Salle')->find($id);
+        $view = $this->view($salle);
+        return $view;
+    }
+
     /**
      * Lists all salle entities.
      *

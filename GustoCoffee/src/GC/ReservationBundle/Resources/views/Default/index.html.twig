@@ -1,9 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block customCss %}
-    <link href="{{ asset('build/reservation.css') }}" rel="stylesheet">
-{% endblock %}
-
 {% block title %}
     <title>GustoCoffee Réservation</title>
 {% endblock %}
@@ -140,11 +136,4 @@
 
 {% block thirdBlock %}
 
-{% endblock %}
-
-{% block script %}
-    <script src="{{ asset('assets/js/modal.js') }}"></script>
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('build/app.js') }}"></script>
 {% endblock %}

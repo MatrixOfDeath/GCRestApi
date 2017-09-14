@@ -6,7 +6,7 @@ app_transaction:
     resource: "@AppBundle/Controller/TransactionController.php"
     type:     annotation
 
-app_mode_de_paiement:
+app_modedepaiement:
     resource: "@AppBundle/Controller/ModeDePaiementController.php"
     type:     annotation
 

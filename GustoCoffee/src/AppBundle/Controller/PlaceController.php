@@ -5,13 +5,15 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Place;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
-#use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Routing\ClassResourceInterface;
+use Nelmio\ApiDocBundle\Annotation\Operation;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 
 
 /**
@@ -21,16 +23,35 @@ use FOS\RestBundle\Routing\ClassResourceInterface;
  */
 class PlaceController extends FOSRestController implements ClassResourceInterface
 {
-    /** @ApiDoc(
-     *
-     * )
-     * @return \FOS\RestBundle\View\View
+    /**
+     *   @Operation(
+     *     tags={""},
+     *     summary="Retourne les annonces",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Returned when successful"
+     *     )
+     *    )
+     * @return array
      *
      */
     public function cgetAction()
     {
         $em = $this->getDoctrine()->getManager();
         $place = $em->getRepository('Place')->findAll();
+        $view = $this->view($place);
+        return $view;
+    }
+
+    /**
+     * On retourne les informatinos d'une salle en fonction de l'id
+     * @param $id
+     * @return \FOS\RestBundle\View\View
+     */
+    public function getAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $place = $em->getRepository('AppBundle:Place')->find($id);
         $view = $this->view($place);
         return $view;
     }
