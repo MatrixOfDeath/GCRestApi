@@ -1,21 +1,75 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Annonce edit</h1>
+{% block customCss %}
+    <link href="{{ asset('build/annonce.scss') }}" rel="stylesheet">
+{% endblock %}
 
+{% block title %}
+    <title>GustoCoffee - Édition d'une annonce</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPageAnnonce
+{% endblock %}
+
+{% block titleHome %}
+    GustoCoffee - Éditer une annonce
+{% endblock %}
+
+{% block firstBlock %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <a href="{{ path('fos_user_security_logout') }}"></a>
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="centerText">Éditez  votre annonce</h2>
+        </div>
+    </div>
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                {{ form_label(edit_form.titre) }}
+                {{ form_widget(edit_form.titre) }}
+                {{ form_errors(edit_form.titre) }}
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            {{ form_label(edit_form.corps) }}
+            {{ form_widget(edit_form.corps) }}
+            {{ form_errors(edit_form.corps) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="datecreationAnnonce" style="display: none">
+                    {{ form_label(edit_form.datecreation) }}
+                    {{ form_widget(edit_form.datecreation) }}
+                    {{ form_errors(edit_form.datecreation) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('annonce_index') }}">Back to the list</a>
-        </li>
-        <li>
+                </div>
+                <div class="idpersonneAnnonce" style="display: none">
+                    {{ form_label(edit_form.idpersonne) }}
+                    {{ form_widget(edit_form.idpersonne) }}
+                    {{ form_errors(edit_form.idpersonne) }}
+                </div>
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <input type="submit" class="buttonEditionAnnonce centerText" value="Éditez votre annonce" />
+            {{ form_end(edit_form) }}
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+            <input type="submit" class="buttonSuppressionAnnonce centerText" align="right" value="Supprimer votre annonce">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        </div>
+    </div>
+            <a href="{{ path('annonce_index') }}">Retour à la liste des annonces</a>
+    {% else %}
+        <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
 {% endblock %}
