@@ -22,7 +22,7 @@ class MyUserManager extends UserManager
             $userAddOnEmailRepo = $this->objectManager->getRepository('AppBundle:PersonneAddOnEmail');
             $userAddOnEmail = $userAddOnEmailRepo->findOneBy(['email' => $usernameOrEmail]);
             if ($userAddOnEmail) {
-                $user = $userAddOnEmail->getUser();
+                $user = $userAddOnEmail->getPersonne();
             }
         }
         return $user;

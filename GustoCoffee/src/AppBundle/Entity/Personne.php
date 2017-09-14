@@ -132,6 +132,7 @@ class Personne extends BaseUser
 
     public function __construct()
     {
+        parent::__construct();
         $this->addOnEmails = new ArrayCollection();
     }
     /**

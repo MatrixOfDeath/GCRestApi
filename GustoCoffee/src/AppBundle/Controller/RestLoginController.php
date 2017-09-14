@@ -10,7 +10,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use AppBundle\Entity\Personne;
 use AppBundle\Service\MyUserManager;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 
 /**
@@ -32,7 +31,7 @@ class RestLoginController extends Controller
         /** @var MyUserManager
          *
          */
-        $userManager = $this->get('my_user_manager');
+        $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserByUsernameOrEmail($usernameOrEmail);
 
         if (!$user) {
@@ -41,6 +40,7 @@ class RestLoginController extends Controller
 
         $isValid = $this->get('security.password_encoder')
             ->isPasswordValid($user, $password);
+
         if (!$isValid) {
             throw new BadCredentialsException();
         }
