@@ -22,7 +22,7 @@ class RestWelcomeControllerTest extends ApiTestCaseBase
 
         $this->client->request(
             'GET',
-            $this->route,
+            '/api/user/welcome',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json',
@@ -38,7 +38,7 @@ class RestWelcomeControllerTest extends ApiTestCaseBase
     {
         $this->client->request(
             'GET',
-            $this->route,
+            '/api/user/welcome',
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],
@@ -51,7 +51,7 @@ class RestWelcomeControllerTest extends ApiTestCaseBase
     /**
      * Creates some user and returns his token
      *
-     * @return [string
+     * @return string
      */
     private function getTokenForTestUser()
     {
@@ -60,7 +60,7 @@ class RestWelcomeControllerTest extends ApiTestCaseBase
 
         $user = $this->createUser($userName, $password);
 
-        $token = $this->getService('lexik_jwt_authentication.encoder')
+        $token = $this->getService('lexik_jwt_authentication.encoder.default')
             ->encode(['username' => 'drle_torca']);
 
         return $token;

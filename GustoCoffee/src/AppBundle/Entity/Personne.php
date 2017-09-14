@@ -3,14 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Personne
  *
- * @ORM\Table(name="Personne", indexes={@ORM\Index(name="rulePersonne", columns={"rulePersonne"}), @ORM\Index(name="FK_Personne_idRule", columns={"idRule"})})
+ * @ORM\Table(name="Personne", indexes={@ORM\Index(name="rulePersonne", columns={"rulePersonne"}),
+ * @ORM\Index(name="FK_Personne_idRule", columns={"idRule"})})
  * @ORM\Entity
  */
 class Personne extends BaseUser
@@ -143,7 +143,7 @@ class Personne extends BaseUser
     {
         $addOnEmail = new PersonneAddOnEmail();
         $addOnEmail->setEmail($email);
-        $addOnEmail->setUser($this);
+        $addOnEmail->setPersonne($this);
         $this->addOnEmails[] = $addOnEmail;
         return $this;
     }

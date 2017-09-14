@@ -6,11 +6,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use AppBundle\Entity\Personne;
-
-
+use AppBundle\Service\MyUserManager;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 
 /**
@@ -26,12 +26,14 @@ class RestLoginController extends Controller
      */
     public function loginAction(Request $request)
     {
-        $userName = $request->getUser();
+        $usernameOrEmail = $request->getUser();
         $password = $request->getPassword();
 
-        $user = $this->getDoctrine()
-            ->getRepository('AppBundle:Personne')
-            ->findOneBy(['username' => $userName]);
+        /** @var MyUserManager
+         *
+         */
+        $userManager = $this->get('my_user_manager');
+        $user = $userManager->findUserByUsernameOrEmail($usernameOrEmail);
 
         if (!$user) {
             throw $this->createNotFoundException();
@@ -39,7 +41,6 @@ class RestLoginController extends Controller
 
         $isValid = $this->get('security.password_encoder')
             ->isPasswordValid($user, $password);
-
         if (!$isValid) {
             throw new BadCredentialsException();
         }
@@ -51,7 +52,7 @@ class RestLoginController extends Controller
     }
 
     /**
-     * Returns token for user.
+     * Returns token for personne.
      *
      * @param Personne $user
      *
@@ -59,7 +60,7 @@ class RestLoginController extends Controller
      */
     public function getToken(Personne $user)
     {
-        return $this->container->get('lexik_jwt_authentication.encoder')
+        return $this->container->get('lexik_jwt_authentication.encoder.default')
             ->encode([
                 'username' => $user->getUsername(),
                 'exp' => $this->getTokenExpiryDateTime(),

@@ -63,7 +63,7 @@ class PersonneAddOnEmail
         return $this->email;
     }
     /**
-     * Set user
+     * Set personne
      *
      * @param \AppBundle\Entity\Personne $user
      *
@@ -75,7 +75,7 @@ class PersonneAddOnEmail
         return $this;
     }
     /**
-     * Get user
+     * Get personne
      *
      * @return \AppBundle\Entity\Personne
      */
