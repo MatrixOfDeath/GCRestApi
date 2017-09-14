@@ -1,5 +1,46 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Resetting/request_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block customCss %}
+    <link href="{{ asset('build/request.scss') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    <title>GustoCoffee Réinitialisation Mot de passe</title>
+{% endblock %}
+
+{% block firstImg %}
+topPageRequest
+{% endblock %}
+
+{% block titleHome %}
+        Password CoWorking
+{% endblock %}
+
+{% block firstTitle %}
+    <h2 class="titleHome">Réinitialisation CoWorking</h2>
+{% endblock %}
+
+{% block firstBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="centerText">Réinitialiser le mot de passe</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                <div>
+                    <label for="username">{{ 'resetting.request.username'|trans }}</label>
+                    <input class="maxWidth" type="text" id="username" name="username" required="required" />
+                </div>
+                <div class="clear"></div>
+                <div>
+                    <input class="buttonInscription" type="submit" value="{{ 'resetting.request.submit'|trans }}" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}

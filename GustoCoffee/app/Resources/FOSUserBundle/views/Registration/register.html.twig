@@ -1,5 +1,124 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Registration/register_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block customCss %}
+    <link href="{{ asset('build/register.scss') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    <title>GustoCoffee Register</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPageRegister
+{% endblock %}
+
+{% block titleHome %}
+    Inscription CoWorking
+{% endblock %}
+
+
+{% block firstBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="centerText">Inscription</h2>
+        </div>
+    </div>
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.nom) }}
+            {{ form_widget(form.nom) }}
+        </div>
+        <div class="col-md-3 form-prenom">
+            {{ form_errors(form.prenom) }}
+            {{ form_widget(form.prenom) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            {{ form_widget(form.username, { 'attr': {'placeholder': ' Username', 'style':'width: 100%;' } }) }}
+            {{ form_errors(form.username) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.plainPassword.first) }}
+            {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': ' Mot de passe', 'style':'width: 100%;' }}) }}
+        </div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.plainPassword.second) }}
+            {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': ' Confirmer Mot de passe', 'style':'width: 100%;' }}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            {{ form_errors(form.adresse) }}
+            {{ form_widget(form.adresse) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.codepostal) }}
+            {{ form_widget(form.codepostal) }}
+        </div>
+        <div class="col-md-3 form-prenom">
+            {{ form_errors(form.ville) }}
+            {{ form_widget(form.ville) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexionHide">
+            {{ form_errors(form.statutpersonne) }}
+            {{ form_widget(form.statutpersonne) }}
+
+            {{ form_errors(form.pointscumules) }}
+            {{ form_widget(form.pointscumules) }}
+
+            {{ form_errors(form.rulepersonne) }}
+            {{ form_widget(form.rulepersonne) }}
+
+
+            {{ form_errors(form.newsletter) }}
+            {{ form_widget(form.newsletter) }}
+
+
+            {{ form_errors(form.idrule) }}
+            {{ form_widget(form.idrule) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    {{ form_rest(form) }}
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            <input class="buttonInscription" type="submit" value="{{ "S'inscrire"|trans }}" />
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block secondBlock %}{% endblock %}
+
+{% block thirdBlock %}{% endblock %}

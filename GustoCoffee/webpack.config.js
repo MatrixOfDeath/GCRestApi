@@ -17,8 +17,19 @@ Encore
     // will output as web/build/global.css
     .addStyleEntry('global', [
         './web/assets/scss/global.scss',
+        './web/assets/scss/home.scss',
+        './web/assets/scss/evenement.scss',
+        './web/assets/scss/reservation.scss',
+        './web/assets/scss/reservation-private.scss',
+        './web/assets/scss/contact.scss',
+        './web/assets/scss/login.scss',
+        './web/assets/scss/request.scss',
+        './web/assets/scss/register.scss',
+        './web/assets/scss/dashboard.scss',
         './web/assets/scss/helper.scss',
-        './web/assets/scss/main.scss'
+        './web/assets/scss/main.scss',
+        './web/assets/scss/coffee-animation.scss',
+        './web/assets/scss/coffee-loader.scss'
     ])
 
     // allow sass/scss files to be processed

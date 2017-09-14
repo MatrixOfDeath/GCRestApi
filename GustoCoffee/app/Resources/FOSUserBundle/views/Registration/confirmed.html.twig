@@ -1,10 +1,35 @@
-{% extends "@FOSUser/layout.html.twig" %}
-
+{% extends 'base.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 
-{% block fos_user_content %}
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
-{% endblock fos_user_content %}
+{% block customCss %}
+    <link href="{{ asset('build/confirmed.scss') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    <title>Confirmed registerGustoCoffee</title>
+{% endblock %}
+
+{% block firstImg %}
+<div class="row topPage topPageLogin">
+    {% endblock %}
+
+    {% block titleHome %}
+        Inscription CoWorking
+    {% endblock %}
+
+
+
+{% block firstBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="titlePara">Inscription Terminée</h2>
+            <div class="col-md-12">
+                <p class="centerText sizeFont">{{ 'registration.confirmed'|trans({'%username%': user.username})|nl2br }}</p>
+                {% if targetUrl %}
+                    <p class="centerText sizeFont"><a href="{{ targetUrl }}">{{ 'registration.back'|trans|nl2br }}</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

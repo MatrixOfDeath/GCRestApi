@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block customCss %}
+    <link href="{{ asset('build/dashboard.scss') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    <title>GustoCoffee Dashboard</title>
+{% endblock %}
+
+{% block firstImg %}
+<div class="row topPage topPageDashboard">
+    {% endblock %}
+
+    {% block titleHome %}
+        Dashboard CoWorking
+    {% endblock %}
+
+{% block firstBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="centerText">Vos dernières réservations</h2>
+            <p class="textDescription textFacture">Vous trouverez ci-dessous vous 3 dernières réservations effectuées chez GustoCoffee.<br>
+                Ils sont téléchargeables en cliquant sous le bouton en dessous.
+            </p>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="row">
+        <div class="col-md-7">
+            <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
+        </div>
+        <div class="col-md-5">
+            <button class="buttonInscription">Télécharger la facture</button>
+        </div>
+
+        <div class="clear"></div>
+
+        <div class="col-md-7">
+            <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
+        </div>
+        <div class="col-md-5">
+            <button class="buttonInscription">Télécharger la facture</button>
+        </div>
+
+        <div class="clear"></div>
+
+
+        <div class="col-md-7">
+            <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
+        </div>
+        <div class="col-md-5">
+            <button class="buttonInscription">Télécharger la facture</button>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block secondBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12" style="font-size: 100px; text-align: center;">TODO : STATISTIQUE ! </div>
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block thirdBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <p>Modification profile</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{% endblock %}

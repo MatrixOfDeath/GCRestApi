@@ -3,21 +3,56 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Annonce;
+use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use FOS\RestBundle\Controller\Annotations\Get;
 
 /**
  * Annonce controller.
  *
  * @Route("annonce")
  */
-class AnnonceController extends Controller
+class AnnonceController extends FOSRestController
 {
+
+    /**
+     * Cette fonction retourne tous les annonces
+     *
+     * @ApiDoc(
+     *  resource=true,
+     *  description="Retourne les annonces"
+     * )
+     *
+     * @return array
+     */
+    public function cgetAnnonceAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $annonces = $em->getRepository('AppBundle:Annonce')->findAll();
+
+        $view = $this->view($annonces);
+        return $view;
+    }
+
+    /**
+     * On retourne les informatinos d'une place en fonction de l'id
+     * @param $id
+     * @return \FOS\RestBundle\View\View
+     */
+    public function getAnnonceAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $annonce = $em->getRepository('AppBundle:Annonce')->find($id);
+        $view = $this->view($annonce);
+        return $view;
+    }
+
     /**
      * Lists all annonce entities.
-     *
      * @Route("/", name="annonce_index")
      * @Method("GET")
      */
@@ -46,6 +81,7 @@ class AnnonceController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $annonce->setDatecreation(new \DateTime(date('d-m-Y h:m')));
             $em->persist($annonce);
             $em->flush();
 

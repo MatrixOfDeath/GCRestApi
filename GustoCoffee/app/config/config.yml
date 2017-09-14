@@ -107,20 +107,41 @@ jms_translation:
 nelmio_api_doc: ~
 
 fos_rest:
-    routing_loader:
-        default_format: json                           # All responses should be JSON formated
-        include_format: false                           # We do not include format in request, so that all responses
+    param_fetcher_listener: true
+    body_listener: true
     format_listener:
         enabled: true
-        rules:
-            # setting fallback_format to json means that instead of considering the next rule in case of a priority mismatch, json will be used
-            #- { path: '^/', host: 'api.%domain%', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
-            # you can specifically target the exception controller
-            - { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
-            #- { priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
-            - { path: '^/', stop: true }
+        # rules:
+            #- { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
     view:
-        view_response_listener: true
+        view_response_listener: 'force'
+        formats:
+            xml: false
+            json : true
+        templating_formats:
+            html: true
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+
+#    body_listener: true
+#    routing_loader:
+#        default_format: json                           # All responses should be JSON formated
+#        include_format: false                           # We do not include format in request, so that all responses
+#    format_listener:
+#        enabled: true
+#        rules:
+#            # setting fallback_format to json means that instead of considering the next rule in case of a priority mismatch, json will be used
+#            #- { path: '^/', host: 'api.%domain%', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+#            # you can specifically target the exception controller
+#            - { path: '^/api/*', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+#            #- { priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+#            - { path: '^/', stop: true }
+#    view:
+#        view_response_listener: true
 
 
 sensio_framework_extra:
@@ -137,9 +158,18 @@ fos_user:
                                                         # but since there is no "login", as so it seems to be useless in
                                                         # our particular context, but still required by "FOSUserBundle"
     user_class: AppBundle\Entity\Personne
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+        confirmation:
+            enabled: true
+    profile:
+        form:
+            type: AppBundle\Form\ProfileFormType
+            name: fos_user_profile_form
     from_email:
-        address: boubrit.karim@gmail.com
-        sender_name: Karim BOUBRIT
+        address: "%mailer_user%"
+        sender_name: "L'Équipe Gusto Coffee"
 
 fos_oauth_server:
     db_driver:           orm
@@ -148,4 +178,5 @@ fos_oauth_server:
     refresh_token_class: AppBundle\Entity\RefreshToken
     auth_code_class:     AppBundle\Entity\AuthCode
     service:
-        user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
+        user_provider: fos_user.user_provider.username            # This property will be used when valid credentials are given to load the user upon access token creation
+

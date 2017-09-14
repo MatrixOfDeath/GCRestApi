@@ -1,21 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block firstImg %}
-    style='background-image: url({{ asset('img/backEvenement2.jpg') }});'>
+{% block customCss %}
+    <link href="{{ asset('build/evenement.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block firstTitle %}
-    <h2 class="titleHome">Evénement CoWorking</h2>
+{% block title %}
+    <title>GustoCoffee Evenement</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPageEvenement
+{% endblock %}
+
+{% block titleHome %}
+    Evénement CoWorking
 {% endblock %}
 
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-9">
-            <h2 class="titlePara">Ouverture !!! =D</h2>
-            <p class="textDescription">Récemment, GustoCoffee a organisé un grand événement afin de fêter l'ouverture du <strong>Coffe-Shop CoWorking !!</strong><br>
+            <h2 class="titlePara">{{ 'Ouverture du nouveau café coworking'|trans }} </h2>
+            <p class="textDescription">{% trans %}Récemment, GustoCoffee a organisé un grand événement afin de fêter l'ouverture du <strong>Coffe-Shop CoWorking !!</strong><br>
                 Au programme, musique, danse, visite et consommation à volonté ! <br>
                 Ce fut l'occasion pour <strong>GustoCoffee</strong> de se faire connaître auprès de <strong>grandes sociétes comme la Société Générale</strong> souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants
                 en quête d'un environnement calme.
+                {% endtrans %}
             </p>
         </div>
         <div class="col-md-3 ouverture">
@@ -28,21 +37,23 @@
 {% block secondBlock %}
     <div class="row addPadding">
         <div class="col-md-9 textDescription">
-            <p><strong>GustoCoffee</strong> a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "<strong>Coffee-shop Coworking</strong>" situé près de <strong>Gare du Nord</strong><br>
+            <p>{% trans %}
+                <strong>GustoCoffee</strong> a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "<strong>Coffee-shop Coworking</strong>" situé près de <strong>Gare du Nord</strong><br>
             C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez <strong>GustoCoffee</strong> afin de <strong>consommer à volonté, gratuitement</strong> et à vous
                 familiariser avec l'espace que nous vous proposons.
+                {% endtrans %}
             </p>
         </div>
-        <div class="col-md-3">
-        </div>
+        <div class="col-md-3"></div>
     </div>
     <div class="clear"></div>
 {% endblock %}
 
+
 {% block thirdBlock %}
     <div class="row">
         <div class="col-md-12">
-            <h2 class="titleMedia">Ils ont parlé de GustoCoffee</h2>
+            <h2 class="titleMedia">{{ 'Ils ont parlé de GustoCoffee'|trans }}</h2>
         </div>
         <div class="col-md-12 listMedia">
 

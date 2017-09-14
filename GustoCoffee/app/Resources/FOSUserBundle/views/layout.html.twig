@@ -1,23 +1,34 @@
 {% extends 'base.html.twig' %}
 
-{% block firstImg %}
-    style='background-image: url({{ asset('img/connexion.jpg') }});'>
+{% block customCss %}
+    <link href="{{ asset('build/login.scss') }}" rel="stylesheet">
 {% endblock %}
 
+{% block title %}
+    <title>GustoCoffee Login</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPageLogin
+{% endblock %}
+
+{% block titleHome %}
+    Connexion CoWorking
+{% endblock %}
+
+
+        {#
 {% block connexion %}
-    <a class="page-scroll" href="logout">
+    <a class="page-scroll" href="{{ path(fos_user_security_logout) }}">
 
     </a>
 {% endblock %}
-
-{% block firstTitle %}
-    <h2 class="titleHome">Connexion CoWorking</h2>
-{% endblock %}
+#}
 
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="titlePara">Se Connecter</h2>
+            <h2 class="centerText">Se Connecter</h2>
         </div>
         <div class="col-md-5">
             <button class="loginBtn loginBtn--facebook">
@@ -36,49 +47,25 @@
 {% block secondBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="titlePara">OU</h2>
+            <h2 class="centerText">OU</h2>
         </div>
     </div>
 {% endblock %}
 
 {% block thirdBlock %}
     <div class="form-connexion">
-        <form action="{{ path("fos_user_security_check") }}" method="post">
-            {% if csrf_token %}
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            {% endif %}
-
+        <div>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
+                <a href="{{ path('fos_user_security_logout') }}"></a>
             {% else %}
-                <a href="{{ path('fos_user_security_login') }}"></a>
+                <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             {% endif %}
+        </div>
 
 
-            <input type="text" placeholder="username" id="username" name="_username" value="{{ last_username }}" required="required" />
-
-            <input type="password" placeholder="Mot de passe" id="password" name="_password" required="required" />
-
-            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-            <label for="remember_me">{{ 'Se rappeler de moi' }}</label>
-
-            <input type="submit" id="_submit" name="_submit" value="{{ 'Connexion' }}" />
-        </form>
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
     </div>
-    <style>
-        input {
-            margin: 13px 0;
-            padding: 12px;
-            border: 1px solid #8a8a8a;
-            border-radius: 2px;
-            height: auto;
-            width: 100%;
-        }
-
-        #remember_me {
-            width: 7%;
-        }
-    </style>
 {% endblock %}
