@@ -14,19 +14,21 @@ use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\Form\FormInterface;
-use JMS\Serializer\SerializationContext;
 
 /**
  * @Route("/api/user", options={"i18n"=false})
  */
 class RestRegistrationController extends BaseController
 {
+
+    use \AppBundle\Helper\ControllerHelper;
     /**
      * @Route("/register", name="user_register")
      * @Method("POST")
      */
     public function registerAction(Request $request)
     {
+
         /** @var \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
         /** @var \FOS\UserBundle\Model\UserManagerInterface */
@@ -79,34 +81,4 @@ class RestRegistrationController extends BaseController
         $form->submit($data);
     }
 
-    /**
-     * Data serializing via JMS serializer.
-     *
-     * @param mixed $data
-     *
-     * @return string JSON string
-     */
-    private function serialize($data)
-    {
-        $context = new SerializationContext();
-        $context->setSerializeNull(true);
-
-        return $this->get('jms_serializer')
-            ->serialize($data, 'json', $context);
-    }
-
-    /**
-     * Set base HTTP headers.
-     *
-     * @param Response $response
-     *
-     * @return Response
-     */
-    private function setBaseHeaders(Response $response)
-    {
-        $response->headers->set('Content-Type', 'application/json');
-        $response->headers->set('Access-Control-Allow-Origin', '*');
-
-        return $response;
-    }
 }

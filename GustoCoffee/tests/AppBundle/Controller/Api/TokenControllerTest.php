@@ -12,16 +12,16 @@ use Tests\ApiTestCaseBase;
 
 class TokenControllerTest extends ApiTestCaseBase
 {
-    public function testPOSTCreateToken()
-    {
-//        $this->createUser('weaverryan', 'I<3Pizza');
+//    public function testPOSTCreateToken()
+//    {
+//        $this->createUser('karimboubrit', 'karimtest');
 //        $response = $this->client->post('/api/token', [
-//            'auth' => ['weaverryan', 'I<3Pizza']
+//            'auth' => ['karimboubrit', 'karimtest']
 //        ]);
 //        $this->assertEquals(200, $response->getStatusCode());
 //        $this->asserter()->assertResponsePropertyExists(
 //            $response,
 //            'token'
 //        );
-    }
+//    }
 }

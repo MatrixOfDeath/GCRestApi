@@ -13,13 +13,16 @@ use Tests\ApiTestCaseBase;
 
 class RestWelcomeControllerTest extends ApiTestCaseBase
 {
+    //Chemin de notre route (récupéré la route automatiquement)
+    private $route = '/api/user/welcome';
+
     public function testGETWelcomeMessageForUser()
     {
         $token = $this->getTokenForTestUser();
 
         $this->client->request(
             'GET',
-            '/api/user/welcome',
+            $this->route,
             [],
             [],
             ['CONTENT_TYPE' => 'application/json',
@@ -29,6 +32,20 @@ class RestWelcomeControllerTest extends ApiTestCaseBase
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
         $this->assertEquals('Bonjour utilisateur.', json_decode($this->client->getResponse()->getContent(), true));
+    }
+
+    public function testGETWelocmeMessageAsUnauthorizedUser()
+    {
+        $this->client->request(
+            'GET',
+            $this->route,
+            [],
+            [],
+            ['CONTENT_TYPE' => 'application/json'],
+            []
+        );
+
+        $this->assertEquals(401, $this->client->getResponse()->getStatusCode());
     }
 
     /**

@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -122,7 +124,36 @@ class Personne extends BaseUser
      */
     private $idrule;
 
+    // Adding emails
+    /**
+     * @ORM\OneToMany(targetEntity="PersonneAddOnEmail", mappedBy="user", cascade={"persist"})
+     */
+    private $addOnEmails;
 
+    public function __construct()
+    {
+        $this->addOnEmails = new ArrayCollection();
+    }
+    /**
+     * @param string $email
+     *
+     * @return $this
+     */
+    public function addEmail($email)
+    {
+        $addOnEmail = new PersonneAddOnEmail();
+        $addOnEmail->setEmail($email);
+        $addOnEmail->setUser($this);
+        $this->addOnEmails[] = $addOnEmail;
+        return $this;
+    }
+    /**
+     * @return ArrayCollection
+     */
+    public function getAddOnEmails()
+    {
+        return $this->addOnEmails;
+    }
 
     /**
      * Set indentifiant
@@ -445,4 +476,6 @@ class Personne extends BaseUser
     {
         return $this->idrule;
     }
+
+
 }
