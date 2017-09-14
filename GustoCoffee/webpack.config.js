@@ -21,6 +21,7 @@ Encore
         './web/assets/scss/evenement.scss',
         './web/assets/scss/reservation.scss',
         './web/assets/scss/reservation-private.scss',
+        './web/assets/scss/reservation-private-salle.scss',
         './web/assets/scss/contact.scss',
         './web/assets/scss/login.scss',
         './web/assets/scss/request.scss',

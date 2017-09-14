@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block customCss %}
+    <link href="{{ asset('build/reservation-private-salle.scss') }}" rel="stylesheet">
+{% endblock %}
+
+{% block title %}
+    <title>GustoCoffee Réservation</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPageReservation
+{% endblock %}
+
+{% block titleHome %}
+    Réservationnnnnn CoWorking
+{% endblock %}
+
+{% block firstBlock %}
+
+    <p>
+        <label for="amount">Price range:</label>
+        <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+    </p>
+
+    <div id="slider-range"></div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('build/app.js') }}"></script>
+{% endblock %}
