@@ -16,6 +16,9 @@ class DefaultController extends Controller
     protected $heureDebut;
     protected $heureFin;
     protected $tempsReservation;
+    protected $dateReservationTimestamp;
+    protected $heureDebutTimestamp;
+    protected $heureFinTimestamp;
 
     /**
      * @Route("/")
@@ -39,27 +42,22 @@ class DefaultController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $dateReservation = $reservation->getDatereservation();
-            print_r($dateReservation);
-            $dateReservation->date;
-            $dateReservationTimestamp = $dateReservation->getTimestamp();
-            echo $dateReservationTimestamp;
+            $this->dateReservation = $reservation->getDatereservation();
+            print_r($this->dateReservation);
+            $this->dateReservation->date;
+            $this->dateReservationTimestamp = $this->dateReservation->getTimestamp();
 
-            $heureDebut = $reservation->getHeuredebut();
-            print_r($heureDebut);
-            $heureDebut->date;
-            $heureDebutTimestamp = $heureDebut->getTimestamp();
-            echo $heureDebutTimestamp;
+            $this->heureDebut = $reservation->getHeuredebut();
+            print_r($this->heureDebut);
+            $this->heureDebut->date;
+            $this->heureDebutTimestamp = $this->heureDebut->getTimestamp();
 
-            $heureFin = $reservation->getHeurefin();
-            print_r($heureFin);
-            $heureFin->date;
-            $heureFinTimestamp = $heureFin->getTimestamp();
-            echo $heureFinTimestamp;
+            $this->heureFin = $reservation->getHeurefin();
+            print_r($this->heureFin);
+            $this->heureFin->date;
+            $this->heureFinTimestamp = $this->heureFin->getTimestamp();
 
-            $this->tempsReservation = ($heureFinTimestamp - $dateReservationTimestamp) - ($heureDebutTimestamp - $dateReservationTimestamp);
-            echo "DAAAAAAAAAAAAAAAAH ";
-            echo $this->tempsReservation/3600;
+            $this->tempsReservation = (($this->heureFinTimestamp - $this->dateReservationTimestamp) - ($this->heureDebutTimestamp - $this->dateReservationTimestamp)) /3600;
 
             $em->persist($reservation);
             $em->flush();
@@ -73,13 +71,12 @@ class DefaultController extends Controller
 
     public function pdfAction()
     {
-
-
-        $html = $this->renderView('GCReservationBundle:Default:facture.html.twig', array(
-            'tempsReservation' => $this->tempsReservation,
-            'title' => 'Hello'
-        ));
-
+        print_r($this->tempsReservation);
+        $temps = $this->tempsReservation;
+        $data = array(
+            'tempsReservation'=>$temps
+        );
+        $html = $this->renderView('GCReservationBundle:Default:facture.html.twig', $data);
         $filename = sprintf('test-%s.pdf', date('Y-m-d'));
 
         return new Response(
