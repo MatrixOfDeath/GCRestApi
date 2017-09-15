@@ -12,7 +12,7 @@ use Tests\ApiTestCaseBase;
 
 class TokenControllerTest extends ApiTestCaseBase
 {
-   public function testPOSTCreateToken(){
+//   public function testPOSTCreateToken(){
 //        $this->createUser('karimboubrit', 'karimtest');
 //        $response = $this->client->post('/api/token', [
 //            'auth' => ['karimboubrit', 'karimtest']
@@ -22,5 +22,5 @@ class TokenControllerTest extends ApiTestCaseBase
 //            $response,
 //            'token'
 //        );
-       }
+ //      }
 }

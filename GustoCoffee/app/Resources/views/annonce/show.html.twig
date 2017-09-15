@@ -1,40 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Annonce</h1>
+{% block title %}
+    <title>GustoCoffee - Voir une annonce</title>
+{% endblock %}
 
-    <table>
-        <tbody>
+{% block firstImg %}
+    topPageAnnonce
+{% endblock %}
+
+{% block titleHome %}
+    GustoCoffee - Votre Annonce
+{% endblock %}
+
+{% block firstBlock %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+<a href="{{ path('fos_user_security_logout') }}"></a>
+<div class="row addPadding">
+    <div class="col-md-12">
+        <h2 class="centerText">Voici votre annonce</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table>
+            <tbody>
+              <tr>
+                   <th>Titre</th>
+                 <td>{{ annonce.titre }}</td>
+              </tr>
+             <tr>
+                    <th>Corps</th>
+                    <td>{{ annonce.corps }}</td>
+             </tr>
             <tr>
-                <th>Titre</th>
-                <td>{{ annonce.titre }}</td>
-            </tr>
-            <tr>
-                <th>Corps</th>
-                <td>{{ annonce.corps }}</td>
-            </tr>
-            <tr>
-                <th>Datecreation</th>
+                <th>Date de création</th>
                 <td>{% if annonce.datecreation %}{{ annonce.datecreation|date('Y-m-d') }}{% endif %}</td>
             </tr>
-            <tr>
-                <th>Idannonce</th>
-                <td>{{ annonce.idannonce }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('annonce_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        {{ form_start(delete_form) }}
+        <input type="submit" class="buttonSuppressionAnnonce centerText" align="right" value="Supprimer votre annonce">
+        {{ form_end(delete_form) }}
+        <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">Éditez votre annonce</a><br>
+        <a href="{{ path('annonce_index') }}">Retour à la liste des annonces</a>
+    </div>
+</div>
+    {% else %}
+        <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
 {% endblock %}
