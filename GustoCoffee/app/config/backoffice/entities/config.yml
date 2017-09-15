@@ -45,15 +45,23 @@ easy_admin:
           class: AppBundle\Entity\Salle
           label: 'Les Salles'
           form:
-              fields: ['nomSalle', 'capacityMax']
+              fields:
+                  - { property: 'nomSalle', css_class: 'input'}
+                  - { property: 'capacityMax', css_class: 'input'}
+                  - 'idmagasin'
           list:
               title: 'Salles'
-              fields: ['nomSalle', 'capacityMax']
+              fields: ['nomSalle', 'capacityMax', 'idmagasin']
         Annonce:
           class: AppBundle\Entity\Annonce
           label: 'Les dernières Annonces'
           form:
-              fields: ['titre', 'corps', 'dateCreation']
+              fields:
+                  - 'titre'
+                  - { property: 'corps', type: 'ckeditor' }
+                  - { property: 'idpersonne', label: 'Username' }
           list:
               title: 'Annonces'
-              fields: ['titre', 'corps', 'dateCreation']
+              fields: ['titre', 'corps', { property: 'idpersonne', label: 'Username' }, { property: 'dateCreation', type: 'datetime'}]
+          edit:
+              fields: ['titre', 'corps', 'idpersonne']

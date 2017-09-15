@@ -77,7 +77,8 @@ class AnnonceController extends FOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $annonce->setDatecreation(new \DateTime(date('d-m-Y H:i:s')));
+            //Je set la date à la création de l'entité todo: edit date si on a le temps
+            //$annonce->setDatecreation(new \DateTime(date('d-m-Y H:m:s')));
             $em->persist($annonce);
             $em->flush();
 
@@ -105,7 +106,9 @@ class AnnonceController extends FOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $annonce->setDatecreation(new \DateTime(date('d-m-Y h:m')));
+
+            //Je set la date à la création de l'entité todo: edit date si on a le temps
+            //$annonce->setDatecreation(new \DateTime(date('d-m-Y H:m:s')));
             $em->persist($annonce);
             $em->flush();
 

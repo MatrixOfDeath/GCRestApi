@@ -16,10 +16,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new GC\HomeBundle\GCHomeBundle(),
-            new GC\EvenementBundle\GCEvenementBundle(),
-            new GC\ReservationBundle\GCReservationBundle(),
-            new GC\UserBundle\GCUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
@@ -33,7 +29,13 @@ class AppKernel extends Kernel
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            # Our Bundles
             new AppBundle\AppBundle(),
+            new GC\HomeBundle\GCHomeBundle(),
+            new GC\EvenementBundle\GCEvenementBundle(),
+            new GC\ReservationBundle\GCReservationBundle(),
+            new GC\UserBundle\GCUserBundle(),
 
         ];
 

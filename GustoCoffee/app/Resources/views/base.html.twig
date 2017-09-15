@@ -14,7 +14,7 @@
 
     <link rel="icon" type="image/png" href="{{ asset('img/gc_logo.png')}}" />
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
-
+    <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
     {% block customCss %}{% endblock %}
 
@@ -155,6 +155,7 @@
 
     {% block script %}
         <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('build/app.js') }}"></script>
     {% endblock %}

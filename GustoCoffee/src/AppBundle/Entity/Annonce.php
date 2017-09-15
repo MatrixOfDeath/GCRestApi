@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Annonce
@@ -22,14 +23,14 @@ class Annonce
     /**
      * @var string
      *
-     * @ORM\Column(name="corps", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="corps", type="text", length=1000, nullable=true)
      */
     private $corps;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreation", type="date", nullable=true)
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=true)
      */
     private $datecreation;
 
@@ -52,7 +53,11 @@ class Annonce
      */
     private $idpersonne;
 
+    public function __construct()
+    {
+        $this->setDatecreation(new \DateTime(date('d-m-Y H:m:s')));
 
+    }
 
     /**
      * Set titre
@@ -159,4 +164,6 @@ class Annonce
     {
         return $this->idpersonne;
     }
+
+
 }

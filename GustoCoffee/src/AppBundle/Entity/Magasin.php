@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Magasin
@@ -36,17 +37,9 @@ class Magasin
     private $idmagasin;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Salle", inversedBy="idmagasin")
-     * @ORM\JoinTable(name="choisir",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idSalle", referencedColumnName="idSalle")
-     *   }
-     * )
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="idmagasin")
+     *
      */
     private $idsalle;
 
@@ -55,7 +48,7 @@ class Magasin
      */
     public function __construct()
     {
-        $this->idsalle = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idsalle = new ArrayCollection();
     }
 
 
@@ -149,5 +142,12 @@ class Magasin
     public function getIdsalle()
     {
         return $this->idsalle;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getNommagasin();
     }
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+
 /**
  * Salle
  *
@@ -26,12 +27,6 @@ class Salle
      */
     private $capacitymax;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nomPlace", type="string", length=25, nullable=true)
-     */
-    private $nomplace;
 
     /**
      * @var integer
@@ -43,19 +38,38 @@ class Salle
     private $idsalle;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Magasin", mappedBy="idsalle")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin", inversedBy="idsalle")
+     * @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
      */
     private $idmagasin;
+
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->idmagasin = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+    /**
+     * @param mixed $idmagasin
+     */
+    public function setIdmagasin($idmagasin)
+    {
+        $this->idmagasin = $idmagasin;
+    }
+
+    /**
+     * Get idmagasin
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdmagasin()
+    {
+        return $this->idmagasin;
+    }
+
 
 
     /**
@@ -106,29 +120,6 @@ class Salle
         return $this->capacitymax;
     }
 
-    /**
-     * Set nomplace
-     *
-     * @param string $nomplace
-     *
-     * @return Salle
-     */
-    public function setNomplace($nomplace)
-    {
-        $this->nomplace = $nomplace;
-
-        return $this;
-    }
-
-    /**
-     * Get nomplace
-     *
-     * @return string
-     */
-    public function getNomplace()
-    {
-        return $this->nomplace;
-    }
 
     /**
      * Get idsalle
@@ -140,37 +131,37 @@ class Salle
         return $this->idsalle;
     }
 
-    /**
-     * Add idmagasin
-     *
-     * @param \AppBundle\Entity\Magasin $idmagasin
-     *
-     * @return Salle
-     */
-    public function addIdmagasin(\AppBundle\Entity\Magasin $idmagasin)
-    {
-        $this->idmagasin[] = $idmagasin;
 
-        return $this;
-    }
+
+//    /**
+//     * Add idmagasin
+//     *
+//     * @param \AppBundle\Entity\Magasin $idmagasin
+//     *
+//     * @return Salle
+//     */
+//    public function addIdmagasin(\AppBundle\Entity\Magasin $idmagasin)
+//    {
+//        $this->idmagasin[] = $idmagasin;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove idmagasin
+//     *
+//     * @param \AppBundle\Entity\Magasin $idmagasin
+//     */
+//    public function removeIdmagasin(\AppBundle\Entity\Magasin $idmagasin)
+//    {
+//        $this->idmagasin->removeElement($idmagasin);
+//    }
+
 
     /**
-     * Remove idmagasin
-     *
-     * @param \AppBundle\Entity\Magasin $idmagasin
+     * @return mixed
      */
-    public function removeIdmagasin(\AppBundle\Entity\Magasin $idmagasin)
-    {
-        $this->idmagasin->removeElement($idmagasin);
-    }
-
-    /**
-     * Get idmagasin
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdmagasin()
-    {
-        return $this->idmagasin;
+    public function __toString() {
+        return $this->getNommagasin();
     }
 }

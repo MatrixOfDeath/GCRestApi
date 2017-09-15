@@ -479,4 +479,11 @@ class Personne extends BaseUser
     }
 
 
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getUsername();
+    }
+
 }
