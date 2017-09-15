@@ -68,6 +68,11 @@ div.ui-rangeslider label {
   margin: 0 68px;
 }
 
-#appbundle_joursouvert_heuredebut_date, #appbundle_joursouvert_heurefin_date {
+#appbundle_reservation_heuredebut_date, #appbundle_reservation_heurefin_date {
   display: none;
+}
+
+.centerButton {
+  display: block;
+  margin: auto;
 }
