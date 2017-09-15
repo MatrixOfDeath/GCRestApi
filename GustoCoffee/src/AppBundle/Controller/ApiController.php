@@ -18,10 +18,11 @@ class ApiController extends FOSRestController
         if (false === $this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             #$data = array("not" => "world");
 
-            #throw new AccessDeniedException();
+            throw new AccessDeniedException();
         }
-        $data = array("hello" => "world");
-        $view = $this->view($data);
+        $data = array("GustoCoffee Api" => "v1.0",
+            "Api Doc link" => "/api/doc");
+        return $this->view($data);
         return $this->handleView($view);
     }
 
