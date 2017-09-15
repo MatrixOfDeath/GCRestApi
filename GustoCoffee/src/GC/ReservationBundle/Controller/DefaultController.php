@@ -39,42 +39,29 @@ class DefaultController extends Controller
 
             $dateReservation = $reservation->getDatereservation();
             print_r($dateReservation);
-            echo $dateReservation->date;
-            echo " ok ";
-            echo $dateReservation->getTimestamp();
+            $dateReservation->date;
+            $dateReservationTimestamp = $dateReservation->getTimestamp();
+            echo $dateReservationTimestamp;
 
             $heureDebut = $reservation->getHeuredebut();
             print_r($heureDebut);
-            echo $heureDebut->date;
-            echo " ok ";
-            echo $heureDebut->getTimestamp();
+            $heureDebut->date;
+            $heureDebutTimestamp = $heureDebut->getTimestamp();
+            echo $heureDebutTimestamp;
 
             $heureFin = $reservation->getHeurefin();
             print_r($heureFin);
-            echo $heureFin->date;
-            echo " ok ";
-            echo $heureFin->getTimestamp();
+            $heureFin->date;
+            $heureFinTimestamp = $heureFin->getTimestamp();
+            echo $heureFinTimestamp;
+
+            $tempsReservation = ($heureFinTimestamp - $dateReservationTimestamp) - ($heureDebutTimestamp - $dateReservationTimestamp);
+            echo "DAAAAAAAAAAAAAAAAH ";
+            echo $tempsReservation/3600;
 
             $em->persist($reservation);
             $em->flush();
         }
-
-/*        $this->dateReservation = $form->get('datereservation')->getData();
-        $this->heureDebut = $form->get('datereservation')->getData();
-        $this->heureFin = $form->get('datereservation')->getData();
-
-        $this->dateReservation = date('U');
-        echo "toto ";
-        echo $this->dateReservation;
-
-        $this->heureDebut = date('U');
-        echo " toto ";
-        echo $this->heureDebut;
-
-
-        $this->heureFin = date('U');
-        echo " toto ";
-        echo $this->heureFin;*/
 
         return $this->render('GCReservationBundle:Default:reservation-private-a.html.twig', array(
             'form' => $form->createView(),
