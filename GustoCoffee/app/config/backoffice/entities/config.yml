@@ -13,10 +13,14 @@ easy_admin:
             class: AppBundle\Entity\JoursOuvert
             label: 'Ouverture'
             form:
-                fields: ['jours', 'heureDebut', 'heureFin', 'titre']
+                fields: ['jours', { property: 'heureDebut', type: 'time'},  { property: 'heureFin' , type: 'time'}, 'titre']
             list:
                 title: 'Les jours d''ouverture'
-                fields: ['jours', 'heureDebut', 'heureFin', 'titre']
+                fields: ['jours', { property: 'heureDebut', type: 'time'}, { property: 'heureFin' , type: 'time'}, 'titre']
+                sort: 'idouverture'
+            edit:
+                fields: ['jours', { property: 'heureDebut', type: 'time'}, { property: 'heureFin', type: 'time'}, 'titre']
+
         FermetureCafe:
           class: AppBundle\Entity\FermetureDuCafe
           label: 'Fermeture'

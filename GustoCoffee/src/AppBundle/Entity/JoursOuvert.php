@@ -13,23 +13,23 @@ use Doctrine\ORM\Mapping as ORM;
 class JoursOuvert
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="jours", type="integer", nullable=true)
+     * @ORM\Column(name="jours", type="string", length=25)
      */
     private $jours;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heureDebut", type="date", nullable=true)
+     * @ORM\Column(name="heureDebut", type="datetime")
      */
     private $heuredebut;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heureFin", type="date", nullable=true)
+     * @ORM\Column(name="heureFin", type="datetime")
      */
     private $heurefin;
 
