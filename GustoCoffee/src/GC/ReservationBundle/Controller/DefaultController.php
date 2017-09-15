@@ -7,6 +7,7 @@ use AppBundle\Entity\Reservation;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 class DefaultController extends Controller
@@ -14,6 +15,7 @@ class DefaultController extends Controller
     protected $dateReservation;
     protected $heureDebut;
     protected $heureFin;
+    protected $tempsReservation;
 
     /**
      * @Route("/")
@@ -55,12 +57,13 @@ class DefaultController extends Controller
             $heureFinTimestamp = $heureFin->getTimestamp();
             echo $heureFinTimestamp;
 
-            $tempsReservation = ($heureFinTimestamp - $dateReservationTimestamp) - ($heureDebutTimestamp - $dateReservationTimestamp);
+            $this->tempsReservation = ($heureFinTimestamp - $dateReservationTimestamp) - ($heureDebutTimestamp - $dateReservationTimestamp);
             echo "DAAAAAAAAAAAAAAAAH ";
-            echo $tempsReservation/3600;
+            echo $this->tempsReservation/3600;
 
             $em->persist($reservation);
             $em->flush();
+            $this->pdfAction();
         }
 
         return $this->render('GCReservationBundle:Default:reservation-private-a.html.twig', array(
@@ -68,4 +71,24 @@ class DefaultController extends Controller
         ));
     }
 
+    public function pdfAction()
+    {
+
+
+        $html = $this->renderView('GCReservationBundle:Default:facture.html.twig', array(
+            'tempsReservation' => $this->tempsReservation,
+            'title' => 'Hello'
+        ));
+
+        $filename = sprintf('test-%s.pdf', date('Y-m-d'));
+
+        return new Response(
+            $this->get('knp_snappy.pdf')->getOutputFromHtml($html),
+            200,
+            [
+                'Content-Type'        => 'application/pdf',
+                'Content-Disposition' => sprintf('attachment; filename="%s"', $filename),
+            ]
+        );
+    }
 }

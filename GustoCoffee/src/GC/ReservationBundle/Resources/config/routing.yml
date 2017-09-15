@@ -9,3 +9,7 @@ gc_private_page:
 gc_sallea_page:
     path:    /reservation-private-a
     defaults: { _controller: GCReservationBundle:Default:sallea }
+
+gc_facture_page:
+    path:    /pdf
+    defaults: { _controller: GCReservationBundle:Default:pdf }

@@ -31,6 +31,7 @@
         "friendsofsymfony/oauth-server-bundle": "^1.5",
         "friendsofsymfony/rest-bundle": "^2.1",
         "friendsofsymfony/user-bundle": "~2.0.1",
+        "h4cc/wkhtmltopdf-amd64": "^0.12.3",
         "incenteev/composer-parameter-handler": "^2.0",
         "javiereguiluz/easyadmin-bundle": "^1.16",
         "jms/di-extra-bundle": "^1.8",
