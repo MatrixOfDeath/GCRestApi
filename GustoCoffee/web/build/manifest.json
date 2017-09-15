@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
-  "build/app.js": "/build/app.aca11f1aceb95302e820.js",
-  "build/global.css": "/build/global.1abbff44da22b6f5994813acf9656689.css",
-=======
-  "build/app.js": "/build/app.cf754290f8a18232bc9d.js",
-  "build/global.css": "/build/global.0cd13709ada0df67ec892bef3641b64f.css",
->>>>>>> b94622689a7f823a793e3410b2c75bcbdc86f011
+  "build/app.js": "/build/app.fbc28b4fb1136c94d3b7.js",
+  "build/global.css": "/build/global.f9bb041680fda3eedc34a334fd1afc5b.css",
   "build/images/backContact.jpeg": "/build/images/backContact.78de4675.jpeg",
   "build/images/backEvenement2.jpg": "/build/images/backEvenement2.812c546b.jpg",
   "build/images/backReservation.jpeg": "/build/images/backReservation.0fc94fba.jpeg",
