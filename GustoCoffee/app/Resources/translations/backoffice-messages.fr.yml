@@ -2,70 +2,70 @@
 # recommended to translate your backend efficiently.
 
 # main menu
-menu.category:     Categorías
-menu.product:      Productos
-menu.product.list: Listado de Productos
-menu.product.add:  Añadir Producto
-menu.customer:     Clientes
-menu.purchase:     Ventas
-menu.about:        Sobre EasyAdmin
-menu.about.home:   Sitio web oficial
-menu.about.docs:   Documentación
-menu.about.issues: Informar de errores
+menu.category:     Catégories
+menu.product:      Produits
+menu.product.list: Liste des produits
+menu.product.add:  Ajouter un produit
+menu.customer:     Client
+menu.purchase:     Ventes
+menu.about:        À propos de GustoCoffee
+menu.about.home:   Page d'accueil
+menu.about.docs:   Documentation
+menu.about.issues: Rapport d'erreurs
 
 # entity names, labels and titles
-Categories: Categorías
-Category: Categoría
-Customers: Clientes
-Product: Producto
-Products: Productos
-User: Usuario
+Categories: Catégories
+Category: Catégorie
+Customers: Clients
+Product: Produit
+Products: Produits
+User: Utilisateur
 
 # entity properties
-Attachments: Archivos adjuntos
-Billing address: Dirección de facturación
-Buyer: Comprador
-Contract: Contrato
-Delivery date: Fecha de entrega
-Delivery hour: Hora de entrega
-Description: Descripción
+Attachments: Pièces jointes
+Billing address: Adresse de facturation
+Buyer: Payeur
+Contract: Contrat
+Delivery date: Date de livraison
+Delivery hour: Heure de livraison
+Description: Description
 EAN-13: EAN-13
 Ean: EAN-13
 Email: Email
-Enabled: Activado
-Features: Funcionalidades
+Enabled: Activé
+Features: Fonctionnalités
 Guid: GUID
 ID: ID
-Image file: Archivo de la imagen
-Image: Imagen
-Is active: ¿Activo?
-Label: Título
-Name: Nombre
-Parent category: Categoría Padre
-Price: Precio
-Published: Publicado
-Purchase: Compra
-Purchased items: Productos comprados
-Purchases: Compras
-Shipping: Envío
-Tags: Etiquetas
+Image file: Fichier d'image
+Image: Image
+Is active: Est active ?
+Label: Titre
+Name: Nom
+Parent category: Catégorie Parent
+Price: Prix
+Published: Publié
+Purchase: Achat
+Purchased items: Produits achetés
+Purchases: Achats
+Shipping: Envies
+Tags: Tags
 Total: Total
-Username: Nombre de usuario
+Username: Nom d'utilisateur
 
 # help messages
-EAN-13 valid code. Leave empty if unknown.: Introduce un código EAN-13 válido. Déjalo vacío si no dispones del código.
+EAN-13 valid code. Leave empty if unknown.: Le code EAN-13 est valide. Laisser vide si inconnu.
 
 # messages that contain variables
-'Product %entity_label%': 'Producto %entity_label%'
+'Product %entity_label%': 'Produits %entity_label%'
 
 # misc. messages
-Account Information: Información de la cuenta
-Advanced Settings: Opciones avanzadas
-Basic information: Información básica
-Contact Information: Información de contacto
-Contract file: Archivo del contrato
-Delivery Details: Información de la entrega
-Legal Information: Información legal
-Product Details: Información del producto
-Purchase Details: Información de la compra
-Transactions History: Historial de transacciones
+Account Information: Information sur le compte
+Advanced Settings: Options avancées
+Basic information: Informations élémentaires
+Contact Information: Contact
+Contract file: Fichier de contrat
+Delivery Details: Détails de la livraison
+Legal Information: Informations légales
+Product Details: Détails du produit
+Purchase Details: Détail de l'achat
+Transactions History: Historique des transactions
