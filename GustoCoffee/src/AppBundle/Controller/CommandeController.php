@@ -4,17 +4,42 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Commande;
 use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Nelmio\ApiDocBundle\Annotation\Operation;
+use Swagger\Annotations as SWG;
 
 /**
  * Commande controller.
- *
+ * @Rest\RouteResource("Commande")
  * @Route("commande")
  */
 class CommandeController extends FOSRestController
 {
+    /**
+     *   @Operation(
+     *     tags={""},
+     *     summary="Retourne les commandes",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Returned when successful"
+     *     )
+     *    )
+     * @return array
+     *
+     */
+    public function cgetAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $place = $em->getRepository('AppBundle:Commande')->findAll();
+        $view = $this->view($place);
+        return $view;
+    }
+
     /**
      * Lists all commande entities.
      *

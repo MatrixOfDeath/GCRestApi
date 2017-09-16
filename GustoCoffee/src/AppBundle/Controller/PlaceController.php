@@ -26,7 +26,7 @@ class PlaceController extends FOSRestController implements ClassResourceInterfac
     /**
      *   @Operation(
      *     tags={""},
-     *     summary="Retourne les annonces",
+     *     summary="Retourne les places",
      *     @SWG\Response(
      *         response="200",
      *         description="Returned when successful"
@@ -38,7 +38,7 @@ class PlaceController extends FOSRestController implements ClassResourceInterfac
     public function cgetAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $place = $em->getRepository('Place')->findAll();
+        $place = $em->getRepository('AppBundle:Place')->findAll();
         $view = $this->view($place);
         return $view;
     }

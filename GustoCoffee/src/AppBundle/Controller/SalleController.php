@@ -28,7 +28,7 @@ class SalleController extends FOSRestController
      *
      * @Operation(
      *     tags={""},
-     *     summary="Retourne les annonces",
+     *     summary="Retourne les salles",
      *     @SWG\Response(
      *         response="200",
      *         description="Returned when successful"
