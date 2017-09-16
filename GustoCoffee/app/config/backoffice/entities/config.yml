@@ -9,6 +9,7 @@ easy_admin:
             list:
                 title: 'Les Magasins'
                 fields: ['nomMagasin', 'adresse']
+
         JoursOuvert:
             class: AppBundle\Entity\JoursOuvert
             label: 'Ouverture'
@@ -41,17 +42,21 @@ easy_admin:
           class: AppBundle\Entity\Place
           label: 'Les Places'
           form:
-              fields: ['nomPlace', 'statutPlace', 'idSalle']
+              fields:
+                  - { property: 'nomPlace', type: 'text'}
+                  - { property: 'statutPlace', type: 'text'}
+                  - { property: 'idsalle'}
           list:
               title: 'Places'
-              fields: ['nomPlace', 'statutPlace', 'idSalle']
+              fields: ['nomPlace', 'statutPlace', 'idsalle']
+
         Salle:
           class: AppBundle\Entity\Salle
           label: 'Les Salles'
           form:
               fields:
-                  - { property: 'nomSalle', css_class: 'input'}
-                  - { property: 'capacityMax', css_class: 'input'}
+                  - { property: 'nomSalle', type: 'text'}
+                  - { property: 'capacityMax', type: 'text'}
                   - 'idmagasin'
           list:
               title: 'Salles'
@@ -69,3 +74,17 @@ easy_admin:
               fields: ['titre', 'corps', { property: 'idpersonne', label: 'Username' }, { property: 'dateCreation', type: 'datetime'}]
           edit:
               fields: ['titre', 'corps', 'idpersonne']
+
+        ModeDePaiement:
+          class: AppBundle\Entity\ModeDePaiement
+          label: 'Modes de paiements'
+          form:
+              fields:
+                  - { property: 'modePaiement', type: 'text', label: 'Mode de paiement' }
+                  - 'description'
+
+          list:
+              title: 'Liste des modes de paiements disponible'
+              fields: [ {property: 'modePaiement', label: 'Mode de paiement' }, 'description' ]
+          edit:
+              fields: [ {property: 'modePaiement', label: 'Mode de paiement' }, 'description' ]

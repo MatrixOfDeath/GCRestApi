@@ -128,4 +128,12 @@ class Place
     {
         return $this->idsalle;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getNomplace();
+    }
 }

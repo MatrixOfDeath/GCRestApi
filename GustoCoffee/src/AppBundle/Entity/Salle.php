@@ -159,9 +159,9 @@ class Salle
 
 
     /**
-     * @return mixed
+     * @return string
      */
     public function __toString() {
-        return $this->getNommagasin();
+        return $this->getNomsalle();
     }
 }
