@@ -1,9 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Salle</h1>
+{% block title %}
+    <title>GustoCoffee Réservation</title>
+{% endblock %}
 
-    <table>
+{% block firstImg %}
+    topPageReservation
+{% endblock %}
+
+{% block titleHome %}
+    Réservation CoWorking
+{% endblock %}
+
+{% block firstBlock %}
+    <div class="row addPadding">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 centerText">
+            <p>La {{ salle.nomsalle }} contient {{ salle.capacitymax }} places.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+{% endblock %}
+
+{#    <table>
         <tbody>
             <tr>
                 <th>Nomsalle</th>
@@ -18,19 +37,21 @@
                 <td>{{ salle.idsalle }}</td>
             </tr>
         </tbody>
-    </table>
+    </table>#}
+{% block secondBlock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('salle_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('salle_edit', { 'idsalle': salle.idsalle }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="row addPading">
+        {% for produit in produits %}
+            <div class="col-md-4 centerText">
+                {{ produit.nomproduit }}
+            </div>
+            <div class="col-md-4 centerText">
+                {{ produit.description }}
+            </div>
+            <div class="col-md-4 centerText">
+                {{ produit.prixproduit }}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="clear"></div>
 {% endblock %}
