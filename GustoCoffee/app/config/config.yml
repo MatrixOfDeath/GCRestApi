@@ -12,6 +12,8 @@ imports:
 parameters:
     locale: fr
     locales: [fr, en]
+    app.path.salles_images: /uploads/images/salles
+    app.path.products_images: /uploads/images/products
 
 framework:
     #esi: ~
@@ -213,3 +215,13 @@ knp_snappy:
         enabled:    true
         binary:     /usr/local/bin/wkhtmltoimage
         options:    []
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        salles_images:
+            uri_prefix:         %app.path.salles_images%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/salles
+        products_images:
+            uri_prefix:         %app.path.products_images%
+            upload_destination: %kernel.root_dir%/../web/uploads/images/products

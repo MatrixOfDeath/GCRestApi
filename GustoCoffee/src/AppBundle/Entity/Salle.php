@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 
 
@@ -12,9 +14,21 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table(name="Salle", uniqueConstraints={@ORM\UniqueConstraint(name="nomSalle", columns={"nomSalle"})})
  * @ORM\Entity
+ * @Vich\Uploadable()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Salle
 {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idSalle", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idsalle;
+
     /**
      * @var string
      *
@@ -31,15 +45,6 @@ class Salle
 
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="idSalle", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idsalle;
-
-    /**
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin", inversedBy="idsalle")
      * @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
@@ -52,6 +57,33 @@ class Salle
     private $reservation;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="salles_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * created Time/Date
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -59,6 +91,48 @@ class Salle
         $this->reservation = new ArrayCollection();
 
     }
+
+    /**
+     * Set createdAt
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
 
     /**
      * @param mixed $idmagasin
@@ -139,54 +213,34 @@ class Salle
         return $this->idsalle;
     }
 
-//
-//    /**
-//     * @param $heureDebut
-//     * @param $heureFin
-//     * @return mixed
-//     */
-//    public function checkDisponibiliteSalle($heureDebut, $heureFin)
-//    {
-//        $repository = $this->getDoctrine()->getRepository(Salle::class);
-//
-//        // createQueryBuilder() automatically selects FROM AppBundle:Reservation
-//        // and aliases it to "p"
-//        $query = $repository->createQueryBuilder('s')
-//            ->leftJoin('s.reservation', 'r')
-//            ->where('r.heureDebut > :heureDebut' )
-//            ->andWhere('r.heureFin < :heureFin')
-//            ->setParameter('heureDebut', $heureDebut)
-//            ->setParameter('heureDebut', $heureFin)
-//            ->getQuery();
-//
-//        return $query->getResult();
-//    }
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
 
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
 
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
 
-//    /**
-//     * Add idmagasin
-//     *
-//     * @param \AppBundle\Entity\Magasin $idmagasin
-//     *
-//     * @return Salle
-//     */
-//    public function addIdmagasin(\AppBundle\Entity\Magasin $idmagasin)
-//    {
-//        $this->idmagasin[] = $idmagasin;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Remove idmagasin
-//     *
-//     * @param \AppBundle\Entity\Magasin $idmagasin
-//     */
-//    public function removeIdmagasin(\AppBundle\Entity\Magasin $idmagasin)
-//    {
-//        $this->idmagasin->removeElement($idmagasin);
-//    }
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
 
 
     /**

@@ -57,10 +57,26 @@ easy_admin:
               fields:
                   - { property: 'nomSalle', type: 'text'}
                   - { property: 'capacityMax', type: 'text'}
+                  - { property: 'imageFile', type: 'vich_image'}
                   - 'idmagasin'
           list:
-              title: 'Salles'
-              fields: ['nomSalle', 'capacityMax', 'idmagasin']
+              title: 'Listes des Salles'
+              fields:
+                  - 'idsalle'
+                  - { property: 'nomSalle', sortable: true }
+                  - { property: 'capacityMax', sortable: true }
+                  - { property: 'image', type: 'image', base_path: %app.path.salles_images% }
+                  - 'idmagasin'
+              sort: ['idsalle', 'ASC']
+          show:
+              title: 'Détails de la salle'
+              fields:
+                  - 'nomSalle'
+                  - 'capacityMax'
+                  - { property: 'image', type: 'image', base_path: %app.path.salles_images% }
+                  - 'idmagasin'
+                  - 'createdAt'
+                  - 'updateAt'
         Annonce:
           class: AppBundle\Entity\Annonce
           label: 'Les dernières Annonces'
