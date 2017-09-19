@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Salle;
+use AppBundle\Entity\Produit;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -60,7 +61,7 @@ class SalleController extends FOSRestController
     /**
      * Lists all salle entities.
      *
-     * @Route("/", name="salle_index")
+     * @Route("/reservation-private", name="salle_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -122,13 +123,19 @@ class SalleController extends FOSRestController
      * @Route("/{idsalle}", name="salle_show", requirements={"idsalle": "\d+"})
      * @Method("GET")
      */
-    public function showAction(Salle $salle)
+    public function showAction(Salle $salle, Request $request)
     {
         $deleteForm = $this->createDeleteForm($salle);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $produits = $em->getRepository('AppBundle:Produit')->findAll();
+
 
         return $this->render('salle/show.html.twig', array(
             'salle' => $salle,
             'delete_form' => $deleteForm->createView(),
+            'produits' => $produits,
         ));
     }
 

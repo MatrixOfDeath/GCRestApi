@@ -1,9 +1,92 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Salles list</h1>
+{% block title %}
+    <title>GustoCoffee Réservation</title>
+{% endblock %}
 
-    <table>
+{% block firstImg %}
+    topPageReservation
+{% endblock %}
+
+{% block titleHome %}
+    Réservation CoWorking
+{% endblock %}
+
+{% block firstBlock %}
+    <div class="row addPadding">
+
+            <div class="col-md-2" id="getFixed" role="navigation">
+
+                <form id="room-search-form">
+                    <div id="reservation-date" class="form-group">
+                        <label> Date </label>
+                        <input style="width: 100%" type="date" name="reservation-date">
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button class="btn btn-block btn-primary buttonSearch">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Rechercher
+                        </button>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <button class="btn btn-block btn-default">
+                            <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Annuler
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            {% for salle in salles %}
+
+                {% if salle.capacitymax == 4 %}
+                    <div class="col-md-3 cardReservation">
+                        <div class="chooseCard">
+                            <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
+                                <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                                <span class="overlay">
+                                        <span class="text">
+                                            Plus d'infos
+                                        </span>
+                                    </span>
+                            </a>
+                            <div class="containerCard">
+                                <h4 class="cardTitle"><strong>{{ salle.nomsalle }}</strong></h4>
+                                <p>{{ salle.capacitymax }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if salle.capacitymax == 6 %}
+                <div class="col-md-3 cardReservation">
+                    <div class="chooseCard">
+                        <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
+                            <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                            <span class="overlay">
+                                        <span class="text">
+                                            Plus d'infos
+                                        </span>
+                                    </span>
+                        </a>
+                        <div class="containerCard">
+                            <h4 class="cardTitle"><strong>{{ salle.nomsalle }}</strong></h4>
+                            <p>{{ salle.capacitymax }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+   {# <table>
         <thead>
             <tr>
                 <th>Nomsalle</th>
@@ -17,6 +100,7 @@
             <tr>
                 <td><a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">{{ salle.nomsalle }}</a></td>
                 <td>{{ salle.capacitymax }}</td>
+                <td>{{ salle.nomsalle }}</td>
                 <td>{{ salle.idsalle }}</td>
                 <td>
                     <ul>
@@ -31,11 +115,11 @@
             </tr>
         {% endfor %}
         </tbody>
-    </table>
-
+    </table>#}
+{#
     <ul>
         <li>
             <a href="{{ path('salle_new') }}">Create a new salle</a>
         </li>
-    </ul>
+    </ul>#}
 {% endblock %}
