@@ -12,6 +12,17 @@ menu.about:        À propos de GustoCoffee
 menu.about.home:   Page d'accueil
 menu.about.docs:   Documentation
 menu.about.issues: Rapport d'erreurs
+menu.service:      Services
+menu.personne:     Utilisateurs
+menu.commande:     Commandes
+menu.reservation:  Réservations
+menu.magasin:      Magasins
+menu.salle:        Salles
+menu.place:        Place
+menu.annonce:      Annonces
+menu.modedepaiement: Moyens de paiement
+menu.jours.ouvert: Jours d'ouverture
+menu.jours.fermee: Jours de fermeture
 
 # entity names, labels and titles
 Categories: Catégories
@@ -20,6 +31,7 @@ Customers: Clients
 Product: Produit
 Products: Produits
 User: Utilisateur
+Users: Utilisateurs
 
 # entity properties
 Attachments: Pièces jointes
@@ -54,6 +66,7 @@ Username: Nom d'utilisateur
 
 # help messages
 EAN-13 valid code. Leave empty if unknown.: Le code EAN-13 est valide. Laisser vide si inconnu.
+Reserved for administrators use: Réservé pour des droits d'administrateur.
 
 # messages that contain variables
 'Product %entity_label%': 'Produits %entity_label%'
@@ -69,3 +82,9 @@ Legal Information: Informations légales
 Product Details: Détails du produit
 Purchase Details: Détail de l'achat
 Transactions History: Historique des transactions
+
+#actions buttons
+action.new: Créer
+action.search: Rechercher
+action.edit: Éditer
+action.delete: Supprimer

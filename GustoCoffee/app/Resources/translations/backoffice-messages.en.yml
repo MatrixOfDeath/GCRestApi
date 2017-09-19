@@ -28,6 +28,17 @@ menu.about:        About GustoCoffee
 menu.about.home:   Project Home
 menu.about.docs:   Documentation
 menu.about.issues: Report Issues
+menu.service:      Services
+menu.personne:     Users
+menu.commande:     Orders
+menu.reservation:  Reservations
+menu.magasin:      Shops
+menu.salle:        Meeting rooms
+menu.place:        Individual Place
+menu.annonce:      Advertisement
+menu.modedepaiement: Form of payment
+menu.jours.ouvert: Opening days
+menu.jours.fermee: Closing days
 
 # We let EasyAdmin generate the rest of the backend labels
 # (they are translated following the 2) method)
@@ -40,6 +51,7 @@ Customers: Customers
 Product: Product
 Products: Products
 User: User
+Users: Users
 
 # entity properties
 Attachments: Attachments
@@ -90,3 +102,9 @@ Legal Information: Legal Information
 Product Details: Product Details
 Purchase Details: Purchase Details
 Transactions History: Transactions History
+
+#actions buttons
+action.new: Create
+action.search: Search
+action.edit: Edit
+action.delete: Delete
