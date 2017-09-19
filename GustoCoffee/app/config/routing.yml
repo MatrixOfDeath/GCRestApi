@@ -108,3 +108,6 @@ fos_user_change_password:
 fos_user_profile:
     resource: "@GCUserBundle/Resources/config/routing/profile.xml"
     prefix: /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

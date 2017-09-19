@@ -69,6 +69,7 @@ class DefaultController extends Controller
         ));
     }
 
+
     public function pdfAction()
     {
         print_r($this->tempsReservation);

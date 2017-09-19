@@ -16,14 +16,17 @@
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
     {% block customCss %}{% endblock %}
 
 </head>
 
 {% endblock %}
-
+<body>
 {% block body %}
-    <body>
+
     {% block navbar %}
         <div class="container-fluid">
             <div class="row topPage {% block firstImg %}{% endblock %}">
@@ -80,6 +83,7 @@
                                 </li>
                                 {% set req = app.request %}
 
+                                {% if app.request.get('_route_params') is not null %}
                                 {% for locale in locales %}
                                     <li>
                                         <button type="button" class="btn btn-default btn-locale-flag {{ locale == app.request.getLocale() ? 'active' : '' }}" onclick="location.href='{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}'">
@@ -87,6 +91,7 @@
                                         </button>
                                     </li>
                                 {% endfor %}
+                                {% endif %}
                                 
                                 <li>
                                     {% if is_granted("ROLE_ADMIN") %}
@@ -125,6 +130,9 @@
         <div class="clear"></div>
     {% endblock %}
 
+    {% block content %}
+    {% endblock %}
+
     {% block firstBlock %}
     {% endblock %}
 
@@ -159,7 +167,7 @@
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('build/app.js') }}"></script>
     {% endblock %}
-    </body>
 {% endblock %}
+</body>
 </html>
 

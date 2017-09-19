@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 
 /**
@@ -44,12 +46,18 @@ class Salle
      */
     private $idmagasin;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="idsalle")
+     */
+    private $reservation;
 
     /**
      * Constructor
      */
     public function __construct()
     {
+        $this->reservation = new ArrayCollection();
+
     }
 
     /**
@@ -130,6 +138,29 @@ class Salle
     {
         return $this->idsalle;
     }
+
+//
+//    /**
+//     * @param $heureDebut
+//     * @param $heureFin
+//     * @return mixed
+//     */
+//    public function checkDisponibiliteSalle($heureDebut, $heureFin)
+//    {
+//        $repository = $this->getDoctrine()->getRepository(Salle::class);
+//
+//        // createQueryBuilder() automatically selects FROM AppBundle:Reservation
+//        // and aliases it to "p"
+//        $query = $repository->createQueryBuilder('s')
+//            ->leftJoin('s.reservation', 'r')
+//            ->where('r.heureDebut > :heureDebut' )
+//            ->andWhere('r.heureFin < :heureFin')
+//            ->setParameter('heureDebut', $heureDebut)
+//            ->setParameter('heureDebut', $heureFin)
+//            ->getQuery();
+//
+//        return $query->getResult();
+//    }
 
 
 

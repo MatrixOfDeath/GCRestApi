@@ -15,7 +15,8 @@ Encore
     .addEntry('app', [
         './web/assets/js/scripts.js',
         './web/assets/js/fixdiv.js',
-        './web/assets/js/modal.js'
+        './web/assets/js/modal.js',
+        './web/assets/js/reservation/checkDispoDate.js'
 
     ])
 
@@ -36,7 +37,8 @@ Encore
         './web/assets/scss/helper.scss',
         './web/assets/scss/main.scss',
         './web/assets/scss/coffee-animation.scss',
-        './web/assets/scss/coffee-loader.scss'
+        './web/assets/scss/coffee-loader.scss',
+        './web/assets/scss/reservation/checkDispoDate.scss'
     ])
 
     // allow sass/scss files to be processed
@@ -45,7 +47,7 @@ Encore
     .enableLessLoader()
 
     // allow legacy applications to use $/jQuery as a global variable
-    .autoProvidejQuery()
+    //.autoProvidejQuery()
 
     .enableSourceMaps(!Encore.isProduction())
 

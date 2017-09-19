@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+{{ "Les salles disponibles" }}
+<br>
+{% for salle in salles %}
+
+    <td>Capacité: {{ salle.capacitymax }}</td>
+    <td>Magasin {{ salle.idmagasin }}</td>
+    <td>Nom Salle :{{ salle.nomsalle }}</td>
+    <td>idSalle: {{ salle.idsalle }}</td>
+    <br><br>
+{% endfor %}
+{% endblock %}

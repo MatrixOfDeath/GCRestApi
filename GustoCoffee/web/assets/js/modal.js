@@ -1,4 +1,4 @@
-var $ = require('jquery');
+//var $ = require('jquery');
 
 // When the user clicks the button, open the modal
     if($('#myBtn').length) {

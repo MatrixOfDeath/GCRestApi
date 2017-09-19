@@ -36,8 +36,8 @@ class MagasinController extends FOSRestController
     public function cgetAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $place = $em->getRepository('AppBundle:Magasin')->findAll();
-        $view = $this->view($place);
+        $magasin = $em->getRepository('AppBundle:Magasin')->findAll();
+        $view = $this->view($magasin);
         return $view;
     }
 

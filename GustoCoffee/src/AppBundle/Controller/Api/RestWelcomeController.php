@@ -6,7 +6,7 @@
  * Time: 18:39
  */
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -15,6 +15,25 @@ use Symfony\Component\Validator\Constraints\Date;
 class Reservation
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="idReservation", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idreservation;
+
+    /**
+     * @var \AppBundle\Entity\Salle
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Salle")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idSalle", referencedColumnName="idSalle")
+     * })
+     */
+    private $idsalle;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateReservation", type="datetime", nullable=true)
@@ -50,15 +69,6 @@ class Reservation
     private $commentaireclient;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="idReservation", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idreservation;
-
-    /**
      * @var \AppBundle\Entity\FermetureDuCafe
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FermetureDuCafe")
@@ -67,6 +77,7 @@ class Reservation
      * })
      */
     private $idfermeture;
+
 
     /**
      * @var \AppBundle\Entity\Magasin
@@ -108,33 +119,34 @@ class Reservation
      */
     private $idpersonne;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="petitDej", type="boolean", nullable=true)
-     */
-    private $petitDej = false;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="dej", type="boolean", nullable=true)
-     */
-    private $dej = false;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="diner", type="boolean", nullable=true)
-     */
-    private $diner = false;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="bureautique", type="boolean", nullable=true)
-     */
-    private $bureautique = false;
+    // TODO: Supprimer tout les booleans on récuère via l'entité Produit !!
+//    /**
+//     * @var boolean
+//     *
+//     * @ORM\Column(name="petitDej", type="boolean", nullable=true)
+//     */
+//    private $petitDej = false;
+//
+//    /**
+//     * @var boolean
+//     *
+//     * @ORM\Column(name="dej", type="boolean", nullable=true)
+//     */
+//    private $dej = false;
+//
+//    /**
+//     * @var boolean
+//     *
+//     * @ORM\Column(name="diner", type="boolean", nullable=true)
+//     */
+//    private $diner = false;
+//
+//    /**
+//     * @var boolean
+//     *
+//     * @ORM\Column(name="bureautique", type="boolean", nullable=true)
+//     */
+//    private $bureautique = false;
 
 
     /**
@@ -328,6 +340,24 @@ class Reservation
 
         return $this;
     }
+
+    /**
+     * get idsalle
+     * @return \AppBundle\Entity\Salle
+     */
+    public function getIdsalle()
+    {
+        return $this->idsalle;
+    }
+
+    /**
+     * @param Salle $idsalle
+     */
+    public function setIdsalle($idsalle)
+    {
+        $this->idsalle = $idsalle;
+    }
+
 
     /**
      * Get idmodepaiement

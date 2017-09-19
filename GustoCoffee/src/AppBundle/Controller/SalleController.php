@@ -21,8 +21,6 @@ use FOS\RestBundle\Controller\Annotations\Get;
  */
 class SalleController extends FOSRestController
 {
-
-
     /**
      * Cette fonction retourne toutes les salles
      *
@@ -40,8 +38,7 @@ class SalleController extends FOSRestController
      */
     public function cgetAction(){
         $em = $this->getDoctrine()->getManager();
-
-        $salles= $em->getRepository('AppBundle:Salle')->findAll();
+        $salles= $em->getRepository('AppBundle:Salle');
 
         $view = $this->view($salles);
         return $view;
@@ -70,10 +67,28 @@ class SalleController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $salles = $em->getRepository('AppBundle:Salle')->findAll();
-
+        $salles = $em->getRepository('AppBundle:Salle');
         return $this->render('salle/index.html.twig', array(
             'salles' => $salles,
+        ));
+    }
+
+
+    /**
+     * @Route("/disponible", name="salles_disponible")
+     *
+     *
+     * @Method("GET")
+     *
+     */
+    public function sallesDisponibleAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $sallesDispo = $this->checkDisponibiliteSalle('2017-09-20 09:00:00', '2017-09-20 10:00:00');
+        //$salles = $em->getRepository('AppBundle:Salle')->findAll();
+        //var_dump($sallesDispo);
+        return $this->render('salle/sallesDisponible.html.twig', array(
+            'salles' => $sallesDispo,
         ));
     }
 
@@ -106,7 +121,7 @@ class SalleController extends FOSRestController
     /**
      * Finds and displays a salle entity.
      *
-     * @Route("/{idsalle}", name="salle_show")
+     * @Route("/{idsalle}", name="salle_show", requirements={"idsalle": "\d+"})
      * @Method("GET")
      */
     public function showAction(Salle $salle)
@@ -122,7 +137,7 @@ class SalleController extends FOSRestController
     /**
      * Displays a form to edit an existing salle entity.
      *
-     * @Route("/{idsalle}/edit", name="salle_edit")
+     * @Route("/{idsalle}/edit", name="salle_edit", requirements={"idsalle": "\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Salle $salle)
@@ -147,7 +162,7 @@ class SalleController extends FOSRestController
     /**
      * Deletes a salle entity.
      *
-     * @Route("/{idsalle}", name="salle_delete")
+     * @Route("/{idsalle}", name="salle_delete", requirements={"idsalle": "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Salle $salle)
@@ -164,6 +179,48 @@ class SalleController extends FOSRestController
         return $this->redirectToRoute('salle_index');
     }
 
+
+    /**
+     * @param $heureDebut
+     * @param $heureFin
+     * @return mixed
+     */
+    public function checkDisponibiliteSalle( $heureChoixDebut, $heureChoixFin)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Salle');
+
+        $subQuery = $repository->createQueryBuilder('s_sub')
+            ->select('s_sub.idsalle')
+            ->leftJoin('s_sub.reservation', 'r')
+//            ->where('r.heuredebut <= :heureChoixDebut')
+//            ->andWhere('r.heurefin >= :heureChoixFin');
+
+            //bloc cond1
+            ->andwhere('r.heuredebut <= :heureChoixDebut')
+            ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+
+            //bloc cond2
+            ->orWhere('r.heuredebut <= :heureChoixFin AND r.heurefin >= :heureChoixFin')
+           // ->andWhere('r.heurefin >= :heureChoixFin')
+
+            // block cond
+            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+
+
+            //->getQuery();
+            //->getArrayResult();
+
+        $queryBuilder = $repository->createQueryBuilder('s');
+        $query = $queryBuilder
+            ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
+            ->setParameter('heureChoixDebut', $heureChoixDebut)
+            ->setParameter('heureChoixFin', $heureChoixFin);
+            //->setParameter('subQuery', $subQuery)
+            //->getQuery();
+
+        return $query->getQuery()->getResult();
+    }
     /**
      * Creates a form to delete a salle entity.
      *
@@ -179,4 +236,5 @@ class SalleController extends FOSRestController
             ->getForm()
         ;
     }
+
 }
