@@ -82,11 +82,9 @@ class SalleController extends FOSRestController
      *
      */
     public function sallesDisponibleAction(){
-        $em = $this->getDoctrine()->getManager();
 
-        $sallesDispo = $this->checkDisponibiliteSalle('2017-09-20 09:00:00', '2017-09-20 10:00:00');
-        //$salles = $em->getRepository('AppBundle:Salle')->findAll();
-        //var_dump($sallesDispo);
+        $sallesDispo = $this->checkDisponibiliteSalle('2017-09-20 9:30:00', '2017-09-20 14:00:00');
+
         return $this->render('salle/sallesDisponible.html.twig', array(
             'salles' => $sallesDispo,
         ));
@@ -181,8 +179,8 @@ class SalleController extends FOSRestController
 
 
     /**
-     * @param $heureDebut
-     * @param $heureFin
+     * @param $heureChoixDebut
+     * @param $heureChoixFin
      * @return mixed
      */
     public function checkDisponibiliteSalle( $heureChoixDebut, $heureChoixFin)
@@ -193,21 +191,16 @@ class SalleController extends FOSRestController
         $subQuery = $repository->createQueryBuilder('s_sub')
             ->select('s_sub.idsalle')
             ->leftJoin('s_sub.reservation', 'r')
-//            ->where('r.heuredebut <= :heureChoixDebut')
-//            ->andWhere('r.heurefin >= :heureChoixFin');
+            //   ->where('r.heuredebut <= :heureChoixDebut')
+            //   ->andWhere('r.heurefin >= :heureChoixFin');
+           //   ->andwhere('r.heuredebut BETWEEN :heureChoixDebut AND :heureChoixFin')
+           //   ->orWhere('r.heurefin BETWEEN :heureChoixDebut AND :heureChoixFin');
 
-            //bloc cond1
-            ->andwhere('r.heuredebut <= :heureChoixDebut')
+            ->andwhere('r.heuredebut < :heureChoixDebut')
             ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
-
-            //bloc cond2
-            ->orWhere('r.heuredebut <= :heureChoixFin AND r.heurefin >= :heureChoixFin')
-           // ->andWhere('r.heurefin >= :heureChoixFin')
-
-            // block cond
+            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-
-
+        
             //->getQuery();
             //->getArrayResult();
 
