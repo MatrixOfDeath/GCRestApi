@@ -68,7 +68,7 @@ class SalleController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $salles = $em->getRepository('AppBundle:Salle');
+        $salles = $em->getRepository('AppBundle:Salle')->findAll();
         return $this->render('salle/index.html.twig', array(
             'salles' => $salles,
         ));
