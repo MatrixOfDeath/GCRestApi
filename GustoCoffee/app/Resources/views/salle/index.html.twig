@@ -44,7 +44,7 @@
         <div class="col-md-10">
             {% for salle in salles %}
 
-                {% if salle.capacitymax <= 4 %}
+                {% if salle.capacitymax == 4 %}
                     <div class="col-md-3 cardReservation">
                         <div class="chooseCard">
                             <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
@@ -116,10 +116,10 @@
         {% endfor %}
         </tbody>
     </table>#}
-
+{#
     <ul>
         <li>
             <a href="{{ path('salle_new') }}">Create a new salle</a>
         </li>
-    </ul>
+    </ul>#}
 {% endblock %}
