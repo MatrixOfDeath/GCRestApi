@@ -79,6 +79,14 @@ class Personne extends BaseUser
     private $codepostal;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
+     */
+
+    private $telephone;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=25, nullable=true)
@@ -486,4 +494,19 @@ class Personne extends BaseUser
         return $this->getUsername();
     }
 
+    /**
+     * @return int
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param int $telephone
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+    }
 }
