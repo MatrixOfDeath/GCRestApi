@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>GustoCoffee Evenement</title>
+    <title>{{ 'GustoCoffee - Évènements'|trans }}</title>
 {% endblock %}
 
 {% block firstImg %}
@@ -9,16 +9,16 @@
 {% endblock %}
 
 {% block titleHome %}
-    Evénement CoWorking
+    {{ 'Evénement CoWorking'|trans }}
 {% endblock %}
 
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-9">
             <h2 class="titlePara">{{ 'Ouverture du nouveau café coworking'|trans }} </h2>
-            <p class="textDescription">{% trans %}Récemment, GustoCoffee a organisé un grand événement afin de fêter l'ouverture du <strong>Coffe-Shop CoWorking !!</strong><br>
+            <p class="textDescription">{% trans %}Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking !
                 Au programme, musique, danse, visite et consommation à volonté ! <br>
-                Ce fut l'occasion pour <strong>GustoCoffee</strong> de se faire connaître auprès de <strong>grandes sociétes comme la Société Générale</strong> souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants
+                Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants
                 en quête d'un environnement calme.
                 {% endtrans %}
             </p>
@@ -34,8 +34,8 @@
     <div class="row addPadding">
         <div class="col-md-9 textDescription">
             <p>{% trans %}
-                <strong>GustoCoffee</strong> a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "<strong>Coffee-shop Coworking</strong>" situé près de <strong>Gare du Nord</strong><br>
-            C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez <strong>GustoCoffee</strong> afin de <strong>consommer à volonté, gratuitement</strong> et à vous
+                GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "Coffee-shop Coworking" situé près de Gare du Nord.
+            C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous
                 familiariser avec l'espace que nous vous proposons.
                 {% endtrans %}
             </p>
