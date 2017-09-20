@@ -16,13 +16,25 @@
     <div class="row addPadding">
 
             <div class="col-md-2" id="getFixed" role="navigation">
-
                 <form id="room-search-form">
+                    <div id="reservation-date-picker" class="form-group">
+                        <label> {{  "Choisir votre date"|trans }} </label>
+                        <input style="width: 100%" type="date" max="{{ 'now'|date_modify("+20days")|date('Y-m-d', "Europe/Paris") }}" min="{{ 'now'|date('Y-m-d', "Europe/Paris") }}" name="reservation-date">
+                    </div>
+                </form>
+                {#<form id="room-search-form">
                     <div id="reservation-date" class="form-group">
                         <label> Date </label>
                         <input style="width: 100%" type="date" name="reservation-date">
                     </div>
-                </form>
+                </form>#}
+                <div id="time-range">
+                    <p>{{ 'Créneau horaire'|trans }}:<br> <span class="slider-time">10:00 AM</span> - <span class="slider-time2">12:00 PM</span>
+                    </p>
+                    <div class="sliders_step1">
+                        <div id="slider-range"></div>
+                    </div>
+                </div>
 
                 <div class="row">
                     <div class="col-xs-12">
