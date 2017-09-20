@@ -20,6 +20,10 @@ Encore
 
     ])
 
+    .addEntry('ajax', [
+        './web/assets/js/ajax/ajaxCheckDispoDate.js'
+    ])
+
     // will output as web/build/global.css
     .addStyleEntry('global', [
         './web/assets/scss/global.scss',

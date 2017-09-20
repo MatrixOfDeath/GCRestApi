@@ -2,10 +2,10 @@ $width: 200px;
 $color: #313131;
 
 .coffee-maker {
-  display: block;
+  display: inline-block;
   /*padding: 15px;*/
-  position: absolute;
-  top:50%;
+  position: inherit;
+  //top:50vh;
   left: 50%;
   transform-origin: 0% 50%;
   transform: translatex(-50%) translatey(-50%);

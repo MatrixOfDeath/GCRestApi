@@ -22,7 +22,7 @@
             <form id="room-search-form">
                 <div id="reservation-date-picker" class="form-group">
                     <label> {{  "Choisir votre date"|trans }} </label>
-                    <input style="width: 100%" type="date" max="{{ 'now'|date_modify("+20days")|date('Y-m-d', "Europe/Paris") }}" min="{{ 'now'|date('Y-m-d', "Europe/Paris") }}" name="reservation-date">
+                    <input style="width: 100%" type="date" data-date-inline-picker="true" max="{{ 'now'|date_modify("+20days")|date('Y-m-d', "Europe/Paris") }}" min="{{ 'now'|date('Y-m-d', "Europe/Paris") }}" name="reservation-date">
                 </div>
             </form>
 
