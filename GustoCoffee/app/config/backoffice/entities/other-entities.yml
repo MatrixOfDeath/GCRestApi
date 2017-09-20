@@ -49,47 +49,6 @@ easy_admin:
               title: 'Places'
               fields: ['nomPlace', 'statutPlace', 'idsalle']
 
-        Salle:
-          class: AppBundle\Entity\Salle
-          label: 'Les Salles'
-          form:
-              fields:
-                  - { property: 'nomSalle', type: 'text'}
-                  - { property: 'capacityMax', type: 'text'}
-                  - { property: 'imageFile', type: 'vich_image'}
-                  - 'idmagasin'
-          list:
-              title: 'Listes des Salles'
-              fields:
-                  - 'idsalle'
-                  - { property: 'nomSalle', sortable: true }
-                  - { property: 'capacityMax', sortable: true }
-                  - { property: 'image', type: 'image', base_path: %app.path.salles_images% }
-                  - 'idmagasin'
-              sort: ['idsalle', 'ASC']
-          show:
-              title: 'Détails de la salle'
-              fields:
-                  - 'nomSalle'
-                  - 'capacityMax'
-                  - { property: 'image', type: 'image', base_path: %app.path.salles_images% }
-                  - 'idmagasin'
-                  - 'createdAt'
-                  - 'updateAt'
-        Annonce:
-          class: AppBundle\Entity\Annonce
-          label: 'Les dernières Annonces'
-          form:
-              fields:
-                  - 'titre'
-                  - { property: 'corps', type: 'ckeditor' }
-                  - { property: 'idpersonne', label: 'Username' }
-          list:
-              title: 'Annonces'
-              fields: ['titre', 'corps', { property: 'idpersonne', label: 'Username' }, { property: 'dateCreation', type: 'datetime'}]
-          edit:
-              fields: ['titre', 'corps', 'idpersonne']
-
         ModeDePaiement:
           class: AppBundle\Entity\ModeDePaiement
           label: 'Modes de paiements'
