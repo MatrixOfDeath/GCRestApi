@@ -33,7 +33,7 @@
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header page-scroll">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                                <span class="sr-only">Toggle navigation</span> {{ 'Menu'|trans }} <i class="fa fa-bars"></i>
                             </button>
                             <div class="home"><a class="navbar-brand page-scroll" href="{{ path('gc_home_page') }}">
                                     <img alt="GustoCoffee" src="{{ asset('img/gc_logo.png') }}" />
@@ -57,7 +57,7 @@
                                     <a class="page-scroll" href="{{ path('gc_reservation_page') }}">{{ 'Réservation'|trans }}</a>
                                 </li>
                                 <li>
-                                    <a class="page-scroll" href="{{ path('annonce_index') }}">{{ 'Annonces'|trans }}</a>
+                                    <a class="page-scroll" href="{{ path('annonce_index') }}">{{ "Annonces"|trans }}</a>
                                 </li>
                                 <li>
                                     <a class="page-scroll" href="{{ path('gc_contact_page') }}">{{ 'Contact'|trans }}</a>
@@ -162,4 +162,3 @@
     </body>
 {% endblock %}
 </html>
-

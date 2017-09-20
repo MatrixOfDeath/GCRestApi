@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-09-04T17:59:37Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+  <file date="2017-09-20T11:53:08Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -29,10 +29,6 @@
       <trans-unit id="6dceefa5d6245d3c0b7f7bb553a9ef8ee40094c5" resname="annonce_show">
         <source>/annonce/{idannonce}</source>
         <target>/annonce/{idannonce}</target>
-      </trans-unit>
-      <trans-unit id="d1874fda8976f4a49b44d46268dd79043df54595" resname="app_api_index">
-        <source>/api</source>
-        <target>/api</target>
       </trans-unit>
       <trans-unit id="db8d9d7c39095b13121f24f2a3ec6d7c9c226896" resname="commande_delete">
         <source>/commande/{idcommande}</source>
@@ -78,20 +74,24 @@
         <source>/facture/{idfacture}</source>
         <target>/facture/{idfacture}</target>
       </trans-unit>
+      <trans-unit id="bcbfde1786968dd342a9c571d698c1f0b41ac29c" resname="fos_oauth_server_authorize">
+        <source>/oauth/v2/auth</source>
+        <target>/oauth/v2/auth</target>
+      </trans-unit>
       <trans-unit id="1a7cfbeff8ab22a124083f4786cf38b2f10202b1" resname="fos_oauth_server_token">
         <source>/oauth/v2/token</source>
         <target>/oauth/v2/token</target>
       </trans-unit>
       <trans-unit id="3e7a1eb65964daab6c8503cea70e628e3f933ce0" resname="fos_user_change_password">
-        <source>/profile/change-password</source>
+        <source>/change-password</source>
         <target>/profile/change-password</target>
       </trans-unit>
       <trans-unit id="89d9f90f552727a161575b47336d827555229023" resname="fos_user_profile_edit">
-        <source>/profile/edit</source>
+        <source>/dashboard</source>
         <target>/profile/edit</target>
       </trans-unit>
       <trans-unit id="a5c247e0ed2953f5e091126240a417a30fe47c12" resname="fos_user_profile_show">
-        <source>/profile/</source>
+        <source>/</source>
         <target>/profile/</target>
       </trans-unit>
       <trans-unit id="a7796b4f4f42c56769357a8303569fc003731e87" resname="fos_user_registration_check_email">
@@ -138,9 +138,21 @@
         <source>/logout</source>
         <target>/logout</target>
       </trans-unit>
+      <trans-unit id="f8b83dbd4c93c1730a868e0ac7863070536e1602" resname="gc_contact_page">
+        <source>/contact</source>
+        <target>/contact</target>
+      </trans-unit>
+      <trans-unit id="8205a13e9718f02bbae0dbb17197fab82f22c251" resname="gc_dashboard_page">
+        <source>/test</source>
+        <target>/test</target>
+      </trans-unit>
       <trans-unit id="563a7421a5e318c78186dbf364cf4fd3a49eaeae" resname="gc_evenement_page">
         <source>/evenement</source>
         <target>/evenement</target>
+      </trans-unit>
+      <trans-unit id="b810bec17137e34fa3b348aca3f2507b8b1f1a3d" resname="gc_facture_page">
+        <source>/pdf</source>
+        <target>/pdf</target>
       </trans-unit>
       <trans-unit id="a0bd9de306a1df210818a9e60dd7e7773fd8ac81" resname="gc_home_page">
         <source>/</source>
@@ -154,9 +166,17 @@
         <source>/connexion</source>
         <target>/connexion</target>
       </trans-unit>
+      <trans-unit id="042546b6a353e435337843c60300c6686e359231" resname="gc_private_page">
+        <source>/reservation-private</source>
+        <target>/reservation-private</target>
+      </trans-unit>
       <trans-unit id="ee88527b1c72927531b5246a6bef25d290ee6a42" resname="gc_reservation_page">
         <source>/reservation</source>
         <target>/reservation</target>
+      </trans-unit>
+      <trans-unit id="ec6d1b8a2ee48bbf9ea4a727e99ab4f9ed7c61bd" resname="gc_sallea_page">
+        <source>/reservation-private-a</source>
+        <target>/reservation-private-a</target>
       </trans-unit>
       <trans-unit id="568be0fa2023d1a447e7bd150dda7068ece26898" resname="homepage">
         <source>/</source>
@@ -201,10 +221,6 @@
       <trans-unit id="679b7ef8a7c4797a9a3603c2c707cf458e7d6db9" resname="modedepaiement_show">
         <source>/modedepaiement/{idmodepaiement}</source>
         <target>/modedepaiement/{idmodepaiement}</target>
-      </trans-unit>
-      <trans-unit id="1b6510f54c751b5979410ad21213ccb25abf99b6" resname="nelmio_api_doc_index">
-        <source>/api/doc/{view}</source>
-        <target>/api/doc/{view}</target>
       </trans-unit>
       <trans-unit id="699ce1e621ea77b44c9757aff0f57e1033015e42" resname="personne_delete">
         <source>/personne/{id}</source>
