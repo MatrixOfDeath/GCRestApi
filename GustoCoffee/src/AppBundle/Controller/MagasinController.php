@@ -4,18 +4,43 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Magasin;
 use FOS\RestBundle\Controller\FOSRestController;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Nelmio\ApiDocBundle\Annotation\Operation;
+use Swagger\Annotations as SWG;
 
 /**
  * Magasin controller.
- *
+ * @Rest\RouteResource("Magasin")
  * @Route("magasin")
  */
 class MagasinController extends FOSRestController
 {
+
+    /**
+     *   @Operation(
+     *     tags={""},
+     *     summary="Retourne les magasins",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Returned when successful"
+     *     )
+     *    )
+     * @return array
+     *
+     */
+    public function cgetAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $magasin = $em->getRepository('AppBundle:Magasin')->findAll();
+        $view = $this->view($magasin);
+        return $view;
+    }
+
     /**
      * Lists all magasin entities.
      *

@@ -10,7 +10,7 @@ easy_admin:
                 fields: ['id', 'username', 'email', 'nom', 'prenom', 'enabled', 'lastLogin', 'statutpersonne', 'newsletter', { property: 'email', label: 'Contact Email' }]
             edit:
                 - { property: 'username', icon: 'user' }
-                - { property: 'email', css_class: 'input-large', type_options: { required: false } }
+                - { property: 'email', css_class: 'input', type_options: { required: true } }
             new:
                 - { property: 'username', icon: 'user' }
-                - { property: 'email', css_class: 'input-large', type_options: { required: false } }
+                - { property: 'email', css_class: 'input', type_options: { required: true } }

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block customCss %}
-    <link href="{{ asset('build/reservation.css') }}" rel="stylesheet">
+{% block title %}
+    <title>GustoCoffee Réservation</title>
 {% endblock %}
 
 {% block firstImg %}
@@ -86,10 +86,30 @@
 
 {% block secondBlock %}
     <div class="row addPadding">
+
         <h2 class="col-md-12 placeQuestion">Quelle place souhaitez vous avoir au sein de GustoCoffee ?</h2>
         <div class="clear"></div>
         <div class="col-md-5 cardReservation">
-            <div class="card placeIndividuelle">
+            <div id="myBtn" class="card placeIndividuelle">
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content sizeFont">
+                        <div class="modal-header">
+                            <span class="close">&times;</span>
+                            <h2>Place individuelle</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bonne nouvelle : </p>
+                            <p>Vous n'avez pas besoin de réserver de places individuelles. Tout se fait sur place.</p>
+                            <p>Pour les salles privatisées, cela se fait sur réservation ! </p>
+                        </div>
+                        <div class="modal-footer">
+                            <h3>GustoCoffee</h3>
+                        </div>
+                    </div>
+
+                </div>
                 <img src="{{ asset('place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
                 <div class="containerCard">
                     <h4 class="cardTitle"><strong>Place individuelle</strong></h4>
@@ -100,7 +120,7 @@
         <div class="col-md-2"></div>
         <div class="col-md-5 cardReservation">
             <div class="card">
-                <a href="{{ path('gc_private_page') }}">
+                <a href="{{ path('salle_index') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
                 </a>
                 <div class="containerCard">
@@ -111,6 +131,7 @@
         </div>
     </div>
     <div class="clear"></div>
+
 {% endblock %}
 
 {% block thirdBlock %}

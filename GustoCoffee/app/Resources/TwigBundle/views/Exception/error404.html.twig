@@ -1,15 +1,17 @@
 {% extends '::base.html.twig' %}
 
-{% block menu %}
-{% endblock %}
-
 {% block firstImg %}
 {% endblock %}
 {% block firstTitle %}
+    {{ 'Page not found: Error 404'|trans }}
+{% endblock %}
+{% block titleHome %}
+    {{ 'Page not found: Error 404'|trans }}
 {% endblock %}
 
-{% block body %}
-<h1>Page not found: error 404</h1>
+
+{% block content %}
+<h1></h1>
 <div class="animation-container">
 
     <div class="coffee-bag-container">
@@ -120,4 +122,5 @@
         The requested page couldn't be located. Checkout for any URL
         misspelling or <a href="/">return to the homepage</a>.
     </p>
+
 {% endblock %}

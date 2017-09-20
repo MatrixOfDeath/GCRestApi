@@ -13,7 +13,7 @@ class SalleType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomsalle')->add('capacitymax')->add('nomplace')->add('idmagasin');
+        $builder->add('nomsalle')->add('capacitymax')->add('idmagasin');
     }
     
     /**

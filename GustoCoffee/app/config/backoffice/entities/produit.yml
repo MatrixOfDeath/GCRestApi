@@ -4,6 +4,33 @@ easy_admin:
             class: AppBundle\Entity\Produit
             label: 'Les Produits'
             form:
-                fields: ['nomProduit', 'prixProduit', 'description', 'quantiteEnStock', 'statutProduit']
+                fields:
+                    - { property: 'nomProduit', type: 'text'}
+                    - { property: 'prixProduit', type: 'text'}
+                    - { property: 'description', type: 'text'}
+                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'quantiteEnStock', type: 'text'}
+                    - { property: 'statutProduit', type: 'text'}
             list:
-                title: 'Les Produits'
+                title: 'Listes des Produits'
+                fields:
+                    - idproduit
+                    - { property: 'nomProduit', type: 'text'}
+                    - { property: 'prixProduit', type: 'text'}
+                    - { property: 'description', type: 'text'}
+                    - { property: 'image', type: 'image', base_path: %app.path.products_images% }
+                    - { property: 'quantiteEnStock', type: 'text'}
+                    - { property: 'statutProduit', type: 'text'}
+
+            show:
+                title: 'Show des Produits'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+
+                fields:
+                    - { property: 'nomProduit', type: 'text'}
+                    - { property: 'prixProduit', type: 'text'}
+                    - { property: 'description', type: 'text'}
+                    - { property: 'image', type: 'image', base_path: %app.path.products_images% }
+                    - { property: 'quantiteEnStock', type: 'text'}
+                    - { property: 'statutProduit', type: 'text'}

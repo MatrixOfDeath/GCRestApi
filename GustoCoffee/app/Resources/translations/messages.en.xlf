@@ -1,99 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-09-04T17:59:14Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2017-09-20T11:53:08Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
-      <trans-unit id="bacfad2ced64e61804771117efac878653e562c1" resname="Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.">
-        <source>Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.</source>
-        <target>Thus, we offer a space specially arranged for individual or group work within Paris, near the Gare du Nord accessible via the RER B or RER D.</target>
-        <jms:reference-file line="133">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      <trans-unit id="a8ff8fd207898612a41280ecd69fb6c8d6f6ad11" resname="Accueil">
+        <source>Accueil</source>
+        <target state="new">Accueil</target>
+        <jms:reference-file line="51">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="981019a82d9cf133f47398a592e51fae5d0b6c89" resname="Annonces">
+        <source>Annonces</source>
+        <target state="new">Annonces</target>
+        <jms:reference-file line="60">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eada74090316b7c048a6d02fd262f846784e1776" resname="Backoffice">
         <source>Backoffice</source>
         <target state="new">Backoffice</target>
-        <jms:reference-file line="96">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="e9fcbdf4eb786e578d57e17073d5fcf08d7fa3c5" resname="Coffee-Shop CoWorking">
-        <source>Coffee-Shop CoWorking</source>
-        <target>Co-Working Coffee-Shop</target>
-        <jms:reference-file line="132">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="94">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e4fd5c2bb747735d3c3577fb8b43af178610ce2b" resname="Conditions Générales d'Utilisation">
         <source>Conditions Générales d'Utilisation</source>
-        <target>Terms of Use</target>
-        <jms:reference-file line="178">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+        <target state="new">Conditions Générales d'Utilisation</target>
+        <jms:reference-file line="143">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3bce2c5eeaf94cfccd903eb6cf1ab2588435f96a" resname="Conditions Générales de Vente">
         <source>Conditions Générales de Vente</source>
-        <target>Terms of Sales</target>
-        <jms:reference-file line="179">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+        <target state="new">Conditions Générales de Vente</target>
+        <jms:reference-file line="144">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a33c58f5ec51e3c4c33c216b1b9149b5826c3ad8" resname="Connexion">
+        <source>Connexion</source>
+        <target state="new">Connexion</target>
+        <jms:reference-file line="77">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b37456c4530be810dc040f50da72eda09addfb0a" resname="Contact">
+        <source>Contact</source>
+        <target state="new">Contact</target>
+        <jms:reference-file line="63">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0588cb7b52684e1006bd8d148a0d42f63510f007" resname="Corps">
+        <source>Corps</source>
+        <target state="new">Corps</target>
+        <jms:reference-file line="33">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0f31b29c8d47cb83191e7df15bbefa4cb779b3d9" resname="Corps du message">
+        <source>Corps du message</source>
+        <target state="new">Corps du message</target>
+        <jms:reference-file line="92">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="81ff6d8ccc2abbddeba89168fa385d613745e185" resname="Create a new personne">
         <source>Create a new personne</source>
-        <target>Créer une nouvelle personne</target>
-        <jms:reference-file line="56">/../../../../../../.././app/Resources/views/personne/index.html.twig</jms:reference-file>
+        <target state="new">Create a new personne</target>
+        <jms:reference-file line="56">/../../../../../../../../.././app/Resources/views/personne/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d5e8d1af5f3c137fb998b7afa347eeea683a7229" resname="Date de création">
+        <source>Date de création</source>
+        <target state="new">Date de création</target>
+        <jms:reference-file line="93">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
+        <jms:reference-file line="37">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4eafb4722ad9303115f4aa429d8010b541b0d392" resname="Déposez votre annonce">
+        <source>Déposez votre annonce</source>
+        <target state="new">Déposez votre annonce</target>
+        <jms:reference-file line="20">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="621c7ed59a604d651cf38723214d534a8d0703e5" resname="Espace Client">
+        <source>Espace Client</source>
+        <target state="new">Espace Client</target>
+        <jms:reference-file line="67">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="10c8cc0d37fd315a95db8418f6cfa4be8df66c3e" resname="Evénements">
+        <source>Evénements</source>
+        <target state="new">Evénements</target>
+        <jms:reference-file line="54">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="03688ba6aa340b87549088aa5739944cb6b1dc73" resname="FAQ">
         <source>FAQ</source>
-        <target>FAQ</target>
-        <jms:reference-file line="180">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+        <target state="new">FAQ</target>
+        <jms:reference-file line="145">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="30fe29f0a982989e9ee2e631547c7c66b2441dc3" resname="GustoCoffee vous propose des &lt;strong&gt;services bureautiques&lt;/strong&gt; comme un espace de stockage privé en ligne, la vented de support numérique, ainsi qu'une impression. De plus, la consommation de &lt;strong&gt;café, thé, crêpes et gaufres sont à volonté !&lt;/strong&gt;&lt;br&gt;&#10;            Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner tout en continuant votre travail de la journée.&#10;            ">
-        <source><![CDATA[GustoCoffee vous propose des <strong>services bureautiques</strong> comme un espace de stockage privé en ligne, la vented de support numérique, ainsi qu'une impression. De plus, la consommation de <strong>café, thé, crêpes et gaufres sont à volonté !</strong><br>
-            Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner tout en continuant votre travail de la journée.
-            ]]></source>
-        <target><![CDATA[GustoCoffee offers <strong> office services </strong> as an online private storage space, digital media vented as well as printing. Moreover, the consumption of <strong> coffee, tea, pancakes and waffles is at will! </strong> <br>]]></target>
-        <jms:reference-file line="146">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      <trans-unit id="eed502c38a7b5ff6f392b9094a00ebd389c4ad04" resname="GustoCoffee - Annonces">
+        <source>GustoCoffee - Annonces</source>
+        <target state="new">GustoCoffee - Annonces</target>
+        <jms:reference-file line="12">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="76cb57aba0c505611c31694b921e48947462c78e" resname="GustoCoffee - Voir une annonce">
+        <source>GustoCoffee - Voir une annonce</source>
+        <target state="new">GustoCoffee - Voir une annonce</target>
+        <jms:reference-file line="4">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3f2ba35aa8dc422a58c9faf824a4c0cee7e820c3" resname="GustoCoffee - Votre Annonce">
+        <source>GustoCoffee - Votre Annonce</source>
+        <target state="new">GustoCoffee - Votre Annonce</target>
+        <jms:reference-file line="12">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="45916c83f7bd57e7f65489a8e0d6981d80714692" resname="GustoCoffee - Éditer une annonce">
+        <source>GustoCoffee - Éditer une annonce</source>
+        <target state="new">GustoCoffee - Éditer une annonce</target>
+        <jms:reference-file line="12">/../../../../../../../../.././app/Resources/views/annonce/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d26dec56488e4d0bcb90d9f7fb90b98a17110f11" resname="GustoCoffee - Édition d'une annonce">
+        <source>GustoCoffee - Édition d'une annonce</source>
+        <target state="new">GustoCoffee - Édition d'une annonce</target>
+        <jms:reference-file line="4">/../../../../../../../../.././app/Resources/views/annonce/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cb6dae57e5c88b4de0deea9db086a34753980971" resname="GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. ">
+        <source>GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. </source>
+        <target state="new">GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. </target>
+        <jms:reference-file line="12">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="df9161f6d31ab83bd9f8747da99bb7176c042fc1" resname="Infos">
         <source>Infos</source>
-        <target>Infos</target>
-        <jms:reference-file line="183">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+        <target state="new">Infos</target>
+        <jms:reference-file line="148">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="0b63725cc9d285e05cebc3c01ee8c54c5410af3d" resname="La société &lt;strong&gt;GustoCoffee&lt;/strong&gt; est spécialisée dans la &lt;strong&gt;vente de produit autour du café&lt;/strong&gt;, machine automatique, machine expresso,&#10;            moulin à café, café en grains, café en dosette, etc. &lt;br&gt;&#10;            Monsieur Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des &lt;strong&gt;coffee-shops&lt;/strong&gt; en Italie,&#10;            ainsi qu'en Angleterre et se sont implantés il y a peu sur Paris avec un nouveau concept de &quot;&lt;strong&gt;Coffee-Shop Coworking&lt;/strong&gt;&quot;.&#10;            ">
-        <source><![CDATA[La société <strong>GustoCoffee</strong> est spécialisée dans la <strong>vente de produit autour du café</strong>, machine automatique, machine expresso,
-            moulin à café, café en grains, café en dosette, etc. <br>
-            Monsieur Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des <strong>coffee-shops</strong> en Italie,
-            ainsi qu'en Angleterre et se sont implantés il y a peu sur Paris avec un nouveau concept de "<strong>Coffee-Shop Coworking</strong>".
-            ]]></source>
-        <target><![CDATA[The <strong> GustoCoffee </strong> company specializes in <strong> product sales around coffee </strong>, automatic machine, espresso machine,
-            Coffee grinder, coffee beans, coffee in pods, etc. <br>
-            Mr. Philippe Landemaine, Director and Alain Bellucci, Associate Director, have for some ten years established <strong> coffee-shops </ strong> in Italy,
-            As well as in England, and have recently set up shop in Paris with a new concept of "<strong> Coffee-Shop Coworking </strong>".]]></target>
-        <jms:reference-file line="160">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      <trans-unit id="1c08a9530d683101d448ef8059087b40511ff53d" resname="KASAgency est une jeune agence web.">
+        <source>KASAgency est une jeune agence web.</source>
+        <target state="new">KASAgency est une jeune agence web.</target>
+        <jms:reference-file line="13">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="dee4d84ed5c46bd61d1d163f7503294e561b4094" resname="La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de &quot;">
-        <source>La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "</source>
-        <target>The company GustoCoffee specializes in the sale of products around coffee, automatic machine, espresso machine, coffee grinder, coffee beans, coffee in pods, etc. Today, GustoCoffee offers a new concept of "</target>
-        <jms:reference-file line="132">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      <trans-unit id="226555df15108ee76f4821b1addb09562dd956a7" resname="Liste des Annonces">
+        <source>Liste des Annonces</source>
+        <target state="new">Liste des Annonces</target>
+        <jms:reference-file line="85">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="cbc7c7de0c2b17c1a6ec7116977d3ef6943c52bd" resname="Mentions Légales">
         <source>Mentions Légales</source>
-        <target>Legal Notice</target>
-        <jms:reference-file line="177">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+        <target state="new">Mentions Légales</target>
+        <jms:reference-file line="142">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="57f5f5efbc5990f5230aa95359042338b856707b" resname="Menu">
+        <source>Menu</source>
+        <target state="new">Menu</target>
+        <jms:reference-file line="36">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="6ed05e720ccc3ef269db1b38201da8b873acc895" resname="Newsletter">
         <source>Newsletter</source>
-        <target>Newsletter</target>
-        <jms:reference-file line="181">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+        <target state="new">Newsletter</target>
+        <jms:reference-file line="146">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="299b64c620ab46b4cefd34c9595e9e04d7fcf2a9" resname="Postez votre annonce">
+        <source>Postez votre annonce</source>
+        <target state="new">Postez votre annonce</target>
+        <jms:reference-file line="68">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="77b73ea8c3098bef8a24ad67a01ee1935dec93c2" resname="Recrutement">
         <source>Recrutement</source>
-        <target>Recruitment</target>
-        <jms:reference-file line="182">/../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+        <target state="new">Recrutement</target>
+        <jms:reference-file line="147">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="44ac835afcf058a82afd38f2367038fd99e19e9f" resname="Retour à la liste des annonces">
+        <source>Retour à la liste des annonces</source>
+        <target state="new">Retour à la liste des annonces</target>
+        <jms:reference-file line="67">/../../../../../../../../.././app/Resources/views/annonce/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="51">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a3deb6de93678632a8946cd8caee9c93a748251e" resname="Réservation">
+        <source>Réservation</source>
+        <target state="new">Réservation</target>
+        <jms:reference-file line="57">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="68a541410e4d94b15ee16aaaccdd166dc26d79b7" resname="Souhaitez-vous montrer votre prénom ?">
+        <source>Souhaitez-vous montrer votre prénom ?</source>
+        <target state="new">Souhaitez-vous montrer votre prénom ?</target>
+        <jms:reference-file line="45">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="8e156a45e4a563c7ef9c49aac2424dba7e09a583" resname="Supprimer votre annonce">
+        <source>Supprimer votre annonce</source>
+        <target state="new">Supprimer votre annonce</target>
+        <jms:reference-file line="63">/../../../../../../../../.././app/Resources/views/annonce/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="48">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eb97899aedcd5609782b5ccb4ffa390e0e66a3eb" resname="Titre">
+        <source>Titre</source>
+        <target state="new">Titre</target>
+        <jms:reference-file line="91">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
+        <jms:reference-file line="29">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3788626c65cad70f7d39c5d3dcf2f4887b4151d4" resname="Voici votre annonce">
+        <source>Voici votre annonce</source>
+        <target state="new">Voici votre annonce</target>
+        <jms:reference-file line="20">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9ead47a82a0d25985f22f10651d1f93b3abba317" resname="edit">
         <source>edit</source>
-        <target>edit</target>
-        <jms:reference-file line="45">/../../../../../../.././app/Resources/views/personne/index.html.twig</jms:reference-file>
+        <target state="new">edit</target>
+        <jms:reference-file line="45">/../../../../../../../../.././app/Resources/views/personne/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9fb29051f2217270a7b253a39f820310d85a78f0" resname="show">
         <source>show</source>
-        <target>show</target>
-        <jms:reference-file line="42">/../../../../../../.././app/Resources/views/personne/index.html.twig</jms:reference-file>
+        <target state="new">show</target>
+        <jms:reference-file line="42">/../../../../../../../../.././app/Resources/views/personne/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="cf95234a2c371562aa70eef666c1b96dfab92a35" resname="Éditez  votre annonce">
+        <source>Éditez  votre annonce</source>
+        <target state="new">Éditez  votre annonce</target>
+        <jms:reference-file line="20">/../../../../../../../../.././app/Resources/views/annonce/edit.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="82ddfd0b69fba11c62e6ee80d5771f2cbf01465f" resname="Éditez votre annonce">
+        <source>Éditez votre annonce</source>
+        <target state="new">Éditez votre annonce</target>
+        <jms:reference-file line="60">/../../../../../../../../.././app/Resources/views/annonce/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="50">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>

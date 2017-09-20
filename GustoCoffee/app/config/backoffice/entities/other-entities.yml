@@ -1,5 +1,4 @@
 easy_admin:
-    translation_domain: 'backoffice-messages'
     entities:
         Magasin:
             class: AppBundle\Entity\Magasin
@@ -9,14 +8,19 @@ easy_admin:
             list:
                 title: 'Les Magasins'
                 fields: ['nomMagasin', 'adresse']
+
         JoursOuvert:
             class: AppBundle\Entity\JoursOuvert
             label: 'Ouverture'
             form:
-                fields: ['jours', 'heureDebut', 'heureFin', 'titre']
+                fields: ['jours', { property: 'heureDebut', type: 'time'},  { property: 'heureFin' , type: 'time'}, 'titre']
             list:
                 title: 'Les jours d''ouverture'
-                fields: ['jours', 'heureDebut', 'heureFin', 'titre']
+                fields: ['jours', { property: 'heureDebut', type: 'time'}, { property: 'heureFin' , type: 'time'}, 'titre']
+                sort: 'idouverture'
+            edit:
+                fields: ['jours', { property: 'heureDebut', type: 'time'}, { property: 'heureFin', type: 'time'}, 'titre']
+
         FermetureCafe:
           class: AppBundle\Entity\FermetureDuCafe
           label: 'Fermeture'
@@ -37,23 +41,24 @@ easy_admin:
           class: AppBundle\Entity\Place
           label: 'Les Places'
           form:
-              fields: ['nomPlace', 'statutPlace', 'idSalle']
+              fields:
+                  - { property: 'nomPlace', type: 'text'}
+                  - { property: 'statutPlace', type: 'text'}
+                  - { property: 'idsalle'}
           list:
               title: 'Places'
-              fields: ['nomPlace', 'statutPlace', 'idSalle']
-        Salle:
-          class: AppBundle\Entity\Salle
-          label: 'Les Salles'
+              fields: ['nomPlace', 'statutPlace', 'idsalle']
+
+        ModeDePaiement:
+          class: AppBundle\Entity\ModeDePaiement
+          label: 'Modes de paiements'
           form:
-              fields: ['nomSalle', 'capacityMax']
+              fields:
+                  - { property: 'modePaiement', type: 'text', label: 'Mode de paiement' }
+                  - 'description'
+
           list:
-              title: 'Salles'
-              fields: ['nomSalle', 'capacityMax']
-        Annonce:
-          class: AppBundle\Entity\Annonce
-          label: 'Les dernières Annonces'
-          form:
-              fields: ['titre', 'corps', 'dateCreation']
-          list:
-              title: 'Annonces'
-              fields: ['titre', 'corps', 'dateCreation']
+              title: 'Liste des modes de paiements disponible'
+              fields: [ {property: 'modePaiement', label: 'Mode de paiement' }, 'description' ]
+          edit:
+              fields: [ {property: 'modePaiement', label: 'Mode de paiement' }, 'description' ]

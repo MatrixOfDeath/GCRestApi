@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Magasin
@@ -29,24 +30,24 @@ class Magasin
     /**
      * @var integer
      *
+     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
+     */
+
+    private $telephone;
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="idMagasin", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+
     private $idmagasin;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Salle", inversedBy="idmagasin")
-     * @ORM\JoinTable(name="choisir",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idSalle", referencedColumnName="idSalle")
-     *   }
-     * )
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="idmagasin")
+     *
      */
     private $idsalle;
 
@@ -55,7 +56,7 @@ class Magasin
      */
     public function __construct()
     {
-        $this->idsalle = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idsalle = new ArrayCollection();
     }
 
 
@@ -149,5 +150,28 @@ class Magasin
     public function getIdsalle()
     {
         return $this->idsalle;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getNommagasin();
+    }
+
+    /**
+     * @return int
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param int $telephone
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
     }
 }

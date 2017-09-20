@@ -12,7 +12,13 @@ Encore
     .cleanupOutputBeforeBuild()
 
     // will output as web/build/app.js
-    .addEntry('app', './web/assets/js/scripts.js')
+    .addEntry('app', [
+        './web/assets/js/scripts.js',
+        './web/assets/js/fixdiv.js',
+        './web/assets/js/modal.js',
+        './web/assets/js/reservation/checkDispoDate.js'
+
+    ])
 
     // will output as web/build/global.css
     .addStyleEntry('global', [
@@ -21,6 +27,7 @@ Encore
         './web/assets/scss/evenement.scss',
         './web/assets/scss/reservation.scss',
         './web/assets/scss/reservation-private.scss',
+        './web/assets/scss/reservation-private-salle.scss',
         './web/assets/scss/contact.scss',
         './web/assets/scss/login.scss',
         './web/assets/scss/annonce.scss',
@@ -30,7 +37,8 @@ Encore
         './web/assets/scss/helper.scss',
         './web/assets/scss/main.scss',
         './web/assets/scss/coffee-animation.scss',
-        './web/assets/scss/coffee-loader.scss'
+        './web/assets/scss/coffee-loader.scss',
+        './web/assets/scss/reservation/checkDispoDate.scss'
     ])
 
     // allow sass/scss files to be processed
@@ -39,7 +47,7 @@ Encore
     .enableLessLoader()
 
     // allow legacy applications to use $/jQuery as a global variable
-    .autoProvidejQuery()
+    //.autoProvidejQuery()
 
     .enableSourceMaps(!Encore.isProduction())
 

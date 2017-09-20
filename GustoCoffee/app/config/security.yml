@@ -2,7 +2,7 @@
 # https://symfony.com/doc/current/security.html
 security:
     encoders:
-        FOS\UserBundle\Model\UserInterface: sha512
+        FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
@@ -25,6 +25,16 @@ security:
                 #csrf_token_generator: security.csrf.token_manager
                 always_use_default_target_path: true
                 default_target_path: /reservation
+        api:
+            pattern: ^/api/
+
+            #fos_oauth:                                  # OAuth2 protected resource
+            stateless: true                            # Do no set session cookies
+            logout:    true
+            anonymous: true                            # Anonymous access is not allowed
+            guard:
+                authenticators:
+                    - 'token_authenticator'
         main:
             pattern: ^/
             form_login:
@@ -50,20 +60,19 @@ security:
                 provider: fos_userbundle
                 check_path: /oauth/v2/auth_login_check
                 login_path: /oauth/v2/auth_login
-        api:
-            pattern: ^/api                             # All URLs are protected
-            fos_oauth: true                            # OAuth2 protected resource
-            stateless: true                            # Do no set session cookies
-            anonymous: true                            # Anonymous access is not allowed
+
 
     access_control:
-        - { path: ^/api,  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        #- { path: ^/api/,  roles: [ROLE_USER] }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/[^/]+/backoffice/, role: ROLE_ADMIN }
         - { path: ^/oauth/v2/auth_login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+
+
 
 
         #- { path: ^/[^/]+/login$,     host: ^%domain_name%$,    role: IS_AUTHENTICATED_ANONYMOUSLY }

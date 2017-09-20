@@ -3,22 +3,65 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Salle;
+use AppBundle\Entity\Produit;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Nelmio\ApiDocBundle\Annotation\Operation;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
+use FOS\RestBundle\Controller\Annotations\Get;
 
 /**
  * Salle controller.
- *
+ * @Rest\RouteResource("Salle")
  * @Route("salle")
  */
 class SalleController extends FOSRestController
 {
     /**
+     * Cette fonction retourne toutes les salles
+     *
+     * @Operation(
+     *     tags={""},
+     *     summary="Retourne les salles",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Returned when successful"
+     *     )
+     * )
+     *
+     *
+     * @return array
+     */
+    public function cgetAction(){
+        $em = $this->getDoctrine()->getManager();
+        $salles= $em->getRepository('AppBundle:Salle');
+
+        $view = $this->view($salles);
+        return $view;
+    }
+
+    /**
+     * On retourne les informatinos d'une salle en fonction de l'id
+     * @param $id
+     * @return \FOS\RestBundle\View\View
+     */
+    public function getAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $salle = $em->getRepository('AppBundle:Salle')->find($id);
+        $view = $this->view($salle);
+        return $view;
+    }
+
+    /**
      * Lists all salle entities.
      *
-     * @Route("/", name="salle_index")
+     * @Route("/reservation-private", name="salle_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -26,9 +69,25 @@ class SalleController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
 
         $salles = $em->getRepository('AppBundle:Salle')->findAll();
-
         return $this->render('salle/index.html.twig', array(
             'salles' => $salles,
+        ));
+    }
+
+
+    /**
+     * @Route("/disponible", name="salles_disponible")
+     *
+     *
+     * @Method("GET")
+     *
+     */
+    public function sallesDisponibleAction(){
+
+        $sallesDispo = $this->checkDisponibiliteSalle('2017-09-20 9:30:00', '2017-09-20 14:00:00');
+
+        return $this->render('salle/sallesDisponible.html.twig', array(
+            'salles' => $sallesDispo,
         ));
     }
 
@@ -61,23 +120,29 @@ class SalleController extends FOSRestController
     /**
      * Finds and displays a salle entity.
      *
-     * @Route("/{idsalle}", name="salle_show")
+     * @Route("/{idsalle}", name="salle_show", requirements={"idsalle": "\d+"})
      * @Method("GET")
      */
-    public function showAction(Salle $salle)
+    public function showAction(Salle $salle, Request $request)
     {
         $deleteForm = $this->createDeleteForm($salle);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $produits = $em->getRepository('AppBundle:Produit')->findAll();
+
 
         return $this->render('salle/show.html.twig', array(
             'salle' => $salle,
             'delete_form' => $deleteForm->createView(),
+            'produits' => $produits,
         ));
     }
 
     /**
      * Displays a form to edit an existing salle entity.
      *
-     * @Route("/{idsalle}/edit", name="salle_edit")
+     * @Route("/{idsalle}/edit", name="salle_edit", requirements={"idsalle": "\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Salle $salle)
@@ -102,7 +167,7 @@ class SalleController extends FOSRestController
     /**
      * Deletes a salle entity.
      *
-     * @Route("/{idsalle}", name="salle_delete")
+     * @Route("/{idsalle}", name="salle_delete", requirements={"idsalle": "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Salle $salle)
@@ -119,6 +184,43 @@ class SalleController extends FOSRestController
         return $this->redirectToRoute('salle_index');
     }
 
+
+    /**
+     * @param $heureChoixDebut
+     * @param $heureChoixFin
+     * @return mixed
+     */
+    public function checkDisponibiliteSalle( $heureChoixDebut, $heureChoixFin)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Salle');
+
+        $subQuery = $repository->createQueryBuilder('s_sub')
+            ->select('s_sub.idsalle')
+            ->leftJoin('s_sub.reservation', 'r')
+            //   ->where('r.heuredebut <= :heureChoixDebut')
+            //   ->andWhere('r.heurefin >= :heureChoixFin');
+           //   ->andwhere('r.heuredebut BETWEEN :heureChoixDebut AND :heureChoixFin')
+           //   ->orWhere('r.heurefin BETWEEN :heureChoixDebut AND :heureChoixFin');
+
+            ->andwhere('r.heuredebut < :heureChoixDebut')
+            ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+
+            //->getQuery();
+            //->getArrayResult();
+
+        $queryBuilder = $repository->createQueryBuilder('s');
+        $query = $queryBuilder
+            ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
+            ->setParameter('heureChoixDebut', $heureChoixDebut)
+            ->setParameter('heureChoixFin', $heureChoixFin);
+            //->setParameter('subQuery', $subQuery)
+            //->getQuery();
+
+        return $query->getQuery()->getResult();
+    }
     /**
      * Creates a form to delete a salle entity.
      *
@@ -134,4 +236,5 @@ class SalleController extends FOSRestController
             ->getForm()
         ;
     }
+
 }

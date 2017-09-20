@@ -1,11 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block customCss %}
-    <link href="{{ asset('build/annonce.scss') }}" rel="stylesheet">
-{% endblock %}
-
 {% block title %}
-    <title>GustoCoffee - Voir une annonce</title>
+    <title>{{ 'GustoCoffee - Voir une annonce'|trans }}</title>
 {% endblock %}
 
 {% block firstImg %}
@@ -13,7 +9,7 @@
 {% endblock %}
 
 {% block titleHome %}
-    GustoCoffee - Votre Annonce
+    {{ 'GustoCoffee - Votre Annonce'|trans }}
 {% endblock %}
 
 {% block firstBlock %}
@@ -21,7 +17,7 @@
 <a href="{{ path('fos_user_security_logout') }}"></a>
 <div class="row addPadding">
     <div class="col-md-12">
-        <h2 class="centerText">Voici votre annonce</h2>
+        <h2 class="centerText">{{ 'Voici votre annonce'|trans }}</h2>
     </div>
 </div>
 <div class="row">
@@ -30,15 +26,15 @@
         <table>
             <tbody>
               <tr>
-                   <th>Titre</th>
+                   <th>{{ 'Titre'|trans }}</th>
                  <td>{{ annonce.titre }}</td>
               </tr>
              <tr>
-                    <th>Corps</th>
+                    <th>{{ 'Corps' |trans }}</th>
                     <td>{{ annonce.corps }}</td>
              </tr>
             <tr>
-                <th>Date de création</th>
+                <th>{{ 'Date de création'|trans }}</th>
                 <td>{% if annonce.datecreation %}{{ annonce.datecreation|date('Y-m-d') }}{% endif %}</td>
             </tr>
             </tbody>
@@ -49,10 +45,10 @@
     <div class="col-md-3"></div>
     <div class="col-md-6">
         {{ form_start(delete_form) }}
-        <input type="submit" class="buttonSuppressionAnnonce centerText" align="right" value="Supprimer votre annonce">
+        <input type="submit" class="buttonSuppressionAnnonce centerText" align="right" value="{{ 'Supprimer votre annonce'|trans }}">
         {{ form_end(delete_form) }}
-        <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">Éditez votre annonce</a><br>
-        <a href="{{ path('annonce_index') }}">Retour à la liste des annonces</a>
+        <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ 'Éditez votre annonce'|trans }}</a><br>
+        <a href="{{ path('annonce_index') }}">{{ 'Retour à la liste des annonces'|trans }}</a>
     </div>
 </div>
     {% else %}

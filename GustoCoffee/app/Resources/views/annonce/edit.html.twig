@@ -1,11 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block customCss %}
-    <link href="{{ asset('build/annonce.scss') }}" rel="stylesheet">
-{% endblock %}
-
 {% block title %}
-    <title>GustoCoffee - Édition d'une annonce</title>
+    <title>{{ "GustoCoffee - Édition d'une annonce"|trans }}</title>
 {% endblock %}
 
 {% block firstImg %}
@@ -13,7 +9,7 @@
 {% endblock %}
 
 {% block titleHome %}
-    GustoCoffee - Éditer une annonce
+    {{ 'GustoCoffee - Éditer une annonce'|trans }}
 {% endblock %}
 
 {% block firstBlock %}
@@ -21,7 +17,7 @@
     <a href="{{ path('fos_user_security_logout') }}"></a>
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="centerText">Éditez  votre annonce</h2>
+            <h2 class="centerText">{{ 'Éditez  votre annonce'|trans }}</h2>
         </div>
     </div>
     {{ form_start(edit_form) }}
@@ -61,14 +57,14 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            <input type="submit" class="buttonEditionAnnonce centerText" value="Éditez votre annonce" />
+            <input type="submit" class="buttonEditionAnnonce centerText" value="{{ 'Éditez votre annonce'|trans }}" />
             {{ form_end(edit_form) }}
             {{ form_start(delete_form) }}
-            <input type="submit" class="buttonSuppressionAnnonce centerText" align="right" value="Supprimer votre annonce">
+            <input type="submit" class="buttonSuppressionAnnonce centerText" align="right" value="{{ 'Supprimer votre annonce'|trans}}">
             {{ form_end(delete_form) }}
         </div>
     </div>
-            <a href="{{ path('annonce_index') }}">Retour à la liste des annonces</a>
+            <a href="{{ path('annonce_index') }}">{{ 'Retour à la liste des annonces'|trans }}</a>
     {% else %}
         <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
     {% endif %}

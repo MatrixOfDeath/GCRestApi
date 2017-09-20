@@ -9,20 +9,24 @@
     {% block title %}
     {% endblock %}
 
-    <meta name="description" content="GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. ">
-    <meta name="KASAgency" content="KASAgency est une jeune agence web.">
+    <meta name="description" content="{% trans %}GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. {% endtrans %}">
+    <meta name="KASAgency" content="{% trans %}KASAgency est une jeune agence web.{% endtrans %}">
 
-    <link rel="icon" type="image/png" href="{{ asset('img/gc_logp.png')}}" />
+    <link rel="icon" type="image/png" href="{{ asset('img/gc_logo.png')}}" />
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
     {% block customCss %}{% endblock %}
 
 </head>
 
 {% endblock %}
-
+<body>
 {% block body %}
-    <body>
+
     {% block navbar %}
         <div class="container-fluid">
             <div class="row topPage {% block firstImg %}{% endblock %}">
@@ -32,7 +36,7 @@
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header page-scroll">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                                <span class="sr-only">Toggle navigation</span> {{ 'Menu'|trans }} <i class="fa fa-bars"></i>
                             </button>
                             <div class="home"><a class="navbar-brand page-scroll" href="{{ path('gc_home_page') }}">
                                     <img alt="GustoCoffee" src="{{ asset('img/gc_logo.png') }}" />
@@ -47,23 +51,23 @@
                                     <a href="#page-top"></a>
                                 </li>
                                 <li>
-                                    <a class="page-scroll" href="{{ path('gc_home_page') }}">Accueil</a>
+                                    <a class="page-scroll" href="{{ path('gc_home_page') }}">{{ 'Accueil'|trans }}</a>
                                 </li>
                                 <li>
-                                    <a class="page-scroll" href="{{ path('gc_evenement_page') }}">Evénements</a>
+                                    <a class="page-scroll" href="{{ path('gc_evenement_page') }}">{{ 'Evénements'|trans }}</a>
                                 </li>
                                 <li>
-                                    <a class="page-scroll" href="{{ path('gc_reservation_page') }}">Réservation</a>
+                                    <a class="page-scroll" href="{{ path('gc_reservation_page') }}">{{ 'Réservation'|trans }}</a>
                                 </li>
                                 <li>
-                                    <a class="page-scroll" href="{{ path('annonce_index') }}">Annonces</a>
+                                    <a class="page-scroll" href="{{ path('annonce_index') }}">{{ "Annonces"|trans }}</a>
                                 </li>
                                 <li>
-                                    <a class="page-scroll" href="{{ path('gc_contact_page') }}">Contact</a>
+                                    <a class="page-scroll" href="{{ path('gc_contact_page') }}">{{ 'Contact'|trans }}</a>
                                 </li>
                                 <li>
                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                        <a href="{{ path('fos_user_profile_edit') }}">Espace Client</a>
+                                        <a href="{{ path('fos_user_profile_edit') }}">{{ 'Espace Client'|trans }}</a>
                                     {% endif %}
                                 </li>
                                 <li>
@@ -73,18 +77,21 @@
                                         </a>
                                     {% else %}
                                         <a class="page-scroll" href="{{ path('fos_user_security_login') }}">
-                                            <img src="{{ asset('img/user.png') }}" alt="Connexion">
+                                            <img src="{{ asset('img/user.png') }}" alt="{{  'Connexion'|trans }}">
                                         </a>
                                     {% endif %}
                                 </li>
                                 {% set req = app.request %}
 
+                                {% if app.request.get('_route_params') is not null %}
                                 {% for locale in locales %}
                                     <li>
                                         <button type="button" class="btn btn-default btn-locale-flag {{ locale == app.request.getLocale() ? 'active' : '' }}" onclick="location.href='{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}'">
-                                            <img src="{{ asset('img/'~ locale ~'.png') }}" alt="{{ locale }}">
+                                            <img src="{{ asset('img/'~ locale ~'.png') }}" alt="{{ locale }}"/>
+                                        </button>
                                     </li>
                                 {% endfor %}
+                                {% endif %}
                                 
                                 <li>
                                     {% if is_granted("ROLE_ADMIN") %}
@@ -123,6 +130,9 @@
         <div class="clear"></div>
     {% endblock %}
 
+    {% block content %}
+    {% endblock %}
+
     {% block firstBlock %}
     {% endblock %}
 
@@ -153,10 +163,10 @@
 
     {% block script %}
         <script src="{{ asset('js/jquery.min.js') }}"></script>
+        <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
         <script src="{{ asset('build/app.js') }}"></script>
     {% endblock %}
-    </body>
 {% endblock %}
+</body>
 </html>
-

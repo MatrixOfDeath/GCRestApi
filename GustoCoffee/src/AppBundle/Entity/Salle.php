@@ -3,15 +3,32 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
+
 
 /**
  * Salle
  *
  * @ORM\Table(name="Salle", uniqueConstraints={@ORM\UniqueConstraint(name="nomSalle", columns={"nomSalle"})})
  * @ORM\Entity
+ * @Vich\Uploadable()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Salle
 {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idSalle", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idsalle;
+
     /**
      * @var string
      *
@@ -26,36 +43,115 @@ class Salle
      */
     private $capacitymax;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nomPlace", type="string", length=25, nullable=true)
-     */
-    private $nomplace;
 
     /**
-     * @var integer
      *
-     * @ORM\Column(name="idSalle", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idsalle;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Magasin", mappedBy="idsalle")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin", inversedBy="idsalle")
+     * @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
      */
     private $idmagasin;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="idsalle")
+     */
+    private $reservation;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $image;
+
+    /**
+     * @Vich\UploadableField(mapping="salles_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+    /**
+     * created Time/Date
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->idmagasin = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->reservation = new ArrayCollection();
+
     }
+
+    /**
+     * Set createdAt
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+
+    /**
+     * @param mixed $idmagasin
+     */
+    public function setIdmagasin($idmagasin)
+    {
+        $this->idmagasin = $idmagasin;
+    }
+
+    /**
+     * Get idmagasin
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIdmagasin()
+    {
+        return $this->idmagasin;
+    }
+
 
 
     /**
@@ -106,29 +202,6 @@ class Salle
         return $this->capacitymax;
     }
 
-    /**
-     * Set nomplace
-     *
-     * @param string $nomplace
-     *
-     * @return Salle
-     */
-    public function setNomplace($nomplace)
-    {
-        $this->nomplace = $nomplace;
-
-        return $this;
-    }
-
-    /**
-     * Get nomplace
-     *
-     * @return string
-     */
-    public function getNomplace()
-    {
-        return $this->nomplace;
-    }
 
     /**
      * Get idsalle
@@ -140,37 +213,40 @@ class Salle
         return $this->idsalle;
     }
 
-    /**
-     * Add idmagasin
-     *
-     * @param \AppBundle\Entity\Magasin $idmagasin
-     *
-     * @return Salle
-     */
-    public function addIdmagasin(\AppBundle\Entity\Magasin $idmagasin)
+    public function setImageFile(File $image = null)
     {
-        $this->idmagasin[] = $idmagasin;
+        $this->imageFile = $image;
 
-        return $this;
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
     }
 
-    /**
-     * Remove idmagasin
-     *
-     * @param \AppBundle\Entity\Magasin $idmagasin
-     */
-    public function removeIdmagasin(\AppBundle\Entity\Magasin $idmagasin)
+    public function getImageFile()
     {
-        $this->idmagasin->removeElement($idmagasin);
+        return $this->imageFile;
     }
 
-    /**
-     * Get idmagasin
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getIdmagasin()
+    public function setImage($image)
     {
-        return $this->idmagasin;
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getNomsalle();
     }
 }

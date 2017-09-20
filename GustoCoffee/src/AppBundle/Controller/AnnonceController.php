@@ -3,17 +3,19 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Annonce;
+use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
-use FOS\RestBundle\Controller\Annotations\Get;
+use Nelmio\ApiDocBundle\Annotation\Operation;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Swagger\Annotations as SWG;
 
 /**
  * Annonce controller.
- *
+ * @Rest\RouteResource("Annonce")
  * @Route("annonce")
  */
 class AnnonceController extends FOSRestController
@@ -22,14 +24,20 @@ class AnnonceController extends FOSRestController
     /**
      * Cette fonction retourne tous les annonces
      *
-     * @ApiDoc(
-     *  resource=true,
-     *  description="Retourne les annonces"
+     * @Operation(
+     *     tags={""},
+     *     summary="Retourne les annonces",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Returned when successful"
+     *     )
      * )
+     *
      *
      * @return array
      */
-    public function cgetAnnonceAction(){
+    public function cgetAction(){
+
 
         $em = $this->getDoctrine()->getManager();
 
@@ -40,11 +48,11 @@ class AnnonceController extends FOSRestController
     }
 
     /**
-     * On retourne les informatinos d'une place en fonction de l'id
+     * On retourne les informatinos d'une annonce en fonction de l'id
      * @param $id
      * @return \FOS\RestBundle\View\View
      */
-    public function getAnnonceAction($id)
+    public function getAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $annonce = $em->getRepository('AppBundle:Annonce')->find($id);
@@ -69,7 +77,8 @@ class AnnonceController extends FOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $annonce->setDatecreation(new \DateTime(date('d-m-Y H:i:s')));
+            //Je set la date à la création de l'entité todo: edit date si on a le temps
+            //$annonce->setDatecreation(new \DateTime(date('d-m-Y H:m:s')));
             $em->persist($annonce);
             $em->flush();
 
@@ -97,7 +106,9 @@ class AnnonceController extends FOSRestController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $annonce->setDatecreation(new \DateTime(date('d-m-Y h:m')));
+
+            //Je set la date à la création de l'entité todo: edit date si on a le temps
+            //$annonce->setDatecreation(new \DateTime(date('d-m-Y H:m:s')));
             $em->persist($annonce);
             $em->flush();
 

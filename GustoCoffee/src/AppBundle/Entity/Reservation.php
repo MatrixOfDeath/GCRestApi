@@ -2,7 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Form\ReservationType;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * Reservation
@@ -13,23 +15,42 @@ use Doctrine\ORM\Mapping as ORM;
 class Reservation
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="idReservation", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idreservation;
+
+    /**
+     * @var \AppBundle\Entity\Salle
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Salle")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idSalle", referencedColumnName="idSalle")
+     * })
+     */
+    private $idsalle;
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateReservation", type="date", nullable=true)
+     * @ORM\Column(name="dateReservation", type="datetime", nullable=true)
      */
     private $datereservation;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heureDebut", type="date", nullable=true)
+     * @ORM\Column(name="heureDebut", type="datetime", nullable=true)
      */
     private $heuredebut;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heureFin", type="date", nullable=true)
+     * @ORM\Column(name="heureFin", type="datetime", nullable=true)
      */
     private $heurefin;
 
@@ -48,15 +69,6 @@ class Reservation
     private $commentaireclient;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="idReservation", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idreservation;
-
-    /**
      * @var \AppBundle\Entity\FermetureDuCafe
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FermetureDuCafe")
@@ -65,6 +77,7 @@ class Reservation
      * })
      */
     private $idfermeture;
+
 
     /**
      * @var \AppBundle\Entity\Magasin
@@ -106,6 +119,34 @@ class Reservation
      */
     private $idpersonne;
 
+    // TODO: Supprimer tout les booleans on récuère via l'entité Produit !!
+//    /**
+//     * @var boolean
+//     *
+//     * @ORM\Column(name="petitDej", type="boolean", nullable=true)
+//     */
+//    private $petitDej = false;
+//
+//    /**
+//     * @var boolean
+//     *
+//     * @ORM\Column(name="dej", type="boolean", nullable=true)
+//     */
+//    private $dej = false;
+//
+//    /**
+//     * @var boolean
+//     *
+//     * @ORM\Column(name="diner", type="boolean", nullable=true)
+//     */
+//    private $diner = false;
+//
+//    /**
+//     * @var boolean
+//     *
+//     * @ORM\Column(name="bureautique", type="boolean", nullable=true)
+//     */
+//    private $bureautique = false;
 
 
     /**
@@ -301,6 +342,24 @@ class Reservation
     }
 
     /**
+     * get idsalle
+     * @return \AppBundle\Entity\Salle
+     */
+    public function getIdsalle()
+    {
+        return $this->idsalle;
+    }
+
+    /**
+     * @param Salle $idsalle
+     */
+    public function setIdsalle($idsalle)
+    {
+        $this->idsalle = $idsalle;
+    }
+
+
+    /**
      * Get idmodepaiement
      *
      * @return \AppBundle\Entity\ModeDePaiement
@@ -356,5 +415,101 @@ class Reservation
     public function getIdpersonne()
     {
         return $this->idpersonne;
+    }
+
+    /**
+     * Set petitDej
+     *
+     * @param boolean $petitDej
+     *
+     * @return Reservation
+     */
+    public function setPetitDej($petitDej)
+    {
+        $this->petitDej = $petitDej;
+
+        return $this;
+    }
+
+    /**
+     * Get petitDej
+     *
+     * @return boolean
+     */
+    public function getPetitDej()
+    {
+        return $this->petitDej;
+    }
+
+    /**
+     * Set dej
+     *
+     * @param boolean $dej
+     *
+     * @return Reservation
+     */
+    public function setDej($dej)
+    {
+        $this->dej = $dej;
+
+        return $this;
+    }
+
+    /**
+     * Get dej
+     *
+     * @return boolean
+     */
+    public function getDej()
+    {
+        return $this->dej;
+    }
+
+    /**
+     * Set diner
+     *
+     * @param boolean $diner
+     *
+     * @return Reservation
+     */
+    public function setDiner($diner)
+    {
+        $this->diner = $diner;
+
+        return $this;
+    }
+
+    /**
+     * Get diner
+     *
+     * @return boolean
+     */
+    public function getDiner()
+    {
+        return $this->diner;
+    }
+
+    /**
+     * Set bureautique
+     *
+     * @param boolean $bureautique
+     *
+     * @return Reservation
+     */
+    public function setBureautique($bureautique)
+    {
+        $this->bureautique = $bureautique;
+
+        return $this;
+    }
+
+    /**
+     * Get bureautique
+     *
+     * @return boolean
+     */
+    public function getBureautique()
+    {
+        return $this->bureautique;
     }
 }

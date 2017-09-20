@@ -2,21 +2,33 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Personne
  *
- * @ORM\Table(name="Personne", indexes={@ORM\Index(name="rulePersonne", columns={"rulePersonne"}), @ORM\Index(name="FK_Personne_idRule", columns={"idRule"})})
+ * @ORM\Table(name="Personne", indexes={@ORM\Index(name="rulePersonne", columns={"rulePersonne"}),
+ * @ORM\Index(name="FK_Personne_idRule", columns={"idRule"})})
  * @ORM\Entity
  */
 class Personne extends BaseUser
 {
 
-    /*const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+    const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
     const ROLE_ADMIN = 'ROLE_ADMIN';
-    const ROLE_USER = 'ROLE_USER';*/
+    const ROLE_USER = 'ROLE_USER';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
     /**
      * @var string
      *
@@ -67,6 +79,14 @@ class Personne extends BaseUser
     private $codepostal;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
+     */
+
+    private $telephone;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=25, nullable=true)
@@ -101,14 +121,6 @@ class Personne extends BaseUser
      */
     private $newsletter;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    protected $id;
 
     /**
      * @var \AppBundle\Entity\RuleUtilisateur
@@ -120,7 +132,37 @@ class Personne extends BaseUser
      */
     private $idrule;
 
+    // Adding emails
+    /**
+     * @ORM\OneToMany(targetEntity="PersonneAddOnEmail", mappedBy="user", cascade={"persist"})
+     */
+    private $addOnEmails;
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addOnEmails = new ArrayCollection();
+    }
+    /**
+     * @param string $email
+     *
+     * @return $this
+     */
+    public function addEmail($email)
+    {
+        $addOnEmail = new PersonneAddOnEmail();
+        $addOnEmail->setEmail($email);
+        $addOnEmail->setPersonne($this);
+        $this->addOnEmails[] = $addOnEmail;
+        return $this;
+    }
+    /**
+     * @return ArrayCollection
+     */
+    public function getAddOnEmails()
+    {
+        return $this->addOnEmails;
+    }
 
     /**
      * Set indentifiant
@@ -442,5 +484,29 @@ class Personne extends BaseUser
     public function getIdrule()
     {
         return $this->idrule;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getUsername();
+    }
+
+    /**
+     * @return int
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param int $telephone
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
     }
 }

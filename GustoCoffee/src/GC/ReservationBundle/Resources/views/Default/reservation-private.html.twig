@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
-{% block customCss %}
-    <link href="{{ asset('build/reservation-private.css') }}" rel="stylesheet">
+{% block title %}
+    <title>GustoCoffee Réservation</title>
 {% endblock %}
 
 {% block firstImg %}
@@ -16,9 +16,47 @@
     <div class="row addPadding">
 
         {# ---------- Première card ---------- #}
-        <div class="col-md-4 cardReservation">
+        <div class="col-md-2" id="getFixed" role="navigation"><br>
+
+            {# Choix de la date #}
+            <form id="room-search-form">
+                <div id="reservation-date-picker" class="form-group">
+                    <label> {{  "Choisir votre date"|trans }} </label>
+                    <input style="width: 100%" type="date" max="{{ 'now'|date_modify("+20days")|date('Y-m-d', "Europe/Paris") }}" min="{{ 'now'|date('Y-m-d', "Europe/Paris") }}" name="reservation-date">
+                </div>
+            </form>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <button class="btn btn-block btn-primary buttonSearch">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> {{  "Rechercher"|trans }}
+                    </button>
+                </div>
+
+                <div class="col-xs-12">
+                    <button class="btn btn-block btn-default">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> {{  "Annuler"|trans }}
+                    </button>
+                </div>
+
+            </div>
+
+            {# Selection de la plage horaire: todo: Récupérer nos heures d'ouverture selon le jour #}
+            <div id="time-range">
+                <p>{{ 'Créneau horaire'|trans }}:<br> <span class="slider-time">10:00 AM</span> - <span class="slider-time2">12:00 PM</span>
+                </p>
+                <div class="sliders_step1">
+                    <div id="slider-range"></div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div id="removeDiv" class="col-md-2"></div>
+        <div class="col-md-3 cardReservation">
             <div class="chooseCard">
-                <a href="{{ path('gc_private_page') }}">
+                <a href="{{ path('gc_sallea_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
                     <span class="overlay">
                         <span class="text">
@@ -35,7 +73,7 @@
         {# ---------- End Première card ---------- #}
 
         {# ---------- Seconde card ---------- #}
-        <div class="col-md-4 cardReservation">
+        <div class="col-md-3 cardReservation">
             <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
@@ -49,7 +87,7 @@
         {# ---------- End Seconde card ---------- #}
 
         {# ---------- Troisième card ---------- #}
-        <div class="col-md-4 cardReservation">
+        <div class="col-md-3 cardReservation">
             <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
@@ -65,8 +103,9 @@
     </div>
 
     <div class="row addPadding">
+        <div class="col-md-2"></div>
         {# ---------- Quatrième card ---------- #}
-        <div class="col-md-4 cardReservation">
+        <div class="col-md-3 cardReservation">
             <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
@@ -80,7 +119,7 @@
         {# ---------- End Quatrième card ---------- #}
 
         {# ---------- Cinquième card ---------- #}
-        <div class="col-md-4 cardReservation">
+        <div class="col-md-3 cardReservation">
             <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
@@ -99,9 +138,9 @@
 
 {% block secondBlock %}
     <div class="row addPadding">
-
+    <div class="col-md-2"></div>
         {# ---------- Première card ---------- #}
-        <div class="col-md-4 cardReservation">
+        <div class="col-md-3 cardReservation">
             <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
@@ -115,7 +154,7 @@
         {# ---------- End Première card ---------- #}
 
         {# ---------- Seconde card ---------- #}
-        <div class="col-md-4 cardReservation">
+        <div class="col-md-3 cardReservation">
             <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
@@ -129,7 +168,7 @@
         {# ---------- End Seconde card ---------- #}
 
         {# ---------- Troisième card ---------- #}
-        <div class="col-md-4 cardReservation">
+        <div class="col-md-3 cardReservation">
             <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
@@ -141,12 +180,13 @@
             </div>
         </div>
         {# ---------- End Troisième card ---------- #}
-
+    <div class="col-md-1"></div>
     </div>
 
     <div class="row addPadding">
         {# ---------- Quatrième card ---------- #}
-        <div class="col-md-4 cardReservation">
+        <div class="col-md-2"></div>
+        <div class="col-md-3 cardReservation">
             <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
@@ -160,7 +200,7 @@
         {# ---------- End Quatrième card ---------- #}
 
         {# ---------- Cinquième card ---------- #}
-        <div class="col-md-4 cardReservation">
+        <div class="col-md-3 cardReservation">
             <div class="chooseCard">
                 <a href="{{ path('gc_private_page') }}">
                     <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">

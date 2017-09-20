@@ -6,7 +6,7 @@ app_transaction:
     resource: "@AppBundle/Controller/TransactionController.php"
     type:     annotation
 
-app_mode_de_paiement:
+app_modedepaiement:
     resource: "@AppBundle/Controller/ModeDePaiementController.php"
     type:     annotation
 
@@ -67,9 +67,11 @@ api:
     prefix: /api
     type: rest
     options: { i18n: false }
+    defaults:
+        _format: json
 
 NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    resource: "@NelmioApiDocBundle/Resources/config/routing/swaggerui.xml"
     prefix:   /api/doc
     options: { i18n: false }
 
@@ -106,3 +108,6 @@ fos_user_change_password:
 fos_user_profile:
     resource: "@GCUserBundle/Resources/config/routing/profile.xml"
     prefix: /
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

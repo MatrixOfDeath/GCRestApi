@@ -16,6 +16,10 @@
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
+.cardReservation {
+  padding: 10px;
+}
+
 .overlay {
   position: absolute;
   bottom: 100%;
@@ -43,4 +47,21 @@
 .chooseCard:hover .overlay {
   bottom: 0;
   height: 100%;
+}
+
+.dateReservation {
+  position: fixed;
+  top: 208px;
+}
+
+.buttonSearch {
+  color: white;
+  background-color: #a6854d;
+  border-style: none;
+}
+
+.buttonSearch:hover {
+  color: white;
+  background-color: #6d562f;
+  border-style: none;
 }

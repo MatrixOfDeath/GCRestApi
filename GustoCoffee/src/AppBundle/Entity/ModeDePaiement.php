@@ -15,14 +15,14 @@ class ModeDePaiement
     /**
      * @var string
      *
-     * @ORM\Column(name="modePaiement", type="string", length=25, nullable=true)
+     * @ORM\Column(name="modePaiement", type="string", length=255, nullable=true)
      */
     private $modepaiement;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="string", length=25, nullable=true)
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
      */
     private $description;
 

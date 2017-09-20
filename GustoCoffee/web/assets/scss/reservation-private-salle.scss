@@ -1,0 +1,78 @@
+.topPageReservation {
+  background-image: url("../img/backReservation.jpeg");
+}
+
+.ui-content {
+  border-width: 0;
+  overflow: visible;
+  overflow-x: hidden;
+  padding: 1em
+}
+.ui-corner-all>.ui-header:first-child,
+.ui-corner-all>.ui-content:first-child,
+.ui-corner-all>.ui-footer:first-child {
+  -webkit-border-top-left-radius: inherit;
+  border-top-left-radius: inherit;
+  -webkit-border-top-right-radius: inherit;
+  border-top-right-radius: inherit
+}
+.ui-corner-all>.ui-header:last-child,
+.ui-corner-all>.ui-content:last-child,
+.ui-corner-all>.ui-footer:last-child {
+  -webkit-border-bottom-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+  -webkit-border-bottom-right-radius: inherit;
+  border-bottom-right-radius: inherit
+}
+
+.ui-rangeslider .ui-rangeslider-sliders .ui-slider-track {
+  position: absolute;
+  top: 6px;
+  right: 0;
+  left: 0;
+  margin: 0;
+}
+
+.ui-mobile label, .ui-controlgroup-label {
+  display: block;
+  margin: 0 0 .4em;
+}
+
+.ui-rangeslider {
+  margin: .5em 0;
+}
+
+.ui-page-theme-a .ui-body-inherit {
+  background-color: #fff;
+  border-color: #ddd;
+  color: #333;
+  text-shadow: 0 1px 0 #f3f3f3;
+}
+
+div.ui-rangeslider label {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+.ui-rangeslider .ui-slider-input.ui-rangeslider-last {
+    float: right;
+}
+
+.ui-rangeslider .ui-rangeslider-sliders {
+  position: relative;
+  overflow: visible;
+  height: 30px;
+  margin: 0 68px;
+}
+
+#appbundle_reservation_heuredebut_date, #appbundle_reservation_heurefin_date {
+  display: none;
+}
+
+.centerButton {
+  display: block;
+  margin: auto;
+}
