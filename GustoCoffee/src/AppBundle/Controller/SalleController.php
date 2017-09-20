@@ -3,7 +3,6 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Salle;
-use AppBundle\Entity\Produit;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -14,6 +13,7 @@ use Nelmio\ApiDocBundle\Annotation\Operation;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 use FOS\RestBundle\Controller\Annotations\Get;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Salle controller.
@@ -75,20 +75,34 @@ class SalleController extends FOSRestController
     }
 
 
-    /**
-     * @Route("/disponible", name="salles_disponible")
+    /** TODO: change to salles_disponible_by_date
+     * @Route("/disponible", options={"expose"=true}, name="salles_disponible")
      *
      *
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      *
      */
-    public function sallesDisponibleAction(){
+    public function sallesDisponibleAction(Request $request){
+        $sallesDispo = null;
+        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') ) {
+            $heureChoixDebut = $request->request->get('heureChoixDebut');
+            $heureChoixFin = $request->request->get('heureChoixFin');
 
-        $sallesDispo = $this->checkDisponibiliteSalle('2017-09-20 9:30:00', '2017-09-20 14:00:00');
+            $sallesDispo = $this->checkDisponibiliteSalle($heureChoixDebut, $heureChoixFin);
+            //return new JsonResponse($sallesDispo);
+            $htmlToRender = $this->renderView('salle/sallesDisponible.html.twig', array(
+                'salles' => $sallesDispo,
+            ));
+            return new Response ($htmlToRender);
 
+        }else{
+            $sallesDispo = $this->checkDisponibiliteSalle('2017-09-20 9:30:00', '2017-09-20 14:00:00');
+
+        }
         return $this->render('salle/sallesDisponible.html.twig', array(
             'salles' => $sallesDispo,
         ));
+
     }
 
     /**
@@ -190,7 +204,7 @@ class SalleController extends FOSRestController
      * @param $heureChoixFin
      * @return mixed
      */
-    public function checkDisponibiliteSalle( $heureChoixDebut, $heureChoixFin)
+    public function checkDisponibiliteSalle($heureChoixDebut, $heureChoixFin)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Salle');

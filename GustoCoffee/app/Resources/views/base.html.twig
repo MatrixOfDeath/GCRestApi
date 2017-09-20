@@ -81,7 +81,6 @@
                                         </a>
                                     {% endif %}
                                 </li>
-                                {% set req = app.request %}
 
                                 {% if app.request.get('_route_params') is not null %}
                                 {% for locale in locales %}
@@ -165,8 +164,16 @@
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    {#<script>#}
+        {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
+    {#</script>#}
+
+
         <script src="{{ asset('build/app.js') }}"></script>
-    {% endblock %}
+    {#  Adding ajax script TODO: add specific on each page #}
+        <script src="{{ asset('build/ajax.js') }}"></script>
+
+{% endblock %}
 {% endblock %}
 </body>
 </html>

@@ -1,15 +1,15 @@
 {% extends '::base.html.twig' %}
 
-{% block menu %}
-{% endblock %}
-
 {% block firstImg %}
 {% endblock %}
 {% block firstTitle %}
+    {{ 'Internal server error : error 500'|trans }}
+{% endblock %}
+{% block titleHome %}
+    {{ 'Internal server error : error 500'|trans }}
 {% endblock %}
 
-{% block body %}
-<h1>Internal server error : error 500</h1>
+{% block content %}
     <div class='coffee-maker'>
         <div class='coffee-loader-top'></div>
         <div class='carafe'>
