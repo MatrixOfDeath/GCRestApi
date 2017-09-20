@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>GustoCoffee - Annonces</title>
+    <title>{{ 'GustoCoffee - Annonces'|trans }}</title>
 {% endblock %}
 
 {% block firstImg %}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block titleHome %}
-    GustoCoffee - Annonces
+    {{ 'GustoCoffee - Annonces'|trans }}
 {% endblock %}
 {# ---------- First Block ---------- #}
 {% block firstBlock %}
@@ -17,7 +17,7 @@
         <a href="{{ path('fos_user_security_logout') }}"></a>
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="centerText">Déposez votre annonce</h2>
+            <h2 class="centerText">{{ 'Déposez votre annonce'|trans }}</h2>
         </div>
     </div>
     {{ form_start(form) }}
@@ -42,7 +42,7 @@
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <input type="checkbox" id="showPhone" name="subscribe" value="CheckboxValue">
-                <label for="showPhone">Souhaitez-vous montrer votre prénom ?</label>
+                <label for="showPhone">{{ 'Souhaitez-vous montrer votre prénom ?' |trans }}</label>
             </div>
             <div class="col-md-3"></div>
 
@@ -64,11 +64,10 @@
                 </div>
             </div>
         </div>
-    {{ form_end(form) }}
     <div class="col-md-12 form-connexion">
-        <input type="submit" class="buttonInscription centerText" value="Postez votre annonce" />
+        <input type="submit" class="buttonInscription centerText" value="{{ 'Postez votre annonce'|trans }}" />
     </div>
-
+        {{ form_end(form) }}
     {#<ul>#}
         {#<li>#}
             {#<a href="{{ path('annonce_index') }}">Back to the list</a>#}
@@ -83,15 +82,15 @@
 {% block secondBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="centerText">Liste des Annonces</h2>
+            <h2 class="centerText">{{ 'Liste des Annonces'|trans }}</h2>
         </div>
     </div>
     <table class="tableAnnonceList" align="center">
         <thead>
             <tr>
-                <th>Titre</th>
-                <th>Corps du message</th>
-                <th>Date de création</th>
+                <th>{{ 'Titre'|trans }}</th>
+                <th>{{ 'Corps du message'|trans }}</th>
+                <th>{{ 'Date de création'|trans }}</th>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <a href="{{ path('fos_user_security_logout') }}"></a>
                 <th>Actions</th>
@@ -116,10 +115,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">show</a>
+                            <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">Montrer l'annonce</a>
                         </li>
                         <li>
-                            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">edit</a>
+                            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">Éditer l'annonce</a>
                         </li>
                     </ul>
                 </td>
