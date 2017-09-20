@@ -30,10 +30,18 @@ class Magasin
     /**
      * @var integer
      *
+     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
+     */
+
+    private $telephone;
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="idMagasin", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
+
     private $idmagasin;
 
     /**
@@ -149,5 +157,21 @@ class Magasin
      */
     public function __toString() {
         return $this->getNommagasin();
+    }
+
+    /**
+     * @return int
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param int $telephone
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
     }
 }

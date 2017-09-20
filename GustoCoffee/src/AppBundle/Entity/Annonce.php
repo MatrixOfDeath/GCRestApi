@@ -44,6 +44,13 @@ class Annonce
     private $idannonce;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="categorieAnnonce", type="text", length=1000, nullable=true)
+     */
+    private $categorieAnnonce;
+
+    /**
      * @var \AppBundle\Entity\Personne
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne")
@@ -163,6 +170,23 @@ class Annonce
     public function getIdpersonne()
     {
         return $this->idpersonne;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getCategorieAnnonce()
+    {
+        return $this->categorieAnnonce;
+    }
+
+    /**
+     * @param string $categorieAnnonce
+     */
+    public function setCategorieAnnonce($categorieAnnonce)
+    {
+        $this->categorieAnnonce = $categorieAnnonce;
     }
 
 
