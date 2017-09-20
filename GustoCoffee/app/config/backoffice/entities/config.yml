@@ -1,5 +1,4 @@
 easy_admin:
-    translation_domain: 'backoffice-messages'
     entities:
         Magasin:
             class: AppBundle\Entity\Magasin
