@@ -51,7 +51,7 @@ $(function() {
         values: [540, 1320],
         slide: function( event, ui ) {
             // On limite l'intervalle minimal à 1h pour une reservation de salle
-            if ( (ui.values[0] + 60) >= ui.values[1] ) {
+            if ( (ui.values[0] + 55) >= ui.values[1] ) {
                 return false;
             }
             var hours1 = Math.floor(ui.values[0] / 60);
