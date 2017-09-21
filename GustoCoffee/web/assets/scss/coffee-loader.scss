@@ -18,17 +18,14 @@ $color: #313131;
 //}
 .coffee-loader-container{
   background-color: #9b9b9b;
-  opacity: 0.5;
   display: block;
   position: relative;
-  min-height:400px;
+  min-height:500px;
   h2{
     text-align:center; color:#fff; font-weight:100; font-size:3em
   };
 }
 .coffee-maker {
-  z-index:777;
-  opacity:1;
   display: inline-block;
   /*padding: 15px;*/
   position: relative;
