@@ -15,6 +15,7 @@
 {% block firstBlock %}
     <div class="row addPadding">
 
+
         <div class="col-md-2" id="getFixed" role="navigation">
 
             <div class="row">
@@ -63,9 +64,7 @@
                     <p>{{ 'Créneau horaire'|trans }}:<br> <span class="slider-time">10:00</span>H - <span class="slider-time2">20:00</span>H
                     </p>
 
-                    <div id="slider-range">
-                        <input class="heureActuelleDefaut" type="hidden" value="{{ 'now'|date('H', "Europe/Paris") }}">
-                    </div>
+                    <div id="slider-range"></div>
                 </div>
 
             </div>
