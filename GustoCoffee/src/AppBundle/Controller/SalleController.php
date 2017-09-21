@@ -59,7 +59,23 @@ class SalleController extends FOSRestController
     }
 
     /**
-     * Lists all salle entities.
+     * Lists all salles entities.
+     *
+     * @Route("/list-salles", name="salles_list")
+     * @Method("GET")
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $salles = $em->getRepository('AppBundle:Salle')->findAll();
+        return $this->render('salle/list.html.twig', array(
+            'salles' => $salles,
+        ));
+    }
+
+    /**
+     * Lists all salles that are available from now to 1hour
      *
      * @Route("/reservation-private", name="salle_index")
      * @Method("GET")
@@ -68,9 +84,16 @@ class SalleController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $salles = $em->getRepository('AppBundle:Salle')->findAll();
+        $sallesDispoNow = $this->checkDisponibiliteSalle(new \DateTime(date('y-m-d H:m:s')), new \DateTime(date('y-m-d H:m:s', strtotime('+1 hour'))));
+
+        //$salles = $em->getRepository('AppBundle:Salle')->findAll();
+        $actualDate  = new \DateTime(date('y-m-d H:m:s'));
+        $actualDateAndHourMore = new \DateTime(date('H:m', strtotime('+1 hour')));
         return $this->render('salle/index.html.twig', array(
-            'salles' => $salles,
+            'salles' => $sallesDispoNow,
+            'heureDebutChoix' => $actualDate->format('H'),
+            'heureFinChoix' => $actualDate->add(new \DateInterval('PT1H'))->format('H'),
+            'dateChoix' => $actualDate->format("d/m/Y")
         ));
     }
 
@@ -92,6 +115,9 @@ class SalleController extends FOSRestController
             //return new JsonResponse($sallesDispo);
             $htmlToRender = $this->renderView('salle/sallesDisponible.html.twig', array(
                 'salles' => $sallesDispo,
+                'heureDebutChoix' => (new \DateTime($heureChoixDebut))->format('H'),
+                'heureFinChoix' => (new \DateTime($heureChoixFin))->format('H'),
+                'dateChoix' => (new \DateTime($heureChoixDebut))->format('d/m/Y')
             ));
             return new Response ($htmlToRender);
 
@@ -101,6 +127,7 @@ class SalleController extends FOSRestController
         }
         return $this->render('salle/sallesDisponible.html.twig', array(
             'salles' => $sallesDispo,
+
         ));
 
     }

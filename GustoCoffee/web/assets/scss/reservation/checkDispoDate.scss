@@ -25,7 +25,7 @@ $color-gc-lighter: #846139;
 }
 .cardSalle.list-group-item:nth-of-type(odd):hover,.cardSalle.list-group-item:hover
 {
-  background: #428bca;
+  background: $color-gc;
 }
 
 .cardSalle.list-group-item .list-group-image
@@ -54,6 +54,7 @@ $color-gc-lighter: #846139;
 .cardSalle.list-group-item img
 {
   float: left;
+  width:40%;
 }
 .cardSalle.list-group-item:after
 {
@@ -65,7 +66,8 @@ $color-gc-lighter: #846139;
 }
 
 #display-salle{
-  width:80%;
+  width:90%;
+  min-height:50%;
   margin:auto;
   margin-top: 50px;
 }

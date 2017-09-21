@@ -1,24 +1,42 @@
-<h2>{{ "Les salles disponibles pour le: entre: et :"|trans }}</h2>
 
-    {% set count = 1 %}
+
+
+<h3>{{ "Voici les salles privés disponibles pour le "|trans ~ dateChoix ~ ' entre ' ~ heureDebutChoix ~ "H et " ~ heureFinChoix ~ "H " }}</h3>
+
+<div id="reservation-dialog-message" title="Créneaux incorrectes" style="display:none;">
+    <p>
+        <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+        Les magasin est fermée changé votre date avant de continuer    </p>
+
+</div>
+
+{% set count = 1 %}
     {% for salle in salles %}
 
         {% if salle.capacitymax == 4 %}
             {% set count = count + 1 %}
 
             <div class="col-xs-4 col-lg-4 cardSalle">
-                <div class="chooseCard thumbnail">
-                    <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
-                        <img class="group list-group-image" src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="Salle privatisée" style="width:100%">
-                        <span class="overlay">
-                                        <span class="text">
-                                            Plus d'infos
-                                        </span>
-                                    </span>
-                    </a>
-                    <div class="containerCard">
-                        <h4 class="cardTitle"><strong>{{ salle.nomsalle }}</strong></h4>
-                        <p>{{ salle.capacitymax }}</p>
+                <div class="thumbnail">
+                    <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}"><img class="group list-group-image" src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="Salle privatisée"></a>
+                    <div class="caption">
+                        <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
+                        </a>
+                        <h4 class="group inner list-group-item-heading">
+                            {{ "Nom de la salle"|trans ~ ': ' ~ salle.nomsalle }}
+                        </h4>
+                        <p class="group inner list-group-item-text">
+                            Cette salle propose différents service ....
+                            {{ "Nombres de places dans cette salle"|trans ~ ': ' ~salle.capacitymax }}
+                        </p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class=lead">{{ "Prix de cette salle privée"|trans }} 1h -> 20€</p>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <a class="btn btn-success" href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">{{ "Choisir"|trans }}</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -29,25 +47,26 @@
             <div class="col-xs-4 col-lg-4 cardSalle">
                 <div class="thumbnail">
                     <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}"><img class="group list-group-image" src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="Salle privatisée"></a>
-                        <div class="caption">
-                            <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
-                            </a>
-                            <h4 class="group inner list-group-item-heading">
-                                {{ "Nom de la salle"|trans ~ ': ' ~ salle.nomsalle }}
-                            </h4>
-                            <p class="group inner list-group-item-text">
-                                Cette salle propose différents service ....</p>
-                            <div class="row">
-                                <div class="col-xs-12 col-md-6">
-                                    <p>{{ "Nombres de places dans cette salle"|trans ~ ': ' ~salle.capacitymax }}</p>
-                                    <p>{{ "Prix de cette salle privée"|trans }} 1h -> 20€</p>
-                                </div>
-                                <div class="col-xs-12 col-md-6">
-                                    <a class="btn btn-success" href="">{{ "Choisir cette salle"|trans }}</a>
-                                </div>
+                    <div class="caption">
+                        <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
+                        </a>
+                        <h4 class="group inner list-group-item-heading">
+                            {{ "Nom de la salle"|trans ~ ': ' ~ salle.nomsalle }}
+                        </h4>
+                        <p class="group inner list-group-item-text">
+                            Cette salle propose différents service ....
+                            {{ "Nombres de places dans cette salle"|trans ~ ': ' ~salle.capacitymax }}
+                        </p>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p class=lead">{{ "Prix de cette salle privée"|trans }} 1h -> 20€</p>
                             </div>
-
+                            <div class="col-xs-12 col-md-6">
+                                <a class="btn btn-success" href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">{{ "Choisir"|trans }}</a>
+                            </div>
                         </div>
+
+                    </div>
                 </div>
             </div>
         {#{% elseif salle.capacitymax >= 10 %}#}
