@@ -26,7 +26,7 @@ class Reservation
     /**
      * @var \AppBundle\Entity\Salle
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Salle")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Salle", inversedBy="reservation")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idSalle", referencedColumnName="idSalle")
      * })
