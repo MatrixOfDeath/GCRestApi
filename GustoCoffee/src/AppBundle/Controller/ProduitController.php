@@ -44,17 +44,20 @@ class ProduitController extends FOSRestController
     /**
      * Lists all produit entities.
      *
-     * @Route("/", name="produit_index")
+     * @Route("/produit", name="produit_index")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $produits = $em->getRepository('AppBundle:Produit')->findAll();
+
+        $emSalle = $this->getDoctrine()->getManager();
+        $salles = $emSalle->getRepository('AppBundle:Salle')->findAll();
 
         return $this->render('produit/index.html.twig', array(
             'produits' => $produits,
+            'salles' => $salles,
         ));
     }
 
