@@ -32,6 +32,20 @@ $(function() {
     var min = 9; // Heure min d'ouverture du magasin
     var max = 21; // Heure max d'ouverture du magasin
 
+    if (!!$('#slider-range .heureActuelleDefaut').val()) {
+        var arrTime = $('#slider-range .heureActuelleDefaut').val().split(':');
+        var heureActuelle = parseInt(arrTime[0], 10);
+        var minuteActuelle = arrTime[1];
+
+        if (arrTime[1] < 30) {
+            minuteActuelle = '00';
+        } else {
+            minuteActuelle = '30';
+        }
+    }else{
+        console.log('pas par defaut');
+    }
+
     $("#slider-range").slider({
         range: true,
         min: min * 60,
@@ -40,10 +54,18 @@ $(function() {
         step: 30,
         values: [540, 1320],
         slide: function( event, ui ) {
+
             // On limite l'intervalle minimal à 1h pour une reservation de salle
             if ( (ui.values[0] + 55) >= ui.values[1] ) {
                 return false;
             }
+            var totalStartTime = heureActuelle*60 + parseInt(minuteActuelle,10);
+            if(ui.values[0] < totalStartTime){
+                return false;
+                console.log(ui.values[0] + ' ezesfsd ' + totalStartTime );
+                //$ ('#slider-range').children(".ui-slider-handle").first().draggable( false);
+            }
+
             var hours1 = Math.floor(ui.values[0] / 60);
             var minutes1 = ui.values[0] - (hours1 * 60);
 
@@ -76,7 +98,12 @@ $(function() {
 
 
     if($('#slider-range .heureActuelleDefaut').length && $('#slider-range .heureActuelleDefaut').val() ) {
-        var heureActuelle = $('#slider-range .heureActuelleDefaut').val();
+
+        $("#slider-range").children(".ui-slider-handle").first().text(heureActuelle+':'+ minuteActuelle);
+        $("#slider-range").children(".ui-slider-handle").last().text((heureActuelle+1)+':'+ minuteActuelle);
+        $('.slider-time').html(heureActuelle+':'+ minuteActuelle);
+        $('.slider-time2').html((heureActuelle+1)+':'+ minuteActuelle);
+        //var heureActuelle = $('#slider-range .heureActuelleDefaut').val();
         if (heureActuelle > max && heureActuelle < 0) {
             $( "#reservation-dialog-message" ).dialog({
                 modal: true,
@@ -92,6 +119,8 @@ $(function() {
         else{
 
             $("#slider-range").slider('option', 'values', [heureActuelle * 60, (heureActuelle * 60) + 60]);
+            $("#slider-range").children(".ui-slider-handle").first().text(heureActuelle + ':' + minuteActuelle);
+            $("#slider-range").children(".ui-slider-handle").last().text((heureActuelle+1)  + ':' + minuteActuelle);
         }
     }
     // Arithmétique: on calcule le nombre d'heure total et on crée les intervalles souhaité, on mettra des points ç
