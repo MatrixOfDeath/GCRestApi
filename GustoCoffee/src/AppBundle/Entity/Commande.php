@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Commande
  *
  * @ORM\Table(name="Commande", indexes={@ORM\Index(name="FK_Commande_idPersonne", columns={"idPersonne"}), @ORM\Index(name="FK_Commande_idModePaiement", columns={"idModePaiement"}), @ORM\Index(name="FK_Commande_idDemandeProduit", columns={"idDemandeProduit"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CommandeRepository")
  */
 class Commande
 {
@@ -18,6 +18,14 @@ class Commande
      * @ORM\Column(name="dateCommande", type="date", nullable=false)
      */
     private $datecommande;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne", inversedBy="commandes")
+     * @ORM\JoinColumn(nullable=true)
+     */
+
+    private $personnes;
 
     /**
      * @var integer
@@ -164,5 +172,28 @@ class Commande
     public function getIdpersonne()
     {
         return $this->idpersonne;
+    }
+
+    /**
+     * Set utilisateur
+     *
+     * @param \AppBundle\Entity\Personne $personne
+     * @return Commande
+     */
+    public function setUtilisateur(\AppBundle\Entity\Personne $personne = null)
+    {
+        $this->personnes = $personne;
+
+        return $this;
+    }
+
+    /**
+     * Get utilisateur
+     *
+     * @return \AppBundle\Entity\Personne
+     */
+    public function getUtilisateur()
+    {
+        return $this->personnes;
     }
 }

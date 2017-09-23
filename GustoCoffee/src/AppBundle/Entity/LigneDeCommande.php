@@ -12,8 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class LigneDeCommande
 {
-
-
     /**
      * @var integer
      *
@@ -33,15 +31,15 @@ class LigneDeCommande
      *
      * @ORM\Column(name="idLigneDeCommande", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $idlignedecommande;
 
     /**
      * @var \AppBundle\Entity\Commande
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     *
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Commande")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idCommande", referencedColumnName="idCommande")
@@ -52,8 +50,8 @@ class LigneDeCommande
     /**
      * @var \AppBundle\Entity\Reservation
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     *
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Reservation")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idReservation", referencedColumnName="idReservation")

@@ -8,7 +8,7 @@
             <div id="collapseOne" class="accordion-body collapse in">
                 <div class="accordion-inner">
                     <div class="span4">
-                        {% if utilisateur.adresses|length != 0 %}
+                        {% if utilisateur.adresse|length != 0 %}
                         <form action="{{ path('validation_panier') }}" method="POST">
                             
                             <h4>Adresse de livraison</h4>

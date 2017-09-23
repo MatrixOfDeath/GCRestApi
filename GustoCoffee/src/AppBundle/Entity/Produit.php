@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Produit
  *
  * @ORM\Table(name="Produit", indexes={@ORM\Index(name="quantiteEnStock", columns={"quantiteEnStock"}), @ORM\Index(name="FK_Produit_idTypeProduit", columns={"idTypeProduit"}), @ORM\Index(name="FK_Produit_idStatutProduit", columns={"idStatutProduit"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProduitsRepository")
  * @Vich\Uploadable()
  * @ORM\HasLifecycleCallbacks()
  */
@@ -92,6 +92,13 @@ class Produit
      * @var File
      */
     private $imageFile;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva", cascade={"persist"})
+     * @ORM\JoinColumn(name="idTva", referencedColumnName="idTva", nullable=false)
+     */
+    private $tva;
 
     /**
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
@@ -354,5 +361,29 @@ class Produit
     public function getImage()
     {
         return $this->image;
+    }
+
+
+    /**
+     * Set tva
+     *
+     * @param \AppBundle\Entity\Tva $tva
+     * @return Produit
+     */
+    public function setTva(\AppBundle\Entity\Tva $tva)
+    {
+        $this->tva = $tva;
+
+        return $this;
+    }
+
+    /**
+     * Get tva
+     *
+     * @return \AppBundle\Entity\Tva
+     */
+    public function getTva()
+    {
+        return $this->tva;
     }
 }

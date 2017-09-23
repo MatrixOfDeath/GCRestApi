@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Commande;
+use AppBundle\Entity\Produit;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -13,6 +14,8 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Authentication;
+
 
 /**
  * Commande controller.
@@ -161,26 +164,29 @@ class CommandeController extends FOSRestController
         ;
     }
 
-
-    public function facture()
+    /**
+     * @param Sesssion $session
+     * @return array
+     */
+    public function facture(Session $session)
     {
         $em = $this->getDoctrine()->getManager();
         $generator = $this->container->get('security.secure_random');
-        $session = $this->getRequest()->getSession();
+        //$session = $this->getRequest()->getSession();
         $adresse = $session->get('adresse');
         $panier = $session->get('panier');
         $commande = array();
         $totalHT = 0;
         $totalTVA = 0;
 
-        $facturation = $em->getRepository('EcommerceBundle:UtilisateursAdresses')->find($adresse['facturation']);
-        $livraison = $em->getRepository('EcommerceBundle:UtilisateursAdresses')->find($adresse['livraison']);
-        $produits = $em->getRepository('EcommerceBundle:Produits')->findArray(array_keys($session->get('panier')));
+        $facturation = $em->getRepository('AppBundle:Personne')->find($adresse['facturation']);
+        $livraison = $em->getRepository('AppBundle:Personne')->find($adresse['livraison']);
+        $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($session->get('panier')));
 
         foreach($produits as $produit)
         {
-            $prixHT = ($produit->getPrix() * $panier[$produit->getId()]);
-            $prixTTC = ($produit->getPrix() * $panier[$produit->getId()] / $produit->getTva()->getMultiplicate());
+            $prixHT = ($produit->getPrixproduit() * $panier[$produit->getIdproduit()]);
+            $prixTTC = ($produit->getPrixproduit() * $panier[$produit->getIdproduit()] / $produit->getTva()->getMultiplicate());
             $totalHT += $prixHT;
 
             if (!isset($commande['tva']['%'.$produit->getTva()->getValeur()]))
@@ -221,6 +227,10 @@ class CommandeController extends FOSRestController
         return $commande;
     }
 
+    /**
+     * @param Session $session
+     * @return Response
+     */
     public function prepareCommandeAction(Session $session)
     {
         //$session = $this->getRequest()->getSession();
@@ -232,7 +242,7 @@ class CommandeController extends FOSRestController
             $commande = $em->getRepository('AppBundle:Commande')->find($session->get('commande'));
 
         $commande->setDate(new \DateTime());
-        $commande->setUtilisateur($this->container->get('security.authorization_checker')->getToken()->getUser());
+        $commande->setUtilisateur($this->container->get('security.token_storage')->getToken()->getUser());
         $commande->setValider(0);
         $commande->setReference(0);
         $commande->setCommande($this->facture());
