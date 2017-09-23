@@ -9,7 +9,7 @@
                 <div class="accordion-inner">
                     <div class="span4">
                         {% if utilisateur.adresses|length != 0 %}
-                        <form action="{{ path('validation') }}" method="POST">
+                        <form action="{{ path('validation_panier') }}" method="POST">
                             
                             <h4>Adresse de livraison</h4>
                             {% for adresse in utilisateur.adresses %}
@@ -41,7 +41,7 @@
 
                     <div class="span4 offset2">
                         <h4>Ajouter une nouvelle adresse</h4>
-                        <form action="{{ path('livraison') }}" method="POST">
+                        <form action="{{ path('livraison_panier') }}" method="POST">
                             {{ form_widget(form) }}
                             <button class="btn btn-primary" type="submit">Ajouter</button>
                         </form>

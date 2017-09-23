@@ -121,7 +121,7 @@ class SalleController extends FOSRestController
             ));
             return new Response ($htmlToRender);
 
-        }else{
+        }else{ //TODO: A enlever ou remplacer par default value
             $sallesDispo = $this->checkDisponibiliteSalle('2017-09-20 9:30:00', '2017-09-20 14:00:00');
 
         }

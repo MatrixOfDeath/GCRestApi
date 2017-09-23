@@ -2,7 +2,7 @@
 
 namespace AppBundle\Twig\Extension;
 
-class panier extends \Twig_Extension
+class Panier extends \Twig_Extension
 {
     /**
      * {@inheritdoc}

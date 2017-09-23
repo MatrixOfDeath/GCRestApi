@@ -105,7 +105,7 @@ $(function() {
     $("#slider-range").children(".ui-slider-handle").last().text(max+':00');
 
 
-    
+
     if($('#slider-range .heureActuelleDefaut').length && $('#slider-range .heureActuelleDefaut').val() ) {
         setHandles(heureActuelle, minuteActuelle, min, max);
     }
@@ -136,7 +136,7 @@ $(function() {
         //$("#slider-range").children(".ui-slider-handle").last().text((heureActuelle+1)+':'+ pad(minuteActuelle));
 
         //var heureActuelle = $('#slider-range .heureActuelleDefaut').val();
-        console.log( heureActuelle +' '  + max );
+        console.log( heureActuelle +' '  + min );
         if (heureActuelle > max && heureActuelle < 24) {
             $( "#reservation-dialog-message" ).dialog({
                 modal: true,
@@ -146,7 +146,7 @@ $(function() {
                     }
                 }
             });
-        }else if(heureActuelle > 0 && heureActuelle < min){
+        }else if(heureActuelle >= 0 && heureActuelle < min){
             console.log('Ouvre à 9h');
         }
         else{

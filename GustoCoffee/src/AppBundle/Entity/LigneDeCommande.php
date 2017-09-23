@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class LigneDeCommande
 {
+
+
     /**
      * @var integer
      *
@@ -31,7 +33,7 @@ class LigneDeCommande
      *
      * @ORM\Column(name="idLigneDeCommande", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idlignedecommande;
 
@@ -58,7 +60,6 @@ class LigneDeCommande
      * })
      */
     private $idreservation;
-
 
 
     /**

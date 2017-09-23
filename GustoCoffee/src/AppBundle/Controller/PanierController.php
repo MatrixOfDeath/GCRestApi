@@ -1,28 +1,70 @@
 <?php
 
-namespace Ecommerce\EcommerceBundle\Controller;
+namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Ecommerce\EcommerceBundle\Form\UtilisateursAdressesType;
-use Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses;
+use AppBundle\Form\PersonneType;
+use AppBundle\Entity\Personne;
 
+/**
+ * Panier controller.
+ *
+ * @Route("panier")
+ */
 class PanierController extends Controller
 {
-    public function menuAction()
+
+    public function menuAction(SessionInterface $session)
     {
-        $session = $this->getRequest()->getSession();
+        //$session = $this->getRequest()->getSession();
         if (!$session->has('panier'))
             $articles = 0;
         else
             $articles = count($session->get('panier'));
         
-        return $this->render('EcommerceBundle:Default:panier/modulesUsed/panier.html.twig', array('articles' => $articles));
+        return $this->render('panier/layout/panier.html.twig', array(
+            'articles' => $articles
+        ));
     }
-    
-    public function supprimerAction($id)
+
+    /**
+     * Index panier session.
+     *
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/", name="panier")
+     * @Method({"GET", "POST"})
+     */
+    public function panierAction(SessionInterface $session)
     {
-        $session = $this->getRequest()->getSession();
+        // $session = $this->getRequest()->getSession();
+        if (!$session->has('panier')) $session->set('panier', array());
+
+        $em = $this->getDoctrine()->getManager();
+        $produits = $em->getRepository('AppBundle:Produit')->findBy(array_keys($session->get('panier')));
+
+        return $this->render('panier/layout/panier.html.twig', array(
+            'produits' => $produits,
+            'panier' => $session->get('panier')
+        ));
+    }
+
+    /**
+     * Delete panier session.
+     *
+     * @Route("/delete/{id}", name="delete_panier")
+     * @Method({"GET", "POST"})
+     */
+    public function supprimerAction(SessionInterface $session, $id)
+    {
+        //$session = $this->getRequest()->getSession();
+
         $panier = $session->get('panier');
         
         if (array_key_exists($id, $panier))
@@ -34,24 +76,33 @@ class PanierController extends Controller
         
         return $this->redirect($this->generateUrl('panier')); 
     }
-    
-    public function ajouterAction($id)
+
+    /**
+     * Ajout panier session.
+     * @param SessionInterface $session
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     * @Route("/ajouter/{id}", name="ajout_panier")
+     * @Method("GET")
+     */
+    public function ajouterAction(SessionInterface $session, Request $request, $id)
     {
-        $session = $this->getRequest()->getSession();
+        //$session = $this->getRequest()->getSession();
         
         if (!$session->has('panier')) $session->set('panier',array());
         $panier = $session->get('panier');
         
         if (array_key_exists($id, $panier)) {
-            if ($this->getRequest()->query->get('qte') != null) $panier[$id] = $this->getRequest()->query->get('qte');
+            if ($request->query->get('qte') != null) $panier[$id] = $request->query->get('qte');
             $this->get('session')->getFlashBag()->add('success','Quantité modifié avec succès');
         } else {
-            if ($this->getRequest()->query->get('qte') != null)
-                $panier[$id] = $this->getRequest()->query->get('qte');
+            if ($request->query->get('qte') != null)
+                $panier[$id] = $request->query->get('qte');
             else
                 $panier[$id] = 1;
             
-            $this->get('session')->getFlashBag()->add('success','Article ajouté avec succès');
+            $session->getFlashBag()->add('success','Article ajouté avec succès');
         }
             
         $session->set('panier',$panier);
@@ -59,85 +110,100 @@ class PanierController extends Controller
         
         return $this->redirect($this->generateUrl('panier'));
     }
-    
-    public function panierAction()
-    {
-        $session = $this->getRequest()->getSession();
-        if (!$session->has('panier')) $session->set('panier', array());
-        
-        $em = $this->getDoctrine()->getManager();
-        $produits = $em->getRepository('EcommerceBundle:Produits')->findArray(array_keys($session->get('panier')));
-        
-        return $this->render('EcommerceBundle:Default:panier/layout/panier.html.twig', array('produits' => $produits,
-                                                                                             'panier' => $session->get('panier')));
-    }
-    
+
+
+
+    /**
+     * Action panier session.
+     *
+     * @Route("/livraison/adresse/delete/{id}", name="delete_adresse_panier")
+     * @Method({"GET", "POST"})
+     */
     public function adresseSuppressionAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('EcommerceBundle:UtilisateursAdresses')->find($id);
+        $entity = $em->getRepository('AppBundle:Personne')->find($id);
         
-        if ($this->container->get('security.context')->getToken()->getUser() != $entity->getUtilisateur() || !$entity)
-            return $this->redirect ($this->generateUrl ('livraison'));
+        if ($this->container->get('security.token_storage')->getToken()->getUser() != $entity->getPersonne() || !$entity)
+            return $this->redirect ($this->generateUrl ('livraison_panier'));
         
         $em->remove($entity);
         $em->flush();
         
-        return $this->redirect ($this->generateUrl ('livraison'));
+        return $this->redirect ($this->generateUrl ('livraison_panier'));
     }
-    
-    public function livraisonAction()
+
+    /** TODO: Appeler cela une facturation
+     *
+     * @Route("/livraison", name="livraison_panier")
+     * @Method("GET")
+     */
+    public function livraisonAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $utilisateur = $this->container->get('security.context')->getToken()->getUser();
-        $entity = new UtilisateursAdresses();
-        $form = $this->createForm(new UtilisateursAdressesType($em), $entity);
+        $utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+        $personne = new Personne();
+        $form = $this->createForm('AppBundle\Form\PersonneType', $personne);
         
-        if ($this->get('request')->getMethod() == 'POST')
+        if ($request->getMethod() == 'POST')
         {
-            $form->handleRequest($this->getRequest());
+            $form->handleRequest($request);
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
-                $entity->setUtilisateur($utilisateur);
-                $em->persist($entity);
+                $personne->setPersonne($utilisateur);
+                $em->persist($personne);
                 $em->flush();
                 
-                return $this->redirect($this->generateUrl('livraison'));
+                return $this->redirect($this->generateUrl('livraison_panier'));
             }
         }
         
-        return $this->render('EcommerceBundle:Default:panier/layout/livraison.html.twig', array('utilisateur' => $utilisateur,
-                                                                                                'form' => $form->createView()));
+        return $this->render('panier/layout/livraison.html.twig', array(
+            'utilisateur' => $utilisateur,
+            'form' => $form->createView()
+        ));
     }
-    
-    public function setLivraisonOnSession()
+
+    /**
+     * @return RedirectResponse
+     */
+    public function setLivraisonOnSession(Request $request, SessionInterface $session)
     {
-        $session = $this->getRequest()->getSession();
+        //$session = $this->getRequest()->getSession();
         
         if (!$session->has('adresse')) $session->set('adresse',array());
         $adresse = $session->get('adresse');
         
-        if ($this->getRequest()->request->get('livraison') != null && $this->getRequest()->request->get('facturation') != null)
+        if ($request->request->get('livraison') != null && $request->request->get('facturation') != null)
         {
-            $adresse['livraison'] = $this->getRequest()->request->get('livraison');
-            $adresse['facturation'] = $this->getRequest()->request->get('facturation');
+            $adresse['livraison'] = $request->request->get('livraison');
+            $adresse['facturation'] = $request->request->get('facturation');
         } else {
-            return $this->redirect($this->generateUrl('validation'));
+            return $this->redirect($this->generateUrl('validation_panier'));
         }
         
         $session->set('adresse',$adresse);
-        return $this->redirect($this->generateUrl('validation'));
+        return $this->redirect($this->generateUrl('validation_panier'));
     }
-    
-    public function validationAction()
+
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/validation", name="validation_panier")
+     * @Method("GET")
+     */
+    public function validationAction(Request $request)
     {
-        if ($this->get('request')->getMethod() == 'POST')
+        if ($request->getMethod() == 'POST') {
             $this->setLivraisonOnSession();
+        }
         
         $em = $this->getDoctrine()->getManager();
-        $prepareCommande = $this->forward('EcommerceBundle:Commandes:prepareCommande');
-        $commande = $em->getRepository('EcommerceBundle:Commandes')->find($prepareCommande->getContent());
+        $prepareCommande = $this->forward('AppBundle:Commande:prepareCommande');
+        $commande = $em->getRepository('AppBundle:Commande')->find($prepareCommande->getContent());
         
-        return $this->render('EcommerceBundle:Default:panier/layout/validation.html.twig', array('commande' => $commande));
+        return $this->render('panier/layout/validation.html.twig', array(
+            'commande' => $commande
+        ));
     }
 }

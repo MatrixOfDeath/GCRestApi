@@ -1,46 +1,52 @@
-app_magasin:
-    resource: "@AppBundle/Controller/MagasinController.php"
+app_ligne_facture:
+    resource: "@AppBundle/Controller/LigneFactureController.php"
     type:     annotation
 
-app_transaction:
-    resource: "@AppBundle/Controller/TransactionController.php"
-    type:     annotation
+#app_magasin:
+#    resource: "@AppBundle/Controller/MagasinController.php"
+#    type:     annotation
+#
+#app_transaction:
+#    resource: "@AppBundle/Controller/TransactionController.php"
+#    type:     annotation
+#
+#app_modedepaiement:
+#    resource: "@AppBundle/Controller/ModeDePaiementController.php"
+#    type:     annotation
+#
+#app_service:
+#    resource: "@AppBundle/Controller/ServiceController.php"
+#    type:     annotation
+#
+#app_produit:
+#    resource: "@AppBundle/Controller/ProduitController.php"
+#    type:     annotation
+#
+#app_salle:
+#    resource: "@AppBundle/Controller/SalleController.php"
+#    type:     annotation
+#
+#app_annonce:
+#    resource: "@AppBundle/Controller/AnnonceController.php"
+#    type:     annotation
+#
+#app_facture:
+#    resource: "@AppBundle/Controller/FactureController.php"
+#    type:     annotation
+#
+#app_commande:
+#    resource: "@AppBundle/Controller/CommandeController.php"
+#    type:     annotation
+#
+#app_reservation:
+#    resource: "@AppBundle/Controller/ReservationController.php"
+#    type:     annotation
+#
+#app_place:
+#    resource: "@AppBundle/Controller/PlaceController.php"
+#    type:     annotation
 
-app_modedepaiement:
-    resource: "@AppBundle/Controller/ModeDePaiementController.php"
-    type:     annotation
 
-app_service:
-    resource: "@AppBundle/Controller/ServiceController.php"
-    type:     annotation
-
-app_produit:
-    resource: "@AppBundle/Controller/ProduitController.php"
-    type:     annotation
-
-app_salle:
-    resource: "@AppBundle/Controller/SalleController.php"
-    type:     annotation
-
-app_annonce:
-    resource: "@AppBundle/Controller/AnnonceController.php"
-    type:     annotation
-
-app_facture:
-    resource: "@AppBundle/Controller/FactureController.php"
-    type:     annotation
-
-app_commande:
-    resource: "@AppBundle/Controller/CommandeController.php"
-    type:     annotation
-
-app_reservation:
-    resource: "@AppBundle/Controller/ReservationController.php"
-    type:     annotation
-
-app_place:
-    resource: "@AppBundle/Controller/PlaceController.php"
-    type:     annotation
 
 gc_user:
     resource: "@GCUserBundle/Resources/config/routing.yml"
@@ -59,8 +65,11 @@ gc_home:
     prefix:   /
 
 app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix: /
+#app:
+#    resource: '@AppBundle/Controller/'
+#    type: annotation
 
 api:
     resource: '@AppBundle/Resources/config/routing_api.yml'
