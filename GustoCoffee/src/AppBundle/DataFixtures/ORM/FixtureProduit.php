@@ -40,7 +40,7 @@ class FixtureProduit extends AbstractFixture implements OrderedFixtureInterface
         $item1->setQuantiteenstock(100);
         $item1->setStatutproduit(0);
         $item1->setImage("");
-        $item1->setTva($this->getReference('_reference_Proxies__CG__AppBundleEntityTva0'));
+        $item1->setTva($this->getReference('_reference_Proxies__CG__AppBundleEntityTva'));
         $item1->setUpdatedAt(new \DateTime("-0001-11-30 00:00:00"));
         $item1->setCreatedAt(new \DateTime("-0001-11-30 00:00:00"));
         $this->addReference('_reference_AppBundleEntityProduit1', $item1);
@@ -53,7 +53,7 @@ class FixtureProduit extends AbstractFixture implements OrderedFixtureInterface
         $item2->setQuantiteenstock(50);
         $item2->setStatutproduit(0);
         $item2->setImage("");
-        $item2->setTva($this->getReference('_reference_Proxies__CG__AppBundleEntityTva0'));
+        $item2->setTva($this->getReference('_reference_Proxies__CG__AppBundleEntityTva'));
         $item2->setUpdatedAt(new \DateTime("-0001-11-30 00:00:00"));
         $item2->setCreatedAt(new \DateTime("-0001-11-30 00:00:00"));
         $this->addReference('_reference_AppBundleEntityProduit2', $item2);

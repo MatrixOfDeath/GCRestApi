@@ -1,0 +1,51 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="span3">
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Nos produits</li>
+                    {#{% render(controller('AppBundle:Categorie:menu')) %}#}
+                </ul>
+            </div>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                Connecté
+            {% else %}
+                Vous inscrire ?
+            {% endif %}
+            {{  render(controller('AppBundle:Panier:menu')) }}
+        </div>
+
+        <div class="span9">
+            {% if produits|length != 0 %}
+                <ul class="thumbnails">
+                    {% for produit in produits %}
+                        <li class="span3">
+                            <div class="thumbnail">
+                                <img src="{{ asset('uploads/images/products/'~ produit.image) }}" alt="{{ produit.nomproduit }}" width="300" height="150">
+                                <div class="caption">
+                                    <h4>{{ produit.nomproduit }}</h4>
+                                    <p>{{ produit.prixproduit|tva(produit.tva.multiplicate) }} €</p>
+                                    <a class="btn btn-primary" href="{{ path('presentation_produit', { 'id' : produit.idproduit }) }}">Plus d'infos</a>
+                                    {% if panier[produit.idproduit] is not defined %}
+                                        <a class="btn btn-success" href="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}">Ajouter au panier</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                {#<div class="navigation">#}
+                    {#{{ knp_pagination_render(produits) }}#}
+                {#</div>#}
+
+            {% else %}
+                Aucun produit
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

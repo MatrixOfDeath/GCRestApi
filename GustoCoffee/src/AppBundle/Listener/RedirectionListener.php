@@ -26,7 +26,7 @@ class RedirectionListener
     {
         $route = $event->getRequest()->attributes->get('_route');
 
-        if ($route == 'livraison' || $route == 'validation') {
+        if ($route == 'livraison_panier' || $route == 'validation_panier') {
             if ($this->session->has('panier')) {
                 if (count($this->session->get('panier')) == 0)
                     $event->setResponse(new RedirectResponse($this->router->generate('panier')));

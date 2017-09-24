@@ -4,7 +4,7 @@
 {% set totalTTC = 0%}
 {% set refTva = {} %}
 {% for produit in produits %}
-    {#{% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : 0 }) %}#}
+    {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : 0 }) %}
 {% endfor %}
 
 {% block body %}
@@ -49,37 +49,37 @@
                     <tr>
                         <form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">
                             <td>{{ produit.nomproduit }}</td>
-                            {#<td>#}
-                                {#<select name="qte" class="span1" onChange="this.form.submit()">#}
-                                    {#{% for i in 1..10 %}#}
-                                        {#<option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>#}
-                                    {#{% endfor %}#}
-                                {#</select>&nbsp;#}
-                                {#<a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}"><i class="icon-trash"></i></a>#}
-                            {#</td>#}
-                            {#<td>{{ produit.prixproduit }} €</td>#}
-                            {#<td>{{ produit.prixproduit * panier[produit.idproduit] }} €</td>#}
-                        {#</form>#}
-                    {#</tr>#}
-                    {#{% set totalHT = totalHT + (produit.prixproduit * panier[produit.idproduit]) %}#}
-                    {#{% set totalTTC = totalTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}#}
-                    {#{% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + ( produit.prix * panier[produit.id])|montantTva(produit.tva.multiplicate) }) %}#}
+                            <td>
+                                <select name="qte" class="span1" onChange="this.form.submit()">
+                                    {% for i in 1..10 %}
+                                        <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>
+                                    {% endfor %}
+                                </select>&nbsp;
+                                <a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}"><i class="icon-trash"></i></a>
+                            </td>
+                            <td>{{ produit.prixproduit }} €</td>
+                            <td>{{ produit.prixproduit * panier[produit.idproduit] }} €</td>
+                        </form>
+                    </tr>
+                    {% set totalHT = totalHT + (produit.prixproduit * panier[produit.idproduit]) %}
+                    {% set totalTTC = totalTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}
+                    {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + ( produit.prixproduit * panier[produit.idproduit])|montantTva(produit.tva.multiplicate) }) %}
                     {% endfor %}
                 </tbody>
             </table>
-            {#{% if produits|length != 0 %}#}
-            {#<dl class="dl-horizontal pull-right">#}
-                {#<dt>Total HT :</dt><dd>{{ totalHT }} €</dd>#}
-                {##}
-                {#{% for key, tva in refTva %}#}
-                    {#<dt>TVA {{ key }} :</dt><dd>{{ tva }} €</dd>#}
-                {#{% endfor %}#}
+            {% if produits|length != 0 %}
+            <dl class="dl-horizontal pull-right">
+                <dt>Total HT :</dt><dd>{{ totalHT }} €</dd>
 
-                {#<dt>Total TTC :</dt><dd>{{ totalTTC }} €</dd>#}
-            {#</dl>#}
+                {% for key, tva in refTva %}
+                    <dt>TVA {{ key }} :</dt><dd>{{ tva }} €</dd>
+                {% endfor %}
+
+                <dt>Total TTC :</dt><dd>{{ totalTTC }} €</dd>
+            </dl>
             <div class="clearfix"></div>
             <a href="{{ path('livraison_panier') }}" class="btn btn-success pull-right">Valider mon panier</a>
-            {#{% endif %}#}
+            {% endif %}
             <a href="{{ path('produit_index') }}" class="btn btn-primary">Continuer mes achats</a>
         </div>
 

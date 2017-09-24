@@ -144,11 +144,14 @@ class Personne extends BaseUser
      */
     private $addOnEmails;
 
+    /**
+     * Personne constructor.
+     */
     public function __construct()
     {
         parent::__construct();
         $this->addOnEmails = new ArrayCollection();
-        $this->commandes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->commandes = new ArrayCollection();
 
     }
     /**
@@ -516,6 +519,16 @@ class Personne extends BaseUser
     public function setTelephone($telephone)
     {
         $this->telephone = $telephone;
+    }
+
+    /**
+     * Get commandes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
     }
 
     /**

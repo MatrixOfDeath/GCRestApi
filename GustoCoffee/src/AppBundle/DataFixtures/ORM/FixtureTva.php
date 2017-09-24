@@ -1,12 +1,12 @@
 <?php
-namespace Ecommerce\EcommerceBundle\DataFixtures\ORM;
+namespace AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Ecommerce\EcommerceBundle\Entity\Tva;
+use AppBundle\Entity\Tva;
 
-class TvaData extends AbstractFixture implements OrderedFixtureInterface
+class FixtureTva extends AbstractFixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {

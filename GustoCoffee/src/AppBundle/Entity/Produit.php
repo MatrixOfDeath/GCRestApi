@@ -9,7 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Produit
  *
- * @ORM\Table(name="Produit", indexes={@ORM\Index(name="quantiteEnStock", columns={"quantiteEnStock"}), @ORM\Index(name="FK_Produit_idTypeProduit", columns={"idTypeProduit"}), @ORM\Index(name="FK_Produit_idStatutProduit", columns={"idStatutProduit"})})
+ * @ORM\Table(name="Produit", indexes={@ORM\Index(name="quantiteEnStock", columns={"quantiteEnStock"}),
+ *     @ORM\Index(name="FK_Produit_idTypeProduit", columns={"idTypeProduit"}),
+ *     @ORM\Index(name="FK_Produit_idStatutProduit", columns={"idStatutProduit"}),
+ *     @ORM\Index(name="FK_Ligne_Facture_idTva", columns={"idTva"}),
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProduitsRepository")
  * @Vich\Uploadable()
  * @ORM\HasLifecycleCallbacks()
@@ -95,8 +99,9 @@ class Produit
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva", cascade={"persist"})
-     * @ORM\JoinColumn(name="idTva", referencedColumnName="idTva", nullable=false)
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva", inversedBy="idtva")
+     * @ORM\JoinColumn(name="idTva", referencedColumnName="idTva")
      */
     private $tva;
 

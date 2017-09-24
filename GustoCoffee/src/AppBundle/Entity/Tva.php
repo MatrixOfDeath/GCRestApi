@@ -59,6 +59,29 @@ class Tva
     private $multiplicate;
 
     /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tva", mappedBy="tva")
+     *
+     */
+    private $tva;
+
+    /**
+     * @return mixed
+     */
+    public function getTva()
+    {
+        return $this->tva;
+    }
+
+    /**
+     * @param mixed $tva
+     */
+    public function setTva($tva)
+    {
+        $this->tva = $tva;
+    }
+
+    /**
      * Set valeur
      *
      * @param float $valeur
@@ -193,4 +216,5 @@ class Tva
     {
         return $this->multiplicate;
     }
+
 }

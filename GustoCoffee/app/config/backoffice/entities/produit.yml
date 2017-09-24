@@ -11,6 +11,7 @@ easy_admin:
                     - { property: 'imageFile', type: 'vich_image' }
                     - { property: 'quantiteEnStock', type: 'text'}
                     - { property: 'statutProduit', type: 'text'}
+                    - 'tva'
             list:
                 title: 'Listes des Produits'
                 fields:
@@ -21,6 +22,7 @@ easy_admin:
                     - { property: 'image', type: 'image', base_path: %app.path.products_images% }
                     - { property: 'quantiteEnStock', type: 'text'}
                     - { property: 'statutProduit', type: 'text'}
+                    - 'tva'
 
             show:
                 title: 'Show des Produits'
@@ -34,3 +36,4 @@ easy_admin:
                     - { property: 'image', type: 'image', base_path: %app.path.products_images% }
                     - { property: 'quantiteEnStock', type: 'text'}
                     - { property: 'statutProduit', type: 'text'}
+                    - 'tva'

@@ -5,10 +5,12 @@
     <div class="row">
         
         <div class="span3">
-            <ul class="nav nav-list">
-                <li class="nav-header">Nos produits</li>
-                {% render(controller('AppBundle:Categorie:menu')) %}
-            </ul>
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">Nos produits</li>
+                    {% render(controller('AppBundle:Categorie:menu')) %}
+                </ul>
+            </div>
         </div>
         
         <div class="span9">
@@ -71,7 +73,7 @@
             <form action="{{ path('validationCommande', { 'id' : commande.id }) }}" method="POST"/>
                 <input name="token" type="hidden" value="{{ commande.commande.token }}" />
                 <input name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
-                <input name="date" type="hidden" value="{{ commande.date|date('dmyhms') }}" />
+                <input name="date" type="hidden" value="{{ commande.datecommande|date('dmyhms') }}" />
                 <button type="submit" class="btn btn-success pull-right">Payer</button>
             </form>
             

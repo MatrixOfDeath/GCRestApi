@@ -27,7 +27,7 @@ class PanierController extends Controller
         else
             $articles = count($session->get('panier'));
         
-        return $this->render('panier/layout/panier.html.twig', array(
+        return $this->render('panier/panier.html.twig', array(
             'articles' => $articles
         ));
     }
@@ -47,7 +47,7 @@ class PanierController extends Controller
         if (!$session->has('panier')) $session->set('panier', array());
 
         $em = $this->getDoctrine()->getManager();
-        $produits = $em->getRepository('AppBundle:Produit')->findBy(array_keys($session->get('panier')));
+        $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($session->get('panier')));
 
         return $this->render('panier/layout/panier.html.twig', array(
             'produits' => $produits,

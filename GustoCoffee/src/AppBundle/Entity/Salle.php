@@ -89,7 +89,6 @@ class Salle
     public function __construct()
     {
         $this->reservation = new ArrayCollection();
-
     }
 
     /**

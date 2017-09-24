@@ -1,5 +1,5 @@
 <?php
-namespace Ecommerce\EcommerceBundle\Command;
+namespace AppBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -11,7 +11,7 @@ class FacturesCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
-        $this->setName('ecommerce:facture')
+        $this->setName('gustocoffee:facture')
              ->setDescription('Ceci est un premier test')
              ->addArgument('date', InputArgument::OPTIONAL, 'Date pour laquel vous souhaitez récuperer les factures');
     }
@@ -20,7 +20,7 @@ class FacturesCommand extends ContainerAwareCommand
     {
         $date = new \DateTime();
         $em = $this->getContainer()->get('doctrine')->getManager();
-        $factures = $em->getRepository('EcommerceBundle:Commandes')->byDateCommand($input->getArgument('date'));
+        $factures = $em->getRepository('AppBundle:Commande')->byDateCommand($input->getArgument('date'));
         
         $output->writeln(count($factures).' facture(s).');
         

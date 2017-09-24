@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LigneFacture
  *
- * @ORM\Table(name="Ligne_Facture", indexes={@ORM\Index(name="FK_Ligne_Facture_idFacture", columns={"idFacture"}), @ORM\Index(name="FK_Ligne_Facture_idTva", columns={"idTva"})})
+ * @ORM\Table(name="Ligne_Facture", indexes={
+ *     @ORM\Index(name="FK_Ligne_Facture_idFacture", columns={"idFacture"})})
  * @ORM\Entity
  */
 class LigneFacture
@@ -31,15 +32,15 @@ class LigneFacture
      */
     private $idfacture;
 
-    /**
-     * @var \AppBundle\Entity\Tva
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idTva", referencedColumnName="idTva")
-     * })
-     */
-    private $idtva;
+//    /**
+//     * @var \AppBundle\Entity\Tva
+//     *
+//     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva")
+//     * @ORM\JoinColumns({
+//     *   @ORM\JoinColumn(name="idTva", referencedColumnName="idTva")
+//     * })
+//     */
+//    private $idtva;
 
 
 
@@ -77,27 +78,27 @@ class LigneFacture
         return $this->idfacture;
     }
 
-    /**
-     * Set idtva
-     *
-     * @param \AppBundle\Entity\Tva $idtva
-     *
-     * @return LigneFacture
-     */
-    public function setIdtva(\AppBundle\Entity\Tva $idtva = null)
-    {
-        $this->idtva = $idtva;
-
-        return $this;
-    }
-
-    /**
-     * Get idtva
-     *
-     * @return \AppBundle\Entity\Tva
-     */
-    public function getIdtva()
-    {
-        return $this->idtva;
-    }
+//    /**
+//     * Set idtva
+//     *
+//     * @param \AppBundle\Entity\Tva $idtva
+//     *
+//     * @return LigneFacture
+//     */
+//    public function setIdtva(\AppBundle\Entity\Tva $idtva = null)
+//    {
+//        $this->idtva = $idtva;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get idtva
+//     *
+//     * @return \AppBundle\Entity\Tva
+//     */
+//    public function getIdtva()
+//    {
+//        return $this->idtva;
+//    }
 }

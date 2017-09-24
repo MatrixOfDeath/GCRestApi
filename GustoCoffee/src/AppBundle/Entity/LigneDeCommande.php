@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LigneDeCommande
  *
- * @ORM\Table(name="Ligne_de_Commande", indexes={@ORM\Index(name="FK_Ligne_de_Commande_idCommande", columns={"idCommande"}), @ORM\Index(name="FK_Ligne_de_Commande_idReservation", columns={"idReservation"})})
+ * @ORM\Table(name="Ligne_de_Commande")
+ *
  * @ORM\Entity
  */
 class LigneDeCommande
@@ -28,9 +29,9 @@ class LigneDeCommande
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="idLigneDeCommande", type="integer")
      * @ORM\Id
+     * @ORM\Column(name="idLigneDeCommande", type="integer")
+     *
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $idlignedecommande;
@@ -38,26 +39,25 @@ class LigneDeCommande
     /**
      * @var \AppBundle\Entity\Commande
      *
-     *
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Commande")
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Commande", inversedBy="commande")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idCommande", referencedColumnName="idCommande")
      * })
      */
     private $idcommande;
 
-    /**
-     * @var \AppBundle\Entity\Reservation
-     *
-     *
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Reservation")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idReservation", referencedColumnName="idReservation")
-     * })
-     */
-    private $idreservation;
+//    /**
+//     * @var \AppBundle\Entity\Reservation
+//     *
+//     * @ORM\Id
+//     * @ORM\GeneratedValue(strategy="IDENTITY")
+//     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Reservation")
+//     * @ORM\JoinColumns({
+//     *   @ORM\JoinColumn(name="idReservation", referencedColumnName="idReservation")
+//     * })
+//     */
+//    private $idreservation;
 
 
     /**
@@ -156,27 +156,27 @@ class LigneDeCommande
         return $this->idcommande;
     }
 
-    /**
-     * Set idreservation
-     *
-     * @param \AppBundle\Entity\Reservation $idreservation
-     *
-     * @return LigneDeCommande
-     */
-    public function setIdreservation(\AppBundle\Entity\Reservation $idreservation)
-    {
-        $this->idreservation = $idreservation;
-
-        return $this;
-    }
-
-    /**
-     * Get idreservation
-     *
-     * @return \AppBundle\Entity\Reservation
-     */
-    public function getIdreservation()
-    {
-        return $this->idreservation;
-    }
+//    /**
+//     * Set idreservation
+//     *
+//     * @param \AppBundle\Entity\Reservation $idreservation
+//     *
+//     * @return LigneDeCommande
+//     */
+//    public function setIdreservation(\AppBundle\Entity\Reservation $idreservation)
+//    {
+//        $this->idreservation = $idreservation;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get idreservation
+//     *
+//     * @return \AppBundle\Entity\Reservation
+//     */
+//    public function getIdreservation()
+//    {
+//        return $this->idreservation;
+//    }
 }

@@ -9,7 +9,12 @@ use Symfony\Component\Validator\Constraints\Date;
 /**
  * Reservation
  *
- * @ORM\Table(name="Reservation", indexes={@ORM\Index(name="FK_Reservation_idFermeture", columns={"idFermeture"}), @ORM\Index(name="FK_Reservation_idPersonne", columns={"idPersonne"}), @ORM\Index(name="FK_Reservation_idModePaiement", columns={"idModePaiement"}), @ORM\Index(name="FK_Reservation_idMagasin", columns={"idMagasin"}), @ORM\Index(name="FK_Reservation_idOuverture", columns={"idOuverture"})})
+ * @ORM\Table(name="Reservation", indexes={
+ *     @ORM\Index(name="FK_Reservation_idFermeture", columns={"idFermeture"}),
+ *     @ORM\Index(name="FK_Reservation_idPersonne", columns={"idPersonne"}),
+ *     @ORM\Index(name="FK_Reservation_idModePaiement", columns={"idModePaiement"}),
+ *     @ORM\Index(name="FK_Reservation_idMagasin", columns={"idMagasin"}),
+ *     @ORM\Index(name="FK_Reservation_idOuverture", columns={"idOuverture"})})
  * @ORM\Entity
  */
 class Reservation

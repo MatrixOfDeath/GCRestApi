@@ -15,6 +15,7 @@ use Nelmio\ApiDocBundle\Annotation\Operation;
 use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Security\Core\Authentication;
+use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -90,7 +91,7 @@ class CommandeController extends FOSRestController
     /**
      * Finds and displays a commande entity.
      *
-     * @Route("/{idcommande}", name="commande_show")
+     * @Route("/{idcommande}", name="commande_show", requirements={"idcommande": "\d+"})
      * @Method("GET")
      */
     public function showAction(Commande $commande)
@@ -106,7 +107,7 @@ class CommandeController extends FOSRestController
     /**
      * Displays a form to edit an existing commande entity.
      *
-     * @Route("/{idcommande}/edit", name="commande_edit")
+     * @Route("/{idcommande}/edit", name="commande_edit", requirements={"idcommande": "\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Commande $commande)
@@ -131,7 +132,7 @@ class CommandeController extends FOSRestController
     /**
      * Deletes a commande entity.
      *
-     * @Route("/{idcommande}", name="commande_delete")
+     * @Route("/{idcommande}", name="commande_delete", requirements={"idcommande": "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Commande $commande)
@@ -165,14 +166,18 @@ class CommandeController extends FOSRestController
     }
 
     /**
-     * @param Sesssion $session
+     *
+     * @Route("/facture", name="facture")
+     * @param Session $session
      * @return array
      */
     public function facture(Session $session)
     {
         $em = $this->getDoctrine()->getManager();
-        $generator = $this->container->get('security.secure_random');
+
+        //$generator = $this->container->get('security.secure_random');
         //$session = $this->getRequest()->getSession();
+
         $adresse = $session->get('adresse');
         $panier = $session->get('panier');
         $commande = array();
@@ -196,8 +201,8 @@ class CommandeController extends FOSRestController
 
             $totalTVA += round($prixTTC - $prixHT,2);
 
-            $commande['produit'][$produit->getId()] = array('reference' => $produit->getNom(),
-                'quantite' => $panier[$produit->getId()],
+            $commande['produit'][$produit->getIdproduit()] = array('reference' => $produit->getNom(),
+                'quantite' => $panier[$produit->getIdproduit()],
                 'prixHT' => round($produit->getPrix(),2),
                 'prixTTC' => round($produit->getPrix() / $produit->getTva()->getMultiplicate(),2));
         }
@@ -205,24 +210,16 @@ class CommandeController extends FOSRestController
         $commande['livraison'] = array('prenom' => $livraison->getPrenom(),
             'nom' => $livraison->getNom(),
             'telephone' => $livraison->getTelephone(),
-            'adresse' => $livraison->getAdresse(),
-            'cp' => $livraison->getCp(),
-            'ville' => $livraison->getVille(),
-            'pays' => $livraison->getPays(),
-            'complement' => $livraison->getComplement());
+            'adresse' => $livraison->getAdresse());
 
         $commande['facturation'] = array('prenom' => $facturation->getPrenom(),
             'nom' => $facturation->getNom(),
             'telephone' => $facturation->getTelephone(),
-            'adresse' => $facturation->getAdresse(),
-            'cp' => $facturation->getCp(),
-            'ville' => $facturation->getVille(),
-            'pays' => $facturation->getPays(),
-            'complement' => $facturation->getComplement());
+            'adresse' => $facturation->getAdresse());
 
         $commande['prixHT'] = round($totalHT,2);
         $commande['prixTTC'] = round($totalHT + $totalTVA,2);
-        $commande['token'] = bin2hex($generator->nextBytes(20));
+        $commande['token'] = bin2hex(random_bytes(20));
 
         return $commande;
     }
@@ -237,7 +234,7 @@ class CommandeController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
 
         if (!$session->has('commande'))
-            $commande = new Commandes();
+            $commande = new Commande();
         else
             $commande = $em->getRepository('AppBundle:Commande')->find($session->get('commande'));
 
@@ -245,7 +242,7 @@ class CommandeController extends FOSRestController
         $commande->setUtilisateur($this->container->get('security.token_storage')->getToken()->getUser());
         $commande->setValider(0);
         $commande->setReference(0);
-        $commande->setCommande($this->facture());
+        $commande->setCommande($this->facture($session));
 
         if (!$session->has('commande')) {
             $em->persist($commande);
@@ -254,7 +251,7 @@ class CommandeController extends FOSRestController
 
         $em->flush();
 
-        return new Response($commande->getId());
+        return new Response($commande->getIdcommande());
     }
 
     /*
@@ -289,6 +286,6 @@ class CommandeController extends FOSRestController
         $this->get('mailer')->send($message);
 
         $session->getFlashBag()->add('success','Votre commande est validé avec succès');
-        return $this->redirect($this->generateUrl('factures'));
+        return $this->redirect($this->generateUrl('facture'));
     }
 }

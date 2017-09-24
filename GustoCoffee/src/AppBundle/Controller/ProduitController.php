@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Produit;
+use AppBundle\Entity\TypeDeProduit;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,6 +13,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Swagger\Annotations as SWG;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 
 /**
  * Produit controller.
@@ -90,7 +93,7 @@ class ProduitController extends FOSRestController
     /**
      * Finds and displays a produit entity.
      *
-     * @Route("/{idproduit}", name="produit_show")
+     * @Route("/{idproduit}", name="produit_show", requirements={"idproduit": "\d+"})
      * @Method("GET")
      */
     public function showAction(Produit $produit)
@@ -106,7 +109,7 @@ class ProduitController extends FOSRestController
     /**
      * Displays a form to edit an existing produit entity.
      *
-     * @Route("/{idproduit}/edit", name="produit_edit")
+     * @Route("/{idproduit}/edit", name="produit_edit", requirements={"idproduit": "\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Produit $produit)
@@ -131,7 +134,7 @@ class ProduitController extends FOSRestController
     /**
      * Deletes a produit entity.
      *
-     * @Route("/{idproduit}", name="produit_delete")
+     * @Route("/{idproduit}", name="produit_delete", requirements={"idproduit": "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Produit $produit)
@@ -163,4 +166,83 @@ class ProduitController extends FOSRestController
             ->getForm()
         ;
     }
+
+    /**
+     * @Route("/produits", name="produits_index")
+     * @param Session $session
+     * @param TypeDeProduit|null $categorie
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function produitsAction(Session $session, Request $request, TypeDeProduit $categorie = null)
+    {
+        //$session = $this->getRequest()->getSession();
+        $em = $this->getDoctrine()->getManager();
+
+        if ($categorie != null)
+            $findProduits = $em->getRepository('AppBundle:Produit')->byCategorie($categorie);
+        else
+            //Todo: Géré le statut produit après !
+            // $findProduits = $em->getRepository('AppBundle:Produit')->findBy(array('disponible' => 1));
+            $findProduits = $em->getRepository('AppBundle:Produit')->findAll();
+
+        if ($session->has('panier'))
+            $panier = $session->get('panier');
+        else
+            $panier = false;
+
+        //$produits = $this->get('knp_paginator')->paginate($findProduits,$this->get('request')->query->get('page', 1),3);
+        $produits = $em->getRepository('AppBundle:Produit')->findAll();
+
+        return $this->render('produit/produits.html.twig', array(
+            'produits' => $produits,
+            'panier' => $panier)
+        );
+    }
+
+    /**
+     * @Route("/presentation/{id}", name="presentation_produit", requirements={"id": "\d+"})
+     * @param Session $session
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function presentationAction(Session $session, $id)
+    {
+        //$session = $this->getRequest()->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $produit = $em->getRepository('AppBundle:Produit')->find($id);
+
+        if (!$produit) throw $this->createNotFoundException('La page n\'existe pas.');
+
+        if ($session->has('panier'))
+            $panier = $session->get('panier');
+        else
+            $panier = false;
+
+        return $this->render('produit/presentation.html.twig', array(
+            'produit' => $produit,
+            'panier' => $panier));
+    }
+
+//    public function rechercheAction()
+//    {
+//        $form = $this->createForm(new RechercheType());
+//        return $this->render('EcommerceBundle:Default:Recherche/modulesUsed/recherche.html.twig', array('form' => $form->createView()));
+//    }
+//
+//    public function rechercheTraitementAction()
+//    {
+//        $form = $this->createForm(new RechercheType());
+//
+//        if ($this->get('request')->getMethod() == 'POST')
+//        {
+//            $form->bind($this->get('request'));
+//            $em = $this->getDoctrine()->getManager();
+//            $produits = $em->getRepository('EcommerceBundle:Produits')->recherche($form['recherche']->getData());
+//        } else {
+//            throw $this->createNotFoundException('La page n\'existe pas.');
+//        }
+//
+//        return $this->render('EcommerceBundle:Default:produits/layout/produits.html.twig', array('produits' => $produits));
+//    }
+
 }

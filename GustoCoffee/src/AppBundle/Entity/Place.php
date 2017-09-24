@@ -45,8 +45,6 @@ class Place
      */
     private $idsalle;
 
-
-
     /**
      * Set nomplace
      *
