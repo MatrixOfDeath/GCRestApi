@@ -16,7 +16,8 @@ Encore
         './web/assets/js/scripts.js',
         './web/assets/js/fixdiv.js',
         './web/assets/js/modal.js',
-        './web/assets/js/reservation/checkDispoDate.js'
+        './web/assets/js/reservation/checkDispoDate.js',
+        './web/assets/js/reservation/ajaxAjoutProduitPanier.js'
 
     ])
 

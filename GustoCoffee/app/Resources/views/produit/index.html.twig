@@ -20,18 +20,12 @@
     <div class="row">
         <div class="col-md-3">
             <div class="col-xs-12">
-                {# Choix de la date #}
                 <div id="room-search-form">
                     <div id="reservation-date-picker" class="form-group">
                         <label>{{ "Résumé de votre commande"|trans }}</label>
-                        <div class="test">
-                           <h3> {{ "Montant à payer :"|trans }}
-                                {% set total = 0 %}
-                                {% for produit in produits %}
-                                    {% set total = total + (produit.prixproduit * 1) %}
-                                {% endfor %}
-
-                                {{ total }}€
+                        <div class="montant">
+                           <h3 id="montapayer"> {{ "Montant à payer :"|trans }}
+                                <span id="montantapayer"></span>
                            </h3>
                         </div>
                     </div>
@@ -58,11 +52,11 @@
                         </p>
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
-                                <p class="{{ produit.idproduit }}" class="lead&quot;">Prix du service : {{ produit.prixproduit }}€</p>
+                                <p id="prix{{ produit.idproduit }}" class="lead&quot;">Prix du service : {{ produit.prixproduit }}€</p>
                             </div>
 
                             <div class="col-xs-12 col-md-6">
-                                <select name="selectQuantite" id="{{ produit.idproduit }}">
+                                <select name="selectQuantite" id="qte{{ produit.idproduit }}" onchange="ajaxAjoutProduiPanier()">
                                     {% for salle in salles | slice(0,1) %}
                                         {% if salle.capacitymax == 4 %}
                                         <option value="0">0</option>
@@ -92,55 +86,12 @@
     </div>
 {% endblock %}
 
-{#
-{% block secondBlock %}
 
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <table style="width: 100%;">
-                <thead>
-                <tr>
-                    <th>Nom du service</th>
-                    <th>Prix du service</th>
-                    <th>Description</th>
-                    <th>Quantité</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for produit in produits %}
-                    <tr>
-                        <td><a href="{{ path('produit_show', { 'idproduit': produit.idproduit }) }}">{{ produit.nomproduit }}</a></td>
-                        <td>{{ produit.prixproduit }}</td>
-                        <td>{{ produit.description }}</td>
-                        <td>
-                            #}
-{# <a href="{{ path('produit_show', { 'idproduit': produit.idproduit }) }}">test</a>#}{#
+{% block script %}
 
-                            #}
-{#{{ form_widget(form.quantite, {'idproduit': produit.idproduit}) }}#}{#
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/reservation/ajaxAjoutProduitPanier.js') }}"></script>
 
-                            {{ form_widget(form.quantite, {'id':  produit.idproduit })}}
-                            #}
-{#  <select name="selectQuantite" id="{{ produit.idproduit }}"></select>#}{#
-
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <h4>Prix : </h4>
-            <div class="form-connexion">
-                <input class="buttonInscription centerText" type="submit" value="Commander">
-            </div>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
-    {
-{% endblock %}#}
+{% endblock %}
