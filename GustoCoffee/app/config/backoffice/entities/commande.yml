@@ -9,4 +9,8 @@ easy_admin:
                 fields: ['dateCommande', 'idDemandeProduit', 'idModePaiement', 'idPersonne']
             list:
                 title: 'Les Commandes'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
                 fields: ['dateCommande', 'idDemandeProduit', 'idModePaiement', 'idPersonne']

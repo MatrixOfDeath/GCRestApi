@@ -2,9 +2,9 @@ gc_reservation_page:
     path:    /reservation
     defaults: { _controller: GCReservationBundle:Default:index }
 
-gc_private_page:
-    path:    /reservation-private
-    defaults: { _controller: GCReservationBundle:Default:private }
+#gc_private_page:
+#    path:    /reservation-private
+#    defaults: { _controller: GCReservationBundle:Default:private }
 
 gc_sallea_page:
     path:    /reservation-private-a

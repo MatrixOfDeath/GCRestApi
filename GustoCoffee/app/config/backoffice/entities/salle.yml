@@ -11,6 +11,10 @@ easy_admin:
                   - 'idmagasin'
           list:
               title: 'Listes des Salles'
+              actions:
+                  - { name: 'show', label: '', icon: 'search' }
+                  - { name: 'edit', label: '', icon: 'edit' }
+                  - { name: 'delete', label: '', icon: 'trash' }
               fields:
                   - 'idsalle'
                   - { property: 'nomSalle', sortable: true }

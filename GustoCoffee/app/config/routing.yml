@@ -1,3 +1,7 @@
+app_type_de_produit:
+    resource: "@AppBundle/Controller/TypeDeProduitController.php"
+    type:     annotation
+
 app_ligne_facture:
     resource: "@AppBundle/Controller/LigneFactureController.php"
     type:     annotation

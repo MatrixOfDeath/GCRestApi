@@ -34,6 +34,7 @@ class Magasin
      */
 
     private $telephone;
+
     /**
      * @var integer
      *
@@ -41,7 +42,6 @@ class Magasin
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-
     private $idmagasin;
 
     /**
@@ -52,11 +52,35 @@ class Magasin
     private $idsalle;
 
     /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GrilleTarifaire", mappedBy="idmagasin")
+     *
+     */
+    private $idgrilletarifaire;
+
+    /**
+     * @return mixed
+     */
+    public function getIdgrilletarifaire()
+    {
+        return $this->idgrilletarifaire;
+    }
+
+    /**
+     * @param mixed $idgrilletarifaire
+     */
+    public function setIdgrilletarifaire($idgrilletarifaire)
+    {
+        $this->idgrilletarifaire = $idgrilletarifaire;
+    }
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->idsalle = new ArrayCollection();
+        $this->idgrilletarifaire = new ArrayCollection();
     }
 
 
@@ -174,4 +198,6 @@ class Magasin
     {
         $this->telephone = $telephone;
     }
+
+
 }

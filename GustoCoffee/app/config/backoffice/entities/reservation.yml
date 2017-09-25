@@ -7,4 +7,8 @@ easy_admin:
                 fields: ['dateReservation', 'heureDebut', 'heureFin', 'remarqueReservation', 'commentaireClient', 'idMagasin', 'idModePaiement']
             list:
                 title: 'Les Réservations'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
                 fields: ['dateReservation', 'heureDebut', 'heureFin', 'remarqueReservation', 'commentaireClient', 'idMagasin', 'idModePaiement']

@@ -153,6 +153,8 @@ class Personne extends BaseUser
         $this->addOnEmails = new ArrayCollection();
         $this->commandes = new ArrayCollection();
 
+        $this->newsletter = false;
+
     }
     /**
      * @param string $email

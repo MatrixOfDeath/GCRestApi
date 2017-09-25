@@ -14,6 +14,7 @@ use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * Salle controller.
@@ -80,9 +81,15 @@ class SalleController extends FOSRestController
      * @Route("/reservation-private", name="salle_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Session $session)
     {
         $em = $this->getDoctrine()->getManager();
+
+        if ($session->has('panier'))
+            $panier = $session->get('panier');
+        else
+            $panier = false;
+
 
         $sallesDispoNow = $this->checkDisponibiliteSalle(new \DateTime(date('y-m-d H:m:s')), new \DateTime(date('y-m-d H:m:s', strtotime('+1 hour'))));
 
@@ -93,10 +100,10 @@ class SalleController extends FOSRestController
             'salles' => $sallesDispoNow,
             'heureDebutChoix' => $actualDate->format('H'),
             'heureFinChoix' => $actualDate->add(new \DateInterval('PT1H'))->format('H'),
-            'dateChoix' => $actualDate->format("d/m/Y")
+            'dateChoix' => $actualDate->format("d/m/Y"),
+            'panier' => $panier,
         ));
     }
-
 
     /** TODO: change to salles_disponible_by_date
      * @Route("/disponible", options={"expose"=true}, name="salles_disponible")
@@ -276,6 +283,60 @@ class SalleController extends FOSRestController
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/salles", name="salles_index")
+     * @param Session $session
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function sallesAction(Session $session, Request $request)
+    {
+        //$session = $this->getRequest()->getSession();
+        $em = $this->getDoctrine()->getManager();
+
+
+            //Todo: Géré le statut salle après !
+            // $findProduits = $em->getRepository('AppBundle:Salle')->findBy(array('disponible' => 1));
+        $salles = $em->getRepository('AppBundle:Salle')->findAll();
+
+        if ($session->has('panier_salle'))
+            $panier_salle = $session->get('panier_salle');
+        else
+            $panier_salle = false;
+
+        //$produits = $this->get('knp_paginator')->paginate($findProduits,$this->get('request')->query->get('page', 1),3);
+        $salles = $em->getRepository('AppBundle:Salle')->findAll();
+
+        return $this->render('produit/produits.html.twig', array(
+                'salles' => $salles,
+                'panier_salle' => $panier_salle)
+        );
+    }
+
+    /**
+     * @Route("/presentation/{id}", name="presentation_salle", requirements={"id": "\d+"})
+     * @param Session $session
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function presentationAction(Session $session, $id)
+    {
+        //$session = $this->getRequest()->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $salle= $em->getRepository('AppBundle:Salle')->find($id);
+
+        if (!$salle) throw $this->createNotFoundException('La page n\'existe pas.');
+
+        if ($session->has('panier_salle'))
+            $panier_salle = $session->get('panier_salle');
+        else
+            $panier_salle = false;
+
+        return $this->render('produit/presentation.html.twig', array(
+            'salle' => $salle,
+            'panier_salle' => $panier_salle));
     }
 
 }

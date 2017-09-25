@@ -15,7 +15,7 @@
             <div class="well">
                 <ul class="nav nav-list">
                     <li class="nav-header">Nos produits</li>
-                    {# render(controller('AppBundle:Product:menu')) #}
+                    {{   render(controller('AppBundle:TypeDeProduit:menu')) }}
                 </ul>
             </div>
         </div>
@@ -29,6 +29,44 @@
             {% endfor %}
             
             <h2>Votre panier</h2>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Salle choisi</th>
+                    <th>Nombre d'heures</th>
+                    <th>Prix unitaire</th>
+                    <th>Total TTC</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if salles|length == 0 %}
+                    <tr>
+                        <td colspan="4"><center>Aucune salle sélectionner dans votre panier</center></td>
+                    </tr>
+                {% endif %}
+
+                {%  for salle in salles %}
+                    <tr>
+                        <form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">
+                            <td>{{ salle.nomsalle }}</td>
+                            <td>
+                                <select name="qte" class="span1" onChange="this.form.submit()">
+                                    {% for i in 1..10 %}
+                                        <option value="{{ i }}" {% if i == panier_salle[salle.idsalle] %} selected="selected" {% endif %}>{{ i }}</option>
+                                    {% endfor %}
+                                </select>&nbsp;
+                                <a href="{{ path('delete_panier_salle', { 'id' : salle.idsalle }) }}"><i class="icon-trash"></i></a>
+                            </td>
+                            <td>{{ dump(salle.idmagasin.idgrilletarifaire) }} €</td>
+                            {#<td>{{ salle.prixsalle * panier[salle.idsalle] }} €</td>#}
+                        </form>
+                    </tr>
+                    {#{% set totalSalleTTC = totaSalleTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}#}
+
+            {%  endfor %}
+                </tbody>
+            </table>
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -39,12 +77,15 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     {% if produits|length == 0 %}
                         <tr>
                             <td colspan="4"><center>Aucun articles dans votre panier</center></td>
                         </tr>
                     {% endif %}
-                    
+
+
+
                     {% for produit in produits %}
                     <tr>
                         <form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">
@@ -80,7 +121,7 @@
             <div class="clearfix"></div>
             <a href="{{ path('livraison_panier') }}" class="btn btn-success pull-right">Valider mon panier</a>
             {% endif %}
-            <a href="{{ path('produit_index') }}" class="btn btn-primary">Continuer mes achats</a>
+            <a href="{{ path('produits_index') }}" class="btn btn-primary">Continuer mes achats</a>
         </div>
 
     </div>
