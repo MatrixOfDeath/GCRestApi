@@ -66,8 +66,18 @@
   border-style: none;
 }
 
-#getFixed {
-  position: fixed;
+#chooseDate {
+  position: relative;
   top: 275px;
-  background-color: white;
+}
+
+@media screen and (max-width: 991px) {
+  #chooseDate{
+    position: inherit;
+    margin-bottom: 30px;
+  }
+
+  .buttonInscriptionResponsive {
+    width: 100%;
+  }
 }
