@@ -29,9 +29,9 @@
 {% block body %}
 
     {% block navbar %}
-        <div class="container-fluid">
-            <div class="row {% block firstImg %}{% endblock %}">
-                <div class="col-md-12">
+    <div class="container-fluid">
+        <div class="row {% block firstImg %}{% endblock %}">
+            <div class="col-md-12">
                 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
@@ -39,7 +39,8 @@
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                                 <span class="sr-only">Toggle navigation</span> {{ 'Menu'|trans }} <i class="fa fa-bars"></i>
                             </button>
-                            <div class="home"><a class="navbar-brand page-scroll" href="{{ path('gc_home_page') }}">
+                            <div class="home">
+                                <a class="navbar-brand page-scroll" href="{{ path('gc_home_page') }}">
                                     <img alt="GustoCoffee" src="{{ asset('img/gc_logo.png') }}" />
                                 </a>
                             </div>
@@ -143,7 +144,7 @@
     {% endblock %}
 
     {% block footer %}
-        <footer class="footer">
+        {#<footer class="footer">
             <div class="row">
                 <div class="col-md-12">
                     <p>
@@ -157,10 +158,37 @@
                     </p>
                 </div>
             </div>
-        </footer>
-    {% endblock %}
+        </footer>#}
     </div>
+        <footer class="footer flex-rw">
+            <ul class="footer-list-top">
+                <li><h4 class="footer-list-header">A Propos de GustoCoffee</h4></li>
+                <li><a href="{{ asset('pdf/mentionsLegales.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Mentions Légales"|trans }}</a></li>
+                <li><a href="{{ asset('pdf/CGU.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Conditions Générales d'Utilisation"|trans }}</a></li>
+                <li><a href="{{ asset('pdf/CGV.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Conditions Générales de Vente"|trans }}</a></li>
+                <li><a href='#' class="generic-anchor footer-list-anchor">{{ "Recrutement"|trans }}</a></li>
+            </ul>
+            <ul class="footer-list-top">
+                <li><h4 class="footer-list-header">Nos Réseaux Sociaux</h4></li>
+                <li><a href="https://www.facebook.com/GustoCoffeeKASAgency/" class="generic-anchor footer-list-anchor" target="_blank">FaceBook</a></li>
+                <li><a href='#' class="generic-anchor footer-list-anchor" target="_blank">Twitter</a></li>
+                <li><a href='#' class="generic-anchor footer-list-anchor" target="_blank">Instagram</a></li>
+            </ul>
+            <ul class="footer-list-top">
+                <li id='help'><h4 class="footer-list-header">Besoin d'aide ?</h4></li>
+                <li><a href="{{ path('gc_contact_page') }}" class="generic-anchor footer-list-anchor">Contact</a></li>
+                <li><a href='#' class="generic-anchor footer-list-anchor">{{ "FAQ"|trans }}</a></li>
+            </ul>
 
+            <section class="footer-bottom-section flex-rw">
+                <div class="footer-bottom-wrapper">
+                    <i class="fa fa-copyright" role="copyright">
+                    </i> 2017 GustoCoffee <address class="footer-address" role="company address">Paris, France</address><span class="footer-bottom-rights"> - Tous droits réservés - </span>
+                </div>
+            </section>
+        </footer>
+
+    {% endblock %}
     {% block script %}
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
