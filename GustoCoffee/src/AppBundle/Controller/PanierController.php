@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Form\PersonneType;
 use AppBundle\Entity\Personne;
@@ -34,9 +35,16 @@ class PanierController extends Controller
         else
             $nbsalles = count($session->get('panier_salle'));
 
+        if (!$session->has('totalTTC'))
+            $totalTTC = 0;
+        else
+            $totalTTC = $session->get('totalTTC');
+
+
         return $this->render('panier/panier.html.twig', array(
             'articles' => $articles,
             'salles' => $nbsalles,
+            'totalTTC' => $totalTTC
         ));
     }
 
@@ -53,6 +61,7 @@ class PanierController extends Controller
     {
         if (!$session->has('panier')) $session->set('panier', array());
         if (!$session->has('panier_salle')) $session->set('panier_salle', array());
+        if (!$session->has('totalTTC')) $session->set('totalTTC', 0);
 
         $em = $this->getDoctrine()->getManager();
         $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($session->get('panier')));
@@ -67,6 +76,35 @@ class PanierController extends Controller
     }
 
     /**
+     * Index panier session.
+     *
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @Route("/ajax-panier", options={"expose"=true}, name="panier_ajax")
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxPanierAction(SessionInterface $session)
+    {
+        if (!$session->has('panier')) $session->set('panier', array());
+        if (!$session->has('panier_salle')) $session->set('panier_salle', array());
+        if (!$session->has('totalTTC')) $session->set('totalTTC', 0);
+
+        $em = $this->getDoctrine()->getManager();
+        $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($session->get('panier')));
+        $salles = $em->getRepository('AppBundle:Salle')->findArray(array_keys($session->get('panier_salle')));
+
+        $htmlToRender = $this->renderView('panier/layout/ajaxpanier.html.twig', array(
+            'produits' => $produits,
+            'salles' => $salles,
+            'panier' => $session->get('panier'),
+            'panier_salle' => $session->get('panier_salle'),
+        ));
+
+        return new Response ($htmlToRender);
+    }
+
+    /**
      * Delete panier session.
      *
      * @Route("/delete/{id}", name="delete_panier")
@@ -75,20 +113,14 @@ class PanierController extends Controller
     public function supprimerAction(SessionInterface $session, $id)
     {
         $panier = $session->get('panier');
-        $panier_salle = $session->get('panier_salle');
-        
+
         if (array_key_exists($id, $panier))
         {
             unset($panier[$id]);
             $session->set('panier',$panier);
             $this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
         }
-        if (array_key_exists($id, $panier_salle))
-        {
-            unset($panier_salle[$id]);
-            $session->set('panier_salle',$panier_salle);
-            $this->get('session')->getFlashBag()->add('success','Salle supprimé avec succès');
-        }
+
         return $this->redirect($this->generateUrl('panier')); 
     }
 
@@ -146,45 +178,64 @@ class PanierController extends Controller
         return $this->redirect($this->generateUrl('panier'));
     }
 
+
     /**
-     * Ajout panier salle session.
      * @param SessionInterface $session
      * @param Request $request
      * @param $id
-     * @return RedirectResponse
+     * @return RedirectResponse|Response
      * @Route("/ajouter-salle/{id}", options={"expose"=true}, name="ajout_panier_salle")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function ajouterSalleAction(SessionInterface $session, Request $request, $id)
     {
         if (!$session->has('panier_salle')) $session->set('panier_salle',array());
-
         $panier_salle = $session->get('panier_salle');
 
+        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('id')) {
+            $heureChoixDebut = $request->request->get('heureChoixDebut');
+            $heureChoixFin = $request->request->get('heureChoixFin');
+            $id = $request->request->get('id');
 
-        if (array_key_exists($id, $panier_salle)) {
-            if ($request->query->get('heure') != null) $panier_salle[$id] = $request->query->get('heure');
-            $session->getFlashBag()->add('success','Nombre d\'heure modifié avec succès');
-        } else {
-            if ($request->query->get('heure') != null)
-                $panier_salle[$id] = $request->query->get('heure');
-            else
-                $panier_salle[$id] = 1;
+            if (array_key_exists($id, $panier_salle)) {
+                if ($request->query->get('heure') != null) $panier_salle[$id] = $request->query->get('heure');
+                $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');
+            } else {
+                if ($request->query->get('heure') != null)
+                    $panier_salle[$id] = $request->query->get('heure');
+                else
+                    $panier_salle[$id] = 1;
 
-            $session->getFlashBag()->add('success','Salle ajouté avec succès');
+                $session->getFlashBag()->add('success', 'Salle ajouté avec succès');
+            }
+            $session->set('panier_salle', $panier_salle);
+
+            $htmlToRender = $this->renderView('panier/layout/panier.html.twig', array(
+                'heureDebutChoix' => (new \DateTime($heureChoixDebut))->format('H'),
+                'heureFinChoix' => (new \DateTime($heureChoixFin))->format('H'),
+                'dateChoix' => (new \DateTime($heureChoixDebut))->format('d/m/Y')
+            ));
+
+            return new Response ($htmlToRender);
+
+        }else {
+
+            if (array_key_exists($id, $panier_salle)) {
+                if ($request->query->get('heure') != null) $panier_salle[$id] = $request->query->get('heure');
+                $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');
+            } else {
+                if ($request->query->get('heure') != null)
+                    $panier_salle[$id] = $request->query->get('heure');
+                else
+                    $panier_salle[$id] = 1;
+
+                $session->getFlashBag()->add('success', 'Salle ajouté avec succès');
+            }
+
+            $session->set('panier_salle', $panier_salle);
+
+            return $this->redirect($this->generateUrl('panier'));
         }
-
-//        $htmlToRender = $this->renderView('salle/sallesDisponible.html.twig', array(
-//            'salles' => $sallesDispo,
-//            'heureDebutChoix' => (new \DateTime($heureChoixDebut))->format('H'),
-//            'heureFinChoix' => (new \DateTime($heureChoixFin))->format('H'),
-//            'dateChoix' => (new \DateTime($heureChoixDebut))->format('d/m/Y')
-//        ));
-//        return new Response ($htmlToRender);
-
-        $session->set('panier_salle',$panier_salle);
-
-        return $this->redirect($this->generateUrl('panier'));
     }
 
     /**

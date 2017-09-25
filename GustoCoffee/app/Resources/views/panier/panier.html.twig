@@ -1,6 +1,7 @@
 <div class="well">
     <ul class="nav nav-list">
-        <li class="nav-header"></li>
+        <li class="nav-header">Voici ce que vous avez dans votre panier:</li>
+        {% if articles is defined %}
         <li>
             <a href="{{ path('panier') }}">
                 {% if articles == 0 %}
@@ -12,14 +13,25 @@
                 {% endif %}
             </a>
         </li>
+        {% endif %}
+        {% if salles is defined %}
         <li>
-            {% if salles == 0 %}
-                <span class="panier-salle-none-selected">{{  "Aucune salle sélectionner !"|trans }}</span>
-            {% elseif salles == 1 %}
-                {{  "Une salle choisie"|trans}}
-            {% else %}
-                {{ salles }} {{ "salles choisies"|trans }}
-            {% endif %}
+            <a href="{{ path('panier') }}">
+                {% if salles == 0 %}
+                    <span class="panier-salle-none-selected">{{  "Aucune salle sélectionner !"|trans }}</span>
+                {% elseif salles == 1 %}
+                    {{  "Une salle choisie"|trans}}
+                {% else %}
+                    {{ salles }} {{ "salles choisies"|trans }}
+                {% endif %}
+            </a>
+        </li>
+        {% endif %}
+        <li>
+            {{ dump(totalTTC) }}
+            {% if totalTTC is defined or totalTTC|length != 0 %}
+                {#{{ 'Montant Total TTC =' ~ totalTTC ~ '€' }}#}
+            {% endif  %}
         </li>
     </ul>
 </div>
