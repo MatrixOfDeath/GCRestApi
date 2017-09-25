@@ -136,22 +136,23 @@ class PanierController extends Controller
     /** TODO: Appeler cela une facturation
      *
      * @Route("/livraison", name="livraison_panier")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function livraisonAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+        //var_dump($utilisateur);  die();
         $personne = new Personne();
-        $form = $this->createForm('AppBundle\Form\PersonneType', $personne);
+        $form = $this->createForm('AppBundle\Form\PersonneType', $utilisateur);
         
         if ($request->getMethod() == 'POST')
         {
             $form->handleRequest($request);
             if ($form->isValid()) {
-                $em = $this->getDoctrine()->getManager();
-                $personne->setPersonne($utilisateur);
-                $em->persist($personne);
+                //$em = $this->getDoctrine()->getManager();
+                //$personne->setPersonne($utilisateur);
+                $em->persist($utilisateur);
                 $em->flush();
                 
                 return $this->redirect($this->generateUrl('livraison_panier'));
@@ -190,12 +191,12 @@ class PanierController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/validation", name="validation_panier")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
-    public function validationAction(Request $request)
+    public function validationAction(Request $request, SessionInterface $session)
     {
         if ($request->getMethod() == 'POST') {
-            $this->setLivraisonOnSession();
+            $this->setLivraisonOnSession($request, $session);
         }
         
         $em = $this->getDoctrine()->getManager();

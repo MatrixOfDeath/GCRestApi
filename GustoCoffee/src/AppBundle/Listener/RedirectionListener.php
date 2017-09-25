@@ -19,7 +19,7 @@ class RedirectionListener
     {
         $this->session = $session;
         $this->router = $container->get('router');
-        $this->securityContext = $container->get('security.authorization_checker');
+        $this->securityContext = $container->get('security.token_storage');
     }
 
     public function onKernelRequest(GetResponseEvent $event)

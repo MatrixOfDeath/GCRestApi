@@ -201,10 +201,10 @@ class CommandeController extends FOSRestController
 
             $totalTVA += round($prixTTC - $prixHT,2);
 
-            $commande['produit'][$produit->getIdproduit()] = array('reference' => $produit->getNom(),
+            $commande['produit'][$produit->getIdproduit()] = array('reference' => $produit->getNomproduit(),
                 'quantite' => $panier[$produit->getIdproduit()],
-                'prixHT' => round($produit->getPrix(),2),
-                'prixTTC' => round($produit->getPrix() / $produit->getTva()->getMultiplicate(),2));
+                'prixHT' => round($produit->getPrixproduit(),2),
+                'prixTTC' => round($produit->getPrixproduit() / $produit->getTva()->getMultiplicate(),2));
         }
 
         $commande['livraison'] = array('prenom' => $livraison->getPrenom(),
@@ -238,8 +238,8 @@ class CommandeController extends FOSRestController
         else
             $commande = $em->getRepository('AppBundle:Commande')->find($session->get('commande'));
 
-        $commande->setDate(new \DateTime());
-        $commande->setUtilisateur($this->container->get('security.token_storage')->getToken()->getUser());
+        $commande->setDatecommande(new \DateTime());
+        $commande->setPersonne($this->container->get('security.token_storage')->getToken()->getUser());
         $commande->setValider(0);
         $commande->setReference(0);
         $commande->setCommande($this->facture($session));

@@ -12,7 +12,7 @@
                         <form action="{{ path('validation_panier') }}" method="POST">
                             
                             <h4>Adresse de livraison</h4>
-                            {% for adresse in utilisateur.adresses %}
+                            {% for adresse in utilisateur.adresse %}
                             <label class="radio">
                                 <input type="radio" name="livraison" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
                                 {{ adresse.adresse }}, {{ adresse.cp }} {{ adresse.ville }} - {{ adresse.pays }} <a href="{{ path('livraisonAdresseSuppression', { 'id' : adresse.id }) }}"><i class="icon-trash"></i></a>
@@ -23,7 +23,7 @@
                             <br /><br />
                             
                             <h4>Adresse de facturation</h4>
-                            {% for adresse in utilisateur.adresses %}
+                            {% for adresse in utilisateur.adresse %}
                             <label class="radio">
                                 <input type="radio" name="facturation" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
                                 {{ adresse.adresse }}, {{ adresse.cp }} {{ adresse.ville }} - {{ adresse.pays }} <a href="{{ path('livraisonAdresseSuppression', { 'id' : adresse.id }) }}"><i class="icon-trash"></i></a>
