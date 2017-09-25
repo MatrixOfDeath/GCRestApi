@@ -40,6 +40,15 @@
         <div class="col-md-3"></div>
     </div>
         <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                {{ form_label(edit_form.categorieAnnonce) }}
+                {{ form_widget(edit_form.categorieAnnonce) }}
+                {{ form_errors(edit_form.categorieAnnonce) }}
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row">
             <div class="col-md-12">
                 <div class="datecreationAnnonce" style="display: none">
                     {{ form_label(edit_form.datecreation) }}

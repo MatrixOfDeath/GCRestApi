@@ -33,10 +33,15 @@
                     <th>{{ 'Corps' |trans }}</th>
                     <td>{{ annonce.corps }}</td>
              </tr>
+              <tr>
+                  <th>{{ "Catégorie de l'annonce" |trans }}</th>
+                  <td>{{ annonce.categorieAnnonce }}</td>
+              </tr>
             <tr>
                 <th>{{ 'Date de création'|trans }}</th>
                 <td>{% if annonce.datecreation %}{{ annonce.datecreation|date('Y-m-d') }}{% endif %}</td>
             </tr>
+
             </tbody>
         </table>
     </div>
