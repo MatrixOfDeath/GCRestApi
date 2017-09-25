@@ -1,9 +1,9 @@
-{% extends "::layout/layout.html.twig" %}
+{% extends "::base.html.twig" %}
 
 {% block titre %}{{ produit.nom }}{% endblock %}
 {% block description %}{{ produit.description }}{% endblock %}
 
-{% block body %}
+{% block firstBlock %}
 <div class="container">
     <div class="row">
 
@@ -14,7 +14,7 @@
                     {#{% render(controller('AppBundle:Categorie:menu')) %}#}
                 </ul>
             </div>
-            {% render(controller('AppBundle:Panier:menu')) %}
+            {{  render(controller('AppBundle:Panier:menu')) }}
             </div>	
 
             <div class="span9">
@@ -28,7 +28,7 @@
                         <h5>{{ produit.idtypeproduit.nomtype }}</h5>
                         <p>{{ produit.description }}</p>
                         <h4>{{ produit.prixproduit|tva(produit.tva.multiplicate) }} €</h4>
-                        {% if panier[produit.id] is not defined %}
+                        {% if panier[produit.idproduit] is not defined %}
                         <form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">
                             <select name="qte" class="span1">
                                 {% for i in 1..10 %}
