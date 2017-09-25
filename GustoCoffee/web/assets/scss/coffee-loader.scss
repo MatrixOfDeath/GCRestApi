@@ -1,5 +1,6 @@
 $width: 200px;
 $color: #313131;
+$background-color-lightgrey:#d2d2d2;
 
 //div.coffee-loader-container{
 //  position:absolute;
@@ -17,13 +18,18 @@ $color: #313131;
 //  }
 //}
 .coffee-loader-container{
-  background-color: #9b9b9b;
+  background-color: $background-color-lightgrey;
   display: block;
   position: relative;
   min-height:500px;
   h2{
     text-align:center; color:#fff; font-weight:100; font-size:3em
   };
+}
+img.logo-top-coffee-loader{
+  width:70px;
+  margin-top:15px;
+  margin-left:70px;
 }
 .coffee-maker {
   display: inline-block;

@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Swagger\Annotations as SWG;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 /**
@@ -169,11 +169,11 @@ class ProduitController extends FOSRestController
 
     /**
      * @Route("/produits", name="produits_index")
-     * @param Session $session
+     * @param SessionInterface $session
      * @param TypeDeProduit|null $categorie
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function produitsAction(Session $session, Request $request, TypeDeProduit $categorie = null)
+    public function produitsAction(SessionInterface $session, Request $request, TypeDeProduit $categorie = null)
     {
         //$session = $this->getRequest()->getSession();
         $em = $this->getDoctrine()->getManager();
@@ -201,11 +201,11 @@ class ProduitController extends FOSRestController
 
     /**
      * @Route("/presentation/{id}", name="presentation_produit", requirements={"id": "\d+"})
-     * @param Session $session
+     * @param SessionInterface $session
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function presentationAction(Session $session, $id)
+    public function presentationAction(SessionInterface $session, $id)
     {
         //$session = $this->getRequest()->getSession();
         $em = $this->getDoctrine()->getManager();

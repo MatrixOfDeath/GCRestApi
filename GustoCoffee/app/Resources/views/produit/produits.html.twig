@@ -7,7 +7,7 @@
             <div class="well">
                 <ul class="nav nav-list">
                     <li class="nav-header">Nos produits</li>
-                    {#{% render(controller('AppBundle:Categorie:menu')) %}#}
+                    {{  render(controller('AppBundle:TypeDeProduit:menu')) }}
                 </ul>
             </div>
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}

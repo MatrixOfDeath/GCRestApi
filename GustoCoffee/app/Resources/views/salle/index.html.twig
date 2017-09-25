@@ -40,6 +40,9 @@
                     </button>
                 </div>
             </div>
+            <div class="row">
+                {{  render(controller('AppBundle:Panier:menu')) }}
+            </div>
         </div>
 
         <div class="col-md-2">
@@ -68,7 +71,6 @@
 
             </div>
             <div class="row">
-
                 {# On appelle le template salleDisponible en embed #}
                 <div id="display-salle" class="row list-group">
                     {% embed ":salle:sallesDisponible.html.twig" %}

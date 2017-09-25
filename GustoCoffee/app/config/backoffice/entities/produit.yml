@@ -24,7 +24,7 @@ easy_admin:
                     - { property: 'nomProduit', type: 'text'}
                     - { property: 'prixProduit', label: 'Prix en €', type: 'text', help: 'Prix en € Hors Taxe' }
                     - { property: 'description', type: 'text'}
-                    - { property: 'image', type: 'image', base_path: %app.path.products_images% }
+                    - { property: 'image', type: 'image', base_path: '%app.path.products_images%' }
                     - { property: 'quantiteEnStock', type: 'text'}
                     - 'tva'
                     - 'idtypeproduit'
@@ -39,7 +39,7 @@ easy_admin:
                     - { property: 'nomProduit', type: 'text'}
                     - { property: 'prixProduit', label: 'Prix en €', type: 'float', help: 'Prix en € Hors Taxe' }
                     - { property: 'description', type: 'text'}
-                    - { property: 'image', type: 'image', base_path: %app.path.products_images% }
+                    - { property: 'image', type: 'image', base_path: '%app.path.products_images%' }
                     - { property: 'quantiteEnStock', type: 'text'}
                     - { property: 'statutProduit', type: 'text'}
                     - 'tva'

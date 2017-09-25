@@ -60,7 +60,7 @@ class Tva
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tva", mappedBy="tva")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Produit", mappedBy="idtva")
      *
      */
     private $tva;

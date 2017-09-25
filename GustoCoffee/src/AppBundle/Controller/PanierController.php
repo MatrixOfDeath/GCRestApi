@@ -152,7 +152,7 @@ class PanierController extends Controller
      * @param Request $request
      * @param $id
      * @return RedirectResponse
-     * @Route("/ajouter-salle/{id}", name="ajout_panier_salle")
+     * @Route("/ajouter-salle/{id}", options={"expose"=true}, name="ajout_panier_salle")
      * @Method("GET")
      */
     public function ajouterSalleAction(SessionInterface $session, Request $request, $id)
@@ -173,6 +173,14 @@ class PanierController extends Controller
 
             $session->getFlashBag()->add('success','Salle ajouté avec succès');
         }
+
+//        $htmlToRender = $this->renderView('salle/sallesDisponible.html.twig', array(
+//            'salles' => $sallesDispo,
+//            'heureDebutChoix' => (new \DateTime($heureChoixDebut))->format('H'),
+//            'heureFinChoix' => (new \DateTime($heureChoixFin))->format('H'),
+//            'dateChoix' => (new \DateTime($heureChoixDebut))->format('d/m/Y')
+//        ));
+//        return new Response ($htmlToRender);
 
         $session->set('panier_salle',$panier_salle);
 

@@ -12,5 +12,14 @@
                 {% endif %}
             </a>
         </li>
+        <li>
+            {% if salles == 0 %}
+                <span class="panier-salle-none-selected">{{  "Aucune salle sélectionner !"|trans }}</span>
+            {% elseif salles == 1 %}
+                {{  "Une salle choisie"|trans}}
+            {% else %}
+                {{ salles }} {{ "salles choisies"|trans }}
+            {% endif %}
+        </li>
     </ul>
 </div>

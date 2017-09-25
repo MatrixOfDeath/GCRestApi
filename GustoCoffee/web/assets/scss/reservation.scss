@@ -2,6 +2,11 @@
   background-image: url("../img/backReservation.jpeg");
 }
 
+//Panier
+.panier-salle-none-selected{
+  color:darkred;
+}
+
 .tablePrice {
   display: flex;
   justify-content: space-around;

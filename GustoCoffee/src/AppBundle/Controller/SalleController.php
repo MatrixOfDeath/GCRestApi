@@ -14,7 +14,7 @@ use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Salle controller.
@@ -81,14 +81,14 @@ class SalleController extends FOSRestController
      * @Route("/reservation-private", name="salle_index")
      * @Method("GET")
      */
-    public function indexAction(Session $session)
+    public function indexAction(SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
 
-        if ($session->has('panier'))
-            $panier = $session->get('panier');
+        if ($session->has('panier_salle'))
+            $panier_salle = $session->get('panier_salle');
         else
-            $panier = false;
+            $panier_salle = false;
 
 
         $sallesDispoNow = $this->checkDisponibiliteSalle(new \DateTime(date('y-m-d H:m:s')), new \DateTime(date('y-m-d H:m:s', strtotime('+1 hour'))));
@@ -101,7 +101,7 @@ class SalleController extends FOSRestController
             'heureDebutChoix' => $actualDate->format('H'),
             'heureFinChoix' => $actualDate->add(new \DateInterval('PT1H'))->format('H'),
             'dateChoix' => $actualDate->format("d/m/Y"),
-            'panier' => $panier,
+            'panier' => $panier_salle,
         ));
     }
 
@@ -287,11 +287,11 @@ class SalleController extends FOSRestController
 
     /**
      * @Route("/salles", name="salles_index")
-     * @param Session $session
+     * @param SessionInterface $session
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function sallesAction(Session $session, Request $request)
+    public function sallesAction(SessionInterface $session, Request $request)
     {
         //$session = $this->getRequest()->getSession();
         $em = $this->getDoctrine()->getManager();
@@ -317,11 +317,11 @@ class SalleController extends FOSRestController
 
     /**
      * @Route("/presentation/{id}", name="presentation_salle", requirements={"id": "\d+"})
-     * @param Session $session
+     * @param SessionInterface $session
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function presentationAction(Session $session, $id)
+    public function presentationAction(SessionInterface $session, $id)
     {
         //$session = $this->getRequest()->getSession();
         $em = $this->getDoctrine()->getManager();

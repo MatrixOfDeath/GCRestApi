@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Swagger\Annotations as SWG;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -168,10 +168,10 @@ class CommandeController extends FOSRestController
     /**
      *
      * @Route("/facture", name="facture")
-     * @param Session $session
+     * @param SessionInterface $session
      * @return array
      */
-    public function facture(Session $session)
+    public function facture(SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -225,10 +225,10 @@ class CommandeController extends FOSRestController
     }
 
     /**
-     * @param Session $session
+     * @param SessionInterface $session
      * @return Response
      */
-    public function prepareCommandeAction(Session $session)
+    public function prepareCommandeAction(SessionInterface $session)
     {
         //$session = $this->getRequest()->getSession();
         $em = $this->getDoctrine()->getManager();
@@ -257,7 +257,7 @@ class CommandeController extends FOSRestController
     /*
      * Cette methode remplace l'api paypal.
      */
-    public function validationCommandeAction(Request $request, Session $session, $id)
+    public function validationCommandeAction(Request $request, SessionInterface $session, $id)
     {
         $em = $this->getDoctrine()->getManager();
         $commande = $em->getRepository('AppBundle:Commande')->find($id);

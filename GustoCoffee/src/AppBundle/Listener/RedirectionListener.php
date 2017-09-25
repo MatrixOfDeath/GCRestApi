@@ -9,13 +9,13 @@
 namespace AppBundle\Listener;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class RedirectionListener
 {
-    public function __construct(ContainerInterface $container, Session $session)
+    public function __construct(ContainerInterface $container, SessionInterface $session)
     {
         $this->session = $session;
         $this->router = $container->get('router');
