@@ -18,9 +18,7 @@
 
 {% block firstBlock %}
     <div class="row addPadding">
-
         <div class="col-md-2" id="getFixed" role="navigation">
-
             <div class="row">
                 <div class="col-xs-12">
                     {# Choix de la date #}
@@ -29,7 +27,6 @@
                             <label> {{  "Choisir votre date"|trans }} </label>
                             <input id="datepicker" type="text" name="reservation-date" value="{{ 'now'|date('d/m/Y', "Europe/Paris") }}">
                             <input type="hidden" id="datepicker-altFormat" name="begin_date" />
-
                         </div>
                     </form>
                 </div>

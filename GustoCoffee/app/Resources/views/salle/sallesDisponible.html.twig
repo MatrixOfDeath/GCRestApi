@@ -42,7 +42,6 @@
          {% set count = count + 1 %}
             <div class="col-md-4 cardSalle">
                 <div class="thumbnail">
-                    {#     <div class="col-md-12" style="background-color: red; height: 35px;">#}
                     <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}"><img class="group list-group-image" src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="Salle privatisée"></a>
                     <div class="caption">
                         <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}"></a>
@@ -63,7 +62,8 @@
                 </div>
             </div>
 
-        {#{% elseif salle.capacitymax >= 10 %}#}
+
+            {#{% elseif salle.capacitymax >= 10 %}#}
             {#{{ "Aucune salle privée n'est disponible, cliquez sur l'open-spaces pour réserver votre place"|trans }}#}
             {#<div class="col-md-3 cardReservation">#}
                 {#<div class="chooseCard">#}
