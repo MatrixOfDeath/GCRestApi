@@ -164,3 +164,17 @@
   color: white;
 }
 
+@media only screen and (max-width: 991px) {
+  .slider {
+    width: 100%;
+  }
+  .placeIndividuelle {
+    float: inherit;
+  }
+  .card {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+

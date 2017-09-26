@@ -290,6 +290,9 @@ footer {
   display: inline;
   font-style: normal
 }
+
+
+
 @media only screen and (max-width: 768px) {
   .footer-list-header {
     font-size: 2em
@@ -305,6 +308,9 @@ footer {
   }
   .footer-bottom-wrapper {
     font-size: 1.3em
+  }
+  .sticky-container {
+    display: none;
   }
 }
 @media only screen and (max-width: 568px) {
