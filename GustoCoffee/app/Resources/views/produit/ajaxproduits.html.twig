@@ -1,0 +1,44 @@
+{% for produit in produits %}
+    <div class="col-md-3 cardSalle">
+        <div class="thumbnail">
+           <img class="group list-group-image" src="{{ asset('uploads/images/products/'~ produit.image) }}" alt="Salle privatisée"></a>
+            <div class="caption">
+                <h4 class="group inner list-group-item-heading">
+                    <p>{{ produit.nomproduit }}</p>
+                </h4>
+                <p class="group inner list-group-item-text">
+                    {{ produit.description }}
+                </p>
+                <div class="row">
+                    <div class="col-xs-12 col-md-6">
+                        <p class="{{ produit.idproduit }}" class="lead&quot;">Prix du service : {{ produit.prixproduit }}€</p>
+                    </div>
+
+                    <div class="col-xs-12 col-md-6">
+                        <select name="selectQuantite" id="{{ produit.idproduit }}">
+                            {% for salle in salles | slice(0,1) %}
+                                {% if salle.capacitymax == 4 %}
+                                <option value="0">0</option>
+                                <option selected value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                {% endif %}
+                                {% if salle.capacitymax == 6 %}
+                                    <option value="0">0</option>
+                                    <option selected value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>

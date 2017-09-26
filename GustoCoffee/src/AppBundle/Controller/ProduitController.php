@@ -14,6 +14,8 @@ use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\Response;
+
 
 
 /**
@@ -55,13 +57,32 @@ class ProduitController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $produits = $em->getRepository('AppBundle:Produit')->findAll();
 
-        $emSalle = $this->getDoctrine()->getManager();
-        $salles = $emSalle->getRepository('AppBundle:Salle')->findAll();
+        $salles = $em->getRepository('AppBundle:Salle')->findAll();
 
         return $this->render('produit/index.html.twig', array(
             'produits' => $produits,
             'salles' => $salles,
         ));
+    }
+
+    /**
+     * @Route("/ajax-produit", options={"expose"=true}, name="produits_ajax")
+     *
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxIndexAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $produits = $em->getRepository('AppBundle:Produit')->findAll();
+        $salles = $em->getRepository('AppBundle:Salle')->findAll();
+
+        $htmlToRender = $this->renderView('produit/ajaxproduits.html.twig', array(
+            'produits' => $produits,
+            'salles' => $salles,
+        ));
+
+        return new Response ($htmlToRender);
+
     }
 
     /**

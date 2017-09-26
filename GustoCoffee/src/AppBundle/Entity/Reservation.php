@@ -124,34 +124,6 @@ class Reservation
      */
     private $idpersonne;
 
-    // TODO: Supprimer tout les booleans on récuère via l'entité Produit !!
-//    /**
-//     * @var boolean
-//     *
-//     * @ORM\Column(name="petitDej", type="boolean", nullable=true)
-//     */
-//    private $petitDej = false;
-//
-//    /**
-//     * @var boolean
-//     *
-//     * @ORM\Column(name="dej", type="boolean", nullable=true)
-//     */
-//    private $dej = false;
-//
-//    /**
-//     * @var boolean
-//     *
-//     * @ORM\Column(name="diner", type="boolean", nullable=true)
-//     */
-//    private $diner = false;
-//
-//    /**
-//     * @var boolean
-//     *
-//     * @ORM\Column(name="bureautique", type="boolean", nullable=true)
-//     */
-//    private $bureautique = false;
 
 
     /**

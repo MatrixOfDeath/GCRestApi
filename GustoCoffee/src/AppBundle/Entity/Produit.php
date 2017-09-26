@@ -100,7 +100,7 @@ class Produit
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva", inversedBy="idtva")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva", inversedBy="tva")
      * @ORM\JoinColumn(name="idTva", referencedColumnName="idTva")
      */
     private $tva;

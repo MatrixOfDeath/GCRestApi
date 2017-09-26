@@ -15,6 +15,7 @@ use Swagger\Annotations as SWG;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 /**
  * Salle controller.
@@ -140,6 +141,26 @@ class SalleController extends FOSRestController
     }
 
     /**
+     * @Route("/disponible-ajax", options={"expose"=true}, name="salles_disponible_ajax")
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxCheckDispoSalle(Request $request)
+    {
+
+        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('idSalle') ) {
+            $heureChoixDebut = $request->request->get('heureChoixDebut');
+            $heureChoixFin = $request->request->get('heureChoixFin');
+            $idSalle = $request->request->get('idSalle');
+            $isDispo = $this->checkIfSalleDispo($heureChoixDebut, $heureChoixFin, $idSalle);
+
+            return new Response(json_encode($isDispo));
+
+        }else{
+            return new Response(json_encode('Incorrect parameters'));
+        }
+    }
+
+    /**
      * Creates a new salle entity.
      *
      * @Route("/new", name="salle_new")
@@ -233,6 +254,51 @@ class SalleController extends FOSRestController
     }
 
 
+
+    /**
+     * Verification si une salle est disponible selon un creneau horaire
+     * @param $heureChoixDebut
+     * @param $heureChoixFin
+     * @param $idsalle
+     * @return mixed
+     */
+    public function checkIfSalleDispo($heureChoixDebut, $heureChoixFin, $idsalle)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Salle');
+
+        $subQuery = $repository->createQueryBuilder('s_sub')
+            ->select('s_sub.idsalle')
+            ->leftJoin('s_sub.reservation', 'r')
+            //   ->where('r.heuredebut <= :heureChoixDebut')
+            //   ->andWhere('r.heurefin >= :heureChoixFin');
+            //   ->andwhere('r.heuredebut BETWEEN :heureChoixDebut AND :heureChoixFin')
+            //   ->orWhere('r.heurefin BETWEEN :heureChoixDebut AND :heureChoixFin');
+
+            ->andwhere('r.heuredebut < :heureChoixDebut')
+            ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+
+//            ->getQuery()
+//            ->getArrayResult();
+
+        $queryBuilder = $repository->createQueryBuilder('s');
+
+        $query = $queryBuilder
+            ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
+            ->andWhere('s.idsalle = :idsalle')
+            ->andWhere(':heureChoixDebut < :datenow')
+            ->setParameter('datenow', date("Y-m-d H:i:s"))
+            ->setParameter('idsalle', $idsalle)
+            ->setParameter('heureChoixDebut', $heureChoixDebut)
+            ->setParameter('heureChoixFin', $heureChoixFin);
+        //->setParameter('subQuery', $subQuery)
+        //->getQuery();
+        var_dump($query->getQuery()->getResult()) ;
+        return $query->getQuery()->getResult();
+    }
+
     /**
      * @param $heureChoixDebut
      * @param $heureChoixFin
@@ -260,8 +326,11 @@ class SalleController extends FOSRestController
             //->getArrayResult();
 
         $queryBuilder = $repository->createQueryBuilder('s');
+
         $query = $queryBuilder
             ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
+            ->andWhere(':heureChoixDebut < :datenow')
+            ->setParameter('datenow', date("Y-m-d H:i:s"))
             ->setParameter('heureChoixDebut', $heureChoixDebut)
             ->setParameter('heureChoixFin', $heureChoixFin);
             //->setParameter('subQuery', $subQuery)

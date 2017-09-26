@@ -26,9 +26,25 @@ class Commande
 
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="idcommande")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="reservation")
      */
-    private $commande;
+    private $reservation;
+
+    /**
+     * @return mixed
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * @param mixed $reservation
+     */
+    public function setReservation($reservation)
+    {
+        $this->reservation = $reservation;
+    }
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne", inversedBy="commandes")
