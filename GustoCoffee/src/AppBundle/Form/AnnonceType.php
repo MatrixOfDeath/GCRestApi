@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class AnnonceType extends AbstractType
 {
@@ -17,9 +18,14 @@ class AnnonceType extends AbstractType
             ->add('titre')
             ->add('corps')
             ->add('datecreation')
-            ->add('idpersonne');
+            ->add('categorieAnnonce', ChoiceType::class, array(
+                'choices' => array(
+                    'Recherche de partenariat(s)' => 'Recherche de Partenariat(s)',
+                    "Demande d'informations" => "Demande d'informations",
+                ),
+            ));
     }
-    
+
     /**
      * {@inheritdoc}
      */

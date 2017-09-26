@@ -15,7 +15,7 @@
 {% block titleHome %}
     {{ 'GustoCoffee - Annonces'|trans }}
 {% endblock %}
-{# ---------- First Block ---------- #}
+{# ---------- First Block - Dépôt d'annonce ---------- #}
 {% block firstBlock %}
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <a href="{{ path('fos_user_security_logout') }}"></a>
@@ -34,7 +34,7 @@
             </div>
             <div class="col-md-3"></div>
         </div>
-    <div class="row">
+         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 {{ form_label(form.corps) }}
@@ -42,7 +42,16 @@
                 {{ form_errors(form.corps) }}
             </div>
             <div class="col-md-3"></div>
-    </div>
+         </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                {{ form_label(form.categorieAnnonce) }}
+                {{ form_widget(form.categorieAnnonce) }}
+                {{ form_errors(form.categorieAnnonce) }}
+            </div>
+            <div class="col-md-3"></div>
+        </div>
             <div class="col-md-3"></div>
             <div class="col-md-6">
                 <input type="checkbox" id="showPhone" name="subscribe" value="CheckboxValue">
@@ -61,11 +70,7 @@
                     {{ form_errors(form.corps) }}
 
                  </div>
-                 <div class="idpersonneAnnonce" style="display: none">
-                    {{ form_label(form.idpersonne) }}
-                    {{ form_widget(form.idpersonne) }}
-                    {{ form_errors(form.idpersonne) }}
-                </div>
+
             </div>
         </div>
     <div class="col-md-12 form-connexion">
@@ -81,62 +86,68 @@
         <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
     {% endif %}
 {% endblock %}
-{# ---------- End First Block ---------- #}
+{# ---------- End First Block - Dépôt d'annonce---------- #}
 
+{# ---------- Second Block - Listing d'annonces ---------- #}
 {% block secondBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
             <h2 class="centerText">{{ 'Liste des Annonces'|trans }}</h2>
         </div>
     </div>
-    <table class="tableAnnonceList" align="center">
-        <thead>
+    <section>
+        <table class="tableAnnonceList" align="center">
+            <thead>
             <tr>
                 <th>{{ 'Titre'|trans }}</th>
                 <th>{{ 'Corps du message'|trans }}</th>
+                <th>{{ "Catégorie de l'annonce"|trans }}</th>
                 <th>{{ 'Date de création'|trans }}</th>
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <a href="{{ path('fos_user_security_logout') }}"></a>
-                <th>Actions</th>
-                {% else %}
-                    <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                {% endif %}
-            </tr>
-        </thead>
-        <tbody>
-        {% for annonce in annonces %}
-            <tr>
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <a href="{{ path('fos_user_security_logout') }}"></a>
-                <td><a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ annonce.titre }}</a></td>
-                {% else %}
-                    <td>{{ annonce.titre }}</td>
-                {% endif %}
-                <td>{{ annonce.corps }}</td>
-                <td>{% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</td>
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                <a href="{{ path('fos_user_security_logout') }}"></a>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">Montrer l'annonce</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">Éditer l'annonce</a>
-                        </li>
-                    </ul>
-                </td>
+                    <th>Actions</th>
                 {% else %}
                     <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                 {% endif %}
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for annonce in annonces %}
+                <tr>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <a href="{{ path('fos_user_security_logout') }}"></a>
+                        <td><a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ annonce.titre }}</a></td>
+                    {% else %}
+                        <td>{{ annonce.titre }}</td>
+                    {% endif %}
+                    <td>{{ annonce.corps }}</td>
+                    <td>{{ annonce.categorieAnnonce }}</td>
+                    <td>{% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</td>
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <a href="{{ path('fos_user_security_logout') }}"></a>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
+                                </li>
+                            </ul>
+                        </td>
+                    {% else %}
+                        <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
+{# ---------- End Second Block - Listing d'annonces ---------- #}
 
     {#<ul>#}
         {#<li>#}
             {#<a href="{{ path('annonce_new') }}">Create a new annonce</a>#}
         {#</li>#}
     {#</ul>#}
-{% endblock %}
