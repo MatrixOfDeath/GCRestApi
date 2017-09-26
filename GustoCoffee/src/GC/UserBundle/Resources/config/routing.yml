@@ -1,3 +1,7 @@
+gc_faq_page:
+    path: /faq
+    defaults: { _controller: GCUserBundle:Faq:index }
+
 gc_contact_page:
     path: /contact
     defaults: { _controller: GCUserBundle:Contact:index }
