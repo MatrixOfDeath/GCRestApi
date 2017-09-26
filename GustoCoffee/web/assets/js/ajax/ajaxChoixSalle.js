@@ -44,32 +44,35 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
                 async: true,
                 success: function (response, textStatus)
                 {
-                    $('.reservation-select-creneau').empty().append(response);
+                    if(response == '1') {
+                        $('.reservation-select-creneau').empty().append(response);
 
-                    // $.get(Routing.generate(''), function(html){
-                    //     $('#display-panier').empty().html(html);
-                    //
-                    // });
-                    $.ajax({
-                        url: Routing.generate('produits_ajax'),
-                        type: "GET",
-                        async: true,
-                        success: function (response, textStatus)
-                        {
-                            $('#display-salle').empty().append(response);
+                        // $.get(Routing.generate(''), function(html){
+                        //     $('#display-panier').empty().html(html);
+                        //
+                        // });
+                        $.ajax({
+                            url: Routing.generate('produits_ajax'),
+                            type: "GET",
+                            async: true,
+                            success: function (response, textStatus) {
+                                $('#display-salle').empty().append(response);
 
-                            // $.get(Routing.generate(''), function(html){
-                            //     $('#display-panier').empty().html(html);
-                            //
-                            // });
-                        },
-                        error: function(data) {
-                            console.log(data);
-                            alert('Problème récupération des produtis');
-                            //$("body").css({"opacity": "1", "background-color":"#fff"});
+                                // $.get(Routing.generate(''), function(html){
+                                //     $('#display-panier').empty().html(html);
+                                //
+                                // });
+                            },
+                            error: function (data) {
+                                console.log(data);
+                                alert('Problème récupération des produtis');
+                                //$("body").css({"opacity": "1", "background-color":"#fff"});
 
-                        }
-                    });
+                            }
+                        });
+                    }else{
+                        alert('La salle n\'est plus disponible');
+                    }
                 },
                 error: function(data) {
                     console.log(data);

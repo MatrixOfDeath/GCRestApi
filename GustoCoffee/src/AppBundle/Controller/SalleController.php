@@ -286,17 +286,19 @@ class SalleController extends FOSRestController
         $queryBuilder = $repository->createQueryBuilder('s');
 
         $query = $queryBuilder
+            ->select('count(s.idsalle)')
             ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
             ->andWhere('s.idsalle = :idsalle')
-            ->andWhere(':heureChoixDebut < :datenow')
-            ->setParameter('datenow', date("Y-m-d H:i:s"))
+//            ->andWhere(':heureChoixDebut < :datenow')
+//            ->setParameter('datenow', date("Y-m-d H:i:s"))
             ->setParameter('idsalle', $idsalle)
             ->setParameter('heureChoixDebut', $heureChoixDebut)
             ->setParameter('heureChoixFin', $heureChoixFin);
         //->setParameter('subQuery', $subQuery)
         //->getQuery();
-        var_dump($query->getQuery()->getResult()) ;
-        return $query->getQuery()->getResult();
+
+        //var_dump($query->getQuery()->getSingleScalarResult()) ;
+        return $query->getQuery()->getSingleScalarResult();
     }
 
     /**
@@ -312,16 +314,10 @@ class SalleController extends FOSRestController
         $subQuery = $repository->createQueryBuilder('s_sub')
             ->select('s_sub.idsalle')
             ->leftJoin('s_sub.reservation', 'r')
-            //   ->where('r.heuredebut <= :heureChoixDebut')
-            //   ->andWhere('r.heurefin >= :heureChoixFin');
-           //   ->andwhere('r.heuredebut BETWEEN :heureChoixDebut AND :heureChoixFin')
-           //   ->orWhere('r.heurefin BETWEEN :heureChoixDebut AND :heureChoixFin');
-
             ->andwhere('r.heuredebut < :heureChoixDebut')
             ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-
             //->getQuery();
             //->getArrayResult();
 
@@ -329,8 +325,8 @@ class SalleController extends FOSRestController
 
         $query = $queryBuilder
             ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
-            ->andWhere(':heureChoixDebut < :datenow')
-            ->setParameter('datenow', date("Y-m-d H:i:s"))
+//            ->andWhere(':heureChoixDebut < :datenow')
+            //->setParameter('datenow', date("Y-m-d H:i:s"))
             ->setParameter('heureChoixDebut', $heureChoixDebut)
             ->setParameter('heureChoixFin', $heureChoixFin);
             //->setParameter('subQuery', $subQuery)

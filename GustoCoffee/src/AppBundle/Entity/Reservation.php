@@ -124,8 +124,6 @@ class Reservation
      */
     private $idpersonne;
 
-
-
     /**
      * Set datereservation
      *
