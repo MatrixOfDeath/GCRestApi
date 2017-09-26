@@ -13,7 +13,11 @@ class CommandeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('datecommande')->add('iddemandeproduit')->add('idmodepaiement')->add('idpersonne');
+        $builder
+            ->add('datecommande')
+            ->add('iddemandeproduit')
+            ->add('idmodepaiement')
+            ->add('idpersonne');
     }
     
     /**

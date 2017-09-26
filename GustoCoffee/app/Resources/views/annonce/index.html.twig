@@ -66,11 +66,7 @@
                     {{ form_errors(form.corps) }}
 
                  </div>
-                 <div class="idpersonneAnnonce" style="display: none">
-                    {{ form_label(form.idpersonne) }}
-                    {{ form_widget(form.idpersonne) }}
-                    {{ form_errors(form.idpersonne) }}
-                </div>
+
             </div>
         </div>
     <div class="col-md-12 form-connexion">
@@ -121,16 +117,17 @@
                         <td>{{ annonce.titre }}</td>
                     {% endif %}
                     <td>{{ annonce.corps }}</td>
+                    <td>{{ annonce.categorieAnnonce }}</td>
                     <td>{% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</td>
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    {% if is_granted("ROLE_ADMIN") %}
                         <a href="{{ path('fos_user_security_logout') }}"></a>
                         <td>
                             <ul>
                                 <li>
-                                    <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">Montrer l'annonce</a>
+                                    <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">Éditer l'annonce</a>
+                                    <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
                                 </li>
                             </ul>
                         </td>
@@ -144,7 +141,6 @@
     </section>
 {% endblock %}
 {# ---------- End Second Block - Listing d'annonces ---------- #}
-
 
     {#<ul>#}
         {#<li>#}

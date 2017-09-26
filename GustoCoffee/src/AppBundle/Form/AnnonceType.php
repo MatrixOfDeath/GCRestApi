@@ -19,14 +19,13 @@ class AnnonceType extends AbstractType
             ->add('corps')
             ->add('datecreation')
             ->add('categorieAnnonce', ChoiceType::class, array(
-                'choices'  => array(
-                    'Recherche de partenariat(s)' => 'RechercheDePartenariat',
-                    "Demande d'informations" => 'DemandeInformations',
+                'choices' => array(
+                    'Recherche de partenariat(s)' => 'Recherche de Partenariat(s)',
+                    "Demande d'informations" => "Demande d'informations",
                 ),
-            ))
-            ->add('idpersonne');
+            ));
     }
-    
+
     /**
      * {@inheritdoc}
      */
