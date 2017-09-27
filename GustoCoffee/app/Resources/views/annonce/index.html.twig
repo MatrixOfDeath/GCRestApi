@@ -106,7 +106,7 @@
                         <a href="{{ path('fos_user_security_logout') }}"></a>
                         <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ annonce.titre }}</a>
                     {% else %}
-                        {{ annonce.titre }} - {{ annonce.categorieAnnonce }} -
+                        {{ annonce.idpersonne }} - {{ annonce.titre }} - {{ annonce.categorieAnnonce }}
                         {% if is_granted("ROLE_ADMIN") %}
                             <a href="{{ path('fos_user_security_logout') }}"></a>
                             <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}</a>
