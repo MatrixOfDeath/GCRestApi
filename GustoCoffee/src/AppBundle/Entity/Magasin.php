@@ -23,14 +23,14 @@ class Magasin
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=25, nullable=true)
+     * @ORM\Column(name="adresse", type="string", length=50, nullable=true)
      */
     private $adresse;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
+     * @ORM\Column(name="telephone", type="integer", length=22 , nullable=true)
      */
 
     private $telephone;
