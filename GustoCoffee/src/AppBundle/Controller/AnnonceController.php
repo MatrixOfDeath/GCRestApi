@@ -78,12 +78,14 @@ class AnnonceController extends FOSRestController
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             //Je set la date à la création de l'entité todo: edit date si on a le temps
-            //$annonce->setDatecreation(new \DateTime(date('d-m-Y H:m:s')));
+
+            $annonce->setIdpersonne($this->getUser());
             $em->persist($annonce);
             $em->flush();
 
             return $this->redirectToRoute('annonce_show', array('idannonce' => $annonce->getIdannonce()));
         }
+
 
         return $this->render('annonce/index.html.twig', array(
             'annonces' => $annonces,
@@ -103,21 +105,31 @@ class AnnonceController extends FOSRestController
         $annonce = new Annonce();
         $form = $this->createForm('AppBundle\Form\AnnonceType', $annonce);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             //Je set la date à la création de l'entité todo: edit date si on a le temps
             //$annonce->setDatecreation(new \DateTime(date('d-m-Y H:m:s')));
+            //$annonce->setIdpersonne($this->getUser()->getId());
+//            $currentId = $this->getUser()->getP;
+//
+//            var_dump($this->getUser()); die();
+//            $annonce->setIdpersonne($currentId);
+
             $em->persist($annonce);
             $em->flush();
 
-            return $this->redirectToRoute('annonce_show', array('idannonce' => $annonce->getIdannonce()));
+            return $this->redirectToRoute('annonce_show', array(
+                'idannonce' => $annonce->getIdannonce(),
+            ));
         }
+
 
         return $this->render('annonce/index.html.twig', array(
             'annonce' => $annonce,
             'form' => $form->createView(),
+
+
         ));
     }
 

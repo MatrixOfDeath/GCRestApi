@@ -155,7 +155,7 @@ class Annonce
      *
      * @return Annonce
      */
-    public function setIdpersonne(\AppBundle\Entity\Personne $idpersonne = null)
+    public function setIdpersonne(\AppBundle\Entity\Personne $idpersonne)
     {
         $this->idpersonne = $idpersonne;
 
