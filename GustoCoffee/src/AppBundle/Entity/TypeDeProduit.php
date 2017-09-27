@@ -94,4 +94,12 @@ class TypeDeProduit
     {
         return $this->idtypeproduit;
     }
+
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getNomtype();
+    }
 }

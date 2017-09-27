@@ -93,13 +93,15 @@
                                     </li>
                                 {% endfor %}
                                 {% endif %}
-                                
                                 <li>
-                                    {% if is_granted("ROLE_ADMIN") %}
-                                        <a href="{{ path('easyadmin') }}">
-                                            {{ 'Backoffice'|trans }}
-                                        </a>
-                                    {% endif %}
+                                    <a class="page-scroll" href="{{ path('panier') }}">{{ 'Panier'|trans }}</a>
+                                </li>
+                                <li>
+                                {% if is_granted("ROLE_ADMIN") %}
+                                    <a href="{{ path('easyadmin') }}">
+                                        {{ 'Backoffice'|trans }}
+                                    </a>
+                                {% endif %}
                                 </li>
                             </ul>
                         </div>

@@ -220,8 +220,8 @@ vich_uploader:
     db_driver: orm
     mappings:
         salles_images:
-            uri_prefix:         %app.path.salles_images%
-            upload_destination: %kernel.root_dir%/../web/uploads/images/salles
+            uri_prefix:         '%app.path.salles_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/salles'
         products_images:
-            uri_prefix:         %app.path.products_images%
-            upload_destination: %kernel.root_dir%/../web/uploads/images/products
+            uri_prefix:         '%app.path.products_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/products'

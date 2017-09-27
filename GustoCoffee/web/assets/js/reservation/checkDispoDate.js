@@ -63,13 +63,13 @@ $(function() {
                 return false;
             }
             // Dans le cas où c'est la date du jour !
-            if ($("#datepicker-altFormat").val() == '2017-09-22' || !$("#datepicker-altFormat").val()) {
+            if ($("#datepicker-altFormat").val() == todayDate || !$("#datepicker-altFormat").val()) {
                 var totalStartTime = heureActuelle * 60 + minuteActuelle;
-                console.log(ui.values[0] + ' '+ totalStartTime);
+               // console.log(ui.values[0] + ' '+ totalStartTime);
 
                 if (ui.values[0] < totalStartTime) {
                     return false;
-                    console.log(ui.values[0] + ' ezesfsd ' + totalStartTime);
+                    //console.log(ui.values[0] + ' ezesfsd ' + totalStartTime);
                     //$ ('#slider-range').children(".ui-slider-handle").first().draggable( false);
                 }
             }
@@ -112,6 +112,7 @@ $(function() {
     // Arithmétique: on calcule le nombre d'heure total et on crée les intervalles souhaité, on mettra des points ç
     var total = (max - min ) * 2; // car 60 minutes = 2 * 30 minutes :)
     var percent = 100 / total;
+
     for (var x = 1; x < total; x++){
         $(".ui-slider" ).append("<span class='dots' style='left:"+ x * percent + "%'></span>");
 
@@ -124,15 +125,19 @@ $(function() {
         }
     });
 
+    // ajoute un 0 devant les chiffres pour l'affichage texte !
+    function pad(n) {
+        return (n < 10) ? ("0" + n) : n;
+    }
     // Reinit les handles
     function setHandles(heureActuelle, minuteActuelle, min, max){
 
-        $("#slider-range").children(".ui-slider-handle").first().text(heureActuelle+':'+ minuteActuelle);
-        $("#slider-range").children(".ui-slider-handle").last().text((heureActuelle+1)+':'+ minuteActuelle);
-        $('.slider-time').html(heureActuelle+':'+ minuteActuelle);
-        $('.slider-time2').html((heureActuelle+1)+':'+ minuteActuelle);
+        //$("#slider-range").children(".ui-slider-handle").first().text(heureActuelle+':'+ pad(minuteActuelle));
+        //$("#slider-range").children(".ui-slider-handle").last().text((heureActuelle+1)+':'+ pad(minuteActuelle));
+
         //var heureActuelle = $('#slider-range .heureActuelleDefaut').val();
-        if (heureActuelle > max && heureActuelle < 0) {
+        console.log( heureActuelle +' '  + min );
+        if (heureActuelle > max && heureActuelle < 24) {
             $( "#reservation-dialog-message" ).dialog({
                 modal: true,
                 buttons: {
@@ -141,13 +146,15 @@ $(function() {
                     }
                 }
             });
-        }else if(heureActuelle > 0 && heureActuelle < min){
+        }else if(heureActuelle >= 0 && heureActuelle < min){
             console.log('Ouvre à 9h');
         }
         else{
             $("#slider-range").slider('option', 'values', [(heureActuelle * 60 + minuteActuelle), (heureActuelle * 60) + 60 + minuteActuelle]);
-            $("#slider-range").children(".ui-slider-handle").first().text(heureActuelle + ':' + minuteActuelle);
-            $("#slider-range").children(".ui-slider-handle").last().text((heureActuelle+1)  + ':' + minuteActuelle);
+            $("#slider-range").children(".ui-slider-handle").first().text(heureActuelle + ':' + pad(minuteActuelle));
+            $("#slider-range").children(".ui-slider-handle").last().text((heureActuelle+1)  + ':' + pad(minuteActuelle));
+            $('.slider-time').html(heureActuelle+':'+ pad(minuteActuelle));
+            $('.slider-time2').html((heureActuelle+1)+':'+ pad(minuteActuelle));
         }
     }
 });

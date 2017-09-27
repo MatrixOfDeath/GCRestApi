@@ -12,7 +12,7 @@ doctrine:
     # ...
     dbal:
         host:     127.0.0.1
-        dbname:   Gu_Test
+        dbname:   Gusto_Test
         user:     root
         password: root
 

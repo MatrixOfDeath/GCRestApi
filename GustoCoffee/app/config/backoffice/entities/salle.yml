@@ -11,11 +11,15 @@ easy_admin:
                   - 'idmagasin'
           list:
               title: 'Listes des Salles'
+              actions:
+                  - { name: 'show', label: '', icon: 'search' }
+                  - { name: 'edit', label: '', icon: 'edit' }
+                  - { name: 'delete', label: '', icon: 'trash' }
               fields:
                   - 'idsalle'
                   - { property: 'nomSalle', sortable: true }
                   - { property: 'capacityMax', sortable: true }
-                  - { property: 'image', type: 'image', base_path: %app.path.salles_images% }
+                  - { property: 'image', type: 'image', base_path: '%app.path.salles_images%' }
                   - 'idmagasin'
               sort: ['idsalle', 'ASC']
           show:
@@ -23,7 +27,7 @@ easy_admin:
               fields:
                   - 'nomSalle'
                   - 'capacityMax'
-                  - { property: 'image', type: 'image', base_path: %app.path.salles_images% }
+                  - { property: 'image', type: 'image', base_path: '%app.path.salles_images%' }
                   - 'idmagasin'
                   - 'createdAt'
                   - 'updateAt'

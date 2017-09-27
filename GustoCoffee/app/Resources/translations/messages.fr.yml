@@ -23,6 +23,10 @@ menu.annonce:      Annonces
 menu.modedepaiement: Moyens de paiement
 menu.jours.ouvert: Jours d'ouverture
 menu.jours.fermee: Jours de fermeture
+menu.typeproduit: Type de Produit
+menu.tva: TVA
+menu.grilletarifaire: Grille Tarifaire
+
 
 # entity names, labels and titles
 Categories: Catégories

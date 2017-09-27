@@ -14,6 +14,8 @@ use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
 
 /**
  * Salle controller.
@@ -80,9 +82,15 @@ class SalleController extends FOSRestController
      * @Route("/reservation-private", name="salle_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
+
+        if ($session->has('panier_salle'))
+            $panier_salle = $session->get('panier_salle');
+        else
+            $panier_salle = false;
+
 
         $sallesDispoNow = $this->checkDisponibiliteSalle(new \DateTime(date('y-m-d H:m:s')), new \DateTime(date('y-m-d H:m:s', strtotime('+1 hour'))));
 
@@ -93,10 +101,10 @@ class SalleController extends FOSRestController
             'salles' => $sallesDispoNow,
             'heureDebutChoix' => $actualDate->format('H'),
             'heureFinChoix' => $actualDate->add(new \DateInterval('PT1H'))->format('H'),
-            'dateChoix' => $actualDate->format("d/m/Y")
+            'dateChoix' => $actualDate->format("d/m/Y"),
+            'panier' => $panier_salle,
         ));
     }
-
 
     /** TODO: change to salles_disponible_by_date
      * @Route("/disponible", options={"expose"=true}, name="salles_disponible")
@@ -121,7 +129,7 @@ class SalleController extends FOSRestController
             ));
             return new Response ($htmlToRender);
 
-        }else{
+        }else{ //TODO: A enlever ou remplacer par default value
             $sallesDispo = $this->checkDisponibiliteSalle('2017-09-20 9:30:00', '2017-09-20 14:00:00');
 
         }
@@ -130,6 +138,26 @@ class SalleController extends FOSRestController
 
         ));
 
+    }
+
+    /**
+     * @Route("/disponible-ajax", options={"expose"=true}, name="salles_disponible_ajax")
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxCheckDispoSalle(Request $request)
+    {
+
+        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('idSalle') ) {
+            $heureChoixDebut = $request->request->get('heureChoixDebut');
+            $heureChoixFin = $request->request->get('heureChoixFin');
+            $idSalle = $request->request->get('idSalle');
+            $isDispo = $this->checkIfSalleDispo($heureChoixDebut, $heureChoixFin, $idSalle);
+
+            return new Response(json_encode($isDispo));
+
+        }else{
+            return new Response(json_encode('Incorrect parameters'));
+        }
     }
 
     /**
@@ -226,6 +254,53 @@ class SalleController extends FOSRestController
     }
 
 
+
+    /**
+     * Verification si une salle est disponible selon un creneau horaire
+     * @param $heureChoixDebut
+     * @param $heureChoixFin
+     * @param $idsalle
+     * @return mixed
+     */
+    public function checkIfSalleDispo($heureChoixDebut, $heureChoixFin, $idsalle)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Salle');
+
+        $subQuery = $repository->createQueryBuilder('s_sub')
+            ->select('s_sub.idsalle')
+            ->leftJoin('s_sub.reservation', 'r')
+            //   ->where('r.heuredebut <= :heureChoixDebut')
+            //   ->andWhere('r.heurefin >= :heureChoixFin');
+            //   ->andwhere('r.heuredebut BETWEEN :heureChoixDebut AND :heureChoixFin')
+            //   ->orWhere('r.heurefin BETWEEN :heureChoixDebut AND :heureChoixFin');
+
+            ->andwhere('r.heuredebut < :heureChoixDebut')
+            ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+
+//            ->getQuery()
+//            ->getArrayResult();
+
+        $queryBuilder = $repository->createQueryBuilder('s');
+
+        $query = $queryBuilder
+            ->select('count(s.idsalle)')
+            ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
+            ->andWhere('s.idsalle = :idsalle')
+//            ->andWhere(':heureChoixDebut < :datenow')
+//            ->setParameter('datenow', date("Y-m-d H:i:s"))
+            ->setParameter('idsalle', $idsalle)
+            ->setParameter('heureChoixDebut', $heureChoixDebut)
+            ->setParameter('heureChoixFin', $heureChoixFin);
+        //->setParameter('subQuery', $subQuery)
+        //->getQuery();
+
+        //var_dump($query->getQuery()->getSingleScalarResult()) ;
+        return $query->getQuery()->getSingleScalarResult();
+    }
+
     /**
      * @param $heureChoixDebut
      * @param $heureChoixFin
@@ -239,22 +314,19 @@ class SalleController extends FOSRestController
         $subQuery = $repository->createQueryBuilder('s_sub')
             ->select('s_sub.idsalle')
             ->leftJoin('s_sub.reservation', 'r')
-            //   ->where('r.heuredebut <= :heureChoixDebut')
-            //   ->andWhere('r.heurefin >= :heureChoixFin');
-           //   ->andwhere('r.heuredebut BETWEEN :heureChoixDebut AND :heureChoixFin')
-           //   ->orWhere('r.heurefin BETWEEN :heureChoixDebut AND :heureChoixFin');
-
             ->andwhere('r.heuredebut < :heureChoixDebut')
             ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-
             //->getQuery();
             //->getArrayResult();
 
         $queryBuilder = $repository->createQueryBuilder('s');
+
         $query = $queryBuilder
             ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
+//            ->andWhere(':heureChoixDebut < :datenow')
+            //->setParameter('datenow', date("Y-m-d H:i:s"))
             ->setParameter('heureChoixDebut', $heureChoixDebut)
             ->setParameter('heureChoixFin', $heureChoixFin);
             //->setParameter('subQuery', $subQuery)
@@ -276,6 +348,60 @@ class SalleController extends FOSRestController
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/salles", name="salles_index")
+     * @param SessionInterface $session
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function sallesAction(SessionInterface $session, Request $request)
+    {
+        //$session = $this->getRequest()->getSession();
+        $em = $this->getDoctrine()->getManager();
+
+
+            //Todo: Géré le statut salle après !
+            // $findProduits = $em->getRepository('AppBundle:Salle')->findBy(array('disponible' => 1));
+        $salles = $em->getRepository('AppBundle:Salle')->findAll();
+
+        if ($session->has('panier_salle'))
+            $panier_salle = $session->get('panier_salle');
+        else
+            $panier_salle = false;
+
+        //$produits = $this->get('knp_paginator')->paginate($findProduits,$this->get('request')->query->get('page', 1),3);
+        $salles = $em->getRepository('AppBundle:Salle')->findAll();
+
+        return $this->render('produit/produits.html.twig', array(
+                'salles' => $salles,
+                'panier_salle' => $panier_salle)
+        );
+    }
+
+    /**
+     * @Route("/presentation/{id}", name="presentation_salle", requirements={"id": "\d+"})
+     * @param SessionInterface $session
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function presentationAction(SessionInterface $session, $id)
+    {
+        //$session = $this->getRequest()->getSession();
+        $em = $this->getDoctrine()->getManager();
+        $salle= $em->getRepository('AppBundle:Salle')->find($id);
+
+        if (!$salle) throw $this->createNotFoundException('La page n\'existe pas.');
+
+        if ($session->has('panier_salle'))
+            $panier_salle = $session->get('panier_salle');
+        else
+            $panier_salle = false;
+
+        return $this->render('produit/presentation.html.twig', array(
+            'salle' => $salle,
+            'panier_salle' => $panier_salle));
     }
 
 }

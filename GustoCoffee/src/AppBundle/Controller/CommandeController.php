@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Commande;
+use AppBundle\Entity\Produit;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -12,6 +13,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Swagger\Annotations as SWG;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\Authentication;
+use Symfony\Component\HttpFoundation\Response;
+
 
 /**
  * Commande controller.
@@ -86,7 +91,7 @@ class CommandeController extends FOSRestController
     /**
      * Finds and displays a commande entity.
      *
-     * @Route("/{idcommande}", name="commande_show")
+     * @Route("/{idcommande}", name="commande_show", requirements={"idcommande": "\d+"})
      * @Method("GET")
      */
     public function showAction(Commande $commande)
@@ -102,7 +107,7 @@ class CommandeController extends FOSRestController
     /**
      * Displays a form to edit an existing commande entity.
      *
-     * @Route("/{idcommande}/edit", name="commande_edit")
+     * @Route("/{idcommande}/edit", name="commande_edit", requirements={"idcommande": "\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Commande $commande)
@@ -127,7 +132,7 @@ class CommandeController extends FOSRestController
     /**
      * Deletes a commande entity.
      *
-     * @Route("/{idcommande}", name="commande_delete")
+     * @Route("/{idcommande}", name="commande_delete", requirements={"idcommande": "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Commande $commande)
@@ -158,5 +163,129 @@ class CommandeController extends FOSRestController
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     *
+     * @Route("/facture", name="facture")
+     * @param SessionInterface $session
+     * @return array
+     */
+    public function facture(SessionInterface $session)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        //$generator = $this->container->get('security.secure_random');
+        //$session = $this->getRequest()->getSession();
+
+        $adresse = $session->get('adresse');
+        $panier = $session->get('panier');
+        $commande = array();
+        $totalHT = 0;
+        $totalTVA = 0;
+
+        $facturation = $em->getRepository('AppBundle:Personne')->find($adresse['facturation']);
+        $livraison = $em->getRepository('AppBundle:Personne')->find($adresse['livraison']);
+        $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($session->get('panier')));
+
+        foreach($produits as $produit)
+        {
+            $prixHT = ($produit->getPrixproduit() * $panier[$produit->getIdproduit()]);
+            $prixTTC = ($produit->getPrixproduit() * $panier[$produit->getIdproduit()] / $produit->getTva()->getMultiplicate());
+            $totalHT += $prixHT;
+
+            if (!isset($commande['tva']['%'.$produit->getTva()->getValeur()]))
+                $commande['tva']['%'.$produit->getTva()->getValeur()] = round($prixTTC - $prixHT,2);
+            else
+                $commande['tva']['%'.$produit->getTva()->getValeur()] += round($prixTTC - $prixHT,2);
+
+            $totalTVA += round($prixTTC - $prixHT,2);
+
+            $commande['produit'][$produit->getIdproduit()] = array('reference' => $produit->getNomproduit(),
+                'quantite' => $panier[$produit->getIdproduit()],
+                'prixHT' => round($produit->getPrixproduit(),2),
+                'prixTTC' => round($produit->getPrixproduit() / $produit->getTva()->getMultiplicate(),2));
+        }
+
+        $commande['livraison'] = array('prenom' => $livraison->getPrenom(),
+            'nom' => $livraison->getNom(),
+            'telephone' => $livraison->getTelephone(),
+            'adresse' => $livraison->getAdresse());
+
+        $commande['facturation'] = array('prenom' => $facturation->getPrenom(),
+            'nom' => $facturation->getNom(),
+            'telephone' => $facturation->getTelephone(),
+            'adresse' => $facturation->getAdresse());
+
+        $commande['prixHT'] = round($totalHT,2);
+        $commande['prixTTC'] = round($totalHT + $totalTVA,2);
+        $commande['token'] = bin2hex(random_bytes(20));
+
+        return $commande;
+    }
+
+    /**
+     * @param SessionInterface $session
+     * @return Response
+     */
+    public function prepareCommandeAction(SessionInterface $session)
+    {
+        //$session = $this->getRequest()->getSession();
+        $em = $this->getDoctrine()->getManager();
+
+        if (!$session->has('commande'))
+            $commande = new Commande();
+        else
+            $commande = $em->getRepository('AppBundle:Commande')->find($session->get('commande'));
+
+        $commande->setDatecommande(new \DateTime());
+        $commande->setPersonne($this->container->get('security.token_storage')->getToken()->getUser());
+        $commande->setValider(0);
+        $commande->setReference(0);
+        $commande->setCommande($this->facture($session));
+
+        if (!$session->has('commande')) {
+            $em->persist($commande);
+            $session->set('commande',$commande);
+        }
+
+        $em->flush();
+
+        return new Response($commande->getIdcommande());
+    }
+
+    /*
+     * Cette methode remplace l'api paypal.
+     */
+    public function validationCommandeAction(Request $request, SessionInterface $session, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $commande = $em->getRepository('AppBundle:Commande')->find($id);
+
+        if (!$commande || $commande->getValider() == 1)
+            throw $this->createNotFoundException('La commande n\'existe pas');
+
+        $commande->setValider(1);
+        $commande->setReference($this->container->get('setNewReference')->reference()); //Service
+        $em->flush();
+
+        //$session = $this->getRequest()->getSession();
+        $session->remove('adresse');
+        $session->remove('panier');
+        $session->remove('commande');
+
+        //Ici le mail de validation
+        $message = \Swift_Message::newInstance()
+            ->setSubject('Validation de votre commande')
+            ->setFrom(array('gustocoffee+official@gmail.com' => "GustoCoffee"))
+            ->setTo($commande->getPersonne()->getEmailCanonical())
+            ->setCharset('utf-8')
+            ->setContentType('text/html')
+            ->setBody($this->renderView(':SwiftLayout:validationCommande.html.twig',array('utilisateur' => $commande->getPersonne())));
+
+        $this->get('mailer')->send($message);
+
+        $session->getFlashBag()->add('success','Votre commande est validé avec succès');
+        return $this->redirect($this->generateUrl('facture'));
     }
 }

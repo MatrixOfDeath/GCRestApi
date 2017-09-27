@@ -19,8 +19,10 @@ Encore
         './web/assets/js/reservation/checkDispoDate.js'
     ])
 
+    // Wil output Web/build/ajax.js
     .addEntry('ajax', [
-        './web/assets/js/ajax/ajaxCheckDispoDate.js'
+        './web/assets/js/ajax/ajaxCheckDispoDate.js',
+        './web/assets/js/ajax/ajaxChoixSalle.js'
     ])
 
     // will output as web/build/global.css
@@ -61,7 +63,6 @@ Encore
     // create hashed filenames (e.g. app.abc123.css)
     // .enableVersioning()
     .enableVersioning()
-
 
 ;
 

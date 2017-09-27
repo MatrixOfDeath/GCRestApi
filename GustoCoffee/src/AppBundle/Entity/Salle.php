@@ -13,7 +13,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * Salle
  *
  * @ORM\Table(name="Salle", uniqueConstraints={@ORM\UniqueConstraint(name="nomSalle", columns={"nomSalle"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\SallesRepository")
  * @Vich\Uploadable()
  * @ORM\HasLifecycleCallbacks()
  */
@@ -89,7 +89,6 @@ class Salle
     public function __construct()
     {
         $this->reservation = new ArrayCollection();
-
     }
 
     /**

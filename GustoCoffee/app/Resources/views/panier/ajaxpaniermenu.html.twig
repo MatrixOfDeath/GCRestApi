@@ -1,0 +1,27 @@
+<div class="well">
+    <ul class="nav nav-list">
+        <li class="nav-header"></li>
+        <li>
+            <a href="{{ path('panier') }}">
+                {% if articles == 0 %}
+                    {{  "Aucun article dans votre panier"|trans }}
+                {% elseif articles == 1 %}
+                    {{  "1 article dans votre panier"|trans}}
+                {% else %}
+                    {{ articles }} {{ "articles dans votre panier"|trans }}
+                {% endif %}
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('panier') }}">
+            {% if salles == 0 %}
+                <span class="panier-salle-none-selected">{{  "Aucune salle sélectionner !"|trans }}</span>
+            {% elseif salles == 1 %}
+                {{  "Une salle choisie"|trans}}
+            {% else %}
+                {{ salles }} {{ "salles choisies"|trans }}
+            {% endif %}
+            </a>
+        </li>
+    </ul>
+</div>

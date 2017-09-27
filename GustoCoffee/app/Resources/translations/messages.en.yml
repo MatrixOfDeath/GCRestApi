@@ -39,6 +39,10 @@ menu.annonce:      Advertisement
 menu.modedepaiement: Form of payment
 menu.jours.ouvert: Opening days
 menu.jours.fermee: Closing days
+menu.typeproduit: Type of Product
+menu.tva: VAT
+menu.grilletarifaire: Price List
+
 
 # We let EasyAdmin generate the rest of the backend labels
 # (they are translated following the 2) method)

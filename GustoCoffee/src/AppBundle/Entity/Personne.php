@@ -30,6 +30,12 @@ class Personne extends BaseUser
     protected $id;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commande", mappedBy="personnes", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $commandes;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="indentifiant", type="string", length=25, nullable=true)
@@ -138,10 +144,17 @@ class Personne extends BaseUser
      */
     private $addOnEmails;
 
+    /**
+     * Personne constructor.
+     */
     public function __construct()
     {
         parent::__construct();
         $this->addOnEmails = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
+
+        $this->newsletter = false;
+
     }
     /**
      * @param string $email
@@ -509,4 +522,38 @@ class Personne extends BaseUser
     {
         $this->telephone = $telephone;
     }
+
+    /**
+     * Get commandes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * Add commandes
+     *
+     * @param \AppBundle\Entity\Commande $commandes
+     * @return Personne
+     */
+    public function addCommande(\AppBundle\Entity\Commande $commandes)
+    {
+        $this->commandes[] = $commandes;
+
+        return $this;
+    }
+
+    /**
+     * Remove commandes
+     *
+     * @param \AppBundle\Entity\Commande $commandes
+     */
+    public function removeCommande(\AppBundle\Entity\Commande $commandes)
+    {
+        $this->commandes->removeElement($commandes);
+    }
+
 }

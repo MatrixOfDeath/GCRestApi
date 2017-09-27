@@ -37,6 +37,9 @@
                     </button>
                 </div>
             </div>
+            <div class="row">
+                {{  render(controller('AppBundle:Panier:menu')) }}
+            </div>
         </div>
 
         <div class="col-md-2">
@@ -44,7 +47,7 @@
         </div>
 
         <div class="col-md-10 reservation-result-container">
-            <div class="row">
+            <div class="row reservation-select-creneau">
                 <div class="btn-group">
                     <a href="#" id="list" class="btn btn-default btn-sm">
                         <span class="glyphicon glyphicon-th-list"></span>Liste
@@ -65,7 +68,6 @@
 
             </div>
             <div class="row">
-
                 {# On appelle le template salleDisponible en embed #}
                 <div id="display-salle" class="row list-group">
                     {% embed ":salle:sallesDisponible.html.twig" %}

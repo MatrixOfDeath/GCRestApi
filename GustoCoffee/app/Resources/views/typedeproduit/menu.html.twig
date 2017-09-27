@@ -1,0 +1,5 @@
+{% for typeproduit in typeproduits %}
+    <li>
+        <a href="{{ path('typedeproduit_index', { 'typeproduit' : typeproduit.idtypeproduit }) }}">{{ typeproduit.nomtype }}</a>
+    </li>
+{% endfor %}

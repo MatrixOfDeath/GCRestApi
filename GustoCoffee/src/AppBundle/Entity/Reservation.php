@@ -9,7 +9,12 @@ use Symfony\Component\Validator\Constraints\Date;
 /**
  * Reservation
  *
- * @ORM\Table(name="Reservation", indexes={@ORM\Index(name="FK_Reservation_idFermeture", columns={"idFermeture"}), @ORM\Index(name="FK_Reservation_idPersonne", columns={"idPersonne"}), @ORM\Index(name="FK_Reservation_idModePaiement", columns={"idModePaiement"}), @ORM\Index(name="FK_Reservation_idMagasin", columns={"idMagasin"}), @ORM\Index(name="FK_Reservation_idOuverture", columns={"idOuverture"})})
+ * @ORM\Table(name="Reservation", indexes={
+ *     @ORM\Index(name="FK_Reservation_idFermeture", columns={"idFermeture"}),
+ *     @ORM\Index(name="FK_Reservation_idPersonne", columns={"idPersonne"}),
+ *     @ORM\Index(name="FK_Reservation_idModePaiement", columns={"idModePaiement"}),
+ *     @ORM\Index(name="FK_Reservation_idMagasin", columns={"idMagasin"}),
+ *     @ORM\Index(name="FK_Reservation_idOuverture", columns={"idOuverture"})})
  * @ORM\Entity
  */
 class Reservation
@@ -118,36 +123,6 @@ class Reservation
      * })
      */
     private $idpersonne;
-
-    // TODO: Supprimer tout les booleans on récuère via l'entité Produit !!
-//    /**
-//     * @var boolean
-//     *
-//     * @ORM\Column(name="petitDej", type="boolean", nullable=true)
-//     */
-//    private $petitDej = false;
-//
-//    /**
-//     * @var boolean
-//     *
-//     * @ORM\Column(name="dej", type="boolean", nullable=true)
-//     */
-//    private $dej = false;
-//
-//    /**
-//     * @var boolean
-//     *
-//     * @ORM\Column(name="diner", type="boolean", nullable=true)
-//     */
-//    private $diner = false;
-//
-//    /**
-//     * @var boolean
-//     *
-//     * @ORM\Column(name="bureautique", type="boolean", nullable=true)
-//     */
-//    private $bureautique = false;
-
 
     /**
      * Set datereservation
