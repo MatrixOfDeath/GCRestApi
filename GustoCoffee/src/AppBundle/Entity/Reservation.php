@@ -10,7 +10,6 @@ use Symfony\Component\Validator\Constraints\Date;
  * Reservation
  *
  * @ORM\Table(name="Reservation", indexes={
- *     @ORM\Index(name="FK_Reservation_idFermeture", columns={"idFermeture"}),
  *     @ORM\Index(name="FK_Reservation_idPersonne", columns={"idPersonne"}),
  *     @ORM\Index(name="FK_Reservation_idModePaiement", columns={"idModePaiement"}),
  *     @ORM\Index(name="FK_Reservation_idMagasin", columns={"idMagasin"}),
@@ -74,17 +73,6 @@ class Reservation
     private $commentaireclient;
 
     /**
-     * @var \AppBundle\Entity\FermetureDuCafe
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FermetureDuCafe")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idFermeture", referencedColumnName="idFermeture")
-     * })
-     */
-    private $idfermeture;
-
-
-    /**
      * @var \AppBundle\Entity\Magasin
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin")
@@ -113,6 +101,28 @@ class Reservation
      * })
      */
     private $idouverture;
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="statut", type="boolean", nullable=true)
+     */
+    private $statut;
+
+    /**
+     * @return bool
+     */
+    public function isStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @param bool $statut
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+    }
 
     /**
      * @var \AppBundle\Entity\Personne
@@ -254,29 +264,6 @@ class Reservation
         return $this->idreservation;
     }
 
-    /**
-     * Set idfermeture
-     *
-     * @param \AppBundle\Entity\FermetureDuCafe $idfermeture
-     *
-     * @return Reservation
-     */
-    public function setIdfermeture(\AppBundle\Entity\FermetureDuCafe $idfermeture = null)
-    {
-        $this->idfermeture = $idfermeture;
-
-        return $this;
-    }
-
-    /**
-     * Get idfermeture
-     *
-     * @return \AppBundle\Entity\FermetureDuCafe
-     */
-    public function getIdfermeture()
-    {
-        return $this->idfermeture;
-    }
 
     /**
      * Set idmagasin
@@ -344,29 +331,6 @@ class Reservation
         return $this->idmodepaiement;
     }
 
-    /**
-     * Set idouverture
-     *
-     * @param \AppBundle\Entity\JoursOuvert $idouverture
-     *
-     * @return Reservation
-     */
-    public function setIdouverture(\AppBundle\Entity\JoursOuvert $idouverture = null)
-    {
-        $this->idouverture = $idouverture;
-
-        return $this;
-    }
-
-    /**
-     * Get idouverture
-     *
-     * @return \AppBundle\Entity\JoursOuvert
-     */
-    public function getIdouverture()
-    {
-        return $this->idouverture;
-    }
 
     /**
      * Set idpersonne
@@ -392,99 +356,4 @@ class Reservation
         return $this->idpersonne;
     }
 
-    /**
-     * Set petitDej
-     *
-     * @param boolean $petitDej
-     *
-     * @return Reservation
-     */
-    public function setPetitDej($petitDej)
-    {
-        $this->petitDej = $petitDej;
-
-        return $this;
-    }
-
-    /**
-     * Get petitDej
-     *
-     * @return boolean
-     */
-    public function getPetitDej()
-    {
-        return $this->petitDej;
-    }
-
-    /**
-     * Set dej
-     *
-     * @param boolean $dej
-     *
-     * @return Reservation
-     */
-    public function setDej($dej)
-    {
-        $this->dej = $dej;
-
-        return $this;
-    }
-
-    /**
-     * Get dej
-     *
-     * @return boolean
-     */
-    public function getDej()
-    {
-        return $this->dej;
-    }
-
-    /**
-     * Set diner
-     *
-     * @param boolean $diner
-     *
-     * @return Reservation
-     */
-    public function setDiner($diner)
-    {
-        $this->diner = $diner;
-
-        return $this;
-    }
-
-    /**
-     * Get diner
-     *
-     * @return boolean
-     */
-    public function getDiner()
-    {
-        return $this->diner;
-    }
-
-    /**
-     * Set bureautique
-     *
-     * @param boolean $bureautique
-     *
-     * @return Reservation
-     */
-    public function setBureautique($bureautique)
-    {
-        $this->bureautique = $bureautique;
-
-        return $this;
-    }
-
-    /**
-     * Get bureautique
-     *
-     * @return boolean
-     */
-    public function getBureautique()
-    {
-        return $this->bureautique;
-    }
 }

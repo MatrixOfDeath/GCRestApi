@@ -4,11 +4,11 @@ easy_admin:
             class: AppBundle\Entity\Reservation
             label: 'Les dernières réservations'
             form:
-                fields: ['dateReservation', 'heureDebut', 'heureFin', 'remarqueReservation', 'commentaireClient', 'idMagasin', 'idModePaiement']
+                fields: ['dateReservation', { property: 'heureDebut', type: 'time' }, { property: 'heureFin', type: 'time' }, 'remarqueReservation', 'commentaireClient', 'idMagasin', 'idModePaiement']
             list:
                 title: 'Les Réservations'
                 actions:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
-                fields: ['dateReservation', 'heureDebut', 'heureFin', 'remarqueReservation', 'commentaireClient', 'idMagasin', 'idModePaiement']
+                fields: ['idreservation', { property: 'dateReservation', type: 'd/m/y' }, { property: 'heureFin', type: 'time' }, { property: 'heureDebut', type: 'time' }, { property: 'heureFin', type: 'time' }, 'remarqueReservation', 'commentaireClient', 'idMagasin', 'idModePaiement']

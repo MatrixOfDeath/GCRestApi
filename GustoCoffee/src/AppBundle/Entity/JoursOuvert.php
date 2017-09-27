@@ -49,7 +49,29 @@ class JoursOuvert
      */
     private $idouverture;
 
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin", inversedBy="idouverture")
+     * @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
+     */
+    private $idmagasin;
 
+
+    /**
+     * @return mixed
+     */
+    public function getIdmagasin()
+    {
+        return $this->idmagasin;
+    }
+
+    /**
+     * @param mixed $idmagasin
+     */
+    public function setIdmagasin($idmagasin)
+    {
+        $this->idmagasin = $idmagasin;
+    }
 
     /**
      * Set jours

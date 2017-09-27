@@ -35,17 +35,17 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
             "heureChoixFin": date + ' ' + choixFin +':00',
             "idSalle" : idSalle,
         },
-        success: function (response, textStatus)
+        success: function (isDispo, textStatus)
         {
             console.log('response: '+ response);
             $.ajax({
                 url: Routing.generate('panier_ajax'),
                 type: "POST",
                 async: true,
-                success: function (response, textStatus)
+                success: function (responsePanier, textStatus)
                 {
-                    if(response == '1') {
-                        $('.reservation-select-creneau').empty().append(response);
+                    if(isDispo = '1') {
+                        $('.reservation-select-creneau').empty().append(responsePanier);
 
                         // $.get(Routing.generate(''), function(html){
                         //     $('#display-panier').empty().html(html);
@@ -55,8 +55,8 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
                             url: Routing.generate('produits_ajax'),
                             type: "GET",
                             async: true,
-                            success: function (response, textStatus) {
-                                $('#display-salle').empty().append(response);
+                            success: function (responseProduits, textStatus) {
+                                $('#display-salle').empty().append(responseProduits);
 
                                 // $.get(Routing.generate(''), function(html){
                                 //     $('#display-panier').empty().html(html);
