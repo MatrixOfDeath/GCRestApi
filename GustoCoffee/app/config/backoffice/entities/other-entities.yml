@@ -23,7 +23,7 @@ easy_admin:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
-                title: 'Les jours d''ouverture'
+                title: 'Les jours d''ouvertures'
                 fields: [{property: 'jours', type: text}, { property: 'heureDebut', type: 'time'}, { property: 'heureFin' , type: 'time'}, 'titre', 'idmagasin']
                 sort: 'idouverture'
             edit:
@@ -35,7 +35,7 @@ easy_admin:
           form:
               fields: [{property: 'datedebut', type: 'date' }, { property: 'datefin', type: 'date' }, {property: 'titre', type: 'text' }, 'raison', 'jourFerie', 'idmagasin']
           list:
-              title: 'Les jours d''ouverture'
+              title: 'Les jours de fermeture'
               fields: ['datedebut', 'datefin', 'titre', 'raison', 'jourFerie', 'idmagasin']
 
         Service:

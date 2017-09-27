@@ -113,9 +113,9 @@ nelmio_api_doc:
             - ^/api/
     documentation:
         info:
-            title: GustCofee Api
+            title: GustoCoffee Api
             description: REST Api pour réserver sur GustoCoffee!
-            version: 1.0.0
+            version: 1.0.1
 fos_rest:
     param_fetcher_listener: true
     allowed_methods_listener: true
