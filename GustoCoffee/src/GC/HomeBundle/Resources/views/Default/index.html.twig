@@ -13,7 +13,12 @@
 {%  endblock %}
 
 {% block titleHome %}
-    {{ 'Café CoWorking'|trans }}
+    <button class="buttonInscription greenButton">
+        <a class="colorWhite" href="{{ path('gc_reservation_page') }}">Réserver</a>
+    </button>
+    <button class="buttonInscription greenButton">
+        <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">Inscription</a>
+    </button>
 {% endblock %}
 
 {% block firstBlock %}
@@ -31,7 +36,9 @@
                 Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.
                 {% endtrans %}
             </p>
-            <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez vous <a href="{{ path('fos_user_registration_register') }}">inscrire ici.</a></p>
+            <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez vous <button class="buttonInscription greenButton">
+                    <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">inscrire ici</a>
+                </button></a></p>
         </div>
         <div class="col-md-3 videoContainer">
             <iframe class="videoContent" src="https://www.youtube.com/embed/F7va26Wy5bw" frameborder="0" width="560" height="349" allowfullscreen></iframe>
@@ -54,7 +61,8 @@
                 Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se fnt directement sur notre site internet.
 
                 {% endtrans %}
-            <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez vous <a href="{{ path('gc_reservation_page') }}">réserver ici.</a></p>
+            <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez  <button class="buttonInscription greenButton">
+                    <a class="colorWhite" href="{{ path('gc_reservation_page') }}">réserver ici</a></button></p>
             </p>
         </div>
         <div class="col-md-3 foodImg">
