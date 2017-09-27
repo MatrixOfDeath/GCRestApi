@@ -17,7 +17,6 @@ Encore
         './web/assets/js/fixdiv.js',
         './web/assets/js/modal.js',
         './web/assets/js/reservation/checkDispoDate.js'
-
     ])
 
     .addEntry('ajax', [
@@ -40,9 +39,13 @@ Encore
         './web/assets/scss/dashboard.scss',
         './web/assets/scss/helper.scss',
         './web/assets/scss/main.scss',
+        './web/assets/scss/produit.scss',
+        './web/assets/scss/tunel.scss',
+        './web/assets/scss/faq.scss',
         './web/assets/scss/coffee-animation.scss',
         './web/assets/scss/coffee-loader.scss',
-        './web/assets/scss/reservation/checkDispoDate.scss'
+        './web/assets/scss/reservation/checkDispoDate.scss',
+
     ])
 
     // allow sass/scss files to be processed

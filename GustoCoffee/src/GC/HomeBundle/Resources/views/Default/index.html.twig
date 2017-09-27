@@ -21,15 +21,22 @@
     <div class="row addPadding">
         <div class="col-md-9">
             <h2 class="centerText">GustoCoffee</h2>
-            <p class="textDescription">{% trans %}La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking" .
-                Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.{% endtrans %}
+            <p class="textDescription">{% trans %}
+                « Le coworking est un type d’organisation du travail qui regroupe deux notions : un espace de travail partagé, mais aussi un réseau de travailleurs encourageant l’échange et l’ouverture. »  (Source Wikipédia)
+                <br>
+                Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
+                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,
+                collaborateurs, clients et sous-traitant. <br><br>
+                La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking".
+                Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.
+                {% endtrans %}
             </p>
+            <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez vous <a href="{{ path('fos_user_registration_register') }}">inscrire ici.</a></p>
         </div>
         <div class="col-md-3 videoContainer">
             <iframe class="videoContent" src="https://www.youtube.com/embed/F7va26Wy5bw" frameborder="0" width="560" height="349" allowfullscreen></iframe>
         </div>
     </div>
-    <div class="clear"></div>
 {# ---------- End First Block ---------- #}
 {% endblock %}
 
@@ -42,15 +49,18 @@
             <p class="textDescription">
                 {% trans %}
                 GustoCoffee vous propose des services bureautiques  comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !
-                Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner tout en continuant votre travail de la journée.
+                Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner, en réservant une salle privée, tout en continuant votre travail de la journée.
+                <br>
+                Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se fnt directement sur notre site internet.
+
                 {% endtrans %}
+            <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez vous <a href="{{ path('gc_reservation_page') }}">réserver ici.</a></p>
             </p>
         </div>
         <div class="col-md-3 foodImg">
             <img alt="Restauration GustoCoffee" src="{{ asset('img/servicesResto.jpg') }}">
         </div>
     </div>
-    <div class="clear"></div>
 
     {# ---------- End Second Block ---------- #}
 {% endblock %}
@@ -72,7 +82,7 @@
         <div class="col-md-2">
         </div>
     </div>
-    <div class="clear"></div>
+    <div class="clearThirty"></div>
 
     {# ---------- End Third Block ---------- #}
 {% endblock %}
