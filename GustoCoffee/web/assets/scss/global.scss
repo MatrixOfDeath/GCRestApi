@@ -1,3 +1,9 @@
+.greenButton {
+  color: #fff !important;
+  background-color: #5cb85c !important;
+  border-color: #4cae4c !important;
+}
+
 .centerText {
     text-align: center;
 }
@@ -216,7 +222,8 @@ footer a {
   flex-flow: row wrap;
 }
 footer {
-  background: #252525;
+  background: #252525;/*
+  background: rgba(197, 197, 197, 0.38);*/
   margin-top: auto;
   width: 100%
 }
@@ -230,7 +237,7 @@ footer {
 .footer-list-header {
   padding: 10px 0 5px 0;
   color: #fff;
-  font-size: 30px;
+  font-size: 25px;
 }
 .footer-list-anchor {
   font: 1.3em "Open Sans", sans-serif
@@ -283,7 +290,7 @@ footer {
   margin-right: auto
 }
 .footer-bottom-wrapper {
-  font-size: 1.5em;
+  font-size: 1.3em;
   color: #fff
 }
 .footer-address {
