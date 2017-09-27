@@ -6,7 +6,7 @@ easy_admin:
             form:
                 fields:
                     - { property: 'nomProduit', type: 'text', help: 'Nom du produit' }
-                    - { property: 'prixProduit', type: 'text', help: 'Prix en € Hors Taxe' }
+                    - { property: 'prixProduit', type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € Hors Taxe' }
                     - { property: 'description', type: 'text'}
                     - { property: 'imageFile', type: 'vich_image' }
                     - { property: 'quantiteEnStock', type: 'text'}
@@ -22,13 +22,12 @@ easy_admin:
                 fields:
                     - idproduit
                     - { property: 'nomProduit', type: 'text'}
-                    - { property: 'prixProduit', label: 'Prix en €', type: 'text', help: 'Prix en € Hors Taxe' }
+                    - { property: 'prixProduit', label: 'Prix en €', type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € Hors Taxe' }
                     - { property: 'description', type: 'text'}
                     - { property: 'image', type: 'image', base_path: '%app.path.products_images%' }
                     - { property: 'quantiteEnStock', type: 'text'}
                     - 'tva'
                     - 'idtypeproduit'
-
 
             show:
                 title: 'Show des Produits'
@@ -37,7 +36,7 @@ easy_admin:
 
                 fields:
                     - { property: 'nomProduit', type: 'text'}
-                    - { property: 'prixProduit', label: 'Prix en €', type: 'float', help: 'Prix en € Hors Taxe' }
+                    - { property: 'prixProduit', label: 'Prix en €',type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € Hors Taxe' }
                     - { property: 'description', type: 'text'}
                     - { property: 'image', type: 'image', base_path: '%app.path.products_images%' }
                     - { property: 'quantiteEnStock', type: 'text'}

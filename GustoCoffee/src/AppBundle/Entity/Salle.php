@@ -69,6 +69,13 @@ class Salle
     private $imageFile;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="prixProduit", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $prixproduit;
+
+    /**
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
      * @var \DateTime
      */
@@ -241,6 +248,29 @@ class Salle
     }
 
 
+    /**
+     * Set prixproduit
+     *
+     * @param float $prixproduit
+     *
+     * @return Produit
+     */
+    public function setPrixproduit($prixproduit)
+    {
+        $this->prixproduit = $prixproduit;
+
+        return $this;
+    }
+
+    /**
+     * Get prixproduit
+     *
+     * @return float
+     */
+    public function getPrixproduit()
+    {
+        return $this->prixproduit;
+    }
 
     /**
      * @return string

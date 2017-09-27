@@ -16,13 +16,15 @@ Encore
         './web/assets/js/scripts.js',
         './web/assets/js/fixdiv.js',
         './web/assets/js/modal.js',
-        './web/assets/js/reservation/checkDispoDate.js'
+        './web/assets/js/reservation/checkDispoDate.js',
     ])
 
     // Wil output Web/build/ajax.js
     .addEntry('ajax', [
         './web/assets/js/ajax/ajaxCheckDispoDate.js',
-        './web/assets/js/ajax/ajaxChoixSalle.js'
+        './web/assets/js/ajax/ajaxChoixSalle.js',
+        './web/assets/js/places/jquery.seat-charts.js',
+        './web/assets/js/places/ajaxGestionPlaces.js'
     ])
 
     // will output as web/build/global.css
@@ -47,6 +49,8 @@ Encore
         './web/assets/scss/coffee-animation.scss',
         './web/assets/scss/coffee-loader.scss',
         './web/assets/scss/reservation/checkDispoDate.scss',
+        //'./web/assets/scss/places/carte-places.scss',
+        './web/assets/scss/places/places-individuelles.scss'
 
     ])
 
@@ -55,12 +59,10 @@ Encore
 
     .enableLessLoader()
 
-    // allow legacy applications to use $/jQuery as a global variable
     //.autoProvidejQuery()
 
     .enableSourceMaps(!Encore.isProduction())
 
-    // create hashed filenames (e.g. app.abc123.css)
     // .enableVersioning()
     .enableVersioning()
 

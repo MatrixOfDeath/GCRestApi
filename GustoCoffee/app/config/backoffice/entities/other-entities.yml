@@ -17,26 +17,27 @@ easy_admin:
             class: AppBundle\Entity\JoursOuvert
             label: 'Ouverture'
             form:
-                fields: ['jours', { property: 'heureDebut', type: 'time'},  { property: 'heureFin' , type: 'time'}, 'titre']
+                fields: [{property: 'jours', type: 'text'}, { property: 'heureDebut', type: 'time'},  { property: 'heureFin' , type: 'time'}, 'titre', 'idmagasin']
             list:
                 actions:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
-                title: 'Les jours d''ouverture'
-                fields: ['jours', { property: 'heureDebut', type: 'time'}, { property: 'heureFin' , type: 'time'}, 'titre']
+                title: 'Les jours d''ouvertures'
+                fields: [{property: 'jours', type: text}, { property: 'heureDebut', type: 'time'}, { property: 'heureFin' , type: 'time'}, 'titre', 'idmagasin']
                 sort: 'idouverture'
             edit:
-                fields: ['jours', { property: 'heureDebut', type: 'time'}, { property: 'heureFin', type: 'time'}, 'titre']
+                fields: ['jours', { property: 'heureDebut', type: 'time'}, { property: 'heureFin', type: 'time'}, 'titre', 'idmagasin']
 
         FermetureCafe:
           class: AppBundle\Entity\FermetureDuCafe
           label: 'Fermeture'
           form:
-              fields: ['dateDebut', 'dateFin', 'heureDebut', 'heureFin', 'titre', 'raison', 'jourFerie']
+              fields: [{property: 'datedebut', type: 'date' }, { property: 'datefin', type: 'date' }, {property: 'titre', type: 'text' }, 'raison', 'jourFerie', 'idmagasin']
           list:
-              title: 'Les jours d''ouverture'
-              fields: ['dateDebut', 'dateFin', 'heureDebut', 'heureFin', 'titre', 'raison', 'jourFerie']
+              title: 'Les jours de fermeture'
+              fields: ['datedebut', 'datefin', 'titre', 'raison', 'jourFerie', 'idmagasin']
+
         Service:
             class: AppBundle\Entity\Service
             label: 'Les Services'
@@ -101,8 +102,8 @@ easy_admin:
                 fields:
 
                     - { property: 'nom', type: 'text'}
-                    - { property: 'prix',  type: 'text', help: 'Prix en € TTC (exemple: 3.5 ou 5 sans le symbole €'}
-                    - { property: 'duree', type: 'text', help: 'Heure pour un prix donnée (exemple: 1 sans le H, ou 2,5 pour deux heures et demies'}
+                    - { property: 'prix',   type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € TTC (exemple: 3.5 ou 5 sans le symbole €'}
+                    - { property: 'duree', type: 'number', help: 'Heure pour un prix donnée (exemple: 1 sans le H, ou 2,5 pour deux heures et demies'}
                     - 'idmagasin'
             list:
                 title: 'Grille Tarifaire FR'
@@ -113,6 +114,6 @@ easy_admin:
                 fields:
                     - idgrilletarifaire
                     - { property: 'nom', type: 'text'}
-                    - { property: 'prix', label: 'Prix en €', type: 'text', help: 'Prix en € TTC (exemple: 3.5 ou 5 sans le symbole €'}
+                    - { property: 'prix', label: 'Prix en €',  type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € TTC (exemple: 3.5 ou 5 sans le symbole €'}
                     - { property: 'duree', type: 'text' }
                     - 'idmagasin'

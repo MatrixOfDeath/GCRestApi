@@ -59,6 +59,36 @@ class Magasin
     private $idgrilletarifaire;
 
     /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\JoursOuvert", mappedBy="idmagasin")
+     *
+     */
+    private $idouverture;
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FermetureDuCafe", mappedBy="idmagasin")
+     *
+     */
+    private $idfermeture;
+
+    /**
+     * @return mixed
+     */
+    public function getIdfermeture()
+    {
+        return $this->idfermeture;
+    }
+
+    /**
+     * @param mixed $idfermeture
+     */
+    public function setIdfermeture($idfermeture)
+    {
+        $this->idfermeture = $idfermeture;
+    }
+
+    /**
      * @return mixed
      */
     public function getIdgrilletarifaire()
@@ -82,7 +112,6 @@ class Magasin
         $this->idsalle = new ArrayCollection();
         $this->idgrilletarifaire = new ArrayCollection();
     }
-
 
     /**
      * Set nommagasin
@@ -199,5 +228,28 @@ class Magasin
         $this->telephone = $telephone;
     }
 
+    /**
+     * Set idouverture
+     *
+     * @param \AppBundle\Entity\JoursOuvert $idouverture
+     *
+     * @return Reservation
+     */
+    public function setIdouverture(\AppBundle\Entity\JoursOuvert $idouverture = null)
+    {
+        $this->idouverture = $idouverture;
+
+        return $this;
+    }
+
+    /**
+     * Get idouverture
+     *
+     * @return \AppBundle\Entity\JoursOuvert
+     */
+    public function getIdouverture()
+    {
+        return $this->idouverture;
+    }
 
 }

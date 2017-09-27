@@ -4,7 +4,7 @@ easy_admin:
             class: AppBundle\Entity\Personne
             label: 'Utilisateurs'
             form:
-                fields: ['id', 'username', 'email', 'nom', 'prenom', 'enabled', 'statutpersonne', 'newsletter']
+                fields: ['id', 'username', {property: 'email', type: 'email'}, 'nom', 'prenom', 'enabled', 'statutpersonne', 'newsletter']
             list:
                 title: 'Les Utilisateurs'
                 actions:

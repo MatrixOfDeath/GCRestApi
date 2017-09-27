@@ -1,7 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Places list</h1>
+{% block title %}
+    <title>GustoCoffee Réservation Places</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPage topPageReservation
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{% endblock %}
+
+{% block titleHome %}
+    Réservation CoWorking
+{% endblock %}
+
+{% block firstBlock %}
+<div id="carte-places-individuelles">
+    <div class="wrapper">
+        <div class="container">
+            <h1>Carte interactives des places individuelles</h1>
+            <div id="seat-map">
+                <div class="front-indicator">Salle Openspace</div>
+            </div>
+            <div class="booking-details">
+                <h2>Booking Details</h2>
+                <h3> Selected Seats (<span id="counter">0</span>):</h3>
+                <ul id="selected-seats">
+                </ul>
+                Total: <b>€<span id="total">0</span></b>
+                <button class="checkout-button">Checkout &raquo;</button>
+                <div id="legend"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <table>
         <thead>
@@ -38,4 +72,5 @@
             <a href="{{ path('place_new') }}">Create a new place</a>
         </li>
     </ul>
+
 {% endblock %}
