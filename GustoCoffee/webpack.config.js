@@ -29,6 +29,7 @@ Encore
 
     // will output as web/build/global.css
     .addStyleEntry('global', [
+        './web/assets/scss/helper.scss',
         './web/assets/scss/global.scss',
         './web/assets/scss/home.scss',
         './web/assets/scss/evenement.scss',
@@ -41,10 +42,10 @@ Encore
         './web/assets/scss/request.scss',
         './web/assets/scss/register.scss',
         './web/assets/scss/dashboard.scss',
-        './web/assets/scss/helper.scss',
         './web/assets/scss/main.scss',
         './web/assets/scss/produit.scss',
-        './web/assets/scss/tunel.scss',
+        // './web/assets/scss/tunel.scss',
+        './web/assets/scss/tunnel-achat-workflow.scss',
         './web/assets/scss/faq.scss',
         './web/assets/scss/coffee-animation.scss',
         './web/assets/scss/coffee-loader.scss',

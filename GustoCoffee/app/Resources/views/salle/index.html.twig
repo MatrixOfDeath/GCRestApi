@@ -18,7 +18,7 @@
 
 {% block firstBlock %}
     <div class="row addPadding">
-        <div class="col-md-2" id="getFixed" role="navigation">
+        <div class="col-md-3" id="" role="navigation">
             <div class="row">
                 <div class="col-xs-12">
                     {# Choix de la date #}
@@ -29,33 +29,24 @@
                             <input type="hidden" id="datepicker-altFormat" name="begin_date" />
                         </div>
                     </form>
-                </div>
 
-                <div class="col-xs-12">
                     <button class="btn btn-block btn-primary buttonSearch">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span> {{  "Rechercher"|trans }}
                     </button>
                 </div>
             </div>
+            {#<div class="row">#}
+                {#{{  render(controller('AppBundle:Panier:ajaxPanier')) }}#}
+            {#</div>#}
+        </div>
+
+        <div class="col-md-9 reservation-result-container">
             <div class="row">
-                {{  render(controller('AppBundle:Panier:menu')) }}
+                {% embed ":reservation:tunnel-breadcrumb.html.twig" %}
+
+                {% endembed %}
             </div>
-        </div>
-
-        <div class="col-md-2">
-
-        </div>
-
-        <div class="col-md-10 reservation-result-container">
             <div class="row reservation-select-creneau">
-                <div class="btn-group">
-                    <a href="#" id="list" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-th-list"></span>Liste
-                    </a>
-                    <a href="#" id="grid" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-th"></span>Grille
-                    </a>
-                </div>
                 <div id="time-range">
                     <p>{{ 'Créneau horaire'|trans }}:<br> <span class="slider-time">9:00</span>H - <span class="slider-time2">21:00</span>H
                     </p>
@@ -67,15 +58,23 @@
                 </div>
 
             </div>
-            <div class="row">
+            <div class="row btn-group">
+                <a href="#" id="list" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-th-list"></span>Liste
+                </a>
+                <a href="#" id="grid" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-th"></span>Grille
+                </a>
+            </div>
+            <div class="row" id="display-ajax-content">
                 {# On appelle le template salleDisponible en embed #}
                 <div id="display-salle" class="row list-group">
                     {% embed ":salle:sallesDisponible.html.twig" %}
 
                     {% endembed %}
 
+                </div>
             </div>
         </div>
-    </div>
     </div>
 {% endblock %}

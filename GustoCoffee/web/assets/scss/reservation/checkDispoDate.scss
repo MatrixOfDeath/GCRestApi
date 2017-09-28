@@ -1,7 +1,7 @@
 $color-gc: #6F4E37;
 $color-gc-lighter: #846139;
 
-.glyphicon { margin-right:5px; }
+// TODO: Why ? .glyphicon { margin-right:5px; }
 
 .btn-group {
   margin-left: 50px;
@@ -65,11 +65,12 @@ $color-gc-lighter: #846139;
   margin: 0 0 11px;
 }
 
+
+
 #display-salle{
   width:90%;
   min-height:50%;
   margin:auto;
-  margin-top: 50px;
 }
 
 /** Date slider **/
