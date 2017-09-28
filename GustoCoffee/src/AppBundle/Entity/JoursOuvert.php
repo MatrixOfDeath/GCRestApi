@@ -178,4 +178,11 @@ class JoursOuvert
     {
         return $this->idouverture;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return 'Le '. $this->getJours(). ' De ' . $this->getHeuredebut()->format('H:i') . ' à '. $this->getHeurefin()->format('H:i');
+    }
 }

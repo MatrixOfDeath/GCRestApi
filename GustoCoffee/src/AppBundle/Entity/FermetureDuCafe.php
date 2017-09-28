@@ -209,4 +209,12 @@ class FermetureDuCafe
     {
         return $this->idfermeture;
     }
+
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return 'Raison: '. $this->getRaison() .' pour '.$this->getJourferie(). '. Du ' . $this->getDatedebut()->format('d M Y') . 'au '. $this->getDatefin()->format('d M Y');
+    }
 }

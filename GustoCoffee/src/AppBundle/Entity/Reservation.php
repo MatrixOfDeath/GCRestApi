@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\Date;
  *     @ORM\Index(name="FK_Reservation_idPersonne", columns={"idPersonne"}),
  *     @ORM\Index(name="FK_Reservation_idModePaiement", columns={"idModePaiement"}),
  *     @ORM\Index(name="FK_Reservation_idMagasin", columns={"idMagasin"}),
- *     @ORM\Index(name="FK_Reservation_idOuverture", columns={"idOuverture"})})
+ * })
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
  */
@@ -94,20 +94,31 @@ class Reservation
     private $idmodepaiement;
 
     /**
-     * @var \AppBundle\Entity\JoursOuvert
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\JoursOuvert")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idOuverture", referencedColumnName="idOuverture")
-     * })
-     */
-    private $idouverture;
-
-    /**
      * @var boolean
      * @ORM\Column(name="statut", type="boolean", nullable=true)
      */
     private $statut;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commande", mappedBy="reservation")
+     */
+    private $commandes;
+
+    /**
+     * @return mixed
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * @param mixed $commandes
+     */
+    public function setCommandes($commandes)
+    {
+        $this->commandes = $commandes;
+    }
 
     /**
      * @return bool

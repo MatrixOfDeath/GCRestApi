@@ -29,15 +29,34 @@ class GrilleTarifaire
     private $idgrilletarifaire;
 
 
-
-
     /**
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin", inversedBy="idmagasin")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin", inversedBy="grilletarifaire")
      * @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
      */
-    private $idmagasin;
+    private $magasin;
 
+    /**
+     * @return mixed
+     */
+    public function getMagasin()
+    {
+        return $this->magasin;
+    }
+
+    /**
+     * @param mixed $magasin
+     */
+    public function setMagasin($magasin)
+    {
+        $this->magasin = $magasin;
+    }
+
+//    /**
+//     * @var integer
+//     * @ORM\Column(name="idMagasin", type="integer")
+//     */
+//    private $idmagasin;
 
     /**
      * Heure correspondant au prix
@@ -143,6 +162,12 @@ class GrilleTarifaire
         $this->prix = $prix;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getNom(). ': Durée ' . $this->getDuree() . 'H, Prix: ' . $this->getPrix().'€';
+    }
 
 
 }
