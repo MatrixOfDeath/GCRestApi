@@ -40,16 +40,33 @@
   text-decoration: underline;
 }
 
-/*
-#mainNav {
-    height: 72px;
-}
-*/
 
+#mainNav {
+  background: transparent;
+  border-color: transparent;
+}
+
+#mainNav.menu-blanc{
+  background-color: #f8f8f8;
+  border-color: #f8f8f8;
+  box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07), 0 1px 0 0 rgba(0,0,0,0.03);
+  opacity: 0.95;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+.navbar-toggle{
+  background-color: #f8f8f8;
+  border-color: #f8f8f8;
+}
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
     border-color: transparent;
-    background-color: #f8f8f8;
+    //background-color: #f8f8f8;
+    background-color: transparent;
 
+}
+
+.navbar-default .navbar-nav>li>a{
+  color: #6F4E37;
 }
 
 .clearThirty {
@@ -327,6 +344,17 @@ footer {
   .sticky-container {
     display: none;
   }
+
+  #mainNav {
+    background: #f8f8f8;
+    border-color: #f8f8f8;
+  }
+
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #f8f8f8;
+    //background-color: #f8f8f8;
+    background-color: #f8f8f8;
+  }
 }
 @media only screen and (max-width: 568px) {
   main {
@@ -370,6 +398,16 @@ footer {
     width: 100%;
     margin-top: 10px
   }
+  #mainNav {
+    background: #f8f8f8;
+    border-color: #f8f8f8;
+  }
+
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #f8f8f8;
+    //background-color: #f8f8f8;
+    background-color: #f8f8f8;
+  }
 }
 @media only screen and (max-width: 480px) {
   .footer-social-overlap > a {
@@ -380,6 +418,16 @@ footer {
   }
   .footer-bottom-rights {
     display: block
+  }
+  #mainNav {
+    background: #f8f8f8;
+    border-color: #f8f8f8;
+  }
+
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #f8f8f8;
+    //background-color: #f8f8f8;
+    background-color: #f8f8f8;
   }
 }
 @media only screen and (max-width: 320px) {
@@ -397,5 +445,15 @@ footer {
   }
   .footer-bottom-wrapper {
     font-size: 1.3em
+  }
+  #mainNav {
+    background: #f8f8f8;
+    border-color: #f8f8f8;
+  }
+
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: #f8f8f8;
+    //background-color: #f8f8f8;
+    background-color: #f8f8f8;
   }
 }
