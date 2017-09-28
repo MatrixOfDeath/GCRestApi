@@ -101,27 +101,72 @@
         <div class="col-xs-4 col-lg-4 cardSalle grid-group-item list-group-item">
         <div class="thumbnail">
             <div class="caption">
-                <h4 class="group inner list-group-item-heading centerText">
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {% if is_granted("ROLE_ADMIN") %}
+                    <p class="group inner list-group-item-heading centerText">
                         <a href="{{ path('fos_user_security_logout') }}"></a>
-                        <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ annonce.titre }}</a>
-                    {% else %}
-                        {{ annonce.idpersonne }} - {{ annonce.titre }} - {{ annonce.categorieAnnonce }}
-                        {% if is_granted("ROLE_ADMIN") %}
-                            <a href="{{ path('fos_user_security_logout') }}"></a>
-                            <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}</a>
-                            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
-                        {% else %}
-                            <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    </p>
+                    <h4 class="group inner list-group-item-heading centerText"> <u>{{ annonce.categorieAnnonce }}</u> </h4>
+                    <h4 class="group inner list-group-item-heading centerText">{{ annonce.titre }}</h4>
+
+                    <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
+                    <h4 class="group inner list-group-item-heading">
+                        {{ 'Par' | trans }} {{ annonce.idpersonne }}
+                    </h4>
+                    <p class="group inner list-group-item-text sizeFont">
+                        {{ annonce.corps }}
+                    </p>
+                    <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
+                    <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
+
+                {% elseif is_granted("ROLE_SUPER_ADMIN") %}
+                    <p class="group inner list-group-item-heading centerText">
+                        <a href="{{ path('fos_user_security_logout') }}"></a>
+                    </p>
+                    <h4 class="group inner list-group-item-heading centerText"> <u>{{ annonce.categorieAnnonce }}</u> </h4>
+                    <h4 class="group inner list-group-item-heading centerText">{{ annonce.titre }}</h4>
+
+                    <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
+                    <h4 class="group inner list-group-item-heading">
+                        {{ 'Par' | trans }} {{ annonce.idpersonne }}
+                    </h4>
+                    <p class="group inner list-group-item-text sizeFont">
+                        {{ annonce.corps }}
+                    </p>
+                    <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
+                    <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
+
+                {% elseif app.user %}
+                    <p class="group inner list-group-item-heading centerText">
+                        <a href="{{ path('fos_user_security_logout') }}"></a>
+                    </p>
+                    <h4 class="group inner list-group-item-heading centerText"> <u>{{ annonce.categorieAnnonce }}</u></h4>
+                    <h4 class="group inner list-group-item-heading centerText">{{ annonce.titre }}</h4>
+                    <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
+                    <h4 class="group inner list-group-item-heading">
+                        {{ 'Par' | trans }} {{ annonce.idpersonne }}
+                    </h4>
+                    <p class="group inner list-group-item-text sizeFont">
+                        {{ annonce.corps }}
+                    </p>
+                        {% if app.user == annonce.idpersonne %}
+                    <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
+                    <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
                         {% endif %}
-                        {% endif %}
-                </h4>
-                <p class="group inner list-group-item-text sizeFont">
-                    {{ annonce.corps }}
-                </p>
+                {% else %}
+                    <h4 class="group inner list-group-item-heading centerText"> <u>{{ annonce.categorieAnnonce }}</u> </h4>
+                    <h4 class="group inner list-group-item-heading centerText"> {{ annonce.titre }} </h4>
+                    <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
+                    <h4 class="group inner list-group-item-heading">
+                        {{ 'Par' | trans }} {{ annonce.idpersonne }}
+                    </h4>
+                    <p class="group inner list-group-item-text sizeFont">
+                        {{ annonce.corps }}
+                    </p>
+                {% endif %}
             </div>
         </div>
-    </div>
+        </div>
+
         {% endfor %}
 
     {#<section>
