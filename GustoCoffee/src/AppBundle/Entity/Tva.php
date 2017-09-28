@@ -63,22 +63,22 @@ class Tva
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Produit", mappedBy="idtva")
      *
      */
-    private $tva;
+    private $produits;
 
     /**
      * @return mixed
      */
     public function getTva()
     {
-        return $this->tva;
+        return $this->produits;
     }
 
     /**
-     * @param mixed $tva
+     * @param mixed $produits
      */
-    public function setTva($tva)
+    public function setTva($produits)
     {
-        $this->tva = $tva;
+        $this->produits = $produits;
     }
 
     /**

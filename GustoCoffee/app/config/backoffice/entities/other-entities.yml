@@ -4,14 +4,14 @@ easy_admin:
             class: AppBundle\Entity\Magasin
             label: 'Les Magasins'
             form:
-                fields: ['nomMagasin', 'adresse']
+                fields: [{property: 'nomMagasin', type: 'text'}, 'adresse', {property: 'telephone', type: 'text'}]
             list:
                 title: 'Les Magasins'
                 actions:
                     - { name: 'show', label: '', icon: 'search' }
                     - { name: 'edit', label: '', icon: 'edit' }
                     - { name: 'delete', label: '', icon: 'trash' }
-                fields: ['nomMagasin', 'adresse']
+                fields: ['nomMagasin', 'adresse', 'telephone']
 
         JoursOuvert:
             class: AppBundle\Entity\JoursOuvert
@@ -114,6 +114,6 @@ easy_admin:
                 fields:
                     - idgrilletarifaire
                     - { property: 'nom', type: 'text'}
-                    - { property: 'prix', label: 'Prix en €',  type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € TTC (exemple: 3.5 ou 5 sans le symbole €'}
+                    - { property: 'prix', label: 'Prix en €' }
                     - { property: 'duree', type: 'text' }
                     - 'idmagasin'
