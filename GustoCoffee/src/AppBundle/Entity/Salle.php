@@ -285,7 +285,7 @@ class Salle
      * @param \AppBundle\Entity\Tva $idtva
      * @return Salle
      */
-    public function setIdTva(\AppBundle\Entity\Tva $idtva)
+    public function setTva(\AppBundle\Entity\Tva $idtva)
     {
         $this->idtva = $idtva;
 
@@ -297,7 +297,7 @@ class Salle
      *
      * @return \AppBundle\Entity\Tva
      */
-    public function getIdTva()
+    public function getTva()
     {
         return $this->idtva;
     }

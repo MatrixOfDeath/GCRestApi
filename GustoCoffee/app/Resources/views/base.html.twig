@@ -29,7 +29,7 @@
 {% block body %}
 
     {% block navbar %}
-    <div class="container-fluid">
+    <div id="main" class="container-fluid">
         <div class="row {% block firstImg %}{% endblock %}">
             <div class="col-md-12">
                 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -125,6 +125,7 @@
                 </ul>
             </div>
             <div>
+
                 <h1 class="titleHome {% block paddingTitle %}{% endblock %}">
                     {% block titleHome %}{% endblock %}
                 </h1>
@@ -143,74 +144,19 @@
 
     {% block thirdBlock %}
     {% endblock %}
-
-    {% block footer %}
-        {#<footer class="footer">
-            <div class="row">
-                <div class="col-md-12">
-                    <p>
-                        <a href="{{ asset('pdf/mentionsLegales.pdf') }}" target="_blank">{{ "Mentions Légales"|trans }}</a><br>
-                        <a href="{{ asset('pdf/CGU.pdf') }}" target="_blank">{{ "Conditions Générales d'Utilisation"|trans }}</a><br>
-                        <a href="{{ asset('pdf/CGV.pdf') }}" target="_blank">{{ "Conditions Générales de Vente"|trans }}</a><br>
-                        {{ "FAQ"|trans }} <br>
-                        {{ "Newsletter"|trans }} <br>
-                        {{ "Recrutement"|trans }} <br>
-                        {{ "Infos"|trans }}
-                    </p>
-                </div>
-            </div>
-        </footer>#}
     </div>
-        <div class="clearThirty"></div>
-        <footer class="footer flex-rw addPadding">
-            <ul class="footer-list-top">
-                <li><h4 class="footer-list-header">A Propos de GustoCoffee</h4></li>
-                <li><a href="{{ asset('pdf/mentionsLegales.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Mentions Légales"|trans }}</a></li>
-                <li><a href="{{ asset('pdf/CGU.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Conditions Générales d'Utilisation"|trans }}</a></li>
-                <li><a href="{{ asset('pdf/CGV.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Conditions Générales de Vente"|trans }}</a></li>
-                <li><a href='https://www.indeed.fr/emplois?q=Serveur+caf%C3%A9&l=Paris' target="_blank" class="generic-anchor footer-list-anchor">{{ "Recrutement"|trans }}</a></li>
-            </ul>
-            <ul class="footer-list-top">
-                <li><h4 class="footer-list-header">Nos réseaux sociaux</h4></li>
-                    <li>
-                        <a href="https://www.facebook.com/GustoCoffeeKASAgency/" target="_blank">
-                        <img width="32" height="32" title="" alt="facebook" src="{{ asset('social/facebook.png') }}" />
-                       </a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/?lang=fr">
-                            <img width="32" height="32" title="" alt="twitter" src="{{ asset('social/twitter.png') }}" />
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/">
-                            <img width="30" height="32" title="" alt="instagram" src="{{ asset('social/instagram.png') }}" />
-                        </a>
-                    </li>
-            </ul>
-            <ul class="footer-list-top">
-                <li id='help'><h4 class="footer-list-header">Besoin d'aide ?</h4></li>
-                <li><a href="{{ path('gc_contact_page') }}" class="generic-anchor footer-list-anchor">Contact</a></li>
-                <li><a href='{{ path('gc_faq_page') }}' class="generic-anchor footer-list-anchor">{{ "FAQ"|trans }}</a></li>
-            </ul>
 
-            <section class="footer-bottom-section flex-rw">
-                <div class="footer-bottom-wrapper">
-                    <i class="fa fa-copyright" role="copyright">
-                    </i> 2017 GustoCoffee <address class="footer-address" role="company address">Paris, France</address><span class="footer-bottom-rights"> - Tous droits réservés - </span>
-                </div>
-            </section>
-        </footer>
+   {% embed "footer.html.twig" %}
+    {% endembed  %}
 
-    {% endblock %}
     {% block script %}
         <script src="{{ asset('js/jquery.min.js') }}"></script>
+        {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
         <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     {#<script>#}
         {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
     {#</script>#}
-
 
         <script src="{{ asset('build/app.js') }}"></script>
     {#  Adding ajax script TODO: add specific on each page #}

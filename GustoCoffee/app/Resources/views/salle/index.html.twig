@@ -20,7 +20,9 @@
     <div class="row addPadding">
         <div class="col-md-3" id="" role="navigation">
             <div class="row">
-                <div class="col-xs-12">
+                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-8">
                     {# Choix de la date #}
                     <form id="room-search-form">
                         <div id="reservation-date-picker" class="form-group">
@@ -34,14 +36,16 @@
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span> {{  "Rechercher"|trans }}
                     </button>
                 </div>
+                    <div class="col-xs-2">
+                    </div>
             </div>
-            {#<div class="row">#}
-                {#{{  render(controller('AppBundle:Panier:ajaxPanier')) }}#}
-            {#</div>#}
+            <div class="row panier-menu">
+                {{  render(controller('AppBundle:Panier:ajaxPanier')) }}
+            </div>
         </div>
 
         <div class="col-md-9 reservation-result-container">
-            <div class="row">
+            <div class="row tunnel-achat">
                 {% embed ":reservation:tunnel-breadcrumb.html.twig" %}
 
                 {% endembed %}
@@ -56,7 +60,6 @@
 
                     </div>
                 </div>
-
             </div>
             <div class="row btn-group">
                 <a href="#" id="list" class="btn btn-default btn-sm">

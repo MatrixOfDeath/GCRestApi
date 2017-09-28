@@ -7,6 +7,7 @@ easy_admin:
               fields:
                   - { property: 'nomSalle', type: 'text'}
                   - { property: 'capacityMax', type: 'text'}
+                  - { property: 'prixsalle',   type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € TTC (exemple: 3.5 ou 5 sans le symbole €'}
                   - { property: 'imageFile', type: 'vich_image'}
                   - 'idmagasin'
           list:
@@ -19,6 +20,7 @@ easy_admin:
                   - 'idsalle'
                   - { property: 'nomSalle', sortable: true }
                   - { property: 'capacityMax', sortable: true }
+                  - { property: 'prixsalle', type_options: { currency: 'EUR' }}
                   - { property: 'image', type: 'image', base_path: '%app.path.salles_images%' }
                   - 'idmagasin'
               sort: ['idsalle', 'ASC']
@@ -27,6 +29,7 @@ easy_admin:
               fields:
                   - 'nomSalle'
                   - 'capacityMax'
+                  - 'prixsalle'
                   - { property: 'image', type: 'image', base_path: '%app.path.salles_images%' }
                   - 'idmagasin'
                   - 'createdAt'

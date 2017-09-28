@@ -5,8 +5,11 @@ $(function(){
     $('a.tc-link[title]').tooltip();
 });
 
-
+// Basics features
 $(document).ready(function(){
+
+    // $("#main").onepage_scroll();
+
     $(window).on("scroll",function(){
         var wn = $(window).scrollTop();
         if(wn > 80){
@@ -20,3 +23,5 @@ $(document).ready(function(){
         }
     });
 });
+
+

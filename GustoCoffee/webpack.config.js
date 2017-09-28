@@ -16,15 +16,17 @@ Encore
         './web/assets/js/scripts.js',
         './web/assets/js/fixdiv.js',
         './web/assets/js/modal.js',
-        './web/assets/js/reservation/checkDispoDate.js',
+        './web/assets/js/reservation/checkDispoDate.js'
     ])
 
     // Wil output Web/build/ajax.js
     .addEntry('ajax', [
         './web/assets/js/ajax/ajaxCheckDispoDate.js',
         './web/assets/js/ajax/ajaxChoixSalle.js',
+        './web/assets/js/ajax/ajaxChangeTunnelAchat.js',
         './web/assets/js/places/jquery.seat-charts.js',
         './web/assets/js/places/ajaxGestionPlaces.js'
+
     ])
 
     // will output as web/build/global.css
@@ -32,6 +34,7 @@ Encore
         './web/assets/scss/helper.scss',
         './web/assets/scss/global.scss',
         './web/assets/scss/home.scss',
+        // './web/assets/scss/onepage-scroll.scss',
         './web/assets/scss/evenement.scss',
         './web/assets/scss/reservation.scss',
         './web/assets/scss/reservation-private.scss',

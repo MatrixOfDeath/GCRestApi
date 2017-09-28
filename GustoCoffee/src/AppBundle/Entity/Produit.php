@@ -375,7 +375,7 @@ class Produit
      * @param \AppBundle\Entity\Tva $idtva
      * @return Produit
      */
-    public function setIdTva(\AppBundle\Entity\Tva $idtva)
+    public function setTva(\AppBundle\Entity\Tva $idtva)
     {
         $this->idtva = $idtva;
 
@@ -387,7 +387,7 @@ class Produit
      *
      * @return \AppBundle\Entity\Tva
      */
-    public function getIdTva()
+    public function getTva()
     {
         return $this->idtva;
     }
