@@ -55,7 +55,7 @@ class Magasin
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Magasin", mappedBy="magasin")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GrilleTarifaire", mappedBy="magasin")
      *
      */
     private $grilletarifaire;

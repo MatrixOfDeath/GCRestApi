@@ -37,7 +37,7 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
         },
         success: function (isDispo, textStatus)
         {
-            console.log('response: '+ response);
+            console.log('response: '+ isDispo);
             $.ajax({
                 url: Routing.generate('panier_ajax'),
                 type: "POST",

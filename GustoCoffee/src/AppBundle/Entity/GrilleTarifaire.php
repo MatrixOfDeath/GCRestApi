@@ -32,7 +32,7 @@ class GrilleTarifaire
     /**
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin", inversedBy="grilletarifaire")
-     * @ORM\JoinColumn(name="id_magasin", referencedColumnName="idMagasin", nullable=true)
+     * @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
      */
     private $magasin;
 
@@ -162,6 +162,12 @@ class GrilleTarifaire
         $this->prix = $prix;
     }
 
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getNom(). ': Durée ' . $this->getDuree() . 'H, Prix: ' . $this->getPrix().'€';
+    }
 
 
 }

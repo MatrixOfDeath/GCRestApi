@@ -52,6 +52,13 @@ class Tva
     private $valeur;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=3, nullable=true)
+     */
+    private $pays;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="multiplicate", type="float")
@@ -60,10 +67,34 @@ class Tva
 
     /**
      *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="idtva")
+     *
+     */
+    private $salles;
+
+    /**
+     *
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Produit", mappedBy="idtva")
      *
      */
     private $produits;
+
+
+    /**
+     * @return mixed
+     */
+    public function getTvaSalle()
+    {
+        return $this->salles;
+    }
+
+    /**
+     * @param mixed $salles
+     */
+    public function setTvaSalle($salles)
+    {
+        $this->salles = $salles;
+    }
 
     /**
      * @return mixed
@@ -171,6 +202,22 @@ class Tva
         $this->codetva = $codetva;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * @param string $pays
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
     }
 
     /**
