@@ -43,6 +43,7 @@ class AppKernel extends Kernel
             new GC\ReservationBundle\GCReservationBundle(),
             new GC\UserBundle\GCUserBundle(),
             new Webonaute\DoctrineFixturesGeneratorBundle\DoctrineFixturesGeneratorBundle(),
+            new Bmatzner\FontAwesomeBundle\BmatznerFontAwesomeBundle(),
         ];
         if (in_array($this->getEnvironment(), array('prod'))) {
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();

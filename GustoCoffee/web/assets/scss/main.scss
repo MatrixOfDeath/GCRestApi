@@ -1,0 +1,37 @@
+#menu-resa ul {
+  margin:0;
+  padding:0;
+  list-style-type:none;
+  text-align:center;
+}
+#menu-resa li {
+  float:left;
+  margin:auto;
+  padding:0;
+  background-color:black;
+}
+#menu-resa li a {
+  display:block;
+  width:100px;
+  color:white;
+  text-decoration:none;
+  padding:5px;
+}
+#menu-resa li a:hover {
+  color:#FFD700;
+}
+#menu-resa ul li ul {
+  display:none;
+}
+#menu-resa ul li:hover ul {
+  display:block;
+}
+#menu-resa li:hover ul li {
+  float:none;
+}
+#menu-resa li ul {
+  position:absolute;
+}
+#menu-resa {
+   height:50px;
+ }
