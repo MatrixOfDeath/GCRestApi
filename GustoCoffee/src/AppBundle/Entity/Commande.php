@@ -9,8 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="Commande", indexes={@ORM\Index(name="FK_Commande_idPersonne", columns={"idPersonne"}),
  * @ORM\Index(name="FK_Commande_idModePaiement", columns={"idModePaiement"}),
- * @ORM\Index(name="FK_Commande_idDemandeProduit", columns={"idDemandeProduit"})})
+ * @ORM\Index(name="FK_Commande_idDemandeProduit", columns={"idDemandeProduit"}),
+ * @ORM\Index(name="FK_Commande_idReservation", columns={"idReservation"})})
+ *
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CommandeRepository")
+ *
+ * @ORM\HasLifecycleCallbacks()
  */
 class Commande
 {
@@ -26,7 +30,10 @@ class Commande
 
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="reservation")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Reservation", inversedBy="commandes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idReservation", referencedColumnName="idReservation")
+     * })
      */
     private $reservation;
 
@@ -303,5 +310,63 @@ class Commande
     public function getPersonne()
     {
         return $this->personnes;
+    }
+
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+
+    /**
+     * created Time/Date
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
+
+    /**
+     * Set createdAt
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

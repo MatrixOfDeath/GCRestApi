@@ -8,7 +8,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Magasin
  *
- * @ORM\Table(name="Magasin", uniqueConstraints={@ORM\UniqueConstraint(name="nomMagasin", columns={"nomMagasin"})})
+ * @ORM\Table(name="Magasin", uniqueConstraints={
+ *     @ORM\UniqueConstraint(name="nomMagasin", columns={"nomMagasin"})
+ * })
  * @ORM\Entity
  */
 class Magasin
@@ -23,16 +25,14 @@ class Magasin
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=25, nullable=true)
+     * @ORM\Column(name="adresse", type="string", length=50, nullable=true)
      */
     private $adresse;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
+     * @ORM\Column(name="telephone", type="string", length=25, nullable=true)
      */
-
     private $telephone;
 
     /**
@@ -53,10 +53,10 @@ class Magasin
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GrilleTarifaire", mappedBy="idmagasin")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GrilleTarifaire", mappedBy="magasin")
      *
      */
-    private $idgrilletarifaire;
+    private $grilletarifaire;
 
     /**
      *
@@ -71,6 +71,15 @@ class Magasin
      *
      */
     private $idfermeture;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->idsalle = new ArrayCollection();
+        $this->grilletarifaire = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -91,26 +100,17 @@ class Magasin
     /**
      * @return mixed
      */
-    public function getIdgrilletarifaire()
+    public function getGrilletarifaire()
     {
-        return $this->idgrilletarifaire;
+        return $this->grilletarifaire;
     }
 
     /**
-     * @param mixed $idgrilletarifaire
+     * @param mixed $grilletarifaire
      */
-    public function setIdgrilletarifaire($idgrilletarifaire)
+    public function setGrilletarifaire($grilletarifaire)
     {
-        $this->idgrilletarifaire = $idgrilletarifaire;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->idsalle = new ArrayCollection();
-        $this->idgrilletarifaire = new ArrayCollection();
+        $this->grilletarifaire = $grilletarifaire;
     }
 
     /**
@@ -233,7 +233,7 @@ class Magasin
      *
      * @param \AppBundle\Entity\JoursOuvert $idouverture
      *
-     * @return Reservation
+     * @return Magasin
      */
     public function setIdouverture(\AppBundle\Entity\JoursOuvert $idouverture = null)
     {

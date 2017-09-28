@@ -1,4 +1,4 @@
-$(document).on('click', 'button.btn-success.buttonAddSalle', function(){
+$(document).on('click', '#tab-link-produit', function(){
 
     var choixDebut = $('.slider-time').text();
     var choixFin = $('.slider-time2').text();
@@ -6,7 +6,7 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
     var idSalle = $(this).val();
 
     console.log(idSalle + 'idsalle');
-   // $('#slider-range .heureActuelleDefaut').val("");
+    // $('#slider-range .heureActuelleDefaut').val("");
     that = $(this);
 
     //$("body").css({"opacity": "0.5", "background-color":"#000"});
@@ -45,7 +45,8 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
                 success: function (responsePanier, textStatus)
                 {
                     if(isDispo = '1') {
-                        $('.reservation-select-creneau').empty().append(responsePanier);
+                        $('.reservation-select-creneau').hide();
+                        $('.panier-menu').empty().append(responsePanier);
 
                         // $.get(Routing.generate(''), function(html){
                         //     $('#display-panier').empty().html(html);

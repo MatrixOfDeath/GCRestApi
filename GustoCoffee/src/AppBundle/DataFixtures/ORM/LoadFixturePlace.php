@@ -32,16 +32,31 @@ class LoadFixturePlace extends AbstractFixture implements OrderedFixtureInterfac
     public function load(ObjectManager $manager)
     {
         $manager->getClassMetadata(Place::class)->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
-    
-        $item1 = new Place();
-        $item1->setNomplace("A1");
-        $item1->setStatutplace("libre");
-        $item1->setIdsalle($this->getReference('_reference_Proxies__CG__AppBundleEntitySalle4'));
-        $this->addReference('_reference_AppBundleEntityPlace1', $item1);
-        $manager->persist($item1);
+
+        $i = 0;
+        $c = 'A';
+        for ($i = 1; $i <= 120; $i++){
+            if($i==8){
+                $c++;
+            }
+            $item1 = new Place();
+            $item1->setNomplace("A1");
+            $item1->setStatutplace("libre");
+            $item1->setIdsalle($this->getReference('_reference_Proxies__CG__AppBundleEntitySalle4'));
+            $this->addReference('_reference_AppBundleEntityPlace'.$i, $item1);
+            $manager->persist($item1);
+            $manager->flush();
+        }
+
+//        $item1 = new Place();
+//        $item1->setNomplace("A1");
+//        $item1->setStatutplace("libre");
+//        $item1->setIdsalle($this->getReference('_reference_Proxies__CG__AppBundleEntitySalle4'));
+//        $this->addReference('_reference_AppBundleEntityPlace1', $item1);
+//        $manager->persist($item1);
 
     
-        $manager->flush();
+
     }
 
 }

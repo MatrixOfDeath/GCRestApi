@@ -13,8 +13,9 @@ use Symfony\Component\Validator\Constraints\Date;
  *     @ORM\Index(name="FK_Reservation_idPersonne", columns={"idPersonne"}),
  *     @ORM\Index(name="FK_Reservation_idModePaiement", columns={"idModePaiement"}),
  *     @ORM\Index(name="FK_Reservation_idMagasin", columns={"idMagasin"}),
- *     @ORM\Index(name="FK_Reservation_idOuverture", columns={"idOuverture"})})
+ * })
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Reservation
 {
@@ -93,20 +94,31 @@ class Reservation
     private $idmodepaiement;
 
     /**
-     * @var \AppBundle\Entity\JoursOuvert
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\JoursOuvert")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idOuverture", referencedColumnName="idOuverture")
-     * })
-     */
-    private $idouverture;
-
-    /**
      * @var boolean
      * @ORM\Column(name="statut", type="boolean", nullable=true)
      */
     private $statut;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commande", mappedBy="reservation")
+     */
+    private $commandes;
+
+    /**
+     * @return mixed
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * @param mixed $commandes
+     */
+    public function setCommandes($commandes)
+    {
+        $this->commandes = $commandes;
+    }
 
     /**
      * @return bool
@@ -133,6 +145,64 @@ class Reservation
      * })
      */
     private $idpersonne;
+
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+
+    /**
+     * created Time/Date
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
+
+    /**
+     * Set createdAt
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 
     /**
      * Set datereservation

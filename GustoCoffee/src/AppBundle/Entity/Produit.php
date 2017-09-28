@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="Produit", indexes={@ORM\Index(name="quantiteEnStock", columns={"quantiteEnStock"}),
  *     @ORM\Index(name="FK_Produit_idTypeProduit", columns={"idTypeProduit"}),
  *     @ORM\Index(name="FK_Produit_idStatutProduit", columns={"idStatutProduit"}),
- *     @ORM\Index(name="FK_Ligne_Facture_idTva", columns={"idTva"}),
+ *     @ORM\Index(name="FK_Produit_idTva", columns={"idTva"}),
  * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProduitsRepository")
  * @Vich\Uploadable()
@@ -100,10 +100,10 @@ class Produit
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva", inversedBy="tva")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva", inversedBy="produits")
      * @ORM\JoinColumn(name="idTva", referencedColumnName="idTva")
      */
-    private $tva;
+    private $idtva;
 
     /**
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
@@ -372,12 +372,12 @@ class Produit
     /**
      * Set tva
      *
-     * @param \AppBundle\Entity\Tva $tva
+     * @param \AppBundle\Entity\Tva $idtva
      * @return Produit
      */
-    public function setTva(\AppBundle\Entity\Tva $tva)
+    public function setTva(\AppBundle\Entity\Tva $idtva)
     {
-        $this->tva = $tva;
+        $this->idtva = $idtva;
 
         return $this;
     }
@@ -389,6 +389,6 @@ class Produit
      */
     public function getTva()
     {
-        return $this->tva;
+        return $this->idtva;
     }
 }

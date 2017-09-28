@@ -16,21 +16,25 @@ Encore
         './web/assets/js/scripts.js',
         './web/assets/js/fixdiv.js',
         './web/assets/js/modal.js',
-        './web/assets/js/reservation/checkDispoDate.js',
+        './web/assets/js/reservation/checkDispoDate.js'
     ])
 
     // Wil output Web/build/ajax.js
     .addEntry('ajax', [
         './web/assets/js/ajax/ajaxCheckDispoDate.js',
         './web/assets/js/ajax/ajaxChoixSalle.js',
+        './web/assets/js/ajax/ajaxChangeTunnelAchat.js',
         './web/assets/js/places/jquery.seat-charts.js',
         './web/assets/js/places/ajaxGestionPlaces.js'
+
     ])
 
     // will output as web/build/global.css
     .addStyleEntry('global', [
+        './web/assets/scss/helper.scss',
         './web/assets/scss/global.scss',
         './web/assets/scss/home.scss',
+        // './web/assets/scss/onepage-scroll.scss',
         './web/assets/scss/evenement.scss',
         './web/assets/scss/reservation.scss',
         './web/assets/scss/reservation-private.scss',
@@ -41,10 +45,10 @@ Encore
         './web/assets/scss/request.scss',
         './web/assets/scss/register.scss',
         './web/assets/scss/dashboard.scss',
-        './web/assets/scss/helper.scss',
         './web/assets/scss/main.scss',
         './web/assets/scss/produit.scss',
-        './web/assets/scss/tunel.scss',
+        // './web/assets/scss/tunel.scss',
+        './web/assets/scss/tunnel-achat-workflow.scss',
         './web/assets/scss/faq.scss',
         './web/assets/scss/coffee-animation.scss',
         './web/assets/scss/coffee-loader.scss',

@@ -45,8 +45,6 @@ $(function() {
         } else {
             minuteActuelle = 30;
         }
-    }else{
-        console.log('pas par defaut');
     }
 
     $("#slider-range").slider({

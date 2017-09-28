@@ -73,7 +73,14 @@ class Salle
      *
      * @ORM\Column(name="prixProduit", type="float", precision=10, scale=0, nullable=true)
      */
-    private $prixproduit;
+    private $prixsalle;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva", inversedBy="salles")
+     * @ORM\JoinColumn(name="idTva", referencedColumnName="idTva")
+     */
+    private $idtva;
 
     /**
      * @ORM\Column(name="updated_at", type="datetime", nullable=false)
@@ -249,27 +256,50 @@ class Salle
 
 
     /**
-     * Set prixproduit
+     * Set prixsalle
      *
-     * @param float $prixproduit
+     * @param float $prixsalle
      *
-     * @return Produit
+     * @return Salle
      */
-    public function setPrixproduit($prixproduit)
+    public function setPrixsalle($prixsalle)
     {
-        $this->prixproduit = $prixproduit;
+        $this->prixsalle = $prixsalle;
 
         return $this;
     }
 
     /**
-     * Get prixproduit
+     * Get prixsalle
      *
      * @return float
      */
-    public function getPrixproduit()
+    public function getPrixsalle()
     {
-        return $this->prixproduit;
+        return $this->prixsalle;
+    }
+
+    /**
+     * Set tva
+     *
+     * @param \AppBundle\Entity\Tva $idtva
+     * @return Salle
+     */
+    public function setTva(\AppBundle\Entity\Tva $idtva)
+    {
+        $this->idtva = $idtva;
+
+        return $this;
+    }
+
+    /**
+     * Get tva
+     *
+     * @return \AppBundle\Entity\Tva
+     */
+    public function getTva()
+    {
+        return $this->idtva;
     }
 
     /**

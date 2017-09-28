@@ -135,4 +135,9 @@ class ReservationController extends FOSRestController
             ->getForm()
         ;
     }
+
+
+    private function calculateDureeReservation($heureDebut, $heureFin){
+
+    }
 }
