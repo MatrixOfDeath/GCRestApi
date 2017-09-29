@@ -1,5 +1,4 @@
 
-
     $(document).on('click', '.buttonDeleteProduit', function(){
         console.log('Click on ' + $(this).val());
         $.ajax({
@@ -10,7 +9,23 @@
             },
             async: true,
             success: function (responsePanier, textStatus) {
-                $('.row.panier-menu').empty().append(responsePanier);
+                $.ajax({
+                    url: Routing.generate('panier_ajax'),
+                    type: "POST",
+                    async: true,
+                    success: function (responsePanier, textStatus)
+                    {
+
+                        $('.row.panier-menu').empty().append(responsePanier);
+
+                    },
+                    error: function(data) {
+                        console.log(data);
+                        alert('Problème refresh Panier');
+                        //$("body").css({"opacity": "1", "background-color":"#fff"});
+
+                    }
+                });
                 //$("body").css({"opacity": "1", "background-color":"#fff"});
 
             },
@@ -29,11 +44,27 @@
             url: Routing.generate('ajax_delete_panier_salle'),
             type: "POST",
             data: {
-                "id": $(this).val()
+                "idsalle": $(this).val()
             },
             async: true,
             success: function (responsePanier, textStatus) {
-                $('.row.panier-menu').empty().append(responsePanier);
+                $.ajax({
+                    url: Routing.generate('panier_ajax'),
+                    type: "POST",
+                    async: true,
+                    success: function (responsePanier, textStatus)
+                    {
+
+                        $('.row.panier-menu').empty().append(responsePanier);
+
+                    },
+                    error: function(data) {
+                        console.log(data);
+                        alert('Problème refresh Panier');
+                        //$("body").css({"opacity": "1", "background-color":"#fff"});
+
+                    }
+                });
                 //$("body").css({"opacity": "1", "background-color":"#fff"});
 
             },
@@ -45,3 +76,25 @@
             }
         });
     });
+
+
+    function refreshPanier(){
+        $.ajax({
+            url: Routing.generate('panier_ajax'),
+            type: "POST",
+            async: true,
+            success: function (responsePanier, textStatus)
+            {
+
+                $('.row.panier-menu').empty().append(responsePanier);
+
+            },
+            error: function(data) {
+                console.log(data);
+                alert('Problème refresh Panier');
+                //$("body").css({"opacity": "1", "background-color":"#fff"});
+
+            }
+        });
+    }
+

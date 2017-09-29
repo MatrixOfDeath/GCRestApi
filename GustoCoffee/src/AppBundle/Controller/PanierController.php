@@ -142,10 +142,10 @@ class PanierController extends Controller
             return new Response(json_encode("Sucess"));
         }else{
             $this->get('session')->getFlashBag()->add('nodfound','Article déjà supprimé');
-            return new Response(json_encode("Porduit not found"));
+            return new Response(json_encode("Produit not found"));
         }
 
-        return $this->redirect($this->generateUrl('panier'));
+        //return $this->redirect($this->generateUrl('panier'));
     }
 
 
@@ -230,7 +230,7 @@ class PanierController extends Controller
      * @param Request $request
      * @return RedirectResponse|Response
      * @Route("/ajouter-produit", options={"expose"=true}, name="ajax_ajout_produit_panier")
-     * @Method("GET")
+     * @Method({"POST","GET"})
      */
     public function ajaxAjouterProduitAction(SessionInterface $session, Request $request)
     {

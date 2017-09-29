@@ -38,7 +38,8 @@
                             <td>{{ salle.nomsalle }}</td>
                             <td>
                                 {{ "De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('h:i') ~ "à " ~ panier_salle[salle.idsalle].heureChoixFin|date('h:i') ~ ' Heure Total:' ~ panier_salle[salle.idsalle].totalHeures }}
-                                <a href="{{ path('delete_panier_salle', { 'id' : salle.idsalle }) }}"><i class="glyphicon glyphicon-trash"></i></a>
+                                {#<a href="{{ path('delete_panier_salle', { 'id' : salle.idsalle }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
+                                <button type="button" class="buttonDeleteSalle glyphicon glyphicon-trash" value="{{ salle.idsalle }}" ></button>
                             </td>
                             <td>{{ salle.prixsalle }} €</td>
                             {% if panier_salle[salle.idsalle].totalHeures >= 5 %}
@@ -72,7 +73,7 @@
 
                     {% if produits|length == 0 %}
                         <tr>
-                            <td colspan="4"><center>Aucun produits dans votre panier</center></td>
+                            <td colspan="4"><center>Aucun articles dans votre panier</center></td>
                         </tr>
                     {% endif %}
 
@@ -87,7 +88,8 @@
                                             <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>
                                         {% endfor %}
                                     </select>
-                                    <a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}"><i class="glyphicon glyphicon-trash"></i></a>
+                                    {#<a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
+                                    <button type="button" class="buttonDeleteProduit glyphicon glyphicon-trash" value="{{ produit.idproduit }}" ></button>
                                 </td>
                                 <td>{{ produit.prixproduit }} €</td>
                                 <td>{{ produit.prixproduit * panier[produit.idproduit] }} €</td>

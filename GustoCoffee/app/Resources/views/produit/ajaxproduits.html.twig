@@ -13,7 +13,7 @@
                     <p id="prix{{ produit.idproduit }}" class="lead&quot;">Prix du service : {{ produit.prixproduit }}€</p>
                 </div>
                 <p class="group inner list-group-item-text centerText">
-                    <button type="button" class="btn btn-success buttonAddProduit" value="{{ produit.idproduit }}" onclick="ajaxAjoutProduitPanier(this);">Ajouter au panier</button>
+                    <button type="button" class="btn btn-success buttonAddProductPanier" value="{{ produit.idproduit }}" >Ajouter au panier</button>
 
                     {#Quantité <span>#}
                                 {#<select name="selectQuantite" id="qte{{ produit.idproduit }}" onchange="ajaxAjoutProduiPanier()">#}
