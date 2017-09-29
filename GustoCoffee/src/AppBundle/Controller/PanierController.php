@@ -240,11 +240,11 @@ class PanierController extends Controller
         if($request->request->get('id')){
             $id = $request->request->get('id');
             if (array_key_exists($id, $panier)) {
-                if ($request->query->get('qte') != null) $panier[$id] = $request->query->get('qte');
+                if ($request->request->get('qte') != null) $panier[$id] = $request->request->get('qte');
                 $session->getFlashBag()->add('success','Quantité modifié avec succès');
             } else {
-                if ($request->query->get('qte') != null)
-                    $panier[$id] = $request->query->get('qte');
+                if ($request->request->get('qte') != null)
+                    $panier[$id] = $request->request->get('qte');
                 else
                     $panier[$id] = 1;
 
@@ -284,7 +284,7 @@ class PanierController extends Controller
                 $panier_salle[$id] = array(
                     'heureChoixDebut' => $heureChoixDebut,
                     'heureChoixFin' => $heureChoixFin,
-                    'totalHeures' => $interval->h
+                    'totalHeures' => $interval->h,
             );
 
                 $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');

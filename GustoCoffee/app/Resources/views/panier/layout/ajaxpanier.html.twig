@@ -34,7 +34,7 @@
                 {# @var salle \AppBundle\Entity\Salle #}
                 {%  for salle in salles %}
                     <tr>
-                        <form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">
+                        {#<form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">#}
                             <td>{{ salle.nomsalle }}</td>
                             <td>
                                 {{ "De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('h:i') ~ "à " ~ panier_salle[salle.idsalle].heureChoixFin|date('h:i') ~ ' Heure Total:' ~ panier_salle[salle.idsalle].totalHeures }}
@@ -53,7 +53,7 @@
                                 {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * panier_salle[salle.idsalle].totalHeures %}
                             {% endif %}
 
-                        </form>
+                        {#</form>#}
                     </tr>
                     {#{% set totalSalleTTC = totaSalleTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}#}
                      {#{% set totalSalleTTC =  totalSalleTTC +  salle.prixsalle * panier_salle[salle.idsalle].totalHeures %}#}
@@ -80,10 +80,10 @@
 
                     {% for produit in produits %}
                         <tr>
-                            <form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">
+                            {#<form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">#}
                                 <td>{{ produit.nomproduit }}</td>
                                 <td>
-                                    <select name="qte" class="span1" onChange="this.form.submit()">
+                                    <select name="qte" class="span1 select-qte-produit">
                                         {% for i in 1..10 %}
                                             <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>
                                         {% endfor %}
@@ -93,7 +93,7 @@
                                 </td>
                                 <td>{{ produit.prixproduit }} €</td>
                                 <td>{{ produit.prixproduit * panier[produit.idproduit] }} €</td>
-                            </form>
+                            {#</form>#}
                         </tr>
                         {% set totalProduitHT = totalProduitHT + (produit.prixproduit * panier[produit.idproduit]) %}
                         {% set totalProduitTTC = totalProduitTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}
@@ -108,7 +108,9 @@
                 {% for key, tva in refTva %}
                     <dt>TVA {{ key }} :</dt><dd>{{ tva }} €</dd>
                 {% endfor %}
+                 {% if produits|length != 0 and salles|length != 0 %}
 
+                 {% endif %}
                 <dt>Total TTC :</dt><dd>{{ totalProduitTTC + totalSalleTTC }} €</dd>
             </dl>
             <div class="clearfix"></div>
