@@ -13,11 +13,15 @@
 {%  endblock %}
 
 {% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">Enjoy, Work & Coffee</h1>
+        <h3 class="colorWhite"> <i>Si on tentait l'expérience ? </i></h3>
+    </div>
     <button class="buttonInscription greenButton">
-        <a class="colorWhite" href="{{ path('gc_reservation_page') }}">Réserver</a>
+        <a class="colorWhite" href="{{ path('gc_reservation_page') }}">{{ 'Réservez votre place'|trans }} </a>
     </button>
     <button class="buttonInscription greenButton">
-        <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">Inscription</a>
+        <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">{{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
     </button>
 {% endblock %}
 
@@ -28,10 +32,13 @@
             <h2 class="centerText">GustoCoffee</h2>
             <p class="textDescription">{% trans %}
                 « Le coworking est un type d’organisation du travail qui regroupe deux notions : un espace de travail partagé, mais aussi un réseau de travailleurs encourageant l’échange et l’ouverture. »  (Source Wikipédia)
+                {% endtrans %}
                 <br>
+                {% trans %}
                 Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
                 salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,
-                collaborateurs, clients et sous-traitant. <br><br>
+                collaborateurs, clients et sous-traitant. {% endtrans %}<br><br>
+                {% trans %}
                 La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking".
                 Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.
                 {% endtrans %}
@@ -55,10 +62,11 @@
             <h2 class="centerText">{{ 'Nos Services'|trans }}</h2>
             <p class="textDescription">
                 {% trans %}
-                GustoCoffee vous propose des services bureautiques  comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !
-                Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner, en réservant une salle privée, tout en continuant votre travail de la journée.
+                GustoCoffee vous propose des services bureautiques  comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !{% endtrans %}
+                <br>{% trans %}Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner, en réservant une salle privée, tout en continuant votre travail de la journée.{% endtrans %}
                 <br>
-                Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se fnt directement sur notre site internet.
+                {% trans %}
+                Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.
 
                 {% endtrans %}
             <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez  <button class="buttonInscription greenButton">
@@ -80,10 +88,8 @@
         <div class="col-md-12">
             <p class="textDescription franchiseGroupe">
                 {% trans %}
-                La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso,
-                moulin à café, café en grains, café en dosette, etc.
-                Monsieur Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des  coffee-shops  en Italie,
-                ainsi qu'en Angleterre et se sont implantés il y a peu sur Paris avec un nouveau concept de " Coffee-Shop Coworking ".
+                La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc.
+                MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des  coffee-shops  en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de " Coffee-Shop Coworking ".
                 {% endtrans %}
             </p>
         </div>

@@ -54,7 +54,7 @@
                                     <a href="#page-top"></a>
                                 </li>
                                 <li>
-                                    <a {% if app.request.get('_route') == 'gc_home_page' %} class="Myactive" {% endif %} class="page-scroll" href="{{ path('gc_home_page') }}">{{ 'Accueil'|trans }}</a>
+                                    <a class="fa fa-home fa-3x" aria-hidden="true" {% if app.request.get('_route') == 'gc_home_page' %}  {% endif %} href="{{ path('gc_home_page') }}"> {{ 'Accueil'|trans }}</a>
                                 </li>
                                 <li>
                                     <a {% if app.request.get('_route') == 'gc_evenement_page' %} class="Myactive" {% endif %} class="page-scroll" href="{{ path('gc_evenement_page') }}">{{ 'Evénements'|trans }}</a>
@@ -79,8 +79,8 @@
                                             {{ 'Déconnexion'|trans({}, 'FOSUserBundle') }}
                                         </a>
                                     {% else %}
-                                        <a  class="fa fa-user-circle fa-2x" aria-hidden="true" href="{{ path('fos_user_security_login') }}">
-                                            <img src="{{ asset('img/user.png') }}" alt="{{  'Connexion'|trans }}">
+                                        <a  class="fa fa-user-circle fa-3x" aria-hidden="true" alt="{{  'Connexion'|trans }}" href="{{ path('fos_user_security_login') }}">
+                                            {#<img src="{{ asset('img/user.png') }}" alt="{{  'Connexion'|trans }}">#}
                                         </a>
                                     {% endif %}
                                 </li>
@@ -95,7 +95,7 @@
                                 {% endfor %}
                                 {% endif %}
                                 <li>
-                                    <a class="fa fa-shopping-cart fa-2x" aria-hidden="true" href="{{ path('panier') }}"></a>
+                                    <a class="fa fa-shopping-cart fa-3x" aria-hidden="true" href="{{ path('panier') }}"></a>
                                     {#<a class="page-scroll" href="{{ path('panier') }}">{{ 'Panier'|trans }}</a>#}
                                 </li>
                                 <li>
