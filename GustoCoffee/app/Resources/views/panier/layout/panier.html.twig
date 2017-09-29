@@ -28,6 +28,12 @@
                     {{ flashMessage }}
                 </div>
             {% endfor %}
+
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="alert alert-success">
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
             
             <h2>Votre panier</h2>
 

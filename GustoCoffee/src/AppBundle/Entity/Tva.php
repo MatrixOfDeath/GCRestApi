@@ -22,6 +22,7 @@ class Tva
      */
     private $idtva;
 
+
     /**
      * @var float
      *
@@ -65,52 +66,52 @@ class Tva
      */
     private $multiplicate;
 
-    /**
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="idtva")
-     *
-     */
-    private $salles;
+//    /**
+//     *
+//     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="idtva")
+//     *
+//     */
+//    private $salles;
+//
+//    /**
+//     *
+//     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Produit", mappedBy="idtva")
+//     *
+//     */
+//    private $produits;
 
-    /**
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Produit", mappedBy="idtva")
-     *
-     */
-    private $produits;
 
+//    /**
+//     * @return mixed
+//     */
+//    public function getTvaSalle()
+//    {
+//        return $this->salles;
+//    }
+//
+//    /**
+//     * @param mixed $salles
+//     */
+//    public function setTvaSalle($salles)
+//    {
+//        $this->salles = $salles;
+//    }
 
-    /**
-     * @return mixed
-     */
-    public function getTvaSalle()
-    {
-        return $this->salles;
-    }
-
-    /**
-     * @param mixed $salles
-     */
-    public function setTvaSalle($salles)
-    {
-        $this->salles = $salles;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTva()
-    {
-        return $this->produits;
-    }
-
-    /**
-     * @param mixed $produits
-     */
-    public function setTva($produits)
-    {
-        $this->produits = $produits;
-    }
+//    /**
+//     * @return mixed
+//     */
+//    public function getTva()
+//    {
+//        return $this->produits;
+//    }
+//
+//    /**
+//     * @param mixed $produits
+//     */
+//    public function setTva($produits)
+//    {
+//        $this->produits = $produits;
+//    }
 
     /**
      * Set valeur
@@ -240,6 +241,14 @@ class Tva
         return $this->idtva;
     }
 
+
+    /**
+     * @param int $idtva
+     */
+    public function setIdtva($idtva)
+    {
+        $this->idtva = $idtva;
+    }
 
     /**
      * Set multiplicate

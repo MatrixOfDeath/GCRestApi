@@ -11,7 +11,7 @@ easy_admin:
                     - { property: 'imageFile', type: 'vich_image' }
                     - { property: 'quantiteEnStock', type: 'text'}
                     - { property: 'statutProduit', type: 'text'}
-                    - 'tva'
+                    - 'idtva'
                     - 'idtypeproduit'
             list:
                 title: 'Listes des Produits'
@@ -26,7 +26,7 @@ easy_admin:
                     - { property: 'description', type: 'text'}
                     - { property: 'image', type: 'image', base_path: '%app.path.products_images%' }
                     - { property: 'quantiteEnStock', type: 'text'}
-                    - 'tva'
+                    - 'idtva'
                     - 'idtypeproduit'
 
             show:
@@ -41,5 +41,5 @@ easy_admin:
                     - { property: 'image', type: 'image', base_path: '%app.path.products_images%' }
                     - { property: 'quantiteEnStock', type: 'text'}
                     - { property: 'statutProduit', type: 'text'}
-                    - 'tva'
+                    - 'idtva'
                     - 'idtypeproduit'

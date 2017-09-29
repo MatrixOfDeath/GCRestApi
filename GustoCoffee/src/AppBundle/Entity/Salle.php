@@ -12,7 +12,9 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * Salle
  *
- * @ORM\Table(name="Salle", uniqueConstraints={@ORM\UniqueConstraint(name="nomSalle", columns={"nomSalle"})})
+ * @ORM\Table(name="Salle", uniqueConstraints={@ORM\UniqueConstraint(name="nomSalle", columns={"nomSalle"})},
+ *      indexes={@ORM\Index(name="FK_Salle_idTva", columns={"idTva"}),
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SallesRepository")
  * @Vich\Uploadable()
  * @ORM\HasLifecycleCallbacks()
@@ -77,7 +79,7 @@ class Salle
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva", inversedBy="salles")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva")
      * @ORM\JoinColumn(name="idTva", referencedColumnName="idTva")
      */
     private $idtva;
@@ -164,8 +166,6 @@ class Salle
     {
         return $this->idmagasin;
     }
-
-
 
     /**
      * Set nomsalle
@@ -277,6 +277,29 @@ class Salle
     public function getPrixsalle()
     {
         return $this->prixsalle;
+    }
+
+    /**
+     * Set tva
+     *
+     * @param \AppBundle\Entity\Tva $idtva
+     * @return Salle
+     */
+    public function setIdTva(\AppBundle\Entity\Tva $idtva)
+    {
+        $this->idtva = $idtva;
+
+        return $this;
+    }
+
+    /**
+     * Get tva
+     *
+     * @return \AppBundle\Entity\Tva
+     */
+    public function getIdTva()
+    {
+        return $this->idtva;
     }
 
     /**

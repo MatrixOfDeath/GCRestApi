@@ -100,7 +100,7 @@ class Produit
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva", inversedBy="produits")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva")
      * @ORM\JoinColumn(name="idTva", referencedColumnName="idTva")
      */
     private $idtva;
@@ -368,6 +368,26 @@ class Produit
         return $this->image;
     }
 
+    /**
+     * Set tva
+     *
+     * @param \AppBundle\Entity\Tva $idtva
+
+     */
+    public function setIdTva(\AppBundle\Entity\Tva $idtva)
+    {
+        $this->idtva = $idtva;
+    }
+
+    /**
+     * Get tva
+     *
+     * @return \AppBundle\Entity\Tva
+     */
+    public function getIdTva()
+    {
+        return $this->idtva;
+    }
 
     /**
      * Set tva

@@ -9,6 +9,7 @@ easy_admin:
                   - { property: 'capacityMax', type: 'text'}
                   - { property: 'prixsalle',   type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € TTC (exemple: 3.5 ou 5 sans le symbole €'}
                   - { property: 'imageFile', type: 'vich_image'}
+                  - 'idtva'
                   - 'idmagasin'
           list:
               title: 'Listes des Salles'
@@ -23,6 +24,7 @@ easy_admin:
                   - { property: 'prixsalle', type_options: { currency: 'EUR' }}
                   - { property: 'image', type: 'image', base_path: '%app.path.salles_images%' }
                   - 'idmagasin'
+                  - 'idtva'
               sort: ['idsalle', 'ASC']
           show:
               title: 'Détails de la salle'
@@ -32,5 +34,6 @@ easy_admin:
                   - 'prixsalle'
                   - { property: 'image', type: 'image', base_path: '%app.path.salles_images%' }
                   - 'idmagasin'
+                  - 'idtva'
                   - 'createdAt'
                   - 'updateAt'

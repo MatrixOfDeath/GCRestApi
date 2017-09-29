@@ -84,8 +84,9 @@ easy_admin:
             form:
                 fields:
                     - { property: 'nom', type: 'text'}
-                    - { property: 'valeur'}
-                    - { property: 'multiplicate' }
+                    - { property: 'valeur', type: 'number'}
+                    - { property: 'multiplicate', type: 'number' }
+                    - { property: 'pays', type: 'text', help: "Code pays  2 ou 3 lettres"}
             list:
                 title: 'Tva FR'
                 actions:
@@ -96,6 +97,8 @@ easy_admin:
                     - { property: 'idtva', type: 'text'}
                     - { property: 'nom', type: 'text'}
                     - { property: 'valeur'}
+                    - { property: 'multiplicate', type: 'number' }
+                sort: 'valeur'
 
         GrilleTarifaire:
             class: AppBundle\Entity\GrilleTarifaire
