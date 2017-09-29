@@ -60,7 +60,7 @@ class PanierController extends Controller
     public function panierAction(SessionInterface $session)
     {
         if (!$session->has('panier')) $session->set('panier', array());
-        if (!$session->has('panier_salle')) $session->set('panier_salle', array());
+        if (!$session->has('panier_salle')) $session->set('panier_salle', array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
         if (!$session->has('totalTTC')) $session->set('totalTTC', 0);
 
         $em = $this->getDoctrine()->getManager();
@@ -87,7 +87,7 @@ class PanierController extends Controller
     public function ajaxPanierAction(SessionInterface $session)
     {
         if (!$session->has('panier')) $session->set('panier', array());
-        if (!$session->has('panier_salle')) $session->set('panier_salle', array());
+        if (!$session->has('panier_salle')) $session->set('panier_salle', array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
         if (!$session->has('totalTTC')) $session->set('totalTTC', 0);
 
         $em = $this->getDoctrine()->getManager();
@@ -124,6 +124,30 @@ class PanierController extends Controller
         return $this->redirect($this->generateUrl('panier')); 
     }
 
+    /**
+     * Delete panier session.
+     *
+     * @Route("/ajax-delete",  options={"expose"=true}, name="ajax_delete_panier")
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxSupprimerAction(Request $request, SessionInterface $session)
+    {
+        $panier = $session->get('panier');
+        $id = $request->request->get('id');
+        if (array_key_exists($id, $panier))
+        {
+            unset($panier[$id]);
+            $session->set('panier',$panier);
+            $this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
+            return new Response(json_encode("Sucess"));
+        }else{
+            $this->get('session')->getFlashBag()->add('nodfound','Article déjà supprimé');
+            return new Response(json_encode("Porduit not found"));
+        }
+
+        return $this->redirect($this->generateUrl('panier'));
+    }
+
 
     /**
      * Delete panier salle session.
@@ -144,6 +168,28 @@ class PanierController extends Controller
         return $this->redirect($this->generateUrl('panier'));
     }
 
+
+    /**
+     * Delete panier_salle session.
+     *
+     * @Route("/ajax-delete-salle", options={"expose"=true}, name="ajax_delete_panier_salle")
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxSupprimerSalleAction(Request $request, SessionInterface $session)
+    {
+        $panier = $session->get('panier_salle');
+        $id = $request->request->get('idsalle');
+        if (array_key_exists($id, $panier))
+        {
+            unset($panier[$id]);
+            $session->set('panier_salle',$panier);
+            $this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
+            return new Response(json_encode("Success"));
+        }else{
+            $this->get('session')->getFlashBag()->add('nodfound','Article déjà supprimé');
+            return new Response(json_encode("Produit not found"));
+        }
+    }
 
     /**
      * Ajout panier session.
@@ -178,63 +224,87 @@ class PanierController extends Controller
         return $this->redirect($this->generateUrl('panier'));
     }
 
+    /**
+     * Ajout panier session.
+     * @param SessionInterface $session
+     * @param Request $request
+     * @return RedirectResponse|Response
+     * @Route("/ajouter-produit", options={"expose"=true}, name="ajax_ajout_produit_panier")
+     * @Method("GET")
+     */
+    public function ajaxAjouterProduitAction(SessionInterface $session, Request $request)
+    {
+        if (!$session->has('panier')) $session->set('panier',array());
+        $panier = $session->get('panier');
+
+        if($request->request->get('id')){
+            $id = $request->request->get('id');
+            if (array_key_exists($id, $panier)) {
+                if ($request->query->get('qte') != null) $panier[$id] = $request->query->get('qte');
+                $session->getFlashBag()->add('success','Quantité modifié avec succès');
+            } else {
+                if ($request->query->get('qte') != null)
+                    $panier[$id] = $request->query->get('qte');
+                else
+                    $panier[$id] = 1;
+
+                $session->getFlashBag()->add('success','Produit ajouté avec succès');
+            }
+            $session->set('panier',$panier);
+
+            return new Response(json_encode("Success"));
+        }else{
+            return new Response(json_encode("Erreur"));
+        }
+    }
 
     /**
      * @param SessionInterface $session
      * @param Request $request
-     * @param $id
      * @return RedirectResponse|Response
-     * @Route("/ajouter-salle/{id}", options={"expose"=true}, name="ajout_panier_salle")
+     * @Route("/ajouter-salle", options={"expose"=true}, name="ajout_panier_salle")
      * @Method({"GET", "POST"})
      */
-    public function ajouterSalleAction(SessionInterface $session, Request $request, $id)
+    public function ajaxAjouterSalleAction(SessionInterface $session, Request $request)
     {
-        if (!$session->has('panier_salle')) $session->set('panier_salle',array());
+        if (!$session->has('panier_salle')) $session->set('panier_salle',array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
         $panier_salle = $session->get('panier_salle');
 
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('id')) {
+
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
             $id = $request->request->get('id');
 
+            $d1 = new \DateTime($heureChoixDebut);
+            $d2 = new \DateTime($heureChoixFin);
+            $interval = $d1->diff($d2);
+
             if (array_key_exists($id, $panier_salle)) {
-                if ($request->query->get('heure') != null) $panier_salle[$id] = $request->query->get('heure');
+                $panier_salle[$id] = array(
+                    'heureChoixDebut' => $heureChoixDebut,
+                    'heureChoixFin' => $heureChoixFin,
+                    'totalHeures' => $interval->h
+            );
+
                 $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');
             } else {
-                if ($request->query->get('heure') != null)
-                    $panier_salle[$id] = $request->query->get('heure');
-                else
-                    $panier_salle[$id] = 1;
+                $panier_salle[$id] = array(
+                    'heureChoixDebut' => $heureChoixDebut,
+                    'heureChoixFin' => $heureChoixFin,
+                    'totalHeures' => $interval->h
+                );
 
                 $session->getFlashBag()->add('success', 'Salle ajouté avec succès');
             }
             $session->set('panier_salle', $panier_salle);
 
-            $htmlToRender = $this->renderView('panier/layout/panier.html.twig', array(
-                'heureDebutChoix' => (new \DateTime($heureChoixDebut))->format('H'),
-                'heureFinChoix' => (new \DateTime($heureChoixFin))->format('H'),
-                'dateChoix' => (new \DateTime($heureChoixDebut))->format('d/m/Y')
-            ));
 
-            return new Response ($htmlToRender);
+            return new Response(json_encode("Success"));
 
         }else {
+            return new Response(json_encode("Erreur"));
 
-            if (array_key_exists($id, $panier_salle)) {
-                if ($request->query->get('heure') != null) $panier_salle[$id] = $request->query->get('heure');
-                $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');
-            } else {
-                if ($request->query->get('heure') != null)
-                    $panier_salle[$id] = $request->query->get('heure');
-                else
-                    $panier_salle[$id] = 1;
-
-                $session->getFlashBag()->add('success', 'Salle ajouté avec succès');
-            }
-
-            $session->set('panier_salle', $panier_salle);
-
-            return $this->redirect($this->generateUrl('panier'));
         }
     }
 

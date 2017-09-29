@@ -37,19 +37,25 @@
                         <form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">
                             <td>{{ salle.nomsalle }}</td>
                             <td>
-                                <select name="heure" class="span1" onChange="this.form.submit()">
-                                    {% for i in 1..10 %}
-                                        <option value="{{ i }}" {% if i == panier_salle[salle.idsalle] %} selected="selected" {% endif %}>{{ i }}</option>
-                                    {% endfor %}
-                                </select>&nbsp;
+                                {{ "De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('h:i') ~ "à " ~ panier_salle[salle.idsalle].heureChoixFin|date('h:i') ~ ' Heure Total:' ~ panier_salle[salle.idsalle].totalHeures }}
                                 <a href="{{ path('delete_panier_salle', { 'id' : salle.idsalle }) }}"><i class="glyphicon glyphicon-trash"></i></a>
                             </td>
-                            <td>{{ salle.capacitymax * 5}} €</td>
-                            <td>{{ salle.capacitymax * 5 * panier_salle[salle.idsalle] }} €</td>
+                            <td>{{ salle.prixsalle }} €</td>
+                            {% if panier_salle[salle.idsalle].totalHeures >= 5 %}
+                                <td>{{ salle.prixsalle * 4 }} €</td>
+                                {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 4 %}
+                            {% elseif panier_salle[salle.idsalle].totalHeures == 3 %}
+                                <td>{{ salle.prixsalle * 2 }} €</td>
+                                {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 2 %}
+                            {% else %}
+                                <td>{{ salle.prixsalle * panier_salle[salle.idsalle].totalHeures }} €</td>
+                                {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * panier_salle[salle.idsalle].totalHeures %}
+                            {% endif %}
+
                         </form>
                     </tr>
                     {#{% set totalSalleTTC = totaSalleTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}#}
-                    {% set totalSalleTTC =  totalSalleTTC +  salle.capacitymax * 5 * panier_salle[salle.idsalle]  %}
+                     {#{% set totalSalleTTC =  totalSalleTTC +  salle.prixsalle * panier_salle[salle.idsalle].totalHeures %}#}
                 {%  endfor %}
                 </tbody>
             </table>
@@ -66,7 +72,7 @@
 
                     {% if produits|length == 0 %}
                         <tr>
-                            <td colspan="4"><center>Aucun articles dans votre panier</center></td>
+                            <td colspan="4"><center>Aucun produits dans votre panier</center></td>
                         </tr>
                     {% endif %}
 

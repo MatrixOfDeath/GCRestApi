@@ -23,6 +23,8 @@ Encore
     .addEntry('ajax', [
         './web/assets/js/ajax/ajaxCheckDispoDate.js',
         './web/assets/js/ajax/ajaxChoixSalle.js',
+        './web/assets/js/ajax/ajaxAjoutProduitPanier.js',
+        './web/assets/js/ajax/ajaxPanier.js',
         './web/assets/js/ajax/ajaxChangeTunnelAchat.js',
         './web/assets/js/places/jquery.seat-charts.js',
         './web/assets/js/places/ajaxGestionPlaces.js'

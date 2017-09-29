@@ -70,14 +70,18 @@ class ProduitController extends FOSRestController
      *
      * @Method({"GET", "POST"})
      */
-    public function ajaxIndexAction()
+    public function ajaxIndexAction(SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
+        if (!$session->has('panier')) $session->set('panier', array());
+        if (!$session->has('panier')) $session->set('panier_salle', array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
+
         $produits = $em->getRepository('AppBundle:Produit')->findAll();
         $salles = $em->getRepository('AppBundle:Salle')->findAll();
 
         $htmlToRender = $this->renderView('produit/ajaxproduits.html.twig', array(
             'produits' => $produits,
+            'panier' => $session->get('panier'),
             'salles' => $salles,
         ));
 

@@ -361,7 +361,6 @@ class SalleController extends FOSRestController
         //$session = $this->getRequest()->getSession();
         $em = $this->getDoctrine()->getManager();
 
-
             //Todo: Géré le statut salle après !
             // $findProduits = $em->getRepository('AppBundle:Salle')->findBy(array('disponible' => 1));
         $salles = $em->getRepository('AppBundle:Salle')->findAll();
@@ -401,7 +400,8 @@ class SalleController extends FOSRestController
 
         return $this->render('produit/presentation.html.twig', array(
             'salle' => $salle,
-            'panier_salle' => $panier_salle));
+            'panier_salle' => $panier_salle)
+        );
     }
 
 }
