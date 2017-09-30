@@ -16,7 +16,7 @@ use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\Form\FormInterface;
 
 /**
- * @Route("/api/user", options={"i18n"=false})
+ * @Route("/user", options={"i18n"=false})
  */
 class RestRegistrationController extends BaseController
 {

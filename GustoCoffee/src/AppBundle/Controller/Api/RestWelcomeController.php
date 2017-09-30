@@ -19,7 +19,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 /**
  * @Security("is_granted('ROLE_USER')")
  *
- * @Route("/api/user", options={"i18n"=false})
+ * @Route("/user", options={"i18n"=false})
  *
  */
 class RestWelcomeController extends Controller
