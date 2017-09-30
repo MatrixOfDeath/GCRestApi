@@ -88,7 +88,7 @@
                                 {% if app.request.get('_route_params') is not null %}
                                 {% for locale in locales %}
                                     <li>
-                                        <button type="button" class="btn btn-default btn-locale-flag {{ locale == app.request.getLocale() ? 'active' : '' }}" onclick="location.href='{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}'">
+                                        <butto/PROJET_F2I_BAC+4/V2/GustoCoffee/GustoCoffee/webn type="button" class="btn btn-default btn-locale-flag {{ locale == app.request.getLocale() ? 'active' : '' }}" onclick="location.href='{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}'">
                                             <img src="{{ asset('img/'~ locale ~'.png') }}" alt="{{ locale }}"/>
                                         </button>
                                     </li>
