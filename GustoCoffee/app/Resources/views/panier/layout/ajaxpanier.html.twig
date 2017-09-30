@@ -1,9 +1,14 @@
 {% set totalProduitHT = 0 %}
+{% set totalSalleHT = 0 %}
 {% set totalProduitTTC =  0 %}
 {% set totalSalleTTC = 0 %}
 {% set refTva = {} %}
+{% set refSalleTva = {} %}
 {% for produit in produits %}
     {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : 0 }) %}
+{% endfor %}
+{% for salle in salles %}
+    {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : 0 }) %}
 {% endfor %}
 
         <div class="col-xs-12">
@@ -61,8 +66,11 @@
 
                         {#</form>#}
                     </tr>
-                    {#{% set totalSalleTTC = totaSalleTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}#}
-                     {#{% set totalSalleTTC =  totalSalleTTC +  salle.prixsalle * panier_salle[salle.idsalle].totalHeures %}#}
+                    {% set totalSalleHT = totalSalleHT + (salle.prixsalle * panier_salle[salle.idsalle].totalHeures) %}
+                    {% set totalSalleTTC = totalSalleTTC + (salle.prixsalle * panier_salle[salle.idsalle].totalHeures)|tva(salle.tva.multiplicate) * panier_salle[salle.idsalle].totalHeures %}
+                    {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : refSalleTva['%' ~ salle.tva.valeur] + ( salle.prixsalle * panier_salle[salle.idsalle].totalHeures)|montantTva(salle.tva.multiplicate) }) %}
+
+                    {#{% set totalSalleTTC =  totalSalleTTC +  salle.prixsalle * panier_salle[salle.idsalle].totalHeures %}#}
                 {%  endfor %}
                 </tbody>
             </table>
@@ -82,7 +90,6 @@
                             <td colspan="4"><center>Aucun articles dans votre panier</center></td>
                         </tr>
                     {% endif %}
-
 
                     {% for produit in produits %}
                         <tr>
@@ -109,15 +116,20 @@
             </table>
             {% if produits|length != 0 or salles|length != 0 %}
             <dl class="dl-horizontal pull-right">
-                <dt>Total HT :</dt><dd>{{ totalProduitHT }} €</dd>
+                <dt>Total HT :</dt><dd>{{ totalProduitHT + totalSalleHT }} €</dd>
 
                 {% for key, tva in refTva %}
                     <dt>TVA {{ key }} :</dt><dd>{{ tva }} €</dd>
                 {% endfor %}
+                {% for key, tva in refSalleTva %}
+                    <dt>TVA Salle {{ key }} :</dt><dd>{{ tva }} €</dd>
+                {% endfor %}
                  {% if produits|length != 0 and salles|length != 0 %}
-
+                     <dt>Réduction -10% :</dt><dd>-{{ (totalProduitTTC + totalSalleTTC * 0.1)|number_format(2, '.', ',') }} €</dd>
+                     <dt>Total TTC :</dt><dd>{{ ((totalProduitTTC + totalSalleTTC) - (totalProduitTTC + totalSalleTTC * 0.1))|number_format(2, '.', ',') }} €</dd>
+                 {% else %}
+                <dt>Total TTC :</dt><dd>{{ (totalProduitTTC + totalSalleTTC)|number_format(2, '.', ',') }} €</dd>
                  {% endif %}
-                <dt>Total TTC :</dt><dd>{{ totalProduitTTC + totalSalleTTC }} €</dd>
             </dl>
             <div class="clearfix"></div>
             <a href="{{ path('livraison_panier') }}" class="btn btn-success pull-right">Valider mon panier</a>

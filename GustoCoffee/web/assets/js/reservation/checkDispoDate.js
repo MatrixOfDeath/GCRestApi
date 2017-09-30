@@ -19,10 +19,8 @@ $(function() {
         altField: '#datepicker-altFormat',
         regional: "fr"
 
-        //setDate: new Date()
-
     });
-    // Gestion de la region fr pose problème
+    // Gestion de la region fr/en pose problème
    // $("#datepicker").datepicker("options", "defaultDate", new Date());
 
     $('.ui-slider-handle').draggable();
@@ -38,7 +36,8 @@ $(function() {
         var arrTime = $('#slider-range .heureActuelleDefaut').val().split(':');
         var heureActuelle = parseInt(arrTime[0], 10);
         var minuteActuelle = parseInt(arrTime[1],10);
-        var todayDate = arrTime[2];
+        todayDate = arrTime[2];
+
         console.log(todayDate+ 'date du jours');
         if (minuteActuelle < 30) {
             minuteActuelle = 0;
@@ -123,19 +122,19 @@ $(function() {
         }
     });
 
-    // ajoute un 0 devant les chiffres pour l'affichage texte !
+    // Ajoute un 0 devant les chiffres pour l'affichage texte !
     function pad(n) {
         return (n < 10) ? ("0" + n) : n;
     }
-    // Reinit les handles
+    // Reinitialise les handles
     function setHandles(heureActuelle, minuteActuelle, min, max){
 
         //$("#slider-range").children(".ui-slider-handle").first().text(heureActuelle+':'+ pad(minuteActuelle));
         //$("#slider-range").children(".ui-slider-handle").last().text((heureActuelle+1)+':'+ pad(minuteActuelle));
 
         //var heureActuelle = $('#slider-range .heureActuelleDefaut').val();
-        console.log( heureActuelle +' '  + min );
-        if (heureActuelle > max && heureActuelle < 24) {
+        //console.log( heureActuelle +' '  + min );
+        if (heureActuelle >= max && heureActuelle < 24) {
             $( "#reservation-dialog-message" ).dialog({
                 modal: true,
                 buttons: {

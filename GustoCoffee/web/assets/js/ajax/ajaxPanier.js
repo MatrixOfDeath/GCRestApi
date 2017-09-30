@@ -1,4 +1,4 @@
-
+    // Suppression d'une salle depuis le Produit Ajax
     $(document).on('click', '.buttonDeleteProduit', function(){
         console.log('Click on ' + $(this).val());
         $.ajax({
@@ -37,7 +37,7 @@
             }
         });
     });
-
+    // Suppression d'une salle depuis le Panier Ajax
     $(document).on('click', '.buttonDeleteSalle', function(){
         console.log('Click on ' + $(this).val());
         $.ajax({
@@ -77,6 +77,7 @@
         });
     });
 
+    // Modification live ajax de la quantité pour un produit
     $(document).on('change', 'select.select-qte-produit', function() {
         // alert( this.value + 'idproduit'+ $(this).parent().parent().find('.buttonDeleteProduit').val() );
 

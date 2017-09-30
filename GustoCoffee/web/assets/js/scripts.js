@@ -12,7 +12,7 @@ $(document).ready(function(){
 
     $(window).on("scroll",function(){
         var wn = $(window).scrollTop();
-        if(wn > 80){
+        if(wn > 50){
             $('#mainNav').addClass('menu-blanc');
             //$(".navbar").css({"background-color":"#f8f8f8", "border-color": "#f8f8f8"}).fadeIn();
 

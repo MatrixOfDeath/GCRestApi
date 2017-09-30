@@ -269,32 +269,31 @@ class PanierController extends Controller
     {
         if (!$session->has('panier_salle')) $session->set('panier_salle',array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
         $panier_salle = $session->get('panier_salle');
+        if (!$session->has('panier')) $session->set('panier',array());
+        $panier = $session->get('panier');
 
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('id')) {
 
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
             $id = $request->request->get('id');
+            $date = $request->request->get('date');
 
             $d1 = new \DateTime($heureChoixDebut);
             $d2 = new \DateTime($heureChoixFin);
             $interval = $d1->diff($d2);
 
-            if (array_key_exists($id, $panier_salle)) {
-                $panier_salle[$id] = array(
-                    'heureChoixDebut' => $heureChoixDebut,
-                    'heureChoixFin' => $heureChoixFin,
-                    'totalHeures' => $interval->h,
+            $panier_salle[$id] = array(
+                'heureChoixDebut' => $heureChoixDebut,
+                'heureChoixFin' => $heureChoixFin,
+                'date' => $date,
+                'totalHeures' => $interval->h,
+                'idReservation' => null,
+                'idCommande' => null
             );
-
+            if (array_key_exists($id, $panier_salle)) {
                 $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');
             } else {
-                $panier_salle[$id] = array(
-                    'heureChoixDebut' => $heureChoixDebut,
-                    'heureChoixFin' => $heureChoixFin,
-                    'totalHeures' => $interval->h
-                );
-
                 $session->getFlashBag()->add('success', 'Salle ajouté avec succès');
             }
             $session->set('panier_salle', $panier_salle);

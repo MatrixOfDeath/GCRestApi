@@ -1,3 +1,4 @@
+// Ajout d'une salle en ajax au click du bouton Choisir Salle
 $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
 
     var choixDebut = $('.slider-time').text();
@@ -5,28 +6,14 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
     var date =  $('#datepicker-altFormat').val();
     var idSalle = $(this).val();
 
-    console.log(idSalle + 'idsalle');
+    //console.log(idSalle + 'idsalle');
    // $('#slider-range .heureActuelleDefaut').val("");
     that = $(this);
 
-    //$("body").css({"opacity": "0.5", "background-color":"#000"});
     $('#display-salle').append().load('/assets/loader.html').fadeIn();
     $('#tab-link-produit').parent().tab('show');
-    // function getDispoSalle(){
-    //     $.ajax({
-    //         url: Routing.generate('salles_disponible_ajax'),
-    //         type: "POST",
-    //         async: true,
-    //         data: {
-    //             "heureChoixDebut": date + ' ' + choixDebut +':00',
-    //             "heureChoixFin": date + ' ' + choixFin +':00',
-    //             "idSalle" : idSalle,
-    //         },success: function (response, textStatus) {
-    //
-    //         }
-    //
-    //
-    // }
+
+    // 1- On vérifie la disponbilité de la salle
     $.ajax({
         url: Routing.generate('salles_disponible_ajax'),
         type: "POST",
@@ -34,11 +21,11 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
             "heureChoixDebut": date + ' ' + choixDebut +':00',
             "heureChoixFin": date + ' ' + choixFin +':00',
             "idSalle" : idSalle,
+            "date": date
         },
         success: function (isDispo, textStatus)
         {
-            //$("body").css({"opacity": "0.5", "background-color":"#000"});
-
+            //2- On ajoute la salle choisi dans session du panier
             $.ajax({
                 url: Routing.generate('ajout_panier_salle'),
                 type: "POST",
@@ -46,25 +33,23 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
                     "heureChoixDebut": date + ' ' + choixDebut +':00',
                     "heureChoixFin": date + ' ' + choixFin +':00',
                     "id" : idSalle,
+                    'date': date
                 },
                 async: true,
                 success: function (response, textStatus)
                 {
+                    // TODO:à mettre en parallèle ?
+                    // 3- On mets à jour le panier ajax
                     $.ajax({
                         url: Routing.generate('panier_ajax'),
                         type: "POST",
-                        // data: {
-                        //     "heureChoixDebut": date + ' ' + choixDebut +':00',
-                        //     "heureChoixFin": date + ' ' + choixFin +':00',
-                        //     "id" : idSalle,
-                        // },
                         async: true,
                         success: function (responsePanier, textStatus)
                         {
                             if(isDispo = '1') {
                                 $('.row.panier-menu').empty().append(responsePanier);
 
-
+                                // 4- On charge la vue des produits ajax
                                 $.ajax({
                                     url: Routing.generate('produits_ajax'),
                                     type: "GET",
@@ -73,30 +58,27 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
                                         $('#display-salle').empty().append(responseProduits);
                                         $('.reservation-select-creneau').hide();
                                         $('.recherche-horaire').hide();
-                                        // $.get(Routing.generate(''), function(html){
-                                        //     $('#display-panier').empty().html(html);
-                                        //
-                                        // });
+
                                     },
+                                    // 4-
                                     error: function (data) {
                                         console.log(data);
                                         alert('Problème récupération des produtis');
-                                        //$("body").css({"opacity": "1", "background-color":"#fff"});
-
                                     }
                                 });
                             }else{
                                 alert('La salle n\'est plus disponible');
                             }
                         },
+                        // 3-
                         error: function(data) {
                             console.log(data);
                             alert('Problème ajout de la salle choisi');
-                            //$("body").css({"opacity": "1", "background-color":"#fff"});
 
                         }
                     });
                 },
+                // 2-
                 error: function(data) {
                     console.log(data);
                     alert('Problème ajout salle');
@@ -104,9 +86,8 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
 
                 }
             });
-
-
         },
+        // 1-
         error: function(data){
             alert('Problème lors de la vérification de la disponibilité de la salle n°'+ idSalle);
         }
