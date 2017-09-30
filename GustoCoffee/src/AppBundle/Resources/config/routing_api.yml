@@ -65,7 +65,7 @@ api_place:
     defaults: {_format: json}
 
 api_controller:
-    resource: "@AppBundle/Controller/Api/ApiController.php"
+    resource: "@AppBundle/Controller/Api/"
     type:     rest
     name_prefix: api_
     defaults: {_format: json}
