@@ -31,7 +31,7 @@ security:
             #fos_oauth:                                  # OAuth2 protected resource
             stateless: true                            # Do no set session cookies
             logout:    true
-            anonymous: true                            # Anonymous access is not allowed
+            anonymous: true                           # Anonymous access is not allowed
             guard:
                 authenticators:
                     - 'token_authenticator'

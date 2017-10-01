@@ -41,7 +41,7 @@ class SalleController extends FOSRestController
      */
     public function cgetAction(){
         $em = $this->getDoctrine()->getManager();
-        $salles= $em->getRepository('AppBundle:Salle');
+        $salles= $em->getRepository('AppBundle:Salle')->findAll();
 
         $view = $this->view($salles);
         return $view;
