@@ -152,7 +152,6 @@ class ReservationController extends FOSRestController
             $idSalle = $request->request->get('idsalle');
 
             if (array_key_exists($idSalle, $panier_salle)) {
-
                 $reservation = new Reservation();
                 $reservation->setHeuredebut($heureChoixDebut );
                 $reservation->setHeurefin($heureChoixFin );
@@ -163,6 +162,8 @@ class ReservationController extends FOSRestController
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($reservation);
                 $em->flush();
+
+                $panier_salle[$idSalle]['idReservation'] = $reservation->getIdreservation();
             }
 
 

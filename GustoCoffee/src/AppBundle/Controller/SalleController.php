@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Nelmio\ApiDocBundle\Annotation\Model;
@@ -37,12 +38,14 @@ class SalleController extends FOSRestController
      * )
      *
      *
-     * @return array
+     * @return JsonResponse
      */
     public function cgetAction(){
         $em = $this->getDoctrine()->getManager();
-        $salles= $em->getRepository('AppBundle:Salle');
+        $salles= $em->getRepository('AppBundle:Salle')->findAll();
 
+
+        //return $salles;
         $view = $this->view($salles);
         return $view;
     }
