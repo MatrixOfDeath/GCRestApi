@@ -55,13 +55,13 @@ class RestWelcomeControllerTest extends ApiTestCaseBase
      */
     private function getTokenForTestUser()
     {
-        $userName = "drle_torca";
-        $password = "huligan_kola";
+        $userName = "kboubrit";
+        $password = "testtest";
 
         $user = $this->createUser($userName, $password);
 
         $token = $this->getService('lexik_jwt_authentication.encoder.default')
-            ->encode(['username' => 'drle_torca']);
+            ->encode(['username' => 'kboubrit']);
 
         return $token;
     }
