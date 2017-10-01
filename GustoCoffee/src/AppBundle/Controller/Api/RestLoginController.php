@@ -10,10 +10,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use AppBundle\Entity\Personne;
 use AppBundle\Service\MyUserManager;
+use Swagger\Annotations as SWG;
 
 
 /**
- * @Route("/api/user", options={"i18n"=false})
+ * @Route("/user", options={"i18n"=false})
  */
 class RestLoginController extends Controller
 {
