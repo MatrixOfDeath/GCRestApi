@@ -288,6 +288,7 @@ class PanierController extends Controller
                 'heureChoixFin' => $heureChoixFin,
                 'date' => $date,
                 'totalHeures' => $interval->h,
+                'totalMinutes' => $interval->i,
                 'idReservation' => null,
                 'idCommande' => null
             );

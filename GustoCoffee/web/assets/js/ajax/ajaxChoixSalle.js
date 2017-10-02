@@ -3,8 +3,10 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
 
     var choixDebut = $('.slider-time').text();
     var choixFin = $('.slider-time2').text();
-    var date =  $('#datepicker-altFormat').val();
+    var arrTime = $('#slider-range .heureActuelleDefaut').val().split(':');
+    var dateDuJour = arrTime[2];
     var idSalle = $(this).val();
+    var date =  $('#datepicker-altFormat').val();
 
     //console.log(idSalle + 'idsalle');
    // $('#slider-range .heureActuelleDefaut').val("");
@@ -21,7 +23,7 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
             "heureChoixDebut": date + ' ' + choixDebut +':00',
             "heureChoixFin": date + ' ' + choixFin +':00',
             "idSalle" : idSalle,
-            "date": date
+            "date": dateDuJour
         },
         success: function (isDispo, textStatus)
         {

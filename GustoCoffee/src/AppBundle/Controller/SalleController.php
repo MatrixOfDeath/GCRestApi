@@ -97,15 +97,37 @@ class SalleController extends FOSRestController
 
         $sallesDispoNow = $this->checkDisponibiliteSalle(new \DateTime(date('y-m-d H:m:s')), new \DateTime(date('y-m-d H:m:s', strtotime('+1 hour'))));
 
-        //$salles = $em->getRepository('AppBundle:Salle')->findAll();
         $actualDate  = new \DateTime(date('y-m-d H:m:s'));
-        $actualDateAndHourMore = new \DateTime(date('H:m', strtotime('+1 hour')));
+        $dayofweek = $actualDate->format('N');
+
+
+        $mag = $em->getRepository('AppBundle:Magasin')->find(1);
+        $horaire = $em->getRepository('AppBundle:JoursOuvert')->find($dayofweek);
+       // echo $horaire->getHeuredebut()->format('H:i')."".$horaire->getHeurefin()->format('H:i');
+//
+//        $queryBuilder = $repository->createQueryBuilder('s');
+//        $query = $queryBuilder
+//            ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
+////            ->andWhere(':heureChoixDebut < :datenow')
+//            //->setParameter('datenow', date("Y-m-d H:i:s"))
+//            ->setParameter('heureChoixDebut', $heureChoixDebut)
+//            ->setParameter('heureChoixFin', $heureChoixFin);
+//            //->setParameter('subQuery', $subQuery)
+//            //->getQuery();
+
+//        return $query->getQuery()->getResult();
+//
+        //$actualDateAndHourMore = new \DateTime(date('H:m', strtotime('+1 hour')));
+
+
         return $this->render('salle/index.html.twig', array(
             'salles' => $sallesDispoNow,
             'heureDebutChoix' => $actualDate->format('H'),
             'heureFinChoix' => $actualDate->add(new \DateInterval('PT1H'))->format('H'),
             'dateChoix' => $actualDate->format("d/m/Y"),
             'panier' => $panier_salle,
+            'minHeure' => $horaire->getHeuredebut()->format('H:i'),
+            'maxHeure' => $horaire->getHeurefin()->format('H:i')
         ));
     }
 

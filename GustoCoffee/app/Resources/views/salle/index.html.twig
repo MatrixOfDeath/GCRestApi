@@ -52,12 +52,13 @@
             </div>
             <div class="row reservation-select-creneau">
                 <div id="time-range">
-                    <p>{{ 'Créneau horaire'|trans }}:<br> <span class="slider-time">9:00</span>H - <span class="slider-time2">21:00</span>H
+                    <p>{{ 'Créneau horaire'|trans }}:<br> <span class="slider-time">{{ minHeure }}</span>H - <span class="slider-time2">{{ maxHeure }}</span>H
                     </p>
 
                     <div id="slider-range">
                         <input class="heureActuelleDefaut" type="hidden" value="{{ 'now'|date('H:i:Y-m-d', "Europe/Paris") }}">
-
+                        <input class="minHeure" type="hidden" value="{{ minHeure }}">
+                        <input class="maxHeure" type="hidden" value="{{ maxHeure }}">
                     </div>
                 </div>
             </div>
