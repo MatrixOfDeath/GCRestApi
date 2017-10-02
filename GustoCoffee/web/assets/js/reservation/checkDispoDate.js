@@ -25,8 +25,17 @@ $(function() {
 
     $('.ui-slider-handle').draggable();
 
-    var min = 9; // Heure min d'ouverture du magasin
-    var max = 21; // Heure max d'ouverture du magasin
+    var arrMin = $('#slider-range .minHeure').val().split(':');
+    var arrMax = $('#slider-range .maxHeure').val().split(':');
+    console.log(arrMin +' '+ arrMax);
+    var minH = parseInt(arrMin[0],10);
+    var minM= parseInt(arrMin[1],10);
+    var maxH = parseInt(arrMax[0],10);
+
+    var maxM = parseInt(arrMax[1],10);
+
+    var min = minH; // Heure min d'ouverture du magasin
+    var max = maxH; // Heure max d'ouverture du magasin
     var datePickerDate = $("#datepicker-altFormat").val();
     var today = new Date();
     var todayDate = $("#datepicker-altFormat").val();
@@ -48,11 +57,11 @@ $(function() {
 
     $("#slider-range").slider({
         range: true,
-        min: min * 60,
-        max: max * 60,
+        min: min * 60 + minM,
+        max: max * 60 + maxM,
         minRange: 60,
         step: 30,
-        values: [540, 1320],
+        values: [min * 60 + minM, max * 60 + maxM],
         slide: function( event, ui ) {
 
             // On limite l'intervalle minimal à 1h pour une reservation de salle
