@@ -29,7 +29,7 @@ $(function() {
     var arrMax = $('#slider-range .maxHeure').val().split(':');
     console.log(arrMin +' '+ arrMax);
     var minH = parseInt(arrMin[0],10);
-    var minM= parseInt(arrMin[1],10);
+    var minM = parseInt(arrMin[1],10);
     var maxH = parseInt(arrMax[0],10);
 
     var maxM = parseInt(arrMax[1],10);
@@ -47,7 +47,7 @@ $(function() {
         var minuteActuelle = parseInt(arrTime[1],10);
         todayDate = arrTime[2];
 
-        console.log(todayDate+ 'date du jours');
+        console.log(todayDate+ ' date du jours');
         if (minuteActuelle < 30) {
             minuteActuelle = 0;
         } else {
@@ -107,8 +107,9 @@ $(function() {
             $('.slider-time2').html(hours2+':'+minutes2);
         }
     });
-    $("#slider-range").children(".ui-slider-handle").first().text(min+':00');
-    $("#slider-range").children(".ui-slider-handle").last().text(max+':00');
+
+    $("#slider-range").children(".ui-slider-handle").first().text(min+':'+pad(minM));
+    $("#slider-range").children(".ui-slider-handle").last().text(max+':'+pad(maxM));
 
 
 
@@ -126,7 +127,7 @@ $(function() {
 
     // Lorsqu'on change le datepicker
     $('#datepicker').datepicker().on("change", function(e){
-        if ($("#datepicker-altFormat").val() == '2017-09-22' || !$("#datepicker-altFormat").val()){
+        if (!$("#datepicker-altFormat").val()){
             setHandles(heureActuelle, minuteActuelle, min, max);
         }
     });
@@ -135,6 +136,7 @@ $(function() {
     function pad(n) {
         return (n < 10) ? ("0" + n) : n;
     }
+
     // Reinitialise les handles
     function setHandles(heureActuelle, minuteActuelle, min, max){
 
@@ -143,7 +145,8 @@ $(function() {
 
         //var heureActuelle = $('#slider-range .heureActuelleDefaut').val();
         //console.log( heureActuelle +' '  + min );
-        if (heureActuelle >= max && heureActuelle < 24) {
+        console.log(heureActuelle);
+        if ( ((heureActuelle + minuteActuelle) >= (max + maxM)) && maxM&& (heureActuelle < 24) ) {
             $( "#reservation-dialog-message" ).dialog({
                 modal: true,
                 buttons: {
@@ -152,7 +155,15 @@ $(function() {
                     }
                 }
             });
-        }else if(heureActuelle >= 0 && heureActuelle < min){
+        }else if( heureActuelle >= 0 && ((heureActuelle + minuteActuelle)  < (min + minM)) ){
+            $( "#reservation-dialog-message" ).dialog({
+                modal: true,
+                buttons: {
+                    Ok: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
             console.log('Ouvre à 9h');
         }
         else{

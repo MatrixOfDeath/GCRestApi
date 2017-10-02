@@ -28,7 +28,7 @@
                         <div id="reservation-date-picker" class="form-group">
                             <label> {{  "Choisir votre date"|trans }} </label>
                             <input id="datepicker" type="text" name="reservation-date" value="{{ 'now'|date('d/m/Y', "Europe/Paris") }}">
-                            <input type="hidden" id="datepicker-altFormat" name="begin_date" />
+                            <input type="hidden" id="datepicker-altFormat" name="begin_date" value="{{ 'now'|date('Y-m-d', "Europe/Paris") }}"/>
                         </div>
                     </form>
 

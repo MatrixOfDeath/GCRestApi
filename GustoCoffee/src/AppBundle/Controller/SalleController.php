@@ -94,15 +94,21 @@ class SalleController extends FOSRestController
         else
             $panier_salle = false;
 
+        $actualDate = new \DateTime(date('y-m-d H:i:s'));
+        $plusOneHour = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
 
-        $sallesDispoNow = $this->checkDisponibiliteSalle(new \DateTime(date('y-m-d H:m:s')), new \DateTime(date('y-m-d H:m:s', strtotime('+1 hour'))));
 
-        $actualDate  = new \DateTime(date('y-m-d H:m:s'));
         $dayofweek = $actualDate->format('N');
-
-
         $mag = $em->getRepository('AppBundle:Magasin')->find(1);
         $horaire = $em->getRepository('AppBundle:JoursOuvert')->find($dayofweek);
+
+        // Si le magasin va fermé ou est fermé lors de l'affichage initiale !
+        if($plusOneHour > $horaire->getHeurefin()->format('H:i') && $plusOneHour < $horaire->getHeuredebut()){
+            // TODO: Reload next day morning !
+            $sallesDispoNow = null;
+        }else {
+            $sallesDispoNow = $this->checkDisponibiliteSalle($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
+        }
        // echo $horaire->getHeuredebut()->format('H:i')."".$horaire->getHeurefin()->format('H:i');
 //
 //        $queryBuilder = $repository->createQueryBuilder('s');
@@ -140,9 +146,14 @@ class SalleController extends FOSRestController
      */
     public function sallesDisponibleAction(Request $request){
         $sallesDispo = null;
-        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') ) {
+
+        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') &&
+            (new \DateTime($request->request->get('heureChoixDebut')))->format('Y-m-d H')  >= (new \DateTime())->format('Y-m-d H') ) {
+            // On vérifie bien que la date et heure est inférieur à la date du jour en cas d'injection ou modification du datepicker !
+
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
+
 
             $sallesDispo = $this->checkDisponibiliteSalle($heureChoixDebut, $heureChoixFin);
             //return new JsonResponse($sallesDispo);
@@ -154,15 +165,12 @@ class SalleController extends FOSRestController
             ));
             return new Response ($htmlToRender);
 
-        }else{ //TODO: A enlever ou remplacer par default value
-            $sallesDispo = $this->checkDisponibiliteSalle('2017-09-20 9:30:00', '2017-09-20 14:00:00');
+        }else{
+            return $this->render('salle/sallesDisponible.html.twig', array(
+                'salles' => $sallesDispo,
 
+            ));
         }
-        return $this->render('salle/sallesDisponible.html.twig', array(
-            'salles' => $sallesDispo,
-
-        ));
-
     }
 
     /**

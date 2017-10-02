@@ -137,45 +137,6 @@ class ReservationController extends FOSRestController
         ;
     }
 
-    private function addReservatioFromSession(Request $request, SessionInterface $session){
-
-        if (!$session->has('panier_salle')) $session->set('panier_salle',array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
-        $panier_salle = $session->get('panier_salle');
-        if (!$session->has('panier')) $session->set('panier',array());
-        $panier = $session->get('panier');
-
-        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('idsalle')) {
-
-            $heureChoixDebut = $request->request->get('heureChoixDebut');
-            $heureChoixFin = $request->request->get('heureChoixFin');
-            $dateReservation = $request->request->get('dateReservation');
-            $idSalle = $request->request->get('idsalle');
-
-            if (array_key_exists($idSalle, $panier_salle)) {
-                $reservation = new Reservation();
-                $reservation->setHeuredebut($heureChoixDebut );
-                $reservation->setHeurefin($heureChoixFin );
-                $reservation->setDatereservation($dateReservation);
-                $reservation->setIdsalle($idSalle );
-                $reservation->setIdpersonne($this->getUser());
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($reservation);
-                $em->flush();
-
-                $panier_salle[$idSalle]['idReservation'] = $reservation->getIdreservation();
-            }
-
-
-
-
-            // On retourne l'id de la reservation
-            return $reservation->getIdreservation();
-        }
-
-    }
-
-
     private function calculateDureeReservation($heureChoixDebut, $heureChoixFin){
         $d1 = new \DateTime($heureChoixDebut);
         $d2 = new \DateTime($heureChoixFin);
