@@ -49,7 +49,7 @@
                             <td>{{ salle.nomsalle }}</td>
                             <td>
                                 {{ "De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('h:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('h:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures ~ 'H' }}
-                                //On ajoute 2e par personne pour la demi-heure supplémentaire
+                                {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
                                 {% if panier_salle[salle.idsalle].totalMinutes >= 30 %}
                                     {% set totalMinutes = totalSalleTTC + (2 * salle.capacitymax ) %}
                                     {{ panier_salle[salle.idsalle].totalMinutes ~ 'min' }}
