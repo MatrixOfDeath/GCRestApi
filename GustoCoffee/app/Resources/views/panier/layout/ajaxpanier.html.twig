@@ -45,31 +45,33 @@
                 {# @var salle \AppBundle\Entity\Salle #}
                 {%  for salle in salles %}
                     <tr>
+                        {% set total30Minutes = panier_salle[salle.idsalle].totalHeures * 2 %}
                         {#<form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">#}
                             <td>{{ salle.nomsalle }}</td>
                             <td>
-                                {{ "De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('h:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('h:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures ~ 'H' }}
+                                {{ "De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('h:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures ~ 'H' }}
                                 {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
                                 {% if panier_salle[salle.idsalle].totalMinutes >= 30 %}
-                                    {% set totalMinutes = totalSalleTTC + (2 * salle.capacitymax ) %}
+                                    {% set totalMinutes =  (2 * salle.capacitymax )  %}
                                     {{ panier_salle[salle.idsalle].totalMinutes ~ 'min' }}
                                 {% else %}
                                     {% set totalMinutes = 0 %}
                                 {% endif %}
 
                                 {#<a href="{{ path('delete_panier_salle', { 'id' : salle.idsalle }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
-                                <button type="button" class="buttonDeleteSalle glyphicon glyphicon-trash" value="{{ salle.idsalle }}" ></button>
+                                <button type="button" class="buttonDeleteSalle glyphicon glyphicon-trash" value="{{ salle.idsalle }}"></button>
                             </td>
+
                             <td>{{ salle.prixsalle }} €</td>
-                            {% if panier_salle[salle.idsalle].totalHeures >= 5 %}
+                            {% if panier_salle[salle.idsalle].totalHeures >= 5 and  panier_salle[salle.idsalle].totalMinutes >= 30  %}
                                 <td>{{ salle.prixsalle * 4 }} €</td>
                                 {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 4 %}
-                            {% elseif panier_salle[salle.idsalle].totalHeures == 3 %}
-                                <td>{{ salle.prixsalle * 2 }} €</td>
-                                {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 2  + totalMinutes %}
+                            {% elseif (panier_salle[salle.idsalle].totalHeures == 3 and panier_salle[salle.idsalle].totalMinutes >= 30) or panier_salle[salle.idsalle].totalHeures >= 4 %}
+                                <td>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes - (2 * salle.capacitymax) }} €</td>
+                                {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax)  %}
                             {% else %}
-                                <td>{{ salle.prixsalle * panier_salle[salle.idsalle].totalHeures + totalMinutes }} €</td>
-                                {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * panier_salle[salle.idsalle].totalHeures + totalMinutes %}
+                                <td>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</td>
+                                {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
                             {% endif %}
 
                         {#</form>#}
@@ -77,9 +79,7 @@
                     {#{% set totalSalleHT = totalSalleHT + (salle.prixsalle * panier_salle[salle.idsalle].totalHeures) %}#}
                     {#{% set totalSalleTTC = totalSalleTTC + (salle.prixsalle * panier_salle[salle.idsalle].totalHeures)|tva(salle.tva.multiplicate) * panier_salle[salle.idsalle].totalHeures %}#}
 
-                    {% if panier_salle[salle.idsalle].totalMinutes >= 30 %}
-                        {% set totalSalleTTC = totalSalleTTC + (2 * salle.capacitymax ) %}
-                    {% endif %}
+
                     {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : refSalleTva['%' ~ salle.tva.valeur] + ( salle.prixsalle * panier_salle[salle.idsalle].totalHeures)|montantTva(salle.tva.multiplicate) }) %}
 
                     {#{% set totalSalleTTC =  totalSalleTTC +  salle.prixsalle * panier_salle[salle.idsalle].totalHeures %}#}
