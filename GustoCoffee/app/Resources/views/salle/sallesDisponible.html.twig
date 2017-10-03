@@ -1,5 +1,5 @@
 {%  if salles|length == 0 %}
-<h3>{{ "Désolé aucune salles ne semble disponibleu pour la date et le créneau sélectioner"|trans }}</h3>
+<h3>{{ "Désolé aucune salles ne semble disponible pour la date et le créneau sélectioner"|trans }}</h3>
 {% else %}
     <h3>{{ "Voici les salles privés disponibles pour le "|trans ~ dateChoix ~ ' entre ' ~ heureDebutChoix ~ "H et " ~ heureFinChoix ~ "H " }}</h3>
 {% endif %}

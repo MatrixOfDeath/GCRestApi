@@ -488,7 +488,13 @@ class PanierController extends Controller
     public function livraisonAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+        $utilisateur = $this->getUser();
+
+        var_dump($utilisateur);
+
+        if($utilisateur){
+
+        }
         //var_dump($utilisateur);  die();
         $personne = new Personne();
         $form = $this->createForm('AppBundle\Form\PersonneType', $utilisateur);
@@ -498,7 +504,7 @@ class PanierController extends Controller
             $form->handleRequest($request);
             if ($form->isValid()) {
                 //$em = $this->getDoctrine()->getManager();
-                //$personne->setPersonne($utilisateur);
+                //$personne->setId($utilisateur);
                 $em->persist($utilisateur);
                 $em->flush();
                 

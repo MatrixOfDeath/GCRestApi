@@ -109,6 +109,7 @@ class SalleController extends FOSRestController
         }else {
             $sallesDispoNow = $this->checkDisponibiliteSalle($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
         }
+
        // echo $horaire->getHeuredebut()->format('H:i')."".$horaire->getHeurefin()->format('H:i');
 //
 //        $queryBuilder = $repository->createQueryBuilder('s');
@@ -149,11 +150,10 @@ class SalleController extends FOSRestController
 
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') &&
             (new \DateTime($request->request->get('heureChoixDebut')))->format('Y-m-d H')  >= (new \DateTime())->format('Y-m-d H') ) {
-            // On vérifie bien que la date et heure est inférieur à la date du jour en cas d'injection ou modification du datepicker !
+            // On vérifie bien que la date et heure est inférieur à la date du jour en cas d'injection ou modificz
 
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
-
 
             $sallesDispo = $this->checkDisponibiliteSalle($heureChoixDebut, $heureChoixFin);
             //return new JsonResponse($sallesDispo);
@@ -309,7 +309,7 @@ class SalleController extends FOSRestController
             //   ->orWhere('r.heurefin BETWEEN :heureChoixDebut AND :heureChoixFin');
 
             ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
 
@@ -348,7 +348,7 @@ class SalleController extends FOSRestController
             ->select('s_sub.idsalle')
             ->leftJoin('s_sub.reservation', 'r')
             ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
             //->getQuery();
@@ -364,7 +364,6 @@ class SalleController extends FOSRestController
             ->setParameter('heureChoixFin', $heureChoixFin);
             //->setParameter('subQuery', $subQuery)
             //->getQuery();
-
         return $query->getQuery()->getResult();
     }
     /**
