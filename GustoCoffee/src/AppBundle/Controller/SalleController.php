@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Nelmio\ApiDocBundle\Annotation\Model;
@@ -37,12 +38,14 @@ class SalleController extends FOSRestController
      * )
      *
      *
-     * @return array
+     * @return JsonResponse
      */
     public function cgetAction(){
         $em = $this->getDoctrine()->getManager();
         $salles= $em->getRepository('AppBundle:Salle')->findAll();
 
+
+        //return $salles;
         $view = $this->view($salles);
         return $view;
     }
@@ -91,18 +94,47 @@ class SalleController extends FOSRestController
         else
             $panier_salle = false;
 
+        $actualDate = new \DateTime(date('y-m-d H:i:s'));
+        $plusOneHour = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
 
-        $sallesDispoNow = $this->checkDisponibiliteSalle(new \DateTime(date('y-m-d H:m:s')), new \DateTime(date('y-m-d H:m:s', strtotime('+1 hour'))));
 
-        //$salles = $em->getRepository('AppBundle:Salle')->findAll();
-        $actualDate  = new \DateTime(date('y-m-d H:m:s'));
-        $actualDateAndHourMore = new \DateTime(date('H:m', strtotime('+1 hour')));
+        $dayofweek = $actualDate->format('N');
+        $mag = $em->getRepository('AppBundle:Magasin')->find(1);
+        $horaire = $em->getRepository('AppBundle:JoursOuvert')->find($dayofweek);
+
+        // Si le magasin va fermé ou est fermé lors de l'affichage initiale !
+        if($plusOneHour > $horaire->getHeurefin()->format('H:i') && $plusOneHour < $horaire->getHeuredebut()){
+            // TODO: Reload next day morning !
+            $sallesDispoNow = null;
+        }else {
+            $sallesDispoNow = $this->checkDisponibiliteSalle($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
+        }
+
+       // echo $horaire->getHeuredebut()->format('H:i')."".$horaire->getHeurefin()->format('H:i');
+//
+//        $queryBuilder = $repository->createQueryBuilder('s');
+//        $query = $queryBuilder
+//            ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
+////            ->andWhere(':heureChoixDebut < :datenow')
+//            //->setParameter('datenow', date("Y-m-d H:i:s"))
+//            ->setParameter('heureChoixDebut', $heureChoixDebut)
+//            ->setParameter('heureChoixFin', $heureChoixFin);
+//            //->setParameter('subQuery', $subQuery)
+//            //->getQuery();
+
+//        return $query->getQuery()->getResult();
+//
+        //$actualDateAndHourMore = new \DateTime(date('H:m', strtotime('+1 hour')));
+
+
         return $this->render('salle/index.html.twig', array(
             'salles' => $sallesDispoNow,
             'heureDebutChoix' => $actualDate->format('H'),
             'heureFinChoix' => $actualDate->add(new \DateInterval('PT1H'))->format('H'),
             'dateChoix' => $actualDate->format("d/m/Y"),
             'panier' => $panier_salle,
+            'minHeure' => $horaire->getHeuredebut()->format('H:i'),
+            'maxHeure' => $horaire->getHeurefin()->format('H:i')
         ));
     }
 
@@ -115,7 +147,11 @@ class SalleController extends FOSRestController
      */
     public function sallesDisponibleAction(Request $request){
         $sallesDispo = null;
-        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') ) {
+
+        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') &&
+            (new \DateTime($request->request->get('heureChoixDebut')))->format('Y-m-d H')  >= (new \DateTime())->format('Y-m-d H') ) {
+            // On vérifie bien que la date et heure est inférieur à la date du jour en cas d'injection ou modificz
+
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
 
@@ -129,15 +165,12 @@ class SalleController extends FOSRestController
             ));
             return new Response ($htmlToRender);
 
-        }else{ //TODO: A enlever ou remplacer par default value
-            $sallesDispo = $this->checkDisponibiliteSalle('2017-09-20 9:30:00', '2017-09-20 14:00:00');
+        }else{
+            return $this->render('salle/sallesDisponible.html.twig', array(
+                'salles' => $sallesDispo,
 
+            ));
         }
-        return $this->render('salle/sallesDisponible.html.twig', array(
-            'salles' => $sallesDispo,
-
-        ));
-
     }
 
     /**
@@ -276,7 +309,7 @@ class SalleController extends FOSRestController
             //   ->orWhere('r.heurefin BETWEEN :heureChoixDebut AND :heureChoixFin');
 
             ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
 
@@ -315,7 +348,7 @@ class SalleController extends FOSRestController
             ->select('s_sub.idsalle')
             ->leftJoin('s_sub.reservation', 'r')
             ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heuredebut >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
             //->getQuery();
@@ -331,7 +364,6 @@ class SalleController extends FOSRestController
             ->setParameter('heureChoixFin', $heureChoixFin);
             //->setParameter('subQuery', $subQuery)
             //->getQuery();
-
         return $query->getQuery()->getResult();
     }
     /**

@@ -1,5 +1,6 @@
+// Lorsqu'on clique sur la bouton Produit #2
 $(document).on('click', '#tab-link-produit', function(){
-    $(this)
+
     // var choixDebut = $('.slider-time').text();
     // var choixFin = $('.slider-time2').text();
     // var date =  $('#datepicker-altFormat').val();
@@ -38,6 +39,7 @@ $(document).on('click', '#tab-link-produit', function(){
 
 });
 
+// Lorsqu'on clique sur la bouton Salle #1
 $(document).on('click', '#tab-link-salle', function(){
     $(this).parent().tab('show');
     var choixDebut = $('.slider-time').text();

@@ -180,14 +180,24 @@ class CommandeController extends FOSRestController
 
         $adresse = $session->get('adresse');
         $panier = $session->get('panier');
+        $panier_salle = $session->get('panier_salle');
+
         $commande = array();
         $totalHT = 0;
         $totalTVA = 0;
+        $totalSalleHT = 0;
+        $totalSalleTVA = 0;
+
 
         $facturation = $em->getRepository('AppBundle:Personne')->find($adresse['facturation']);
         $livraison = $em->getRepository('AppBundle:Personne')->find($adresse['livraison']);
         $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($session->get('panier')));
+        $salles =  $em->getRepository('AppBundle:Salle')->findArray(array_keys($session->get('panier_salle')));
 
+        /**
+         * @var produit \AppBundle\Entity\Produit
+         *
+         */
         foreach($produits as $produit)
         {
             $prixHT = ($produit->getPrixproduit() * $panier[$produit->getIdproduit()]);
@@ -206,6 +216,28 @@ class CommandeController extends FOSRestController
                 'prixHT' => round($produit->getPrixproduit(),2),
                 'prixTTC' => round($produit->getPrixproduit() / $produit->getTva()->getMultiplicate(),2));
         }
+        /**
+         *
+         * @var $salle \AppBundle\Entity\Salle
+         */
+        foreach($salles as $salle)
+        {
+            $prixSalleHT = ($salle->getPrixsalle() * $panier[$salle->getIdsalle()]);
+            $prixSalleTTC = ($salle->getPrixsalle() * $panier[$salle->getIdsalle()] / $salle->getTva()->getMultiplicate());
+            $totalSalleHT += $prixSalleHT;
+
+            if (!isset($commande['tva']['%'.$salle->getTva()->getValeur()]))
+                $commande['tva']['%'.$salle->getTva()->getValeur()] = round($prixSalleTTC - $prixSalleHT,2);
+            else
+                $commande['tva']['%'.$salle->getTva()->getValeur()] += round($prixSalleTTC - $prixSalleHT,2);
+
+            $totalTVA += round($prixSalleTTC - $prixSalleTTC,2);
+
+            $commande['salle'][$salle->getIdsalle()] = array('reference' => $salle->getNomsalle(),
+                'quantite' => $panier[$salle->getIdsalle()],
+                'prixHT' => round($salle->getPrixsalle(),2),
+                'prixTTC' => round($salle->getPrixsalle() / $salle->getTva()->getMultiplicate(),2));
+        }
 
         $commande['livraison'] = array('prenom' => $livraison->getPrenom(),
             'nom' => $livraison->getNom(),
@@ -219,6 +251,8 @@ class CommandeController extends FOSRestController
 
         $commande['prixHT'] = round($totalHT,2);
         $commande['prixTTC'] = round($totalHT + $totalTVA,2);
+        $commande['prixSalleHT'] = round($totalSalleHT,2);
+        $commande['prixSalleTTC'] = round($totalSalleHT + $totalSalleHT,2);
         $commande['token'] = bin2hex(random_bytes(20));
 
         return $commande;

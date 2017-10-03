@@ -1,16 +1,22 @@
+{%  if salles|length == 0 %}
+<h3>{{ "Désolé aucune salles ne semble disponible pour la date et le créneau sélectioner"|trans }}</h3>
+{% else %}
+    <h3>{{ "Voici les salles privés disponibles pour le "|trans ~ dateChoix ~ ' entre ' ~ heureDebutChoix ~ "H et " ~ heureFinChoix ~ "H " }}</h3>
+{% endif %}
 
-
-
-<h3>{{ "Voici les salles privés disponibles pour le "|trans ~ dateChoix ~ ' entre ' ~ heureDebutChoix ~ "H et " ~ heureFinChoix ~ "H " }}</h3>
-
-<div id="reservation-dialog-message" title="Créneaux incorrectes" style="display:none;">
+<div id="reservation-dialog-message" title="Magasin fermé: Il ouvrira demain !" style="display:none;">
     <p>
         <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-        Les magasin est fermée changé votre date avant de continuer
+        {{  "Le magasin est fermée changé votre date avant de continuer"|trans }}
+    </p>
+</div>
+<div id="reservation2-dialog-message" title="Créneaux incorrectes" style="display:none;">
+    <p>
+        <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+        {{  "Le magasin n'est pas encore ouvert, il ouvrira tout à l'heure"|trans }}
     </p>
 
 </div>
-
 {% set count = 1 %}
     {% for salle in salles %}
 

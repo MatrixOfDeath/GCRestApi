@@ -13,7 +13,13 @@
 {% endblock %}
 
 {% block titleHome %}
-    {{ 'GustoCoffee - Annonces'|trans }}
+    <div class="banniere">
+        <h1 class="colorWhite">Poster une annonce</h1>
+        <h3 class="colorWhite"> <i>Si on travaillait ensemble ? </i></h3>
+    </div>
+    <button class="buttonInscription greenButton">
+        <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">{{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+    </button>
 {% endblock %}
 {# ---------- First Block - Dépôt d'annonce ---------- #}
 {% block firstBlock %}

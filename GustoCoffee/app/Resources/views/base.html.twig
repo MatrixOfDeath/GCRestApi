@@ -16,6 +16,7 @@
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.theme.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
@@ -41,7 +42,7 @@
                             </button>
                             <div class="home">
                                 <a class="navbar-brand page-scroll" href="{{ path('gc_home_page') }}">
-                                    <img alt="GustoCoffee" src="{{ asset('img/gc_logo.png') }}" />
+                                    <img alt="GustoCoffee" src="{{ asset('img/gc_transparent_resize.png') }}" />
                                 </a>
                             </div>
                         </div>
@@ -53,7 +54,7 @@
                                     <a href="#page-top"></a>
                                 </li>
                                 <li>
-                                    <a {% if app.request.get('_route') == 'gc_home_page' %} class="Myactive" {% endif %} class="page-scroll" href="{{ path('gc_home_page') }}">{{ 'Accueil'|trans }}</a>
+                                    <a class="fa fa-home fa-3x" aria-hidden="true" {% if app.request.get('_route') == 'gc_home_page' %}  {% endif %} href="{{ path('gc_home_page') }}"> {{ 'Accueil'|trans }}</a>
                                 </li>
                                 <li>
                                     <a {% if app.request.get('_route') == 'gc_evenement_page' %} class="Myactive" {% endif %} class="page-scroll" href="{{ path('gc_evenement_page') }}">{{ 'Evénements'|trans }}</a>
@@ -78,8 +79,8 @@
                                             {{ 'Déconnexion'|trans({}, 'FOSUserBundle') }}
                                         </a>
                                     {% else %}
-                                        <a  class="page-scroll" href="{{ path('fos_user_security_login') }}">
-                                            <img src="{{ asset('img/user.png') }}" alt="{{  'Connexion'|trans }}">
+                                        <a  class="fa fa-user-circle fa-3x" aria-hidden="true" alt="{{  'Connexion'|trans }}" href="{{ path('fos_user_security_login') }}">
+                                            {#<img src="{{ asset('img/user.png') }}" alt="{{  'Connexion'|trans }}">#}
                                         </a>
                                     {% endif %}
                                 </li>
@@ -94,7 +95,8 @@
                                 {% endfor %}
                                 {% endif %}
                                 <li>
-                                    <a class="page-scroll" href="{{ path('panier') }}">{{ 'Panier'|trans }}</a>
+                                    <a class="fa fa-shopping-cart fa-3x" aria-hidden="true" href="{{ path('panier') }}"></a>
+                                    {#<a class="page-scroll" href="{{ path('panier') }}">{{ 'Panier'|trans }}</a>#}
                                 </li>
                                 <li>
                                 {% if is_granted("ROLE_ADMIN") %}

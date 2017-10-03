@@ -9,6 +9,11 @@ $(function() {
         $('#display-salle .cardSalle').addClass('grid-group-item');});
     });
 
+    if(!$('#slider-range').length){
+        console.log('no slider !');
+        return false;
+    }
+
     /** Initiate datepicker **/
     $( "#datepicker" ).datepicker({
         maxDate: "+15d",
@@ -25,8 +30,17 @@ $(function() {
 
     $('.ui-slider-handle').draggable();
 
-    var min = 9; // Heure min d'ouverture du magasin
-    var max = 21; // Heure max d'ouverture du magasin
+    var arrMin = $('#slider-range .minHeure').val().split(':');
+    var arrMax = $('#slider-range .maxHeure').val().split(':');
+    console.log(arrMin +' '+ arrMax);
+    var minH = parseInt(arrMin[0],10);
+    var minM = parseInt(arrMin[1],10);
+    var maxH = parseInt(arrMax[0],10);
+
+    var maxM = parseInt(arrMax[1],10);
+
+    var min = minH; // 9 Heure min d'ouverture du magasin
+    var max = maxH; // 21 Heure max d'ouverture du magasin
     var datePickerDate = $("#datepicker-altFormat").val();
     var today = new Date();
     var todayDate = $("#datepicker-altFormat").val();
@@ -38,7 +52,7 @@ $(function() {
         var minuteActuelle = parseInt(arrTime[1],10);
         todayDate = arrTime[2];
 
-        console.log(todayDate+ 'date du jours');
+        console.log(todayDate+ ' date du jours');
         if (minuteActuelle < 30) {
             minuteActuelle = 0;
         } else {
@@ -48,11 +62,11 @@ $(function() {
 
     $("#slider-range").slider({
         range: true,
-        min: min * 60,
-        max: max * 60,
+        min: min * 60 + minM,
+        max: max * 60 + maxM,
         minRange: 60,
         step: 30,
-        values: [540, 1320],
+        values: [min * 60 + minM, max * 60 + maxM],
         slide: function( event, ui ) {
 
             // On limite l'intervalle minimal à 1h pour une reservation de salle
@@ -98,14 +112,16 @@ $(function() {
             $('.slider-time2').html(hours2+':'+minutes2);
         }
     });
-    $("#slider-range").children(".ui-slider-handle").first().text(min+':00');
-    $("#slider-range").children(".ui-slider-handle").last().text(max+':00');
+
+    $("#slider-range").children(".ui-slider-handle").first().text(min+':'+pad(minM));
+    $("#slider-range").children(".ui-slider-handle").last().text(max+':'+pad(maxM));
 
 
 
     if($('#slider-range .heureActuelleDefaut').length && $('#slider-range .heureActuelleDefaut').val() ) {
         setHandles(heureActuelle, minuteActuelle, min, max);
     }
+
     // Arithmétique: on calcule le nombre d'heure total et on crée les intervalles souhaité, on mettra des points ç
     var total = (max - min ) * 2; // car 60 minutes = 2 * 30 minutes :)
     var percent = 100 / total;
@@ -117,7 +133,7 @@ $(function() {
 
     // Lorsqu'on change le datepicker
     $('#datepicker').datepicker().on("change", function(e){
-        if ($("#datepicker-altFormat").val() == '2017-09-22' || !$("#datepicker-altFormat").val()){
+        if (!$("#datepicker-altFormat").val()){
             setHandles(heureActuelle, minuteActuelle, min, max);
         }
     });
@@ -126,6 +142,7 @@ $(function() {
     function pad(n) {
         return (n < 10) ? ("0" + n) : n;
     }
+
     // Reinitialise les handles
     function setHandles(heureActuelle, minuteActuelle, min, max){
 
@@ -134,7 +151,8 @@ $(function() {
 
         //var heureActuelle = $('#slider-range .heureActuelleDefaut').val();
         //console.log( heureActuelle +' '  + min );
-        if (heureActuelle >= max && heureActuelle < 24) {
+        console.log(heureActuelle);
+        if (  heureActuelle > max  && (heureActuelle < 24)  /*((heureActuelle + minuteActuelle) >= (max + maxM)) && maxM */ ) {
             $( "#reservation-dialog-message" ).dialog({
                 modal: true,
                 buttons: {
@@ -143,7 +161,15 @@ $(function() {
                     }
                 }
             });
-        }else if(heureActuelle >= 0 && heureActuelle < min){
+        }else if( heureActuelle >= 0 && heureActuelle < min /*((heureActuelle + minuteActuelle)  < (min + minM))*/ ){
+            $( "#reservation-dialog-message" ).dialog({
+                modal: true,
+                buttons: {
+                    Ok: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
             console.log('Ouvre à 9h');
         }
         else{

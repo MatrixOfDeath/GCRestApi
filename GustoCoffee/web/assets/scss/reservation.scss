@@ -1,5 +1,5 @@
 .topPageReservation {
-  background-image: url("../img/backReservation.jpeg");
+  background-image: url("../img/background_resa.jpeg");
 }
 
 //Panier
@@ -141,32 +141,36 @@
 }
 
 /* The Close Button */
-.close {
-  color: white;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
+#myModal {
+  .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
 
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
 
-.modal-header {
-  padding: 2px 16px;
-  background-color: #a6854d;
-  color: white;
-}
+  .modal-header {
+    padding: 2px 16px;
+    background-color: #a6854d;
+    color: white;
+  }
 
-.modal-body {padding: 2px 16px;}
+  .modal-body {
+    padding: 2px 16px;
+  }
 
-.modal-footer {
-  padding: 2px 16px;
-  background-color: #a6854d;
-  color: white;
+  .modal-footer {
+    padding: 2px 16px;
+    background-color: #a6854d;
+    color: white;
+  }
 }
 
 @media only screen and (max-width: 991px) {

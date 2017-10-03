@@ -14,7 +14,13 @@
 
 
 {% block titleHome %}
-    Contact CoWorking
+    <div class="banniere">
+        <h1 class="colorWhite">Contact</h1>
+        <h3 class="colorWhite"> <i>Si on restait en contact? </i></h3>
+    </div>
+    <button class="buttonInscription greenButton">
+        <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">{{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+    </button>
 {% endblock %}
 
 

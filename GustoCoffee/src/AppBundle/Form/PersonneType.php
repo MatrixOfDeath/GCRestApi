@@ -15,17 +15,12 @@ class PersonneType extends AbstractType
     {
         $builder
             ->add('indentifiant')
-            ->add('motdepasse')
+            ->add('email')
             ->add('nom')
             ->add('prenom')
             ->add('adresse')
             ->add('codepostal')
-            ->add('ville')
-            ->add('statutpersonne')
-            ->add('pointscumules')
-            ->add('rulepersonne')
-            ->add('newsletter')
-            ->add('idrule');
+            ->add('ville');
     }
     
     /**
