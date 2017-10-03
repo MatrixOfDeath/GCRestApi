@@ -1,12 +1,12 @@
 {
   "build/ajax.js": "/build/ajax.0386023acfd32d94432d.js",
   "build/app.js": "/build/app.814b8292598f5ac21217.js",
-  "build/global.css": "/build/global.af60b5f90796c8e6b1a4ffdbe799ace6.css",
+  "build/global.css": "/build/global.700aade367c0f779f749a2cc6a0ca46a.css",
   "build/images/backContact.jpeg": "/build/images/backContact.78de4675.jpeg",
-  "build/images/backEvenement2.jpg": "/build/images/backEvenement2.812c546b.jpg",
-  "build/images/backReservation.jpeg": "/build/images/backReservation.0fc94fba.jpeg",
-  "build/images/background-annonce.jpeg": "/build/images/background-annonce.a192672d.jpeg",
-  "build/images/background-home.jpg": "/build/images/background-home.a838d7e7.jpg",
+  "build/images/background_annonce.jpeg": "/build/images/background_annonce.a192672d.jpeg",
+  "build/images/background_events.jpeg": "/build/images/background_events.658bd1c2.jpeg",
+  "build/images/background_homepage.jpeg": "/build/images/background_homepage.a5e660d6.jpeg",
+  "build/images/background_resa.jpeg": "/build/images/background_resa.8f73584d.jpeg",
   "build/images/connexion.jpg": "/build/images/connexion.e51a7384.jpg",
   "build/images/dashboard2.jpg": "/build/images/dashboard2.0151efe7.jpg"
 }

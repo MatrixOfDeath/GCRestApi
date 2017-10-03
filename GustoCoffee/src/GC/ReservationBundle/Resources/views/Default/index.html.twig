@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>GustoCoffee Réservation</title>
+    <title>GustoCoffee - Réservation</title>
 {% endblock %}
 
 {% block firstImg %}
@@ -13,13 +13,22 @@
 {%  endblock %}
 
 {% block titleHome %}
-    Réservation CoWorking
+    <div class="banniere">
+        <h1 class="colorWhite">Espace Réservation</h1>
+        <h3 class="colorWhite"> <i>Si on tentait l'expérience ? </i></h3>
+    </div>
+    <button class="buttonInscription greenButton">
+        <a class="colorWhite" href="{{ path('gc_reservation_page') }}">{{ 'Réservez votre place'|trans }} </a>
+    </button>
+    <button class="buttonInscription greenButton">
+        <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">{{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+    </button>
 {% endblock %}
 
 {% block firstBlock %}
     <div class="row customPadding">
         <div class="col-md-12 ">
-            <h2 class="titleReservation">Réservez votre place !!</h2>
+            <h2 class="titleReservation">Réservez votre place !</h2>
             <div class="clearText"></div>
             <p class="textReservation textDescription"><strong>Consommez à volonté, chez GustoCoffee !</strong> Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.<br>
             </p>

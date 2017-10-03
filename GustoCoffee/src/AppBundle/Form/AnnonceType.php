@@ -23,7 +23,8 @@ class AnnonceType extends AbstractType
                     'Recherche de partenariat(s)' => 'Recherche de Partenariat(s)',
                     "Demande d'informations" => "Demande d'informations",
                 ),
-            ));
+            ))
+            ->add('idpersonne');
     }
 
     /**
