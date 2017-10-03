@@ -16,10 +16,10 @@ class CommandeRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('u')
                 ->select('u')
-                ->where('u.personne = :personne')
+                ->where('u.idpersonne = :personne')
                 ->andWhere('u.valider = 1')
                 ->andWhere('u.reference != 0')
-                ->orderBy('u.id')
+                ->orderBy('u.idcommande')
                 ->setParameter('personne', $personne);
         
         return $qb->getQuery()->getResult();
@@ -29,9 +29,9 @@ class CommandeRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('u')
                 ->select('u')
-                ->where('u.date > :date')
+                ->where('u.datecommande > :date')
                 ->andWhere('u.valider = 1')
-                ->orderBy('u.id')
+                ->orderBy('u.idcommande')
                 ->setParameter('date', $date);
         
         return $qb->getQuery()->getResult();
