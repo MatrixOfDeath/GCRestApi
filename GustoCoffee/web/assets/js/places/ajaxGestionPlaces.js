@@ -12,23 +12,23 @@ $(document).ready(function() {
             $total = $('#total'),
             sc = $('#seat-map').seatCharts({
                 map: [
-                    'ff_ff',
-                    'ff_ff',
-                    'ee_ee',
-                    'ee_ee',
-                    'ee___',
-                    'ee_ee',
-                    'ee_ee',
-                    'ee_ee',
-                    'eeeee',
+                    'pp___ppppp',
+                    'pp___ppppp',
+                    'pp___ppppp',
+                    'pppppppppp',
+                    'pppppppppp',
+                    'pppppppppp',
+                    'pppppppppp',
+                    'pppppppppp',
+                    'pppppppppp',
                 ],
                 seats: {
-                    f: {
+                    n: {
                         price: 5,
                         classes: 'first-class', //your custom CSS class
                         category: 'First Class'
                     },
-                    e: {
+                    p: {
                         price: 5,
                         classes: 'economy-class', //your custom CSS class
                         category: 'Economy Class'
@@ -44,15 +44,14 @@ $(document).ready(function() {
                 legend: {
                     node: $('#legend'),
                     items: [
-                        ['f', 'available', 'First Class'],
-                        ['e', 'available', 'Economy Class'],
-                        ['f', 'unavailable', 'Already Booked']
+                        ['p', 'available', 'Place disponible'],
+                        ['f', 'unavailable', 'Déjà réservé']
                     ]
                 },
                 click: function () {
                     if (this.status() == 'available') {
                         //let's create a new <li> which we'll add to the cart items
-                        $('<li>' + this.data().category + ' Seat # ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[cancel]</a></li>')
+                        $('<li>' + this.data().category + ' Place # ' + this.settings.label + ': <b>$' + this.data().price + '</b> <a href="#" class="cancel-cart-item">[annuler]</a></li>')
                             .attr('id', 'cart-item-' + this.settings.id)
                             .data('seatId', this.settings.id)
                             .appendTo($cart);
