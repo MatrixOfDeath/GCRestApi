@@ -71,7 +71,7 @@
                             </td>
 
                             <td>{{ salle.prixsalle }} €</td>
-                            {% if panier_salle[salle.idsalle].totalHeures >= 5 and  panier_salle[salle.idsalle].totalMinutes >= 30  %}
+                            {% if panier_salle[salle.idsalle].totalHeures >= 5 or (panier_salle[salle.idsalle].totalHeures >= 5 and  panier_salle[salle.idsalle].totalMinutes >= 30)  %}
                                 <td>{{ salle.prixsalle * 4 }} €</td>
                                 {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 4 %}
                             {% elseif (panier_salle[salle.idsalle].totalHeures == 3 and panier_salle[salle.idsalle].totalMinutes >= 30) or panier_salle[salle.idsalle].totalHeures >= 4 %}
