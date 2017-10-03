@@ -216,7 +216,6 @@ class CommandeController extends FOSRestController
                 'prixHT' => round($produit->getPrixproduit(),2),
                 'prixTTC' => round($produit->getPrixproduit() / $produit->getTva()->getMultiplicate(),2));
         }
-
         /**
          *
          * @var $salle \AppBundle\Entity\Salle

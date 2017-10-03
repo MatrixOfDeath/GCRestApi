@@ -12,6 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Routing\ClassResourceInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use AppBundle\Entity\Personne;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 /**
  * Facture controller.
  * @RouteResource("Facture")
@@ -65,7 +70,7 @@ class FactureController extends FOSRestController
     /**
      * Finds and displays a facture entity.
      *
-     * @Route("/{idfacture}", name="facture_show")
+     * @Route("/{idfacture}", name="facture_show", requirements={"idsalle": "\d+"})
      * @Method("GET")
      */
     public function showAction(Facture $facture)
@@ -81,7 +86,7 @@ class FactureController extends FOSRestController
     /**
      * Displays a form to edit an existing facture entity.
      *
-     * @Route("/{idfacture}/edit", name="facture_edit")
+     * @Route("/{idfacture}/edit", name="facture_edit", requirements={"idsalle": "\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Facture $facture)
@@ -106,7 +111,7 @@ class FactureController extends FOSRestController
     /**
      * Deletes a facture entity.
      *
-     * @Route("/{idfacture}", name="facture_delete")
+     * @Route("/{idfacture}", name="facture_delete", requirements={"idsalle": "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Facture $facture)
@@ -138,4 +143,42 @@ class FactureController extends FOSRestController
             ->getForm()
         ;
     }
+
+    /**
+     * @Route("/factures", name="factures")
+     * @return Response
+     */
+    public function facturesAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $factures = $em->getRepository('AppBundle:Commande')->byFacture($this->getUser());
+
+        return $this->render('facture/facture.html.twig', array('factures' => $factures));
+    }
+
+    /**
+     * @Route("/PDF", name="facturesPDF")
+     * @param $id
+     * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function facturesPDFAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $facture = $em->getRepository('AppBundle:Commande')->findOneBy(array('utilisateur' => $this->getUser(),
+            'valider' => 1,
+            'id' => $id));
+
+        if (!$facture) {
+            $this->get('session')->getFlashBag()->add('error', 'Une erreur est survenue');
+            return $this->redirect($this->generateUrl('factures'));
+        }
+
+        $this->container->get('setNewFacture')->facture($facture)->Output('Facture.pdf');
+
+        $response = new Response();
+        $response->headers->set('Content-type' , 'application/pdf');
+
+        return $response;
+    }
+
 }

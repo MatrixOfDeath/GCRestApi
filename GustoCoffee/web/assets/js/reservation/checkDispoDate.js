@@ -9,6 +9,11 @@ $(function() {
         $('#display-salle .cardSalle').addClass('grid-group-item');});
     });
 
+    if(!$('#slider-range').length){
+        console.log('no slider !');
+        return false;
+    }
+
     /** Initiate datepicker **/
     $( "#datepicker" ).datepicker({
         maxDate: "+15d",
@@ -34,8 +39,8 @@ $(function() {
 
     var maxM = parseInt(arrMax[1],10);
 
-    var min = minH; // Heure min d'ouverture du magasin
-    var max = maxH; // Heure max d'ouverture du magasin
+    var min = minH; // 9 Heure min d'ouverture du magasin
+    var max = maxH; // 21 Heure max d'ouverture du magasin
     var datePickerDate = $("#datepicker-altFormat").val();
     var today = new Date();
     var todayDate = $("#datepicker-altFormat").val();
@@ -116,6 +121,7 @@ $(function() {
     if($('#slider-range .heureActuelleDefaut').length && $('#slider-range .heureActuelleDefaut').val() ) {
         setHandles(heureActuelle, minuteActuelle, min, max);
     }
+
     // Arithmétique: on calcule le nombre d'heure total et on crée les intervalles souhaité, on mettra des points ç
     var total = (max - min ) * 2; // car 60 minutes = 2 * 30 minutes :)
     var percent = 100 / total;
@@ -146,7 +152,7 @@ $(function() {
         //var heureActuelle = $('#slider-range .heureActuelleDefaut').val();
         //console.log( heureActuelle +' '  + min );
         console.log(heureActuelle);
-        if ( ((heureActuelle + minuteActuelle) >= (max + maxM)) && maxM&& (heureActuelle < 24) ) {
+        if (  heureActuelle > max  && (heureActuelle < 24)  /*((heureActuelle + minuteActuelle) >= (max + maxM)) && maxM */ ) {
             $( "#reservation-dialog-message" ).dialog({
                 modal: true,
                 buttons: {
@@ -155,7 +161,7 @@ $(function() {
                     }
                 }
             });
-        }else if( heureActuelle >= 0 && ((heureActuelle + minuteActuelle)  < (min + minM)) ){
+        }else if( heureActuelle >= 0 && heureActuelle < min /*((heureActuelle + minuteActuelle)  < (min + minM))*/ ){
             $( "#reservation-dialog-message" ).dialog({
                 modal: true,
                 buttons: {
