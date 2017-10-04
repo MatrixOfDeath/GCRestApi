@@ -28,7 +28,6 @@ class RestLoginController extends Controller
     {
 
 
-        //die(var_dump($request->request->all()));
         $usernameOrEmail = $request->request->get("username");
         $password = $request->request->get("password");
 
