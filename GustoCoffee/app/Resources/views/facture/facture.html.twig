@@ -1,13 +1,26 @@
-{% extends 'base.html.twig' %}
+{% extends '::base.html.twig' %}
 
-{% block body %}
+{% block title %}
+    <title>{{ 'GustoCoffee - Factures'|trans }}</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPage topPageAnnonce
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{% endblock %}
+
+
+{% block firstBlock %}
 <div class="container">
     <div class="row">
 
-        <div class="span3">
-            {#{% include 'navigation.html.twig' %}#}
-            {#{% include 'utilisateursConnecte.html.twig' %}   #}
-            {{ render(controller('AppBundle:Panier:menu')) }}
+             <div class="span3">
+                {#{% include 'navigation.html.twig' %}#}
+                {#{% include 'utilisateursConnecte.html.twig' %}   #}
+                {{ render(controller('AppBundle:Panier:menu')) }}
             </div>				
             <div class="span9">
                 

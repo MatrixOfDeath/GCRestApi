@@ -17,6 +17,31 @@
             
             
             <h2>Valider mon panier</h2>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Salle choisi</th>
+                    <th>Nombre d'heures</th>
+                    <th>Prix à l'heure</th>
+                    <th>Total TTC</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {%  for salle in commande.commande.salle %}
+                        <tr>
+                            <td>{{ salle.reference }}</td>
+                            <td>
+                                {{ salle.quantite }}
+                            </td>
+                            <td>{{ salle.prixHT }} €</td>
+                            <td>{{ salle.prixHT * salle.quantite }} €</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+            </table>
+
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>

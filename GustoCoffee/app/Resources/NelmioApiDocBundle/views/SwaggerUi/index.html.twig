@@ -15,14 +15,14 @@ file that was distributed with this source code. #}
     <link rel="stylesheet" href="{{ asset('bundles/nelmioapidoc/swagger-ui/swagger-ui.css') }}">
     <link rel="stylesheet" href="{{ asset('css/nelmioapidoc/style.css') }}">
 
-    <link rel="icon" type="image/png" href="{{ asset('img/gc_logo.png')}}" />
+    <link rel="icon" type="image/png" href="{{ asset('img/gc_favicon_32x32.ico')}}" />
 
     {# json_encode(65) is for JSON_UNESCAPED_SLASHES|JSON_HEX_TAG to avoid JS XSS #}
     <script id="swagger-data" type="application/json">{{ swagger_data|json_encode(65)|raw }}</script>
 </head>
 <body>
 <header>
-    <a id="logo" href="{{ path('gc_home_page') }}"><img src="{{ asset('img/gc_logo.png') }}" alt="GustoCoffee"></a>
+    <a id="logo" href="{{ path('gc_home_page') }}"><img src="{{ asset('img/gc_transparent_resize.png') }}" alt="GustoCoffee"></a>
 </header>
 
 <div id="swagger-ui" class="api-platform"></div>

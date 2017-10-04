@@ -1,5 +1,5 @@
 easy_admin:
-    site_name: '<img alt="GustoCoffee" width="70px" src="/img/gc_logo.png" /> BackOffice'
+    site_name: '<img alt="GustoCoffee" width="70px" src="/img/gc_transparent_resize.png" /> BackOffice'
     assets:
         css:
             - 'css/jquery-ui.min.css'
