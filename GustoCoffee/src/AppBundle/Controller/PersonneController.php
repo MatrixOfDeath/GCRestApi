@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Groups;
@@ -137,5 +138,35 @@ class PersonneController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/villes/{cp}", options={"expose"=true}, name="villes")
+     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param $cp
+     * @return mixed
+     * @throws \Exception
+     */
+    public function villesAction(Request $request,$cp)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $villeCodePostal = $em->getRepository('AppBundle:Villes')->findBy(array('villeCodePostal' => $cp));
+
+            if ($villeCodePostal) {
+                $villes = array();
+                foreach($villeCodePostal as $ville) {
+                    $villes[] = $ville->getVilleNom();
+                }
+            } else {
+                $villes = null;
+            }
+
+            $response = new JsonResponse();
+            return $response->setData(array('ville' => $villes));
+        } else {
+            throw new \Exception('Erreur');
+        }
     }
 }

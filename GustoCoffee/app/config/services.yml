@@ -61,6 +61,10 @@ services:
 #        tags:
 #            - { name: twig.extension }
 
+    adresse_type_form:
+        class: AppBundle\Form\UtilisateursAdressesType
+        arguments: [ '@doctrine.orm.entity_manager']
+
     redirectionListener:
         class: AppBundle\Listener\RedirectionListener
         arguments: ['@service_container','@session']

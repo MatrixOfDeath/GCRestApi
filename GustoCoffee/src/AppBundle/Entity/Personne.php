@@ -70,6 +70,13 @@ class Personne extends BaseUser
      */
     //protected $email;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UtilisateursAdresses", mappedBy="utilisateur", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $adresses;
+
     /**
      * @var string
      *
@@ -84,13 +91,7 @@ class Personne extends BaseUser
      */
     private $codepostal;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
-     */
 
-    private $telephone;
 
     /**
      * @var string
@@ -98,6 +99,14 @@ class Personne extends BaseUser
      * @ORM\Column(name="ville", type="string", length=25, nullable=true)
      */
     private $ville;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
+     */
+
+    private $telephone;
 
     /**
      * @var string
@@ -152,7 +161,7 @@ class Personne extends BaseUser
         parent::__construct();
         $this->addOnEmails = new ArrayCollection();
         $this->commandes = new ArrayCollection();
-
+        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
         $this->newsletter = false;
 
     }
@@ -524,16 +533,6 @@ class Personne extends BaseUser
     }
 
     /**
-     * Get commandes
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCommandes()
-    {
-        return $this->commandes;
-    }
-
-    /**
      * Add commandes
      *
      * @param \AppBundle\Entity\Commande $commandes
@@ -554,6 +553,49 @@ class Personne extends BaseUser
     public function removeCommande(\AppBundle\Entity\Commande $commandes)
     {
         $this->commandes->removeElement($commandes);
+    }
+
+    /**
+     * Get commandes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * Add adresses
+     *
+     * @param \AppBundle\Entity\UtilisateursAdresses $adresses
+     * @return Personne
+     */
+    public function addAdress(\AppBundle\Entity\UtilisateursAdresses $adresses)
+    {
+        $this->adresses[] = $adresses;
+
+        return $this;
+    }
+
+    /**
+     * Remove adresses
+     *
+     * @param \AppBundle\Entity\UtilisateursAdresses $adresses
+     */
+    public function removeAdress(\AppBundle\Entity\UtilisateursAdresses $adresses)
+    {
+        $this->adresses->removeElement($adresses);
+    }
+
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
     }
 
 }

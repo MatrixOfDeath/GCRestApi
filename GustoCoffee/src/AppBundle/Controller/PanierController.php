@@ -9,9 +9,10 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-//use AppBundle\Form\PersonneType;
+use AppBundle\Form\UtilisateursAdressesType;
 use AppBundle\Entity\Personne;
 use AppBundle\Entity\Reservation;
+use AppBundle\Entity\UtilisateursAdresses;
 
 /**
  * Panier controller.
@@ -342,22 +343,18 @@ class PanierController extends Controller
 //        if (!$session->has('panier')) $session->set('panier',array());
 //        $panier = $session->get('panier');
 
-        var_dump('in'); // todo:remove
         if( $panier_salle[$idSalle] && $panier_salle[$idSalle]['heureChoixDebut'] && $panier_salle[$idSalle]['heureChoixFin'] && $panier_salle[$idSalle]['date'] ) {
 
-            var_dump('OK');// todo:remove
             $heureChoixDebut = $panier_salle[$idSalle]['heureChoixDebut'];
             $heureChoixFin = $panier_salle[$idSalle]['heureChoixFin'];
             $dateReservation = $panier_salle[$idSalle]['date'];
 
             if (array_key_exists($idSalle, $panier_salle)) {
 
-                var_dump("La salle existe dans le panier idResa:".$panier_salle[$idSalle]['idReservation'].$heureChoixFin . $heureChoixFin . "zz");// todo:remove
                 $em = $this->getDoctrine()->getManager();
 
                 if (empty( $panier_salle[$idSalle]['idReservation'])) {
 
-                    var_dump('On saisit la new resa');// todo:remove
                     $reservation = new Reservation();
                     $reservation->setHeuredebut(new \DateTime($heureChoixDebut));
                     $reservation->setHeurefin(new \DateTime($heureChoixFin));
@@ -376,7 +373,6 @@ class PanierController extends Controller
 
                 } else {
 
-                    var_dump('On modifie la resa');// todo:remove
                     $reservation = $em->getRepository('AppBundle:Reservation')->find((int)$panier_salle[$idSalle]['idReservation']);
                     $reservation->setHeuredebut(new \DateTime($heureChoixDebut));
                     $reservation->setHeurefin(new \DateTime($heureChoixFin));
@@ -410,15 +406,15 @@ class PanierController extends Controller
         $panier_salle = $session->get('panier_salle');
         if (!$session->has('panier')) $session->set('panier',array());
         $panier = $session->get('panier');
-        var_dump('in');
+
         if( $panier_salle[$idProduit] && $panier_salle[$idProduit]['heureChoixDebut'] && $panier_salle[$idProduit]['heureChoixFin'] && $panier_salle[$idProduit]['date'] ) {
-            var_dump('OK');
+
             $heureChoixDebut = $panier_salle[$idProduit]['heureChoixDebut'];
             $heureChoixFin = $panier_salle[$idProduit]['heureChoixFin'];
             $dateReservation = $panier_salle[$idProduit]['date'];
 
             if (array_key_exists($idProduit, $panier_salle)) {
-                var_dump('On saisit la resa');
+
                 $em = $this->getDoctrine()->getManager();
 
                 if (!$panier_salle[$idProduit]['idReservation']) {
@@ -439,7 +435,7 @@ class PanierController extends Controller
                     $session->set('panier_salle', $panier_salle);
 
                 } else {
-                    var_dump('On modifie la resa');
+
                     $reservation = $em->getRepository('AppBundle:Reservation')->find((int)$panier_salle[$idProduit]['idReservation']);
                     $reservation->setHeuredebut($heureChoixDebut);
                     $reservation->setHeurefin($heureChoixFin);
@@ -469,9 +465,9 @@ class PanierController extends Controller
     public function adresseSuppressionAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $entity = $em->getRepository('AppBundle:Personne')->find($id);
+        $entity = $em->getRepository('AppBundle:UtilisateursAdresses')->find($id);
         
-        if ($this->container->get('security.token_storage')->getToken()->getUser() != $entity->getPersonne() || !$entity)
+        if ($this->container->get('security.token_storage')->getToken()->getUser() != $entity->getUtilisateur() || !$entity)
             return $this->redirect ($this->generateUrl ('livraison_panier'));
         
         $em->remove($entity);
@@ -488,24 +484,19 @@ class PanierController extends Controller
     public function livraisonAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $utilisateur = $this->getUser();
+        $utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
 
-        var_dump($utilisateur);
+        $entity = new UtilisateursAdresses();
+        $form = $this->createForm('AppBundle\Form\UtilisateursAdressesType', $entity);
 
-        if($utilisateur){
-
-        }
-        //var_dump($utilisateur);  die();
-        $personne = new Personne();
-        $form = $this->createForm('AppBundle\Form\PersonneType', $utilisateur);
         
         if ($request->getMethod() == 'POST')
         {
             $form->handleRequest($request);
             if ($form->isValid()) {
-                //$em = $this->getDoctrine()->getManager();
-                //$personne->setId($utilisateur);
-                $em->persist($utilisateur);
+                $em = $this->getDoctrine()->getManager();
+                $entity->setUtilisateur($utilisateur);
+                $em->persist($entity);
                 $em->flush();
                 
                 return $this->redirect($this->generateUrl('livraison_panier'));

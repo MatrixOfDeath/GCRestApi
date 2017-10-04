@@ -430,7 +430,7 @@ class SalleController extends FOSRestController
         else
             $panier_salle = false;
 
-        return $this->render('produit/presentation.html.twig', array(
+        return $this->render('salle/presentation.html.twig', array(
             'salle' => $salle,
             'panier_salle' => $panier_salle)
         );

@@ -1,0 +1,48 @@
+{% extends "::base.html.twig" %}
+
+{% block titre %}{{ salle.nom }}{% endblock %}
+{% block description %}{{ salle.description }}{% endblock %}
+
+{% block firstBlock %}
+<div class="container">
+    <div class="row">
+
+        <div class="span3">
+            {#<div class="well">#}
+                {#<ul class="nav nav-list">#}
+                    {#<li class="nav-header">Nos salles</li>#}
+                    {#{{  render(controller('AppBundle:TypeDeProduit:menu')) }}#}
+                {#</ul>#}
+            {#</div>#}
+            {{  render(controller('AppBundle:Panier:menu')) }}
+            </div>	
+
+            <div class="span9">
+                <div class="row">
+                    <div class="span5">
+                        <img src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="{{ salle.nomsalle }}" width="470" height="310">
+                    </div>
+
+                    <div class="span4">
+                        <h4>{{ salle.nomsalle }}</h4>
+                        <h5>{{ salle.capacitymax }} places</h5>
+                        {#<p>{{ salle.description }}</p>#}
+                        <h4>{{ salle.prixsalle|tva(salle.tva.multiplicate) }} € la première Heure</h4>
+                        {% if panier_salle[salle.idsalle] is not defined %}
+                        <form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">
+
+                            <div>
+                                <button class="btn btn-primary">Ajouter au panier</button>
+                            </div>
+                        </form>
+                        {% else %}
+                            <div>
+                                <a href="{{ path('panier') }}" class="btn btn-primary">La salle est déjà dans votre panier</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -27,7 +27,8 @@ Encore
         './web/assets/js/ajax/ajaxPanier.js',
         './web/assets/js/ajax/ajaxChangeTunnelAchat.js',
         './web/assets/js/places/jquery.seat-charts.js',
-        './web/assets/js/places/ajaxGestionPlaces.js'
+        './web/assets/js/places/ajaxGestionPlaces.js',
+        './web/assets/js/ajax/ajaxVilles.js'
 
     ])
 
