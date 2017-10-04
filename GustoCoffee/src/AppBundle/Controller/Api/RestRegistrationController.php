@@ -56,9 +56,10 @@ class RestRegistrationController extends BaseController
                 FOSUserEvents::REGISTRATION_SUCCESS, $event
             );
 
+            $user->setEnabled(true);
             $userManager->updateUser($user);
 
-            $response = new Response($this->serialize('Utilisateur créer, vous allez recevoir un mail de confirmation pour activer votre compte.'), Response::HTTP_CREATED);
+            $response = new Response($this->serialize('Utilisateur créer, votre compte est activé !'), Response::HTTP_CREATED);
         }else {
             throw new BadRequestHttpException();
         }
