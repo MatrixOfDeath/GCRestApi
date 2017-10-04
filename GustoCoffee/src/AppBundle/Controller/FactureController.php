@@ -157,14 +157,14 @@ class FactureController extends FOSRestController
     }
 
     /**
-     * @Route("/PDF", name="facturesPDF")
+     * @Route("/PDF/{id}", name="facturesPDF", requirements={"id": "\d+"})
      * @param $id
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function facturesPDFAction($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $facture = $em->getRepository('AppBundle:Commande')->findOneBy(array('utilisateur' => $this->getUser(),
+        $facture = $em->getRepository('AppBundle:Commande')->findOneBy(array('personnes' => $this->getUser(),
             'valider' => 1,
             'idcommande' => $id));
 

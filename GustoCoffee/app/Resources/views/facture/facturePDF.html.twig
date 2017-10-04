@@ -3,7 +3,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Facture</title>
-        <link href="{{ asset('css/facture.css')}}" rel="stylesheet" type="text/css" />
+        <link href="css/facture.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
         <h1>GustoCoffee</h1>
@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td class="color">[[page_nb]]</td>
-                <td class="color">{{ facture.date|date('d-m-Y') }}</td>
+                <td class="color">{{ facture.datecommande|date('d-m-Y') }}</td>
                 <td class="color">{{ facture.reference }}</td>
             </tr>
         </table>
@@ -64,9 +64,9 @@
             </tr>
         </table>
         <div id="footer">
-            <span class="color strong">{{ adresse }}</span>
+            <span class="color strong"> gare du nord</span>
             <br />
-            {{ telephone }}
+            01 34 34 34 34
         </div>
     </body>
 </html>
