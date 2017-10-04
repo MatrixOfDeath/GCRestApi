@@ -484,7 +484,6 @@ class PanierController extends Controller
      */
     public function livraisonAction(Request $request)
     {
-        //$em = $this->getDoctrine()->getManager();
         $utilisateur = $this->getUser();
 
         $entity = new UtilisateursAdresses();
@@ -517,9 +516,7 @@ class PanierController extends Controller
      */
     public function setLivraisonOnSession(Request $request, SessionInterface $session)
     {
-        //$session = $this->getRequest()->getSession();
-        
-        if (!$session->has('adresse')) $session->set('adresse',array());
+        if (!$session->has('adresse')) $session->set('adresse', array());
         $adresse = $session->get('adresse');
         
         if ($request->request->get('livraison') != null && $request->request->get('facturation') != null)
@@ -527,13 +524,12 @@ class PanierController extends Controller
             $adresse['livraison'] = $request->request->get('livraison');
             $adresse['facturation'] = $request->request->get('facturation');
 
-            var_dump('On reçoit bien livraison et facturation');
-
         } else {
             return $this->redirect($this->generateUrl('validation_panier'));
         }
         
         $session->set('adresse',$adresse);
+
         return $this->redirect($this->generateUrl('validation_panier'));
     }
 
@@ -554,7 +550,7 @@ class PanierController extends Controller
         $prepareCommande = $this->forward('AppBundle:Commande:prepareCommande');
 
         $commande = $em->getRepository('AppBundle:Commande')->find($prepareCommande->getContent());
-        
+
         return $this->render('panier/layout/validation.html.twig', array(
             'commande' => $commande
         ));

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Commande;
+use AppBundle\Entity\UtilisateursAdresses;
 use AppBundle\Entity\Produit;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -168,6 +169,7 @@ class CommandeController extends FOSRestController
     /**
      *
      * @Route("/facture", name="facture")
+     * @Method("GET")
      * @param SessionInterface $session
      * @return array
      */
@@ -187,7 +189,6 @@ class CommandeController extends FOSRestController
         $totalTVA = 0;
         $totalSalleHT = 0;
         $totalSalleTVA = 0;
-
 
         $facturation = $em->getRepository('AppBundle:UtilisateursAdresses')->find($adresse['facturation']);
         $livraison = $em->getRepository('AppBundle:UtilisateursAdresses')->find($adresse['livraison']);
@@ -231,7 +232,7 @@ class CommandeController extends FOSRestController
             else
                 $commande['tva']['%'.$salle->getTva()->getValeur()] += round($prixSalleTTC - $prixSalleHT,2);
 
-            $totalTVA += round($prixSalleTTC - $prixSalleTTC,2);
+            $totalSalleTVA += round($prixSalleTTC - $prixSalleHT,2);
 
             $commande['salle'][$salle->getIdsalle()] = array('reference' => $salle->getNomsalle(),
                 'quantite' => $panier_salle[$salle->getIdsalle()]['totalHeures'],
@@ -242,12 +243,23 @@ class CommandeController extends FOSRestController
         $commande['livraison'] = array('prenom' => $livraison->getPrenom(),
             'nom' => $livraison->getNom(),
             'telephone' => $livraison->getTelephone(),
-            'adresse' => $livraison->getAdresse());
+            'adresse' => $livraison->getAdresse(),
+            'cp'=> $livraison->getCp(),
+            'ville' => $livraison->getVille(),
+            'pays' => $livraison->getPays(),
+            'complement' => $livraison->getComplement()
+        );
+
 
         $commande['facturation'] = array('prenom' => $facturation->getPrenom(),
             'nom' => $facturation->getNom(),
             'telephone' => $facturation->getTelephone(),
-            'adresse' => $facturation->getAdresse());
+            'adresse' => $facturation->getAdresse(),
+            'cp' => $facturation->getCp(),
+            'ville' => $facturation->getVille(),
+            'pays' => $facturation->getPays(),
+            'complement' => $facturation->getComplement()
+        );
 
         $commande['prixHT'] = round($totalHT,2);
         $commande['prixTTC'] = round($totalHT + $totalTVA,2);
@@ -305,9 +317,7 @@ class CommandeController extends FOSRestController
             throw $this->createNotFoundException('La commande n\'existe pas');
 
         $commande->setValider(1);
-        /**
-         * @var GetReference
-         */
+
         $commande->setReference($this->get('set_new_reference')->reference()); //Service
         $em->flush();
 
@@ -329,6 +339,6 @@ class CommandeController extends FOSRestController
         $this->get('mailer')->send($message);
 
         $session->getFlashBag()->add('success','Votre commande est validé avec succès');
-        return $this->redirect($this->generateUrl('facture'));
+        return $this->redirect($this->generateUrl('factures'));
     }
 }
