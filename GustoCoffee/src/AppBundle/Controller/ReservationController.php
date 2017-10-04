@@ -63,7 +63,7 @@ class ReservationController extends FOSRestController
     /**
      * Finds and displays a reservation entity.
      *
-     * @Route("/{idreservation}", name="reservation_show")
+     * @Route("/{idreservation}", name="reservation_show", requirements={"idreservation": "\d+"})
      * @Method("GET")
      */
     public function showAction(Reservation $reservation)
@@ -79,7 +79,7 @@ class ReservationController extends FOSRestController
     /**
      * Displays a form to edit an existing reservation entity.
      *
-     * @Route("/{idreservation}/edit", name="reservation_edit")
+     * @Route("/{idreservation}/edit", name="reservation_edit", requirements={"idreservation": "\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Reservation $reservation)
@@ -104,7 +104,7 @@ class ReservationController extends FOSRestController
     /**
      * Deletes a reservation entity.
      *
-     * @Route("/{idreservation}", name="reservation_delete")
+     * @Route("/{idreservation}", name="reservation_delete", requirements={"idreservation": "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Reservation $reservation)

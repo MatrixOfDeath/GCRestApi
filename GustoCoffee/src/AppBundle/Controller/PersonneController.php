@@ -140,33 +140,4 @@ class PersonneController extends Controller
         ;
     }
 
-    /**
-     * @Route("/villes/{cp}", options={"expose"=true}, name="villes")
-     * @Method({"GET", "POST"})
-     * @param Request $request
-     * @param $cp
-     * @return mixed
-     * @throws \Exception
-     */
-    public function villesAction(Request $request,$cp)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $em = $this->getDoctrine()->getManager();
-            $villeCodePostal = $em->getRepository('AppBundle:Villes')->findBy(array('villeCodePostal' => $cp));
-
-            if ($villeCodePostal) {
-                $villes = array();
-                foreach($villeCodePostal as $ville) {
-                    $villes[] = $ville->getVilleNom();
-                }
-            } else {
-                $villes = null;
-            }
-
-            $response = new JsonResponse();
-            return $response->setData(array('ville' => $villes));
-        } else {
-            throw new \Exception('Erreur');
-        }
-    }
 }

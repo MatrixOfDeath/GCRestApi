@@ -1,12 +1,13 @@
 {
-  "build/ajax.js": "/build/ajax.b107dbcaaeab52dacc99.js",
+  "build/ajax.js": "/build/ajax.8deb25ad5625b1915f59.js",
   "build/app.js": "/build/app.814b8292598f5ac21217.js",
-  "build/global.css": "/build/global.c6a6656c63ce3394e2bf1ec9cba7f81d.css",
+  "build/global.css": "/build/global.1b95e7e07d1381d2e6fd46f028d24b9f.css",
   "build/images/backContact.jpeg": "/build/images/backContact.78de4675.jpeg",
   "build/images/background_annonce.jpeg": "/build/images/background_annonce.a192672d.jpeg",
   "build/images/background_events.jpeg": "/build/images/background_events.658bd1c2.jpeg",
   "build/images/background_homepage.jpeg": "/build/images/background_homepage.a5e660d6.jpeg",
   "build/images/background_resa.jpeg": "/build/images/background_resa.8f73584d.jpeg",
   "build/images/connexion.jpg": "/build/images/connexion.e51a7384.jpg",
-  "build/images/dashboard2.jpg": "/build/images/dashboard2.0151efe7.jpg"
+  "build/images/dashboard2.jpg": "/build/images/dashboard2.0151efe7.jpg",
+  "build/images/loading.gif": "/build/images/loading.140c09dc.gif"
 }

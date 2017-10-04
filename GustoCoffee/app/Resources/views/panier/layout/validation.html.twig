@@ -49,28 +49,28 @@
 
                 <dt>Total TTC :</dt><dd>{{ commande.commande.prixTTC }} €</dd>
             </dl>
-            
+            {{ dump(commande.commande.livraison) }}
             <div class="span3 pull-left">
                 <dl class="pull-left">
                     <dt><h4>Adresse de livraison</h4></dt>
                     <dt>{{ commande.commande.livraison.prenom }} {{ commande.commande.livraison.nom }}</dt>
                     <dt>{{ commande.commande.livraison.adresse }}</dt>
-                    <dt>{{ commande.commande.livraison.cp }} {{ commande.commande.livraison.ville }} - {{ commande.commande.livraison.pays }}</dt>
+                    {#<dt>{{ commande.commande.livraison.cp }} {{ commande.commande.livraison.ville }} - {{ commande.commande.livraison.pays }}</dt>#}
                 </dl>
             </div>
-            
+
             <div class="span3 pull-left">
                 <dl class="pull-left">
                     <dt><h4>Adresse de facturation</h4></dt>
                     <dt>{{ commande.commande.facturation.prenom }} {{ commande.commande.facturation.nom }}</dt>
                     <dt>{{ commande.commande.facturation.adresse }}</dt>
-                    <dt>{{ commande.commande.facturation.cp }} {{ commande.commande.facturation.ville }} - {{ commande.commande.facturation.pays }}</dt>
+                    {#<dt>{{ commande.commande.facturation.cp }} {{ commande.commande.facturation.ville }} - {{ commande.commande.facturation.pays }}</dt>#}
                 </dl>
             </div>
             
             <div class="clearfix"></div>
             
-            <form action="{{ path('validationCommande', { 'id' : commande.id }) }}" method="POST"/>
+            <form action="{{ path('validationCommande', { 'id' : commande.idcommande }) }}" method="POST"/>
                 <input name="token" type="hidden" value="{{ commande.commande.token }}" />
                 <input name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
                 <input name="date" type="hidden" value="{{ commande.datecommande|date('dmyhms') }}" />

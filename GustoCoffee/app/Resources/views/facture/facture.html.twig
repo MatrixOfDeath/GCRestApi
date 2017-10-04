@@ -39,10 +39,11 @@
                                     <td colspan="4"><center>Ancunne facture actuellement.</center></td>
                                 </tr>
                             {% endif %}
+
                             {% for facture in factures %}
                             <tr>
                                 <td>ref : {{ facture.reference }}</td>
-                                <td>{{ facture.date|date('d/m/Y') }}</td>
+                                <td>{{ facture.datecommande|date('d/m/Y') }}</td>
                                 <td>{{ facture.commande.prixTTC }} €</td>
                                 <td><a href="{{ path('facturesPDF', { 'id' : facture.id }) }}" target="_blank"><i class="icon-refresh"></i></a></td>
                             </tr>

@@ -70,7 +70,7 @@ class FactureController extends FOSRestController
     /**
      * Finds and displays a facture entity.
      *
-     * @Route("/{idfacture}", name="facture_show", requirements={"idsalle": "\d+"})
+     * @Route("/{idfacture}", name="facture_show", requirements={"idfacture": "\d+"})
      * @Method("GET")
      */
     public function showAction(Facture $facture)
@@ -86,7 +86,7 @@ class FactureController extends FOSRestController
     /**
      * Displays a form to edit an existing facture entity.
      *
-     * @Route("/{idfacture}/edit", name="facture_edit", requirements={"idsalle": "\d+"})
+     * @Route("/{idfacture}/edit", name="facture_edit", requirements={"idfacture": "\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Facture $facture)
@@ -111,7 +111,7 @@ class FactureController extends FOSRestController
     /**
      * Deletes a facture entity.
      *
-     * @Route("/{idfacture}", name="facture_delete", requirements={"idsalle": "\d+"})
+     * @Route("/{idfacture}", name="facture_delete", requirements={"idfacture": "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Facture $facture)
@@ -166,14 +166,14 @@ class FactureController extends FOSRestController
         $em = $this->getDoctrine()->getManager();
         $facture = $em->getRepository('AppBundle:Commande')->findOneBy(array('utilisateur' => $this->getUser(),
             'valider' => 1,
-            'id' => $id));
+            'idcommande' => $id));
 
         if (!$facture) {
             $this->get('session')->getFlashBag()->add('error', 'Une erreur est survenue');
             return $this->redirect($this->generateUrl('factures'));
         }
 
-        $this->container->get('setNewFacture')->facture($facture)->Output('Facture.pdf');
+        $this->container->get('set_new_facture')->facture($facture)->Output('Facture.pdf');
 
         $response = new Response();
         $response->headers->set('Content-type' , 'application/pdf');

@@ -16,7 +16,7 @@ use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication;
 use Symfony\Component\HttpFoundation\Response;
-
+use AppBundle\Services\GetReference;
 
 /**
  * Commande controller.
@@ -189,14 +189,14 @@ class CommandeController extends FOSRestController
         $totalSalleTVA = 0;
 
 
-        $facturation = $em->getRepository('AppBundle:Personne')->find($adresse['facturation']);
-        $livraison = $em->getRepository('AppBundle:Personne')->find($adresse['livraison']);
+        $facturation = $em->getRepository('AppBundle:UtilisateursAdresses')->find($adresse['facturation']);
+        $livraison = $em->getRepository('AppBundle:UtilisateursAdresses')->find($adresse['livraison']);
         $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($session->get('panier')));
         $salles =  $em->getRepository('AppBundle:Salle')->findArray(array_keys($session->get('panier_salle')));
 
         /**
-         * @var produit \AppBundle\Entity\Produit
-         *
+         * Afin de s'y retrouver IDE
+         * @var $produit \AppBundle\Entity\Produit
          */
         foreach($produits as $produit)
         {
@@ -217,13 +217,13 @@ class CommandeController extends FOSRestController
                 'prixTTC' => round($produit->getPrixproduit() / $produit->getTva()->getMultiplicate(),2));
         }
         /**
-         *
+         * fin de s'y retrouver IDE
          * @var $salle \AppBundle\Entity\Salle
          */
         foreach($salles as $salle)
         {
-            $prixSalleHT = ($salle->getPrixsalle() * $panier[$salle->getIdsalle()]);
-            $prixSalleTTC = ($salle->getPrixsalle() * $panier[$salle->getIdsalle()] / $salle->getTva()->getMultiplicate());
+            $prixSalleHT = ($salle->getPrixsalle() * $panier_salle[$salle->getIdsalle()]['totalHeures']);
+            $prixSalleTTC = ($salle->getPrixsalle() * $panier_salle[$salle->getIdsalle()]['totalHeures'] / $salle->getTva()->getMultiplicate());
             $totalSalleHT += $prixSalleHT;
 
             if (!isset($commande['tva']['%'.$salle->getTva()->getValeur()]))
@@ -234,7 +234,7 @@ class CommandeController extends FOSRestController
             $totalTVA += round($prixSalleTTC - $prixSalleTTC,2);
 
             $commande['salle'][$salle->getIdsalle()] = array('reference' => $salle->getNomsalle(),
-                'quantite' => $panier[$salle->getIdsalle()],
+                'quantite' => $panier_salle[$salle->getIdsalle()]['totalHeures'],
                 'prixHT' => round($salle->getPrixsalle(),2),
                 'prixTTC' => round($salle->getPrixsalle() / $salle->getTva()->getMultiplicate(),2));
         }
@@ -288,8 +288,13 @@ class CommandeController extends FOSRestController
         return new Response($commande->getIdcommande());
     }
 
-    /*
-     * Cette methode remplace l'api paypal.
+    /**
+     * @Route("/api/banque/{id}", options={"expose"=true}, name="validationCommande", requirements={"id": "\d+"})
+     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param SessionInterface $session
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function validationCommandeAction(Request $request, SessionInterface $session, $id)
     {
@@ -300,12 +305,16 @@ class CommandeController extends FOSRestController
             throw $this->createNotFoundException('La commande n\'existe pas');
 
         $commande->setValider(1);
-        $commande->setReference($this->container->get('setNewReference')->reference()); //Service
+        /**
+         * @var GetReference
+         */
+        $commande->setReference($this->get('set_new_reference')->reference()); //Service
         $em->flush();
 
         //$session = $this->getRequest()->getSession();
         $session->remove('adresse');
         $session->remove('panier');
+        $session->remove('panier_salle');
         $session->remove('commande');
 
         //Ici le mail de validation
@@ -315,7 +324,7 @@ class CommandeController extends FOSRestController
             ->setTo($commande->getPersonne()->getEmailCanonical())
             ->setCharset('utf-8')
             ->setContentType('text/html')
-            ->setBody($this->renderView(':SwiftLayout:validationCommande.html.twig',array('utilisateur' => $commande->getPersonne())));
+            ->setBody($this->renderView(':SwiftLayout:validationCommande.html.twig',array('personne' => $commande->getPersonne())));
 
         $this->get('mailer')->send($message);
 

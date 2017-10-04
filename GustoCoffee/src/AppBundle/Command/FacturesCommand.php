@@ -20,7 +20,7 @@ class FacturesCommand extends ContainerAwareCommand
     {
         $date = new \DateTime();
         $em = $this->getContainer()->get('doctrine')->getManager();
-        $factures = $em->getRepository('AppBundle:Commande')->byDateCommand($input->getArgument('date'));
+        $factures = $em->getRepository('AppBundle:Commande')->byDateCommand($input->getArgument('datecommande'));
         
         $output->writeln(count($factures).' facture(s).');
         
@@ -29,7 +29,7 @@ class FacturesCommand extends ContainerAwareCommand
             mkdir('Facturation/'.$dir);
             
             foreach($factures as $facture) {
-                $this->getContainer()->get('setNewFacture')->facture($facture)
+                $this->getContainer()->get('set_new_facture')->facture($facture)
                         ->Output('facturation/'.$dir.'/facture'.$facture->getReference().'.pdf','F');
             }
         }

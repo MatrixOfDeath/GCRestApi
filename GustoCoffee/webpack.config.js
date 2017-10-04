@@ -29,7 +29,6 @@ Encore
         './web/assets/js/places/jquery.seat-charts.js',
         './web/assets/js/places/ajaxGestionPlaces.js',
         './web/assets/js/ajax/ajaxVilles.js'
-
     ])
 
     // will output as web/build/global.css

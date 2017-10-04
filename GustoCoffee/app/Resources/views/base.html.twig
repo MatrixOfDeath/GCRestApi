@@ -151,22 +151,23 @@
    {% embed "footer.html.twig" %}
     {% endembed  %}
 
-    {% block script %}
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
-        {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
-        <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+
+{% endblock %}
+{% block script %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
 
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     {#<script>#}
-        {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
+    {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
     {#</script>#}
 
-        <script src="{{ asset('build/app.js') }}"></script>
+    <script src="{{ asset('build/app.js') }}"></script>
     {#  Adding ajax script TODO: add specific on each page #}
-        <script src="{{ asset('build/ajax.js') }}"></script>
+    <script src="{{ asset('build/ajax.js') }}"></script>
 
-{% endblock %}
 {% endblock %}
 </body>
 </html>

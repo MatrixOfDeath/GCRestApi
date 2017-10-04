@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Commande
  *
- * @ORM\Table(name="Commande", indexes={@ORM\Index(name="FK_Commande_idPersonne", columns={"idPersonne"}),
+ * @ORM\Table(name="Commande", indexes={
  * @ORM\Index(name="FK_Commande_idModePaiement", columns={"idModePaiement"}),
  * @ORM\Index(name="FK_Commande_idDemandeProduit", columns={"idDemandeProduit"}),
  * @ORM\Index(name="FK_Commande_idReservation", columns={"idReservation"})})
@@ -87,6 +87,12 @@ class Commande
      */
     private $idmodepaiement;
 
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="commande", type="array")
+     */
+    private $commande;
 
     /**
      * @var boolean
@@ -103,15 +109,15 @@ class Commande
     private $reference;
 
 
-    /**
-     * @var \AppBundle\Entity\Personne
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="id")
-     * })
-     */
-    private $idpersonne;
+//    /**
+//     * @var \AppBundle\Entity\Personne
+//     *
+//     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne")
+//     * @ORM\JoinColumns({
+//     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="id")
+//     * })
+//     */
+//    private $idpersonne;
 
 
     /**
@@ -265,29 +271,29 @@ class Commande
         return $this->idmodepaiement;
     }
 
-    /**
-     * Set idpersonne
-     *
-     * @param \AppBundle\Entity\Personne $idpersonne
-     *
-     * @return Commande
-     */
-    public function setIdpersonne(\AppBundle\Entity\Personne $idpersonne = null)
-    {
-        $this->idpersonne = $idpersonne;
-
-        return $this;
-    }
-
-    /**
-     * Get idpersonne
-     *
-     * @return \AppBundle\Entity\Personne
-     */
-    public function getIdpersonne()
-    {
-        return $this->idpersonne;
-    }
+//    /**
+//     * Set idpersonne
+//     *
+//     * @param \AppBundle\Entity\Personne $idpersonne
+//     *
+//     * @return Commande
+//     */
+//    public function setIdpersonne(\AppBundle\Entity\Personne $idpersonne = null)
+//    {
+//        $this->idpersonne = $idpersonne;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get idpersonne
+//     *
+//     * @return \AppBundle\Entity\Personne
+//     */
+//    public function getIdpersonne()
+//    {
+//        return $this->idpersonne;
+//    }
 
     /**
      * Set utilisateur

@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormEvent;
@@ -39,12 +40,12 @@ class UtilisateursAdressesType extends AbstractType
             ->add('adresse')
             ->add('cp',null, array('attr' => array('class' => 'cp',
                                                    'maxlength' => 5)))
-            ->add('ville','choice', array('attr' => array('class' => 'ville')))
+            ->add('ville',ChoiceType::class, array('attr' => array('class' => 'ville')))
             ->add('pays')
             ->add('complement',null,array('required' => false))
             //->add('utilisateur')
         ;
-        
+
         $city = function(FormInterface $form, $cp) {
             $villeCodePostal = $this->em->getRepository('AppBundle:Villes')->findBy(array('villeCodePostal' => $cp));
 
@@ -58,7 +59,7 @@ class UtilisateursAdressesType extends AbstractType
                 $villes = null;
             }
 
-            $form->add('ville','choice', array('attr' => array('class'   => 'ville'),
+            $form->add('ville',ChoiceType::class, array('attr' => array('class'  => 'ville'),
                                                'choices' => $villes));
         }; 
         

@@ -16,7 +16,7 @@ class CommandeRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('u')
                 ->select('u')
-                ->where('u.idpersonne = :personne')
+                ->where('u.personnes = :personne')
                 ->andWhere('u.valider = 1')
                 ->andWhere('u.reference != 0')
                 ->orderBy('u.idcommande')

@@ -63,6 +63,14 @@ html *
   text-decoration: underline;
 }
 
+.loading-ville {
+  float:right;
+  margin-right:115px;
+  width:30px;
+  height:30px;
+  display:block;
+  background:url('../img/loading.gif');
+}
 
 #mainNav {
   background: whitesmoke;

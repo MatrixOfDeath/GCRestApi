@@ -45,3 +45,7 @@ app_place:
 app_panier:
     resource: "@AppBundle/Controller/PanierController.php"
     type:     annotation
+
+app_personne:
+    resource: "@AppBundle/Controller/PersonneController.php"
+    type:     annotation

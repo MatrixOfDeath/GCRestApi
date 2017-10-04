@@ -136,7 +136,7 @@ class AnnonceController extends FOSRestController
     /**
      * Finds and displays a annonce entity.
      *
-     * @Route("/{idannonce}", name="annonce_show")
+     * @Route("/{idannonce}", name="annonce_show", requirements={"idannonce": "\d+"})
      * @Method("GET")
      */
     public function showAction(Annonce $annonce)
@@ -152,7 +152,7 @@ class AnnonceController extends FOSRestController
     /**
      * Displays a form to edit an existing annonce entity.
      *
-     * @Route("/{idannonce}/edit", name="annonce_edit")
+     * @Route("/{idannonce}/edit", name="annonce_edit", requirements={"idannonce": "\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Annonce $annonce)

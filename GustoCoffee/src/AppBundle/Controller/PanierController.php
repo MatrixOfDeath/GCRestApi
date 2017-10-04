@@ -13,6 +13,7 @@ use AppBundle\Form\UtilisateursAdressesType;
 use AppBundle\Entity\Personne;
 use AppBundle\Entity\Reservation;
 use AppBundle\Entity\UtilisateursAdresses;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Panier controller.
@@ -467,7 +468,7 @@ class PanierController extends Controller
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('AppBundle:UtilisateursAdresses')->find($id);
         
-        if ($this->container->get('security.token_storage')->getToken()->getUser() != $entity->getUtilisateur() || !$entity)
+        if ($this->getUser() != $entity->getUtilisateur() || !$entity)
             return $this->redirect ($this->generateUrl ('livraison_panier'));
         
         $em->remove($entity);
@@ -476,15 +477,15 @@ class PanierController extends Controller
         return $this->redirect ($this->generateUrl ('livraison_panier'));
     }
 
-    /** TODO: Appeler cela une facturation
+    /** TODO: Appeler cela une facturation ?
      *
      * @Route("/livraison", name="livraison_panier")
      * @Method({"GET", "POST"})
      */
     public function livraisonAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
-        $utilisateur = $this->container->get('security.token_storage')->getToken()->getUser();
+        //$em = $this->getDoctrine()->getManager();
+        $utilisateur = $this->getUser();
 
         $entity = new UtilisateursAdresses();
         $form = $this->createForm('AppBundle\Form\UtilisateursAdressesType', $entity);
@@ -510,6 +511,8 @@ class PanierController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param SessionInterface $session
      * @return RedirectResponse
      */
     public function setLivraisonOnSession(Request $request, SessionInterface $session)
@@ -523,6 +526,9 @@ class PanierController extends Controller
         {
             $adresse['livraison'] = $request->request->get('livraison');
             $adresse['facturation'] = $request->request->get('facturation');
+
+            var_dump('On reçoit bien livraison et facturation');
+
         } else {
             return $this->redirect($this->generateUrl('validation_panier'));
         }
@@ -533,6 +539,7 @@ class PanierController extends Controller
 
     /**
      * @param Request $request
+     * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/validation", name="validation_panier")
      * @Method({"GET", "POST"})
@@ -545,10 +552,39 @@ class PanierController extends Controller
         
         $em = $this->getDoctrine()->getManager();
         $prepareCommande = $this->forward('AppBundle:Commande:prepareCommande');
+
         $commande = $em->getRepository('AppBundle:Commande')->find($prepareCommande->getContent());
         
         return $this->render('panier/layout/validation.html.twig', array(
             'commande' => $commande
         ));
+    }
+
+    /**
+     * @Route("/villes/{cp}", options={"expose"=true}, name="villes", requirements={"cp": "\d+"})
+     * @Method({"POST", "GET"})
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
+    public function villesAction(Request $request, $cp)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $villeCodePostal = $em->getRepository('AppBundle:Villes')->findBy(array('villeCodePostal' => $cp));
+            if ($villeCodePostal) {
+                $villes = array();
+                foreach($villeCodePostal as $ville) {
+                    $villes[] = $ville->getVilleNom();
+                }
+            } else {
+                $villes = null;
+            }
+
+            $response = new JsonResponse();
+            return $response->setData(array('ville' => $villes));
+        } else {
+            throw new \Exception('Erreur');
+        }
     }
 }

@@ -43,13 +43,15 @@ services:
             - '@doctrine.orm.default_entity_manager'
             - '%fos_user.model.user.class%'
 
-    setNewFacture:
+    set_new_facture:
         class: AppBundle\Services\GetFacture
         arguments: ['@service_container']
+        public: true
 
-    setNewReference:
+    set_new_reference:
         class: AppBundle\Services\GetReference
         arguments: ['@security.authorization_checker', '@doctrine.orm.entity_manager']
+        public: true
 
 #    tva:
 #        class: AppBundle\Twig\Extension\TvaExtension

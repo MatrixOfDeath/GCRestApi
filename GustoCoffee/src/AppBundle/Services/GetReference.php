@@ -1,10 +1,16 @@
 <?php
 namespace AppBundle\Services;
 
-use Symfony\Component\Security\Core\SecurityContextInterface;
+use Doctrine\ORM\EntityManager;
+//use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class GetReference 
 {
+    /**
+     * @var EntityManager
+     */
+    private $em;
+
     public function __construct($securityContext, $entityManager)
     {
         $this->securityContext = $securityContext;
@@ -13,7 +19,7 @@ class GetReference
     
     public function reference()
     {
-        $reference = $this->em->getRepository('AppBundle:Commande')->findOneBy(array('valider' => 1), array('id' => 'DESC'),1,1);
+        $reference = $this->em->getRepository('AppBundle:Commande')->findOneBy(array('valider' => 1), array('idcommande' => 'DESC'));
         
         if (!$reference)
             return 1;
