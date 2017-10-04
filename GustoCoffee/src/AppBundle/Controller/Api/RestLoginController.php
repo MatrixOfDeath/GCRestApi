@@ -26,8 +26,11 @@ class RestLoginController extends Controller
      */
     public function loginAction(Request $request)
     {
-        $usernameOrEmail = $request->getUser();
-        $password = $request->getPassword();
+
+
+        //die(var_dump($request->request->all()));
+        $usernameOrEmail = $request->request->get("username");
+        $password = $request->request->get("password");
 
         /** @var MyUserManager
          *
