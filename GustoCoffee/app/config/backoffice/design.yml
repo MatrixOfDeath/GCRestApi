@@ -12,4 +12,4 @@ easy_admin:
         form_theme:   'vertical'
         color_scheme: 'dark'
         assets:
-            favicon: '/img/gc_logo.png'
+            favicon: '/img/gc_transparent_resize.png'
