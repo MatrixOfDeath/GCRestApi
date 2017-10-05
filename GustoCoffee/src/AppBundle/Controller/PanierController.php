@@ -43,10 +43,37 @@ class PanierController extends Controller
         else
             $totalTTC = $session->get('totalTTC');
 
-
         return $this->render('panier/panier.html.twig', array(
             'articles' => $articles,
             'salles' => $nbsalles,
+            'totalTTC' => $totalTTC
+        ));
+    }
+
+    /**
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function menuIconAction(SessionInterface $session)
+    {
+        if (!$session->has('panier'))
+            $articles = 0;
+        else
+            $articles = count($session->get('panier'));
+
+        if (!$session->has('panier_salle'))
+            $nbsalles = 0;
+        else
+            $nbsalles = count($session->get('panier_salle'));
+
+        if (!$session->has('totalTTC'))
+            $totalTTC = 0;
+        else
+            $totalTTC = $session->get('totalTTC');
+
+        $numberItems = $articles + $nbsalles;
+        return $this->render('panier/ajaxIconPanier.html.twig', array(
+            'numberItems' => $numberItems,
             'totalTTC' => $totalTTC
         ));
     }
@@ -63,7 +90,7 @@ class PanierController extends Controller
     public function panierAction(SessionInterface $session)
     {
         if (!$session->has('panier')) $session->set('panier', array());
-        if (!$session->has('panier_salle')) $session->set('panier_salle', array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
+        if (!$session->has('panier_salle')) $session->set('panier_salle', array());
         if (!$session->has('totalTTC')) $session->set('totalTTC', 0);
 
         $em = $this->getDoctrine()->getManager();
@@ -275,7 +302,7 @@ class PanierController extends Controller
      */
     public function ajaxAjouterSalleAction(SessionInterface $session, Request $request)
     {
-        if (!$session->has('panier_salle')) $session->set('panier_salle',array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
+        if (!$session->has('panier_salle')) $session->set('panier_salle',array());
         $panier_salle = $session->get('panier_salle');
         if (!$session->has('panier')) $session->set('panier',array());
         $panier = $session->get('panier');
@@ -339,7 +366,7 @@ class PanierController extends Controller
      */
     private function addReservationFromSession(Request $request, SessionInterface $session, $idSalle){
 
-        if (!$session->has('panier_salle')) $session->set('panier_salle',array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
+        if (!$session->has('panier_salle')) $session->set('panier_salle',array(array()));
         $panier_salle = $session->get('panier_salle');
 //        if (!$session->has('panier')) $session->set('panier',array());
 //        $panier = $session->get('panier');
@@ -403,7 +430,7 @@ class PanierController extends Controller
      */
     private function addCommandeFromSession(Request $request, SessionInterface $session, $idProduit){
 
-        if (!$session->has('panier_salle')) $session->set('panier_salle',array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
+        if (!$session->has('panier_salle')) $session->set('panier_salle',array());
         $panier_salle = $session->get('panier_salle');
         if (!$session->has('panier')) $session->set('panier',array());
         $panier = $session->get('panier');

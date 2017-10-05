@@ -1,3 +1,26 @@
+//Badge pour l'icone panier dans le menu
+
+i.gc-icon-cart  {
+  text-align:center;
+  vertical-align:middle;
+  position: relative;
+}
+
+.lupiotte:after{
+  content:attr(data-count);
+  position: absolute;
+  background: rgba(25, 85, 68, 0.78);
+  //top:1rem;
+  left:3rem;
+  width:1.7rem;
+  text-align: center;
+  line-height: 1.7rem;;
+  font-size: 1.3rem;
+  border-radius: 50%;
+  color:white;
+  border:1px solid rgb(25, 85, 68);
+}
+
 .full {
   width: 100%;
 }

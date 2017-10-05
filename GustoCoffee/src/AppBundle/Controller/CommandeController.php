@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication;
 use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Services\GetReference;
-
+use Payplug\Payplug;
 /**
  * Commande controller.
  * @Rest\RouteResource("Commande")
@@ -26,6 +26,7 @@ use AppBundle\Services\GetReference;
  */
 class CommandeController extends FOSRestController
 {
+
     /**
      *   @Operation(
      *     tags={""},
@@ -340,5 +341,49 @@ class CommandeController extends FOSRestController
 
         $session->getFlashBag()->add('success','Votre commande est validé avec succès');
         return $this->redirect($this->generateUrl('factures'));
+    }
+
+    /**
+     * @Route("/paiement/{id}", options={"expose"=true}, name="paiement_commande", requirements={"id": "\d+"})
+     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param SessionInterface $session
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function validationPaymentAction(Request $request, SessionInterface $session, $id){
+
+        \Payplug\Payplug::setSecretKey('sk_test_44dfjjzLQ6f0S4xqYxGlQR');
+
+        $amount = 200;
+        $email = "gustocoffee+official@gmail.com";
+        $commande_id = $id;
+        /**
+         * Vérifier si on est connecté !!
+         * @var $customer_id \AppBundle\Entity\Personne
+         */
+        $customer_id = $this->getUser();
+        $payment = \Payplug\Payment::create(array(
+            'amount'           => $amount * 100,
+            'currency'         => 'EUR',
+            'customer'         => array(
+                'email'          => $email
+            ),
+            'hosted_payment'   => array(
+                'return_url'     => 'http://dev.gc.fr/app_dev.php/fr/commande/api/banque/'.$commande_id,
+                'cancel_url'     => 'http://dev.gc.fr/app_dev.php/fr/commande/paiement_commande/'.$commande_id
+            ),
+            'notification_url' => 'http://dev.gc.fr/app_dev.php/fr/commande/notifications?id='.$commande_id,
+            'metadata'         => array(
+                'customer_id'    => $this->getUser()->getId(),
+
+            )
+        ));
+
+        $payment_url = $payment->hosted_payment->payment_url;
+        $payment_id = $payment->id;
+
+        return $this->redirect($payment_url);
+
     }
 }

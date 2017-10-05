@@ -95,7 +95,7 @@
             
             <div class="clearfix"></div>
             
-            <form action="{{ path('validationCommande', { 'id' : commande.idcommande }) }}" method="POST"/>
+            <form action="{{ path('paiement_commande', { 'id' : commande.idcommande }) }}" method="POST"/>
                 <input name="token" type="hidden" value="{{ commande.commande.token }}" />
                 <input name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
                 <input name="date" type="hidden" value="{{ commande.datecommande|date('dmyhms') }}" />

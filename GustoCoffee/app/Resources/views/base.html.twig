@@ -79,7 +79,7 @@
                                             {{ 'Déconnexion'|trans({}, 'FOSUserBundle') }}
                                         </a>
                                     {% else %}
-                                        <a  class="fa fa-user-circle fa-3x" aria-hidden="true" alt="{{  'Connexion'|trans }}" href="{{ path('fos_user_security_login') }}">
+                                        <a class="fa fa-user-circle fa-3x" aria-hidden="true" alt="{{  'Connexion'|trans }}" href="{{ path('fos_user_security_login') }}">
                                             {#<img src="{{ asset('img/user.png') }}" alt="{{  'Connexion'|trans }}">#}
                                         </a>
                                     {% endif %}
@@ -94,14 +94,15 @@
                                     </li>
                                 {% endfor %}
                                 {% endif %}
-                                <li>
-                                    <a class="fa fa-shopping-cart fa-3x" aria-hidden="true" href="{{ path('panier') }}"></a>
+                                {{ render(controller('AppBundle:Panier:menuIcon')) }}
+                                {#<li>#}
+                                    {#<a class="fa fa-shopping-cart fa-3x badge" data-count="0" aria-hidden="true" href="{{ path('panier') }}"></a>#}
                                     {#<a class="page-scroll" href="{{ path('panier') }}">{{ 'Panier'|trans }}</a>#}
-                                </li>
+                                {#</li>#}
                                 <li>
                                 {% if is_granted("ROLE_ADMIN") %}
-                                    <a href="{{ path('easyadmin') }}">
-                                        {{ 'Backoffice'|trans }}
+                                    <a class="fa fa-gears fa-2x" href="{{ path('easyadmin') }}">
+                                        {{ 'BO'|trans }}
                                     </a>
                                 {% endif %}
                                 </li>
