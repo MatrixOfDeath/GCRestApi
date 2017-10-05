@@ -21,8 +21,7 @@ html *
 }
 
 .banniere {
-  background-color: dimgrey;
-  opacity: 0.65;
+  background-color: rgba(105,105,105,0.65);
   width: fit-content;
   padding: 1%;
   margin: auto;
@@ -73,9 +72,8 @@ html *
 }
 
 #mainNav {
-  background: whitesmoke;
+  background: rgba(255, 255, 255, 0.7);
   border-color: transparent;
-  opacity: 0.75;
 }
 
 #mainNav.menu-blanc{
