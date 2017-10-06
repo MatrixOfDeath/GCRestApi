@@ -178,9 +178,6 @@ class CommandeController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
 
-        //$generator = $this->container->get('security.secure_random');
-        //$session = $this->getRequest()->getSession();
-
         $adresse = $session->get('adresse');
         $panier = $session->get('panier');
         $panier_salle = $session->get('panier_salle');
@@ -220,8 +217,6 @@ class CommandeController extends FOSRestController
                 'prixHT' => round($produit->getPrixproduit(),2),
                 'prixTTC' => round($produit->getPrixproduit() / $produit->getTva()->getMultiplicate(),2));
         }
-
-
 
 
         /**
@@ -327,12 +322,13 @@ class CommandeController extends FOSRestController
         $commande->setPersonne($this->container->get('security.token_storage')->getToken()->getUser());
         $commande->setValider(0);
         $commande->setReference(0);
+        //var_dump('test...'.$commande->getCommande()['token']);
         $commande->setCommande($this->facture($session));
        //todo récupéré l'id reservation ! $commande->setReservation();
 
         if (!$session->has('commande')) {
             $em->persist($commande);
-            $session->set('commande', $commande);
+            $session->set('commande',  $commande);
         }
 
         $em->flush();
@@ -394,7 +390,8 @@ class CommandeController extends FOSRestController
 
         if ($request->getMethod() == 'POST' && $session->has('commande'))
         {
-            $commande = $session->get('commande');
+            $commande = $session->get('commande')->getCommande();
+
            if ($request->get('token') == $commande['token']){
                $totalPrix = $request->request->get('totalTTC');
 
@@ -409,7 +406,7 @@ class CommandeController extends FOSRestController
                 */
                $customer_id = $this->getUser();
                $payment = \Payplug\Payment::create(array(
-                   'amount'           => $amount * 100,
+                   'amount'           => $amount,
                    'currency'         => 'EUR',
                    'customer'         => array(
                        'email'          => $email
