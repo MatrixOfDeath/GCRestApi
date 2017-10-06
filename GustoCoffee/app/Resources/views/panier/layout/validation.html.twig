@@ -23,7 +23,8 @@
                 <tr>
                     <th>Salle choisi</th>
                     <th>Nombre d'heures</th>
-                    <th>Prix à l'heure</th>
+                    <th>Prix à l'heure TTC</th>
+                    <th>Prix salle HT</th>
                     <th>Total TTC</th>
                 </tr>
                 </thead>
@@ -36,6 +37,7 @@
                                 {{ salle.heures ~'et'~ salle.minutes }}
                             </td>
                             <td>{{ salle.prixHT }} €</td>
+                            <td>{{ salle.prixSalleHT }} €</td>
                             <td>{{ salle.prixTTC }} €</td>
                         </tr>
                     {% endfor %}
@@ -49,6 +51,7 @@
                         <th>Quantité</th>
                         <th>Prix unitaire</th>
                         <th>Total HT</th>
+                        <th>Total TTC</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -6,7 +6,7 @@
         <link href="css/facture.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
-        <h1>GustoCoffee</h1>
+        <h1><img src="img/gc_transparent_resize.png" alt="logo_gustocoffee" title="Logo de Gustocoffee"></h1>
         <table id="enTete">
             <tr>
                 <td colspan="1"></td>
@@ -47,21 +47,100 @@
                 </tr>
                 {% endfor %}
         </table>
-        <table id="total">
+        <table id="salle">
+            <thead>
             <tr>
-                <td width="110">TOTAL HT :</td>
-                <td width="100" class="color">{{ facture.commande.prixHT }} €</td>
+                <th width="280">Salle choisi</th>
+                <th width="105">Nombre d'heures</th>
+                <th width="105">Prix 1ère heure TTC</th>
+                <th width="105">Total HT</th>
+                <th width="105">Total TTC</th>
             </tr>
+            </thead>
+            <tbody>
+
+            {%  for salle in facture.commande.salle %}
+                <tr>
+                    <td class="color">{{ salle.reference }}</td>
+                    <td class="color">
+                        {{ salle.heures ~'et'~ salle.minutes }}
+                    </td>
+                    <td class="color">{{ salle.prixHT }} €</td>
+                    <td class="color">{{ salle.prixSalleHT }} €</td>
+                    <td class="color">{{ salle.prixTTC }} €</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {#<table id="total">#}
+            {#<tr>#}
+                {#<td width="110">TOTAL HT :</td>#}
+                {#<td width="100" class="color">{{ facture.commande.prixHT }} €</td>#}
+            {#</tr>#}
+            {#{% for key, tva in facture.commande.tva %}#}
+            {#<tr>#}
+                {#<td width="110">TVA <span class="color min">{{ key }}</span> :</td>#}
+                {#<td width="100" class="color">{{ tva }} €</td>#}
+            {#</tr>#}
+            {#{% endfor %}#}
+            {#<tr>#}
+                {#<td width="110">TOTAL TTC :</td>#}
+                {#<td width="100" class="color">{{ facture.commande.prixTTC }} €</td>#}
+            {#</tr>#}
+        {#</table>#}
+
+        <table id="total">
+            {% if facture.commande.produit|length != 0 %}
+            <tr>
+                <td width="210" >Total Produits HT :</td>
+                <td width="110" >{{ facture.commande.prixHT  }}€</td>
+            </tr>
+            {% endif %}
             {% for key, tva in facture.commande.tva %}
             <tr>
-                <td width="110">TVA <span class="color min">{{ key }}</span> :</td>
-                <td width="100" class="color">{{ tva }} €</td>
+                <td width="210" >TVA {{ key }} :</td>
+                <td width="110" >{{ tva }} €</td>
             </tr>
             {% endfor %}
             <tr>
-                <td width="110">TOTAL TTC :</td>
-                <td width="100" class="color">{{ facture.commande.prixTTC }} €</td>
+                <td width="210" >Total Salle TTC :</td>
+                <td width="110" >{{ facture.commande.prixSalleTTC  }}€</td>
             </tr>
+
+            {% for key, tva in facture.commande.tvaSalle %}
+            <tr>
+                <td width="210" >dont {{ key }} TVA Salle:</td>
+                <td width="110" >{{ tva }} €</td>
+            </tr>
+
+            {% endfor %}
+            <tr>
+            {% if facture.commande.thirdHourFree is defined and facture.commande.thirdHourFree > 0 %}
+                <td width="210" class="reduction-3h">Réduction 3ème heure:</td>
+                <td width="110"> class="reduction-10">{{ facture.commande.thirdHourFree }} €</td>
+            {% endif %}
+            </tr>
+
+            {% if facture.commande.produit|length != 0 and facture.commande.salle|length != 0 %}
+                <tr>
+                    <td width="210" >Sous-Total TTC :</td>
+                    <td width="110" >{{ facture.commande.prixTTC + facture.commande.prixSalleTTC }} €</td>
+                </tr>
+                <tr>
+                    <td width="210" class="reduction-10">Réduction -10% :</td>
+                    <td width="110" class="reduction-10">- {{ ((facture.commande.prixTTC + facture.commande.prixSalleTTC) * 0.1)|number_format(2, '.', ',') }} €</td>
+                </tr>
+                <tr>
+                    <td width="210" >Montant Total TTC :</td>
+                    <td width="110" >{{ ((facture.commande.prixTTC + facture.commande.prixSalleTTC)  - ((facture.commande.prixTTC + facture.commande.prixSalleTTC) * 0.1))|number_format(2, '.', ',') }} €</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td width="210" class="montant-total">Montant Total TTC :</td>
+                    <td width="110" class="montant-total">{{ (facture.commande.prixTTC + facture.commande.prixSalleTTC) }} €</td>
+                </tr>  
+            {% endif %}
         </table>
         <div id="footer">
             <span class="color strong"> gare du nord</span>

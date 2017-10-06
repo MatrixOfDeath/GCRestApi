@@ -266,6 +266,7 @@ class CommandeController extends FOSRestController
                 'heures' => $totaleHeuresR,
                 'minutes' => $totaleMinutesR,
                 'idReservation' => $panier_salle[$salle->getIdsalle()]['idReservation'],
+                'prixSalleHT' => round($prixSalleHT, 2),
                 'prixHT' => round($salle->getPrixsalle(),2),
                 'prixTTC' => round($prixSalleTTC,2),
 
