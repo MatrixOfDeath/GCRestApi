@@ -42,6 +42,7 @@ class UtilisateursAdressesType extends AbstractType
                                                    'maxlength' => 5)))
             ->add('ville',ChoiceType::class, array('attr' => array('class' => 'ville')))
             ->add('pays')
+            ->add('vatNumber')
             ->add('complement',null,array('required' => false))
             //->add('utilisateur')
         ;

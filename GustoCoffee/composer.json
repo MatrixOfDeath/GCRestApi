@@ -26,6 +26,7 @@
     "require": {
         "php": ">=5.5.9",
         "bmatzner/fontawesome-bundle": "~4.7",
+        "ddeboer/vatin-bundle": "^2.0",
         "deployer/deployer": "^6.0",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-migrations-bundle": "^1.2",

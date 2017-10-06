@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Ddeboer\VatinBundle\Validator\Constraints\Vatin;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -77,6 +78,28 @@ class UtilisateursAdresses
      * @ORM\Column(name="ville", type="string", length=125)
      */
     private $ville;
+
+    /**
+     * @Vatin(checkExistence=true)
+     * @ORM\Column(name="vat_number", type="string", length=50)
+     */
+    protected $vatNumber;
+
+    /**
+     * @return mixed
+     */
+    public function getVatNumber()
+    {
+        return $this->vatNumber;
+    }
+
+    /**
+     * @param mixed $vatNumber
+     */
+    public function setVatNumber($vatNumber)
+    {
+        $this->vatNumber = $vatNumber;
+    }
 
     /**
      * @var string

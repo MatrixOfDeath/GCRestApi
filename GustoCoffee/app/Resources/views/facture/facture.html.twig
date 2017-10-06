@@ -55,7 +55,7 @@
 
                             {% for facture in factures %}
                             <tr>
-                                <td>ref : {{ facture.reference }}</td>
+                                <td>n° ref : {{ facture.reference }}</td>
                                 <td>{{ facture.datecommande|date('d/m/Y') }}</td>
                                 <td>{{ facture.commande.prixTTC + facture.commande.prixSalleTTC }} €</td>
                                 <td><a href="{{ path('facturesPDF', { 'id' : facture.idcommande }) }}" target="_blank"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>

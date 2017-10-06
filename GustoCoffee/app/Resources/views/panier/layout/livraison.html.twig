@@ -29,6 +29,7 @@
                                     <input type="radio" name="facturation" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
                                     {{ adresse.adresse }}, {{ adresse.cp }} {{ adresse.ville }} - {{ adresse.pays }} <a href="{{ path('delete_adresse_panier', { 'id' : adresse.id }) }}"><i class="icon-trash"></i></a>
                                     <br />{{ adresse.prenom }} {{ adresse.nom }}
+                                    {{ adresse.vatnumber }}
                                 </label>
                             {% endfor %}
 
