@@ -84,17 +84,17 @@
                                         </a>
                                     {% endif %}
                                 </li>
+                                {{ render(controller('AppBundle:Panier:menuIcon')) }}
 
                                 {% if app.request.get('_route_params') is not null %}
-                                {% for locale in locales %}
-                                    <li>
-                                        <button type="button" class="btn btn-default btn-locale-flag {{ locale == app.request.getLocale() ? 'active' : '' }}" onclick="location.href='{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}'">
-                                            <img src="{{ asset('img/'~ locale ~'.png') }}" alt="{{ locale }}"/>
-                                        </button>
-                                    </li>
-                                {% endfor %}
+                                    {% for locale in locales %}
+                                        <li>
+                                            <button type="button" class="btn btn-default btn-locale-flag {{ locale == app.request.getLocale() ? 'active' : '' }}" onclick="location.href='{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}'">
+                                                <img src="{{ asset('img/'~ locale ~'.png') }}" alt="{{ locale }}"/>
+                                            </button>
+                                        </li>
+                                    {% endfor %}
                                 {% endif %}
-                                {{ render(controller('AppBundle:Panier:menuIcon')) }}
                                 {#<li>#}
                                     {#<a class="fa fa-shopping-cart fa-3x badge" data-count="0" aria-hidden="true" href="{{ path('panier') }}"></a>#}
                                     {#<a class="page-scroll" href="{{ path('panier') }}">{{ 'Panier'|trans }}</a>#}
@@ -129,9 +129,9 @@
             </div>
             <div>
 
-                <h1 class="titleHome {% block paddingTitle %}{% endblock %}">
+                <div class="titleHome {% block paddingTitle %}{% endblock %}">
                     {% block titleHome %}{% endblock %}
-                </h1>
+                </div>
             </div>
         </div>
     {% endblock %}

@@ -97,7 +97,7 @@ easy_admin:
                     - { property: 'idtva', type: 'text'}
                     - { property: 'nom', type: 'text'}
                     - { property: 'valeur'}
-                    - { property: 'multiplicate', type: 'number' }
+                    - { property: 'multiplicate' }
                 sort: 'valeur'
 
         GrilleTarifaire:
