@@ -111,3 +111,24 @@ Pour calculer le prixTTC, il faut multiplier le prix HT par 1,.10
 Exemple : 100 euros TTCx1.10 = 110Euros 
 TVA = 110 - 100 soit 10 euros. 
 
+
+#Card numbers available for testing Payment API
+Using TEST mode, the following test cards are available for testing your integration:
+
+Test cards numbers	Expected
+
+`4242 4242 4242 4242` Visa  Success 
+
+`5500 0055 5555 5559` MasterCard Success
+
+`4000 0000 0000 0051` Visa	Failure code: card_declined
+
+`4000 0000 0000 0085` Visa	Failure code: processing_error
+
+`4000 0000 0000 0077` Visa	Failure code: insufficient_funds
+
+`5184 6800 0000 0170` MasterCard	Failure code: ds_declined
+
+`5184 6800 0000 0097` MasterCard	Failure code: incorrect_number
+
+`5184 6800 0000 0121` MasterCard	Failure code: fraud_suspected

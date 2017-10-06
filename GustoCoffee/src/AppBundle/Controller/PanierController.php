@@ -594,7 +594,8 @@ class PanierController extends Controller
     {
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
-            $villeCodePostal = $em->getRepository('AppBundle:Villes')->findBy(array('villeCodePostal' => $cp));
+            $villeCodePostal =$em->getRepository('AppBundle:Villes')->findCp($cp);
+            //$villeCodePostal = $em->getRepository('AppBundle:Villes')->findBy(array('villeCodePostal' => $cp));
             if ($villeCodePostal) {
                 $villes = array();
                 foreach($villeCodePostal as $ville) {
