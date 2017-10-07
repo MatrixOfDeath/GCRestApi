@@ -81,7 +81,7 @@ class UtilisateursAdresses
 
     /**
      * @Vatin(checkExistence=true)
-     * @ORM\Column(name="vat_number", type="string", length=50)
+     * @ORM\Column(name="vat_number", type="string", length=50, nullable=true)
      */
     protected $vatNumber;
 

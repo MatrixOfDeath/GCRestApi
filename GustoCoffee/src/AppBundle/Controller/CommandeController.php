@@ -268,7 +268,6 @@ class CommandeController extends FOSRestController
                 'prixSalleHT' => round($prixSalleHT, 2),
                 'prixHT' => round($salle->getPrixsalle(),2),
                 'prixTTC' => round($prixSalleTTC,2),
-
             );
         }
 
@@ -328,8 +327,11 @@ class CommandeController extends FOSRestController
         else
             $commande = $em->getRepository('AppBundle:Commande')->find($session->get('commande'));
 
+        $salle = $session->get('panier_salle');
+
         $commande->setDatecommande(new \DateTime());
         $commande->setPersonne($this->container->get('security.token_storage')->getToken()->getUser());
+        $commande->setReservation();
         $commande->setValider(0);
         $commande->setReference(0);
         //var_dump('test...'.$commande->getCommande()['token']);

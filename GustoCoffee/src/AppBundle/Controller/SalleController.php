@@ -179,7 +179,6 @@ class SalleController extends FOSRestController
      */
     public function ajaxCheckDispoSalle(Request $request)
     {
-
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('idSalle') ) {
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
