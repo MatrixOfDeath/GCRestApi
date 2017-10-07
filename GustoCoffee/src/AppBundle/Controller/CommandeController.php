@@ -260,7 +260,6 @@ class CommandeController extends FOSRestController
                 $commande['tvaSalle']['%'.$salle->getTva()->getValeur()] += round($tvaSalle,2);
 
             $totalSalleTVA += round($prixSalleTTC - $prixSalleHT,2);
-
             $commande['salle'][$salle->getIdsalle()] = array(
                 'reference' => $salle->getNomsalle(),
                 'heures' => $totaleHeuresR,
@@ -284,21 +283,31 @@ class CommandeController extends FOSRestController
             'complement' => $livraison->getComplement()
         );
 
-        $commande['facturation'] = array('prenom' => $facturation->getPrenom(),
+        $commande['facturation'] = array(
+            'prenom' => $facturation->getPrenom(),
             'nom' => $facturation->getNom(),
             'telephone' => $facturation->getTelephone(),
             'adresse' => $facturation->getAdresse(),
             'cp' => $facturation->getCp(),
             'ville' => $facturation->getVille(),
             'pays' => $facturation->getPays(),
-            'complement' => $facturation->getComplement()
+            'complement' => $facturation->getComplement(),
+            'vatnumber' => $facturation->getVatNumber()
         );
 
         $commande['prixHT'] = round($totalHT,2);
         $commande['prixTTC'] = round($totalHT + $totalTVA,2);
         $commande['prixSalleHT'] = round($totalSalleHT,2);
         $commande['prixSalleTTC'] = round($totalSalleTTC,2);
-        $commande['totalTTC'] =  $commande['prixTTC'] + $commande['prixSalleTTC'];
+
+        // On vérifie encore si le VAT est valide et en cours de validité
+        $validator = $this->get('ddeboer_vatin.vatin_validator');
+        if($validator->isValid($facturation->getVatNumber(), true) ){
+            $commande['VATtotalTVA'] = $totalTVA + $totalSalleTVA;
+            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'] - $totalTVA - $totalSalleTVA;
+        }else {
+            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'];
+        }
         $commande['token'] = bin2hex(random_bytes(20));
         $commande['thirdHourFree'] = round($thirdHourFree, 2);
 

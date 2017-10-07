@@ -67,7 +67,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-
+            {% set totalReduc = 0 %}
             <dl class="dl-horizontal pull-right">
                 {% if commande.commande.produit|length != 0 %}
                     <dt>Total Produits HT :</dt><dd>{{ commande.commande.prixHT  }}€</dd>
@@ -83,12 +83,17 @@
                     <dt class="reduction-3h">Réduction 3ème heure:</dt><dd class="reduction-10">{{ commande.commande.thirdHourFree }} €</dd>
                 {% endif %}
                 {% if commande.commande.produit|length != 0 and commande.commande.salle|length != 0 %}
+                    {% set totalReduc =  ((commande.commande.totalTTC) * 0.1)|number_format(2, '.', ',') %}
                     <dt>Sous-Total TTC :</dt><dd>{{ commande.commande.prixTTC + commande.commande.prixSalleTTC }} €</dd>
-                    <dt class="reduction-10">Réduction -10% :</dt><dd class="reduction-10">-{{ ((commande.commande.prixTTC + commande.commande.prixSalleTTC) * 0.1)|number_format(2, '.', ',') }} €</dd>
-                    <dt>Montant Total TTC :</dt><dd>{{ ((commande.commande.prixTTC + commande.commande.prixSalleTTC)  - ((commande.commande.prixTTC + commande.commande.prixSalleTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>
-                {% else %}
-                    <dt class="montant-total">Montant Total TTC :</dt><dd class="montant-total">{{ (commande.commande.prixTTC + commande.commande.prixSalleTTC) }} €</dd>
+                    <dt class="reduction-10">Réduction -10% :</dt><dd class="reduction-10">-{{ ((commande.commande.totalTTC) * 0.1)|number_format(2, '.', ',') }} €</dd>
+                    {#<dt>Montant Total TTC :</dt><dd>{{ ((commande.commande.totalTTC)  - ((commande.commande.totalTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>#}
                 {% endif %}
+                {% if commande.commande.VATtotalTVA is defined %}
+                    <dt class="reduction-TVA">Suppression TVA:</dt><dd class="reduction-10">-{{ commande.commande.VATtotalTVA }} €</dd>
+                {% endif %}
+                <dt class="montant-total">Montant Total TTC :</dt><dd class="montant-total">{{ commande.commande.totalTTC - totalReduc }} €</dd>
+
+
             </dl>
 
             <div class="span3 pull-left">
@@ -96,7 +101,8 @@
                     <dt><h4>Adresse de livraison</h4></dt>
                     <dt>{{ commande.commande.livraison.prenom }} {{ commande.commande.livraison.nom }}</dt>
                     <dt>{{ commande.commande.livraison.adresse }}</dt>
-                    <dt>{{ commande.commande.livraison.cp }} {{ commande.commande.livraison.ville }} - {{ commande.commande.livraison.pays }}</dt>
+                    <dt>{{ commande.commande.livraison.cp }} {{ commande.commande.livraison.ville }}
+                        - {{ commande.commande.livraison.pays }}</dt>
                 </dl>
             </div>
 
@@ -105,8 +111,9 @@
                     <dt><h4>Adresse de facturation</h4></dt>
                     <dt>{{ commande.commande.facturation.prenom }} {{ commande.commande.facturation.nom }}</dt>
                     <dt>{{ commande.commande.facturation.adresse }}</dt>
-                    <dt>{{ commande.commande.facturation.cp }} {{ commande.commande.facturation.ville }} - {{ commande.commande.facturation.pays }}</dt>
-                    <dt>{{ commande.commande.facturation.vatnumber }}</dt>
+                    <dt>{{ commande.commande.facturation.cp }} {{ commande.commande.facturation.ville }} </dt>
+                    <dt>{{ commande.commande.facturation.pays }}</dt>
+                    {% if commande.commande.facturation.vatnumber is defined  %}<dt>N° TVA Intra-C: {{ commande.commande.facturation.vatnumber }}</dt>{% endif %}
                 </dl>
             </div>
             
@@ -115,7 +122,7 @@
             <form action="{{ path('paiement_commande', { 'id' : commande.idcommande }) }}" method="POST"/>
                 <input name="token" type="hidden" value="{{ commande.commande.token }}" />
                 <input name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
-                <input name="totalTTC" type="hidden" value="{{ commande.commande.totalTTC  }}" />
+                <input name="totalTTC" type="hidden" value="{{ commande.commande.totalTTC - totalReduc }}" />
                 <input name="date" type="hidden" value="{{ commande.datecommande|date('dmyhms') }}" />
                 <button type="submit" class="btn btn-success pull-right">Payer</button>
             </form>

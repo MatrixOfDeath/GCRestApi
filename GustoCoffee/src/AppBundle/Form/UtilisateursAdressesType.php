@@ -48,7 +48,7 @@ class UtilisateursAdressesType extends AbstractType
         ;
 
         $city = function(FormInterface $form, $cp) {
-            $villeCodePostal = $this->em->getRepository('AppBundle:Villes')->findBy(array('villeCodePostal' => $cp));
+            $villeCodePostal = $this->em->getRepository('AppBundle:Villes')->findCp($cp);
 
             if ($villeCodePostal) {
                 $villes = array();
