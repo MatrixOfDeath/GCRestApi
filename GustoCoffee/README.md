@@ -3,6 +3,14 @@ GustoCoffee Infos by KB
 
 Projet GustoCoffee  Symfony **3.3.9** -> to be migrated to  3.4LTS 
 
+#Pre-requirements
+Install composer and launch composer install after git clone of this project
+Install Yarn for MacOSX, or Node npm
+Install JWT with the scripts
+
+Create database with command in the documentation below
+Launch script
+
 #Basic config 
 php bin/console server:run
 php bin/console security:check
@@ -60,7 +68,7 @@ php bin/console translation:extract en --dir=./app/Resources/views --output-dir=
 
 #Compile les assets Sass !
 yarn run encore dev
-// Attends dés qu’un fichiers sources dans les assets est modifié il le recompile 
+// Attends dés qu’un fichier source dans les assets est modifié il le recompile 
 
 yarn run encore dev --watch
 //Compile les sources et crée le fichier minifié! A versionner donc !
