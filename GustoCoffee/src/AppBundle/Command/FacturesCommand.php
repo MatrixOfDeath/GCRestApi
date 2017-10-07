@@ -13,7 +13,7 @@ class FacturesCommand extends ContainerAwareCommand
     {
         $this->setName('gustocoffee:facture')
              ->setDescription('Ceci est un premier test')
-             ->addArgument('date', InputArgument::OPTIONAL, 'Date pour laquel vous souhaitez récuperer les factures');
+             ->addArgument('datecommande', InputArgument::OPTIONAL, 'Date pour laquel vous souhaitez récuperer les factures');
     }
     
     protected function execute(InputInterface $input, OutputInterface $output) 

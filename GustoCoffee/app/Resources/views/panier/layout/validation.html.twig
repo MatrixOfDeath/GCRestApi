@@ -111,7 +111,7 @@
                     <dt>{{ commande.commande.facturation.adresse }}</dt>
                     <dt>{{ commande.commande.facturation.cp }} {{ commande.commande.facturation.ville }} </dt>
                     <dt>{{ commande.commande.facturation.pays }}</dt>
-                    {% if commande.commande.facturation.vatnumber is defined and commande.commande.facturation.vatnumber|length != %}<dt>N° TVA Intra-C: {{ commande.commande.facturation.vatnumber }}</dt>{% endif %}
+                    {% if commande.commande.facturation.vatnumber is defined and commande.commande.facturation.vatnumber|length != 0 %}<dt>N° TVA Intra-C: {{ commande.commande.facturation.vatnumber }}</dt>{% endif %}
                 </dl>
             </div>
             

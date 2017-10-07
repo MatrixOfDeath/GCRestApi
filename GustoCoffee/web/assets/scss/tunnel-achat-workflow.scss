@@ -2,7 +2,9 @@
 $color-gc: #6F4E37;
 $color-gc-lighter: #846139;
 
-/* written by riliwan balogun https://www.facebook.com/riliwan.rabo*/
+.tunnel-achat{
+  margin-top: -60px;
+}
 .tunnel-achat-workflow{
   width: 90%;
   margin: 60px auto;
@@ -18,12 +20,9 @@ $color-gc-lighter: #846139;
   box-sizing: border-box;
 
 }
-
 .tunnel-achat-workflow > div.board-inner{
-  //background: #fafafa url(https://subtlepatterns.com/patterns/geometry2.png);
   background-size: 30%;
 }
-
 p.narrow{
   width: 60%;
   margin: 10px auto;
@@ -233,7 +232,6 @@ li.active:after {
     padding:12px 20px;
   }
 }
-
 
 .grayForbidden {
   color: gray !important;
