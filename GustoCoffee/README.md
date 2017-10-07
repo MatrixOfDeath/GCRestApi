@@ -90,6 +90,9 @@ export PATH=/Applications/MAMP/bin/php/php7.1.8/bin:$PATH
 passphrase: var/jwt : gustocoffee
 
 
+#Numéro de TVA Intracommunautaire existant et valide
+Exemple la FNAC: FR92428581755
+
 #TVA Française calcule et exemples
 -Comment calculer le Prix HT et la TVA à 20% à partir du prix TTC ?
 Pour calculer le prix HT, il faut diviser le prix TTC par 1.20

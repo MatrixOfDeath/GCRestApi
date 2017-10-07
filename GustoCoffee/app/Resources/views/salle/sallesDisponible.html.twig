@@ -25,7 +25,10 @@
 
             <div class="col-md-4 cardSalle">
                 <div class="thumbnail">
-                        <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}"><img class="group list-group-image" src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="Salle privatisée"></a>
+                        <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
+                            <img class="group list-group-image" src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="Salle privatisée">
+                            {#<div class="group list-group-image" style="background-image: url('{{ asset('uploads/images/salles/'~ salle.image) }}');" alt="Salle privatisée"></div>#}
+                        </a>
                     <div class="caption">
                         <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}"></a>
                         <h4 class="group inner list-group-item-heading centerText">

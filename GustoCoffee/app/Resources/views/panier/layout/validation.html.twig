@@ -89,11 +89,9 @@
                     {#<dt>Montant Total TTC :</dt><dd>{{ ((commande.commande.totalTTC)  - ((commande.commande.totalTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>#}
                 {% endif %}
                 {% if commande.commande.VATtotalTVA is defined %}
-                    <dt class="reduction-TVA">Suppression TVA:</dt><dd class="reduction-10">-{{ commande.commande.VATtotalTVA }} €</dd>
+                    <dt class="reduction-TVA">Non assujetti à la tva:</dt><dd class="reduction-10">-{{ commande.commande.VATtotalTVA }} €</dd>
                 {% endif %}
                 <dt class="montant-total">Montant Total TTC :</dt><dd class="montant-total">{{ commande.commande.totalTTC - totalReduc }} €</dd>
-
-
             </dl>
 
             <div class="span3 pull-left">
@@ -106,14 +104,14 @@
                 </dl>
             </div>
 
-            <div class="span3 pull-left">
+            <div class="span4 pull-left">
                 <dl class="pull-left">
                     <dt><h4>Adresse de facturation</h4></dt>
                     <dt>{{ commande.commande.facturation.prenom }} {{ commande.commande.facturation.nom }}</dt>
                     <dt>{{ commande.commande.facturation.adresse }}</dt>
                     <dt>{{ commande.commande.facturation.cp }} {{ commande.commande.facturation.ville }} </dt>
                     <dt>{{ commande.commande.facturation.pays }}</dt>
-                    {% if commande.commande.facturation.vatnumber is defined  %}<dt>N° TVA Intra-C: {{ commande.commande.facturation.vatnumber }}</dt>{% endif %}
+                    {% if commande.commande.facturation.vatnumber is defined and commande.commande.facturation.vatnumber|length != %}<dt>N° TVA Intra-C: {{ commande.commande.facturation.vatnumber }}</dt>{% endif %}
                 </dl>
             </div>
             

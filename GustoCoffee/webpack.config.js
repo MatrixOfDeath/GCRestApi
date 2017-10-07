@@ -33,7 +33,7 @@ Encore
 
     // will output as web/build/global.css
     .addStyleEntry('global', [
-        './web/assets/scss/helper.scss',
+        // './web/assets/scss/_helper.scss',
         './web/assets/scss/global.scss',
         './web/assets/scss/home.scss',
         // './web/assets/scss/onepage-scroll.scss',

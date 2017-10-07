@@ -161,10 +161,10 @@
             <div class="clearfix"></div>
             <a href="{{ path('livraison_panier') }}" class="btn btn-success pull-right">Valider mon panier</a>
             {% endif %}
-            {% if salles|length == 0 %}
-            <a href="{{ path('salle_index') }}" class="btn btn-primary">Choisissez une salle</a>
-            {% else %}
-             <a href="{{ path('produits_index') }}" class="btn btn-primary">Choisir mes produits</a>
-            {% endif %}
+            {#{% if salles|length == 0 %}#}
+            {#<a href="{{ path('salle_index') }}" class="btn btn-primary">Choisissez une salle</a>#}
+            {#{% else %}#}
+             {#<a href="{{ path('produits_index') }}" class="btn btn-primary">Choisir mes produits</a>#}
+            {#{% endif %}#}
         </div>
 

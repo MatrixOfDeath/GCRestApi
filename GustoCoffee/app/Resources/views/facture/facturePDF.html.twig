@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <td class="color">[[page_nb]]</td>
-                <td class="color">{{ facture.datecommande|date('d-m-Y') }}</td>
+                <td class="color">{{ facture.datecommande|date('d/m/Y H:i') }}</td>
                 <td class="color">{{ facture.reference }}</td>
             </tr>
         </table>
@@ -118,7 +118,7 @@
             <tr>
             {% if facture.commande.thirdHourFree is defined and facture.commande.thirdHourFree > 0 %}
                 <td width="210" class="reduction-3h">Réduction 3ème heure:</td>
-                <td width="110"> class="reduction-10">{{ facture.commande.thirdHourFree }} €</td>
+                <td width="110" class="reduction-10">{{ facture.commande.thirdHourFree }} €</td>
             {% endif %}
             </tr>
 

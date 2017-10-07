@@ -1,4 +1,6 @@
 //Badge pour l'icone panier dans le menu
+@import "helper";
+
 
 i.gc-icon-cart  {
   text-align:center;
@@ -31,7 +33,8 @@ i.gc-icon-cart  {
   display: block;
 }
 .footer {
-  background: #EDEFF1;
+  color: $color-gc-lighter;
+  background: #2f2f2f;
   height: auto;
   padding-bottom: 30px;
   position: relative;
@@ -47,7 +50,7 @@ i.gc-icon-cart  {
 }
 .footer h3 {
   border-bottom: 1px solid #BAC1C8;
-  color: #54697E;
+  color: $color-gc-brighter;
   font-size: 18px;
   font-weight: 600;
   line-height: 27px;
@@ -67,7 +70,7 @@ i.gc-icon-cart  {
   display: block;
 }
 .footer a {
-  color: #78828D
+  color: $color-gc-brighter;
 }
 .supportLi h4 {
   font-size: 20px;
@@ -101,8 +104,8 @@ i.gc-icon-cart  {
   overflow: hidden;
 }
 .bg-gray {
-  background-image: -moz-linear-gradient(center bottom, #BBBBBB 0%, #F0F0F0 100%);
-  box-shadow: 0 1px 0 #B4B3B3;
+  background-color: $color-gc 0%;
+  box-shadow: 0 1px 0 #78543a;
 }
 .social li {
   background: none repeat scroll 0 0 #B5B5B5;
@@ -145,8 +148,9 @@ i.gc-icon-cart  {
   color: #EDEFF1 !important;
 }
 .footer-bottom {
-  background: #E3E3E3;
-  border-top: 1px solid #DDDDDD;
+  color: $color-gc-lighter;
+  background: #2f2f2f;
+  border-top: 1px solid #2f2f2f;
   padding-top: 10px;
   padding-bottom: 10px;
 }

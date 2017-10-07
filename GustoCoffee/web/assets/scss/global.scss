@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700);
+@import "helper";
 
 html *
 {
@@ -255,8 +256,7 @@ i.fa.fa-file-pdf-o{
     padding: 5px;
 }
 
-$primary-light-blue: #6d562f !important;
-$primary-line-color: #6d562f;
+
 * {
   box-sizing: border-box
 }
@@ -268,12 +268,12 @@ footer a {
   text-decoration: none
 }
 .generic-anchor {
-  color: $primary-light-blue;
+  color: $color-gc-lighter;
   &:visited {
-    color: $primary-light-blue
+    color: $color-gc-lighter;
   }
   &:hover {
-    color: $primary-line-color
+    color: $color-gc-lighter;
   }
 }
 .flex-rw {
@@ -314,7 +314,7 @@ footer {
   z-index: 1;
   top: 50%;
   left: 10px;
-  border-top: 1px solid $primary-line-color;
+  border-top: 1px solid $color-gc-lighter;
   width: calc(100% - 20px)
 }
 .footer-social-overlap {
@@ -342,7 +342,7 @@ footer {
 .footer-bottom-section {
   width: 100%;
   padding: 10px;
-  border-top: 1px solid $primary-line-color;
+  border-top: 1px solid $color-gc-lighter;
   margin-top: 10px
 }
 .footer-bottom-section > div:first-child {

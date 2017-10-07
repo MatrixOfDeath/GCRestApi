@@ -400,23 +400,30 @@ class CommandeController extends FOSRestController
 
         if ($request->getMethod() == 'POST' && $session->has('commande'))
         {
-            $commande = $session->get('commande')->getCommande();
+            $em = $this->getDoctrine()->getManager();
+            $commande = $em->getRepository('AppBundle:Commande')->find($id);
+            $co= $commande->getCommande();
 
-           if ($request->get('token') == $commande['token']){
+           if ($request->get('token') == $co['token']){
                $totalPrix = $request->request->get('totalTTC');
 
+               /**
+                * @var $this->getUser() \AppBundle\Entity\Personne
+                */
+               if($this->getUser()->getId()){
+                   $customer_id = $this->getUser()->getId();
+                   $email = $this->getUser()->getEmail();
+               }else{
+                   $customer_id = 'anon';
+               }
                \Payplug\Payplug::setSecretKey('sk_test_44dfjjzLQ6f0S4xqYxGlQR');
 
-               $amount = $totalPrix * 100; // En centime selon la doc de Payplug
+               $amount = $totalPrix * 100; // En centime cf: la doc de Payplug
                $email = "gustocoffee+official@gmail.com";
                $commande_id = $id;
-               /**
-                * Vérifier si on est connecté !!
-                * @var $customer_id \AppBundle\Entity\Personne
-                */
-               $customer_id = $this->getUser();
+
                $payment = \Payplug\Payment::create(array(
-                   'amount'           => $amount,
+                   'amount'           => (int)$amount,
                    'currency'         => 'EUR',
                    'customer'         => array(
                        'email'          => $email
@@ -427,8 +434,7 @@ class CommandeController extends FOSRestController
                    ),
                    'notification_url' => 'http://dev.gc.fr/app_dev.php/fr/commande/notifications?id='.$commande_id,
                    'metadata'         => array(
-                       'customer_id'    => $this->getUser()->getId(),
-
+                       'customer_id'    => (string)$customer_id
                    )
                ));
 
@@ -436,17 +442,19 @@ class CommandeController extends FOSRestController
 
                //Todo: envoyer l'id payment ! somewhere
                $payment_id = $payment->id;
-
+                echo "paryment_id return: ".$payment_id;
                return $this->redirect($payment_url);
 
            }else{
                // Token envoyé par l'user invalide !!
-               return $this->redirect($this->generateUrl('validation_panier'));
+               $session->getFlashBag()->add('success','Le token de vérification de formulaire est invalide');
+               return $this->redirect($this->generateUrl('livraison_panier'));
 
            }
 
         }else{
-            return $this->redirect($this->generateUrl('validation_panier'));
+            $session->getFlashBag()->add('error',"L'envoi de votre demande de validation a échoué");
+            return $this->redirect($this->generateUrl('livraison_panier'));
         }
     }
 
