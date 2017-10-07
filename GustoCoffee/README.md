@@ -135,3 +135,6 @@ Test cards numbers	Expected
 `5184 6800 0000 0097` MasterCard	Failure code: incorrect_number
 
 `5184 6800 0000 0121` MasterCard	Failure code: fraud_suspected
+
+#Generating Factures PDF in /Facturation with command: 
+php bin/console gustocoffee:facture "DateCommande"

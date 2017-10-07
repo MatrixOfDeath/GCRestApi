@@ -442,8 +442,8 @@ class CommandeController extends FOSRestController
 
                //Todo: envoyer l'id payment ! somewhere
                $payment_id = $payment->id;
-                echo "payment_id return: ".$payment_id;
-               //return $this->redirect($payment_url);
+               // echo "payment_id return: ".$payment->id;
+               return $this->redirect($payment_url);
 
            }else{
                // Token envoyé par l'user invalide !!
