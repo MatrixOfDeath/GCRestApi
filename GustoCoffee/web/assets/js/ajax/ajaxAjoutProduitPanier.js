@@ -15,6 +15,7 @@
                     async: true,
                     success: function (responsePanier, textStatus) {
                         $('.row.panier-menu').empty().append(responsePanier);
+                        refreshPanierIconMenu();
                     },
                     error: function(data) {
                         console.log(data);
@@ -28,3 +29,22 @@
             }
         });
     });
+
+    function refreshPanierIconMenu(){
+        $.ajax({
+            url: Routing.generate('ajax_panier_icon_menu'),
+            type: "GET",
+            async: true,
+            success: function (responsePanier, textStatus)
+            {
+                $('#panier-icon-menu').empty().append(responsePanier).effect( "bounce", {times:3}, 300 );
+
+            },
+            error: function(data) {
+                console.log(data);
+                alert('Problème refresh Panier');
+                //$("body").css({"opacity": "1", "background-color":"#fff"});
+
+            }
+        });
+    }

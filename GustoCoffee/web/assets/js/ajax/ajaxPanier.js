@@ -26,6 +26,7 @@
 
                     }
                 });
+                refreshPanierIconMenu();
                 //$("body").css({"opacity": "1", "background-color":"#fff"});
 
             },
@@ -65,6 +66,7 @@
 
                     }
                 });
+                refreshPanierIconMenu();
                 //$("body").css({"opacity": "1", "background-color":"#fff"});
 
             },
@@ -106,6 +108,7 @@
 
                     }
                 });
+                refreshPanierIconMenu();
                 //$("body").css({"opacity": "1", "background-color":"#fff"});
 
             },
@@ -118,6 +121,31 @@
         });
 
     });
+    // $(document).on('change', '.row.panier-menu', function() {
+    //     refreshPanierIconMenu()
+    // });
+
+
+
+    function refreshPanierIconMenu(){
+        $.ajax({
+            url: Routing.generate('ajax_panier_icon_menu'),
+            type: "GET",
+            async: true,
+            success: function (responsePanier, textStatus)
+            {
+                $('#panier-icon-menu').empty().append(responsePanier).effect( "bounce", {times:3}, 300 );
+
+            },
+            error: function(data) {
+                console.log(data);
+                alert('Problème refresh Panier');
+                //$("body").css({"opacity": "1", "background-color":"#fff"});
+
+            }
+        });
+    }
+
 
     function refreshPanier(){
         $.ajax({

@@ -10,10 +10,6 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
     console.log('date altFormat' + date);
 
 
-    // if(dateDuJour.length){
-    //     date = dateDuJour;
-    // }
-
     //console.log(idSalle + 'idsalle');
    // $('#slider-range .heureActuelleDefaut').val("");
     that = $(this);
@@ -57,7 +53,8 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
                             {
                                 if(isDispo = '1') {
                                     $('.row.panier-menu').empty().append(responsePanier);
-
+                                    refreshPanierIconMenu();
+                                    unblockAdresseTab();
                                     // 4- On charge la vue des produits ajax
                                     $.ajax({
                                         url: Routing.generate('produits_ajax'),
@@ -65,8 +62,8 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
                                         async: true,
                                         success: function (responseProduits, textStatus) {
                                             $('#display-salle').empty().append(responseProduits);
-                                            $('.reservation-select-creneau').hide();
-                                            $('.recherche-horaire').hide();
+                                            $('.reservation-select-creneau').hide().fadeOut();
+                                            $('.recherche-horaire').hide().fadeOut();
 
                                         },
                                         // 4-
@@ -96,7 +93,6 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
                     }
                 });
             }
-
         },
         // 1-
         error: function(data){
@@ -108,11 +104,37 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
 
 });
 
+function unblockAdresseTab(){
+    $('#tab-link-facturation').removeClass('grayForbiddenLink');
+    $('#tab-link-facturation > span').removeClass('grayForbidden');
+}
+
+function unblockValidationTab(){
+    $('#tab-link-validation').removeClass('grayForbiddenLink');
+    $('#tab-link-validation > span').removeClass('grayForbidden');
+}
+
 $(document).on('slidestop', '#slider-range' , function(event, ui){
-    console.log('iiiin');
     ajaxRechercheSalles();
 });
 
+function refreshPanierIconMenu(){
+    $.ajax({
+        url: Routing.generate('ajax_panier_icon_menu'),
+        type: "GET",
+        async: true,
+        success: function (responsePanier, textStatus)
+        {
+            $('#panier-icon-menu').empty().append(responsePanier).effect( "bounce", {times:3}, 300 );
+        },
+        error: function(data) {
+            console.log(data);
+            alert('Problème refresh Panier');
+            //$("body").css({"opacity": "1", "background-color":"#fff"});
+
+        }
+    });
+}
 
 function ajaxRechercheSalles(){
     var choixDebut = $('.slider-time').text();

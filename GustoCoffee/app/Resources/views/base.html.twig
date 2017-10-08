@@ -84,8 +84,9 @@
                                         </a>
                                     {% endif %}
                                 </li>
-                                {{ render(controller('AppBundle:Panier:menuIcon')) }}
-
+                                <li id="panier-icon-menu">
+                                    {{ render(controller('AppBundle:Panier:menuIcon')) }}
+                                </li>
                                 {% if app.request.get('_route_params') is not null %}
                                     {% for locale in locales %}
                                         <li>

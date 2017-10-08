@@ -331,7 +331,8 @@ class CommandeController extends FOSRestController
 
         $commande->setDatecommande(new \DateTime());
         $commande->setPersonne($this->container->get('security.token_storage')->getToken()->getUser());
-        $commande->setReservation();
+        // TODO : Urgently need to manage this even if ....
+        // $commande->setReservation();
         $commande->setValider(0);
         $commande->setReference(0);
         //var_dump('test...'.$commande->getCommande()['token']);

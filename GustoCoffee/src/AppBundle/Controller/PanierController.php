@@ -79,6 +79,62 @@ class PanierController extends Controller
     }
 
     /**
+     * @Route("/ajaxIconPanier", options={"expose"=true}, name="ajax_panier_icon_menu")
+     * @Method("GET")
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function ajaxMenuIconAction(SessionInterface $session)
+    {
+        if (!$session->has('panier'))
+            $articles = 0;
+        else
+            $articles = count($session->get('panier'));
+
+        if (!$session->has('panier_salle'))
+            $nbsalles = 0;
+        else
+            $nbsalles = count($session->get('panier_salle'));
+
+        if (!$session->has('totalTTC'))
+            $totalTTC = 0;
+        else
+            $totalTTC = $session->get('totalTTC');
+
+        $numberItems = $articles + $nbsalles;
+        $htmlToRender = $this->renderView('panier/ajaxIconPanier.html.twig', array(
+            'numberItems' => $numberItems,
+            'totalTTC' => $totalTTC
+        ));
+        return new Response ($htmlToRender);
+    }
+
+    /**
+     * @Route("/isNotEmpty", options={"expose"=true}, name="ajax_is_not_empty")
+     * @Method("GET")
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function ajaxIsNotEmptyAction(SessionInterface $session)
+    {
+        if (!$session->has('panier'))
+            $articles = 0;
+        else
+            $articles = count($session->get('panier'));
+
+        if (!$session->has('panier_salle'))
+            $nbsalles = 0;
+        else
+            $nbsalles = count($session->get('panier_salle'));
+
+
+        if($nbsalles > 0 || $articles > 0)
+            return new Response (json_encode("Success"));
+        else
+            return new Response (json_encode("Not allowed"));
+    }
+
+    /**
      * Index panier session.
      *
      * @param SessionInterface $session
@@ -422,6 +478,7 @@ class PanierController extends Controller
     }
 
     /**
+     * TODO : Remove this and do it in CommandController after validation
      * Ajout de la commmande en bdd à partir de la session
      * @param Request $request
      * @param SessionInterface $session
@@ -504,7 +561,7 @@ class PanierController extends Controller
         return $this->redirect ($this->generateUrl ('livraison_panier'));
     }
 
-    /** TODO: Appeler cela une facturation ?
+    /**
      *
      * @Route("/livraison", name="livraison_panier")
      * @Method({"GET", "POST"})
@@ -537,6 +594,41 @@ class PanierController extends Controller
     }
 
     /**
+     * TODO: generate URl = return view
+     * Ajax Facturation
+     * @Route("/addresses",  options={"expose"=true}, name="ajax_adresses_panier")
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxFacturationAction(Request $request)
+    {
+        $utilisateur = $this->getUser();
+
+        $entity = new UtilisateursAdresses();
+        $form = $this->createForm('AppBundle\Form\UtilisateursAdressesType', $entity);
+
+
+        if ($request->getMethod() == 'POST')
+        {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $entity->setUtilisateur($utilisateur);
+                $em->persist($entity);
+                $em->flush();
+
+                return $this->redirect($this->generateUrl('ajax_adresses_panier'));
+            }
+        }
+
+         $htmlToRender = $this->renderView('panier/layout/ajaxAdresses.html.twig', array(
+            'utilisateur' => $utilisateur,
+            'form' => $form->createView()
+        ));
+
+        return new Response ($htmlToRender);
+    }
+
+    /**
      * @param Request $request
      * @param SessionInterface $session
      * @return RedirectResponse
@@ -560,6 +652,30 @@ class PanierController extends Controller
         return $this->redirect($this->generateUrl('validation_panier'));
     }
 
+
+    /**
+     * @param Request $request
+     * @param SessionInterface $session
+     * @return RedirectResponse
+     */
+    public function setLivraisonOnSessionAjax(Request $request, SessionInterface $session)
+    {
+        if (!$session->has('adresse')) $session->set('adresse', array());
+        $adresse = $session->get('adresse');
+
+        if ($request->request->get('livraison') != null && $request->request->get('facturation') != null)
+        {
+            $adresse['livraison'] = $request->request->get('livraison');
+            $adresse['facturation'] = $request->request->get('facturation');
+
+        } else {
+            return $this->redirect($this->generateUrl('ajax_validation_panier'));
+        }
+
+        $session->set('adresse',$adresse);
+
+        return $this->redirect($this->generateUrl('ajax_validation_panier'));
+    }
     /**
      * @param Request $request
      * @param SessionInterface $session
@@ -583,6 +699,30 @@ class PanierController extends Controller
         ));
     }
 
+    /**
+     * @param Request $request
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/validationAjax", options={"expose"=true}, name="ajax_validation_panier")
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxValidationAction(Request $request, SessionInterface $session)
+    {
+        if ($request->getMethod() == 'POST') {
+            $this->setLivraisonOnSessionAjax($request, $session);
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $prepareCommande = $this->forward('AppBundle:Commande:prepareCommande');
+
+        $commande = $em->getRepository('AppBundle:Commande')->find($prepareCommande->getContent());
+
+        $htmlToRender = $this->renderView('panier/layout/ajaxValidation.html.twig', array(
+            'commande' => $commande
+        ));
+
+        return new Response ($htmlToRender);
+    }
     /**
      * @Route("/villes/{cp}", options={"expose"=true}, name="villes", requirements={"cp": "\d+"})
      * @Method({"POST", "GET"})
