@@ -31,7 +31,7 @@
                         <div class="panel-body">
                             <div class="col-md-12">
                                 {% if utilisateur.adresses|length != 0 %}
-                                <form id="form-valid-adresse" action="{{ path('validation_panier') }}" method="POST">
+                                <form id="form-valid-adresse" action="{{ path('ajax_validation_panier') }}" method="POST">
 
                                     <h3>Adresse personnelle</h3>
                                     {% for adresse in utilisateur.adresses %}
@@ -69,8 +69,8 @@
                 </div>
             </div>
             <div class="col-md-5">
-                <button class="btn btn-info" data-toggle="collapse" data-target="#addNewAdresse">Ajouter une nouvelle adresse</button>
-                <form id="addNewAdresse" class="collapse" action="{{ path('livraison_panier') }}" method="POST">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#ajaxAddNewAdresse">Ajouter une nouvelle adresse</button>
+                <form id="ajaxAddNewAdresse" class="collapse" action="{{ path('ajax_adresses_panier') }}" method="POST">
                     {{ form_widget(form) }}
                     <button class="btn btn-primary" type="submit">Ajouter</button>
                 </form>

@@ -110,7 +110,7 @@ class PanierController extends Controller
     }
 
     /**
-     * @Route("/isNotEmpty", options={"expose"=true}, name="ajax_is_not_empty")
+     * @Route("/isNotEmpty", options={"expose"=true}, name="ajax_panier_is_not_empty")
      * @Method("GET")
      * @param SessionInterface $session
      * @return \Symfony\Component\HttpFoundation\Response
