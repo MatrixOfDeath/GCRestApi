@@ -114,11 +114,11 @@
             
             <div class="clearfix"></div>
             
-            <form id="ajaxPayment" action="{{ path('paiement_commande', { 'id' : commande.idcommande }) }}" method="POST"/>
-                <input name="token" type="hidden" value="{{ commande.commande.token }}" />
-                <input name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
-                <input name="totalTTC" type="hidden" value="{{ commande.commande.totalTTC - totalReduc }}" />
-                <input name="date" type="hidden" value="{{ commande.datecommande|date('dmyhms') }}" />
+            <form id="ajaxPayment" action="{{ path('ajax_paiement_commande', { 'id' : commande.idcommande }) }}" method="POST"/>
+                <input class="token" name="token" type="hidden" value="{{ commande.commande.token }}" />
+                <input class="prix" name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
+                <input class="totalTTC" name="totalTTC" type="hidden" value="{{ commande.commande.totalTTC - totalReduc }}" />
+                <input class="date" name="date" type="hidden" value="{{ commande.datecommande|date('dmyhms') }}" />
                 <input class="idcommande" name="idcommande" type="hidden" value="{{ commande.idcommande  }}" />
                 <button type="submit" id="submitPayment" class="btn btn-success pull-right" form="ajaxPayment">Payer</button>
             </form>

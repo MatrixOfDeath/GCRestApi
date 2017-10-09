@@ -173,7 +173,7 @@ class PanierController extends Controller
     public function ajaxPanierAction(SessionInterface $session)
     {
         if (!$session->has('panier')) $session->set('panier', array());
-        if (!$session->has('panier_salle')) $session->set('panier_salle', array(array('heureChoixDebut' => "", 'heureChoixFin' => "")));
+        if (!$session->has('panier_salle')) $session->set('panier_salle', array());
         if (!$session->has('totalTTC')) $session->set('totalTTC', 0);
 
         $em = $this->getDoctrine()->getManager();

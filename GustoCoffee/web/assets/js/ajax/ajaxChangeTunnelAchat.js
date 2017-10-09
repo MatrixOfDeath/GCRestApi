@@ -228,15 +228,32 @@ $(document).on('submit', '#form-valid-adresse', function(e) {
 
 $(document).on('submit', '#ajaxPayment', function(e) {
     e.preventDefault();
-    console.log("test");
-    var url = Routing.generate('paiement_commande', {id:  $('.idcommande').val()});
-    console.log(url);
+    // var data = {};
+    // data[$(this).children('input').attr('token')] = $(this).children().attr('token').val();
+    // data[$(this).children('inuput').attr('totalTTC')] = $(this).children().attr('totalTTC').val();
+    $.ajax({
+        url: Routing.generate('ajax_paiement_commande', {id:  $('.idcommande').val()}),
+        type: "POST",
+        data: {
+            date: $('.idcommande').val(),
+            token: $('.token').val(),
+            totalTTC: $('.totalTTC').val(),
+            prix: $('.prix').val(),
 
-    $('#display-salle').append().load('/assets/loader.html').fadeIn('slow');
+        },
+        async: true,
+        success: function (response, textStatus)
+        {
+            Payplug.showPayment(response);
+            e.preventDefault();
+        },
+        error: function(data) {
+            console.log(data);
+            alert('Problème dans d\'acces à la page de validation');
 
-    Payplug.showPayment('http://dev.gc.fr/app_dev.php/fr/commande/paiement/17');
-    e.preventDefault();
-
+        }
+    });
+    return false;
 });
 
 $(document).on('submit', '#ajaxAddNewAdresse',  function(e) {

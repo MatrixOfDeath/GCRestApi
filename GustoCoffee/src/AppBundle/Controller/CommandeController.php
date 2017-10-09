@@ -461,4 +461,74 @@ class CommandeController extends FOSRestController
         }
     }
 
+    /**
+     * @Route("/ajaxpaiement/{id}", options={"expose"=true}, name="ajax_paiement_commande", requirements={"id": "\d+"})
+     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param SessionInterface $session
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function validationAjaxPaymentAction(Request $request, SessionInterface $session, $id){
+
+        if ($request->getMethod() == 'POST' && $session->has('commande'))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $commande = $em->getRepository('AppBundle:Commande')->find($id);
+            $co= $commande->getCommande();
+
+            if ($request->request->get('token') == $co['token']){
+                $totalPrix = $request->request->get('totalTTC');
+
+                /**
+                 * @var $this->getUser() \AppBundle\Entity\Personne
+                 */
+                if($this->getUser()->getId()){
+                    $customer_id = $this->getUser()->getId();
+                    $email = $this->getUser()->getEmail();
+                }else{
+                    $customer_id = 'anon';
+                }
+                \Payplug\Payplug::setSecretKey('sk_test_44dfjjzLQ6f0S4xqYxGlQR');
+
+                $amount = $totalPrix * 100; // En centime cf: la doc de Payplug
+                $email = "gustocoffee+official@gmail.com";
+                $commande_id = $id;
+
+                $payment = \Payplug\Payment::create(array(
+                    'amount'           => (int)$amount,
+                    'currency'         => 'EUR',
+                    'customer'         => array(
+                        'email'          => $email
+                    ),
+                    'hosted_payment'   => array(
+                        'return_url'     => 'http://dev.gc.fr/app_dev.php/fr/commande/api/banque/'.$commande_id,
+                        'cancel_url'     => 'http://dev.gc.fr/app_dev.php/fr/commande/paiement_commande/'.$commande_id
+                    ),
+                    'notification_url' => 'http://dev.gc.fr/app_dev.php/fr/commande/notifications?id='.$commande_id,
+                    'metadata'         => array(
+                        'customer_id'    => (string)$customer_id
+                    )
+                ));
+
+                $payment_url = $payment->hosted_payment->payment_url;
+
+                //Todo: envoyer l'id payment ! somewhere
+                $payment_id = $payment->id;
+                // echo "payment_id return: ".$payment->id;
+                return new Response ($payment_url);
+
+            }else{
+                // Token envoyé par l'user invalide !!
+                $session->getFlashBag()->add('success','Le token de vérification de formulaire est invalide');
+                return $this->redirect($this->generateUrl('livraison_panier'));
+
+            }
+
+        }else{
+            $session->getFlashBag()->add('error',"L'envoi de votre demande de validation a échoué");
+            return $this->redirect($this->generateUrl('livraison_panier'));
+        }
+    }
+
 }
