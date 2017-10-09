@@ -12,11 +12,11 @@ $(document).ready(function() {
             $total = $('#total'),
             sc = $('#seat-map').seatCharts({
                 map: [
-                    'pp___ppppp',
-                    'pp___ppppp',
-                    'pp___ppppp',
+                    'pp___pp__ppp',
+                    'pp___pp__ppp',
+                    'pp_____pp',
                     'pppppppppp',
-                    'pppppppppp',
+                    'ppppppf___ppp',
                     'pppppppppp',
                     'pppppppppp',
                     'pppppppppp',
@@ -31,6 +31,11 @@ $(document).ready(function() {
                     p: {
                         price: 5,
                         classes: 'economy-class', //your custom CSS class
+                        category: 'Place'
+                    },
+                    f:{
+                        price: 0,
+                        classes: 'economy-class unavailable',
                         category: 'Place'
                     }
 

@@ -17,8 +17,8 @@ class PlacesRepository extends EntityRepository
         $qb = $this->createQueryBuilder('u')
             ->Select('u.position')
             ->where('u.idsalle = :idsalle')
-            ->setParameter('idsalle', $idsalle)
-            ->orderBy('u.position');
+            ->setParameter('idsalle', $idsalle);
+//            ->orderBy('u.ligne', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
