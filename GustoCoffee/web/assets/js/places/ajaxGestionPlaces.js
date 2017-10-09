@@ -11,17 +11,7 @@ $(document).ready(function() {
             $counter = $('#counter'),
             $total = $('#total'),
             sc = $('#seat-map').seatCharts({
-                map: [
-                    'pp___pp__ppp',
-                    'pp___pp__ppp',
-                    'pp_____pp',
-                    'pppppppppp',
-                    'ppppppf___ppp',
-                    'pppppppppp',
-                    'pppppppppp',
-                    'pppppppppp',
-                    'pppppppppp',
-                ],
+                map: ["pp_ppp_ppp_pp","pp_ppp_ppp_pp","__________","pp_ppp_ppp_pp","pp_ppp_ppp_pp","pp_ppp_ppp_pp","__________","pp_ppp_ppp_pp","pp_ppp_ppp_pp","pp_ppp_ppp_pp","__________","pp_ppp_ppp_pp","pp_ppp_ppp_pp","pp_ppp_ppp_pp","__________","pp_ppp_ppp_pp"],
                 seats: {
                     n: {
                         price: 5,

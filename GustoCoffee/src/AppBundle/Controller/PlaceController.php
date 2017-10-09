@@ -212,12 +212,24 @@ class PlaceController extends FOSRestController
 
         $map = array();
 
-        for ($i = 0 ; $i < 12 ; $i++){
+        for ($i = 1 ; $i <= 12 ; $i++){
             $row = '' ;
-            for ($j = 0 ; $j < 10 ; $j++){
+            for ($j = 1 ; $j <= 10 ; $j++){
+                if($j % 3 == 0  && $j != 1) {
+                    $row .= '_';
+                }
                 $row .= 'p';
             }
+            if ($i % 3 == 0){
+                $vide = '' ;
+                for($v = 1 ; $v <= 10 ; $v++){
+                    $vide .= '_';
+                }
+                array_push($map, $vide);
+            }
             array_push($map, $row);
+
+
         }
 
 //        foreach($places as $place){
