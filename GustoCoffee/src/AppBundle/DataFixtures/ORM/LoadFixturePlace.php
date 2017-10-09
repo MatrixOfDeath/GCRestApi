@@ -31,21 +31,31 @@ class LoadFixturePlace extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function load(ObjectManager $manager)
     {
+
         $manager->getClassMetadata(Place::class)->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
 
-        $i = 0;
+        $j = 1;
         $c = 'A';
-        for ($i = 1; $i <= 120; $i++){
-            if($i==8){
+        $p = 1;
+        for ($i = 1; $i <= 120; $i++) {
+            if ($j > 10) {
                 $c++;
+                $p++;
+                $j = 1;
             }
+            echo $c . "" .$j . "  position: ". $p."_". $j ."\n";
             $item1 = new Place();
-            $item1->setNomplace("A1");
+            $item1->setNomplace($c."".$j);
+            $item1->setPosition($p."_". $j);
+            $item1->setColonne($j);
+            $item1->setLigne($p);
             $item1->setStatutplace("libre");
-            $item1->setIdsalle($this->getReference('_reference_Proxies__CG__AppBundleEntitySalle4'));
-            $this->addReference('_reference_AppBundleEntityPlace'.$i, $item1);
+//            $item1->setIdsalle($this->getReference());
+           // $this->addReference('_reference_AppBundleEntityPlace'.$i, $item1);
             $manager->persist($item1);
             $manager->flush();
+
+            $j++;
         }
 
 //        $item1 = new Place();

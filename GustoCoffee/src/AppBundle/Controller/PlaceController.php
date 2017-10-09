@@ -10,10 +10,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
-use FOS\RestBundle\Routing\ClassResourceInterface;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+
 
 
 /**
@@ -21,7 +23,7 @@ use Swagger\Annotations as SWG;
  * @RouteResource("Place")
  * @Route("place")
  */
-class PlaceController extends FOSRestController implements ClassResourceInterface
+class PlaceController extends FOSRestController
 {
     /**
      *   @Operation(
@@ -38,8 +40,8 @@ class PlaceController extends FOSRestController implements ClassResourceInterfac
     public function cgetAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $place = $em->getRepository('AppBundle:Place')->findAll();
-        $view = $this->view($place);
+        $places = $em->getRepository('AppBundle:Place')->findAll();
+        $view = $this->view($places);
         return $view;
     }
 
@@ -56,23 +58,6 @@ class PlaceController extends FOSRestController implements ClassResourceInterfac
         return $view;
     }
 
-//    public function getPlaceAction($slug){
-//
-//    }
-//
-//    public function putPlaceAction($slug){
-//
-//    }
-//
-//    public function postPlaceAction()
-//    {
-//
-//    }
-//
-//    public function deletePlaceAction($slug)
-//    {
-//
-//    }
 
     /**
      * Lists all place entities.
@@ -89,6 +74,26 @@ class PlaceController extends FOSRestController implements ClassResourceInterfac
         return $this->render('place/index.html.twig', array(
             'places' => $places,
         ));
+    }
+
+    /**
+     * @Route("/test", name="place_test")
+     * $Method('GET')
+     */
+    public function testAction(){
+        $j = 1;
+        $c = 'A';
+        $p = 1;
+        for ($i = 1; $i <= 120; $i++) {
+            if ($j > 10) {
+                $c++;
+                $p++;
+                $j = 1;
+            }
+            echo $c . "_" .$j . "  position: ". $p."_". $j ." <br />\n\n";
+            $j++;
+        }
+        return $this->render();
     }
 
     /**
@@ -120,7 +125,7 @@ class PlaceController extends FOSRestController implements ClassResourceInterfac
     /**
      * Finds and displays a place entity.
      *
-     * @Route("/{idplace}", name="place_show")
+     * @Route("/{idplace}", name="place_show", requirements={"idplace": "\d+"})
      * @Method("GET")
      */
     public function showAction(Place $place)
@@ -136,7 +141,7 @@ class PlaceController extends FOSRestController implements ClassResourceInterfac
     /**
      * Displays a form to edit an existing place entity.
      *
-     * @Route("/{idplace}/edit", name="place_edit")
+     * @Route("/{idplace}/edit", name="place_edit", requirements={"idplace": "\d+"})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Place $place)
@@ -161,7 +166,7 @@ class PlaceController extends FOSRestController implements ClassResourceInterfac
     /**
      * Deletes a place entity.
      *
-     * @Route("/{idplace}", name="place_delete")
+     * @Route("/{idplace}", name="place_delete", requirements={"idplace": "\d+"})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Place $place)
@@ -192,5 +197,31 @@ class PlaceController extends FOSRestController implements ClassResourceInterfac
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/map", options={"expose"=true}, name="ajax_places_map")
+     * @Method({"GET", "POST"})
+     * @return Response
+     */
+    public function ajaxGetMapPlacesAction()
+    {
+        $idsalle = 4;
+        $em = $this->getDoctrine()->getManager();
+        $places = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
+
+
+        var_dump($places);
+        foreach($places as $place){
+            $tmpPos = $place['position'];
+            if($place['position']){
+                echo "test";
+            }
+        }
+
+        //var_dump($places);
+        $data = array();
+
+        return new Response(json_encode($places));
     }
 }

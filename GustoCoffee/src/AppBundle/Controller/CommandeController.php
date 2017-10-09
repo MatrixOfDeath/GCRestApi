@@ -301,11 +301,17 @@ class CommandeController extends FOSRestController
 
         // On vérifie encore si le VAT est valide et en cours de validité
         $validator = $this->get('ddeboer_vatin.vatin_validator');
+        $reduction10 = 0;
+        if( count($salles) > 0 && count($produits) > 0){
+            $reduction10 = round(($commande['prixTTC'] + $commande['prixSalleTTC']) * 0.1, 2);
+            $commande['reduction10'] = round($reduction10, 2);
+        }
         if($validator->isValid($facturation->getVatNumber(), true) ){
             $commande['VATtotalTVA'] = $totalTVA + $totalSalleTVA;
-            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'] - $totalTVA - $totalSalleTVA;
+            //TotalTTC sans la TVA
+            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'] - $totalTVA - $totalSalleTVA - $reduction10;
         }else {
-            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'];
+            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'] - $reduction10;
         }
         $commande['token'] = bin2hex(random_bytes(20));
         $commande['thirdHourFree'] = round($thirdHourFree, 2);

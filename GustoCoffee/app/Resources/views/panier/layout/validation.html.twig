@@ -67,7 +67,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            {% set totalReduc = 0 %}
+            {#{% set totalReduc = 0 %}#}
             <dl class="dl-horizontal pull-right">
                 {% if commande.commande.produit|length != 0 %}
                     <dt>Total Produits HT :</dt><dd>{{ commande.commande.prixHT  }}€</dd>
@@ -80,18 +80,18 @@
                     <dt>dont {{ key }} TVA Salle:</dt><dd>{{ tva }} €</dd>
                 {% endfor %}
                 {% if commande.commande.thirdHourFree is defined and commande.commande.thirdHourFree > 0 %}
-                    <dt class="reduction-3h">Réduction 3ème heure:</dt><dd class="reduction-10">{{ commande.commande.thirdHourFree }} €</dd>
+                    <dt class="reduction-3h">Réduction 3ème heure:</dt><dd class="reduction-3h">{{ commande.commande.thirdHourFree }} €</dd>
                 {% endif %}
                 {% if commande.commande.produit|length != 0 and commande.commande.salle|length != 0 %}
-                    {% set totalReduc =  ((commande.commande.totalTTC) * 0.1)|number_format(2, '.', ',') %}
+                    {#{% set totalReduc =  ((commande.commande.totalTTC) * 0.1)|number_format(2, '.', ',') %}#}
                     <dt>Sous-Total TTC :</dt><dd>{{ commande.commande.prixTTC + commande.commande.prixSalleTTC }} €</dd>
-                    <dt class="reduction-10">Réduction -10% :</dt><dd class="reduction-10">-{{ ((commande.commande.totalTTC) * 0.1)|number_format(2, '.', ',') }} €</dd>
+                    <dt class="reduction-10">Réduction -10% :</dt><dd class="reduction-10">-{{ commande.commande.reduction10 }} €</dd>
                     {#<dt>Montant Total TTC :</dt><dd>{{ ((commande.commande.totalTTC)  - ((commande.commande.totalTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>#}
                 {% endif %}
                 {% if commande.commande.VATtotalTVA is defined %}
                     <dt class="reduction-TVA">Non assujetti à la tva:</dt><dd class="reduction-10">-{{ commande.commande.VATtotalTVA }} €</dd>
                 {% endif %}
-                <dt class="montant-total">Montant Total TTC :</dt><dd class="montant-total">{{ commande.commande.totalTTC - totalReduc }} €</dd>
+                <dt class="montant-total">Montant Total TTC :</dt><dd class="montant-total">{{ commande.commande.totalTTC }} €</dd>
             </dl>
 
             <div class="span3 pull-left">
@@ -120,7 +120,7 @@
             <form action="{{ path('paiement_commande', { 'id' : commande.idcommande }) }}" method="POST"/>
                 <input name="token" type="hidden" value="{{ commande.commande.token }}" />
                 <input name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
-                <input name="totalTTC" type="hidden" value="{{ commande.commande.totalTTC - totalReduc }}" />
+                <input name="totalTTC" type="hidden" value="{{ commande.commande.totalTTC }}" />
                 <input name="date" type="hidden" value="{{ commande.datecommande|date('dmyhms') }}" />
                 <button type="submit" class="btn btn-success pull-right">Payer</button>
             </form>
