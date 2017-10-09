@@ -206,22 +206,28 @@ class PlaceController extends FOSRestController
      */
     public function ajaxGetMapPlacesAction()
     {
-        $idsalle = 4;
+        $idsalle = 4; //get id openspace
         $em = $this->getDoctrine()->getManager();
         $places = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
 
+        $map = array();
 
-        var_dump($places);
-        foreach($places as $place){
-            $tmpPos = $place['position'];
-            if($place['position']){
-                echo "test";
+        for ($i = 0 ; $i < 12 ; $i++){
+            $row = '' ;
+            for ($j = 0 ; $j < 10 ; $j++){
+                $row .= 'p';
             }
+            array_push($map, $row);
         }
 
-        //var_dump($places);
-        $data = array();
+//        foreach($places as $place){
+//            if($place['ligne'] == 10){
+//
+//            }
+//        }
 
-        return new Response(json_encode($places));
+        //var_dump($places);
+
+        return new Response(json_encode($map));
     }
 }
