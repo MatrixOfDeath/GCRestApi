@@ -14,9 +14,23 @@ class PlacesRepository extends EntityRepository
 {
 
     public function getAllPositions($idsalle){
+        $idsalle = 4;
         $qb = $this->createQueryBuilder('u')
             ->Select('u.position')
             ->where('u.idsalle = :idsalle')
+            ->setParameter('idsalle', $idsalle);
+//            ->orderBy('u.ligne', 'ASC');
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function getByPosition($idposition){
+        $idsalle = 4;
+        $qb = $this->createQueryBuilder('u')
+            ->Select('u.idplace')
+            ->where('u.idsalle = :idsalle')
+            ->andWhere('u.position = :position')
+            ->setParameter('position', $idposition)
             ->setParameter('idsalle', $idsalle);
 //            ->orderBy('u.ligne', 'ASC');
 

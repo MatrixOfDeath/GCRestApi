@@ -3,16 +3,10 @@ $(document).on('click', 'div.seatCharts-seat.seatCharts-cell', function(){
 
     var choixDebut = $('.slider-time').text();
     var choixFin = $('.slider-time2').text();
-    // var arrTime = $('#slider-range .heureActuelleDefaut').val().split(':');
-    // var dateDuJour = arrTime[2];
-    var idPlace = $(this).id;
-    console.log($(this).attr('id'));
+
+    var idPlace = $(this).attr('id')
     var date =  $('#datepicker-altFormat').val();
-    console.log('date altFormat' + date);
 
-
-    //console.log(idSalle + 'idsalle');
-   // $('#slider-range .heureActuelleDefaut').val("");
     that = $(this);
 
     $('#display-salle').append().load('/assets/loader.html').fadeIn();

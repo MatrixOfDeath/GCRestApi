@@ -199,6 +199,7 @@ class PanierController extends Controller
         $htmlToRender = $this->renderView('panier/layout/ajaxpanier.html.twig', array(
             'produits' => $produits,
             'salles' => $salles,
+            'places' => $places,
             'panier' => $session->get('panier'),
             'panier_salle' => $session->get('panier_salle'),
             'panier_place' => $session->get('panier_place'),
@@ -632,7 +633,7 @@ class PanierController extends Controller
                     $reservation->setDatereservation($dateReservation);
                     $reservation->setIdplace($em->getRepository('AppBundle:Place')->find((int)$idPlace));
                     $reservation->setIdpersonne($this->getUser());
-                    $reservation->setRemarquereservation('Reservation auto session :test admin');
+                    $reservation->setRemarquereservation('Reservation PLACE auto session :test admin');
                     $reservation->setStatut(0); // Reservation non confirmé statut : Draft
 
                     $em->persist($reservation);

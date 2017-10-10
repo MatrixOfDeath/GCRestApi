@@ -72,12 +72,10 @@ class PlaceController extends FOSRestController
 
         $places = $em->getRepository('AppBundle:Place')->findAll();
 
-
-
-        if ($session->has('panier_salle'))
-            $panier_salle = $session->get('panier_salle');
+        if ($session->has('panier_place'))
+            $panier_place = $session->get('panier_place');
         else
-            $panier_salle = false;
+            $panier_place = false;
 
         $actualDate = new \DateTime(date('y-m-d H:i:s'));
         $plusOneHour = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
@@ -90,34 +88,17 @@ class PlaceController extends FOSRestController
         // Si le magasin va fermé ou est fermé lors de l'affichage initiale !
         if($plusOneHour > $horaire->getHeurefin()->format('H:i') && $plusOneHour < $horaire->getHeuredebut()){
             // TODO: Reload next day morning !
-            $sallesDispoNow = null;
+            $placesDispoNow = null;
         }else {
-            $sallesDispoNow = $this->checkDisponibilitePlace($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
+            $placesDispoNow = $this->checkDisponibilitePlace($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
         }
 
-        // echo $horaire->getHeuredebut()->format('H:i')."".$horaire->getHeurefin()->format('H:i');
-//
-//        $queryBuilder = $repository->createQueryBuilder('s');
-//        $query = $queryBuilder
-//            ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
-////            ->andWhere(':heureChoixDebut < :datenow')
-//            //->setParameter('datenow', date("Y-m-d H:i:s"))
-//            ->setParameter('heureChoixDebut', $heureChoixDebut)
-//            ->setParameter('heureChoixFin', $heureChoixFin);
-//            //->setParameter('subQuery', $subQuery)
-//            //->getQuery();
-
-//        return $query->getQuery()->getResult();
-//
-        //$actualDateAndHourMore = new \DateTime(date('H:m', strtotime('+1 hour')));
-
-
         return $this->render('place/index.html.twig', array(
-            'places' => $places,
+            'places' => $placesDispoNow,
             'heureDebutChoix' => $actualDate->format('H'),
             'heureFinChoix' => $actualDate->add(new \DateInterval('PT1H'))->format('H'),
             'dateChoix' => $actualDate->format("d/m/Y"),
-            'panier' => $panier_salle,
+            'panier' => $panier_place,
             'minHeure' => $horaire->getHeuredebut()->format('H:i'),
             'maxHeure' => $horaire->getHeurefin()->format('H:i')
         ));
@@ -197,7 +178,13 @@ class PlaceController extends FOSRestController
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('idPlace') ) {
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
-            $idPlace= $request->request->get('idPlace');
+
+            $idPosition= $request->request->get('idPlace');
+
+            $em = $this->getDoctrine()->getManager();
+            $repository = $em->getRepository('AppBundle:Place');
+            $idPlace = $repository->getByPosition($idPosition);
+        var_dump($idPlace->idplace);
             $isDispo = $this->checkIfPlaceDispo($heureChoixDebut, $heureChoixFin, $idPlace);
 
             return new Response(json_encode($isDispo));
