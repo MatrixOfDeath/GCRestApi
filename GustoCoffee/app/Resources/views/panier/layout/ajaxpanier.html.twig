@@ -33,109 +33,189 @@
                 </div>
             {% endfor %}
             
-            <h2>Votre panier</h2>
+            <h2>{{ "Votre panier"|trans }}</h2>
 
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>Salle choisi</th>
-                    <th>Nombre d'heures</th>
-                    <th>Prix à l'heure</th>
-                    <th>Total TTC</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% if salles|length == 0 %}
+            {% if salles|length == 0 %}
+                <div class="well">
+                    <ul class="nav nav-list">
+                    <li>
+                        <span>{{ "Aucune salle sélectionner dans votre panier"|trans }}</span>
+                    </li>
+                    </ul>
+                </div>
+            {% else %}
+                <table class="table table-striped table-hover">
+                    <thead>
                     <tr>
-                        <td colspan="4"><center>Aucune salle sélectionner dans votre panier</center></td>
+                        <th>Salle choisie</th>
+                        <th>Nombre d'heures</th>
+                        <th>Prix à l'heure</th>
+                        <th>Total TTC</th>
                     </tr>
-                {% endif %}
-                {# @var salle \AppBundle\Entity\Salle #}
-                {%  for salle in salles %}
+                    </thead>
+                    <tbody>
+
+                    {# @var salle \AppBundle\Entity\Salle #}
+                    {%  for salle in salles %}
+                        <tr>
+                            {% set total30Minutes = panier_salle[salle.idsalle].totalHeures * 2 %}
+                            {#<form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">#}
+                                <td>{{ salle.nomsalle }}</td>
+                                <td>
+                                    {{ "De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('H:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures ~ 'H' }}
+                                    {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
+                                    {% if panier_salle[salle.idsalle].totalMinutes >= 30 %}
+                                        {% set totalMinutes =  (2 * salle.capacitymax )  %}
+                                        {{ panier_salle[salle.idsalle].totalMinutes ~ 'min' }}
+                                    {% else %}
+                                        {% set totalMinutes = 0 %}
+                                    {% endif %}
+
+                                    {#<a href="{{ path('delete_panier_salle', { 'id' : salle.idsalle }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
+                                    <button type="button" class="buttonDeleteSalle glyphicon glyphicon-trash" value="{{ salle.idsalle }}"></button>
+                                </td>
+
+                                <td>{{ salle.prixsalle }} €</td>
+                                {% if panier_salle[salle.idsalle].totalHeures >= 5 or (panier_salle[salle.idsalle].totalHeures >= 5 and  panier_salle[salle.idsalle].totalMinutes >= 30)  %}
+                                    <td>{{ salle.prixsalle * 4 }} €</td>
+                                    {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 4 %}
+                                {% elseif (panier_salle[salle.idsalle].totalHeures == 3 and panier_salle[salle.idsalle].totalMinutes >= 30) or panier_salle[salle.idsalle].totalHeures >= 4 %}
+                                    <td>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes - (2 * salle.capacitymax) }} €</td>
+                                    {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax)  %}
+                                    {% set thirdHourFree = (2 * salle.capacitymax) %}
+                                {% else %}
+                                    <td>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</td>
+                                    {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
+                                {% endif %}
+
+                            {#</form>#}
+                        </tr>
+                        {#{% set totalSalleHT = totalSalleHT + (salle.prixsalle * panier_salle[salle.idsalle].totalHeures) %}#}
+                        {#{% set totalSalleTTC = totalSalleTTC + (salle.prixsalle * panier_salle[salle.idsalle].totalHeures)|tva(salle.tva.multiplicate) * panier_salle[salle.idsalle].totalHeures %}#}
+
+
+                        {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : refSalleTva['%' ~ salle.tva.valeur] + ( salle.prixsalle * panier_salle[salle.idsalle].totalHeures)|montantTva(salle.tva.multiplicate) }) %}
+
+                        {#{% set totalSalleTTC =  totalSalleTTC +  salle.prixsalle * panier_salle[salle.idsalle].totalHeures %}#}
+                    {%  endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+            {% if places|length == 0 %}
+                <div class="well">
+                    <ul class="nav nav-list">
+                        <li>
+                            <span>{{ "Aucune place sélectionner dans votre panier"|trans }}</span>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <table class="table table-striped table-hover">
+                    <thead>
                     <tr>
-                        {% set total30Minutes = panier_salle[salle.idsalle].totalHeures * 2 %}
-                        {#<form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">#}
-                            <td>{{ salle.nomsalle }}</td>
+                        <th>Place choisie</th>
+                        <th>Nombre d'heures</th>
+                        <th>Prix à l'heure</th>
+                        <th>Total TTC</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {# @var place \AppBundle\Entity\Place #}
+                    {%  for place in places %}
+                        <tr>
+                            {% set total30Minutes = panier_place[place.idplace].totalHeures * 2 %}
+                            {#<form action="{{ path('ajout_panier_place', { 'id' : place.idplace }) }}" method="get">#}
+                            <td>{{ place.nomplace }}</td>
                             <td>
-                                {{ "De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('H:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures ~ 'H' }}
+                                {{ "De " ~ panier_place[place.idplace].heureChoixDebut|date('H:i') ~ " à " ~ panier_place[place.idplace].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_place[place.idplace].totalHeures ~ 'H' }}
                                 {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
-                                {% if panier_salle[salle.idsalle].totalMinutes >= 30 %}
-                                    {% set totalMinutes =  (2 * salle.capacitymax )  %}
-                                    {{ panier_salle[salle.idsalle].totalMinutes ~ 'min' }}
+                                {% if panier_place[place.idplace].totalMinutes >= 30 %}
+                                    {% set totalMinutes =  2  %}
+                                    {{ panier_place[place.idplace].totalMinutes ~ 'min' }}
                                 {% else %}
                                     {% set totalMinutes = 0 %}
                                 {% endif %}
 
-                                {#<a href="{{ path('delete_panier_salle', { 'id' : salle.idsalle }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
-                                <button type="button" class="buttonDeleteSalle glyphicon glyphicon-trash" value="{{ salle.idsalle }}"></button>
+                                {#<a href="{{ path('delete_panier_place', { 'id' : place.idplace }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
+                                <button type="button" class="buttonDeletePlace glyphicon glyphicon-trash" value="{{ place.idplace }}"></button>
                             </td>
 
-                            <td>{{ salle.prixsalle }} €</td>
-                            {% if panier_salle[salle.idsalle].totalHeures >= 5 or (panier_salle[salle.idsalle].totalHeures >= 5 and  panier_salle[salle.idsalle].totalMinutes >= 30)  %}
-                                <td>{{ salle.prixsalle * 4 }} €</td>
-                                {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 4 %}
-                            {% elseif (panier_salle[salle.idsalle].totalHeures == 3 and panier_salle[salle.idsalle].totalMinutes >= 30) or panier_salle[salle.idsalle].totalHeures >= 4 %}
-                                <td>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes - (2 * salle.capacitymax) }} €</td>
-                                {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax)  %}
-                                {% set thirdHourFree = (2 * salle.capacitymax) %}
+                            <td>{{ place.prixplace }} €</td>
+                            {% if panier_place[place.idplace].totalHeures >= 5 or (panier_place[place.idplace].totalHeures >= 5 and  panier_place[place.idplace].totalMinutes >= 30)  %}
+                                <td>{{ place.prixplace * 4 }} €</td>
+                                {% set totalSalleTTC =  totalSalleTTC + place.prixplace * 4 %}
+                            {% elseif (panier_place[place.idplace].totalHeures == 3 and panier_place[place.idplace].totalMinutes >= 30) or panier_place[place.idplace].totalHeures >= 4 %}
+                                <td>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes - 2 }} €</td>
+                                {% set totalSalleTTC =  totalSalleTTC + place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
+                                {% set thirdHourFree = (2 * place.capacitymax) %}
                             {% else %}
-                                <td>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</td>
-                                {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
+                                <td>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes }} €</td>
+                                {% set totalSalleTTC =  totalSalleTTC + place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
                             {% endif %}
 
-                        {#</form>#}
-                    </tr>
-                    {#{% set totalSalleHT = totalSalleHT + (salle.prixsalle * panier_salle[salle.idsalle].totalHeures) %}#}
-                    {#{% set totalSalleTTC = totalSalleTTC + (salle.prixsalle * panier_salle[salle.idsalle].totalHeures)|tva(salle.tva.multiplicate) * panier_salle[salle.idsalle].totalHeures %}#}
-
-
-                    {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : refSalleTva['%' ~ salle.tva.valeur] + ( salle.prixsalle * panier_salle[salle.idsalle].totalHeures)|montantTva(salle.tva.multiplicate) }) %}
-
-                    {#{% set totalSalleTTC =  totalSalleTTC +  salle.prixsalle * panier_salle[salle.idsalle].totalHeures %}#}
-                {%  endfor %}
-                </tbody>
-            </table>
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Produits</th>
-                        <th>Quantité</th>
-                        <th>Prix unitaire</th>
-                        <th>Total HT</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    {% if produits|length == 0 %}
-                        <tr>
-                            <td colspan="4"><center>Aucun articles dans votre panier</center></td>
-                        </tr>
-                    {% endif %}
-
-                    {% for produit in produits %}
-                        <tr>
-                            {#<form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">#}
-                                <td>{{ produit.nomproduit }}</td>
-                                <td>
-                                    <select name="qte" class="span1 select-qte-produit">
-                                        {% for i in 1..10 %}
-                                            <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>
-                                        {% endfor %}
-                                    </select>
-                                    {#<a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
-                                    <button type="button" class="buttonDeleteProduit glyphicon glyphicon-trash" value="{{ produit.idproduit }}" ></button>
-                                </td>
-                                <td>{{ produit.prixproduit }} €</td>
-                                <td>{{ produit.prixproduit * panier[produit.idproduit] }} €</td>
                             {#</form>#}
                         </tr>
-                        {% set totalProduitHT = totalProduitHT + (produit.prixproduit * panier[produit.idproduit]) %}
-                        {% set totalProduitTTC = totalProduitTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}
-                        {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + ( produit.prixproduit * panier[produit.idproduit])|montantTva(produit.tva.multiplicate) }) %}
-                    {% endfor %}
-                </tbody>
-            </table>
-            {% if produits|length != 0 or salles|length != 0 %}
+                        {#{% set totalSalleHT = totalSalleHT + (place.prixplace * panier_place[place.idplace].totalHeures) %}#}
+                        {#{% set totalSalleTTC = totalSalleTTC + (place.prixplace * panier_place[place.idplace].totalHeures)|tva(place.tva.multiplicate) * panier_place[place.idplace].totalHeures %}#}
+
+
+                        {% set refSalleTva = refSalleTva|merge({ ('%' ~ place.tva.valeur) : refSalleTva['%' ~ place.tva.valeur] + ( place.prixplace * panier_place[place.idplace].totalHeures)|montantTva(place.tva.multiplicate) }) %}
+
+                        {#{% set totalSalleTTC =  totalSalleTTC +  place.prixplace * panier_place[place.idplace].totalHeures %}#}
+                    {%  endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+            {% if produits|length == 0 %}
+                <div class="well">
+                    <ul class="nav nav-list">
+                        <li>
+                            <span>{{ "Aucun articles dans votre panier"|trans }}</span>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Produits</th>
+                            <th>Quantité</th>
+                            <th>Prix unitaire</th>
+                            <th>Total HT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+
+
+                        {% for produit in produits %}
+                            <tr>
+                                {#<form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">#}
+                                    <td>{{ produit.nomproduit }}</td>
+                                    <td>
+                                        <select name="qte" class="span1 select-qte-produit">
+                                            {% for i in 1..10 %}
+                                                <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {#<a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
+                                        <button type="button" class="buttonDeleteProduit glyphicon glyphicon-trash" value="{{ produit.idproduit }}" ></button>
+                                    </td>
+                                    <td>{{ produit.prixproduit }} €</td>
+                                    <td>{{ produit.prixproduit * panier[produit.idproduit] }} €</td>
+                                {#</form>#}
+                            </tr>
+                            {% set totalProduitHT = totalProduitHT + (produit.prixproduit * panier[produit.idproduit]) %}
+                            {% set totalProduitTTC = totalProduitTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}
+                            {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + ( produit.prixproduit * panier[produit.idproduit])|montantTva(produit.tva.multiplicate) }) %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+            {% if produits|length != 0 or salles|length != 0 or places|length != 0 %}
             <dl class="dl-horizontal pull-right">
                 {% if produits|length != 0 %}
                     <dt>Total Produits HT :</dt><dd>{{ totalProduitHT|number_format(2, '.', ',')  }}€</dd>

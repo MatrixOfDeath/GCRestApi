@@ -310,11 +310,11 @@ class PanierController extends Controller
             $em->flush();
             unset($panier_salle[$id]);
             $session->set('panier_salle',$panier_salle);
-            $this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
+            $this->get('session')->getFlashBag()->add('success','Salle supprimé avec succès');
             return new Response(json_encode("Success"));
         }else{
-            $this->get('session')->getFlashBag()->add('nodfound','Article déjà supprimé');
-            return new Response(json_encode("Produit not found"));
+            $this->get('session')->getFlashBag()->add('error','Salle déjà supprimé');
+            return new Response(json_encode("Sallenot found"));
         }
     }
 
@@ -327,7 +327,7 @@ class PanierController extends Controller
     public function ajaxSupprimerPlaceAction(Request $request, SessionInterface $session)
     {
         $panier_place = $session->get('panier_place');
-        $id = $request->request->get('idsalle');
+        $id = $request->request->get('idplace');
         if (array_key_exists($id, $panier_place))
         {
             $em = $this->getDoctrine()->getManager();
@@ -337,11 +337,11 @@ class PanierController extends Controller
             $em->flush();
             unset($panier_place[$id]);
             $session->set('panier_place',$panier_place);
-            $this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
+            $this->get('session')->getFlashBag()->add('success','Place supprimé avec succès');
             return new Response(json_encode("Success"));
         }else{
-            $this->get('session')->getFlashBag()->add('nodfound','Article déjà supprimé');
-            return new Response(json_encode("Produit not found"));
+            $this->get('session')->getFlashBag()->add('error','Place déjà supprimé');
+            return new Response(json_encode("Place not found"));
         }
     }
 
@@ -471,6 +471,7 @@ class PanierController extends Controller
             return new Response(json_encode("Success"));
 
         }else {
+            $session->getFlashBag()->add('error', 'Erreur ajout salle');
             return new Response(json_encode("Erreur"));
 
         }
@@ -530,13 +531,13 @@ class PanierController extends Controller
             }
             $session->set('panier_place', $panier_place);
 
-            $responseResa = $this->addReservationFromSession($request, $session, $id);
+            $responseResa = $this->addPlaceReservationFromSession($request, $session, $id);
 
             return new Response(json_encode("Success"));
 
         }else {
+            $session->getFlashBag()->add('error', 'Erreur ajout place');
             return new Response(json_encode("Erreur"));
-
         }
     }
 
@@ -550,8 +551,6 @@ class PanierController extends Controller
 
         if (!$session->has('panier_salle')) $session->set('panier_salle',array(array()));
         $panier_salle = $session->get('panier_salle');
-//        if (!$session->has('panier')) $session->set('panier',array());
-//        $panier = $session->get('panier');
 
         if( $panier_salle[$idSalle] && $panier_salle[$idSalle]['heureChoixDebut'] && $panier_salle[$idSalle]['heureChoixFin'] && $panier_salle[$idSalle]['date'] ) {
 
@@ -603,6 +602,67 @@ class PanierController extends Controller
         }
     }
 
+
+    /**
+     * @param Request $request
+     * @param SessionInterface $session
+     * @param $idPlace
+     * @return string
+     */
+    private function addPlaceReservationFromSession(Request $request, SessionInterface $session, $idPlace){
+
+        if (!$session->has('panier_place')) $session->set('panier_place',array(array()));
+        $panier_place = $session->get('panier_place');
+
+        if( $panier_place[$idPlace] && $panier_place[$idPlace]['heureChoixDebut'] && $panier_place[$idPlace]['heureChoixFin'] && $panier_place[$idPlace]['date'] ) {
+
+            $heureChoixDebut = $panier_place[$idPlace]['heureChoixDebut'];
+            $heureChoixFin = $panier_place[$idPlace]['heureChoixFin'];
+            $dateReservation = $panier_place[$idPlace]['date'];
+
+            if (array_key_exists($idPlace, $panier_place)) {
+
+                $em = $this->getDoctrine()->getManager();
+
+                if (empty( $panier_place[$idPlace]['idReservation'])) {
+
+                    $reservation = new Reservation();
+                    $reservation->setHeuredebut(new \DateTime($heureChoixDebut));
+                    $reservation->setHeurefin(new \DateTime($heureChoixFin));
+                    $reservation->setDatereservation($dateReservation);
+                    $reservation->setIdplace($em->getRepository('AppBundle:Place')->find((int)$idPlace));
+                    $reservation->setIdpersonne($this->getUser());
+                    $reservation->setRemarquereservation('Reservation auto session :test admin');
+                    $reservation->setStatut(0); // Reservation non confirmé statut : Draft
+
+                    $em->persist($reservation);
+                    $em->flush();
+                    $panier_place[$idPlace]['idReservation'] = $reservation->getIdreservation();
+
+                    $session->getFlashBag()->add('notice', 'Votre réservation sera valider uniquement après le paiement');
+                    $session->set('panier_place', $panier_place);
+
+                } else {
+
+                    $reservation = $em->getRepository('AppBundle:Reservation')->find((int)$panier_place[$idPlace]['idReservation']);
+                    $reservation->setHeuredebut(new \DateTime($heureChoixDebut));
+                    $reservation->setHeurefin(new \DateTime($heureChoixFin));
+                    $reservation->setDatereservation($dateReservation);
+                    $reservation->setRemarquereservation('Modification réservation auto session : test admin');
+                    $em->persist($reservation);
+                    $em->flush();
+                }
+
+                // On retourne l'id de la reservation
+                return $reservation->getIdreservation()." Reservation enregistré idReservation:".$panier_place[$idPlace]['idReservation'] ;
+            }
+            else{
+                return "idPlace doesn't exist";
+            }
+        }else{
+            return "Not enough information in session to add reservation";
+        }
+    }
     /**
      * TODO : Remove this and do it in CommandController after validation
      * Ajout de la commmande en bdd à partir de la session
