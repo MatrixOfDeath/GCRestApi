@@ -138,12 +138,10 @@ class SalleController extends FOSRestController
         ));
     }
 
-    /** TODO: change to salles_disponible_by_date
+    /**
+     * TODO: change to salles_disponible_by_date
      * @Route("/disponible", options={"expose"=true}, name="salles_disponible")
-     *
-     *
      * @Method({"GET", "POST"})
-     *
      */
     public function sallesDisponibleAction(Request $request){
         $sallesDispo = null;
@@ -284,8 +282,6 @@ class SalleController extends FOSRestController
 
         return $this->redirectToRoute('salle_index');
     }
-
-
 
     /**
      * Verification si une salle est disponible selon un creneau horaire

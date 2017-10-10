@@ -17,60 +17,70 @@
 {% endblock %}
 
 {% block firstBlock %}
-<div id="carte-places-individuelles">
-    <div class="wrapper">
-        <div class="container">
-            <h1>Carte interactives des places individuelles</h1>
-            <div id="seat-map">
-                <div class="front-indicator">Salle OpenSpace</div>
+
+<div class="row">
+    <div class="col-md-3" id="" role="navigation">
+        <div class="row recherche-horaire">
+            <div class="col-xs-2">
             </div>
-            <div class="booking-details">
-                <h2>Détail Réservation</h2>
-                <h3>Place selectionné (<span id="counter">0</span>):</h3>
-                <ul id="selected-seats">
-                </ul>
-                Total: <b>€<span id="total">0</span></b>
-                <button class="checkout-button">Valider &raquo;</button>
-                <div id="legend"></div>
+            <div class="col-xs-8">
+                {# Choix de la date #}
+                <form id="room-search-form">
+                    <div id="reservation-date-picker" class="form-group">
+                        <label> {{  "Choisir votre date"|trans }} </label>
+                        <input id="datepicker" type="text" name="reservation-date" value="{{ 'now'|date('d/m/Y', "Europe/Paris") }}">
+                        <input type="hidden" id="datepicker-altFormat" name="begin_date" value="{{ 'now'|date('Y-m-d', "Europe/Paris") }}"/>
+                    </div>
+                </form>
+
+                <button class="btn btn-block btn-primary buttonSearchPlace">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> {{  "Rechercher"|trans }}
+                </button>
+            </div>
+            <div class="col-xs-2">
+            </div>
+        </div>
+        <div class="row panier-menu">
+            {{ render(controller('AppBundle:Panier:ajaxPanier')) }}
+        </div>
+    </div>
+
+    <div class="col-md-9 reservation-result-container">
+        <div class="row tunnel-achat">
+            {% embed ":reservation:tunnel-place-breadcrumb.html.twig" %}
+
+            {% endembed %}
+        </div>
+        <div class="row reservation-select-creneau">
+            <div id="time-range">
+                <p>{{ 'Créneau horaire'|trans }}:<br> <span class="slider-time">{{ minHeure }}</span>H - <span class="slider-time2">{{ maxHeure }}</span>H
+                </p>
+
+                <div id="slider-range">
+                    <input class="heureActuelleDefaut" type="hidden" value="{{ 'now'|date('H:i:Y-m-d', "Europe/Paris") }}">
+                    <input class="minHeure" type="hidden" value="{{ minHeure }}">
+                    <input class="maxHeure" type="hidden" value="{{ maxHeure }}">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <a href="#" id="list" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th-list"></span>Liste
+            </a>
+            <a href="#" id="grid" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th"></span>Grille
+            </a>
+        </div>
+        <div class="row" id="display-ajax-content">
+            {# On appelle le template salleDisponible en embed #}
+            <div id="display-salle">
+                {% embed ":place:placesDisponible.html.twig" %}
+
+                {% endembed %}
+
             </div>
         </div>
     </div>
 </div>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Nomplace</th>
-                <th>Statutplace</th>
-                <th>Idplace</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for place in places %}
-            <tr>
-                <td><a href="{{ path('place_show', { 'idplace': place.idplace }) }}">{{ place.nomplace }}</a></td>
-                <td>{{ place.statutplace }}</td>
-                <td>{{ place.idplace }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('place_show', { 'idplace': place.idplace }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('place_edit', { 'idplace': place.idplace }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('place_new') }}">Create a new place</a>
-        </li>
-    </ul>
 
 {% endblock %}

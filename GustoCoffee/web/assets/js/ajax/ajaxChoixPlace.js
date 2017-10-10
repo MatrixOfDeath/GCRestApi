@@ -1,11 +1,12 @@
 // Ajout d'une salle en ajax au click du bouton Choisir Salle
-$(document).on('click', 'button.btn-success.buttonAddSalle', function(){
+$(document).on('click', 'div.seatCharts-seat.seatCharts-cell', function(){
 
     var choixDebut = $('.slider-time').text();
     var choixFin = $('.slider-time2').text();
     // var arrTime = $('#slider-range .heureActuelleDefaut').val().split(':');
     // var dateDuJour = arrTime[2];
-    var idSalle = $(this).val();
+    var idPlace = $(this).id;
+    console.log($(this).attr('id'));
     var date =  $('#datepicker-altFormat').val();
     console.log('date altFormat' + date);
 
@@ -19,12 +20,12 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
 
     // 1- On vérifie la disponbilité de la salle
     $.ajax({
-        url: Routing.generate('salles_disponible_ajax'),
+        url: Routing.generate('places_disponible_ajax'),
         type: "POST",
         data: {
             "heureChoixDebut": date + ' ' + choixDebut +':00',
             "heureChoixFin": date + ' ' + choixFin +':00',
-            "idSalle" : idSalle,
+            "idPlace" : idPlace,
             "date": date
         },
         success: function (isDispo, textStatus)
@@ -32,12 +33,12 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
             if(isDispo = '1') {
                 //2- On ajoute la salle choisi dans session du panier
                 $.ajax({
-                    url: Routing.generate('ajout_panier_salle'),
+                    url: Routing.generate('ajout_panier_place'),
                     type: "POST",
                     data: {
                         "heureChoixDebut": date + ' ' + choixDebut +':00',
                         "heureChoixFin": date + ' ' + choixFin +':00',
-                        "id" : idSalle,
+                        "id" : idPlace,
                         "date": date
                     },
                     async: true,
@@ -73,13 +74,13 @@ $(document).on('click', 'button.btn-success.buttonAddSalle', function(){
                                         }
                                     });
                                 }else{
-                                    alert('La salle n\'est plus disponible');
+                                    alert('La place n\'est plus disponible');
                                 }
                             },
                             // 3-
                             error: function(data) {
                                 console.log(data);
-                                alert('Problème ajout de la salle choisi');
+                                alert('Problème ajout de la place choisi');
 
                             }
                         });
@@ -114,10 +115,6 @@ function unblockValidationTab(){
     $('#tab-link-validation > span').removeClass('grayForbidden');
 }
 
-$(document).on('slidestop', '#slider-range' , function(event, ui){
-    ajaxRechercheSalles();
-});
-
 function refreshPanierIconMenu(){
     $.ajax({
         url: Routing.generate('ajax_panier_icon_menu'),
@@ -136,50 +133,4 @@ function refreshPanierIconMenu(){
     });
 }
 
-function ajaxRechercheSalles(){
-    var choixDebut = $('.slider-time').text();
-    var choixFin = $('.slider-time2').text();
-    var date =  $('#datepicker-altFormat').val();
-    // var arrTime = $('#slider-range .heureActuelleDefaut').val().split(':');
-    // var dateDuJour = arrTime[2];
-    // if (!date && !dateDuJour){
-    //     date = dateDuJour;
-    // }
-    //console.log(date + ' ' + choixDebut +':00');
-    //console.log(date + ' ' + choixFin +':00');
-
-    $('#slider-range .heureActuelleDefaut').val("");
-
-    that = $(this);
-
-    //$("body").css({"opacity": "0.5", "background-color":"#000"});
-    $('#display-salle').append().load('/assets/loader.html').fadeIn();
-
-    if($('#seat-map').length)
-        $url = 'places_disponible';
-    else
-        $url = 'salles_disponible';
-    $.ajax({
-        url: Routing.generate($url),
-        type: "POST",
-        data: {
-            "heureChoixDebut": date + ' ' + choixDebut +':00',
-            "heureChoixFin": date + ' ' + choixFin +':00',
-        },
-        async: true,
-        success: function (response, textStatus)
-        {
-            $('#display-salle').empty().append(response);
-            //$("body").css({"opacity": "1", "background-color":"#fff"});
-
-        },
-        error: function(data) {
-            console.log(data);
-            alert('Problème dans la recherche des disponibilités de salles');
-            //$("body").css({"opacity": "1", "background-color":"#fff"});
-
-        }
-    });
-    return false;
-}
 

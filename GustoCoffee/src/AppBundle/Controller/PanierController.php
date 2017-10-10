@@ -96,12 +96,17 @@ class PanierController extends Controller
         else
             $nbsalles = count($session->get('panier_salle'));
 
+        if (!$session->has('panier_place'))
+            $nbplaces = 0;
+        else
+            $nbplaces = count($session->get('panier_place'));
+
         if (!$session->has('totalTTC'))
             $totalTTC = 0;
         else
             $totalTTC = $session->get('totalTTC');
 
-        $numberItems = $articles + $nbsalles;
+        $numberItems = $articles + $nbsalles + $nbplaces;
         $htmlToRender = $this->renderView('panier/ajaxIconPanier.html.twig', array(
             'numberItems' => $numberItems,
             'totalTTC' => $totalTTC
@@ -127,8 +132,13 @@ class PanierController extends Controller
         else
             $nbsalles = count($session->get('panier_salle'));
 
+        if (!$session->has('panier_place'))
+            $nbplaces = 0;
+        else
+            $nbplaces = count($session->get('panier_place'));
 
-        if($nbsalles > 0 || $articles > 0)
+
+        if($nbsalles > 0 || $articles > 0 || $nbplaces > 0)
             return new Response (json_encode("Success"));
         else
             return new Response (json_encode("Not allowed"));
@@ -147,17 +157,21 @@ class PanierController extends Controller
     {
         if (!$session->has('panier')) $session->set('panier', array());
         if (!$session->has('panier_salle')) $session->set('panier_salle', array());
+        if (!$session->has('panier_place')) $session->set('panier_place', array());
         if (!$session->has('totalTTC')) $session->set('totalTTC', 0);
 
         $em = $this->getDoctrine()->getManager();
         $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($session->get('panier')));
         $salles = $em->getRepository('AppBundle:Salle')->findArray(array_keys($session->get('panier_salle')));
+        $places = $em->getRepository('AppBundle:Place')->findArray(array_keys($session->get('panier_place')));
 
         return $this->render('panier/layout/panier.html.twig', array(
             'produits' => $produits,
             'salles' => $salles,
+            'places' => $places,
             'panier' => $session->get('panier'),
             'panier_salle' => $session->get('panier_salle'),
+            'panier_place' => $session->get('panier_place'),
         ));
     }
 
@@ -174,17 +188,20 @@ class PanierController extends Controller
     {
         if (!$session->has('panier')) $session->set('panier', array());
         if (!$session->has('panier_salle')) $session->set('panier_salle', array());
+        if (!$session->has('panier_place')) $session->set('panier_place', array());
         if (!$session->has('totalTTC')) $session->set('totalTTC', 0);
 
         $em = $this->getDoctrine()->getManager();
         $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($session->get('panier')));
         $salles = $em->getRepository('AppBundle:Salle')->findArray(array_keys($session->get('panier_salle')));
+        $places = $em->getRepository('AppBundle:Place')->findArray(array_keys($session->get('panier_place')));
 
         $htmlToRender = $this->renderView('panier/layout/ajaxpanier.html.twig', array(
             'produits' => $produits,
             'salles' => $salles,
             'panier' => $session->get('panier'),
             'panier_salle' => $session->get('panier_salle'),
+            'panier_place' => $session->get('panier_place'),
         ));
 
         return new Response ($htmlToRender);
@@ -254,9 +271,28 @@ class PanierController extends Controller
         return $this->redirect($this->generateUrl('panier'));
     }
 
-
     /**
-     * Delete panier_salle session.
+     * Delete panier place session.
+     *
+     * @Route("/delete-place/{id}", name="delete_panier_place")
+     * @Method({"GET", "POST"})
+     */
+    public function supprimerPlaceAction(SessionInterface $session, $id)
+    {
+        $panier_place = $session->get('panier_place');
+
+        if (array_key_exists($id, $panier_place))
+        {
+            unset($panier_place[$id]);
+            $session->set('panier_place',$panier_place);
+            $this->get('session')->getFlashBag()->add('success','Place supprimé avec succès');
+        }
+        return $this->redirect($this->generateUrl('panier'));
+    }
+
+
+        /**
+     * Delete panier_place session.
      *
      * @Route("/ajax-delete-salle", options={"expose"=true}, name="ajax_delete_panier_salle")
      * @Method({"GET", "POST"})
@@ -274,6 +310,33 @@ class PanierController extends Controller
             $em->flush();
             unset($panier_salle[$id]);
             $session->set('panier_salle',$panier_salle);
+            $this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
+            return new Response(json_encode("Success"));
+        }else{
+            $this->get('session')->getFlashBag()->add('nodfound','Article déjà supprimé');
+            return new Response(json_encode("Produit not found"));
+        }
+    }
+
+    /**
+     * Delete panier_place session.
+     *
+     * @Route("/ajax-delete-salle", options={"expose"=true}, name="ajax_delete_panier_place")
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxSupprimerPlaceAction(Request $request, SessionInterface $session)
+    {
+        $panier_place = $session->get('panier_place');
+        $id = $request->request->get('idsalle');
+        if (array_key_exists($id, $panier_place))
+        {
+            $em = $this->getDoctrine()->getManager();
+
+            $reservation = $em->getRepository('AppBundle:Reservation')->find((int)$panier_place[$id]['idReservation']);
+            $em->remove($reservation);
+            $em->flush();
+            unset($panier_place[$id]);
+            $session->set('panier_place',$panier_place);
             $this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
             return new Response(json_encode("Success"));
         }else{
@@ -360,8 +423,7 @@ class PanierController extends Controller
     {
         if (!$session->has('panier_salle')) $session->set('panier_salle',array());
         $panier_salle = $session->get('panier_salle');
-        if (!$session->has('panier')) $session->set('panier',array());
-        $panier = $session->get('panier');
+
 
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('id')) {
 
@@ -403,6 +465,70 @@ class PanierController extends Controller
 
             }
             $session->set('panier_salle', $panier_salle);
+
+            $responseResa = $this->addReservationFromSession($request, $session, $id);
+
+            return new Response(json_encode("Success"));
+
+        }else {
+            return new Response(json_encode("Erreur"));
+
+        }
+    }
+
+    /**
+     * @param SessionInterface $session
+     * @param Request $request
+     * @return RedirectResponse|Response
+     * @Route("/ajouter-place", options={"expose"=true}, name="ajout_panier_place")
+     * @Method({"GET", "POST"})
+     */
+    public function ajaxAjouterPlaceAction(SessionInterface $session, Request $request)
+    {
+        if (!$session->has('panier_place')) $session->set('panier_place',array());
+        $panier_place = $session->get('panier_place');
+
+
+        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('id')) {
+
+            $heureChoixDebut = $request->request->get('heureChoixDebut');
+            $heureChoixFin = $request->request->get('heureChoixFin');
+            $id = $request->request->get('id');
+            $date = $request->request->get('date');
+            if ($date or $date == ""){
+                $date = new \Datetime();
+            }
+            $d1 = new \DateTime($heureChoixDebut);
+            $d2 = new \DateTime($heureChoixFin);
+            $interval = $d1->diff($d2);
+
+
+            if (array_key_exists($id, $panier_place)) {
+                $panier_place[$id] = array(
+                    'heureChoixDebut' => $heureChoixDebut,
+                    'heureChoixFin' => $heureChoixFin,
+                    'date' => $date,
+                    'totalHeures' => $interval->h,
+                    'totalMinutes' => $interval->i,
+                    'idReservation' => $panier_place[$id]['idReservation'],
+//               'idReservation' => null,
+//                'idCommande' => null
+                );
+                $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');
+            } else {
+                $panier_place[$id] = array(
+                    'heureChoixDebut' => $heureChoixDebut,
+                    'heureChoixFin' => $heureChoixFin,
+                    'date' => $date,
+                    'totalHeures' => $interval->h,
+                    'totalMinutes' => $interval->i,
+                    'idReservation' => null,
+//                  'idCommande' => null
+                );
+                $session->getFlashBag()->add('success', 'Salle ajouté avec succès');
+
+            }
+            $session->set('panier_place', $panier_place);
 
             $responseResa = $this->addReservationFromSession($request, $session, $id);
 

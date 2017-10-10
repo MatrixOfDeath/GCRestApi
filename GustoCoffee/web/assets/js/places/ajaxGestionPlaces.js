@@ -3,15 +3,36 @@ var firstSeatLabel = 1;
 $(document).ready(function() {
 
     if($('#seat-map').length &&  $('#selected-seats').length){
-        initCarteInteractive();
+
+        //$('#display-salle').append().load('/assets/loader.html').fadeIn();
+        $.ajax({
+            url: Routing.generate('ajax_places_map'),
+            type: "GET",
+            async: true,
+            success: function (map, textStatus)
+            {
+                initCarteInteractive(map);
+                //$("body").css({"opacity": "1", "background-color":"#fff"});
+
+            },
+            error: function(data) {
+                console.log(data);
+                alert('Problème initialisation des places');
+                //$("body").css({"opacity": "1", "background-color":"#fff"});
+
+            }
+        });
+
     }
 
-    function initCarteInteractive(){
+    function initCarteInteractive(map){
         var $cart = $('#selected-seats'),
             $counter = $('#counter'),
             $total = $('#total'),
+
             sc = $('#seat-map').seatCharts({
-                map: ["pp_ppp_ppp_pp","pp_ppp_ppp_pp","__________","pp_ppp_ppp_pp","pp_ppp_ppp_pp","pp_ppp_ppp_pp","__________","pp_ppp_ppp_pp","pp_ppp_ppp_pp","pp_ppp_ppp_pp","__________","pp_ppp_ppp_pp","pp_ppp_ppp_pp","pp_ppp_ppp_pp","__________","pp_ppp_ppp_pp"],
+                map: $.parseJSON(map),
+
                 seats: {
                     n: {
                         price: 5,

@@ -34,28 +34,67 @@ class LoadFixturePlace extends AbstractFixture implements OrderedFixtureInterfac
 
         $manager->getClassMetadata(Place::class)->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
 
-        $j = 1;
-        $c = 'A';
-        $p = 1;
-        for ($i = 1; $i <= 120; $i++) {
-            if ($j > 10) {
-                $c++;
-                $p++;
-                $j = 1;
-            }
-            echo $c . "" .$j . "  position: ". $p."_". $j ."\n";
-            $item1 = new Place();
-            $item1->setNomplace($c."".$j);
-            $item1->setPosition($p."_". $j);
-            $item1->setColonne($j);
-            $item1->setLigne($p);
-            $item1->setStatutplace("libre");
-//            $item1->setIdsalle($this->getReference());
-           // $this->addReference('_reference_AppBundleEntityPlace'.$i, $item1);
-            $manager->persist($item1);
-            $manager->flush();
+//        $j = 1;
+//        $c = 'A';
+//        $p = 1;
+//        for ($i = 1; $i <= 120; $i++) {
+//            if ($j > 10) {
+//                $c++;
+//                $p++;
+//                $j = 1;
+//            }
+//            echo $c . "" .$j . "  position: ". $p."_". $j ."\n";
+//            $item1 = new Place();
+//            $item1->setNomplace($c."".$j);
+//            $item1->setPosition($p."_". $j);
+//            $item1->setColonne($j);
+//            $item1->setLigne($p);
+//            $item1->setStatutplace("libre");
+////            $item1->setIdsalle($this->getReference());
+//           // $this->addReference('_reference_AppBundleEntityPlace'.$i, $item1);
+//            $manager->persist($item1);
+//            $manager->flush();
+//
+//            $j++;
+//        }
 
-            $j++;
+        $line = 1;
+        $car = 'A';
+        $maxligne=12;
+        $maxcolonne=10;
+        for ($i = 1 ; $i <= $maxligne ; $i++){
+            $row = '' ;
+            $col = 1;
+            for ($j = 1 ; $j <= $maxcolonne ; $j++){
+                if($j % 3 == 0  && $j != 1) {
+                    $row .= '_';
+                    ++$col;
+                }
+                $row .= 'p';
+                // Ajout de place en bdd aux bonnes positions
+                echo 'Nom place: '.$car.$col . "Position: ". $line."_". $col ."\n";
+                $item1 = new Place();
+                $item1->setNomplace($car.$col);
+                $item1->setPosition($line."_". $line);
+                $item1->setLigne($line);
+                $item1->setColonne($col);
+                $item1->setStatutplace("libre");
+//            $item1->setIdsalle($this->getReference());
+                // $this->addReference('_reference_AppBundleEntityPlace'.$i, $item1);
+                $manager->persist($item1);
+                $manager->flush();
+                $col++;
+            }
+            if ($i % 3 == 0){
+                $vide = '' ;
+                for($v = 1 ; $v <= $maxcolonne ; $v++){
+                    $vide .= '_';
+                }
+                $line++;
+                $car++;
+            }
+            $car++;
+            $line++;
         }
 
 //        $item1 = new Place();

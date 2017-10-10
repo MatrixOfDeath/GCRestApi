@@ -17,6 +17,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Place
 {
+
+
     /**
      * @var integer
      *
@@ -25,6 +27,12 @@ class Place
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idplace;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="idplace")
+     */
+    private $reservation;
 
     /**
      * @var string
@@ -60,6 +68,24 @@ class Place
      * @ORM\Column(name="ligne", type="string", length=25, nullable=true)
      */
     private $ligne;
+
+    /**
+     * @var \AppBundle\Entity\Salle
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Salle")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idSalle", referencedColumnName="idSalle")
+     * })
+     */
+    private $idsalle;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reservation = new ArrayCollection();
+    }
 
     /**
      * @return string
@@ -108,16 +134,6 @@ class Place
     {
         $this->position = $position;
     }
-
-    /**
-     * @var \AppBundle\Entity\Salle
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Salle")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idSalle", referencedColumnName="idSalle")
-     * })
-     */
-    private $idsalle;
 
     /**
      * Set nomplace
