@@ -336,6 +336,27 @@ class PlaceController extends FOSRestController
     }
 
     /**
+     * @Route("/unavailable", options={"expose"=true}, name="ajax_places_unavailable")
+     * @Method({"GET", "POST"})
+     * @return Response
+     */
+    public function ajaxGetUnavailablePlaces()
+    {
+        $idsalle = 4; //get id openspace
+        $em = $this->getDoctrine()->getManager();
+        //$allPlaces = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
+
+        $actualDate = new \DateTime(date('y-m-d H:i:s'));
+        $plusOneHour = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
+        $places = $em->getRepository('AppBundle:Place')->checkUnavailablePlace($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
+        //$idplaces = array_column($places, 'idplace');
+
+        //var_dump($idplaces);
+        $map = array();
+
+        return new  Response(json_encode($places, JSON_NUMERIC_CHECK, 32));
+    }
+    /**
      * @Route("/map", options={"expose"=true}, name="ajax_places_map")
      * @Method({"GET", "POST"})
      * @return Response

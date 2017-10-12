@@ -2,6 +2,7 @@
 
   div.seatCharts-container {
     /*min-width: 700px;*/
+    background-image: url("../img/openspace.jpg");
   }
   div.seatCharts-seat {
     background-color: green;
@@ -21,7 +22,7 @@
   */
 
   div.seatCharts-space {
-    background-color: white;
+    background-color: transparent;
   }
   div.seatCharts-row {
     height: 50px;

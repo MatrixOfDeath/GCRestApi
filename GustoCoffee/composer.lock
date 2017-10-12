@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3df092643da1c3eea1ff31aa96b7b8e4",
+    "content-hash": "20d0deebef395ed75803320fdcb85604",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2060,6 +2060,58 @@
                 "parameters management"
             ],
             "time": "2015-11-10T17:04:01+00:00"
+        },
+        {
+            "name": "indigophp/cookie-consent-bundle",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/indigophp/cookie-consent-bundle.git",
+                "reference": "47ab9ace6f2b84b3d7c1c883c5f9823ad7452f01"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/indigophp/cookie-consent-bundle/zipball/47ab9ace6f2b84b3d7c1c883c5f9823ad7452f01",
+                "reference": "47ab9ace6f2b84b3d7c1c883c5f9823ad7452f01",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "symfony/framework-bundle": "^2.7|^3.0"
+            },
+            "require-dev": {
+                "matthiasnoback/symfony-config-test": "^1.4",
+                "matthiasnoback/symfony-dependency-injection-test": "^0.7.6",
+                "phpunit/phpunit": "^4.4",
+                "symfony/symfony": "^2.7|^3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Indigo\\Bundle\\CookieConsentBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                }
+            ],
+            "description": "Symfony Bundle for the popular Cookie Consent plugin",
+            "homepage": "https://indigophp.com",
+            "keywords": [
+                "cookie"
+            ],
+            "time": "2015-12-08T20:04:45+00:00"
         },
         {
             "name": "javiereguiluz/easyadmin-bundle",
