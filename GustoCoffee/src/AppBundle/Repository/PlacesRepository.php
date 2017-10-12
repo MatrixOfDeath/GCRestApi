@@ -17,11 +17,10 @@ class PlacesRepository extends EntityRepository
      * @param $idsalle
      * @return array
      */
-    public function getAllPositions($idsalle){
-        $idsalle = 4;
-        $qb = $this->createQueryBuilder('u')
-            ->Select('u.position')
-            ->where('u.idsalle = :idsalle')
+    public function getAllPositions($idsalle=4){
+        $qb = $this->createQueryBuilder('p')
+            ->Select('p.position, p.idplace, p.nomplace')
+            ->where('p.idsalle = :idsalle')
             ->setParameter('idsalle', $idsalle);
 //            ->orderBy('u.ligne', 'ASC');
 
@@ -73,6 +72,34 @@ class PlacesRepository extends EntityRepository
         return $query->getQuery()->getResult();
     }
 
+    /**
+     * Retourne toutes les places disponibles selons un créneau horaire donné
+     * @param $heureChoixDebut
+     * @param $heureChoixFin
+     * @return array
+     */
+    public function checkDisponibilitePosition($heureChoixDebut, $heureChoixFin)
+    {
+        $subQuery = $this->createQueryBuilder('p_sub')
+            ->select('p_sub.idplace')
+            ->leftJoin('p_sub.reservation', 'r')
+            ->andwhere('r.heuredebut < :heureChoixDebut')
+            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+
+        $queryBuilder = $this->createQueryBuilder('p');
+
+        $query = $queryBuilder
+            ->select('p.position, p.idplace, p.nomplace')
+            ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
+//            ->andWhere(':heureChoixDebut < :datenow')
+            //->setParameter('datenow', date("Y-m-d H:i:s"))
+            ->setParameter('heureChoixDebut', $heureChoixDebut)
+            ->setParameter('heureChoixFin', $heureChoixFin);
+
+        return $query->getQuery()->getResult();
+    }
     /**
      * Verification si une place est disponible selon un creneau horaire
      * @param $heureChoixDebut

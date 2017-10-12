@@ -179,12 +179,14 @@ class PlaceController extends FOSRestController
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
 
-            $idPosition= $request->request->get('idPlace');
+            $idPlace= $request->request->get('idPlace');
 
+//             Todo: remove this don't need anymore we're using ids now :)
+//            $em = $this->getDoctrine()->getManager();
+//            $repository = $em->getRepository('AppBundle:Place');
+//            $idPlace = $repository->getByPosition($idPosition);
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('AppBundle:Place');
-            $idPlace = $repository->getByPosition($idPosition);
-
             $isDispo = $repository->checkIfPlaceDispo($heureChoixDebut, $heureChoixFin, $idPlace);
 
             return new Response(json_encode($isDispo));
@@ -342,11 +344,20 @@ class PlaceController extends FOSRestController
     {
         $idsalle = 4; //get id openspace
         $em = $this->getDoctrine()->getManager();
-        $places = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
+        $allPlaces = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
+
+        $actualDate = new \DateTime(date('y-m-d H:i:s'));
+        $plusOneHour = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
+        $places = $em->getRepository('AppBundle:Place')->checkDisponibilitePosition($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
 
         $map = array();
 
+
         $positions = array_column($places, 'position');
+        $allPositions = array_column($allPlaces, 'position');
+        $idplaces = array_column($places, 'idplaces');
+        $labels = array_column($places, 'nomplace');
+
         $line = 1;
         $car = 'A';
         $maxligne=12;
@@ -359,12 +370,18 @@ class PlaceController extends FOSRestController
                     $row .= '_';
                     ++$col;
                 }
-                if(in_array('1_1', $positions))
+                if(in_array($line.'_'.$col, $positions)) {
                     $row .= 'p';
-                else
+                    $arrId = array_search($line.'_'.$col, $positions);
+                    /** Finalement on revoit tout et on envoie l'id de la place + nom de la place **/
+                    $row .='['.$places[$arrId]['idplace'].','.$places[$arrId]['nomplace'].']';
+                }
+                else {
                     $row .= 'f';
-                //echo 'Name: '.$car.$col;
-                //echo ' Position: '.$line.'_'.$col.'<br>';
+                    $arrId = array_search($line.'_'.$col, $allPositions);
+                    /** Finalement on revoit tout et on envoie l'id de la place + nom de la place **/
+                    $row .='['.$allPlaces[$arrId]['idplace'].','.$allPlaces[$arrId]['nomplace'].']';
+                }
                 $col++;
             }
             if ($i % 3 == 0){

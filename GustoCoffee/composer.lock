@@ -1516,16 +1516,16 @@
         },
         {
             "name": "exsyst/swagger",
-            "version": "v0.3.0",
+            "version": "v0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GuilhemN/swagger.git",
-                "reference": "b3d6310990fc8d3c59b5ec9339070f0c33664f7c"
+                "reference": "fdf1a4a3b6516486b27111b016a68cb532d322f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GuilhemN/swagger/zipball/b3d6310990fc8d3c59b5ec9339070f0c33664f7c",
-                "reference": "b3d6310990fc8d3c59b5ec9339070f0c33664f7c",
+                "url": "https://api.github.com/repos/GuilhemN/swagger/zipball/fdf1a4a3b6516486b27111b016a68cb532d322f8",
+                "reference": "fdf1a4a3b6516486b27111b016a68cb532d322f8",
                 "shasum": ""
             },
             "require": {
@@ -1551,7 +1551,7 @@
                 }
             ],
             "description": "A php library to manipulate Swagger specifications",
-            "time": "2017-07-25T08:15:44+00:00"
+            "time": "2017-10-11T05:23:09+00:00"
         },
         {
             "name": "fig/link-util",
