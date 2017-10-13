@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>GustoCoffee Dashboard</title>
+    <title>{{ 'GustoCoffee - Dashboard'|trans }}</title>
 {% endblock %}
 
 {% block firstImg %}
@@ -13,7 +13,13 @@ topPage topPageDashboard
 {% endblock %}
 
 {% block titleHome %}
-    Dashboard CoWorking
+    <div class="banniere">
+        <h1 class="colorWhite">Dashboard</h1>
+        <h3 class="colorWhite"> <i>Retrouvez toutes vos informations ici ! </i></h3>
+    </div>
+    <button class="buttonInscription greenButton">
+        <a class="colorWhite" href="{{ path('gc_reservation_page') }}">{{ 'Réservez votre place'|trans }} </a>
+    </button>
 {% endblock %}
 
 {% block firstBlock %}
