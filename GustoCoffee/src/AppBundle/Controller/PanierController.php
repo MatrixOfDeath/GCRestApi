@@ -315,14 +315,14 @@ class PanierController extends Controller
             return new Response(json_encode("Success"));
         }else{
             $this->get('session')->getFlashBag()->add('error','Salle déjà supprimé');
-            return new Response(json_encode("Sallenot found"));
+            return new Response(json_encode("Salle not found"));
         }
     }
 
     /**
      * Delete panier_place session.
      *
-     * @Route("/ajax-delete-salle", options={"expose"=true}, name="ajax_delete_panier_place")
+     * @Route("/ajax-delete-place", options={"expose"=true}, name="ajax_delete_panier_place")
      * @Method({"GET", "POST"})
      */
     public function ajaxSupprimerPlaceAction(Request $request, SessionInterface $session)

@@ -1,8 +1,12 @@
 #carte-places-individuelles{
 
+  #seat-map{
+    width:80%;
+  }
   div.seatCharts-container {
     /*min-width: 700px;*/
     background-image: url("../img/openspace.jpg");
+    background-repeat: no-repeat;
   }
   div.seatCharts-seat {
     background-color: green;

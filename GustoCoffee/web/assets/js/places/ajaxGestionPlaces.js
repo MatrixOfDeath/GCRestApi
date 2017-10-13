@@ -134,7 +134,7 @@ $(document).ready(function() {
                     });
                 }
             });
-        }, 10000); //every 10 seconds
+        }, 60000); //every 10 seconds
         //let's pretend some seats have already been booked
         //sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
     }
