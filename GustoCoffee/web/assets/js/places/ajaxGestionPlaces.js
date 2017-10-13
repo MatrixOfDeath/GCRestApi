@@ -3,25 +3,36 @@ var firstSeatLabel = 1;
 $(document).ready(function() {
 
     if($('#seat-map').length &&  $('#selected-seats').length){
-        initCarteInteractive();
+
+        //$('#display-salle').append().load('/assets/loader.html').fadeIn();
+        $.ajax({
+            url: Routing.generate('ajax_places_map'),
+            type: "GET",
+            async: true,
+            success: function (map, textStatus)
+            {
+                initCarteInteractive(map);
+                //$("body").css({"opacity": "1", "background-color":"#fff"});
+
+            },
+            error: function(data) {
+                console.log(data);
+                alert('Problème initialisation des places');
+                //$("body").css({"opacity": "1", "background-color":"#fff"});
+
+            }
+        });
+
     }
 
-    function initCarteInteractive(){
+    function initCarteInteractive(map){
         var $cart = $('#selected-seats'),
             $counter = $('#counter'),
             $total = $('#total'),
+
             sc = $('#seat-map').seatCharts({
-                map: [
-                    'pp___ppppp',
-                    'pp___ppppp',
-                    'pp___ppppp',
-                    'pppppppppp',
-                    'pppppppppp',
-                    'pppppppppp',
-                    'pppppppppp',
-                    'pppppppppp',
-                    'pppppppppp',
-                ],
+                map: $.parseJSON(map),
+
                 seats: {
                     n: {
                         price: 5,
@@ -31,6 +42,11 @@ $(document).ready(function() {
                     p: {
                         price: 5,
                         classes: 'economy-class', //your custom CSS class
+                        category: 'Place'
+                    },
+                    f:{
+                        price: 0,
+                        classes: 'economy-class unavailable',
                         category: 'Place'
                     }
 

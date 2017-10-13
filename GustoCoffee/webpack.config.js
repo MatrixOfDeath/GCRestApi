@@ -22,7 +22,9 @@ Encore
     // Wil output Web/build/ajax.js
     .addEntry('ajax', [
         './web/assets/js/ajax/ajaxCheckDispoDate.js',
+        './web/assets/js/ajax/ajaxCheckPlaceDispoDate.js',
         './web/assets/js/ajax/ajaxChoixSalle.js',
+        './web/assets/js/ajax/ajaxChoixPlace.js',
         './web/assets/js/ajax/ajaxAjoutProduitPanier.js',
         './web/assets/js/ajax/ajaxPanier.js',
         './web/assets/js/ajax/ajaxChangeTunnelAchat.js',

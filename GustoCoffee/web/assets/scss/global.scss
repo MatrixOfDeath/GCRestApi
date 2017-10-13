@@ -354,7 +354,27 @@ footer {
   font-style: normal
 }
 
+ul li ul#dropMenu{
+  min-width: 100%; /* Set width of the dropdown */
+  display: none;
+  z-index: 999;
+  left: 0;
+  background: transparent;
+  border-color: transparent;
+  text-align: justify;
+}
 
+ul li:hover ul#dropMenu{
+  display: block;	/* Display the dropdown */
+}
+ul li ul#dropMenu li{
+  display: block;
+}
+
+#dropMenu a {
+  color: #6F4E37;
+  font-size: 1.2em;
+}
 
 @media only screen and (max-width: 768px) {
   .footer-list-header {
