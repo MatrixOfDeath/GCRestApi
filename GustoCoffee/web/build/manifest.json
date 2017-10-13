@@ -1,8 +1,13 @@
 {
   "build/ajax.js": "/build/ajax.6af9d5a5996445e4635a.js",
   "build/app.js": "/build/app.814b8292598f5ac21217.js",
+<<<<<<< HEAD
   "build/global.css": "/build/global.32a4fe0aaa7000595922ae38cf5acce0.css",
+=======
+  "build/global.css": "/build/global.ef8d3ab469847b7cd6739aa8ad1c4fdf.css",
+>>>>>>> 9c3693314ed2ca2548842529bd74d2f9c91551a4
   "build/images/backContact.jpeg": "/build/images/backContact.78de4675.jpeg",
+  "build/images/backLogin.jpg": "/build/images/backLogin.b1ca7754.jpg",
   "build/images/background_annonce.jpeg": "/build/images/background_annonce.a192672d.jpeg",
   "build/images/background_connexion.jpg": "/build/images/background_connexion.b74ac66b.jpg",
   "build/images/background_events.jpeg": "/build/images/background_events.658bd1c2.jpeg",

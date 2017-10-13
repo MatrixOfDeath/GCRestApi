@@ -13,9 +13,14 @@
 {% endblock %}
 
 {% block titleHome %}
-    Connexion CoWorking
+    <div class="banniere">
+        <h1 class="colorWhite">Connexion</h1>
+        <h3 class="colorWhite"> <i>Si on faisait partie de la même famille? </i></h3>
+    </div>
+    <button class="buttonInscription greenButton">
+        <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">{{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+    </button>
 {% endblock %}
-
 
         {#
 {% block connexion %}

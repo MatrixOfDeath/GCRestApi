@@ -12,7 +12,6 @@ use Symfony\Component\Validator\Constraints\Date;
  * @ORM\Table(name="Reservation", indexes={
  *     @ORM\Index(name="FK_Reservation_idPersonne", columns={"idPersonne"}),
  *     @ORM\Index(name="FK_Reservation_idModePaiement", columns={"idModePaiement"}),
- *     @ORM\Index(name="FK_Reservation_idMagasin", columns={"idMagasin"}),
  * })
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks()
@@ -38,6 +37,16 @@ class Reservation
      */
     private $idsalle;
 
+
+    /**
+     * @var \AppBundle\Entity\Place
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Place", inversedBy="reservation")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idPlace", referencedColumnName="idPlace")
+     * })
+     */
+    private $idplace;
     /**
      * @var \DateTime
      *
@@ -73,15 +82,15 @@ class Reservation
      */
     private $commentaireclient;
 
-    /**
-     * @var \AppBundle\Entity\Magasin
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
-     * })
-     */
-    private $idmagasin;
+//    /**
+//     * @var \AppBundle\Entity\Magasin
+//     *
+//     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin")
+//     * @ORM\JoinColumns({
+//     *   @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
+//     * })
+//     */
+//    private $idmagasin;
 
     /**
      * @var \AppBundle\Entity\ModeDePaiement
@@ -335,28 +344,44 @@ class Reservation
     }
 
 
-    /**
-     * Set idmagasin
-     *
-     * @param \AppBundle\Entity\Magasin $idmagasin
-     *
-     * @return Reservation
-     */
-    public function setIdmagasin(\AppBundle\Entity\Magasin $idmagasin = null)
-    {
-        $this->idmagasin = $idmagasin;
+//    /**
+//     * Set idmagasin
+//     *
+//     * @param \AppBundle\Entity\Magasin $idmagasin
+//     *
+//     * @return Reservation
+//     */
+//    public function setIdmagasin(\AppBundle\Entity\Magasin $idmagasin = null)
+//    {
+//        $this->idmagasin = $idmagasin;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get idmagasin
+//     *
+//     * @return \AppBundle\Entity\Magasin
+//     */
+//    public function getIdmagasin()
+//    {
+//        return $this->idmagasin;
+//    }
 
-        return $this;
+    /**
+     * @return Place
+     */
+    public function getIdplace()
+    {
+        return $this->idplace;
     }
 
     /**
-     * Get idmagasin
-     *
-     * @return \AppBundle\Entity\Magasin
+     * @param Place $idplace
      */
-    public function getIdmagasin()
+    public function setIdplace($idplace)
     {
-        return $this->idmagasin;
+        $this->idplace = $idplace;
     }
 
     /**

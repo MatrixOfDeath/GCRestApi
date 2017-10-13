@@ -118,7 +118,7 @@
             <tr>
             {% if facture.commande.thirdHourFree is defined and facture.commande.thirdHourFree > 0 %}
                 <td width="210" class="reduction-3h">Réduction 3ème heure:</td>
-                <td width="110" class="reduction-10">{{ facture.commande.thirdHourFree }} €</td>
+                <td width="110" class="reduction-3h">{{ facture.commande.thirdHourFree }} €</td>
             {% endif %}
             </tr>
 
@@ -129,16 +129,23 @@
                 </tr>
                 <tr>
                     <td width="210" class="reduction-10">Réduction -10% :</td>
-                    <td width="110" class="reduction-10">- {{ ((facture.commande.prixTTC + facture.commande.prixSalleTTC) * 0.1)|number_format(2, '.', ',') }} €</td>
+                    <td width="110" class="reduction-10">- {{ facture.commande.reduction10 }} €</td>
                 </tr>
+                {% if facture.commande.VATtotalTVA is defined %}
+                    <tr>
+                        <td width="210" class="reduction-TVA">Non assujetti à la tva:</td>
+                        <td width="110" class="reduction-10">- {{ facture.commande.VATtotalTVA }} €</td>
+                    </tr>
+                {% endif %}
                 <tr>
                     <td width="210" >Montant Total TTC :</td>
-                    <td width="110" >{{ ((facture.commande.prixTTC + facture.commande.prixSalleTTC)  - ((facture.commande.prixTTC + facture.commande.prixSalleTTC) * 0.1))|number_format(2, '.', ',') }} €</td>
+                    <td width="110" >{{ facture.commande.totalTTC }} €</td>
                 </tr>
+
             {% else %}
                 <tr>
                     <td width="210" class="montant-total">Montant Total TTC :</td>
-                    <td width="110" class="montant-total">{{ (facture.commande.prixTTC + facture.commande.prixSalleTTC) }} €</td>
+                    <td width="110" class="montant-total">{{ facture.commande.totalTTC }} €</td>
                 </tr>  
             {% endif %}
         </table>

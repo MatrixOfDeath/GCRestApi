@@ -155,8 +155,12 @@ function ajaxRechercheSalles(){
     //$("body").css({"opacity": "0.5", "background-color":"#000"});
     $('#display-salle').append().load('/assets/loader.html').fadeIn();
 
+    if($('#seat-map').length)
+        $url = 'places_disponible';
+    else
+        $url = 'salles_disponible';
     $.ajax({
-        url: Routing.generate('salles_disponible'),
+        url: Routing.generate($url),
         type: "POST",
         data: {
             "heureChoixDebut": date + ' ' + choixDebut +':00',

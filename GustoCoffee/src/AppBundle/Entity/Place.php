@@ -7,11 +7,33 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Place
  *
- * @ORM\Table(name="Place", indexes={@ORM\Index(name="nomPlace", columns={"nomPlace", "statutPlace"}), @ORM\Index(name="FK_Place_idSalle", columns={"idSalle"})})
+ * @ORM\Table(name="Place", indexes={
+ *     @ORM\Index(name="nomPlace", columns={"nomPlace"}),
+ *     @ORM\Index(name="statutPlace", columns={"statutPlace"}),
+ *      @ORM\Index(name="FK_Place_idSalle", columns={"idSalle"})
+ * })
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PlacesRepository")
  */
 class Place
 {
+
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idPlace", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idplace;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="idplace")
+     */
+    private $reservation;
+
     /**
      * @var string
      *
@@ -27,13 +49,25 @@ class Place
     private $statutplace;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="idPlace", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="position", type="string", length=25, nullable=true)
      */
-    private $idplace;
+    private $position;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="colonne", type="string", length=25, nullable=true)
+     */
+    private $colonne;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ligne", type="string", length=25, nullable=true)
+     */
+    private $ligne;
 
     /**
      * @var \AppBundle\Entity\Salle
@@ -44,6 +78,62 @@ class Place
      * })
      */
     private $idsalle;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reservation = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function getColumn()
+    {
+        return $this->colonne;
+    }
+
+    /**
+     * @param string $colonne
+     */
+    public function setColonne($colonne)
+    {
+        $this->colonne = $colonne;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLigne()
+    {
+        return $this->ligne;
+    }
+
+    /**
+     * @param string $ligne
+     */
+    public function setLigne($ligne)
+    {
+        $this->ligne = $ligne;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param string $position
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    }
 
     /**
      * Set nomplace
