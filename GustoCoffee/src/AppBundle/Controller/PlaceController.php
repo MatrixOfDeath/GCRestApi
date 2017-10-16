@@ -90,7 +90,7 @@ class PlaceController extends FOSRestController
             // TODO: Reload next day morning !
             $placesDispoNow = null;
         }else {
-            $placesDispoNow = $this->checkDisponibilitePlace($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
+            $placesDispoNow = $em->getRepository('AppBundle:Place')->checkDisponibilitePlace($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
         }
 
         return $this->render('place/index.html.twig', array(
@@ -120,7 +120,8 @@ class PlaceController extends FOSRestController
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
 
-            $sallesDispo = $this->checkDisponibilitePlace($heureChoixDebut, $heureChoixFin);
+            $em = $this->getDoctrine()->getManager();
+            $sallesDispo = $em->getRepository('AppBundle:Place')->checkDisponibilitePlace($heureChoixDebut, $heureChoixFin);
             //return new JsonResponse($sallesDispo);
             $htmlToRender = $this->renderView('place/placesDisponible.html.twig', array(
                 'salles' => $sallesDispo,
@@ -137,6 +138,7 @@ class PlaceController extends FOSRestController
         }
     }
     /**
+     * Todo: Remove here because in repository
      * @param $heureChoixDebut
      * @param $heureChoixFin
      * @return mixed
@@ -153,8 +155,6 @@ class PlaceController extends FOSRestController
             ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-        //->getQuery();
-        //->getArrayResult();
 
         $queryBuilder = $repository->createQueryBuilder('p');
 
@@ -179,13 +179,15 @@ class PlaceController extends FOSRestController
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
 
-            $idPosition= $request->request->get('idPlace');
+            $idPlace= $request->request->get('idPlace');
 
+//             Todo: remove this don't need anymore we're using ids now :)
+//            $em = $this->getDoctrine()->getManager();
+//            $repository = $em->getRepository('AppBundle:Place');
+//            $idPlace = $repository->getByPosition($idPosition);
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('AppBundle:Place');
-            $idPlace = $repository->getByPosition($idPosition);
-        var_dump($idPlace->idplace);
-            $isDispo = $this->checkIfPlaceDispo($heureChoixDebut, $heureChoixFin, $idPlace);
+            $isDispo = $repository->checkIfPlaceDispo($heureChoixDebut, $heureChoixFin, $idPlace);
 
             return new Response(json_encode($isDispo));
 
@@ -195,6 +197,7 @@ class PlaceController extends FOSRestController
     }
 
     /**
+     * Todo: Remove because its in repo Place
      * Verification si une place est disponible selon un creneau horaire
      * @param $heureChoixDebut
      * @param $heureChoixFin
@@ -209,18 +212,10 @@ class PlaceController extends FOSRestController
         $subQuery = $repository->createQueryBuilder('p_sub')
             ->select('p_sub.idplace')
             ->leftJoin('p_sub.reservation', 'r')
-            //   ->where('r.heuredebut <= :heureChoixDebut')
-            //   ->andWhere('r.heurefin >= :heureChoixFin');
-            //   ->andwhere('r.heuredebut BETWEEN :heureChoixDebut AND :heureChoixFin')
-            //   ->orWhere('r.heurefin BETWEEN :heureChoixDebut AND :heureChoixFin');
-
             ->andwhere('r.heuredebut < :heureChoixDebut')
             ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-
-//            ->getQuery()
-//            ->getArrayResult();
 
         $queryBuilder = $repository->createQueryBuilder('p');
 
@@ -233,10 +228,7 @@ class PlaceController extends FOSRestController
             ->setParameter('idplace', $idplace)
             ->setParameter('heureChoixDebut', $heureChoixDebut)
             ->setParameter('heureChoixFin', $heureChoixFin);
-        //->setParameter('subQuery', $subQuery)
-        //->getQuery();
 
-        //var_dump($query->getQuery()->getSingleScalarResult()) ;
         return $query->getQuery()->getSingleScalarResult();
     }
 
@@ -344,6 +336,27 @@ class PlaceController extends FOSRestController
     }
 
     /**
+     * @Route("/unavailable", options={"expose"=true}, name="ajax_places_unavailable")
+     * @Method({"GET", "POST"})
+     * @return Response
+     */
+    public function ajaxGetUnavailablePlaces()
+    {
+        $idsalle = 4; //get id openspace
+        $em = $this->getDoctrine()->getManager();
+        //$allPlaces = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
+
+        $actualDate = new \DateTime(date('y-m-d H:i:s'));
+        $plusOneHour = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
+        $places = $em->getRepository('AppBundle:Place')->checkUnavailablePlace($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
+        //$idplaces = array_column($places, 'idplace');
+
+        //var_dump($idplaces);
+        $map = array();
+
+        return new  Response(json_encode($places, JSON_NUMERIC_CHECK, 32));
+    }
+    /**
      * @Route("/map", options={"expose"=true}, name="ajax_places_map")
      * @Method({"GET", "POST"})
      * @return Response
@@ -352,34 +365,25 @@ class PlaceController extends FOSRestController
     {
         $idsalle = 4; //get id openspace
         $em = $this->getDoctrine()->getManager();
-        $places = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
+        $allPlaces = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
+
+        $actualDate = new \DateTime(date('y-m-d H:i:s'));
+        $plusOneHour = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
+        $places = $em->getRepository('AppBundle:Place')->checkDisponibilitePosition($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
 
         $map = array();
 
-//        for ($i = 1 ; $i <= 12 ; $i++){
-//            $row = '' ;
-//            for ($j = 1 ; $j <= 10 ; $j++){
-//                if($j % 3 == 0  && $j != 1) {
-//                    $row .= '_';
-//                }
-//                $row .= 'p';
-//            }
-//            if ($i % 3 == 0){
-//                $vide = '' ;
-//                for($v = 1 ; $v <= 10 ; $v++){
-//                    $vide .= '_';
-//                }
-//                array_push($map, $vide);
-//            }
-//            array_push($map, $row);
-//        }
 
+        $positions = array_column($places, 'position');
+        $allPositions = array_column($allPlaces, 'position');
+        $idplaces = array_column($places, 'idplaces');
+        $labels = array_column($places, 'nomplace');
 
         $line = 1;
         $car = 'A';
         $maxligne=12;
         $maxcolonne=10;
-        for ($i = 1 ; $i <= $maxligne ; $i++){
+        for ($i = 1; $i <= $maxligne ; $i++){
             $row = '' ;
             $col = 1;
             for ($j = 1 ; $j <= $maxcolonne ; $j++){
@@ -387,10 +391,18 @@ class PlaceController extends FOSRestController
                     $row .= '_';
                     ++$col;
                 }
-//                if(arr)
-                $row .= 'p';
-                //echo 'Name: '.$car.$col;
-                //echo ' Position: '.$line.'_'.$col.'<br>';
+                if(in_array($line.'_'.$col, $positions)) {
+                    $row .= 'p';
+                    $arrId = array_search($line.'_'.$col, $positions);
+                    /** Finalement on revoit tout et on envoie l'id de la place + nom de la place **/
+                    $row .='['.$places[$arrId]['idplace'].','.$places[$arrId]['nomplace'].']';
+                }
+                else {
+                    $row .= 'f';
+                    $arrId = array_search($line.'_'.$col, $allPositions);
+                    /** Finalement on revoit tout et on envoie l'id de la place + nom de la place **/
+                    $row .='['.$allPlaces[$arrId]['idplace'].','.$allPlaces[$arrId]['nomplace'].']';
+                }
                 $col++;
             }
             if ($i % 3 == 0){
@@ -406,14 +418,6 @@ class PlaceController extends FOSRestController
             $line++;
             array_push($map, $row);
         }
-
-//        foreach($places as $place){
-//            if($place['ligne'] == 10){
-//
-//            }
-//        }
-
-        //var_dump($places);
 
         return new Response(json_encode($map));
     }

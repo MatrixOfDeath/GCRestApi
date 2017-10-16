@@ -4,7 +4,7 @@ $(document).on('click', 'div.seatCharts-seat.seatCharts-cell', function(){
     var choixDebut = $('.slider-time').text();
     var choixFin = $('.slider-time2').text();
 
-    var idPlace = $(this).attr('id')
+    var idPlace = $(this).attr('id');
     var date =  $('#datepicker-altFormat').val();
 
     that = $(this);

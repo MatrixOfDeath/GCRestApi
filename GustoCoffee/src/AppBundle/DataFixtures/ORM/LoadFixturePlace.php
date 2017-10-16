@@ -31,7 +31,6 @@ class LoadFixturePlace extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function load(ObjectManager $manager)
     {
-
         $manager->getClassMetadata(Place::class)->setIdGeneratorType(ClassMetadata::GENERATOR_TYPE_NONE);
 
 //        $j = 1;
@@ -63,19 +62,19 @@ class LoadFixturePlace extends AbstractFixture implements OrderedFixtureInterfac
         $maxligne=12;
         $maxcolonne=10;
         for ($i = 1 ; $i <= $maxligne ; $i++){
-            $row = '' ;
+            //$row = '' ;
             $col = 1;
             for ($j = 1 ; $j <= $maxcolonne ; $j++){
                 if($j % 3 == 0  && $j != 1) {
-                    $row .= '_';
+                    //$row .= '_';
                     ++$col;
                 }
-                $row .= 'p';
+                //$row .= 'p';
                 // Ajout de place en bdd aux bonnes positions
                 echo 'Nom place: '.$car.$col . "Position: ". $line."_". $col ."\n";
                 $item1 = new Place();
                 $item1->setNomplace($car.$col);
-                $item1->setPosition($line."_". $line);
+                $item1->setPosition($line."_".$col);
                 $item1->setLigne($line);
                 $item1->setColonne($col);
                 $item1->setStatutplace("libre");

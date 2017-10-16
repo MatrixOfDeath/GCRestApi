@@ -79,6 +79,43 @@
         });
     });
 
+    // Suppression d'une place depuis le Panier Ajax
+    $(document).on('click', '.buttonDeletePlace', function(){
+        $.ajax({
+            url: Routing.generate('ajax_delete_panier_place'),
+            type: "POST",
+            data: {
+                "idplace": $(this).val()
+            },
+            async: true,
+            success: function (responsePanier, textStatus) {
+                $.ajax({
+                    url: Routing.generate('panier_ajax'),
+                    type: "POST",
+                    async: true,
+                    success: function (responsePanier, textStatus)
+                    {
+
+                        $('.row.panier-menu').empty().append(responsePanier);
+
+                    },
+                    error: function(data) {
+                        console.log(data);
+                        alert('Problème refresh Panier');
+
+                    }
+                });
+                refreshPanierIconMenu();
+
+            },
+            error: function (data) {
+                console.log(data);
+                alert('Problème dans la recherche des disponibilités de places');
+
+            }
+        });
+    });
+
     // Modification live ajax de la quantité pour un produit
     $(document).on('change', 'select.select-qte-produit', function() {
         // alert( this.value + 'idproduit'+ $(this).parent().parent().find('.buttonDeleteProduit').val() );

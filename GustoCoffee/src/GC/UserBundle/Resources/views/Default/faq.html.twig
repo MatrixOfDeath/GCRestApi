@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>GustoCoffee FAQ</title>
+    <title>{{ 'GustoCoffee - FAQ' }}</title>
 {% endblock %}
 
 {% block firstImg %}
@@ -12,9 +12,17 @@
     paddingTitle
 {%  endblock %}
 
-
 {% block titleHome %}
-    FAQ CoWorking
+    <div class="banniere">
+        <h1 class="colorWhite">Foire Aux Questions</h1>
+        <h3 class="colorWhite"> <i>Des questions ? </i></h3>
+    </div>
+    <button class="buttonInscription greenButton">
+        <a class="colorWhite" href="{{ path('gc_reservation_page') }}">{{ 'Réservez votre place'|trans }} </a>
+    </button>
+    <button class="buttonInscription greenButton">
+        <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">{{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+    </button>
 {% endblock %}
 
 {% block firstBlock %}
@@ -22,7 +30,7 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
         <div class="panel-group" id="accordion">
-            <div class="faqHeader">{{ 'Questions Généraless' | trans }}</div>
+            <div class="faqHeader">{{ 'Questions Générales' | trans }}</div>
 
             <div class="panel panel-default">
                 <div class="panel-heading">

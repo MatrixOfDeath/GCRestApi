@@ -46,6 +46,9 @@ class AppKernel extends Kernel
             #VatNumber Check
             new Ddeboer\VatinBundle\DdeboerVatinBundle(),
 
+            #Cookies consent - loi union européene
+            new Indigo\Bundle\CookieConsentBundle\IndigoCookieConsentBundle(),
+
             # Our Bundles
             new AppBundle\AppBundle(),
             new GC\HomeBundle\GCHomeBundle(),

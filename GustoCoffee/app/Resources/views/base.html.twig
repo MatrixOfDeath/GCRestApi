@@ -20,6 +20,7 @@
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    {{ cookie_consent_render() }}
 
     {% block customCss %}{% endblock %}
 

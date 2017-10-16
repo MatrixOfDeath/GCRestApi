@@ -243,3 +243,9 @@ vich_uploader:
         products_images:
             uri_prefix:         '%app.path.products_images%'
             upload_destination: '%kernel.root_dir%/../web/uploads/images/products'
+
+indigo_cookie_consent:
+    options:
+        theme: dark-bottom
+        # any options you would pass to the plugins (except labels: message, dismiss, learnMore)
+        # see https://silktide.com/tools/cookie-consent/docs/installation

@@ -1,15 +1,21 @@
 {% set totalProduitHT = 0 %}
 {% set totalSalleHT = 0 %}
+{% set totalPlaceHT = 0 %}
 {% set totalProduitTTC =  0 %}
 {% set totalSalleTTC = 0 %}
+{% set totalPlaceTTC = 0 %}
 {% set thirdHourFree = 0 %}
 {% set refTva = {} %}
 {% set refSalleTva = {} %}
+{% set refPlaceTva = {} %}
 {% for produit in produits %}
     {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : 0 }) %}
 {% endfor %}
 {% for salle in salles %}
     {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : 0 }) %}
+{% endfor %}
+{% for place in places %}
+    {% set refPlaceTva = refPlaceTva|merge({ ('%' ~ place.tva.valeur) : 0 }) %}
 {% endfor %}
 
         <div class="col-xs-12">
@@ -145,25 +151,25 @@
                             <td>{{ place.prixplace }} €</td>
                             {% if panier_place[place.idplace].totalHeures >= 5 or (panier_place[place.idplace].totalHeures >= 5 and  panier_place[place.idplace].totalMinutes >= 30)  %}
                                 <td>{{ place.prixplace * 4 }} €</td>
-                                {% set totalSalleTTC =  totalSalleTTC + place.prixplace * 4 %}
+                                {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace * 4 %}
                             {% elseif (panier_place[place.idplace].totalHeures == 3 and panier_place[place.idplace].totalMinutes >= 30) or panier_place[place.idplace].totalHeures >= 4 %}
                                 <td>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes - 2 }} €</td>
-                                {% set totalSalleTTC =  totalSalleTTC + place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
+                                {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
                                 {% set thirdHourFree = (2 * place.capacitymax) %}
                             {% else %}
                                 <td>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes }} €</td>
-                                {% set totalSalleTTC =  totalSalleTTC + place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
+                                {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
                             {% endif %}
 
                             {#</form>#}
                         </tr>
-                        {#{% set totalSalleHT = totalSalleHT + (place.prixplace * panier_place[place.idplace].totalHeures) %}#}
-                        {#{% set totalSalleTTC = totalSalleTTC + (place.prixplace * panier_place[place.idplace].totalHeures)|tva(place.tva.multiplicate) * panier_place[place.idplace].totalHeures %}#}
+                        {#{% set totalPlaceHT = totalPlaceHT + (place.prixplace * panier_place[place.idplace].totalHeures) %}#}
+                        {#{% set totalPlaceTTC = totalPlaceTTC + (place.prixplace * panier_place[place.idplace].totalHeures)|tva(place.tva.multiplicate) * panier_place[place.idplace].totalHeures %}#}
 
 
-                        {% set refSalleTva = refSalleTva|merge({ ('%' ~ place.tva.valeur) : refSalleTva['%' ~ place.tva.valeur] + ( place.prixplace * panier_place[place.idplace].totalHeures)|montantTva(place.tva.multiplicate) }) %}
+                        {% set refPlaceTva = refPlaceTva|merge({ ('%' ~ place.tva.valeur) : refPlaceTva['%' ~ place.tva.valeur] + ( place.prixplace * panier_place[place.idplace].totalHeures)|montantTva(place.tva.multiplicate) }) %}
 
-                        {#{% set totalSalleTTC =  totalSalleTTC +  place.prixplace * panier_place[place.idplace].totalHeures %}#}
+                        {#{% set totalPlaceTTC =  totalPlaceTTC +  place.prixplace * panier_place[place.idplace].totalHeures %}#}
                     {%  endfor %}
                     </tbody>
                 </table>

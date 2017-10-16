@@ -13,17 +13,24 @@ use Doctrine\ORM\EntityRepository;
 class PlacesRepository extends EntityRepository
 {
 
-    public function getAllPositions($idsalle){
-        $idsalle = 4;
-        $qb = $this->createQueryBuilder('u')
-            ->Select('u.position')
-            ->where('u.idsalle = :idsalle')
+    /**
+     * @param $idsalle
+     * @return array
+     */
+    public function getAllPositions($idsalle=4){
+        $qb = $this->createQueryBuilder('p')
+            ->Select('p.position, p.idplace, p.nomplace')
+            ->where('p.idsalle = :idsalle')
             ->setParameter('idsalle', $idsalle);
 //            ->orderBy('u.ligne', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @param $idposition
+     * @return array
+     */
     public function getByPosition($idposition){
         $idsalle = 4;
         $qb = $this->createQueryBuilder('u')
@@ -35,6 +42,122 @@ class PlacesRepository extends EntityRepository
 //            ->orderBy('u.ligne', 'ASC');
 
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * Retourne toutes les places disponibles selons un créneau horaire donné
+     * @param $heureChoixDebut
+     * @param $heureChoixFin
+     * @return array
+     */
+    public function checkDisponibilitePlace($heureChoixDebut, $heureChoixFin)
+    {
+        $subQuery = $this->createQueryBuilder('p_sub')
+            ->select('p_sub.idplace')
+            ->leftJoin('p_sub.reservation', 'r')
+            ->andwhere('r.heuredebut < :heureChoixDebut')
+            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+
+        $queryBuilder = $this->createQueryBuilder('p');
+
+        $query = $queryBuilder
+            ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
+//            ->andWhere(':heureChoixDebut < :datenow')
+            //->setParameter('datenow', date("Y-m-d H:i:s"))
+            ->setParameter('heureChoixDebut', $heureChoixDebut)
+            ->setParameter('heureChoixFin', $heureChoixFin);
+
+        return $query->getQuery()->getResult();
+    }
+
+
+    /**
+     * Retourne toutes les places disponibles selons un créneau horaire donné
+     * @param $heureChoixDebut
+     * @param $heureChoixFin
+     * @return array
+     */
+    public function checkUnavailablePlace($heureChoixDebut, $heureChoixFin)
+    {
+        $subQuery = $this->createQueryBuilder('p_sub')
+            ->select('p_sub.idplace')
+            ->leftJoin('p_sub.reservation', 'r')
+            ->andwhere('r.heuredebut < :heureChoixDebut')
+            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+
+        $queryBuilder = $this->createQueryBuilder('p');
+
+        $query = $queryBuilder
+            ->select('p.position, p.idplace, p.nomplace')
+            ->where($queryBuilder->expr()->in('p.idplace', $subQuery->getDQL()))
+//            ->andWhere(':heureChoixDebut < :datenow')
+            //->setParameter('datenow', date("Y-m-d H:i:s"))
+            ->setParameter('heureChoixDebut', $heureChoixDebut)
+            ->setParameter('heureChoixFin', $heureChoixFin);
+
+        return $query->getQuery()->getResult();
+    }
+
+    /**
+     * Retourne toutes les places disponibles selons un créneau horaire donné
+     * @param $heureChoixDebut
+     * @param $heureChoixFin
+     * @return array
+     */
+    public function checkDisponibilitePosition($heureChoixDebut, $heureChoixFin)
+    {
+        $subQuery = $this->createQueryBuilder('p_sub')
+            ->select('p_sub.idplace')
+            ->leftJoin('p_sub.reservation', 'r')
+            ->andwhere('r.heuredebut < :heureChoixDebut')
+            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+
+        $queryBuilder = $this->createQueryBuilder('p');
+
+        $query = $queryBuilder
+            ->select('p.position, p.idplace, p.nomplace')
+            ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
+//            ->andWhere(':heureChoixDebut < :datenow')
+            //->setParameter('datenow', date("Y-m-d H:i:s"))
+            ->setParameter('heureChoixDebut', $heureChoixDebut)
+            ->setParameter('heureChoixFin', $heureChoixFin);
+
+        return $query->getQuery()->getResult();
+    }
+    /**
+     * Verification si une place est disponible selon un creneau horaire
+     * @param $heureChoixDebut
+     * @param $heureChoixFin
+     * @param null $idplace
+     * @return mixed
+     */
+    public function checkIfPlaceDispo($heureChoixDebut, $heureChoixFin, $idplace=null){
+
+        $subQuery = $this->createQueryBuilder('p_sub')
+            ->select('p_sub.idplace')
+            ->leftJoin('p_sub.reservation', 'r')
+            ->andwhere('r.heuredebut < :heureChoixDebut')
+            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
+            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+
+        $queryBuilder = $this->createQueryBuilder('p');
+
+        $query = $queryBuilder
+            ->select('count(p.idplace)')
+            ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
+            ->andWhere('p.idplace = :idplace')
+            ->setParameter('idplace', $idplace)
+            ->setParameter('heureChoixDebut', $heureChoixDebut)
+            ->setParameter('heureChoixFin', $heureChoixFin);
+
+        return $query->getQuery()->getSingleScalarResult();
     }
 
     public function getPlaceUnavailable(){

@@ -108,11 +108,40 @@ $(document).ready(function() {
             sc.get($(this).parents('li:first').data('seatId')).click();
         });
 
+        var choixDebut = $('.slider-time').text();
+        var choixFin = $('.slider-time2').text();
+
+        var idPlace = $(this).attr('id');
+        var date =  $('#datepicker-altFormat').val();
+            setInterval(function() {
+            $.ajax({
+                url: Routing.generate('ajax_places_unavailable'),
+
+                type: "POST",
+                data: {
+                    "heureChoixDebut": date + ' ' + choixDebut +':00',
+                    "heureChoixFin": date + ' ' + choixFin +':00',
+                    "idPlace" : idPlace,
+                    "date": date
+                },
+                dataType : 'json',
+                success  : function(response) {
+                    //iterate through all bookings for our event
+                    $.each(response, function(index, place) {
+                        console.log(place.idplace);
+                        //find seat by id and set its status to unavailable
+                        sc.status(String(place.idplace), 'unavailable');
+                    });
+                }
+            });
+        }, 60000); //every 10 seconds
         //let's pretend some seats have already been booked
-        sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
+        //sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
     }
 
 });
+
+
 
 function recalculateTotal(sc) {
     var total = 0;

@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Place
@@ -133,6 +135,16 @@ class Place
     public function setPosition($position)
     {
         $this->position = $position;
+    }
+
+    /** retourne le prix horaire de la salle en l'occurence l'openspace mais ceci peut-être appliqué aux salles de réu */
+    public function getPrixplace(){
+        return $this->idsalle->getPrixsalle();
+    }
+
+    /** retourne la tva appliqué à la salle */
+    public function getTva(){
+        return $this->idsalle->getTva();
     }
 
     /**
