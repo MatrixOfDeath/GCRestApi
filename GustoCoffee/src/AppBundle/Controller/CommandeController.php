@@ -244,7 +244,6 @@ class CommandeController extends FOSRestController
             if ($totaleHeuresR >= 5 or ($totaleHeuresR >= 5 and  $totaleMinutesR >= 30) ) {
                 $totalSalleTTC = $totalSalleTTC + $salle->getPrixsalle() * 4;
                 $prixSalleTTC = $salle->getPrixsalle() * 4;
-
             }
             else if( ($totaleHeuresR == 3 and $total30Minutes >= 30) or $totaleHeuresR >= 4 ) {
                 $totalSalleTTC =  $totalSalleTTC + $salle->getPrixsalle() + (($total30Minutes - 2 )* 2 * $salle->getCapacitymax()) + $totalMinutes - (2 * $salle->getCapacitymax());
@@ -299,7 +298,7 @@ class CommandeController extends FOSRestController
 
             }
             else if( ($totaleHeuresR == 3 and $total30Minutes >= 30) or $totaleHeuresR >= 4 ) {
-                $totalPlaceTTC =  $totalPlaceTTC + $place->getPrixplace() + (($total30Minutes - 2 )* 2) + $totalMinutes - (2 * $place->getCapacitymax());
+                $totalPlaceTTC =  $totalPlaceTTC + $place->getPrixplace() + (($total30Minutes - 2 ) * 2) + $totalMinutes - 2;
                 $thirdHourFree += 2;
                 $prixPlaceTTC = $place->getPrixplace() + (($total30Minutes - 2 )* 2) + $totalMinutes - 2;
             } else{
@@ -362,15 +361,15 @@ class CommandeController extends FOSRestController
         $validator = $this->get('ddeboer_vatin.vatin_validator');
         $reduction10 = 0;
         if( (count($places) + count($salles)) > 0 && count($produits) > 0){
-            $reduction10 = round(($commande['prixTTC'] + $commande['prixSalleTTC'] + $commande['prixPlaceTTC']) * 0.1, 2);
+            $reduction10 = round((($totalHT + $totalTVA) + $totalSalleTTC + $totalPlaceTTC) * 0.1, 2);
             $commande['reduction10'] = round($reduction10, 2);
         }
         if($validator->isValid($facturation->getVatNumber(), true) ){
             $commande['VATtotalTVA'] = $totalTVA + $totalSalleTVA;
             //TotalTTC sans la TVA
-            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'] + $commande['prixPlaceTTC'] - $totalTVA - $totalSalleTVA - $totalPlaceTVA - $reduction10;
+            $commande['totalTTC'] = round(($commande['prixTTC'] + $commande['prixSalleTTC'] + $commande['prixPlaceTTC'] - $totalTVA - $totalSalleTVA - $totalPlaceTVA - $reduction10), 2);
         }else {
-            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'] + $commande['prixPlaceTTC'] - $reduction10;
+            $commande['totalTTC'] = round(($commande['prixTTC'] + $commande['prixSalleTTC'] + $commande['prixPlaceTTC'] - $reduction10), 2);
         }
         $commande['token'] = bin2hex(random_bytes(20));
         $commande['thirdHourFree'] = round($thirdHourFree, 2);

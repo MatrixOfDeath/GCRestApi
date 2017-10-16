@@ -53,16 +53,6 @@ services:
         arguments: ['@security.authorization_checker', '@doctrine.orm.entity_manager']
         public: true
 
-#    tva:
-#        class: AppBundle\Twig\Extension\TvaExtension
-#        tags:
-#            - { name: twig.extension }
-#
-#    montantTva:
-#        class: AppBundle\Twig\Extension\MontantTvaExtension
-#        tags:
-#            - { name: twig.extension }
-
     adresse_type_form:
         class: AppBundle\Form\UtilisateursAdressesType
         arguments: [ '@doctrine.orm.entity_manager']
