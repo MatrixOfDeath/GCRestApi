@@ -21,7 +21,11 @@ $(document).on('click', 'button.buttonSearchPlace', function(){
         async: true,
         success: function (response, textStatus)
         {
+
+            //initCarteInteractive(response);
             $('#display-salle').empty().append(response);
+            $(this).getMap();
+
         },
         error: function(data) {
             console.log(data);

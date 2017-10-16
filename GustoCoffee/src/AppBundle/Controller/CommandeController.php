@@ -181,6 +181,7 @@ class CommandeController extends FOSRestController
         $adresse = $session->get('adresse');
         $panier = $session->get('panier');
         $panier_salle = $session->get('panier_salle');
+        $panier_place = $session->get('panier_place');
 
         $commande = array();
         $totalHT = 0;
@@ -188,12 +189,16 @@ class CommandeController extends FOSRestController
         $totalSalleHT = 0;
         $totalSalleTVA = 0;
         $totalSalleTTC = 0;
+        $totalPlaceHT = 0;
+        $totalPlaceTVA = 0;
+        $totalPlaceTTC = 0;
         $thirdHourFree = 0;
 
         $facturation = $em->getRepository('AppBundle:UtilisateursAdresses')->find($adresse['facturation']);
         $livraison = $em->getRepository('AppBundle:UtilisateursAdresses')->find($adresse['livraison']);
         $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($session->get('panier')));
         $salles =  $em->getRepository('AppBundle:Salle')->findArray(array_keys($session->get('panier_salle')));
+        $places =  $em->getRepository('AppBundle:Place')->findArray(array_keys($session->get('panier_place')));
 
         /**
          * Afin de s'y retrouver IDE
@@ -271,6 +276,58 @@ class CommandeController extends FOSRestController
             );
         }
 
+        /**
+         * fin de s'y retrouver IDE
+         * @var $place \AppBundle\Entity\Place
+         */
+        foreach($places as $place) {
+            // Complexity * 4 / 2 + Raisonnement -42
+            $total30Minutes = $panier_place[$place->getIdplace()]['totalHeures'] * 2;
+            $totaleHeuresR = $panier_place[$place->getIdplace()]['totalHeures'];
+            $totaleMinutesR = $panier_place[$place->getIdplace()]['totalMinutes'];
+
+            if ($panier_place[$place->getIdplace()]['totalMinutes'] >= 30) {
+                $totalMinutes = 2;
+            } else {
+
+                $totalMinutes = 0;
+            }
+
+            if ($totaleHeuresR >= 5 or ($totaleHeuresR >= 5 and  $totaleMinutesR >= 30) ) {
+                $totalPlaceTTC = $totalPlaceTTC + $place->getPrixplace() * 4;
+                $prixPlaceTTC = $place->getPrixplace() * 4;
+
+            }
+            else if( ($totaleHeuresR == 3 and $total30Minutes >= 30) or $totaleHeuresR >= 4 ) {
+                $totalPlaceTTC =  $totalPlaceTTC + $place->getPrixplace() + (($total30Minutes - 2 )* 2) + $totalMinutes - (2 * $place->getCapacitymax());
+                $thirdHourFree += 2;
+                $prixPlaceTTC = $place->getPrixplace() + (($total30Minutes - 2 )* 2) + $totalMinutes - 2;
+            } else{
+                $totalPlaceTTC =  $totalPlaceTTC + $place->getPrixplace() + (($total30Minutes - 2) * 2) + $totalMinutes;
+                $prixPlaceTTC =  $place->getPrixplace() + (($total30Minutes - 2) * 2) + $totalMinutes;
+            }
+
+            $prixPlaceHT = $prixPlaceTTC / (2 - $place->getTva()->getMultiplicate()) ;
+            $tvaPlace = $prixPlaceTTC - $prixPlaceHT;
+            $totalPlaceHT += $prixPlaceHT;
+
+            if (!isset($commande['tvaPlace']['%'.$place->getTva()->getValeur()]))
+                $commande['tvaPlace']['%'.$place->getTva()->getValeur()] = round($tvaPlace,2);
+            else
+                $commande['tvaPlace']['%'.$place->getTva()->getValeur()] += round($tvaPlace,2);
+
+            $totalPlaceTVA += round($prixPlaceTTC - $prixPlaceHT,2);
+            $commande['place'][$place->getIdplace()] = array(
+                'reference' => $place->getNomplace(),
+                'heures' => $totaleHeuresR,
+                'minutes' => $totaleMinutesR,
+                'idReservation' => $panier_place[$place->getIdplace()]['idReservation'],
+                'prixPlaceHT' => round($prixPlaceHT, 2),
+                'prixHT' => round($place->getPrixplace(),2),
+                'prixTTC' => round($prixPlaceTTC,2),
+            );
+        }
+
         // Pourquoi j'ai ajouté livraison ? useless ><
         $commande['livraison'] = array('prenom' => $livraison->getPrenom(),
             'nom' => $livraison->getNom(),
@@ -298,20 +355,22 @@ class CommandeController extends FOSRestController
         $commande['prixTTC'] = round($totalHT + $totalTVA,2);
         $commande['prixSalleHT'] = round($totalSalleHT,2);
         $commande['prixSalleTTC'] = round($totalSalleTTC,2);
+        $commande['prixPlaceHT'] = round($totalPlaceHT,2);
+        $commande['prixPlaceTTC'] = round($totalPlaceTTC,2);
 
         // On vérifie encore si le VAT est valide et en cours de validité
         $validator = $this->get('ddeboer_vatin.vatin_validator');
         $reduction10 = 0;
-        if( count($salles) > 0 && count($produits) > 0){
-            $reduction10 = round(($commande['prixTTC'] + $commande['prixSalleTTC']) * 0.1, 2);
+        if( (count($places) + count($salles)) > 0 && count($produits) > 0){
+            $reduction10 = round(($commande['prixTTC'] + $commande['prixSalleTTC'] + $commande['prixPlaceTTC']) * 0.1, 2);
             $commande['reduction10'] = round($reduction10, 2);
         }
         if($validator->isValid($facturation->getVatNumber(), true) ){
             $commande['VATtotalTVA'] = $totalTVA + $totalSalleTVA;
             //TotalTTC sans la TVA
-            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'] - $totalTVA - $totalSalleTVA - $reduction10;
+            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'] + $commande['prixPlaceTTC'] - $totalTVA - $totalSalleTVA - $totalPlaceTVA - $reduction10;
         }else {
-            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'] - $reduction10;
+            $commande['totalTTC'] = $commande['prixTTC'] + $commande['prixSalleTTC'] + $commande['prixPlaceTTC'] - $reduction10;
         }
         $commande['token'] = bin2hex(random_bytes(20));
         $commande['thirdHourFree'] = round($thirdHourFree, 2);

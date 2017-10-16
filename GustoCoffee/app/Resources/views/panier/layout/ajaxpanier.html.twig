@@ -8,6 +8,7 @@
 {% set refTva = {} %}
 {% set refSalleTva = {} %}
 {% set refPlaceTva = {} %}
+{% set thirdHourFree = 0 %}
 {% for produit in produits %}
     {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : 0 }) %}
 {% endfor %}
@@ -88,7 +89,7 @@
                                 {% elseif (panier_salle[salle.idsalle].totalHeures == 3 and panier_salle[salle.idsalle].totalMinutes >= 30) or panier_salle[salle.idsalle].totalHeures >= 4 %}
                                     <td>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes - (2 * salle.capacitymax) }} €</td>
                                     {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax)  %}
-                                    {% set thirdHourFree = (2 * salle.capacitymax) %}
+                                    {% set thirdHourFree =  thirdHourFree + (2 * salle.capacitymax) %}
                                 {% else %}
                                     <td>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</td>
                                     {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
@@ -98,8 +99,6 @@
                         </tr>
                         {#{% set totalSalleHT = totalSalleHT + (salle.prixsalle * panier_salle[salle.idsalle].totalHeures) %}#}
                         {#{% set totalSalleTTC = totalSalleTTC + (salle.prixsalle * panier_salle[salle.idsalle].totalHeures)|tva(salle.tva.multiplicate) * panier_salle[salle.idsalle].totalHeures %}#}
-
-
                         {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : refSalleTva['%' ~ salle.tva.valeur] + ( salle.prixsalle * panier_salle[salle.idsalle].totalHeures)|montantTva(salle.tva.multiplicate) }) %}
 
                         {#{% set totalSalleTTC =  totalSalleTTC +  salle.prixsalle * panier_salle[salle.idsalle].totalHeures %}#}
@@ -155,7 +154,7 @@
                             {% elseif (panier_place[place.idplace].totalHeures == 3 and panier_place[place.idplace].totalMinutes >= 30) or panier_place[place.idplace].totalHeures >= 4 %}
                                 <td>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes - 2 }} €</td>
                                 {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
-                                {% set thirdHourFree = (2 * place.capacitymax) %}
+                                {% set thirdHourFree = thirdHourFree + 2 %}
                             {% else %}
                                 <td>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes }} €</td>
                                 {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
@@ -194,9 +193,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
-
-
                         {% for produit in produits %}
                             <tr>
                                 {#<form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">#}
@@ -229,19 +225,27 @@
                 {% for key, tva in refTva %}
                     <dt>TVA {{ key }} :</dt><dd>{{ tva }} €</dd>
                 {% endfor %}
+                {% if salles|length != 0  %}
                     <dt>Total Salle TTC :</dt><dd>{{ totalSalleTTC|number_format(2, '.', ',')  }}€</dd>
+                {% endif %}
                 {% for key, tva in refSalleTva %}
                     <dt>dont {{ key }} TVA Salle:</dt><dd>{{ tva }} €</dd>
+                {% endfor %}
+                {% if places|length != 0  %}
+                    <dt>Total Place TTC :</dt><dd>{{ totalPlaceTTC|number_format(2, '.', ',')  }}€</dd>
+                {% endif %}
+                {% for key, tva in refPlaceTva %}
+                    <dt>dont {{ key }} TVA Place:</dt><dd>{{ tva }} €</dd>
                 {% endfor %}
                 {% if thirdHourFree is defined and thirdHourFree > 0 %}
                     <dt class="reduction-3h">Réduction 3ème heure:</dt><dd class="reduction-10">{{ thirdHourFree|number_format(2, '.', ',') }} €</dd>
                 {% endif %}
                 {% if produits|length != 0 and salles|length != 0 %}
-                    <dt>Sous-Total TTC :</dt><dd>{{ (totalProduitTTC + totalSalleTTC)|number_format(2, '.', ',') }} €</dd>
-                    <dt class="reduction-10">Réduction -10% :</dt><dd class="reduction-10">-{{ ((totalProduitTTC + totalSalleTTC) * 0.1)|number_format(2, '.', ',') }} €</dd>
-                    <dt>Montant Total TTC :</dt><dd>{{ ((totalProduitTTC + totalSalleTTC)  - ((totalProduitTTC + totalSalleTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>
+                    <dt>Sous-Total TTC :</dt><dd>{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</dd>
+                    <dt class="reduction-10">Réduction -10% :</dt><dd class="reduction-10">-{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1)|number_format(2, '.', ',') }} €</dd>
+                    <dt>Montant Total TTC :</dt><dd>{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC)  - ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>
                  {% else %}
-                    <dt class="montant-total">Montant Total TTC :</dt><dd class="montant-total">{{ (totalProduitTTC + totalSalleTTC)|number_format(2, '.', ',') }} €</dd>
+                    <dt class="montant-total">Montant Total TTC :</dt><dd class="montant-total">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</dd>
                  {% endif %}
             </dl>
             <div class="clearfix"></div>

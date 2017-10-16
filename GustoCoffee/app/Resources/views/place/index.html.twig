@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row btn-group hide">
             <a href="#" id="list" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-th-list"></span>Liste
             </a>
@@ -73,7 +73,7 @@
         </div>
         <div class="row" id="display-ajax-content">
             {# On appelle le template salleDisponible en embed #}
-            <div id="display-salle">
+            <div id="display-salle" class="row list-group col-md-12">
                 {% embed ":place:placesDisponible.html.twig" %}
 
                 {% endembed %}

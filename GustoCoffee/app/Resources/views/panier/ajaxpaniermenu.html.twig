@@ -23,5 +23,16 @@
             {% endif %}
             </a>
         </li>
+        <li>
+            <a href="{{ path('panier') }}">
+                {% if salles == 0 %}
+                    <span class="panier-salle-none-selected">{{  "Aucune places sélectionner !"|trans }}</span>
+                {% elseif salles == 1 %}
+                    {{  "Une place choisie"|trans}}
+                {% else %}
+                    {{ salles }} {{ "places choisies"|trans }}
+                {% endif %}
+            </a>
+        </li>
     </ul>
 </div>
