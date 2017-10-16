@@ -115,6 +115,7 @@ function unblockValidationTab(){
 }
 
 $(document).on('slidestop', '#slider-range' , function(event, ui){
+
     ajaxRechercheSalles();
 });
 
@@ -155,7 +156,7 @@ function ajaxRechercheSalles(){
     //$("body").css({"opacity": "0.5", "background-color":"#000"});
     $('#display-salle').append().load('/assets/loader.html').fadeIn();
 
-    if($('#seat-map').length)
+    if($('#tab-link-place').length)
         $url = 'places_disponible';
     else
         $url = 'salles_disponible';
@@ -169,8 +170,13 @@ function ajaxRechercheSalles(){
         async: true,
         success: function (response, textStatus)
         {
+
+
             $('#display-salle').empty().append(response);
             //$("body").css({"opacity": "1", "background-color":"#fff"});
+            if($('#tab-link-place').length) {
+                $(this).getMap();
+            }
 
         },
         error: function(data) {

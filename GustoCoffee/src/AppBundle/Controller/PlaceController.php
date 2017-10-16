@@ -340,15 +340,27 @@ class PlaceController extends FOSRestController
      * @Method({"GET", "POST"})
      * @return Response
      */
-    public function ajaxGetUnavailablePlaces()
+    public function ajaxGetUnavailablePlaces(Request $request)
     {
         $idsalle = 4; //get id openspace
         $em = $this->getDoctrine()->getManager();
         //$allPlaces = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
+        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') &&
+            (new \DateTime($request->request->get('heureChoixDebut')))->format('Y-m-d H')  >= (new \DateTime())->format('Y-m-d H') ) {
+            // On vérifie bien que la date et heure est inférieur à la date du jour en cas d'injection ou modificz
 
-        $actualDate = new \DateTime(date('y-m-d H:i:s'));
-        $plusOneHour = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
-        $places = $em->getRepository('AppBundle:Place')->checkUnavailablePlace($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
+            $heureChoixDebut = $request->request->get('heureChoixDebut');
+            $heureChoixFin = $request->request->get('heureChoixFin');
+        }else{
+            $heureChoixDebut = new \DateTime(date('y-m-d H:i:s'));
+            $heureChoixFin = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
+            $heureChoixDebut = $heureChoixDebut->format('y-m-d H:i:s');
+            $heureChoixFin= $heureChoixFin->format('y-m-d H:i:s');
+
+        }
+        $places = $em->getRepository('AppBundle:Place')->checkUnavailablePlace($heureChoixDebut,  $heureChoixFin);
+
+//        $places = $em->getRepository('AppBundle:Place')->checkUnavailablePlace($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
         //$idplaces = array_column($places, 'idplace');
 
         //var_dump($idplaces);
@@ -361,15 +373,27 @@ class PlaceController extends FOSRestController
      * @Method({"GET", "POST"})
      * @return Response
      */
-    public function ajaxGetMapPlacesAction()
+    public function ajaxGetMapPlacesAction(Request $request)
     {
         $idsalle = 4; //get id openspace
         $em = $this->getDoctrine()->getManager();
         $allPlaces = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
 
-        $actualDate = new \DateTime(date('y-m-d H:i:s'));
-        $plusOneHour = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
-        $places = $em->getRepository('AppBundle:Place')->checkDisponibilitePosition($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
+        if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') &&
+            (new \DateTime($request->request->get('heureChoixDebut')))->format('Y-m-d H')  >= (new \DateTime())->format('Y-m-d H') ) {
+            // On vérifie bien que la date et heure est inférieur à la date du jour en cas d'injection ou modificz
+
+            $heureChoixDebut = $request->request->get('heureChoixDebut');
+            $heureChoixFin = $request->request->get('heureChoixFin');
+        }else{
+            $heureChoixDebut = new \DateTime(date('y-m-d H:i:s'));
+            $heureChoixFin = new \DateTime(date('y-m-d H:i:s', strtotime('+1 hour')));
+            $heureChoixDebut = $heureChoixDebut->format('y-m-d H:i:s');
+            $heureChoixFin= $heureChoixFin->format('y-m-d H:i:s');
+
+        }
+
+        $places = $em->getRepository('AppBundle:Place')->checkDisponibilitePosition($heureChoixDebut,  $heureChoixFin);
 
         $map = array();
 
