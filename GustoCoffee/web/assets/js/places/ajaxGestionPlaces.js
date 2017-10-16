@@ -372,40 +372,40 @@ $(document).on('click', '#tab-link-place', function(){
 
 });
 
-// Suppression d'une place depuis le Panier Ajax
-$(document).on('click', '.buttonDeletePlace', function(){
-    $.ajax({
-        url: Routing.generate('ajax_delete_panier_place'),
-        type: "POST",
-        data: {
-            "idplace": $(this).val()
-        },
-        async: true,
-        success: function (responsePanier, textStatus) {
-            $.ajax({
-                url: Routing.generate('panier_ajax'),
-                type: "POST",
-                async: true,
-                success: function (responsePanier, textStatus)
-                {
-
-                    $('.row.panier-menu').empty().append(responsePanier);
-                    sc_global.status(String($(this).val()), 'available');
-
-                },
-                error: function(data) {
-                    console.log(data);
-                    alert('Problème refresh Panier');
-
-                }
-            });
-            refreshPanierIconMenu();
-
-        },
-        error: function (data) {
-            console.log(data);
-            alert('Problème dans la recherche des disponibilités de places');
-
-        }
-    });
-});
+// // Suppression d'une place depuis le Panier Ajax
+// $(document).on('click', '.buttonDeletePlace', function(){
+//     $.ajax({
+//         url: Routing.generate('ajax_delete_panier_place'),
+//         type: "POST",
+//         data: {
+//             "idplace": $(this).val()
+//         },
+//         async: true,
+//         success: function (responsePanier, textStatus) {
+//             $.ajax({
+//                 url: Routing.generate('panier_ajax'),
+//                 type: "POST",
+//                 async: true,
+//                 success: function (responsePanier, textStatus)
+//                 {
+//
+//                     $('.row.panier-menu').empty().append(responsePanier);
+//                     sc_global.status(String($(this).val()), 'available');
+//
+//                 },
+//                 error: function(data) {
+//                     console.log(data);
+//                     alert('Problème refresh Panier');
+//
+//                 }
+//             });
+//             refreshPanierIconMenu();
+//
+//         },
+//         error: function (data) {
+//             console.log(data);
+//             alert('Problème dans la recherche des disponibilités de places');
+//
+//         }
+//     });
+// });
