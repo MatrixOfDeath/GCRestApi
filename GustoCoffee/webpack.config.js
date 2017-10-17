@@ -51,7 +51,6 @@ Encore
         './web/assets/scss/dashboard.scss',
         './web/assets/scss/main.scss',
         './web/assets/scss/produit.scss',
-        // './web/assets/scss/tunel.scss',
         './web/assets/scss/tunnel-achat-workflow.scss',
         './web/assets/scss/faq.scss',
         './web/assets/scss/coffee-animation.scss',

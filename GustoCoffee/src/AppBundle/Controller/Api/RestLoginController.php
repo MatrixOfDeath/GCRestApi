@@ -26,11 +26,11 @@ class RestLoginController extends Controller
      */
     public function loginAction(Request $request)
     {
-        $usernameOrEmail = $request->request->get('username');
-        $password = $request->request->get('password');
+        $usernameOrEmail = $request->getUser();
+        $password = $request->getPassword();
 
-        /** @var MyUserManager
-         *
+        /**
+         * @var MyUserManager
          */
         $userManager = $this->get('fos_user.user_manager');
         $user = $userManager->findUserByUsernameOrEmail($usernameOrEmail);
