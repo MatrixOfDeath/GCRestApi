@@ -414,6 +414,34 @@ class CommandeController extends FOSRestController
     }
 
     /**
+     * @param SessionInterface $session
+     */
+    public function setStockProduits(SessionInterface $session){
+        $panier = $session->get('panier');
+        $em = $this->getDoctrine()->getManager();
+
+        $produits = $em->getRepository('AppBundle:Produit')->findArray(array_keys($panier));
+        $data = array();
+        $data['message'] = "";
+        /**
+         * @var $produit \AppBundle\Entity\Produit
+         */
+        foreach($produits as $produit) {
+            $produit->setQuantiteenstock($produit->getQuantiteenstock() - $panier[$produit->getIdproduit()]);
+            if($produit->getQuantiteenstock() <= 5){
+                $data['message'] .= "Alerte il n'y a plus bientôt quantité (".$produit->getQuantiteenstock().") pour le produit ".$produit->getNomproduit() . " IdPrdouit: ". $produit->getIdproduit() ."\n\n";
+
+            }
+        }
+        if($data['message'] != "") {
+            $data['subject'] = "[Alerte Stock] Quantité de certains produit bientôt épuisé";
+            $this->sendEmail($data);
+        }
+
+        $em->flush();
+
+    }
+    /**
      * @Route("/api/banque/{id}", options={"expose"=true}, name="validationCommande", requirements={"id": "\d+"})
      * @Method({"GET", "POST"})
      * @param Request $request
@@ -430,14 +458,30 @@ class CommandeController extends FOSRestController
             throw $this->createNotFoundException('La commande n\'existe pas');
 
         $commande->setValider(1);
-
         $commande->setReference($this->get('set_new_reference')->reference()); //Service
+
+
+        $this->setStockProduits($session);
+
+        $panier_salle = $session->get('panier_salle');
+        $panier_place = $session->get('panier_place');
+        if(reset($panier_salle)) {
+            $key = key($panier_salle);
+            $commande->setReservation($em->getRepository('AppBundle:Reservation')->find($panier_salle[$key]['idReservation']));
+        }
+        else if (reset($panier_place)){
+            $key = key($panier_place);
+            $commande->setReservation($em->getRepository('AppBundle:Reservation')->find($panier_place[$key]['idReservation']));
+        }
         $em->flush();
+
+        //var_dump($panier_salle[$key]['idReservation']);
 
         //$session = $this->getRequest()->getSession();
         $session->remove('adresse');
         $session->remove('panier');
         $session->remove('panier_salle');
+        $session->remove('panier_place');
         $session->remove('commande');
 
         //Ici le mail de validation
@@ -593,6 +637,25 @@ class CommandeController extends FOSRestController
             $session->getFlashBag()->add('error',"L'envoi de votre demande de validation a échoué");
             return $this->redirect($this->generateUrl('livraison_panier'));
         }
+    }
+
+    private function sendEmail($data){
+        $myappContactMail = $this->container->getParameter('mailer_user');
+        $myappContactPassword = $this->container->getParameter('mailer_password');
+
+
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')->setUsername($myappContactMail)->setPassword($myappContactPassword);
+
+        $mailer = \Swift_Mailer::newInstance($transport);
+        $message = \Swift_Message::newInstance($data["subject"])
+            ->setFrom(array($myappContactMail => "Message by Automated Quantité des stocks"))
+            ->setTo(array(
+                $myappContactMail => $myappContactMail
+            ))
+            ->setBody($data["message"]."\n\n");
+
+        return $mailer->send($message);
+
     }
 
 }

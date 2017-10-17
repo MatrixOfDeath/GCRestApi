@@ -247,7 +247,7 @@
                 {% if thirdHourFree is defined and thirdHourFree > 0 %}
                     <dt class="reduction-3h">Réduction 3ème heure:</dt><dd class="reduction-10">{{ thirdHourFree|number_format(2, '.', ',') }} €</dd>
                 {% endif %}
-                {% if produits|length != 0 and salles|length != 0 %}
+                {% if produits|length != 0 and (salles|length != 0 or places|length != 0) %}
                     <dt>Sous-Total TTC :</dt><dd>{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</dd>
                     <dt class="reduction-10">Réduction -10% :</dt><dd class="reduction-10">-{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1)|number_format(2, '.', ',') }} €</dd>
                     <dt>Montant Total TTC :</dt><dd>{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC)  - ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>

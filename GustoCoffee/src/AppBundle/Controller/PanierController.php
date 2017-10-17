@@ -448,8 +448,8 @@ class PanierController extends Controller
                     'totalHeures' => $interval->h,
                     'totalMinutes' => $interval->i,
                     'idReservation' => $panier_salle[$id]['idReservation'],
-//               'idReservation' => null,
-//                'idCommande' => null
+//                  'idReservation' => null,
+//                  'idCommande' => null
                 );
                 $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');
             } else {
@@ -513,8 +513,8 @@ class PanierController extends Controller
                     'totalHeures' => $interval->h,
                     'totalMinutes' => $interval->i,
                     'idReservation' => $panier_place[$id]['idReservation'],
-//               'idReservation' => null,
-//                'idCommande' => null
+//                  'idReservation' => null,
+//                  'idCommande' => null
                 );
                 $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');
             } else {
@@ -591,9 +591,10 @@ class PanierController extends Controller
                     $em->persist($reservation);
                     $em->flush();
                 }
-
                 // On retourne l'id de la reservation
                 return $reservation->getIdreservation()." Reservation enregistré idReservation:".$panier_salle[$idSalle]['idReservation'] ;
+
+
             }
             else{
                 return "idSalle doesn't exist";
