@@ -12,15 +12,14 @@ i.fa.fa-file-pdf-o{
 }
 .greenButton
 {
-
   color: #fff !important;
   background-color: #a6854d !important;
   border-color: #a6854d !important;
   &:hover
   {
     color: #fff !important;
-    background-color: darkorange !important;
-    border-color: darkorange !important;
+    background-color: $color-gc-lighter !important;
+    border-color: $color-gc-brighter !important;
   }
 }
 
@@ -159,7 +158,14 @@ ul.dropdown-menu{
 
 }
 nav {
-  box-shadow: 5px 4px 5px #000;
+  //box-shadow: 5px 4px 5px #000;
+}
+
+.glyphicon.glyphicon-user
+{
+border-radius: 2px;
+border: 1px solid $color-gc-lighter;
+padding: 7px;
 }
 
 
