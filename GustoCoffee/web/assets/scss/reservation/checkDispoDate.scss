@@ -16,7 +16,9 @@ $color-gc-lighter: #846139;
   -moz-border-radius: 0px;
   border-radius: 0px;
 }
-
+.list-group-item{
+  padding: 3px 3px;
+}
 .cardSalle.list-group-item
 {
   float: none;
