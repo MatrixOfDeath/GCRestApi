@@ -12,9 +12,11 @@
     <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
         {{ 'Réservez votre place'|trans }}
     </button>
-    <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
-        {{ 'Inscrivez-vous dès maintenant !'|trans }}
-    </button>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+        </button>
+    {% endif %}
 {% endblock %}
 
 {% block firstBlock %}

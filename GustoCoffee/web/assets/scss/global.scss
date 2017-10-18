@@ -25,7 +25,7 @@ i.fa.fa-file-pdf-o{
 }
 
 .banniere {
-  background-color: rgba(105,105,105,0.65);
+  background-color: rgba(105,105,105,0.80);
   width: fit-content;
   padding: 1%;
   margin: auto;
@@ -109,6 +109,7 @@ img.logoGC{
 
 .navbar-default .navbar-nav>.active>a{
   color: $color-gc-brighter;
+  background-color: rgba(0, 0, 0, 0.08);
 }
 .navbar-nav>li>a{
   line-height: 37px;
@@ -164,8 +165,8 @@ ul.dropdown-menu{
   background-color: rgba(248,248,248,0.9);
 
 }
-nav {
-  //box-shadow: 5px 4px 5px #000;
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+  background-color: rgba(0,0,0,0.15) !important;
 }
 
 .glyphicon.glyphicon-user
@@ -198,16 +199,40 @@ padding: 7px;
 }
 
 .buttonInscription {
-    //background-color: #a6854d;
-    border: none;
-    //color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+  //background-color: #a6854d;
+  position: relative;
+  border: none;
+  //color: white;
+  padding: 20px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  overflow: hidden;
+
+}
+.buttonInscription:after {
+  content: "";
+  display: block;
+  background: rgba(107,202,255,0.9);
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px!important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.buttonInscription:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
 }
 
 //.buttonInscription:hover {

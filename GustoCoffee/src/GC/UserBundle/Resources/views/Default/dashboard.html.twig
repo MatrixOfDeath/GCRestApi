@@ -18,11 +18,13 @@ topPage topPageDashboard
         <h3 class="colorWhite"> <i>Retrouvez vos dernières réservations !</i></h3>
     </div>
     <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
-        {{ 'Réservez votre place'|trans }}
+        {{ 'Réservez ici'|trans }}
     </button>
-    <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
-        {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
-    </button>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+        </button>
+    {% endif %}
 {% endblock %}
 
 

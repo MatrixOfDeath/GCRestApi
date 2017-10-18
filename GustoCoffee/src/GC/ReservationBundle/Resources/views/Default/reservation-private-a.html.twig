@@ -18,8 +18,8 @@
 
 {% block titleHome %}
     <div class="banniere">
-        <h1 class="colorWhite">Espace Réservation</h1>
-        <h3 class="colorWhite"> <i>Si on tentait l'expérience ? </i></h3>
+        <h1 class="colorWhite">{{"Espace Réservation"|trans}}</h1>
+        <h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>
     </div>
     <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
         {{ 'Réservez votre place'|trans }}
