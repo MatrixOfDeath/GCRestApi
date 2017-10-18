@@ -15,7 +15,7 @@
         <li>
             <a href="{{ path('panier') }}">
             {% if salles == 0 %}
-                <span class="panier-salle-none-selected">{{  "Aucune salle sélectionner !"|trans }}</span>
+                <span class="panier-salle-none-selected">{{  "Aucune salle sélectionnée !"|trans }}</span>
             {% elseif salles == 1 %}
                 {{  "Une salle choisie"|trans}}
             {% else %}
@@ -26,7 +26,7 @@
         <li>
             <a href="{{ path('panier') }}">
                 {% if salles == 0 %}
-                    <span class="panier-salle-none-selected">{{  "Aucune places sélectionner !"|trans }}</span>
+                    <span class="panier-salle-none-selected">{{  "Aucune place sélectionnée !"|trans }}</span>
                 {% elseif salles == 1 %}
                     {{  "Une place choisie"|trans}}
                 {% else %}

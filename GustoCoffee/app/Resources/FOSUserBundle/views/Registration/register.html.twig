@@ -17,8 +17,11 @@
         <h1 class="colorWhite">Espace Client - Inscription</h1>
         <h3 class="colorWhite"> <i>Rejoignez notre communauté ! </i></h3>
     </div>
-    <button class="buttonInscription greenButton">
-        <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">{{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+    <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
+    <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+        {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
     </button>
 {% endblock %}
 

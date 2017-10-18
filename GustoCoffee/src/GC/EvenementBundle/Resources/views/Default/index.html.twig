@@ -14,9 +14,15 @@
 
 {% block titleHome %}
     <div class="banniere">
-    <h1 class="colorWhite">Nos évènements</h1>
-    <h3 class="colorWhite"> <i>Si on se rencontrait ? </i></h3>
-</div>
+        <h1 class="colorWhite">Nos évènements</h1>
+        <h3 class="colorWhite"> <i>Si on se rencontrait ? </i></h3>
+    </div>
+    <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
+    <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+        {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+    </button>
 {% endblock %}
 
 {% block firstBlock %}

@@ -4,9 +4,16 @@
     style='background-image: url({{ asset('img/connexion.jpg') }});'>
 {% endblock %}
 
-{% block firstTitle %}
-    <h1 class="titleHome">Inscription CoWorking</h1>
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">Espace Client - Inscription</h1>
+        <h3 class="colorWhite"> <i>Rejoignez notre grande communauté ! </i></h3>
+    </div>
+    <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
 {% endblock %}
+
 
 {% block firstBlock %}
     <div class="row addPadding">
