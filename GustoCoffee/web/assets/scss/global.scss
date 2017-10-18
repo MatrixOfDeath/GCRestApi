@@ -76,6 +76,9 @@ i.fa.fa-file-pdf-o{
 }
 
 #mainNav {
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
   background: rgba(255, 255, 255, 0.7);
   border-color: transparent;
 }
@@ -84,7 +87,7 @@ i.fa.fa-file-pdf-o{
   background-color: #f8f8f8;
   border-color: #f8f8f8;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.07), 0 2px 0 0 rgba(0,0,0,0.03);
-  opacity: 0.95;
+  //opacity: 0.95;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
 }
@@ -97,6 +100,14 @@ i.fa.fa-file-pdf-o{
     //background-color: #f8f8f8;
     background-color: transparent;
 }
+
+.navbar-default .navbar-nav>.active>a{
+  color: $color-gc-brighter;
+}
+.navbar-nav>li>a{
+  line-height: 34px;
+}
+
 //
 //.navbar-default .navbar-nav>li>a{
 //  color: #6F4E37;
@@ -137,8 +148,17 @@ i.fa.fa-file-pdf-o{
   color: #6F4E37;
   font-size: 1.2em;
 }
+#mainNav.marginTop {
+  margin-top: 20px;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+ul.dropdown-menu{
+  background-color: rgba(248,248,248,0.9);
+
+}
 nav {
-  margin-top: 30px;
   box-shadow: 5px 4px 5px #000;
 }
 
