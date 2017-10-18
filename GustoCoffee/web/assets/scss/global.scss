@@ -12,14 +12,15 @@ i.fa.fa-file-pdf-o{
 }
 .greenButton
 {
-  color: #fff !important;
-  background-color: #a6854d !important;
-  border-color: #a6854d !important;
+  border-radius: 3px;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
   &:hover
   {
-    color: #fff !important;
-    background-color: $color-gc-lighter !important;
-    border-color: $color-gc-brighter !important;
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
   }
 }
 
@@ -74,21 +75,27 @@ i.fa.fa-file-pdf-o{
   background:url('../img/loading.gif');
 }
 
+img.logoGC{
+  margin: 5px 30px 5px 5px;
+  width: 90px;
+}
 #mainNav {
   width: 98%;
   margin-left: auto;
   margin-right: auto;
   background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.07), 0 2px 0 0 rgba(0,0,0,0.03);
+  border-radius: 3px;
   border:none;
 }
 
 #mainNav.menu-blanc{
   background-color: #f8f8f8;
-  border-color: #f8f8f8;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.07), 0 2px 0 0 rgba(0,0,0,0.03);
   //opacity: 0.95;
   -webkit-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in;
+  border:none;
 }
 .navbar-toggle{
   background-color: #f8f8f8;
@@ -104,7 +111,7 @@ i.fa.fa-file-pdf-o{
   color: $color-gc-brighter;
 }
 .navbar-nav>li>a{
-  line-height: 35px;
+  line-height: 37px;
 }
 
 //
@@ -191,9 +198,9 @@ padding: 7px;
 }
 
 .buttonInscription {
-    background-color: #a6854d;
+    //background-color: #a6854d;
     border: none;
-    color: white;
+    //color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -203,9 +210,9 @@ padding: 7px;
     cursor: pointer;
 }
 
-.buttonInscription:hover {
-    background-color: #6d562f;
-}
+//.buttonInscription:hover {
+//    background-color: #6d562f;
+//}
 
 .sticky-container {
     padding: 0px;

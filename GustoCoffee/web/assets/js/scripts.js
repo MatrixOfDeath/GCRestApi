@@ -23,8 +23,10 @@ $(document).ready(function(){
     //
     // });
 
-    $('.navbar .dropdown > a').click(function(){
-        location.href = this.href;
+    $('.dropdown-toggle').click(function() {
+        var location = $(this).attr('href');
+        window.location.href = location;
+        return false;
     });
 
 
