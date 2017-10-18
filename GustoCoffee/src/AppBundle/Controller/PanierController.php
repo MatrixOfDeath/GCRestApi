@@ -578,7 +578,7 @@ class PanierController extends Controller
                     $em->flush();
                     $panier_salle[$idSalle]['idReservation'] = $reservation->getIdreservation();
 
-                    $session->getFlashBag()->add('notice', 'Votre réservation sera valider uniquement après le paiement');
+                    $session->getFlashBag()->add('notice', 'Votre réservation sera validé uniquement après le paiement');
                     $session->set('panier_salle', $panier_salle);
 
                 } else {
@@ -641,7 +641,7 @@ class PanierController extends Controller
                     $em->flush();
                     $panier_place[$idPlace]['idReservation'] = $reservation->getIdreservation();
 
-                    $session->getFlashBag()->add('notice', 'Votre réservation sera valider uniquement après le paiement');
+                    $session->getFlashBag()->add('notice', 'Votre réservation sera validé uniquement après le paiement');
                     $session->set('panier_place', $panier_place);
 
                 } else {
@@ -704,7 +704,7 @@ class PanierController extends Controller
                     $em->flush();
                     $panier_salle[$idProduit]['idReservation'] = $reservation->getIdreservation();
 
-                    $session->getFlashBag()->add('notice', 'Votre réservation sera valider uniquement après le paiement');
+                    $session->getFlashBag()->add('notice', 'Votre réservation sera validé uniquement après le paiement');
                     $session->set('panier_salle', $panier_salle);
 
                 } else {
