@@ -58,10 +58,10 @@
                                     <a class="fa fa-home fa-3x" aria-hidden="true" {% if app.request.get('_route') == 'gc_home_page' %}  {% endif %} href="{{ path('gc_home_page') }}"> {{ 'Accueil'|trans }}</a>
                                 </li>
                                 <li>
-                                    <a {% if app.request.get('_route') == 'gc_evenement_page' %} class="Myactive" {% endif %} class="page-scroll" href="{{ path('gc_evenement_page') }}">{{ 'Evénements'|trans }}</a>
+                                    <a {% if app.request.get('_route') == 'gc_evenement_page' %} class="Myactive" {% endif %}  href="{{ path('gc_evenement_page') }}">{{ 'Evénements'|trans }}</a>
                                 </li>
                                 <li>
-                                    <a {% if app.request.get('_route') == 'gc_reservation_page' %} class="Myactive" {% endif %} class="page-scroll" href="{{ path('gc_reservation_page') }}">{{ 'Réservation'|trans }}</a>
+                                    <a {% if app.request.get('_route') == 'gc_reservation_page' %} class="Myactive" {% endif %}  href="{{ path('gc_reservation_page') }}">{{ 'Réservation'|trans }}</a>
                                     <ul id="dropMenu">
                                         <li>
                                             <a href="{{ path('gc_reservation_page') }}">Salle privée</a>
@@ -72,10 +72,10 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a {% if app.request.get('_route') == 'annonce_index' %} class="Myactive" {% endif %} class="page-scroll" href="{{ path('annonce_index') }}">{{ "Annonces"|trans }}</a>
+                                    <a {% if app.request.get('_route') == 'annonce_index' %} class="Myactive" {% endif %}  href="{{ path('annonce_index') }}">{{ "Annonces"|trans }}</a>
                                 </li>
                                 <li>
-                                    <a {% if app.request.get('_route') == 'gc_contact_page' %} class="Myactive" {% endif %} class="page-scroll" href="{{ path('gc_contact_page') }}">{{ 'Contact'|trans }}</a>
+                                    <a {% if app.request.get('_route') == 'gc_contact_page' %} class="Myactive" {% endif %}  href="{{ path('gc_contact_page') }}">{{ 'Contact'|trans }}</a>
                                 </li>
                                 <li>
                                     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -107,7 +107,7 @@
                                 {% endif %}
                                 {#<li>#}
                                     {#<a class="fa fa-shopping-cart fa-3x badge" data-count="0" aria-hidden="true" href="{{ path('panier') }}"></a>#}
-                                    {#<a class="page-scroll" href="{{ path('panier') }}">{{ 'Panier'|trans }}</a>#}
+                                    {#<a  href="{{ path('panier') }}">{{ 'Panier'|trans }}</a>#}
                                 {#</li>#}
                                 <li>
                                 {% if is_granted("ROLE_ADMIN") %}
