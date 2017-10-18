@@ -13,7 +13,13 @@
 {% endblock %}
 
 {% block titleHome %}
-    {{ 'GustoCoffee - Votre Annonce'|trans }}
+    <div class="banniere">
+        <h1 class="colorWhite">Voir une annonce</h1>
+        <h3 class="colorWhite"> <i>Si on travaillait ensemble ? </i></h3>
+    </div>
+    <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
 {% endblock %}
 
 {% block firstBlock %}

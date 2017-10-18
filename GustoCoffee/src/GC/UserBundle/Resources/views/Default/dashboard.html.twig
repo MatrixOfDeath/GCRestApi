@@ -13,14 +13,24 @@ topPage topPageDashboard
 {%  endblock %}
 
 {% block titleHome %}
-    Dashboard CoWorking
+    <div class="banniere">
+        <h1 class="colorWhite">Dashboard</h1>
+        <h3 class="colorWhite"> <i>Retrouvez vos dernières réservations !</i></h3>
+    </div>
+    <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
+    <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+        {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+    </button>
 {% endblock %}
+
 
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
             <h2 class="centerText">Vos dernières réservations</h2>
-            <p class="textDescription textFacture">Vous trouverez ci-dessous vous 3 dernières réservations effectuées chez GustoCoffee.<br>
+            <p class="textDescription textFacture">Vous trouverez ci-dessous vos 3 dernières réservations effectuées chez GustoCoffee.<br>
                 Ils sont téléchargeables en cliquant sous le bouton en dessous.
             </p>
         </div>
