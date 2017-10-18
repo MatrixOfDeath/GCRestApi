@@ -100,33 +100,37 @@
 {% block secondBlock %}
     <div class="row addPadding">
 
-        <h2 class="col-md-12 placeQuestion">Quelle place souhaitez vous avoir au sein de GustoCoffee ?</h2>
+        <h2 class="col-md-12 placeQuestion">{{ "Quelle place souhaitez vous avoir au sein de GustoCoffee ?"|trans }}</h2>
         <div class="clear"></div>
         <div class="col-md-5 cardReservation">
-            <div id="myBtn" class="card placeIndividuelle">
-                <div id="myModal" class="modal">
+            <div class="card  placeIndividuelle">
 
-                    <!-- Modal content -->
-                    <div class="modal-content sizeFont">
-                        <div class="modal-header">
-                            <span class="close">&times;</span>
-                            <h2>Place individuelle</h2>
-                        </div>
-                        <div class="modal-body">
-                            <p>Bonne nouvelle : </p>
-                            <p>Vous n'avez pas besoin de réserver de places individuelles. Tout se fait sur place.</p>
-                            <p>Pour les salles privatisées, cela se fait sur réservation ! </p>
-                        </div>
-                        <div class="modal-footer">
-                            <h3>GustoCoffee</h3>
-                        </div>
-                    </div>
+            {#<div id="myBtn" class="card placeIndividuelle">#}
+                {#<div id="myModal" class="modal">#}
 
-                </div>
-                <img src="{{ asset('place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
+                    {#<!-- Modal content -->#}
+                    {#<div class="modal-content sizeFont">#}
+                        {#<div class="modal-header">#}
+                            {#<span class="close">&times;</span>#}
+                            {#<h2>{{ "Place individuelle"|trans }}</h2>#}
+                        {#</div>#}
+                        {#<div class="modal-body">#}
+                            {#<p>Bonne nouvelle : </p>#}
+                            {#<p>Vous n'avez pas besoin de réserver de places individuelles. Tout se fait sur place.</p>#}
+                            {#<p>Pour les salles privatisées, cela se fait sur réservation ! </p>#}
+                        {#</div>#}
+                        {#<div class="modal-footer">#}
+                            {#<h3>GustoCoffee</h3>#}
+                        {#</div>#}
+                    {#</div>#}
+
+                {#</div>#}
+                <a href="{{ path('place_index') }}">
+                    <img src="{{ asset('img/place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
+                </a>
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Place individuelle</strong></h4>
-                    <p>Choisir une place</p>
+                    <h4 class="cardTitle"><strong>{{ "Place individuelle"|trans }}</strong></h4>
+                    <p>{{ "Choisir une place"|trans }}</p>
                 </div>
             </div>
         </div>
@@ -134,11 +138,11 @@
         <div class="col-md-5 cardReservation">
             <div class="card">
                 <a href="{{ path('salle_index') }}">
-                    <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                    <img src="{{ asset('img/place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
                 </a>
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
-                    <p>Choisir une salle</p>
+                    <h4 class="cardTitle"><strong>{{ "Salle privatisée"|trans }}</strong></h4>
+                    <p>{{ "Choisir une salle"|trans }}</p>
                 </div>
             </div>
         </div>

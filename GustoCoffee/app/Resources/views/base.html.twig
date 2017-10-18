@@ -36,7 +36,7 @@
 
                 <div class="body-wrap {% block firstImg %}{% endblock %}">
                     <div class="">
-                        <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
+                        <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top marginTop" role="navigation">
                             <div class="container-fluid">
                                 <div class="navbar-header">
                                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -62,21 +62,9 @@
                                         </li>
                                         <li {% if app.request.get('_route') == 'gc_reservation_page' %} class="active" {% endif %} class="dropdown" >
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('gc_reservation_page') }}">{{ 'Réservation'|trans }}</a>
-                                            {#<ul class="dropdown">#}
-                                                {#<li>#}
-                                                    {#<a href="{{ path('gc_reservation_page') }}">Salle privée</a>#}
-                                                {#</li>#}
-                                                {#<li>#}
-                                                    {#<a href="#">Place individuelle</a>#}
-                                                {#</li>#}
-                                            {#</ul>#}
                                             <ul class="dropdown-menu">
-                                                <li><a href="{{ path('gc_reservation_page') }}">Salle privée</a></li>
-                                                <li><a href="#">Place individuelle</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">One more separated link</a></li>
+                                                <li><a href="{{ path('salle_index') }}">Salle privée</a></li>
+                                                <li><a href="{{ path('place_index') }}">Place individuelle</a></li>
                                             </ul>
                                         </li>
                                         <li {% if app.request.get('_route') == 'annonce_index' %} class="active" {% endif %}>
@@ -87,25 +75,34 @@
                                         </li>
                                         <li {% if app.request.get('_route') == 'fos_user_profile_edit' %} class="active" {% endif %}>
                                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                                <a  href="{{ path('fos_user_profile_edit') }}">{{ 'Espace Client'|trans }}</a>
+                                                <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('fos_user_profile_edit') }}">{{ 'Espace Client'|trans }}</a>
                                             {% endif %}
+                                            <ul class="dropdown-menu">
+                                                <li><a href="{{ path('factures') }}">Vos Factures</a></li>
+                                                <li><a href="{{ path('factures') }}">Mes informations</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Separated link</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">One more separated link</a></li>
+                                            </ul>
                                         </li>
                                     </ul>
 
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li>
+                                        <li {% if app.request.get('_route') == 'fos_user_security_login' %} class="active" {% endif %}>
                                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                                 <a href="{{ path('fos_user_security_logout') }}">
                                                     {{ 'Déconnexion'|trans({}, 'FOSUserBundle') }}
                                                 </a>
                                             {% else %}
-                                                <a class="dropdown-toggle fa fa-user-circle fa-3x" data-toggle="dropdown"   aria-hidden="true" alt="{{ 'Connexion'|trans }}" href="{{ path('fos_user_security_login') }}">
+                                                <a class="dropdown-toggle " data-toggle="dropdown"   title="{{ 'Connexion'|trans }}" href="{{ path('fos_user_security_login') }}">
                                                     {#<img src="{{ asset('img/user.png') }}" alt="{{  'Connexion'|trans }}">#}
+                                                    <i class="fa fa-user-circle fa-3x" aria-hidden="true"></i>
                                                 </a>
                                             {% endif %}
                                             <ul class="dropdown-menu">
-                                                <li><a href="{{ path('gc_reservation_page') }}">Salle privée</a></li>
-                                                <li><a href="#">Place individuelle</a></li>
+                                                <li><a href="{{ path('factures') }}">Vos Factures</a></li>
+                                                <li><a href="{{ path('factures') }}">Mes informations</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="#">Separated link</a></li>
                                                 <li class="divider"></li>
@@ -130,7 +127,7 @@
                                         {#</li>#}
                                         <li>
                                             {% if is_granted("ROLE_ADMIN") %}
-                                                <a class="fa fa-gears fa-2x" href="{{ path('easyadmin') }}">
+                                                <a class="fa fa-gears fa-2x" title="Backoffice" href="{{ path('easyadmin') }}">
                                                     {{ 'BO'|trans }}
                                                 </a>
                                             {% endif %}
@@ -234,14 +231,14 @@
                 <ul class="sticky">
                     <li>
                         <a href="https://www.facebook.com/GustoCoffeeKASAgency/" target="_blank">
-                            <img width="32" height="32" title="" alt="facebook" src="{{ asset('social/facebook.png') }}" />
+                            <img width="32" height="32" title="" alt="facebook" src="{{ asset('img/social/facebook.png') }}" />
                             <p>Facebook</p>
                         </a>
                     </li>
-                    <li> <img width="32" height="32" title="" alt="twitter" src="{{ asset('social/twitter.png') }}" />
+                    <li> <img width="32" height="32" title="" alt="twitter" src="{{ asset('img/social/twitter.png') }}" />
                         <p>Twitter</p>
                     </li>
-                    <li> <img width="30" height="32" title="" alt="instagram" src="{{ asset('social/instagram.png') }}" />
+                    <li> <img width="30" height="32" title="" alt="instagram" src="{{ asset('img/social/instagram.png') }}" />
                         <p>Instagram</p>
                     </li>
                 </ul>

@@ -1,14 +1,12 @@
 //var $ = require('jquery');
 
-
 $(function(){
-
-
     $('a.tc-link[title]').tooltip();
 });
 
 // Basics features
 $(document).ready(function(){
+
 
     // $("#main").onepage_scroll();
     $('ul.nav li.dropdown').hover(function() {
@@ -16,6 +14,20 @@ $(document).ready(function(){
     }, function() {
         $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
     });
+
+    // $('.navbar .dropdown').hover(function() {
+    //     $(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
+    //
+    // }, function() {
+    //     $(this).find('.dropdown-menu').first().stop(true, true).delay(100).slideUp();
+    //
+    // });
+
+    $('.navbar .dropdown > a').click(function(){
+        location.href = this.href;
+    });
+
+
 
     $(window).on("scroll",function(){
         var wn = $(window).scrollTop();
