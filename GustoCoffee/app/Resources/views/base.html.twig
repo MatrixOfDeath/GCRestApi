@@ -29,9 +29,9 @@
 {% endblock %}
 <body>
 {% block body %}
-    <div class="body-wrap">
-        <div class="container">
-            <nav class="navbar navbar-inverse" role="navigation">
+    <div class="body-wrap {% block firstImg %}{% endblock %}">
+        <div class="">
+            <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -40,39 +40,80 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img src="https://www.gstatic.com/images/branding/googlelogo/1x/googlelogo_dark_color_74x24dp.png"></a>
+                        <a class="navbar-brand" href="#"><img alt="GustoCoffee" src="{{ asset('img/gc_transparent_resize.png') }}"/></a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">One more separated link</a></li>
+                        <ul class="nav navbar-nav navbar-left">
+                            <li class="hidden">
+                                <a href="#page-top"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-home fa-3x" aria-hidden="true" {% if app.request.get('_route') == 'gc_home_page' %}  {% endif %} href="{{ path('gc_home_page') }}"> {{ 'Accueil'|trans }}</a>
+                            </li>
+                            <li>
+                                <a {% if app.request.get('_route') == 'gc_evenement_page' %} class="Myactive" {% endif %}  href="{{ path('gc_evenement_page') }}">{{ 'Evénements'|trans }}</a>
+                            </li>
+                            <li>
+                                <a {% if app.request.get('_route') == 'gc_reservation_page' %} class="Myactive" {% endif %}  href="{{ path('gc_reservation_page') }}">{{ 'Réservation'|trans }}</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        <a href="{{ path('gc_reservation_page') }}">Salle privée</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Place individuelle</a>
+                                    </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a {% if app.request.get('_route') == 'annonce_index' %} class="Myactive" {% endif %}  href="{{ path('annonce_index') }}">{{ "Annonces"|trans }}</a>
+                            </li>
+                            <li>
+                                <a {% if app.request.get('_route') == 'gc_contact_page' %} class="Myactive" {% endif %}  href="{{ path('gc_contact_page') }}">{{ 'Contact'|trans }}</a>
+                            </li>
+                            <li>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <a {% if app.request.get('_route') == 'fos_user_profile_edit' %} class="Myactive" {% endif %} href="{{ path('fos_user_profile_edit') }}">{{ 'Espace Client'|trans }}</a>
+                                {% endif %}
                             </li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#">Link</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Action</a></li>
-                                    <li><a href="#">Another action</a></li>
-                                    <li><a href="#">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#">Separated link</a></li>
-                                </ul>
+
+                            <li>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <a href="{{ path('fos_user_security_logout') }}">
+                                        {{ 'Déconnexion'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+                                {% else %}
+                                    <a class="fa fa-user-circle fa-3x" aria-hidden="true" alt="{{  'Connexion'|trans }}" href="{{ path('fos_user_security_login') }}">
+                                        {#<img src="{{ asset('img/user.png') }}" alt="{{  'Connexion'|trans }}">#}
+                                    </a>
+                                {% endif %}
+                            </li>
+                            <li id="panier-icon-menu">
+                                {{ render(controller('AppBundle:Panier:menuIcon')) }}
+                            </li>
+                            {% if app.request.get('_route_params') is not null %}
+                                {% for locale in locales %}
+                                    <li>
+                                        <button type="button" class="btn btn-default btn-locale-flag {{ locale == app.request.getLocale() ? 'active' : '' }}" onclick="location.href='{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}'">
+                                            <img src="{{ asset('img/'~ locale ~'.png') }}" alt="{{ locale }}"/>
+                                        </button>
+                                    </li>
+                                {% endfor %}
+                            {% endif %}
+                            {#<li>#}
+                            {#<a class="fa fa-shopping-cart fa-3x badge" data-count="0" aria-hidden="true" href="{{ path('panier') }}"></a>#}
+                            {#<a  href="{{ path('panier') }}">{{ 'Panier'|trans }}</a>#}
+                            {#</li>#}
+                            <li>
+                                {% if is_granted("ROLE_ADMIN") %}
+                                    <a class="fa fa-gears fa-2x" href="{{ path('easyadmin') }}">
+                                        {{ 'BO'|trans }}
+                                    </a>
+                                {% endif %}
                             </li>
                         </ul>
                     </div>
@@ -84,7 +125,7 @@
     </div>
     {% block navbar %}
     <div id="main" class="container-fluid">
-        <div class="row {% block firstImg %}{% endblock %}">
+        <div class="row ">
             <div class="col-md-12">
                 <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
                     <div class="container">
@@ -190,10 +231,10 @@
                 </ul>
             </div>
             <div>
+            <div class="titleHome {% block paddingTitle %}{% endblock %}">
+                {% block titleHome %}{% endblock %}
+            </div>
 
-                <div class="titleHome {% block paddingTitle %}{% endblock %}">
-                    {% block titleHome %}{% endblock %}
-                </div>
             </div>
         </div>
     {% endblock %}

@@ -75,28 +75,28 @@ i.fa.fa-file-pdf-o{
   background:url('../img/loading.gif');
 }
 
-//#mainNav {
-//  background: rgba(255, 255, 255, 0.7);
-//  border-color: transparent;
-//}
-//
-//#mainNav.menu-blanc{
-//  background-color: #f8f8f8;
-//  border-color: #f8f8f8;
-//  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.07), 0 2px 0 0 rgba(0,0,0,0.03);
-//  opacity: 0.95;
-//  -webkit-transition: all 0.3s ease-in;
-//  transition: all 0.3s ease-in;
-//}
-//.navbar-toggle{
-//  background-color: #f8f8f8;
-//  border-color: #f8f8f8;
-//}
-//.navbar-default .navbar-collapse, .navbar-default .navbar-form {
-//    border-color: transparent;
-//    //background-color: #f8f8f8;
-//    background-color: transparent;
-//}
+#mainNav {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: transparent;
+}
+
+#mainNav.menu-blanc{
+  background-color: #f8f8f8;
+  border-color: #f8f8f8;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.07), 0 2px 0 0 rgba(0,0,0,0.03);
+  opacity: 0.95;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+.navbar-toggle{
+  background-color: #f8f8f8;
+  border-color: #f8f8f8;
+}
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+    border-color: transparent;
+    //background-color: #f8f8f8;
+    background-color: transparent;
+}
 //
 //.navbar-default .navbar-nav>li>a{
 //  color: #6F4E37;
@@ -133,6 +133,10 @@ i.fa.fa-file-pdf-o{
 //  //filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#001a315f', endColorstr='#1a315f', GradientType=0);
 //}
 
+.navbar-default .navbar-nav>li>a {
+  color: #6F4E37;
+  font-size: 1.2em;
+}
 nav {
   margin-top: 30px;
   box-shadow: 5px 4px 5px #000;
