@@ -70,6 +70,91 @@ class Personne extends BaseUser
      */
     //protected $email;
 
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $facebookID;
+
+    /**
+     * @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true)
+     */
+    protected $facebook_access_token;
+    /**
+     * @return string
+     */
+    public function getFacebookID()
+    {
+        return $this->facebookID;
+    }
+
+    /**
+     * @param string $facebookID
+     */
+    public function setFacebookID($facebookID)
+    {
+        $this->facebookID = $facebookID;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGoogleID()
+    {
+        return $this->googleID;
+    }
+
+    /**
+     * @param string $googleID
+     */
+    public function setGoogleID($googleID)
+    {
+        $this->googleID = $googleID;
+    }
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $googleID;
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebook_access_token;
+    }
+
+    /**
+     * @param mixed $facebook_access_token
+     */
+    public function setFacebookAccessToken($facebook_access_token)
+    {
+        $this->facebook_access_token = $facebook_access_token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleAccessToken()
+    {
+        return $this->google_access_token;
+    }
+
+    /**
+     * @param mixed $google_access_token
+     */
+    public function setGoogleAccessToken($google_access_token)
+    {
+        $this->google_access_token = $google_access_token;
+    }
+
+    /**
+     * @ORM\Column(name="google_access_token", type="string", length=255, nullable=true)
+     */
+    protected $google_access_token;
+
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\UtilisateursAdresses", mappedBy="utilisateur", cascade={"remove"})

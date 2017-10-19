@@ -63,6 +63,12 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
+    my.oauth_aware.user_provider.service:
+        class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
+        arguments:
+            - '@fos_user.user_manager'
+            - ['pass properties as array']
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:

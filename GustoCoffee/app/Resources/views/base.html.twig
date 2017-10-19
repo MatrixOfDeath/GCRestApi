@@ -22,8 +22,26 @@
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
     {{ cookie_consent_render() }}
 
-    {% block customCss %}{% endblock %}
+    {#{% block customCss %}{% endblock %}#}
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1693020454042033',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.10'
+            });
+            FB.AppEvents.logPageView();
+        };
 
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 </head>
 
 {% endblock %}
@@ -36,7 +54,7 @@
 
                 <div class="body-wrap {% block firstImg %}{% endblock %}">
                     <div class="">
-                        <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top marginTop" role="navigation">
+                        <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top marginTop">
                             <div class="container-fluid">
                                 <div class="navbar-header">
                                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -82,8 +100,6 @@
                                                 <li><a href="{{ path('factures') }}">Mes informations</a></li>
                                                 <li class="divider"></li>
                                                 <li><a href="#">Separated link</a></li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">One more separated link</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -286,17 +302,17 @@
     {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
     {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-    <script type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
+    <script async type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script async type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
 
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script async src="{{ asset('js/bootstrap.min.js') }}"></script>
     {#<script>#}
     {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
     {#</script>#}
 
-    <script src="{{ asset('build/app.js') }}"></script>
+    <script async src="{{ asset('build/app.js') }}"></script>
     {#  Adding ajax script TODO: add specific on each page #}
-    <script src="{{ asset('build/ajax.js') }}"></script>
+    <script async src="{{ asset('build/ajax.js') }}"></script>
 
 {% endblock %}
 </body>

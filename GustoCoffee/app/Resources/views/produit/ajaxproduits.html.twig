@@ -1,5 +1,5 @@
 {% for produit in produits %}
-    <div class="col-md-6 cardSalle">
+    <div class="col-md-6 col-xs-12 col-sm-6 col-lg-4 cardSalle">
         <div class="thumbnail">
             <a href="{{ path('produit_show', { 'idproduit': produit.idproduit }) }}"><img class="group list-group-image" src="{{ asset('uploads/images/products/'~ produit.image) }}" alt="Salle privatisée"></a>
             <div class="caption">

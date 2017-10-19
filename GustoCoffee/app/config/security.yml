@@ -53,6 +53,17 @@ security:
                 path: fos_user_security_logout
             anonymous: true
 
+            oauth:
+                resource_owners:
+                    facebook:      "/connect/check-facebook"
+                    google:        "/connect/check-google"
+                login_path:        /connect
+                use_forward:       false
+                failure_path:      /connect
+
+                oauth_user_provider:
+                    service: my_user_manager
+
         oauth_token:                                   # Everyone can access the access token URL.
             pattern: ^/oauth/v2/token
             security: false

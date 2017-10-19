@@ -26,7 +26,7 @@
 
 {% block firstBlock %}
     <div class="row">
-        <div class="col-md-3" id="" role="navigation">
+        <div class="col-md-3" role="navigation">
             <div class="row recherche-horaire">
                 <div class="col-xs-2">
                 </div>
@@ -47,7 +47,7 @@
                     <div class="col-xs-2">
                     </div>
             </div>
-            <div class="row panier-menu">
+            <div class="row panier-menu hidden-xs hidden-sm">
                 {{ render(controller('AppBundle:Panier:ajaxPanier')) }}
             </div>
         </div>

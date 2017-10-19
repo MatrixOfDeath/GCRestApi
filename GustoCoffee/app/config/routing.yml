@@ -6,52 +6,6 @@ app_ligne_facture:
     resource: "@AppBundle/Controller/LigneFactureController.php"
     type:     annotation
 
-#app_magasin:
-#    resource: "@AppBundle/Controller/MagasinController.php"
-#    type:     annotation
-#
-#app_transaction:
-#    resource: "@AppBundle/Controller/TransactionController.php"
-#    type:     annotation
-#
-#app_modedepaiement:
-#    resource: "@AppBundle/Controller/ModeDePaiementController.php"
-#    type:     annotation
-#
-#app_service:
-#    resource: "@AppBundle/Controller/ServiceController.php"
-#    type:     annotation
-#
-#app_produit:
-#    resource: "@AppBundle/Controller/ProduitController.php"
-#    type:     annotation
-#
-#app_salle:
-#    resource: "@AppBundle/Controller/SalleController.php"
-#    type:     annotation
-#
-#app_annonce:
-#    resource: "@AppBundle/Controller/AnnonceController.php"
-#    type:     annotation
-#
-#app_facture:
-#    resource: "@AppBundle/Controller/FactureController.php"
-#    type:     annotation
-#
-#app_commande:
-#    resource: "@AppBundle/Controller/CommandeController.php"
-#    type:     annotation
-#
-#app_reservation:
-#    resource: "@AppBundle/Controller/ReservationController.php"
-#    type:     annotation
-#
-#app_place:
-#    resource: "@AppBundle/Controller/PlaceController.php"
-#    type:     annotation
-
-
-
 gc_user:
     resource: "@GCUserBundle/Resources/config/routing.yml"
     prefix:   /
@@ -87,6 +41,24 @@ NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing/swaggerui.xml"
     prefix:   /api/doc
     options: { i18n: false }
+
+facebook_login:
+    path: /connect/check-facebook
+
+google_login:
+    path: /connect/check-google
+
+hwi_oauth_redirect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+    prefix:   /connect
+
+hwi_oauth_connect:
+    resource: "@HWIOAuthBundle/Resources/config/routing/connect.xml"
+    prefix:   /connect
+
+hwi_oauth_login:
+    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+    prefix:   /connect
 
 fos_oauth_server_token:
     resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"

@@ -33,17 +33,17 @@
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="centerText">Se Connecter</h2>
+            <h2 class="centerText">{{ "Se Connecter"|trans }}</h2>
         </div>
         <div class="col-md-5">
-            <button class="loginBtn loginBtn--facebook">
-                Login with Facebook
+            <button class="loginBtn loginBtn--facebook" onclick="location.href='{{ path('facebook_login') }}">
+                {{ "Login avec Facebook"|trans }}
             </button>
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-5">
-            <button class="loginBtn loginBtn--google">
-                Login with Google
+            <button class="loginBtn loginBtn--google" onclick="location.href='{{ path('google_login') }}">
+                {{ "Login avec Google"|trans }}
             </button>
         </div>
     </div>
