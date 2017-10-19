@@ -20,5 +20,5 @@ easy_admin:
             - { label: 'menu.jours.ouvert', entity: 'JoursOuvert', icon: 'calendar-check-o' }
             - { label: 'menu.jours.fermee', entity: 'FermetureCafe', icon: 'calendar-times-o' }
             - { label: 'menu.about' }
-            - { label: 'menu.about.home', url: 'https://dev-gc.andcompany.fr', icon: 'home', target: '_blank' }
-            - { label: 'menu.about.docs', url: 'http://dev.gc.fr/api/doc', icon: 'book', target: '_blank' }
+            - { label: 'menu.about.home', url: 'http://dev-gustocoffee.andcompany.fr', icon: 'home', target: '_blank' }
+            - { label: 'menu.about.docs', url: 'http://dev-gustocoffee.andcompany.fr/api/doc', icon: 'book', target: '_blank' }
