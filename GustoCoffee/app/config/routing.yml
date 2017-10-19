@@ -44,9 +44,11 @@ NelmioApiDocBundle:
 
 facebook_login:
     path: /connect/check-facebook
+    options: { i18n: false }
 
 google_login:
     path: /connect/check-google
+    options: { i18n: false }
 
 hwi_oauth_redirect:
     resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
