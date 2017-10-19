@@ -36,13 +36,13 @@
             <h2 class="centerText">{{ "Se Connecter"|trans }}</h2>
         </div>
         <div class="col-md-5">
-            <button class="loginBtn loginBtn--facebook" onclick="location.href='{{ path('facebook_login') }}">
+            <button class="loginBtn loginBtn--facebook" onclick="location.href='{{ hwi_oauth_login_url('facebook') }}'">
                 {{ "Login avec Facebook"|trans }}
             </button>
         </div>
         <div class="col-md-2"></div>
         <div class="col-md-5">
-            <button class="loginBtn loginBtn--google" onclick="location.href='{{ path('google_login') }}">
+            <button class="loginBtn loginBtn--google" onclick="location.href='{{ hwi_oauth_login_url('google') }}'">
                 {{ "Login avec Google"|trans }}
             </button>
         </div>

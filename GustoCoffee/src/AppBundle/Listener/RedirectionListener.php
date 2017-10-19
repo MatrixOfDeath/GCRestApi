@@ -37,5 +37,17 @@ class RedirectionListener
                 $event->setResponse(new RedirectResponse($this->router->generate('fos_user_security_login')));
             }
         }
+
+        if ($route == 'ajax_adresses_panier' || $route == 'ajax_validation_panier') {
+            if ($this->session->has('panier_salle')) {
+                if (count($this->session->get('panier_salle')) == 0)
+                    $event->setResponse(new RedirectResponse($this->router->generate('panier')));
+            }
+
+            if (!is_object($this->securityContext->getToken()->getUser())) {
+                $this->session->getFlashBag()->add('notification','Vous devez vous identifier');
+                $event->setResponse(new RedirectResponse($this->router->generate('fos_user_security_login')));
+            }
+        }
     }
 }
