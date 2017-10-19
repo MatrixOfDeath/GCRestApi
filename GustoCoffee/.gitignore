@@ -24,9 +24,6 @@
 /node_modules/
 /web/node_modules/
 /app/Resources/lib
-/web/build/app.*.js
-/web/build/ajax.*.js
-/web/build/global.*.css
 
 # Cache logs
 /var/*
