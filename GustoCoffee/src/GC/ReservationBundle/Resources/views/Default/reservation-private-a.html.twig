@@ -21,10 +21,10 @@
         <h1 class="colorWhite">{{"Espace Réservation"|trans}}</h1>
         <h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>
     </div>
-    <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
         {{ 'Réservez votre place'|trans }}
     </button>
-    <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
         {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
     </button>
 {% endblock %}
@@ -77,7 +77,7 @@
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-6 addPadding">
-            <input type="submit" class="buttonInscription centerText centerButton" value="Réserver" />
+            <input type="submit" class="buttonGC brownButton centerText centerButton" value="Réserver" />
         </div>
         <div class="col-md-3"></div>
     </div>

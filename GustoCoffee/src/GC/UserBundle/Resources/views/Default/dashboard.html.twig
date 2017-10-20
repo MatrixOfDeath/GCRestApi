@@ -17,11 +17,11 @@ topPage topPageDashboard
         <h1 class="colorWhite">Dashboard</h1>
         <h3 class="colorWhite"> <i>Retrouvez vos dernières réservations !</i></h3>
     </div>
-    <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
         {{ 'Réservez ici'|trans }}
     </button>
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
-        <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+        <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
             {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
         </button>
     {% endif %}
@@ -43,7 +43,7 @@ topPage topPageDashboard
             <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
         </div>
         <div class="col-md-5">
-            <button class="buttonInscription">Télécharger la facture</button>
+            <button class="buttonGC brownButton">Télécharger la facture</button>
         </div>
 
         <div class="clear"></div>
@@ -52,7 +52,7 @@ topPage topPageDashboard
             <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
         </div>
         <div class="col-md-5">
-            <button class="buttonInscription">Télécharger la facture</button>
+            <button class="buttonGC brownButton">Télécharger la facture</button>
         </div>
 
         <div class="clear"></div>
@@ -62,7 +62,7 @@ topPage topPageDashboard
             <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
         </div>
         <div class="col-md-5">
-            <button class="buttonInscription">Télécharger la facture</button>
+            <button class="buttonGC brownButton">Télécharger la facture</button>
         </div>
 
         <div class="clear"></div>

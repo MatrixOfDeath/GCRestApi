@@ -19,10 +19,13 @@
         <h3 class="colorWhite"> <i>{{ "Choisissez votre moyen de réglement"|trans }} !</i></h3>
     </div>
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
-        <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+        <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
             {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
         </button>
     {% endif %}
+    <button class="buttonGC greenButton" form="paiemnt-commande">
+        {{ 'Payer directiment >'|trans }}</a>
+    </button>
 {% endblock %}
 
 {% block firstBlock %}
@@ -141,7 +144,7 @@
             
             <div class="clearfix"></div>
             
-            <form action="{{ path('paiement_commande', { 'id' : commande.idcommande }) }}" method="POST"/>
+            <form id="paiement-commande" action="{{ path('paiement_commande', { 'id' : commande.idcommande }) }}" method="POST"/>
                 <input name="token" type="hidden" value="{{ commande.commande.token }}" />
                 <input name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
                 <input name="totalTTC" type="hidden" value="{{ commande.commande.totalTTC }}" />

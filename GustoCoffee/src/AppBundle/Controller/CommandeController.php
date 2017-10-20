@@ -413,6 +413,10 @@ class CommandeController extends FOSRestController
         return new Response($commande->getIdcommande());
     }
 
+
+    public function setPointCumule(SessionInterface $session){
+
+    }
     /**
      * @param SessionInterface $session
      */
@@ -463,6 +467,11 @@ class CommandeController extends FOSRestController
 
         $this->setStockProduits($session);
 
+        $retrieveCommande = $commande->getCommande();
+//        var_dump($commande->getCommande()->totalTTC);
+        $personne = $em->getRepository('AppBundle:Personne')->find($this->getUser());
+        $personne->setPointscumules($personne->getPointscumules()+(int)($retrieveCommande['totalTTC']/10) );
+
         $panier_salle = $session->get('panier_salle');
         $panier_place = $session->get('panier_place');
         if(reset($panier_salle)) {
@@ -475,9 +484,6 @@ class CommandeController extends FOSRestController
         }
         $em->flush();
 
-        //var_dump($panier_salle[$key]['idReservation']);
-
-        //$session = $this->getRequest()->getSession();
         $session->remove('adresse');
         $session->remove('panier');
         $session->remove('panier_salle');

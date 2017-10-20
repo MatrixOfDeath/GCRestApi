@@ -1,6 +1,6 @@
 {% block head %}
 <!DOCTYPE html>
-<html lang="fr" xmlns="http://www.w3.org/1999/html">
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +23,7 @@
     {{ cookie_consent_render() }}
 
     {#{% block customCss %}{% endblock %}#}
-    <script>
+    <script async>
         window.fbAsyncInit = function() {
             FB.init({
                 appId      : '1693020454042033',
@@ -73,23 +73,23 @@
                                             <a href="#page-top"></a>
                                         </li>
                                         <li {% if app.request.get('_route') == 'gc_home_page' %} class="active" {% endif %}>
-                                            <a class="fa fa-home fa-3x" aria-hidden="true"  href="{{ path('gc_home_page') }}"> {{ 'Accueil'|trans }}</a>
+                                            <a href="{{ path('gc_home_page') }}" title="Page d'accueil"><i class="fa fa-home fa-1x" aria-hidden="true"></i> {{ 'Accueil'|trans }}</a>
                                         </li>
                                         <li {% if app.request.get('_route') == 'gc_evenement_page' %} class="active" {% endif %} >
-                                            <a  href="{{ path('gc_evenement_page') }}">{{ 'Evénements'|trans }}</a>
+                                            <a  href="{{ path('gc_evenement_page') }}" title="Nos événements">{{ 'Evénements'|trans }}</a>
                                         </li>
                                         <li class="dropdown {% if app.request.get('_route') == 'gc_reservation_page' or app.request.get('_route') ==  'salle_index' or app.request.get('_route') =='place_index' %} active {% endif %}">
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('gc_reservation_page') }}">{{ 'Réservation'|trans }}</a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="{{ path('salle_index') }}">Salle privée</a></li>
-                                                <li><a href="{{ path('place_index') }}">Place individuelle</a></li>
+                                                <li><a href="{{ path('salle_index') }}" title="Salle privée">Salle privée</a></li>
+                                                <li><a href="{{ path('place_index') }}" title="Place individuelle">Place individuelle</a></li>
                                             </ul>
                                         </li>
                                         <li {% if app.request.get('_route') == 'annonce_index' %} class="active" {% endif %}>
-                                            <a   href="{{ path('annonce_index') }}">{{ "Annonces"|trans }}</a>
+                                            <a href="{{ path('annonce_index') }}">{{ "Annonces"|trans }}</a>
                                         </li>
                                         <li {% if app.request.get('_route') == 'gc_contact_page' %} class="active" {% endif %} >
-                                            <a  href="{{ path('gc_contact_page') }}">{{ 'Contact'|trans }}</a>
+                                            <a href="{{ path('gc_contact_page') }}">{{ 'Contact'|trans }}</a>
                                         </li>
                                         <li class="dropdown{% if app.request.get('_route') == 'fos_user_profile_edit' %} active {% endif %}">
                                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -154,8 +154,8 @@
                                         {#</li>#}
                                         <li>
                                             {% if is_granted("ROLE_ADMIN") %}
-                                                <a class="fa fa-gears fa-2x" title="Backoffice" href="{{ path('easyadmin') }}">
-                                                    {{ 'BO'|trans }}
+                                                <a href="{{ path('easyadmin') }}" title="Backoffice">
+                                                    <i class="fa fa-gears fa-1x" ></i>{{ 'BO'|trans }}
                                                 </a>
                                             {% endif %}
                                         </li>

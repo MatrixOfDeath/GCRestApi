@@ -36,4 +36,19 @@ class RestWelcomeController extends Controller
 
         return $this->setBaseHeaders($response);
     }
+
+    /**
+     * @Route("/collection", name="user_collection")
+     * @Method("GET")
+     */
+    public function getPointsAction(Request $request)
+    {
+        //$this->getUser();
+
+        $response = new Response($this->serialize($this->getUser()), Response::HTTP_OK);
+
+        return $this->setBaseHeaders($response);
+    }
+
+
 }

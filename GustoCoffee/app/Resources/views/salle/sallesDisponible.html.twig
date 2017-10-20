@@ -22,7 +22,7 @@
         {% if salle.capacitymax <= 10 %}
             {% set count = count + 1 %}
 
-            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-3 cardSalle">
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 cardSalle">
                 <div class="thumbnail">
                         <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
                             <img class="group list-group-image" src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="Salle privatisée">
@@ -40,19 +40,9 @@
                         <p class="centerText">
                             <button type="button" class="btn btn-success buttonAddSalle" value="{{ salle.idsalle }}">Choisir</button>
                         </p>
-                        <div class="row">
-{#<<<<<<< HEAD#}
-                            {#<div class="col-md-12 "></div>#}
-{#=======#}
-                            {#<div class="col-md-6">#}
-                                {#<p class=lead">{{ "Prix de cette salle privée"|trans }} 1h -> 20€</p>#}
-                            {#</div>#}
-                            {#<div class="col-md-6">#}
-                                {#<button type="button" class="btn btn-success buttonAddSalle" value="{{ salle.idsalle }}">Choisir</button>#}
-                                {#<a class="btn btn-success" href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">{{ "Choisir"|trans }}</a>#}
-                            {#</div>#}
-{#>>>>>>> TunnelAchat#}
-                        </div>
+                        {#<div class="row">#}
+
+                        {#</div>#}
                     </div>
                 </div>
             </div>

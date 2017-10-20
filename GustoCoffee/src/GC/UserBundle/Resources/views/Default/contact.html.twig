@@ -18,11 +18,11 @@
         <h1 class="colorWhite">Contact</h1>
         <h3 class="colorWhite"> <i>Si on restait en contact? </i></h3>
     </div>
-    <button class="buttonInscription greenButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
         {{ 'Réservez votre place'|trans }}
     </button>
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
-        <button class="buttonInscription greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+        <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
             {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
         </button>
     {% endif %}
@@ -62,11 +62,16 @@
                         {{ form_rest(form) }}
                     </div>
                 </div>
-                <div class="col-md-12 form-connexion">
-                    <div class="clearThirty"></div>
-                    <input class="buttonInscription centerText midWidth" type="submit" value="Envoyer le message">
-                </div>
             </div>
+            <div class="row">
+                <div class="col-md-3 col-xs-1"></div>
+                <div class="col-md-6 col-xs-10 form-connexion">
+                    <div class="clearThirty"></div>
+                    <input class="buttonGC brownButton centerText midWidth" type="submit" value="Envoyer le message">
+                </div>
+                <div class="col-md-3 col-xs-1"></div>
+            </div>
+
         </div>
     </div>
 
@@ -77,7 +82,7 @@
 {% block secondBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="centerText">Téléphonez-nous</h2>
+            <h2 class="centerText">{{ "Téléphonez-nous"|trans }}</h2>
             <p class="sizeBigFont centerText"><b>01.15.54.15.18</b></p>
         </div>
     </div>

@@ -10,7 +10,7 @@ html *
 i.fa.fa-file-pdf-o{
   color:red;
 }
-.greenButton
+.blueButton
 {
   border-radius: 3px;
   color: #fff;
@@ -21,6 +21,20 @@ i.fa.fa-file-pdf-o{
     color: #fff;
     background-color: #286090;
     border-color: #204d74;
+  }
+}
+
+.brownButton
+{
+  border-radius: 3px;
+  color: #fff;
+  background-color: $color-gc-brighter;
+  border-color: $color-gc-lighter;
+  &:hover
+  {
+    color: #fff;
+    background-color: $color-gc-brighter;
+    border-color: $color-gc-lighter;
   }
 }
 
@@ -198,7 +212,7 @@ padding: 7px;
     margin-top: -8px;
 }
 
-.buttonInscription {
+.buttonGC {
   //background-color: #a6854d;
   position: relative;
   border: none;
@@ -213,9 +227,8 @@ padding: 7px;
   margin: 4px 2px;
   cursor: pointer;
   overflow: hidden;
-
 }
-.buttonInscription:after {
+.buttonGC:after {
   content: "";
   display: block;
   background: rgba(107,202,255,0.9);
@@ -228,7 +241,7 @@ padding: 7px;
   transition: all 0.4s
 }
 
-.buttonInscription:active:after {
+.buttonGC:active:after {
   padding: 0;
   margin: 0;
   opacity: 1;
