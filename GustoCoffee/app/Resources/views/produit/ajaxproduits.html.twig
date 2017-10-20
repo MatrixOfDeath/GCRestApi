@@ -10,10 +10,10 @@
                     {{ produit.description }}
                 </p>
                 <p class="centerText">
-                    Prix du service : {{ produit.prixproduit|tva(produit.tva.multiplicate) }}€
+                    {{ "Prix du service"|trans }} : {{ produit.prixproduit|tva(produit.tva.multiplicate) }}€
                 </p>
                 <p class="group inner list-group-item-text centerText">
-                    <button type="button" class="btn btn-success buttonAddProductPanier" value="{{ produit.idproduit }}" >Ajouter au panier</button>
+                    <button type="button" class="btn btn-success buttonAddProductPanier" value="{{ produit.idproduit }}" >{{ "Ajouter au panier"|trans }}</button>
                 </p>
                 <div class="row">
                     {#Quantité <span>#}

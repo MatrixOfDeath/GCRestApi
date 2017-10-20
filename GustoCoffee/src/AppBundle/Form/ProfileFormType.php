@@ -26,11 +26,7 @@ class ProfileFormType extends AbstractType
             ->add('adresse', TextType::class, array('attr' => array('placeholder' => '  Adresse', 'style' => 'width: 100%')))
             ->add('codepostal', NumberType::class, array('attr' => array('placeholder' => '  Code Postal', 'style' => 'width: 100%')))
             ->add('ville', TextType::class, array('attr' => array('placeholder' => '  Ville', 'style' => 'width: 100%')))
-            ->add('statutpersonne')
-            ->add('pointscumules')
-            ->add('rulepersonne')
             ->add('newsletter')
-            ->add('idrule');
         ;
     }
 

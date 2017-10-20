@@ -63,6 +63,12 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
+    my.user_provider.service:
+        class: AppBundle\Security\Core\FOSUBUserProvider
+        arguments:
+            - '@fos_user.user_manager'
+            - ['{ facebook: facebook_id, google: google_id }']
+
     my.oauth_aware.user_provider.service:
         class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
         arguments:
