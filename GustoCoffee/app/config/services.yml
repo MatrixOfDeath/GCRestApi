@@ -67,7 +67,7 @@ services:
         class: HWI\Bundle\OAuthBundle\Security\Core\User\FOSUBUserProvider
         arguments:
             - '@fos_user.user_manager'
-            - ['{ facebook: facebook_id, google: google_id}']
+            - ['{ facebook: facebookID, google: googleID}']
 
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:

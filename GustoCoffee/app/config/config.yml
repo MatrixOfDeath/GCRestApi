@@ -200,16 +200,19 @@ hwi_oauth:
     resource_owners:
         facebook:
             type:                facebook
-            client_id:           1693020454042033
-            client_secret:       69812d429f2fbfdfb2caa1db031ce3a4
+            client_id:           "1693020454042033"
+            client_secret:       "69812d429f2fbfdfb2caa1db031ce3a4"
             options:
                 display: popup #dialog is optimized for popup window
                 auth_type: rerequest # Re-asking for Declined Permissions
         google:
             type:                google
-            client_id:           355676912323-vth3ibravpaa0f1n091toibna65u8lqg.apps.googleusercontent.com
-            client_secret:       YxNkVtiDc-e8Dfjqb2o8Uwo4
+            client_id:           "355676912323-vth3ibravpaa0f1n091toibna65u8lqg.apps.googleusercontent.com"
+            client_secret:       "YxNkVtiDc-e8Dfjqb2o8Uwo4"
             scope:               "https://www.googleapis.com/auth/plus.login"
+            options:
+                display: popup #dialog is optimized for popup window
+                auth_type: rerequest # Re-asking for Declined Permissions
 
 nelmio_cors:
     defaults:
