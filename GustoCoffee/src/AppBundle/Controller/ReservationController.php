@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Reservation controller.
@@ -78,7 +79,7 @@ class ReservationController extends FOSRestController
 
     /**
      * Displays a form to edit an existing reservation entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idreservation}/edit", name="reservation_edit", requirements={"idreservation": "\d+"})
      * @Method({"GET", "POST"})
      */
@@ -103,7 +104,7 @@ class ReservationController extends FOSRestController
 
     /**
      * Deletes a reservation entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idreservation}", name="reservation_delete", requirements={"idreservation": "\d+"})
      * @Method("DELETE")
      */

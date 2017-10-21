@@ -64,14 +64,14 @@ Encore
     // allow sass/scss files to be processed
     .enableSassLoader()
 
-    .enableLessLoader()
+    //.enableLessLoader()
 
     //.autoProvidejQuery()
 
     .enableSourceMaps(!Encore.isProduction())
 
     // .enableVersioning()
-    .enableVersioning()
+    .enableVersioning(!Encore.isProduction())
 
 ;
 

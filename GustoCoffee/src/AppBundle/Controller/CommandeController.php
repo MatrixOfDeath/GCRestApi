@@ -17,8 +17,8 @@ use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Services\GetReference;
-use Payplug\Payplug;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 /**
  * Commande controller.
  * @Rest\RouteResource("Commande")
@@ -108,7 +108,7 @@ class CommandeController extends FOSRestController
 
     /**
      * Displays a form to edit an existing commande entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idcommande}/edit", name="commande_edit", requirements={"idcommande": "\d+"})
      * @Method({"GET", "POST"})
      */
@@ -133,7 +133,7 @@ class CommandeController extends FOSRestController
 
     /**
      * Deletes a commande entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idcommande}", name="commande_delete", requirements={"idcommande": "\d+"})
      * @Method("DELETE")
      */

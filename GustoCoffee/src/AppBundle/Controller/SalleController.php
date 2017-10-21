@@ -5,18 +5,16 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Salle;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use FOS\RestBundle\Controller\FOSRestController;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\Operation;
-use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
-use FOS\RestBundle\Controller\Annotations\Get;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncode;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Salle controller.
@@ -29,8 +27,8 @@ class SalleController extends FOSRestController
      * Cette fonction retourne toutes les salles
      *
      * @Operation(
-     *     tags={""},
-     *     summary="Retourne les salles",
+     *     tags={"Magasins, Salles et Places"},
+     *     summary="Retourne les toutes les salles",
      *     @SWG\Response(
      *         response="200",
      *         description="Returned when successful"
@@ -43,7 +41,6 @@ class SalleController extends FOSRestController
     public function cgetAction(){
         $em = $this->getDoctrine()->getManager();
         $salles= $em->getRepository('AppBundle:Salle')->findAll();
-
 
         //return $salles;
         $view = $this->view($salles);
@@ -192,7 +189,7 @@ class SalleController extends FOSRestController
 
     /**
      * Creates a new salle entity.
-     *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/new", name="salle_new")
      * @Method({"GET", "POST"})
      */
@@ -240,7 +237,7 @@ class SalleController extends FOSRestController
 
     /**
      * Displays a form to edit an existing salle entity.
-     *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/{idsalle}/edit", name="salle_edit", requirements={"idsalle": "\d+"})
      * @Method({"GET", "POST"})
      */
@@ -265,7 +262,7 @@ class SalleController extends FOSRestController
 
     /**
      * Deletes a salle entity.
-     *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/{idsalle}", name="salle_delete", requirements={"idsalle": "\d+"})
      * @Method("DELETE")
      */
@@ -343,9 +340,9 @@ class SalleController extends FOSRestController
             ->select('s_sub.idsalle')
             ->leftJoin('s_sub.reservation', 'r')
             ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->andWhere('r.heurefin > :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+            ->orWhere('r.heuredebut > :heureChoixDebut AND r.heurefin <= :heureChoixFin');
             //->getQuery();
             //->getArrayResult();
 

@@ -46,7 +46,7 @@ class Magasin
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="idmagasin")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="idmagasin", fetch="EXTRA_LAZY")
      *
      */
     private $idsalle;

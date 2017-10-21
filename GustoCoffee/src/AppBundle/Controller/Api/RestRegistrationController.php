@@ -14,6 +14,8 @@ use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Event\FormEvent;
 use FOS\UserBundle\FOSUserEvents;
 use Symfony\Component\Form\FormInterface;
+use Swagger\Annotations as SWG;
+use Nelmio\ApiDocBundle\Annotation\Operation;
 
 /**
  * @Route("/user", options={"i18n"=false})
@@ -25,6 +27,16 @@ class RestRegistrationController extends BaseController
     /**
      * @Route("/register", name="user_register")
      * @Method("POST")
+     *
+     * @Operation(
+     *     tags={"Authentification"},
+     *     summary="Permet de s'inscrire via l'api ",
+     *     @SWG\Response(
+     *         response="201",
+     *         description="Returned when successful"
+     *     )
+     * )
+     * @return Response
      */
     public function registerAction(Request $request)
     {

@@ -6,6 +6,7 @@ use AppBundle\Entity\LigneFacture;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Lignefacture controller.
@@ -75,7 +76,7 @@ class LigneFactureController extends Controller
 
     /**
      * Displays a form to edit an existing ligneFacture entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idlignefacture}/edit", name="lignefacture_edit")
      * @Method({"GET", "POST"})
      */
@@ -100,7 +101,7 @@ class LigneFactureController extends Controller
 
     /**
      * Deletes a ligneFacture entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idlignefacture}", name="lignefacture_delete")
      * @Method("DELETE")
      */

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Annonce controller.
@@ -96,7 +97,7 @@ class AnnonceController extends FOSRestController
 
     /**
      * Creates a new annonce entity.
-     *
+     * @Security("is_granted('ROLE_USER')")
      * @Route("/new", name="annonce_new")
      * @Method({"GET", "POST"})
      */
@@ -151,7 +152,7 @@ class AnnonceController extends FOSRestController
 
     /**
      * Displays a form to edit an existing annonce entity.
-     *
+     * @Security("is_granted('ROLE_USER')")
      * @Route("/{idannonce}/edit", name="annonce_edit", requirements={"idannonce": "\d+"})
      * @Method({"GET", "POST"})
      */
@@ -176,7 +177,7 @@ class AnnonceController extends FOSRestController
 
     /**
      * Deletes a annonce entity.
-     *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/{idannonce}", name="annonce_delete")
      * @Method("DELETE")
      */
@@ -196,7 +197,7 @@ class AnnonceController extends FOSRestController
 
     /**
      * Creates a form to delete a annonce entity.
-     *
+     * @Security("is_granted('ROLE_USER')")
      * @param Annonce $annonce The annonce entity
      *
      * @return \Symfony\Component\Form\Form The form

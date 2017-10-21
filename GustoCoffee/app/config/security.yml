@@ -63,8 +63,8 @@ security:
 
                 oauth_user_provider:
 #                    service: my.oauth_aware.user_provider.service
-#                    service: hwi_oauth.user.provider.fosub_bridge
-                    service: my.user_provider.service
+                    service: hwi_oauth.user.provider.fosub_bridge
+#                    service: my.user_provider.service
 
 
         oauth_token:                                   # Everyone can access the access token URL.

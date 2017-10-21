@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Swagger\Annotations as SWG;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Modedepaiement controller.
@@ -111,7 +112,7 @@ class ModeDePaiementController extends FOSRestController
 
     /**
      * Displays a form to edit an existing modeDePaiement entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idmodepaiement}/edit", name="modedepaiement_edit")
      * @Method({"GET", "POST"})
      */
@@ -136,7 +137,7 @@ class ModeDePaiementController extends FOSRestController
 
     /**
      * Deletes a modeDePaiement entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idmodepaiement}", name="modedepaiement_delete")
      * @Method("DELETE")
      */

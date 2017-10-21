@@ -14,6 +14,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Swagger\Annotations as SWG;
+use Nelmio\ApiDocBundle\Annotation\Operation;
 
 
 /**
@@ -29,22 +31,40 @@ class RestWelcomeController extends Controller
     /**
      * @Route("/welcome", name="user_welcome")
      * @Method("GET")
+     * @Operation(
+     *     tags={"Authentification"},
+     *     summary="Message de bienvenue de l'utilisateur",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Returned when successful"
+     *     )
+     * )
+     * @return Response
      */
     public function welcomeAction(Request $request)
     {
-        $response = new Response($this->serialize('Bonjour utilisateur.'), Response::HTTP_OK);
+        $usr = $this->getUser();
+        $response = new Response($this->serialize('Bonjour '.$usr->getUsername()), Response::HTTP_OK);
 
         return $this->setBaseHeaders($response);
     }
 
     /**
+     *
      * @Route("/collection", name="user_collection")
      * @Method("GET")
+     * @Operation(
+     *     tags={"User entity"},
+     *     summary="Retourne toute la collection relié à l'utilisateur connecté",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Returned when successful"
+     *     )
+     * )
+     * @return Response
      */
-    public function getPointsAction(Request $request)
+    public function getCollectionUserAction(Request $request)
     {
-        //$this->getUser();
-
         $response = new Response($this->serialize($this->getUser()), Response::HTTP_OK);
 
         return $this->setBaseHeaders($response);

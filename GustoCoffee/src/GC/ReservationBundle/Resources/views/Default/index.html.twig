@@ -15,16 +15,20 @@
 {% block titleHome %}
     <div class="banniere">
         <h1 class="colorWhite">{{"Espace Réservation"|trans}}</h1>
-        <h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>
+        <h3 class="colorWhite"> <i>{{"Réservez vite votre place ou salle"|trans}}</i></h3>
     </div>
-    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('place_index') }}'">
         {{ 'Réservez votre place'|trans }}
     </button>
+
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
         <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
-            {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+            {{ 'Connectez-vous ici'|trans }}</a>
         </button>
     {% endif %}
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('salle_index') }}'">
+        {{ 'Réservez votre salle'|trans }}
+    </button>
 {% endblock %}
 
 {% block firstBlock %}

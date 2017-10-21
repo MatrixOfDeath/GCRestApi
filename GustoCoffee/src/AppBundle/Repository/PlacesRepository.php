@@ -56,9 +56,9 @@ class PlacesRepository extends EntityRepository
             ->select('p_sub.idplace')
             ->leftJoin('p_sub.reservation', 'r')
             ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->andWhere('r.heurefin > :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+            ->orWhere('r.heuredebut > :heureChoixDebut AND r.heurefin <= :heureChoixFin');
 
         $queryBuilder = $this->createQueryBuilder('p');
 
@@ -85,9 +85,9 @@ class PlacesRepository extends EntityRepository
             ->select('p_sub.idplace')
             ->leftJoin('p_sub.reservation', 'r')
             ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->andWhere('r.heurefin > :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+            ->orWhere('r.heuredebut > :heureChoixDebut AND r.heurefin <= :heureChoixFin');
 
         $queryBuilder = $this->createQueryBuilder('p');
 
@@ -114,9 +114,9 @@ class PlacesRepository extends EntityRepository
             ->select('p_sub.idplace')
             ->leftJoin('p_sub.reservation', 'r')
             ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->andWhere('r.heurefin > :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+            ->orWhere('r.heuredebut > :heureChoixDebut AND r.heurefin <= :heureChoixFin');
 
         $queryBuilder = $this->createQueryBuilder('p');
 
@@ -143,9 +143,9 @@ class PlacesRepository extends EntityRepository
             ->select('p_sub.idplace')
             ->leftJoin('p_sub.reservation', 'r')
             ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+            ->andWhere('r.heurefin > :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+            ->orWhere('r.heuredebut > :heureChoixDebut AND r.heurefin <= :heureChoixFin');
 
         $queryBuilder = $this->createQueryBuilder('p');
 

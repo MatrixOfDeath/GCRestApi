@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Nelmio\ApiDocBundle\Annotation\Operation;
 use Swagger\Annotations as SWG;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Magasin controller.
@@ -23,7 +24,7 @@ class MagasinController extends FOSRestController
 
     /**
      *   @Operation(
-     *     tags={""},
+     *     tags={"Magasins, Salles et Places"},
      *     summary="Retourne les magasins",
      *     @SWG\Response(
      *         response="200",
@@ -102,7 +103,7 @@ class MagasinController extends FOSRestController
 
     /**
      * Displays a form to edit an existing magasin entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idmagasin}/edit", name="magasin_edit")
      * @Method({"GET", "POST"})
      */
@@ -127,7 +128,7 @@ class MagasinController extends FOSRestController
 
     /**
      * Deletes a magasin entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idmagasin}", name="magasin_delete")
      * @Method("DELETE")
      */

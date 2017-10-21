@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Service controller.
@@ -77,7 +78,7 @@ class ServiceController extends FOSRestController
 
     /**
      * Displays a form to edit an existing service entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idservice}/edit", name="service_edit")
      * @Method({"GET", "POST"})
      */
@@ -102,7 +103,7 @@ class ServiceController extends FOSRestController
 
     /**
      * Deletes a service entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idservice}", name="service_delete")
      * @Method("DELETE")
      */

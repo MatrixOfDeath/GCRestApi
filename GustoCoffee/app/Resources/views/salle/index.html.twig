@@ -17,6 +17,9 @@
         <h1 class="colorWhite">Réservation de salles privées</h1>
         <h3 class="colorWhite"> <i>Planifiez vos meetings en toute sérénité !</i></h3>
     </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('place_index') }}'">
+        {{ 'Place individuelle'|trans }}
+    </button>
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
     <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
         {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>

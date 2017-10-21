@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use AppBundle\Entity\Personne;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Facture controller.
@@ -85,7 +86,7 @@ class FactureController extends FOSRestController
 
     /**
      * Displays a form to edit an existing facture entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idfacture}/edit", name="facture_edit", requirements={"idfacture": "\d+"})
      * @Method({"GET", "POST"})
      */
@@ -110,7 +111,7 @@ class FactureController extends FOSRestController
 
     /**
      * Deletes a facture entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idfacture}", name="facture_delete", requirements={"idfacture": "\d+"})
      * @Method("DELETE")
      */

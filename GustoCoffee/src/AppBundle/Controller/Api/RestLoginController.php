@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use AppBundle\Entity\Personne;
 use AppBundle\Service\MyUserManager;
 use Swagger\Annotations as SWG;
+use Nelmio\ApiDocBundle\Annotation\Operation;
 
 
 /**
@@ -23,6 +24,14 @@ class RestLoginController extends Controller
     /**
      * @Route("/login", name="user_login")
      * @Method("POST")
+     * @Operation(
+     *     tags={"Authentification"},
+     *     summary="Permet de se connecter avec Basic 64encode par HTTP Headers",
+     *     @SWG\Response(
+     *         response="200",
+     *         description="Returned when successful"
+     *     )
+     * )
      */
     public function loginAction(Request $request)
     {

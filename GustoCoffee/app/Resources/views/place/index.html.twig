@@ -17,6 +17,9 @@
         <h1 class="colorWhite">{{"Espace Réservation"|trans}} - Place individuelle</h1>
         <h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>
     </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('salle_index') }}'">
+        {{ 'Salle privée'|trans }}
+    </button>
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
     <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
         {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>

@@ -12,6 +12,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\VirtualProperty;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Personne controller.
@@ -81,7 +82,7 @@ class PersonneController extends Controller
 
     /**
      * Displays a form to edit an existing personne entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{id}/edit", name="personne_edit")
      * @Method({"GET", "POST"})
      */
@@ -106,7 +107,7 @@ class PersonneController extends Controller
 
     /**
      * Deletes a personne entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{id}", name="personne_delete")
      * @Method("DELETE")
      */

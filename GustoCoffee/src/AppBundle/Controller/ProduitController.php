@@ -15,8 +15,7 @@ use Nelmio\ApiDocBundle\Annotation\Operation;
 use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Response;
-
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Produit controller.
@@ -133,7 +132,7 @@ class ProduitController extends FOSRestController
 
     /**
      * Displays a form to edit an existing produit entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idproduit}/edit", name="produit_edit", requirements={"idproduit": "\d+"})
      * @Method({"GET", "POST"})
      */
@@ -158,7 +157,7 @@ class ProduitController extends FOSRestController
 
     /**
      * Deletes a produit entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idproduit}", name="produit_delete", requirements={"idproduit": "\d+"})
      * @Method("DELETE")
      */

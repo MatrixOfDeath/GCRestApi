@@ -7,6 +7,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Transaction controller.
@@ -76,7 +77,7 @@ class TransactionController extends FOSRestController
 
     /**
      * Displays a form to edit an existing transaction entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idtransaction}/edit", name="transaction_edit")
      * @Method({"GET", "POST"})
      */
@@ -101,7 +102,7 @@ class TransactionController extends FOSRestController
 
     /**
      * Deletes a transaction entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idtransaction}", name="transaction_delete")
      * @Method("DELETE")
      */

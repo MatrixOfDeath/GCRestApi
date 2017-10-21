@@ -6,6 +6,7 @@ use AppBundle\Entity\TypeDeProduit;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Typedeproduit controller.
@@ -92,7 +93,7 @@ class TypeDeProduitController extends Controller
 
     /**
      * Displays a form to edit an existing typeDeProduit entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idtypeproduit}/edit", name="typedeproduit_edit")
      * @Method({"GET", "POST"})
      */
@@ -117,7 +118,7 @@ class TypeDeProduitController extends Controller
 
     /**
      * Deletes a typeDeProduit entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idtypeproduit}", name="typedeproduit_delete")
      * @Method("DELETE")
      */

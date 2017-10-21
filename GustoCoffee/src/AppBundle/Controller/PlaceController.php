@@ -16,8 +16,7 @@ use Nelmio\ApiDocBundle\Annotation\Model;
 use Swagger\Annotations as SWG;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Place controller.
@@ -28,7 +27,7 @@ class PlaceController extends FOSRestController
 {
     /**
      *   @Operation(
-     *     tags={""},
+     *     tags={"Magasins, Salles et Places"},
      *     summary="Retourne les places",
      *     @SWG\Response(
      *         response="200",
@@ -276,7 +275,7 @@ class PlaceController extends FOSRestController
 
     /**
      * Displays a form to edit an existing place entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idplace}/edit", name="place_edit", requirements={"idplace": "\d+"})
      * @Method({"GET", "POST"})
      */
@@ -301,7 +300,7 @@ class PlaceController extends FOSRestController
 
     /**
      * Deletes a place entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/{idplace}", name="place_delete", requirements={"idplace": "\d+"})
      * @Method("DELETE")
      */
