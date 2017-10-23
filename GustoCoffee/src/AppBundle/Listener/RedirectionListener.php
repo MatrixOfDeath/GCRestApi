@@ -27,10 +27,10 @@ class RedirectionListener
         $route = $event->getRequest()->attributes->get('_route');
 
         if ($route == 'livraison_panier' || $route == 'validation_panier') {
-            if ($this->session->has('panier_salle')) {
-                if (count($this->session->get('panier_salle')) == 0)
-                    $event->setResponse(new RedirectResponse($this->router->generate('panier')));
-            }
+//            if ($this->session->has('panier_salle')) {
+//                if (count($this->session->get('panier_salle')) == 0)
+//                    $event->setResponse(new RedirectResponse($this->router->generate('panier')));
+//            }
 
             if (!is_object($this->securityContext->getToken()->getUser())) {
                 $this->session->getFlashBag()->add('notification','Vous devez vous identifier');
@@ -39,10 +39,10 @@ class RedirectionListener
         }
 
         if ($route == 'ajax_adresses_panier' || $route == 'ajax_validation_panier') {
-            if ($this->session->has('panier_salle')) {
-                if (count($this->session->get('panier_salle')) == 0)
-                    $event->setResponse(new RedirectResponse($this->router->generate('panier')));
-            }
+//            if ($this->session->has('panier_salle')) {
+//                if (count($this->session->get('panier_salle')) == 0)
+//                    $event->setResponse(new RedirectResponse($this->router->generate('panier')));
+//            }
 
             if (!is_object($this->securityContext->getToken()->getUser())) {
                 $this->session->getFlashBag()->add('notification','Vous devez vous identifier');

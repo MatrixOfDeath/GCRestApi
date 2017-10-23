@@ -227,41 +227,37 @@
             {% if produits|length != 0 or salles|length != 0 or places|length != 0 %}
             <dl class="dl-horizontal pull-right">
                 {% if produits|length != 0 %}
-                    <dt>Total Produits HT :</dt><dd>{{ totalProduitHT|number_format(2, '.', ',')  }}€</dd>
+                    <dt>{{ "Total Produits HT"|trans }} :</dt><dd>{{ totalProduitHT|number_format(2, '.', ',')  }}€</dd>
                 {% endif %}
                 {% for key, tva in refTva %}
                     <dt>TVA {{ key }} :</dt><dd>{{ tva }} €</dd>
                 {% endfor %}
                 {% if salles|length != 0  %}
-                    <dt>Total Salle TTC :</dt><dd>{{ totalSalleTTC|number_format(2, '.', ',')  }}€</dd>
+                    <dt>{{ "Total Salle TTC"|trans }} :</dt><dd>{{ totalSalleTTC|number_format(2, '.', ',')  }}€</dd>
                 {% endif %}
                 {% for key, tva in refSalleTva %}
                     <dt>dont {{ key }} TVA Salle:</dt><dd>{{ tva }} €</dd>
                 {% endfor %}
                 {% if places|length != 0  %}
-                    <dt>Total Place TTC :</dt><dd>{{ totalPlaceTTC|number_format(2, '.', ',')  }}€</dd>
+                    <dt>{{ "Total Place TTC"|trans }} :</dt><dd>{{ totalPlaceTTC|number_format(2, '.', ',')  }}€</dd>
                 {% endif %}
                 {% for key, tva in refPlaceTva %}
                     <dt>dont {{ key }} TVA Place:</dt><dd>{{ tva }} €</dd>
                 {% endfor %}
                 {% if thirdHourFree is defined and thirdHourFree > 0 %}
-                    <dt class="reduction-3h">Réduction 3ème heure:</dt><dd class="reduction-10">{{ thirdHourFree|number_format(2, '.', ',') }} €</dd>
+                    <dt class="reduction-3h">{{ "Réduction 3ème heure"|trans }}:</dt><dd class="reduction-10">{{ thirdHourFree|number_format(2, '.', ',') }} €</dd>
                 {% endif %}
                 {% if produits|length != 0 and (salles|length != 0 or places|length != 0) %}
-                    <dt>Sous-Total TTC :</dt><dd>{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</dd>
+                    <dt>{{ "Sous-Total TTC"|trans }} :</dt><dd>{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</dd>
                     <dt class="reduction-10">Réduction -10% :</dt><dd class="reduction-10">-{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1)|number_format(2, '.', ',') }} €</dd>
-                    <dt>Montant Total TTC :</dt><dd>{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC)  - ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>
+                    <dt>{{ "Montant Total TTC"|trans }} :</dt><dd>{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC)  - ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>
                  {% else %}
-                    <dt class="montant-total">Montant Total TTC :</dt><dd class="montant-total">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</dd>
+                    <dt class="montant-total">{{ "Montant Total TTC"|trans }} :</dt><dd class="montant-total">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</dd>
                  {% endif %}
             </dl>
             <div class="clearfix"></div>
-            <button type="button" class="btn btn-success pull-right validPanier">Valider mon panier</button>
+            <button type="button" class="btn btn-success pull-right validPanier">{{ "Valider mon panier"|trans }}</button>
             {% endif %}
-            {#{% if salles|length == 0 %}#}
-            {#<a href="{{ path('salle_index') }}" class="btn btn-primary">Choisissez une salle</a>#}
-            {#{% else %}#}
-             {#<a href="{{ path('produits_index') }}" class="btn btn-primary">Choisir mes produits</a>#}
-            {#{% endif %}#}
+       
         </div>
 

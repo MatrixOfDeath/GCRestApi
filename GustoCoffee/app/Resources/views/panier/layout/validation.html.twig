@@ -61,7 +61,7 @@
                         <tr>
                             <td>{{ salle.reference }}</td>
                             <td>
-                                {{ salle.heures ~'et'~ salle.minutes }}
+                                {{ "Le " ~ salle.date  " De" ~ salle.debutHeure ~ ' à '~ salle.finHeure ~ "Temps :" ~ salle.heures ~ ":" ~ salle.minutes ~"H" }}
                             </td>
                             <td>{{ salle.prixHT }} €</td>
                             <td>{{ salle.prixSalleHT }} €</td>

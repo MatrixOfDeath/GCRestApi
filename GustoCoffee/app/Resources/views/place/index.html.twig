@@ -38,7 +38,7 @@
                 {# Choix de la date #}
                 <form id="room-search-form">
                     <div id="reservation-date-picker" class="form-group">
-                        <h3 class="chooseDatePicker"> {{  "Choisir votre date"|trans }} </h3>
+                        <h4 class="chooseDatePicker"> {{  "Choisir votre date"|trans }} </h4>
                         <input id="datepicker" type="text" name="reservation-date" value="{{ 'now'|date('d/m/Y', "Europe/Paris") }}">
                         <input type="hidden" id="datepicker-altFormat" name="begin_date" value="{{ 'now'|date('Y-m-d', "Europe/Paris") }}"/>
                     </div>
