@@ -361,7 +361,6 @@ class PanierController extends Controller
 
         $panier = $session->get('panier');
 
-
         if (array_key_exists($id, $panier)) {
             if ($request->query->get('qte') != null) $panier[$id] = $request->query->get('qte');
             $session->getFlashBag()->add('success','Quantité modifié avec succès');

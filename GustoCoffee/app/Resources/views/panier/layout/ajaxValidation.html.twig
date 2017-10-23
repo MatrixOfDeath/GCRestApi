@@ -25,11 +25,11 @@
                 </thead>
                 <tbody>
 
-                {%  for salle in commande.commande.salle %}
+                {% for salle in commande.commande.salle %}
                         <tr>
                             <td>{{ salle.reference }}</td>
                             <td>
-                                {{ salle.heures ~'et'~ salle.minutes }}
+                                {{ "Le " ~ salle.date " De" ~ salle.debutHeure ~' à '~ salle.finHeure ~ "Temps: " ~ salle.heures ~ ":" ~ salle.minutes~"H" }}
                             </td>
                             <td>{{ salle.prixHT }} €</td>
                             <td>{{ salle.prixSalleHT }} €</td>
@@ -57,7 +57,7 @@
                         <tr>
                             <td>{{ place.reference }}</td>
                             <td>
-                                {{ place.heures ~'et'~ place.minutes }}
+                                {{ "Le " ~ place.date " De" ~ place.debutHeure ~' à '~ place.finHeure ~ "Temps: " ~ place.heures ~ ":" ~ place.minutes~"H" }}
                             </td>
                             <td>{{ place.prixHT }} €</td>
                             <td>{{ place.prixPlaceHT }} €</td>
@@ -95,7 +95,8 @@
             {% endif %}
             {% set totalReduc = 0 %}
             <dl class="dl-horizontal pull-right">
-                {% if commande.commande.produit|length != 0 %}
+
+                {% if commande.commande.produit is defined and commande.commande.produit|length != 0 %}
                     <dt>Total Produits HT :</dt><dd>{{ commande.commande.prixHT  }}€</dd>
                 {% endif %}
                 {% if commande.commande.produit is defined %}

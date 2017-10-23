@@ -96,7 +96,7 @@
             </table>
             {#{% set totalReduc = 0 %}#}
             <dl class="dl-horizontal pull-right">
-                {% if commande.commande.produit|length != 0 %}
+                {% if commande.commande.produit is defined and commande.commande.produit|length != 0 %}
                     <dt>Total Produits HT :</dt><dd>{{ commande.commande.prixHT  }}€</dd>
                 {% endif %}
                 {% for key, tva in commande.commande.tva %}

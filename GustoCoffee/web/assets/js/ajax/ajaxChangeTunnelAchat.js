@@ -82,9 +82,6 @@ $(document).on('click', '#tab-link-salle', function(){
     var choixFin = $('.slider-time2').text();
     var date =  $('#datepicker-altFormat').val();
 
-    //console.log(date + ' ' + choixDebut +':00');
-    //console.log(date + ' ' + choixFin +':00');
-
     $('#slider-range .heureActuelleDefaut').val("");
 
     that = $(this);
@@ -170,9 +167,6 @@ $(document).on('click', '#tab-link-facturation', function(){
     var choixFin = $('.slider-time2').text();
     var date =  $('#datepicker-altFormat').val();
 
-    //console.log(date + ' ' + choixDebut +':00');
-    //console.log(date + ' ' + choixFin +':00');
-
     $('#slider-range .heureActuelleDefaut').val("");
 
     that = $(this);
@@ -205,7 +199,6 @@ $(document).on('click', '#tab-link-facturation', function(){
     });
     return false;
 });
-
 
 // Lorsqu'on clique sur la bouton Validation #4
 $(document).on('click', '#tab-link-validation', function(){

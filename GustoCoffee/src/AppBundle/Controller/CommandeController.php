@@ -66,7 +66,7 @@ class CommandeController extends FOSRestController
 
     /**
      * Creates a new commande entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="commande_new")
      * @Method({"GET", "POST"})
      */
@@ -155,7 +155,7 @@ class CommandeController extends FOSRestController
      * Creates a form to delete a commande entity.
      *
      * @param Commande $commande The commande entity
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(Commande $commande)
@@ -266,6 +266,9 @@ class CommandeController extends FOSRestController
             $totalSalleTVA += round($prixSalleTTC - $prixSalleHT,2);
             $commande['salle'][$salle->getIdsalle()] = array(
                 'reference' => $salle->getNomsalle(),
+                'heureDebut' => $panier_salle[$salle->getIdsalle()]['heureChoicDebut'],
+                'heureFin' => $panier_salle[$salle->getIdsalle()]['heureChoixFin'],
+                'date' => $panier_salle[$salle->getIdsalle()]['date'],
                 'heures' => $totaleHeuresR,
                 'minutes' => $totaleMinutesR,
                 'idReservation' => $panier_salle[$salle->getIdsalle()]['idReservation'],
@@ -318,6 +321,9 @@ class CommandeController extends FOSRestController
             $totalPlaceTVA += round($prixPlaceTTC - $prixPlaceHT,2);
             $commande['place'][$place->getIdplace()] = array(
                 'reference' => $place->getNomplace(),
+                'heureDebut' => $panier_place[$place->getIdplace()]['heureChoixDebut'],
+                'heureFin' => $panier_place[$place->getIdplace()]['heureChoixFin'],
+                'date' => $panier_place[$place->getIdplace()]['date'],
                 'heures' => $totaleHeuresR,
                 'minutes' => $totaleMinutesR,
                 'idReservation' => $panier_place[$place->getIdplace()]['idReservation'],

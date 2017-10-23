@@ -136,37 +136,37 @@ class PlaceController extends FOSRestController
             ));
         }
     }
-    /**
-     * Todo: Remove here because in repository
-     * @param $heureChoixDebut
-     * @param $heureChoixFin
-     * @return mixed
-     */
-    public function checkDisponibilitePlace($heureChoixDebut, $heureChoixFin)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('AppBundle:Place');
-
-        $subQuery = $repository->createQueryBuilder('p_sub')
-            ->select('p_sub.idplace')
-            ->leftJoin('p_sub.reservation', 'r')
-            ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-
-        $queryBuilder = $repository->createQueryBuilder('p');
-
-        $query = $queryBuilder
-            ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
-//            ->andWhere(':heureChoixDebut < :datenow')
-            //->setParameter('datenow', date("Y-m-d H:i:s"))
-            ->setParameter('heureChoixDebut', $heureChoixDebut)
-            ->setParameter('heureChoixFin', $heureChoixFin);
-        //->setParameter('subQuery', $subQuery)
-        //->getQuery();
-        return $query->getQuery()->getResult();
-    }
+//    /**
+//     * Todo: Remove here because in repository
+//     * @param $heureChoixDebut
+//     * @param $heureChoixFin
+//     * @return mixed
+//     */
+//    public function checkDisponibilitePlace($heureChoixDebut, $heureChoixFin)
+//    {
+//        $em = $this->getDoctrine()->getManager();
+//        $repository = $em->getRepository('AppBundle:Place');
+//
+//        $subQuery = $repository->createQueryBuilder('p_sub')
+//            ->select('p_sub.idplace')
+//            ->leftJoin('p_sub.reservation', 'r')
+//            ->andwhere('r.heuredebut < :heureChoixDebut')
+//            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
+//            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
+//            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
+//
+//        $queryBuilder = $repository->createQueryBuilder('p');
+//
+//        $query = $queryBuilder
+//            ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
+////            ->andWhere(':heureChoixDebut < :datenow')
+//            //->setParameter('datenow', date("Y-m-d H:i:s"))
+//            ->setParameter('heureChoixDebut', $heureChoixDebut)
+//            ->setParameter('heureChoixFin', $heureChoixFin);
+//        //->setParameter('subQuery', $subQuery)
+//        //->getQuery();
+//        return $query->getQuery()->getResult();
+//    }
 
     /**
      * @Route("/disponible-ajax", options={"expose"=true}, name="places_disponible_ajax")
@@ -233,7 +233,7 @@ class PlaceController extends FOSRestController
 
     /**
      * Creates a new place entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="place_new")
      * @Method({"GET", "POST"})
      */
@@ -322,7 +322,7 @@ class PlaceController extends FOSRestController
      * Creates a form to delete a place entity.
      *
      * @param Place $place The place entity
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(Place $place)

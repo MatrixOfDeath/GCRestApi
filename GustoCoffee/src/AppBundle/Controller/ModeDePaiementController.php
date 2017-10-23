@@ -70,7 +70,7 @@ class ModeDePaiementController extends FOSRestController
 
     /**
      * Creates a new modeDePaiement entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="modedepaiement_new")
      * @Method({"GET", "POST"})
      */
@@ -159,7 +159,7 @@ class ModeDePaiementController extends FOSRestController
      * Creates a form to delete a modeDePaiement entity.
      *
      * @param ModeDePaiement $modeDePaiement The modeDePaiement entity
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(ModeDePaiement $modeDePaiement)

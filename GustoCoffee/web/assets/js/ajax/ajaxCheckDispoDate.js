@@ -4,9 +4,6 @@ $(document).on('click', 'button.buttonSearch', function(){
     var choixFin = $('.slider-time2').text();
     var date =  $('#datepicker-altFormat').val();
 
-    //console.log(date + ' ' + choixDebut +':00');
-    //console.log(date + ' ' + choixFin +':00');
-
     $('#slider-range .heureActuelleDefaut').val("");
 
     that = $(this);

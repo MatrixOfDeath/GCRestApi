@@ -40,7 +40,7 @@ class PersonneController extends Controller
 
     /**
      * Creates a new personne entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="personne_new")
      * @Method({"GET", "POST"})
      */
@@ -129,7 +129,7 @@ class PersonneController extends Controller
      * Creates a form to delete a personne entity.
      *
      * @param Personne $personne The personne entity
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(Personne $personne)

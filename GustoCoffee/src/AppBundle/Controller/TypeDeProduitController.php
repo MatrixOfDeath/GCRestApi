@@ -51,7 +51,7 @@ class TypeDeProduitController extends Controller
 
     /**
      * Creates a new typeDeProduit entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="typedeproduit_new")
      * @Method({"GET", "POST"})
      */
@@ -140,7 +140,7 @@ class TypeDeProduitController extends Controller
      * Creates a form to delete a typeDeProduit entity.
      *
      * @param TypeDeProduit $typeDeProduit The typeDeProduit entity
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(TypeDeProduit $typeDeProduit)

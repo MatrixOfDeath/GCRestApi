@@ -35,7 +35,7 @@ class TransactionController extends FOSRestController
 
     /**
      * Creates a new transaction entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="transaction_new")
      * @Method({"GET", "POST"})
      */

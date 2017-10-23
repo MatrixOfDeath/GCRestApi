@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Produit;
 use AppBundle\Entity\TypeDeProduit;
+use AppBundle\Form\RechercheType;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -90,7 +91,7 @@ class ProduitController extends FOSRestController
 
     /**
      * Creates a new produit entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="produit_new")
      * @Method({"GET", "POST"})
      */
@@ -199,7 +200,6 @@ class ProduitController extends FOSRestController
      */
     public function produitsAction(SessionInterface $session, Request $request, TypeDeProduit $categorie = null)
     {
-        //$session = $this->getRequest()->getSession();
         $em = $this->getDoctrine()->getManager();
 
         if ($categorie != null)
@@ -231,7 +231,6 @@ class ProduitController extends FOSRestController
      */
     public function presentationAction(SessionInterface $session, $id)
     {
-        //$session = $this->getRequest()->getSession();
         $em = $this->getDoctrine()->getManager();
         $produit = $em->getRepository('AppBundle:Produit')->find($id);
 
@@ -247,26 +246,31 @@ class ProduitController extends FOSRestController
             'panier' => $panier));
     }
 
-//    public function rechercheAction()
-//    {
-//        $form = $this->createForm(new RechercheType());
-//        return $this->render('EcommerceBundle:Default:Recherche/modulesUsed/recherche.html.twig', array('form' => $form->createView()));
-//    }
-//
-//    public function rechercheTraitementAction()
-//    {
-//        $form = $this->createForm(new RechercheType());
-//
-//        if ($this->get('request')->getMethod() == 'POST')
-//        {
-//            $form->bind($this->get('request'));
-//            $em = $this->getDoctrine()->getManager();
-//            $produits = $em->getRepository('EcommerceBundle:Produits')->recherche($form['recherche']->getData());
-//        } else {
-//            throw $this->createNotFoundException('La page n\'existe pas.');
-//        }
-//
-//        return $this->render('EcommerceBundle:Default:produits/layout/produits.html.twig', array('produits' => $produits));
-//    }
+    /**
+     * @Route("/rechercheProduits", name="rechercheProduits")
+     * @return Response
+     *
+     */
+    public function rechercheAction()
+    {
+        $form = $this->createForm(new RechercheType());
+        return $this->render('produit/recherche.html.twig', array('form' => $form->createView()));
+    }
+
+    public function rechercheTraitementAction(Request $request)
+    {
+        $form = $this->createForm(new RechercheType());
+
+        if ($request->getMethod() == 'POST')
+        {
+            $form->handleRequest($request);
+            $em = $this->getDoctrine()->getManager();
+            $produits = $em->getRepository('AppBundle:Produit')->recherche($form['recherche']->getData());
+        } else {
+            throw $this->createNotFoundException('La page n\'existe pas.');
+        }
+
+        return $this->render('produit/index.html.twig', array('produits' => $produits));
+    }
 
 }

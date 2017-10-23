@@ -61,7 +61,7 @@ class MagasinController extends FOSRestController
 
     /**
      * Creates a new magasin entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="magasin_new")
      * @Method({"GET", "POST"})
      */
@@ -150,7 +150,7 @@ class MagasinController extends FOSRestController
      * Creates a form to delete a magasin entity.
      *
      * @param Magasin $magasin The magasin entity
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(Magasin $magasin)

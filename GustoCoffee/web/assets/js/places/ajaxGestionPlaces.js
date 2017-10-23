@@ -292,6 +292,7 @@ function initCarteInteractive(map){
     /** On refresh en live automatiquement les places toutes les minutes en fonction du créneau selectionné **/
     var choixDebut = $('.slider-time').text();
     var choixFin = $('.slider-time2').text();
+    var date =  $('#datepicker-altFormat').val();
 
     setInterval(function() {
         $.ajax({
@@ -314,8 +315,6 @@ function initCarteInteractive(map){
             }
         });
     }, 60000); //every 60 seconds
-    //let's pretend some seats have already been booked
-    //sc.get(['1_2', '4_1', '7_1', '7_2']).status('unavailable');
     return sc;
 }
 
@@ -364,8 +363,6 @@ $(document).on('click', '#tab-link-place', function(){
         error: function(data) {
             console.log(data);
             alert('Problème dans la recherche des disponibilités de places');
-            //$("body").css({"opacity": "1", "background-color":"#fff"});
-
         }
     });
     return false;

@@ -36,7 +36,7 @@ class ServiceController extends FOSRestController
 
     /**
      * Creates a new service entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="service_new")
      * @Method({"GET", "POST"})
      */
@@ -125,7 +125,7 @@ class ServiceController extends FOSRestController
      * Creates a form to delete a service entity.
      *
      * @param Service $service The service entity
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(Service $service)

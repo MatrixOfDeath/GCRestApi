@@ -37,7 +37,7 @@ class ReservationController extends FOSRestController
 
     /**
      * Creates a new reservation entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="reservation_new")
      * @Method({"GET", "POST"})
      */
@@ -126,7 +126,7 @@ class ReservationController extends FOSRestController
      * Creates a form to delete a reservation entity.
      *
      * @param Reservation $reservation The reservation entity
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(Reservation $reservation)

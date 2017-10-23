@@ -44,7 +44,7 @@ class FactureController extends FOSRestController
 
     /**
      * Creates a new facture entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="facture_new")
      * @Method({"GET", "POST"})
      */

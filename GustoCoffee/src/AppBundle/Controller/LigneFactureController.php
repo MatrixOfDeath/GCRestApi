@@ -34,7 +34,7 @@ class LigneFactureController extends Controller
 
     /**
      * Creates a new ligneFacture entity.
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @Route("/new", name="lignefacture_new")
      * @Method({"GET", "POST"})
      */
@@ -123,7 +123,7 @@ class LigneFactureController extends Controller
      * Creates a form to delete a ligneFacture entity.
      *
      * @param LigneFacture $ligneFacture The ligneFacture entity
-     *
+     * @Security("has_role('ROLE_ADMIN')")
      * @return \Symfony\Component\Form\Form The form
      */
     private function createDeleteForm(LigneFacture $ligneFacture)
