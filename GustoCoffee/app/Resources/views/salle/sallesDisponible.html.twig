@@ -4,18 +4,31 @@
     <h3>{{ "Voici les salles privés disponibles pour le "|trans ~ dateChoix ~ ' entre ' ~ heureDebutChoix ~ "H et " ~ heureFinChoix ~ "H " }}</h3>
 {% endif %}
 
-<div id="reservation-dialog-message" title="Magasin fermé: Il ouvrira demain !" style="display:none;">
-    <p>
-        <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
-        {{  "Le magasin est fermée changé votre date avant de continuer"|trans }}
-    </p>
-</div>
+{#<div id="reservation-dialog-message"  class="modal" title="Magasin fermé: Il ouvrira demain !" style="display:none;">#}
+  {#<div class="modal-content sizeFont">#}
+        {#<div class="modal-header">#}
+            {#<span class="close">&times;</span>#}
+            {#<h2>{{ "Place individuelle"|trans }}</h2>#}
+        {#</div>#}
+        {#<div class="modal-body">#}
+                {#<p>#}
+                    {#<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>#}
+                    {#{{  "Le magasin est fermée changé votre date avant de continuer"|trans }}#}
+                {#</p>#}
+        {#</div>#}
+        {#<div class="modal-footer">#}
+            {#<h3>GustoCoffee</h3>#}
+        {#</div>#}
+  {#</div>#}
+{#</div>#}
+
 <div id="reservation2-dialog-message" title="Créneaux incorrectes" style="display:none;">
     <p>
         <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
         {{  "Le magasin n'est pas encore ouvert, il ouvrira tout à l'heure"|trans }}
     </p>
 </div>
+
 <div class="row btn-group">
     <a href="#" id="list" class="btn btn-default btn-sm">
         <span class="glyphicon glyphicon-th-list"></span> {{ "Liste"|trans }}
@@ -24,6 +37,7 @@
         <span class="glyphicon glyphicon-th"></span> {{ "Grille"|trans }}
     </a>
 </div>
+
 <div class="row list-group">
 {% set count = 1 %}
     {% for salle in salles %}

@@ -38,14 +38,14 @@
                 {# Choix de la date #}
                 <form id="room-search-form">
                     <div id="reservation-date-picker" class="form-group">
-                        <h4 class="chooseDatePicker"> {{  "Choisir votre date"|trans }} </h4>
+                        <h4 class="chooseDatePicker"> {{ "Choisir votre date"|trans }} </h4>
                         <input id="datepicker" type="text" name="reservation-date" value="{{ 'now'|date('d/m/Y', "Europe/Paris") }}">
                         <input type="hidden" id="datepicker-altFormat" name="begin_date" value="{{ 'now'|date('Y-m-d', "Europe/Paris") }}"/>
                     </div>
                 </form>
 
                 <button class="btn btn-block btn-primary buttonSearchPlace">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> {{  "Rechercher"|trans }}
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> {{ "Rechercher"|trans }}
                 </button>
             </div>
             <div class="col-xs-2">
@@ -79,7 +79,6 @@
                 {% embed ":place:placesDisponible.html.twig" %}
 
                 {% endembed %}
-
             </div>
         </div>
     </div>

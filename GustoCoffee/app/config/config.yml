@@ -209,7 +209,7 @@ hwi_oauth:
             type:                google
             client_id:           355676912323-vth3ibravpaa0f1n091toibna65u8lqg.apps.googleusercontent.com
             client_secret:       YxNkVtiDc-e8Dfjqb2o8Uwo4
-            scope:               "https://www.googleapis.com/auth/plus.login"
+            scope:               "email profile"
 
 nelmio_cors:
     defaults:
