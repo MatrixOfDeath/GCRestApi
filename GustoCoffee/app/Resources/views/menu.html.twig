@@ -77,7 +77,7 @@
                                 </a>
                             {% endif %}
                         </li>
-                        {% if is_granted("IS_FULLY_AUTHENTICATED") %}
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         {% else %}
                             <li>
                                 <a href="#" onclick="fb_login();"><i class="fa fa-facebook" aria-hidden="true"></i> Connexion Facebook</a>
