@@ -27,13 +27,6 @@
     });
 
 
-    // When the user clicks anywhere outside of the modal, close it
-    // window.click (function(event) {
-    //     if (event.target == modal) {
-    //         modal.hide();
-    //     }
-    // });
-
     function hideDiv() {
         $( '#myModal' ).hide(window.location.href + "#myModal" );
 

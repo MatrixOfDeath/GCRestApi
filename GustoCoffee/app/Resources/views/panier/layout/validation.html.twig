@@ -24,7 +24,7 @@
         </button>
     {% endif %}
     <button class="buttonGC greenButton" form="paiemnt-commande">
-        {{ 'Payer directiment >'|trans }}</a>
+        {{ 'Payer directement >'|trans }}</a>
     </button>
 {% endblock %}
 
@@ -45,23 +45,24 @@
             
             <h2>Valider mon panier</h2>
 
-            <table class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>Salle choisi</th>
-                    <th>Nombre d'heures</th>
-                    <th>Prix à l'heure TTC</th>
-                    <th>Prix salle HT</th>
-                    <th>Total TTC</th>
-                </tr>
-                </thead>
-                <tbody>
+            {% if commande.commande.salle is defined %}
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Salle choisi</th>
+                        <th>Nombre d'heures</th>
+                        <th>Prix à l'heure TTC</th>
+                        <th>Prix salle HT</th>
+                        <th>Total TTC</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                {%  for salle in commande.commande.salle %}
+                    {% for salle in commande.commande.salle %}
                         <tr>
                             <td>{{ salle.reference }}</td>
                             <td>
-                                {{ "Le " ~ salle.date  " De" ~ salle.debutHeure ~ ' à '~ salle.finHeure ~ "Temps :" ~ salle.heures ~ ":" ~ salle.minutes ~"H" }}
+                                {{ "Le " ~ salle.date|date('d/m/Y') ~ " De" ~ salle.heureDebut|date('H:i') ~ ' à '~ salle.heureFin|date('H:i') ~ "Temps :" ~ salle.heures ~ "H" ~ salle.minutes|default('') }}
                             </td>
                             <td>{{ salle.prixHT }} €</td>
                             <td>{{ salle.prixSalleHT }} €</td>
@@ -69,7 +70,36 @@
                         </tr>
                     {% endfor %}
                     </tbody>
-            </table>
+                </table>
+            {% endif %}
+
+            {% if commande.commande.place is defined %}
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>Place choisi</th>
+                        <th>Nombre d'heures</th>
+                        <th>Prix à l'heure TTC</th>
+                        <th>Prix place HT</th>
+                        <th>Total TTC</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {%  for place in commande.commande.place %}
+                        <tr>
+                            <td>{{ place.reference }}</td>
+                            <td>
+                                {{ "Le " ~ place.date|date('d/m/Y') ~ " De" ~ place.heureDebut|date('H:i') ~' à '~ place.heureFin|date('H:i') ~ "Temps: " ~ place.heures  ~ "H" ~ place.minutes|default('') }}
+                            </td>
+                            <td>{{ place.prixHT }} €</td>
+                            <td>{{ place.prixPlaceHT }} €</td>
+                            <td>{{ place.prixTTC }} €</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
 
             <table class="table table-striped table-hover">
                 <thead>
@@ -94,24 +124,37 @@
                     {% endfor %}
                 </tbody>
             </table>
-            {#{% set totalReduc = 0 %}#}
+
+            {% set totalReduc = 0 %}
             <dl class="dl-horizontal pull-right">
+
                 {% if commande.commande.produit is defined and commande.commande.produit|length != 0 %}
                     <dt>Total Produits HT :</dt><dd>{{ commande.commande.prixHT  }}€</dd>
                 {% endif %}
-                {% for key, tva in commande.commande.tva %}
-                    <dt>TVA {{ key }} :</dt><dd>{{ tva }} €</dd>
-                {% endfor %}
-                <dt>Total Salle TTC :</dt><dd>{{ commande.commande.prixSalleTTC  }}€</dd>
-                {% for key, tva in commande.commande.tvaSalle %}
-                    <dt>dont {{ key }} TVA Salle:</dt><dd>{{ tva }} €</dd>
-                {% endfor %}
-                {% if commande.commande.thirdHourFree is defined and commande.commande.thirdHourFree > 0 %}
-                    <dt class="reduction-3h">Réduction 3ème heure:</dt><dd class="reduction-3h">{{ commande.commande.thirdHourFree }} €</dd>
+                {% if commande.commande.produit is defined %}
+                    {% for key, tva in commande.commande.tva %}
+                        <dt>TVA {{ key }} :</dt><dd>{{ tva }} €</dd>
+                    {% endfor %}
+
                 {% endif %}
-                {% if commande.commande.produit|length != 0 and commande.commande.salle|length != 0 %}
-                    {#{% set totalReduc =  ((commande.commande.totalTTC) * 0.1)|number_format(2, '.', ',') %}#}
-                    <dt>Sous-Total TTC :</dt><dd>{{ commande.commande.prixTTC + commande.commande.prixSalleTTC }} €</dd>
+                {% if commande.commande.salle is defined %}
+                    <dt>Total Salle TTC :</dt><dd>{{ commande.commande.prixSalleTTC  }}€</dd>
+                    {% for key, tva in commande.commande.tvaSalle %}
+                        <dt>dont {{ key }} TVA Salle:</dt><dd>{{ tva }} €</dd>
+                    {% endfor %}
+                {% endif %}
+                {% if commande.commande.place is defined %}
+                    <dt>Total Place TTC :</dt><dd>{{ commande.commande.prixPlaceTTC  }}€</dd>
+                    {% for key, tva in commande.commande.tvaPlace %}
+                        <dt>dont {{ key }} TVA Place:</dt><dd>{{ tva }} €</dd>
+                    {% endfor %}
+                {% endif %}
+                {% if commande.commande.thirdHourFree is defined and commande.commande.thirdHourFree > 0 %}
+                    <dt class="reduction-3h">Réduction 3ème heure:</dt><dd class="reduction-10">{{ commande.commande.thirdHourFree }} €</dd>
+                {% endif %}
+                {% if commande.commande.produit is defined and ( commande.commande.salle is defined or commande.commande.place is defined ) %}
+
+                    <dt>Sous-Total TTC :</dt><dd>{{ commande.commande.prixTTC|default('') + commande.commande.prixSalleTTC|default('') + commande.commande.prixPlaceTTC|default('') }} €</dd>
                     <dt class="reduction-10">Réduction -10% :</dt><dd class="reduction-10">-{{ commande.commande.reduction10 }} €</dd>
                     {#<dt>Montant Total TTC :</dt><dd>{{ ((commande.commande.totalTTC)  - ((commande.commande.totalTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>#}
                 {% endif %}

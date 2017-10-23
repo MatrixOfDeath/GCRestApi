@@ -120,10 +120,10 @@ class PlaceController extends FOSRestController
             $heureChoixFin = $request->request->get('heureChoixFin');
 
             $em = $this->getDoctrine()->getManager();
-            $sallesDispo = $em->getRepository('AppBundle:Place')->checkDisponibilitePlace($heureChoixDebut, $heureChoixFin);
+            $placesDispo = $em->getRepository('AppBundle:Place')->checkDisponibilitePlace($heureChoixDebut, $heureChoixFin);
             //return new JsonResponse($sallesDispo);
             $htmlToRender = $this->renderView('place/placesDisponible.html.twig', array(
-                'salles' => $sallesDispo,
+                'places' => $placesDispo,
                 'heureDebutChoix' => (new \DateTime($heureChoixDebut))->format('H'),
                 'heureFinChoix' => (new \DateTime($heureChoixFin))->format('H'),
                 'dateChoix' => (new \DateTime($heureChoixDebut))->format('d/m/Y')

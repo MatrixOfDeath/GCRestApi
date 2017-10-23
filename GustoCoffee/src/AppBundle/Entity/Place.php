@@ -142,6 +142,10 @@ class Place
         return $this->idsalle->getPrixsalle();
     }
 
+    public function getNomSalle(){
+        return $this->idsalle->getNomsalle();
+    }
+
     /** retourne la tva appliqué à la salle */
     public function getTva(){
         return $this->idsalle->getTva();

@@ -1,3 +1,12 @@
+<div class="row btn-group">
+    <a href="#" id="list" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-th-list"></span> {{ "Liste"|trans }}
+    </a>
+    <a href="#" id="grid" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-th"></span> {{ "Grille"|trans }}
+    </a>
+</div>
+<div class="row list-group">
 {% for produit in produits %}
     <div class="col-md-6 col-xs-12 col-sm-6 col-lg-4 cardSalle">
         <div class="thumbnail">
@@ -44,3 +53,4 @@
         </div>
     </div>
 {% endfor %}
+</div>

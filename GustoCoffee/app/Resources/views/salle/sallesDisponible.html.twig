@@ -16,6 +16,15 @@
         {{  "Le magasin n'est pas encore ouvert, il ouvrira tout à l'heure"|trans }}
     </p>
 </div>
+<div class="row btn-group">
+    <a href="#" id="list" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-th-list"></span> {{ "Liste"|trans }}
+    </a>
+    <a href="#" id="grid" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-th"></span> {{ "Grille"|trans }}
+    </a>
+</div>
+<div class="row list-group">
 {% set count = 1 %}
     {% for salle in salles %}
 
@@ -88,3 +97,4 @@
 
     {% endfor %}
 
+</div>

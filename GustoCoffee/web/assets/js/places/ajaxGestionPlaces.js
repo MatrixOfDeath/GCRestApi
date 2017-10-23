@@ -357,7 +357,8 @@ $(document).on('click', '#tab-link-place', function(){
             $('#display-salle').empty().append(response);
             $('.reservation-select-creneau').show("slow");
             $('.recherche-horaire').show("slow");
-            //$("body").css({"opacity": "1", "background-color":"#fff"});
+            $('.panier-menu').show("slide", { direction: "right" }, 1000);
+            $('.reservation-result-container').removeClass('col-md-12').addClass('col-md-9');
 
         },
         error: function(data) {

@@ -1,15 +1,28 @@
+<h3>{{ "Voici les places individuelle disponibles pour le "|trans ~ dateChoix ~ ' entre ' ~ heureDebutChoix ~ "H et " ~ heureFinChoix ~ "H " }}</h3>
+<div id="reservation-dialog-message" title="Magasin fermé: Il ouvrira demain !" style="display:none;">
+    <p>
+        <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+        {{  "Le magasin est fermée changé votre date avant de continuer"|trans }}
+    </p>
+</div>
+<div id="reservation2-dialog-message" title="Créneaux incorrectes" style="display:none;">
+    <p>
+        <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+        {{  "Le magasin n'est pas encore ouvert, il ouvrira tout à l'heure"|trans }}
+    </p>
+</div>
 <div id="carte-places-individuelles">
-        <h1>Carte interactive des places individuelles</h1>
         <div id="seat-map">
-            <div class="front-indicator">Salle OpenSpace</div>
+            <div class="front-indicator">{{ places[0].getnomsalle }}</div>
+            <div id="legend"></div>
+
         </div>
-        <div class="booking-details">
+        <div class="booking-details hide">
             <h2>Détail Réservation</h2>
             <h3>Place selectionnée (<span id="counter">0</span>):</h3>
             <ul id="selected-seats">
             </ul>
             Total: <b>€<span id="total">0</span></b>
             <button class="checkout-button">Valider &raquo;</button>
-            <div id="legend"></div>
         </div>
 </div>

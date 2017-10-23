@@ -58,6 +58,9 @@ $(document).on('click', '#tab-link-produit', function(){
             $('#display-salle').empty().append(responseProduits);
             $('.reservation-select-creneau').hide().fadeOut();
             $('.recherche-horaire').hide().fadeOut();
+            $('.panier-menu').show("slide", { direction: "right" }, 1000);
+            $('.reservation-result-container').removeClass('col-md-12').addClass('col-md-9');
+
             // $.get(Routing.generate(''), function(html){
             //     $('#display-panier').empty().html(html);
             //
@@ -102,6 +105,9 @@ $(document).on('click', '#tab-link-salle', function(){
             $('#display-salle').empty().append(response);
             $('.reservation-select-creneau').show("slow");
             $('.recherche-horaire').show("slow");
+            $('.panier-menu').show("slide", { direction: "right" }, 1000);
+            $('.reservation-result-container').removeClass('col-md-12').addClass('col-md-9');
+
             //$("body").css({"opacity": "1", "background-color":"#fff"});
 
         },
@@ -187,6 +193,8 @@ $(document).on('click', '#tab-link-facturation', function(){
             $('#display-salle').empty().append(response);
             $('.reservation-select-creneau').hide("slow");
             $('.recherche-horaire').hide("slow");
+            $('.panier-menu').show("slide", { direction: "right" }, 1000);
+            $('.reservation-result-container').removeClass('col-md-12').addClass('col-md-9');
             //$("body").css({"opacity": "1", "background-color":"#fff"});
 
         },
@@ -217,6 +225,8 @@ $(document).on('click', '#tab-link-validation', function(){
             $('#display-salle').empty().append(response);
             $('.reservation-select-creneau').hide("slow");
             $('.recherche-horaire').hide("slow");
+            $('.panier-menu').hide("slide", { direction: "left" }, 1000);
+            $('.reservation-result-container').removeClass('col-md-9').addClass('col-md-12');
 
         },
         error: function(data) {
@@ -252,6 +262,7 @@ $(document).on('submit', '#form-valid-adresse', function(e) {
             $('#display-salle').empty().append(response);
             $('.reservation-select-creneau').hide("slow")
             $('.recherche-horaire').hide("slow");
+            $('.reservation-result-container').removeClass('col-md-9').addClass('col-md-12');
 
         },
         error: function(data) {
@@ -345,6 +356,7 @@ function valideAjaxPanier(){
             $('.reservation-select-creneau').hide("slow");
             $('.recherche-horaire').hide("slow");
 
+
         },
         error: function(data) {
             console.log(data);
@@ -361,11 +373,17 @@ function unblockAdresseTab(){
 }
 
 function unblockValidationTab(){
+    $('.panier-menu').hide("slide", { direction: "left" }, 1000);
+    //$('.panier-menu').toggleClass('col-md-3 col-md-0')
+    $('.reservation-result-container').removeClass('col-md-9').addClass('col-md-12');
     $('#tab-link-validation').removeClass('grayForbiddenLink');
     $('#tab-link-validation > span').removeClass('grayForbidden');
 }
 
 function unblockPaymentTab(){
+    $('.panier-menu').hide("slide", { direction: "left" }, 1000);
+    //$('.panier-menu').toggleClass('col-md-3 col-md-0')
+    $('.reservation-result-container').removeClass('col-md-9').addClass('col-md-12');
     $('#tab-link-paiement').removeClass('grayForbiddenLink');
     $('#tab-link-paiement > span').removeClass('grayForbidden');
 }

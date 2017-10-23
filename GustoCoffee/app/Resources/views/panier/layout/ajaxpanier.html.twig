@@ -70,7 +70,7 @@
                             {#<form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">#}
                                 <td>{{ salle.nomsalle }}</td>
                                 <td>
-                                    {{ "De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('H:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures  ~ 'H' }}
+                                    {{  "Le " ~ panier_place[place.idplace].date|date('d/m/Y') ~ " De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('H:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures  ~ 'H' }}
                                     {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
                                     {% if panier_salle[salle.idsalle].totalMinutes >= 30 %}
                                         {% set totalMinutes =  (2 * salle.capacitymax )  %}
@@ -138,7 +138,7 @@
                             {#<form action="{{ path('ajout_panier_place', { 'id' : place.idplace }) }}" method="get">#}
                             <td>{{ place.nomplace }}</td>
                             <td>
-                                {{ "De " ~ panier_place[place.idplace].heureChoixDebut|date('H:i') ~ " à " ~ panier_place[place.idplace].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_place[place.idplace].totalHeures  ~ 'H' }}
+                                {{  "Le " ~ panier_place[place.idplace].date|date('d/m/Y') ~ " De " ~ panier_place[place.idplace].heureChoixDebut|date('H:i') ~ " à " ~ panier_place[place.idplace].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_place[place.idplace].totalHeures  ~ 'H' }}
                                 {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
                                 {% if panier_place[place.idplace].totalMinutes >= 30 %}
                                     {% set totalMinutes =  2  %}

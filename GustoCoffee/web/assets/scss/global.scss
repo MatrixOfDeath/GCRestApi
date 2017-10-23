@@ -10,6 +10,7 @@ html *
 i.fa.fa-file-pdf-o{
   color:red;
 }
+
 .blueButton
 {
   border-radius: 3px;
@@ -21,6 +22,20 @@ i.fa.fa-file-pdf-o{
     color: #fff;
     background-color: #286090;
     border-color: #204d74;
+  }
+}
+
+.greenButton
+{
+  border-radius: 3px;
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  &:hover
+  {
+    color: #fff;
+    background-color: #449d44;
+    border-color: #398439;
   }
 }
 
