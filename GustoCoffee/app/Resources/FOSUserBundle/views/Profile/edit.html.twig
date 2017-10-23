@@ -23,46 +23,9 @@ topPage topPageDashboard
 {% endblock %}
 
 {% block firstBlock %}
-        <div class="row addPadding">
-            <div class="col-md-12">
-                <h2 class="titlePara">Vos dernières réservations</h2>
-                <p class="textDescription centerText">Vous trouverez ci-dessous vous 3 dernières réservations effectuées chez GustoCoffee.<br>
-                    Ils sont téléchargeables en cliquant sous le bouton en dessous.
-                </p>
-            </div>
-        </div>
-        <div class="clear"></div>
-        <div class="row">
-            <div class="col-md-7">
-                <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
-            </div>
-            <div class="col-md-5">
-                <button class="buttonGC brownButton">Télécharger la facture</button>
-            </div>
+    {{ render(controller('AppBundle:Facture:lastFactures')) }}
 
-            <div class="clear"></div>
-
-            <div class="col-md-7">
-                <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
-            </div>
-            <div class="col-md-5">
-                <button class="buttonGC brownButton">Télécharger la facture</button>
-            </div>
-
-            <div class="clear"></div>
-
-
-            <div class="col-md-7">
-                <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
-            </div>
-            <div class="col-md-5">
-                <button class="buttonGC brownButton">Télécharger la facture</button>
-            </div>
-
-            <div class="clear"></div>
-        </div>
-        <div class="clear"></div>
-    {% endblock %}
+{% endblock %}
 
     {% block secondBlock %}
         <div class="row addPadding">

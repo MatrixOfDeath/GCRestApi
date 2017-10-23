@@ -19,11 +19,25 @@ class CommandeRepository extends EntityRepository
                 ->where('u.personnes = :personne')
                 ->andWhere('u.valider = 1')
                 ->andWhere('u.reference != 0')
-                ->orderBy('u.idcommande')
+                ->orderBy('u.idcommande', 'DESC')
                 ->setParameter('personne', $personne);
         
         return $qb->getQuery()->getResult();
     }
+    public function byLastFacture($personne)
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.personnes = :personne')
+            ->andWhere('u.valider = 1')
+            ->andWhere('u.reference != 0')
+            ->orderBy('u.idcommande', 'DESC')
+            ->setMaxResults(3)
+            ->setParameter('personne', $personne);
+
+        return $qb->getQuery()->getResult();
+    }
+
     
     public function byDateCommand($date)
     {

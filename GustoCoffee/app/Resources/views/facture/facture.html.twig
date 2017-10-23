@@ -14,9 +14,8 @@
 
 {% block titleHome %}
     <div class="banniere">
-        <h1 class="colorWhite">{{ "Vos adresses de facturations"|trans }}</h1>
-        <h3 class="colorWhite"> <i>{{ "Vous êtes un professionnel ? Ajoutez votre n°TVA Intracommunautaire."|trans }}</i><br>
-            <i>{{ "Et bénéficier de la facturation sans TVA"|trans }} !</i>
+        <h1 class="colorWhite">{{ "Vos Facturations et Réservation"|trans }}</h1>
+        <h3 class="colorWhite"> <i>{{ "Retrouvez ci-desosus toutes vos factures."|trans }}</i><br>
         </h3>
     </div>
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}

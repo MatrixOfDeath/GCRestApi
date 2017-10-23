@@ -29,45 +29,8 @@ topPage topPageDashboard
 
 
 {% block firstBlock %}
-    <div class="row addPadding">
-        <div class="col-md-12">
-            <h2 class="centerText">Vos dernières réservations</h2>
-            <p class="textDescription textFacture">Vous trouverez ci-dessous vos 3 dernières réservations effectuées chez GustoCoffee.<br>
-                Ils sont téléchargeables en cliquant sous le bouton en dessous.
-            </p>
-        </div>
-    </div>
-    <div class="clear"></div>
-    <div class="row">
-        <div class="col-md-7">
-            <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
-        </div>
-        <div class="col-md-5">
-            <button class="buttonGC brownButton">Télécharger la facture</button>
-        </div>
-
-        <div class="clear"></div>
-
-        <div class="col-md-7">
-            <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
-        </div>
-        <div class="col-md-5">
-            <button class="buttonGC brownButton">Télécharger la facture</button>
-        </div>
-
-        <div class="clear"></div>
-
-
-        <div class="col-md-7">
-            <p class="textDescription textDlFacture">Cette réservation a été effectuée le dd/MM/YY</p>
-        </div>
-        <div class="col-md-5">
-            <button class="buttonGC brownButton">Télécharger la facture</button>
-        </div>
-
-        <div class="clear"></div>
-    </div>
-    <div class="clear"></div>
+{% embed 'facture/lastFactures.html.twig' %}
+{% endembed %}
 {% endblock %}
 
 {% block secondBlock %}

@@ -101,8 +101,10 @@
                 </table>
             {% endif %}
 
-            <table class="table table-striped table-hover">
-                <thead>
+
+            {% if commande.commande.produit is defined %}
+                <table class="table table-striped table-hover">
+                    <thead>
                     <tr>
                         <th>Références</th>
                         <th>Quantité</th>
@@ -110,20 +112,21 @@
                         <th>Total HT</th>
                         <th>Total TTC</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
+
                     {% for produit in commande.commande.produit %}
-                    <tr>
-                        <td>{{ produit.reference }}</td>
-                        <td>
-                            {{ produit.quantite }}
-                        </td>
-                        <td>{{ produit.prixHT }} €</td>
-                        <td>{{ produit.prixHT * produit.quantite }} €</td>
-                    </tr>
+                        <tr>
+                            <td>{{ produit.reference }}</td>
+                            <td>{{ produit.quantite }}</td>
+                            <td>{{ produit.prixHT }} €</td>
+                            <td>{{ produit.prixHT * produit.quantite }} €</td>
+                            <td>{{ produit.prixTTC * produit.quantite }}</td>
+                        </tr>
                     {% endfor %}
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            {% endif %}
 
             {% set totalReduc = 0 %}
             <dl class="dl-horizontal pull-right">

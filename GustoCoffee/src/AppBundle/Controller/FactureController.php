@@ -158,6 +158,17 @@ class FactureController extends FOSRestController
     }
 
     /**
+     * @Route("/lastfactures" , name="lastFactures")
+     * @return Response
+     */
+    public function lastFacturesAction(){
+        $em = $this->getDoctrine()->getManager();
+        $factures = $em->getRepository('AppBundle:Commande')->byLastFacture($this->getUser());
+        return $this->render('facture/lastFactures.html.twig', array('factures' => $factures));
+
+    }
+
+    /**
      * @Route("/PDF/{id}", name="facturesPDF", requirements={"id": "\d+"})
      * @param $id
      * @return Response|\Symfony\Component\HttpFoundation\RedirectResponse
