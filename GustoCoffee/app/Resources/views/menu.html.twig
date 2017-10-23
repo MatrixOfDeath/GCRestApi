@@ -62,7 +62,6 @@
                     {% endif %}
                     <ul class="dropdown-menu">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-
                             <li><a href="{{ path('factures') }}">Vos Factures</a></li>
                             <li><a href="{{ path('factures') }}">Mes informations</a></li>
                             <li class="divider"></li>
@@ -78,6 +77,12 @@
                                 </a>
                             {% endif %}
                         </li>
+                        {% if is_granted("IS_FULLY_AUTHENTICATED") %}
+                        {% else %}
+                            <li>
+                                <a href="#" onclick="fb_login();"><i class="fa fa-facebook" aria-hidden="true"></i> Connexion Facebook</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </li>
                 <li id="panier-icon-menu" {% if app.request.get('_route') == 'panier' %} class="active" {% endif %}>
