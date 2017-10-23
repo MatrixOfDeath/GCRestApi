@@ -266,7 +266,7 @@ class CommandeController extends FOSRestController
             $totalSalleTVA += round($prixSalleTTC - $prixSalleHT,2);
             $commande['salle'][$salle->getIdsalle()] = array(
                 'reference' => $salle->getNomsalle(),
-                'heureDebut' => $panier_salle[$salle->getIdsalle()]['heureChoicDebut'],
+                'heureDebut' => $panier_salle[$salle->getIdsalle()]['heureChoixDebut'],
                 'heureFin' => $panier_salle[$salle->getIdsalle()]['heureChoixFin'],
                 'date' => $panier_salle[$salle->getIdsalle()]['date'],
                 'heures' => $totaleHeuresR,

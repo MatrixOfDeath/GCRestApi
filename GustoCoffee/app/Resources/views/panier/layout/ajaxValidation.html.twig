@@ -29,7 +29,7 @@
                         <tr>
                             <td>{{ salle.reference }}</td>
                             <td>
-                                {{ "Le " ~ salle.date|date('d/m/Y') ~ " De" ~ salle.heureDebut|date('H:i') ~ ' à '~ salle.heureFin|date('H:i') ~ "Temps :" ~ salle.heures ~ "H" ~ salle.minutes|default('') }}
+                                {{ "Le " ~ salle.date|date('d/m/Y') ~ " De " ~ salle.heureDebut|date('H:i') ~ ' à '~ salle.heureFin|date('H:i') ~ " Temps :" ~ salle.heures ~ "H" ~ salle.minutes|default('') }}
                             </td>
                             <td>{{ salle.prixHT }} €</td>
                             <td>{{ salle.prixSalleHT }} €</td>
@@ -57,7 +57,7 @@
                         <tr>
                             <td>{{ place.reference }}</td>
                             <td>
-                                {{ "Le " ~ place.date|date('d/m/Y') ~ " De" ~ place.heureDebut|date('H:i') ~' à '~ place.heureFin|date('H:i') ~ "Temps: " ~ place.heures  ~ "H" ~ place.minutes|default('') }}
+                                {{ "Le " ~ place.date|date('d/m/Y') ~ " De " ~ place.heureDebut|date('H:i') ~ ' à ' ~ place.heureFin|date('H:i') ~ " Temps: " ~ place.heures  ~ "H" ~ place.minutes|default('') }}
                             </td>
                             <td>{{ place.prixHT }} €</td>
                             <td>{{ place.prixPlaceHT }} €</td>
