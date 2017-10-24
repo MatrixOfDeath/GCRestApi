@@ -9,6 +9,6 @@
     </route>
 
     <route id="hwi_oauth_connect_registration" path="/registration/{key}">
-        <default key="_controller">HWIOAuthBundle:Connect:registration</default>
+        <default key="_controller">AppBundle:Connect:registration</default>
     </route>
 </routes>

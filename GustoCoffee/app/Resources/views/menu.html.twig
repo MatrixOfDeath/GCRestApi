@@ -80,7 +80,10 @@
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                         {% else %}
                             <li>
-                                <a href="#" onclick="fb_login();"><i class="fa fa-facebook" aria-hidden="true"></i> Connexion Facebook</a>
+                                <a href="#" onclick="fb_login();" title="connexion facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Connexion Facebook</a>
+                            </li>
+                            <li>
+                                <a href="{{ hwi_oauth_login_url('google') }}" title="connexion google"><i class="fa fa-google" aria-hidden="true"></i> Connexion Google</a>
                             </li>
                         {% endif %}
                     </ul>

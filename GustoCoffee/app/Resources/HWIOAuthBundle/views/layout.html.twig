@@ -24,6 +24,12 @@
 
 {% block firstBlock %}
     <div class="row addPadding">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="alert alert-info fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
         <div>
             {% block hwi_oauth_content %}
             {% endblock hwi_oauth_content %}
