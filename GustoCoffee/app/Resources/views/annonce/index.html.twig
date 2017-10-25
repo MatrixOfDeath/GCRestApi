@@ -14,7 +14,7 @@
 
 {% block titleHome %}
     <div class="banniere">
-        <h1 class="colorWhite">Poster une annonce</h1>
+        <h1 class="colorWhite">{{ "Poster une annonce"|trans }}</h1>
         <h3 class="colorWhite"> <i>{{"Et si on travaillait ensemble ?"|trans}} </i></h3>
     </div>
     <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
@@ -99,13 +99,13 @@
 
 {# ---------- Second Block - Listing d'annonces ---------- #}
 {% block secondBlock %}
-    <div class="row">
+    <div class="row addPadding">
 
-        <div class="row">
+        <div class="col-xs-12">
             <h2 class="centerText">{{ 'Liste des Annonces'|trans }}</h2>
         </div>
 
-        <div class="row btn-group">
+        <div class="col-xs-12 btn-group">
             <a href="#" id="list" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-th-list"></span> {{ "Liste"|trans }}
             </a>
@@ -113,7 +113,7 @@
                 <span class="glyphicon glyphicon-th"></span> {{ "Grille"|trans }}
             </a>
         </div>
-        <div id="display-salle" class="clearfix list-group">
+        <div id="display-annonce" class="col-xs-12 list-group">
         {% for annonce in annonces %}
             <div class="col-md-6 col-xs-12 col-sm-6 col-lg-4 cardSalle">
                 <div class="thumbnail">

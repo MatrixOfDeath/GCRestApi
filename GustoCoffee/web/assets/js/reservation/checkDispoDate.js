@@ -2,15 +2,21 @@
 $(function() {
     /** Listes et grilles salles **/
     $(document).ready(function() {
-        $('#list').click(function(event){event.preventDefault();
-        $('#display-salle .cardSalle').addClass('list-group-item');});
-        $('#grid').click(function(event){event.preventDefault();
-        $('#display-salle .cardSalle').removeClass('list-group-item');
-        $('#display-salle .cardSalle').addClass('grid-group-item');});
+        $('#list').click(function(event){
+            event.preventDefault();
+            $('#display-salle .cardSalle').addClass('list-group-item');
+            $('#display-annonce .cardSalle').addClass('list-group-item');
+        });
+        $('#grid').click(function(event){
+            event.preventDefault();
+            $('#display-salle .cardSalle').removeClass('list-group-item').addClass('grid-group-item');;
+            $('#display-annonce .cardSalle').removeClass('list-group-item').addClass('grid-group-item');;
+        // $('#display-salle .cardSalle, #display-annonce .cardSalle').addClass('grid-group-item');
+        });
+
     });
 
     if(!$('#slider-range').length){
-        console.log('no slider !');
         return false;
     }
 
@@ -32,11 +38,10 @@ $(function() {
 
     var arrMin = $('#slider-range .minHeure').val().split(':');
     var arrMax = $('#slider-range .maxHeure').val().split(':');
-    console.log(arrMin +' '+ arrMax);
+
     var minH = parseInt(arrMin[0],10);
     var minM = parseInt(arrMin[1],10);
     var maxH = parseInt(arrMax[0],10);
-
     var maxM = parseInt(arrMax[1],10);
 
     var min = minH; // 9 Heure min d'ouverture du magasin
@@ -52,7 +57,6 @@ $(function() {
         var minuteActuelle = parseInt(arrTime[1],10);
         todayDate = arrTime[2];
 
-        console.log(todayDate+ ' date du jours');
         if (minuteActuelle < 30) {
             minuteActuelle = 0;
         } else {
@@ -151,7 +155,7 @@ $(function() {
 
         //var heureActuelle = $('#slider-range .heureActuelleDefaut').val();
         //console.log( heureActuelle +' '  + min );
-        console.log(heureActuelle);
+
         if (  heureActuelle > max  && (heureActuelle < 24)  /*((heureActuelle + minuteActuelle) >= (max + maxM)) && maxM */ ) {
             $( "#reservation-dialog-message" ).dialog({
                 modal: true,

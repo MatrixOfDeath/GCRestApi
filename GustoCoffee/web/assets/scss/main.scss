@@ -4,6 +4,12 @@
 .topPanier
 {
   background-image: url("../img/background_panier.jpg");
+  background-position: top;
+}
+.topPageError{
+  background-image: url("../background-error-broken-glass.jpg");
+  background-position: top;
+  height: 90vh;
 }
 
 i.gc-icon-cart  {

@@ -20,12 +20,12 @@
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script async>
-        window.cookieconsent_options = {"theme":"dark-bottom",
-            "message":"{{ "Ce site web utilise des cookies pour améliorer votre expérience de navigation. En poursuivant votre navigation, vous acceptez l'utilisation des cookies."|trans }}",
-            "dismiss":"{{ "J'accepte!"|trans }}","learnMore":"{{ "En savoir plus"|trans }}"};
-    </script>
-    {#{{ cookie_consent_render() }}#}
+    {#<script async>#}
+        {#window.cookieconsent_options = {"theme":"dark-bottom",#}
+            {#"message":"{{ "Ce site web utilise des cookies pour améliorer votre expérience de navigation. En poursuivant votre navigation, vous acceptez l'utilisation des cookies."|trans }}",#}
+            {#"dismiss":"{{ "J'accepte!"|trans }}","learnMore":"{{ "En savoir plus"|trans }}"};#}
+    {#</script>#}
+    {{ cookie_consent_render() }}
 
     <!-- Facebook -->
     <script async>

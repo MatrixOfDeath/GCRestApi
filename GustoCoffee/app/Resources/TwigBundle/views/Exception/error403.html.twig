@@ -1,14 +1,33 @@
 {% extends '::base.html.twig' %}
 
-{% block firstImg %}
-{% endblock %}
 {% block firstTitle %}
-    {{ 'Error 403 Forbidden : Error 403'|trans }}
-{% endblock %}
-{% block titleHome %}
-    {{ 'Error 403 Forbidden : Error 403'|trans }}
+    {{ 'Error 403 : Forbidden'|trans }}
 {% endblock %}
 
+{% block firstImg %}
+    topPage topPageError
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{% endblock %}
+
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorBrown">{{ 'Error 403 : Forbidden '|trans }}</h1>
+        <h3 class="colorWhite"> <i>{{" The requested page couldn't be located. Checkout for any URL misspelling" |trans}}</i><br>
+                <i>{{ "Ou alors"|trans }}<a href="{{ path('gc_home_page') }}">{{ "retourner à l'accueil"|trans }}</a></i>
+        </h3>
+    </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+        </button>
+    {% endif %}
+{% endblock %}
 
 {% block content %}
 <div class="animation-container">
@@ -117,8 +136,4 @@
 
 </div>
 
-    <p>
-        The requested page couldn't be located. Checkout for any URL
-        misspelling or <a href="/">return to the homepage</a>.
-    </p>
 {% endblock %}
