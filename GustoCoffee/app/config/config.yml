@@ -14,6 +14,8 @@ parameters:
     locales: [fr, en]
     app.path.salles_images: /uploads/images/salles
     app.path.products_images: /uploads/images/products
+    app.path.personnes_images: /uploads/images/avatars
+
 
 framework:
     #esi: ~
@@ -115,7 +117,7 @@ nelmio_api_doc:
         info:
             title: GustoCoffee Api
             description: REST Api pour réserver sur GustoCoffee!
-            version: 1.0.1
+            version: 1.0.2
 fos_rest:
     param_fetcher_listener: true
     allowed_methods_listener: true
@@ -277,3 +279,7 @@ indigo_cookie_consent:
         theme: dark-bottom
         # any options you would pass to the plugins (except labels: message, dismiss, learnMore)
         # see https://silktide.com/tools/cookie-consent/docs/installation
+
+cmen_google_charts:
+    version: "current"
+    language: fr

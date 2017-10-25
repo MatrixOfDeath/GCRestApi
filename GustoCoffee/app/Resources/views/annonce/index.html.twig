@@ -99,32 +99,28 @@
 
 {# ---------- Second Block - Listing d'annonces ---------- #}
 {% block secondBlock %}
-    <div class="row addPadding">
+    <div class="row">
 
-        <div class="col-md-12">
+        <div class="row">
             <h2 class="centerText">{{ 'Liste des Annonces'|trans }}</h2>
         </div>
 
-    <div class="row btn-group">
-        <a href="#" id="list" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-th-list"></span> {{ "Liste"|trans }}
-        </a>
-        <a href="#" id="grid" class="btn btn-default btn-sm">
-            <span class="glyphicon glyphicon-th"></span> {{ "Grille"|trans }}
-        </a>
-    </div>
-        <div class="row list-group">
+        <div class="row btn-group">
+            <a href="#" id="list" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th-list"></span> {{ "Liste"|trans }}
+            </a>
+            <a href="#" id="grid" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th"></span> {{ "Grille"|trans }}
+            </a>
+        </div>
+        <div id="display-salle" class="clearfix list-group">
         {% for annonce in annonces %}
             <div class="col-md-6 col-xs-12 col-sm-6 col-lg-4 cardSalle">
                 <div class="thumbnail">
+                    <h4 class="group inner list-group-item-heading centerText"> <u>{{ annonce.categorieAnnonce }}</u> </h4>
+                    <h4 class="group inner list-group-item-heading centerText">{{ annonce.titre }}</h4>
                     <div class="caption">
                     {% if is_granted("ROLE_ADMIN") %}
-                        <p class="group inner list-group-item-heading centerText">
-                            <a href="{{ path('fos_user_security_logout') }}"></a>
-                        </p>
-                        <h4 class="group inner list-group-item-heading centerText"> <u>{{ annonce.categorieAnnonce }}</u> </h4>
-                        <h4 class="group inner list-group-item-heading centerText">{{ annonce.titre }}</h4>
-
                         <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
                         <h4 class="group inner list-group-item-heading">
                             {{ 'Par' | trans }} {{ annonce.idpersonne }}
@@ -132,15 +128,13 @@
                         <p class="group inner list-group-item-text sizeFont">
                             {{ annonce.corps }}
                         </p>
-                        <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
-                        <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
+                        <div class="clearfix">
+                            <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
+                            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
+                        </div>
 
                     {% elseif is_granted("ROLE_SUPER_ADMIN") %}
-                        <p class="group inner list-group-item-heading centerText">
-                            <a href="{{ path('fos_user_security_logout') }}"></a>
-                        </p>
-                        <h4 class="group inner list-group-item-heading centerText"> <u>{{ annonce.categorieAnnonce }}</u> </h4>
-                        <h4 class="group inner list-group-item-heading centerText">{{ annonce.titre }}</h4>
+
 
                         <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
                         <h4 class="group inner list-group-item-heading">
@@ -149,29 +143,28 @@
                         <p class="group inner list-group-item-text sizeFont">
                             {{ annonce.corps }}
                         </p>
-                        <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
-                        <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
-
+                        <div class="clearfix">
+                            <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
+                            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
+                        </div>
                     {% elseif app.user %}
                         <p class="group inner list-group-item-heading centerText">
-                            <a href="{{ path('fos_user_security_logout') }}"></a>
+                            {{ 'Mise en ligne le ' | trans }}
+                            {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}
                         </p>
-                        <h4 class="group inner list-group-item-heading centerText"> <u>{{ annonce.categorieAnnonce }}</u></h4>
-                        <h4 class="group inner list-group-item-heading centerText">{{ annonce.titre }}</h4>
-                        <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
                         <h4 class="group inner list-group-item-heading">
                             {{ 'Par' | trans }} {{ annonce.idpersonne }}
                         </h4>
                         <p class="group inner list-group-item-text sizeFont">
                             {{ annonce.corps }}
                         </p>
-                            {% if app.user == annonce.idpersonne %}
-                        <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
-                        <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
-                            {% endif %}
+                        {% if app.user == annonce.idpersonne %}
+                        <div class="clearfix">
+                            <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
+                            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
+                        </div>
+                        {% endif %}
                     {% else %}
-                        <h4 class="group inner list-group-item-heading centerText"> <u>{{ annonce.categorieAnnonce }}</u> </h4>
-                        <h4 class="group inner list-group-item-heading centerText"> {{ annonce.titre }} </h4>
                         <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
                         <h4 class="group inner list-group-item-heading">
                             {{ 'Par' | trans }} {{ annonce.idpersonne }}

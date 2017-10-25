@@ -18,7 +18,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Commande
 {
-
     /**
      * @var integer
      *
@@ -59,6 +58,28 @@ class Commande
      */
     private $personnes;
 
+
+    /**
+     * One commande has One transaction.
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Transaction", mappedBy="commande")
+     */
+    private $transaction;
+
+    /**
+     * @return mixed
+     */
+    public function getTransaction()
+    {
+        return $this->transaction;
+    }
+
+    /**
+     * @param mixed $transaction
+     */
+    public function setTransaction($transaction)
+    {
+        $this->transaction = $transaction;
+    }
 
     /**
      * @var \DateTime

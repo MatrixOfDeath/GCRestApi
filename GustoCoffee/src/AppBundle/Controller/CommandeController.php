@@ -419,11 +419,8 @@ class CommandeController extends FOSRestController
         return new Response($commande->getIdcommande());
     }
 
-
-    public function setPointCumule(SessionInterface $session){
-
-    }
     /**
+     * Gestion du nombre de stock et envoie de mail si on arrive à <= 5 en stock sur les produits
      * @param SessionInterface $session
      */
     public function setStockProduits(SessionInterface $session){
@@ -552,10 +549,10 @@ class CommandeController extends FOSRestController
                        'email'          => $email
                    ),
                    'hosted_payment'   => array(
-                       'return_url'     => 'http://dev.gc.fr/app_dev.php/fr/commande/api/banque/'.$commande_id,
-                       'cancel_url'     => 'http://dev.gc.fr/app_dev.php/fr/commande/paiement_commande/'.$commande_id
+                       'return_url'     => $this->container->getParameter('domain_name').'commande/api/banque/'.$commande_id,
+                       'cancel_url'     => $this->container->getParameter('domain_name').'commande/paiement_commande/'.$commande_id
                    ),
-                   'notification_url' => 'http://dev.gc.fr/app_dev.php/fr/commande/notifications?id='.$commande_id,
+                   'notification_url' =>  $this->container->getParameter('domain_name').'commande/notifications?id='.$commande_id,
                    'metadata'         => array(
                        'customer_id'    => (string)$customer_id
                    )
@@ -622,10 +619,10 @@ class CommandeController extends FOSRestController
                         'email'          => $email
                     ),
                     'hosted_payment'   => array(
-                        'return_url'     => 'http://dev.gc.fr/app_dev.php/fr/commande/api/banque/'.$commande_id,
-                        'cancel_url'     => 'http://dev.gc.fr/app_dev.php/fr/commande/paiement_commande/'.$commande_id
+                        'return_url'     => $this->container->getParameter('domain_name').'commande/api/banque/'.$commande_id,
+                        'cancel_url'     => $this->container->getParameter('domain_name').'commande/paiement_commande/'.$commande_id
                     ),
-                    'notification_url' => 'http://dev.gc.fr/app_dev.php/fr/commande/notifications?id='.$commande_id,
+                    'notification_url' =>  $this->container->getParameter('domain_name').'commande/notifications/'.$commande_id,
                     'metadata'         => array(
                         'customer_id'    => (string)$customer_id
                     )
@@ -651,6 +648,34 @@ class CommandeController extends FOSRestController
         }
     }
 
+    /**
+     * @Route("/notifications/{id}", options={"expose"=true}, name="notifications_commande", requirements={"id": "\d+"})
+     *
+     */
+    public function notificationPayplugAction(){
+
+        $input = file_get_contents('php://input');
+        try {
+            $resource = \Payplug\Notification::treat($input);
+            if ($resource instanceof \Payplug\Resource\Payment
+                && $resource->is_paid) {
+                $payment_id = $resource->id;
+                $payment_state = $resource->is_paid;
+                $payment_date = $resource->hosted_payment->paid_at;
+                $payment_amount = $resource->amount;
+                $payment_data = $resource->metadata[customer_id];
+            }
+        }
+        catch (\Payplug\Exception\PayplugException $exception) {
+            echo $exception;
+        }
+    }
+
+    /**
+     * Fonction utils d'envoie de mail pour les stocks mais aussi pour les points cumulés ? via cron ?
+     * @param $data
+     * @return int
+     */
     private function sendEmail($data){
         $myappContactMail = $this->container->getParameter('mailer_user');
         $myappContactPassword = $this->container->getParameter('mailer_password');

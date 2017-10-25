@@ -20,12 +20,13 @@
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
     <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
     <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-    <script async> window.cookieconsent_options = {"theme":"dark-bottom",
-            "message":"{{ "This website uses cookies to ensure you get the best experience on our website."|trans }}",
-            "dismiss":"{{ "Got it!"|trans }}","learnMore":"{{ "More info"|trans }}"};
-    </script>{{ cookie_consent_render() }}
+    <script async>
+        window.cookieconsent_options = {"theme":"dark-bottom",
+            "message":"{{ "Ce site web utilise des cookies pour améliorer votre expérience de navigation. En poursuivant votre navigation, vous acceptez l'utilisation des cookies."|trans }}",
+            "dismiss":"{{ "J'accepte!"|trans }}","learnMore":"{{ "En savoir plus"|trans }}"};
+    </script>
+    {#{{ cookie_consent_render() }}#}
 
-    {#{% block customCss %}{% endblock %}#}
     <!-- Facebook -->
     <script async>
         window.fbAsyncInit = function() {
@@ -50,7 +51,7 @@
             FB.getLoginStatus(function(response) {
                 if (response.status === 'connected') {
                     // connected
-                    alert('Already connected, redirect to login page to create token.');
+                    alert('{{ "Already connected, redirect to login page to create token."|trans }}');
                     document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
                 } else {
                     // not_authorized
@@ -67,7 +68,7 @@
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108499849-1"></script>
-    <script>
+    <script async defer>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -84,159 +85,56 @@
     <div id="main" class="container-fluid">
         <div class="row ">
 
-                <div class="body-wrap {% block firstImg %}{% endblock %}">
-                    <div class="">
-                     {% embed "menu.html.twig" %}
-                     {% endembed %}
-                    </div>
+            <div class="body-wrap {% block firstImg %}{% endblock %}">
+                 {% embed 'menu.html.twig' %}
+                 {% endembed %}
 
-                {#<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">#}
-                    {#<div class="container">#}
-                        {#<!-- Brand and toggle get grouped for better mobile display -->#}
-                        {#<div class="navbar-header page-scroll">#}
-                            {#<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">#}
-                                {#<span class="sr-only">Toggle navigation</span> {{ 'Menu'|trans }} <i class="fa fa-bars"></i>#}
-                            {#</button>#}
-                            {#<div class="home">#}
-                                {#<a class="navbar-brand page-scroll" href="{{ path('gc_home_page') }}">#}
-                                    {#<img alt="GustoCoffee" src="{{ asset('img/gc_transparent_resize.png') }}" />#}
-                                {#</a>#}
-                            {#</div>#}
-                        {#</div>#}
+                {% embed 'side-social-networks-.html.twig' %}
+                {% endembed %}
 
-                        {#<!-- Collect the nav links, forms, and other content for toggling -->#}
-                        {#<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
-                            {#<ul class="nav navbar-nav navbar-left">#}
-                                {#<li class="hidden">#}
-                                    {#<a href="#page-top"></a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a class="fa fa-home fa-3x" aria-hidden="true" {% if app.request.get('_route') == 'gc_home_page' %}  {% endif %} href="{{ path('gc_home_page') }}"> {{ 'Accueil'|trans }}</a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a {% if app.request.get('_route') == 'gc_evenement_page' %} class="Myactive" {% endif %}  href="{{ path('gc_evenement_page') }}">{{ 'Evénements'|trans }}</a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a {% if app.request.get('_route') == 'gc_reservation_page' %} class="Myactive" {% endif %}  href="{{ path('gc_reservation_page') }}">{{ 'Réservation'|trans }}</a>#}
-                                    {#<ul id="dropMenu">#}
-                                        {#<li>#}
-                                            {#<a href="{{ path('gc_reservation_page') }}">Salle privée</a>#}
-                                        {#</li>#}
-                                        {#<li>#}
-                                            {#<a href="#">Place individuelle</a>#}
-                                        {#</li>#}
-                                    {#</ul>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a {% if app.request.get('_route') == 'annonce_index' %} class="Myactive" {% endif %}  href="{{ path('annonce_index') }}">{{ "Annonces"|trans }}</a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#<a {% if app.request.get('_route') == 'gc_contact_page' %} class="Myactive" {% endif %}  href="{{ path('gc_contact_page') }}">{{ 'Contact'|trans }}</a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
-                                        {#<a {% if app.request.get('_route') == 'fos_user_profile_edit' %} class="Myactive" {% endif %} href="{{ path('fos_user_profile_edit') }}">{{ 'Espace Client'|trans }}</a>#}
-                                    {#{% endif %}#}
-                                {#</li>#}
-                                {#<li>#}
-                                    {#{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}#}
-                                        {#<a href="{{ path('fos_user_security_logout') }}">#}
-                                            {#{{ 'Déconnexion'|trans({}, 'FOSUserBundle') }}#}
-                                        {#</a>#}
-                                    {#{% else %}#}
-                                        {#<a class="fa fa-user-circle fa-3x" aria-hidden="true" alt="{{  'Connexion'|trans }}" href="{{ path('fos_user_security_login') }}">#}
-                                            {#<img src="{{ asset('img/user.png') }}" alt="{{  'Connexion'|trans }}">#}
-                                        {#</a>#}
-                                    {#{% endif %}#}
-                                {#</li>#}
-                                {#<li id="panier-icon-menu">#}
-                                    {#{{ render(controller('AppBundle:Panier:menuIcon')) }}#}
-                                {#</li>#}
-                                {#{% if app.request.get('_route_params') is not null %}#}
-                                    {#{% for locale in locales %}#}
-                                        {#<li>#}
-                                            {#<button type="button" class="btn btn-default btn-locale-flag {{ locale == app.request.getLocale() ? 'active' : '' }}" onclick="location.href='{{ path(app.request.attributes.get("_route"), app.request.attributes.get('_route_params')|merge({"_locale": locale})) }}'">#}
-                                                {#<img src="{{ asset('img/'~ locale ~'.png') }}" alt="{{ locale }}"/>#}
-                                            {#</button>#}
-                                        {#</li>#}
-                                    {#{% endfor %}#}
-                                {#{% endif %}#}
-                                {#<li>#}
-                                    {#<a class="fa fa-shopping-cart fa-3x badge" data-count="0" aria-hidden="true" href="{{ path('panier') }}"></a>#}
-                                    {#<a  href="{{ path('panier') }}">{{ 'Panier'|trans }}</a>#}
-                                {#</li>#}
-                                {#<li>#}
-                                {#{% if is_granted("ROLE_ADMIN") %}#}
-                                    {#<a class="fa fa-gears fa-2x" href="{{ path('easyadmin') }}">#}
-                                        {#{{ 'BO'|trans }}#}
-                                    {#</a>#}
-                                {#{% endif %}#}
-                                {#</li>#}
-                            {#</ul>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</nav>#}
-
-            <div class="sticky-container">
-                <ul class="sticky">
-                    <li>
-                        <a href="https://www.facebook.com/GustoCoffeeKASAgency/" target="_blank">
-                            <img width="32" height="32" title="" alt="facebook" src="{{ asset('img/social/facebook.png') }}" />
-                            <p>Facebook</p>
-                        </a>
-                    </li>
-                    <li> <img width="32" height="32" title="" alt="twitter" src="{{ asset('img/social/twitter.png') }}" />
-                        <p>Twitter</p>
-                    </li>
-                    <li> <img width="30" height="32" title="" alt="instagram" src="{{ asset('img/social/instagram.png') }}" />
-                        <p>Instagram</p>
-                    </li>
-                </ul>
+                <div class="titleHome {% block paddingTitle %}{% endblock %}">
+                    {% block titleHome %}{% endblock %}
+                </div>
             </div>
 
-            <div class="titleHome {% block paddingTitle %}{% endblock %}">
-                {% block titleHome %}{% endblock %}
-            </div>
         </div>
+        {% endblock %}
 
-    </div>
-    {% endblock %}
+        {% block content %}
+        {% endblock %}
 
-    {% block content %}
-    {% endblock %}
+        {% block firstBlock %}
+        {% endblock %}
 
-    {% block firstBlock %}
-    {% endblock %}
+        {% block secondBlock %}
+        {% endblock %}
 
-    {% block secondBlock %}
-    {% endblock %}
-
-    {% block thirdBlock %}
-    {% endblock %}
+        {% block thirdBlock %}
+        {% endblock %}
     </div>
 
    {% embed "footer.html.twig" %}
-    {% endembed  %}
+   {% endembed  %}
 
 
-{% endblock %}
-{% block script %}
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
-    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-    {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
-    <script async type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-    <script async type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
+    {% endblock %}
+    {% block script %}
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
+        <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+        {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
+        <script async type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <script async type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
 
-    <script async src="{{ asset('js/bootstrap.min.js') }}"></script>
-    {#<script>#}
-    {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
-    {#</script>#}
+        <script async src="{{ asset('js/bootstrap.min.js') }}"></script>
+        {#<script>#}
+        {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
+        {#</script>#}
 
-    <script async src="{{ asset('build/app.js') }}"></script>
-    {#  Adding ajax script TODO: add specific on each page #}
-    <script async src="{{ asset('build/ajax.js') }}"></script>
+        <script async src="{{ asset('build/app.js') }}"></script>
+        {#  Adding ajax script TODO: add specific on each page #}
+        <script async src="{{ asset('build/ajax.js') }}"></script>
 
-{% endblock %}
+    {% endblock %}
 </body>
 </html>

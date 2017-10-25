@@ -97,7 +97,6 @@ class Produit
      */
     private $imageFile;
 
-
     /**
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva")
@@ -110,7 +109,6 @@ class Produit
      * @var \DateTime
      */
     private $updatedAt;
-
 
     /**
      * created Time/Date

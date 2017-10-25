@@ -75,6 +75,14 @@ services:
             - '@fos_user.user_manager'
             - ['{ facebook: facebook_id, google: google_id }']
 
+    app.chart.data:
+        class: AppBundle\Chart\ChartData
+        arguments: ['@doctrine.orm.entity_manager']
+
+    app.chart:
+        class: AppBundle\Chart\Chart
+        arguments: ['@app.chart.data']
+
     # add more services, or override services that need manual wiring
     # AppBundle\Service\ExampleService:
     #     arguments:
