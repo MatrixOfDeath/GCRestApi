@@ -65,8 +65,8 @@
         </div>
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <label for="showPhone">
-                {{ 'Souhaitez-vous montrer votre prénom ?' |trans }}<input type="checkbox" id="showPhone" name="subscribe" value="CheckboxValue"></label>
+                <input type="checkbox" id="showPhone" name="subscribe" value="CheckboxValue">
+                <label for="showPhone">{{ 'Souhaitez-vous montrer votre prénom ?' |trans }}</label>
             </div>
             <div class="col-md-3"></div>
 
@@ -134,8 +134,6 @@
                         </div>
 
                     {% elseif is_granted("ROLE_SUPER_ADMIN") %}
-
-
                         <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
                         <h4 class="group inner list-group-item-heading">
                             {{ 'Par' | trans }} {{ annonce.idpersonne }}
@@ -173,7 +171,7 @@
                             {{ annonce.corps }}
                         </p>
                     {% endif %}
-                </div>
+                    </div>
                 </div>
             </div>
 

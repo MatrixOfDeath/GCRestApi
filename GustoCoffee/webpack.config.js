@@ -38,6 +38,7 @@ Encore
         // './web/assets/scss/_helper.scss',
         './web/assets/scss/global.scss',
         './web/assets/scss/home.scss',
+        './web/assets/scss/cart.scss',
         // './web/assets/scss/onepage-scroll.scss',
         './web/assets/scss/evenement.scss',
         './web/assets/scss/reservation.scss',

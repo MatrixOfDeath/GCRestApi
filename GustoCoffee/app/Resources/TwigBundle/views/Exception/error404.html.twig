@@ -20,7 +20,7 @@
         </h3>
     </div>
     <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
-        {{ 'Réserver ici'|trans }}
+        {{ 'Réservez ici'|trans }}
     </button>
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
         <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">

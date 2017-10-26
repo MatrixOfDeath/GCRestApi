@@ -1,20 +1,20 @@
 // Slider
 $(function() {
     /** Listes et grilles salles **/
-    $(document).ready(function() {
-        $('#list').click(function(event){
+
+    $(document).on('click', '#list',function(event){
             event.preventDefault();
             $('#display-salle .cardSalle').addClass('list-group-item');
             $('#display-annonce .cardSalle').addClass('list-group-item');
         });
-        $('#grid').click(function(event){
+    $(document).on('click', '#grid', function(event){
             event.preventDefault();
             $('#display-salle .cardSalle').removeClass('list-group-item').addClass('grid-group-item');;
             $('#display-annonce .cardSalle').removeClass('list-group-item').addClass('grid-group-item');;
         // $('#display-salle .cardSalle, #display-annonce .cardSalle').addClass('grid-group-item');
         });
 
-    });
+
 
     if(!$('#slider-range').length){
         return false;

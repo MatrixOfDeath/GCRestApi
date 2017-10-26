@@ -2,11 +2,11 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block title %}
-    <title>GustoCoffee Réinitialisation Mot de passe</title>
+    <title>GustoCoffee - {{ "Modification de mot de passe"|trans }}</title>
 {% endblock %}
 
 {% block firstImg %}
-    topPage topPageRequest
+    topPage topPageLogin
 {% endblock %}
 
 {% block paddingTitle %}
@@ -14,17 +14,21 @@
 {% endblock %}
 
 {% block titleHome %}
-        Password CoWorking
-{% endblock %}
-
-{% block firstTitle %}
-    <h2 class="titleHome">Réinitialisation CoWorking</h2>
+    <div class="banniere">
+        <h1 class="colorWhite">{{ "Modification de mot de Passe"|trans }}</h1>
+        <h3 class="colorWhite"> <i>{{ "Mot de passe oublié ? On vous en renvoie un !"|trans }} !</i></h3>
+    </div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+        </button>
+    {% endif %}
 {% endblock %}
 
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="centerText">Réinitialiser le mot de passe</h2>
+            <h2 class="centerText">{{ "Réinitialiser le mot de passe"|trans }}</h2>
         </div>
     </div>
     <div class="row">

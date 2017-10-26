@@ -338,6 +338,13 @@ class Produit
         return $this->idtypeproduit;
     }
 
+    /**
+     * @return string
+     */
+    public function getNomTypeProduit(){
+        return $this->idtypeproduit->getNomtype();
+    }
+
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;

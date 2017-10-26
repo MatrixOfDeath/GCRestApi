@@ -44,7 +44,6 @@
         <div class="col-md-3"></div>
     </div>
 
-
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -74,7 +73,10 @@
         <div class="col-md-6">
             <div class="form-group">
                 <div class="col-sm-12 form-connexion">
-                    {{ "Pas encore inscrit"|trans }} ? <a href="{{ path('fos_user_registration_register') }}">S'inscrire</a>
+                    {{ "Pas encore inscrit"|trans }} ?
+                    <button class="btn btn-success" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+                        {{ "S'inscrire"|trans }}</a>
+                    </button>
                 </div>
             </div>
         </div>

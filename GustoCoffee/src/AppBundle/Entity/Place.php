@@ -19,8 +19,6 @@ use Doctrine\Common\Collections\ArrayCollection;
  */
 class Place
 {
-
-
     /**
      * @var integer
      *
@@ -144,6 +142,10 @@ class Place
 
     public function getNomSalle(){
         return $this->idsalle->getNomsalle();
+    }
+
+    public function getImageSalle(){
+        return $this->idsalle->getImage();
     }
 
     /** retourne la tva appliqué à la salle */

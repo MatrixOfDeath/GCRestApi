@@ -15,7 +15,7 @@
 {% block titleHome %}
     <div class="banniere">
         <h1 class="colorWhite">{{"Espace Réservation"|trans}}</h1>
-        <h3 class="colorWhite"> <i>{{"Réserver vite votre place ou votre salle"|trans}}</i></h3>
+        <h3 class="colorWhite"> <i>{{"Réservez vite votre place ou votre salle"|trans}}</i></h3>
     </div>
     <button class="buttonGC blueButton" onclick="location.href='{{ path('place_index') }}'">
         {{ 'Réservez votre place'|trans }}
@@ -108,8 +108,8 @@
 
         <h2 class="col-md-12 placeQuestion">{{ "Quelle place souhaitez vous avoir au sein de GustoCoffee ?"|trans }}</h2>
         <div class="clear"></div>
-        <div class="col-md-5 cardReservation">
-            <div class="card  placeIndividuelle">
+        <div class="col-md-5 col-xs-11 cardReservation">
+            <div class="card placeIndividuelle">
 
             {#<div id="myBtn" class="card placeIndividuelle">#}
                 {#<div id="myModal" class="modal">#}
@@ -140,8 +140,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-5 cardReservation">
+        <div class="col-md-2 col-xs-1"></div>
+        <div class="col-md-5 col-md-offset-3.5 col-xs-11 cardReservation">
             <div class="card">
                 <a href="{{ path('salle_index') }}">
                     <img src="{{ asset('img/place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">

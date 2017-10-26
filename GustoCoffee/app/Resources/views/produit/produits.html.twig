@@ -1,51 +1,91 @@
 {% extends "::base.html.twig" %}
 
-{% block body %}
-<div class="container">
-    <div class="row">
-        <div class="span3">
-            <div class="well">
-                <ul class="nav nav-list">
-                    <li class="nav-header">Nos produits</li>
-                    {{  render(controller('AppBundle:TypeDeProduit:menu')) }}
-                </ul>
-            </div>
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                Connecté
-            {% else %}
-                Vous inscrire ?
-            {% endif %}
-            {{  render(controller('AppBundle:Panier:menu')) }}
-        </div>
+{% block title %}
+    <title>GustoCoffee -{{ "Produits"|trans }}</title>
+{% endblock %}
 
-        <div class="span9">
-            {% if produits|length != 0 %}
-                <ul class="thumbnails">
-                    {% for produit in produits %}
-                        <li class="span3">
-                            <div class="thumbnail">
-                                <img src="{{ asset('uploads/images/products/'~ produit.image) }}" alt="{{ produit.nomproduit }}" width="300" height="150">
-                                <div class="caption">
-                                    <h4>{{ produit.nomproduit }}</h4>
-                                    <p>{{ produit.prixproduit|tva(produit.tva.multiplicate) }} €</p>
-                                    <a class="btn btn-primary" href="{{ path('presentation_produit', { 'id' : produit.idproduit }) }}">Plus d'infos</a>
-                                    {% if panier[produit.idproduit] is not defined %}
-                                        <a class="btn btn-success" href="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}">Ajouter au panier</a>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
+{% block firstImg %}
+    topPage topPageReservation
+{% endblock %}
 
-                {#<div class="navigation">#}
-                    {#{{ knp_pagination_render(produits) }}#}
-                {#</div>#}
+{% block paddingTitle %}
+    paddingTitle
+{% endblock %}
 
-            {% else %}
-                Aucuns produit
-            {% endif %}
-        </div>
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">{{"Nos produits"|trans}} - Produits</h1>
+        <h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>
     </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
+    <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+        {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+    </button>
+{% endblock %}
+
+{% block firstBlock %}
+    <div class="row btn-group">
+        <a href="#" id="list" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-th-list"></span> {{ "Liste"|trans }}
+        </a>
+        <a href="#" id="grid" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-th"></span> {{ "Grille"|trans }}
+        </a>
+    </div>
+    <div class="row list-group">
+        {% for produit in produits %}
+            <div class="col-md-6 col-xs-12 col-sm-6 col-lg-4 cardSalle">
+                <div class="thumbnail">
+                    <a href="{{ path('produit_show', { 'idproduit': produit.idproduit }) }}"><img class="group list-group-image" src="{{ asset('uploads/images/products/'~ produit.image) }}" alt="Salle privatisée"></a>
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading centerText">
+                            {{ produit.nomproduit }}
+                        </h4>
+                        <p class="group inner list-group-item-text centerText">
+                            {{ produit.description }}
+                        </p>
+                        <p class="centerText">
+                            {{ "Prix du service"|trans }} : {{ produit.prixproduit|tva(produit.tva.multiplicate) }}€
+                        </p>
+                        <p class="group inner list-group-item-text centerText">
+                            <button type="button" class="btn btn-success buttonAddProductPanier" value="{{ produit.idproduit }}" >{{ "Ajouter au panier"|trans }}</button>
+                        </p>
+                        <div class="row">
+                            {#Quantité <span>#}
+                            {#<select name="selectQuantite" id="qte{{ produit.idproduit }}" onchange="ajaxAjoutProduiPanier()">#}
+                            {#{% for salle in salles | slice(0,1) %}#}
+                            {#{% if salle.capacitymax == 4 %}#}
+                            {#<option value="0">0</option>#}
+                            {#<option selected value="1">1</option>#}
+                            {#<option value="2">2</option>#}
+                            {#<option value="3">3</option>#}
+                            {#<option value="4">4</option>#}
+                            {#{% endif %}#}
+                            {#{% if salle.capacitymax == 6 %}#}
+                            {#<option value="0">0</option>#}
+                            {#<option selected value="1">1</option>#}
+                            {#<option value="2">2</option>#}
+                            {#<option value="3">3</option>#}
+                            {#<option value="4">4</option>#}
+                            {#<option value="5">5</option>#}
+                            {#<option value="6">6</option>#}
+                            {#{% endif %}#}
+                            {#{% endfor %}#}
+                            {#</select>#}
+                            {#</span>#}
+                            {#</p>#}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% else %}
+        {{ "Aucuns produit"|trans }}
+    {% endif %}
 </div>
+
 {% endblock %}
