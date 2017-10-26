@@ -247,19 +247,23 @@ class ProduitController extends FOSRestController
     }
 
     /**
-     * @Route("/rechercheProduits", name="rechercheProduits")
+     * @Route("/recherche", name="recherche")
      * @return Response
-     *
      */
     public function rechercheAction()
     {
-        $form = $this->createForm(new RechercheType());
+        $form = $this->createForm('AppBundle\Form\RechercheType');
         return $this->render('produit/recherche.html.twig', array('form' => $form->createView()));
     }
 
+    /**
+     * @Route("/rechercheProduits", name="rechercheProduits")
+     * @param Request $request
+     * @return Response
+     */
     public function rechercheTraitementAction(Request $request)
     {
-        $form = $this->createForm(new RechercheType());
+        $form = $this->createForm('AppBundle\Form\RechercheType');
 
         if ($request->getMethod() == 'POST')
         {
@@ -270,7 +274,7 @@ class ProduitController extends FOSRestController
             throw $this->createNotFoundException('La page n\'existe pas.');
         }
 
-        return $this->render('produit/index.html.twig', array('produits' => $produits));
+        return $this->render('produit/produits.html.twig', array('produits' => $produits));
     }
 
 }

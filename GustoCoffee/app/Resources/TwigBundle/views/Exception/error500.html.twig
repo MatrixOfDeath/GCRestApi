@@ -16,7 +16,7 @@
     <div class="banniere">
         <h1 class="colorBrown">{{ 'Internal server error : error 500'|trans }}</h1>
         <h3 class="colorWhite"> <i>{{" The requested page couldn't be located. Checkout for any URL misspelling" |trans}}</i><br>
-            <i>{{ "Ou alors"|trans }}<a href="{{ path('gc_home_page') }}">{{ "retourner à l'accueil"|trans }}</a></i>
+            <i>{{ "Ou alors"|trans }} <a href="{{ path('gc_home_page') }}">{{ "retourner à l'accueil"|trans }}</a></i>
         </h3>
     </div>
     <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">

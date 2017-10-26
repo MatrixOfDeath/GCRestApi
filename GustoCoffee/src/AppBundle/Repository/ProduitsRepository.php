@@ -36,9 +36,8 @@ class ProduitsRepository extends EntityRepository
     {
          $qb = $this->createQueryBuilder('u')
                     ->select('u')
-                    ->where('u.nom like :chaine')
+                    ->where('u.nomproduit like :chaine')
                     ->andWhere('u.quantiteenstock > 0')
-                    ->orderBy('u.idproduit')
                     ->setParameter('chaine', $chaine);
         return $qb->getQuery()->getResult();
     }

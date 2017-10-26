@@ -58,9 +58,9 @@ class Facture
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Transaction", mappedBy="idfacture")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Transaction", mappedBy="commande")
      */
-    private $idtransaction;
+    private $transaction;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -82,7 +82,6 @@ class Facture
      */
     public function __construct()
     {
-        $this->idtransaction = new \Doctrine\Common\Collections\ArrayCollection();
         $this->idmodepaiement = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -194,28 +193,21 @@ class Facture
     }
 
     /**
-     * Add idtransaction
-     *
-     * @param \AppBundle\Entity\Transaction $idtransaction
-     *
-     * @return Facture
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function addIdtransaction(\AppBundle\Entity\Transaction $idtransaction)
+    public function getTransaction()
     {
-        $this->idtransaction[] = $idtransaction;
-
-        return $this;
+        return $this->transaction;
     }
 
     /**
-     * Remove idtransaction
-     *
-     * @param \AppBundle\Entity\Transaction $idtransaction
+     * @param \Doctrine\Common\Collections\Collection $transaction
      */
-    public function removeIdtransaction(\AppBundle\Entity\Transaction $idtransaction)
+    public function setTransaction($transaction)
     {
-        $this->idtransaction->removeElement($idtransaction);
+        $this->transaction = $transaction;
     }
+
 
     /**
      * Get idtransaction

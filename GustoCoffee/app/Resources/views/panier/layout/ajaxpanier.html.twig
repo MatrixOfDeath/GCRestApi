@@ -47,7 +47,7 @@
                 <div class="well">
                     <ul class="nav nav-list">
                     <li>
-                        <span>{{ "Aucune salles sélectionner dans votre panier"|trans }}</span>
+                        <span>{{ "Aucunse salles sélectionner dans votre panier"|trans }}</span>
                     </li>
                     </ul>
                 </div>
@@ -70,7 +70,7 @@
                             {#<form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">#}
                                 <td>{{ salle.nomsalle }}</td>
                                 <td>
-                                    {{  "Le " ~ panier_place[place.idplace].date|date('d/m/Y') ~ " De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('H:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures  ~ 'H' }}
+                                    {{  "Le " ~ panier_salle[salle.idsalle].date|date('d/m/Y') ~ " De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('H:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures  ~ 'H' }}
                                     {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
                                     {% if panier_salle[salle.idsalle].totalMinutes >= 30 %}
                                         {% set totalMinutes =  (2 * salle.capacitymax )  %}
@@ -115,7 +115,7 @@
                 <div class="well">
                     <ul class="nav nav-list">
                         <li>
-                            <span>{{ "Aucune places sélectionner dans votre panier"|trans }}</span>
+                            <span>{{ "Aucunse places sélectionner dans votre panier"|trans }}</span>
                         </li>
                     </ul>
                 </div>
@@ -185,7 +185,7 @@
                 <div class="well">
                     <ul class="nav nav-list">
                         <li>
-                            <span>{{ "Aucun articles dans votre panier"|trans }}</span>
+                            <span>{{ "Aucuns articles dans votre panier"|trans }}</span>
                         </li>
                     </ul>
                 </div>
