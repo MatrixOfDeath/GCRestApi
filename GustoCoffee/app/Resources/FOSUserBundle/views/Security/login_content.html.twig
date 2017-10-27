@@ -9,14 +9,83 @@
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     {% endif %}
 
-    <label for="username">{{ 'security.login.username'|trans }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-sm-12 form-connexion">
+                    <input placeholder=" Username" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-sm-12 form-connexion">
+                    <input placeholder=" Mot de passe"  type="password" id="password" name="_password" required="required" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
 
-    <label for="password">{{ 'security.login.password'|trans }}</label>
-    <input type="password" id="password" name="_password" required="required" />
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-sm-12 form-connexion">
+                    <a href="{{ path('fos_user_resetting_request') }}">{{ "Mot de passe oublié"|trans }} ?</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-sm-12 form-connexion">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    <label for="remember_me">{{ 'Se rappeler de moi'|trans }}</label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
 
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-sm-12 form-connexion">
+                    <input class="buttonGC brownButton" type="submit" id="_submit" name="_submit" value="{{ 'Se connecter '|trans }}" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-sm-12 form-connexion">
+                    {{ "Pas encore inscrit"|trans }} ?
+                    <button class="btn btn-success" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+                        {{ "S'inscrire"|trans }}</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
 </form>
+
+<style>
+    #remember_me {
+        width: 5%;
+    }
+</style>

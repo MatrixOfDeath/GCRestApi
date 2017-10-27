@@ -1,6 +1,18 @@
+gc_faq_page:
+    path: /faq
+    defaults: { _controller: GCUserBundle:Faq:index }
+
+gc_contact_page:
+    path: /contact
+    defaults: { _controller: GCUserBundle:Contact:index }
+
+gc_dashboard_page:
+    path:    /test
+    defaults: { _controller: GCUserBundle:Dashboard:index }
+
 gc_login_page:
     path:    /connexion
-    defaults: { _controller: GCUserBundle:Login:connexion }
+    defaults: { _controller: GCUserBundle:Security:login }
 
 gc_inscription_page:
     path:    /inscription

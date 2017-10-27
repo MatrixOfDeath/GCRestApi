@@ -1,3 +1,15 @@
 gc_reservation_page:
     path:    /reservation
     defaults: { _controller: GCReservationBundle:Default:index }
+
+#gc_private_page:
+#    path:    /reservation-private
+#    defaults: { _controller: GCReservationBundle:Default:private }
+
+gc_sallea_page:
+    path:    /reservation-private-a
+    defaults: { _controller: GCReservationBundle:Default:sallea }
+
+gc_facture_page:
+    path:    /pdf
+    defaults: { _controller: GCReservationBundle:Default:pdf }

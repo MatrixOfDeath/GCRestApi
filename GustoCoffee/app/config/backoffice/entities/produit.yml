@@ -1,0 +1,45 @@
+easy_admin:
+    entities:
+        Produit:
+            class: AppBundle\Entity\Produit
+            label: 'Les Produits'
+            form:
+                fields:
+                    - { property: 'nomProduit', type: 'text', help: 'Nom du produit' }
+                    - { property: 'prixProduit', type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € Hors Taxe' }
+                    - { property: 'description', type: 'text'}
+                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'quantiteEnStock', type: 'text'}
+                    - { property: 'statutProduit', type: 'text'}
+                    - 'idtva'
+                    - 'idtypeproduit'
+            list:
+                title: 'Listes des Produits'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - idproduit
+                    - { property: 'nomProduit', type: 'text'}
+                    - { property: 'prixProduit', label: 'Prix en €' }
+                    - { property: 'description', type: 'text'}
+                    - { property: 'image', type: 'image', base_path: '%app.path.products_images%' }
+                    - { property: 'quantiteEnStock', type: 'text'}
+                    - 'idtva'
+                    - 'idtypeproduit'
+
+            show:
+                title: 'Show des Produits'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+
+                fields:
+                    - { property: 'nomProduit', type: 'text'}
+                    - { property: 'prixProduit', label: 'Prix en €',type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € Hors Taxe' }
+                    - { property: 'description', type: 'text'}
+                    - { property: 'image', type: 'image', base_path: '%app.path.products_images%' }
+                    - { property: 'quantiteEnStock', type: 'text'}
+                    - { property: 'statutProduit', type: 'text'}
+                    - 'idtva'
+                    - 'idtypeproduit'

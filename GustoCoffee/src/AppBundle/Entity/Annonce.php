@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Annonce
@@ -22,14 +23,14 @@ class Annonce
     /**
      * @var string
      *
-     * @ORM\Column(name="corps", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="corps", type="text", length=1000, nullable=true)
      */
     private $corps;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateCreation", type="date", nullable=true)
+     * @ORM\Column(name="dateCreation", type="datetime", nullable=true)
      */
     private $datecreation;
 
@@ -43,6 +44,13 @@ class Annonce
     private $idannonce;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="categorieAnnonce", type="text", length=1000, nullable=true)
+     */
+    private $categorieAnnonce;
+
+    /**
      * @var \AppBundle\Entity\Personne
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne")
@@ -52,7 +60,11 @@ class Annonce
      */
     private $idpersonne;
 
+    public function __construct()
+    {
+        $this->setDatecreation(new \DateTime(date('d-m-Y H:m:s')));
 
+    }
 
     /**
      * Set titre
@@ -143,7 +155,7 @@ class Annonce
      *
      * @return Annonce
      */
-    public function setIdpersonne(\AppBundle\Entity\Personne $idpersonne = null)
+    public function setIdpersonne(\AppBundle\Entity\Personne $idpersonne)
     {
         $this->idpersonne = $idpersonne;
 
@@ -159,4 +171,23 @@ class Annonce
     {
         return $this->idpersonne;
     }
+
+
+    /**
+     * @return string
+     */
+    public function getCategorieAnnonce()
+    {
+        return $this->categorieAnnonce;
+    }
+
+    /**
+     * @param string $categorieAnnonce
+     */
+    public function setCategorieAnnonce($categorieAnnonce)
+    {
+        $this->categorieAnnonce = $categorieAnnonce;
+    }
+
+
 }

@@ -1,0 +1,29 @@
+easy_admin:
+    entities:
+        TypeDeProduit:
+            class: AppBundle\Entity\TypeDeProduit
+            label: 'Type de Produits'
+            list:
+                title: 'Produit %%entity_label%%'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields:
+                    - 'idtypeproduit'
+                    - { property: 'nomtype', label: 'Nom du type de produit' }
+                    - { property: 'description', label: 'Description' }
+            show:
+                fields:
+                    - 'idtypeproduit'
+                    - { property: 'nomtype', label: 'Nom du type de produit', css_class: 'large' }
+                    - { property: 'Description', label: 'Description' }
+            form:
+                fields:
+                    - { type: 'group', css_class: 'col-sm-4' }
+                    - { property: 'nomtype', label: 'Label', css_class: 'large'}
+                    - { property: 'Description', label: 'Description' }
+
+#                    - { property: 'parent', type: 'easyadmin_autocomplete', label: 'Parent produit' }
+                    # if you want to add products when creating categories, add the 'by_reference' option
+                    # - { property: 'products', type_options: { by_reference: false } }

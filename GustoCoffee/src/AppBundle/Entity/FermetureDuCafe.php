@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class FermetureDuCafe
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="idFermeture", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idfermeture;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="dateDebut", type="date", nullable=true)
@@ -29,14 +38,14 @@ class FermetureDuCafe
     /**
      * @var string
      *
-     * @ORM\Column(name="titre", type="string", length=255, nullable=true)
+     * @ORM\Column(name="titre", type="string", length=50, nullable=true)
      */
     private $titre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="raison", type="text", length=255, nullable=true)
+     * @ORM\Column(name="raison", type="string", length=50, nullable=true)
      */
     private $raison;
 
@@ -48,14 +57,27 @@ class FermetureDuCafe
     private $jourferie;
 
     /**
-     * @var integer
      *
-     * @ORM\Column(name="idFermeture", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin", inversedBy="idfermeture")
+     * @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
      */
-    private $idfermeture;
+    private $idmagasin;
 
+    /**
+     * @return mixed
+     */
+    public function getIdmagasin()
+    {
+        return $this->idmagasin;
+    }
+
+    /**
+     * @param mixed $idmagasin
+     */
+    public function setIdmagasin($idmagasin)
+    {
+        $this->idmagasin = $idmagasin;
+    }
 
 
     /**
@@ -186,5 +208,13 @@ class FermetureDuCafe
     public function getIdfermeture()
     {
         return $this->idfermeture;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return 'Raison: '. $this->getRaison() .' pour '.$this->getJourferie(). '. Du ' . $this->getDatedebut()->format('d M Y') . 'au '. $this->getDatefin()->format('d M Y');
     }
 }

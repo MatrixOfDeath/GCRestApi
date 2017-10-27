@@ -1,5 +1,116 @@
-{% extends "@FOSUser/layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block fos_user_content %}
-{% include "@FOSUser/Registration/register_content.html.twig" %}
-{% endblock fos_user_content %}
+{% block title %}
+    <title>{{ 'GustoCoffee - Inscription'|trans }}</title>
+{% endblock %}
+
+{% block firstImg %}
+   topPage topPageRegister
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{% endblock %}
+
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">Espace Client - Inscription</h1>
+        <h3 class="colorWhite"> <i>Rejoignez notre communauté ! </i></h3>
+    </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez ici'|trans }}
+    </button>
+{% endblock %}
+
+
+{% block firstBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="centerText">Inscription</h2>
+        </div>
+    </div>
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.nom) }}
+            {{ form_widget(form.nom) }}
+        </div>
+        <div class="col-md-3 form-prenom">
+            {{ form_errors(form.prenom) }}
+            {{ form_widget(form.prenom) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            {{ form_widget(form.username, { 'attr': {'placeholder': ' Username', 'style':'width: 100%;' } }) }}
+            {{ form_errors(form.username) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.plainPassword.first) }}
+            {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': ' Mot de passe', 'style':'width: 100%;' }}) }}
+        </div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.plainPassword.second) }}
+            {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': ' Confirmer Mot de passe', 'style':'width: 100%;' }}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            {{ form_errors(form.adresse) }}
+            {{ form_widget(form.adresse) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3 form-nom">
+            {{ form_errors(form.codepostal) }}
+            {{ form_widget(form.codepostal) }}
+        </div>
+        <div class="col-md-3 form-prenom">
+            {{ form_errors(form.ville) }}
+            {{ form_widget(form.ville) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexionHide">
+            {{ form_errors(form.newsletter) }}
+            {{ form_widget(form.newsletter) }}
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    {{ form_rest(form) }}
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-connexion">
+            <input class="buttonGC brownButton" type="submit" value="{{ "S'inscrire"|trans }}" />
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}
+
+{% block secondBlock %}{% endblock %}
+
+{% block thirdBlock %}{% endblock %}

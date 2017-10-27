@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file date="2017-09-20T11:53:08Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="903dca17a1c9328c3aa66e5adfffecc642d66713" resname="Déconnexion">
+        <source>Déconnexion</source>
+        <target state="new">Déconnexion</target>
+        <jms:reference-file line="73">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="360d5f783c46f5e90f1b24010cb6bf03626ec35b" resname="layout.login">
+        <source>layout.login</source>
+        <target>layout.login</target>
+        <jms:reference-file line="69">/../../../../../../../../.././app/Resources/views/annonce/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="126">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
+        <jms:reference-file line="77">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
+        <jms:reference-file line="98">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
+        <jms:reference-file line="55">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

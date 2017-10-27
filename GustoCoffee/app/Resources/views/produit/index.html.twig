@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <title>GustoCoffee - Réservation privée</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPage topPageReservation
+{% endblock %}
+
+{% block paddingTitle %}
+     paddingTitle
+{% endblock %}
+
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">{{"Espace Réservation"|trans}} - Salle privée</h1>
+        <h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>
+    </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
+    <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+        {{ 'Inscrivez-vous dès maintenant !'|trans }}
+    </button>
+{% endblock %}
+
+{% block firstBlock %}
+    {% embed ":reservation:tunel.html.twig" %}
+
+    {% endembed %}
+{% endblock %}
+
+{% block secondBlock %}
+    <div class="clearThirty"></div>
+    <div class="row containerAll">
+        <div class="col-md-3 containerMontantPayer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="room-search-form">
+                        <div id="reservation-date-picker" class="form-group centerText">
+                            <label>{{ "Résumé de votre commande"|trans }}</label>
+                            <div class="montant">
+                               <h3 id="montapayer"> {{ "Montant à payer :"|trans }}
+                                    <span id="montantapayer"></span>
+                               </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <button class="btn btn-block btn-primary buttonSearch">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> {{ "Commander"|trans }}
+                </button>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="col-md-9 containerCardProduit">
+        {% for produit in produits %}
+            <div class="col-md-6 cardSalle cardProduit">
+                <div class="thumbnail">
+                   <img class="group list-group-image" src="/uploads/images/salles/groupPlace.jpg" alt="Salle privatisée"></a>
+                    <div class="caption">
+                        <h4 class="group inner list-group-item-heading centerText">
+                            <p>{{ produit.nomproduit }}</p>
+                        </h4>
+                        <p class="group inner list-group-item-text centerText">
+                            {{ produit.description }}
+                        </p>
+                        <div class="group inner list-group-item-text centerText">
+                            <p id="prix{{ produit.idproduit }}" class="lead&quot;">Prix du service : {{ produit.prixproduit }}€</p>
+                        </div>
+                        <p class="group inner list-group-item-text centerText">
+                            Quantité <span>
+                                <select name="selectQuantite" id="qte{{ produit.idproduit }}" onchange="ajaxAjoutProduiPanier()">
+                                    {% for salle in salles | slice(0,1) %}
+                                        {% if salle.capacitymax == 4 %}
+                                            <option value="0">0</option>
+                                            <option selected value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                        {% endif %}
+                                        {% if salle.capacitymax == 6 %}
+                                        <option value="0">0</option>
+                                        <option selected value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block script %}
+
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/reservation/ajaxAjoutProduitPanier.js') }}"></script>
+
+{% endblock %}

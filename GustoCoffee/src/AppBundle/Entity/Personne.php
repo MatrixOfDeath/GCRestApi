@@ -2,17 +2,42 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Personne
  *
- * @ORM\Table(name="Personne", indexes={@ORM\Index(name="rulePersonne", columns={"rulePersonne"}), @ORM\Index(name="FK_Personne_idRule", columns={"idRule"})})
+ * @ORM\Table(name="Personne", indexes={@ORM\Index(name="rulePersonne", columns={"rulePersonne"}),
+ * @ORM\Index(name="FK_Personne_idRule", columns={"idRule"})})
+ * @Vich\Uploadable()
  * @ORM\Entity
  */
 class Personne extends BaseUser
 {
+
+    const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_USER = 'ROLE_USER';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commande", mappedBy="personnes", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $commandes;
+
     /**
      * @var string
      *
@@ -49,6 +74,138 @@ class Personne extends BaseUser
     //protected $email;
 
     /**
+     * @Vich\UploadableField(mapping="personnes_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @var string
+     */
+    private $image;
+
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+    }
+
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $facebookID;
+
+    /**
+     * @ORM\Column(name="facebook_access_token", type="string", length=255, nullable=true)
+     */
+    protected $facebook_access_token;
+    /**
+     * @return string
+     */
+    public function getFacebookID()
+    {
+        return $this->facebookID;
+    }
+
+    /**
+     * @param string $facebookID
+     */
+    public function setFacebookID($facebookID)
+    {
+        $this->facebookID = $facebookID;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGoogleID()
+    {
+        return $this->googleID;
+    }
+
+    /**
+     * @param string $googleID
+     */
+    public function setGoogleID($googleID)
+    {
+        $this->googleID = $googleID;
+    }
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $googleID;
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookAccessToken()
+    {
+        return $this->facebook_access_token;
+    }
+
+    /**
+     * @param mixed $facebook_access_token
+     */
+    public function setFacebookAccessToken($facebook_access_token)
+    {
+        $this->facebook_access_token = $facebook_access_token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleAccessToken()
+    {
+        return $this->google_access_token;
+    }
+
+    /**
+     * @param mixed $google_access_token
+     */
+    public function setGoogleAccessToken($google_access_token)
+    {
+        $this->google_access_token = $google_access_token;
+    }
+
+    /**
+     * @ORM\Column(name="google_access_token", type="string", length=255, nullable=true)
+     */
+    protected $google_access_token;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UtilisateursAdresses", mappedBy="utilisateur", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $adresses;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="adresse", type="string", length=25, nullable=true)
@@ -62,12 +219,22 @@ class Personne extends BaseUser
      */
     private $codepostal;
 
+
+
     /**
      * @var string
      *
      * @ORM\Column(name="ville", type="string", length=25, nullable=true)
      */
     private $ville;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="telephone", type="integer", length=10, nullable=true)
+     */
+
+    private $telephone;
 
     /**
      * @var string
@@ -97,14 +264,6 @@ class Personne extends BaseUser
      */
     private $newsletter;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    protected $id;
 
     /**
      * @var \AppBundle\Entity\RuleUtilisateur
@@ -116,7 +275,44 @@ class Personne extends BaseUser
      */
     private $idrule;
 
+    // Adding emails
+    /**
+     * @ORM\OneToMany(targetEntity="PersonneAddOnEmail", mappedBy="user", cascade={"persist"})
+     */
+    private $addOnEmails;
 
+    /**
+     * Personne constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->addOnEmails = new ArrayCollection();
+        $this->commandes = new ArrayCollection();
+        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->newsletter = false;
+
+    }
+    /**
+     * @param string $email
+     *
+     * @return $this
+     */
+    public function addEmail($email)
+    {
+        $addOnEmail = new PersonneAddOnEmail();
+        $addOnEmail->setEmail($email);
+        $addOnEmail->setPersonne($this);
+        $this->addOnEmails[] = $addOnEmail;
+        return $this;
+    }
+    /**
+     * @return ArrayCollection
+     */
+    public function getAddOnEmails()
+    {
+        return $this->addOnEmails;
+    }
 
     /**
      * Set indentifiant
@@ -439,4 +635,95 @@ class Personne extends BaseUser
     {
         return $this->idrule;
     }
+
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getUsername();
+    }
+
+    /**
+     * @return int
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param int $telephone
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+    }
+
+    /**
+     * Add commandes
+     *
+     * @param \AppBundle\Entity\Commande $commandes
+     * @return Personne
+     */
+    public function addCommande(\AppBundle\Entity\Commande $commandes)
+    {
+        $this->commandes[] = $commandes;
+
+        return $this;
+    }
+
+    /**
+     * Remove commandes
+     *
+     * @param \AppBundle\Entity\Commande $commandes
+     */
+    public function removeCommande(\AppBundle\Entity\Commande $commandes)
+    {
+        $this->commandes->removeElement($commandes);
+    }
+
+    /**
+     * Get commandes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * Add adresses
+     *
+     * @param \AppBundle\Entity\UtilisateursAdresses $adresses
+     * @return Personne
+     */
+    public function addAdress(\AppBundle\Entity\UtilisateursAdresses $adresses)
+    {
+        $this->adresses[] = $adresses;
+
+        return $this;
+    }
+
+    /**
+     * Remove adresses
+     *
+     * @param \AppBundle\Entity\UtilisateursAdresses $adresses
+     */
+    public function removeAdress(\AppBundle\Entity\UtilisateursAdresses $adresses)
+    {
+        $this->adresses->removeElement($adresses);
+    }
+
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAdresses()
+    {
+        return $this->adresses;
+    }
+
 }

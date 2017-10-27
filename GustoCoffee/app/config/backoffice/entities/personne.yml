@@ -1,0 +1,20 @@
+easy_admin:
+    entities:
+        Personne:
+            class: AppBundle\Entity\Personne
+            label: 'Utilisateurs'
+            form:
+                fields: ['id', 'username', {property: 'email', type: 'email'}, 'nom', 'prenom', 'enabled', 'statutpersonne', 'newsletter']
+            list:
+                title: 'Les Utilisateurs'
+                actions:
+                    - { name: 'show', label: '', icon: 'search' }
+                    - { name: 'edit', label: '', icon: 'edit' }
+                    - { name: 'delete', label: '', icon: 'trash' }
+                fields: ['id', 'username', 'email', 'nom', 'prenom', 'enabled', {property: 'lastLogin', type: date}, 'statutpersonne', 'newsletter', { property: 'email', label: 'Contact Email' }]
+            edit:
+                - { property: 'username', icon: 'user' }
+                - { property: 'email', css_class: 'input', type_options: { required: true } }
+            new:
+                - { property: 'username', icon: 'user' }
+                - { property: 'email', css_class: 'input', type_options: { required: true } }

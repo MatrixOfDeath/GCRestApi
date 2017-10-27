@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <title>{{ 'GustoCoffee - Annonces'|trans }}</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPage topPageAnnonce
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{% endblock %}
+
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">{{ "Poster une annonce"|trans }}</h1>
+        <h3 class="colorWhite"> <i>{{"Et si on travaillait ensemble ?"|trans}} </i></h3>
+    </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}
+        </button>
+    {% endif %}
+{% endblock %}
+{# ---------- First Block - Dépôt d'annonce ---------- #}
+{% block firstBlock %}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <a href="{{ path('fos_user_security_logout') }}"></a>
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <h2 class="centerText">{{ 'Déposez votre annonce'|trans }}</h2>
+        </div>
+    </div>
+    {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                {{ form_label(form.titre) }}
+                {{ form_widget(form.titre) }}
+                {{ form_errors(form.titre) }}
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+         <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                {{ form_label(form.corps) }}
+                {{ form_widget(form.corps) }}
+                {{ form_errors(form.corps) }}
+            </div>
+            <div class="col-md-3"></div>
+         </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                {{ form_label(form.categorieAnnonce) }}
+                {{ form_widget(form.categorieAnnonce) }}
+                {{ form_errors(form.categorieAnnonce) }}
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <input type="checkbox" id="showPhone" name="subscribe" value="CheckboxValue">
+                <label for="showPhone">{{ 'Souhaitez-vous montrer votre prénom ?' |trans }}</label>
+            </div>
+            <div class="col-md-3"></div>
+
+            <div class="col-md-12">
+                <div class="datecreationAnnonce" style="display: none">
+                    {{ form_label(form.datecreation) }}
+                    {{ form_widget(form.datecreation) }}
+                    {{ form_errors(form.datecreation) }}
+
+                    {{ form_label(form.corps) }}
+                    {{ form_widget(form.corps) }}
+                    {{ form_errors(form.corps) }}
+
+                 </div>
+            </div>
+        </div>
+       <div class="col-md-4 col-xs-1" ></div>
+        <div class="col-md-4 col-xs-10 form-connexion">
+            <input type="submit" class="buttonGC brownButton centerText" value="{{ 'Postez votre annonce'|trans }}" />
+        </div>
+        <div class="col-md-4 col-xs-1" ></div>
+
+        {{ form_end(form) }}
+
+    {% else %}
+        <a style="display: none;" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+{% endblock %}
+{# ---------- End First Block - Dépôt d'annonce---------- #}
+
+{# ---------- Second Block - Listing d'annonces ---------- #}
+{% block secondBlock %}
+    <div class="row addPadding">
+
+        <div class="col-xs-12">
+            <h2 class="centerText">{{ 'Liste des Annonces'|trans }}</h2>
+        </div>
+
+        <div class="col-xs-12 btn-group">
+            <a href="#" id="list" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th-list"></span> {{ "Liste"|trans }}
+            </a>
+            <a href="#" id="grid" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-th"></span> {{ "Grille"|trans }}
+            </a>
+        </div>
+        <div id="display-annonce" class="col-xs-12 list-group">
+        {% for annonce in annonces %}
+            <div class="col-md-6 col-xs-12 col-sm-6 col-lg-4 cardSalle">
+                <div class="thumbnail">
+                    <h4 class="group inner list-group-item-heading centerText"> <u>{{ annonce.categorieAnnonce }}</u> </h4>
+                    <h4 class="group inner list-group-item-heading centerText">{{ annonce.titre }}</h4>
+                    <div class="caption">
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
+                        <h4 class="group inner list-group-item-heading">
+                            {{ 'Par' | trans }} {{ annonce.idpersonne }}
+                        </h4>
+                        <p class="group inner list-group-item-text sizeFont">
+                            {{ annonce.corps }}
+                        </p>
+                        <div class="clearfix">
+                            <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
+                            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
+                        </div>
+
+                    {% elseif is_granted("ROLE_SUPER_ADMIN") %}
+                        <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
+                        <h4 class="group inner list-group-item-heading">
+                            {{ 'Par' | trans }} {{ annonce.idpersonne }}
+                        </h4>
+                        <p class="group inner list-group-item-text sizeFont">
+                            {{ annonce.corps }}
+                        </p>
+                        <div class="clearfix">
+                            <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
+                            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
+                        </div>
+                    {% elseif app.user %}
+                        <p class="group inner list-group-item-heading centerText">
+                            {{ 'Mise en ligne le ' | trans }}
+                            {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}
+                        </p>
+                        <h4 class="group inner list-group-item-heading">
+                            {{ 'Par' | trans }} {{ annonce.idpersonne }}
+                        </h4>
+                        <p class="group inner list-group-item-text sizeFont">
+                            {{ annonce.corps }}
+                        </p>
+                        {% if app.user == annonce.idpersonne %}
+                        <div class="clearfix">
+                            <a href="{{ path('annonce_show', { 'idannonce': annonce.idannonce }) }}">{{ "Montrer l'annonce"|trans }}<br></a>
+                            <a href="{{ path('annonce_edit', { 'idannonce': annonce.idannonce }) }}">{{ "Éditer l'annonce"|trans }}</a>
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        <p class="group inner list-group-item-heading centerText">{{ 'Mise en ligne le ' | trans }} {% if annonce.datecreation %}{{ annonce.datecreation|date('d-m-Y h:m') }}{% endif %}</p>
+                        <h4 class="group inner list-group-item-heading">
+                            {{ 'Par' | trans }} {{ annonce.idpersonne }}
+                        </h4>
+                        <p class="group inner list-group-item-text sizeFont">
+                            {{ annonce.corps }}
+                        </p>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+{# ---------- End Second Block - Listing d'annonces ---------- #}

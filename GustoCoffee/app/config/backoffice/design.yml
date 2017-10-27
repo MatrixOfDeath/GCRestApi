@@ -1,0 +1,15 @@
+easy_admin:
+    site_name: '<img alt="GustoCoffee" width="70px" src="/img/gc_transparent_resize.png" /> BackOffice'
+    assets:
+        css:
+            - 'css/jquery-ui.min.css'
+        js:
+            #- 'js/jquery.min.js'
+            - 'js/jquery-ui.min.js'
+
+    design:
+        brand_color: rgba(166, 133, 77, 1)
+        form_theme:   'vertical'
+        color_scheme: 'dark'
+        assets:
+            favicon: '/img/gc_transparent_resize.png'

@@ -1,0 +1,326 @@
+{% extends "::base.html.twig" %}
+
+{% set totalProduitHT = 0 %}
+{% set totalSalleHT = 0 %}
+{% set totalPlaceHT = 0 %}
+{% set totalProduitTTC = 0 %}
+{% set totalSalleTTC = 0 %}
+{% set totalPlaceTTC = 0 %}
+{% set prixPlace = 0 %}
+{% set thirdHourFree = 0 %}
+{% set refTva = {} %}
+{% set refSalleTva = {} %}
+{% set refPlaceTva = {} %}
+{% set thirdHourFree = 0 %}
+{% for produit in produits %}
+    {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : 0 }) %}
+{% endfor %}
+{% for salle in salles %}
+    {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : 0 }) %}
+{% endfor %}
+{% for place in places %}
+    {% set refPlaceTva = refPlaceTva|merge({ ('%' ~ place.tva.valeur) : 0 }) %}
+{% endfor %}
+
+{% block title %}
+    <title>GustoCoffee - Votre Panier</title>
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{% endblock %}
+
+{% block firstImg %}
+    topPage topPanier
+{% endblock %}
+
+
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">{{ "Votre Panier"|trans }}</h1>
+        <h3 class="colorWhite"> <i>{{ "Voici ce que contient votre panier"|trans }} !</i></h3>
+    </div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}
+        </button>
+    {% endif %}
+{% endblock %}
+
+{% block firstBlock %}
+    <div class="row">
+        <div class="col-md-3 hidden-xs hidden-sm addPadding">
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li class="nav-header">{{ "Nos produits"|trans }}</li>
+                    {{ render(controller('AppBundle:TypeDeProduit:menu')) }}
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-12">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="alert alert-danger fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-info fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            {# Begining of cart #}
+            <div class="wrap cf">
+                <div class="heading cf">
+                    <h1>Votre Panier</h1>
+                    <a href="#" class="continue">{{ "Continuer vos achats"|trans }}</a>
+                </div>
+                <div class="cartPanier">
+                    <!--    <ul class="tableHead">
+                          <li class="prodHeader">Product</li>
+                          <li>Quantity</li>
+                          <li>Total</li>
+                           <li>Remove</li>
+                        </ul>-->
+                    <ul class="cartWrap">
+                        {% set cmpt = 0 %}
+                        {% if salles|length > 0 %}
+
+                                {# @var salle \AppBundle\Entity\Salle #}
+                        {%  for salle in salles %}
+                        <li class="items {% if cmpt is odd %}odd{% else %}even{% endif %}">
+                            {% set cmpt = cmpt + 1 %}
+                            <div class="infoWrap">
+                                {% set total30Minutes = panier_salle[salle.idsalle].totalHeures * 2 %}
+                                {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
+                                {% if panier_salle[salle.idsalle].totalMinutes >= 30 %}
+                                    {% set totalMinutes =  (2 * salle.capacitymax )  %}
+                                    {#{{ panier_salle[salle.idsalle].totalMinutes ~ 'min' }}#}
+                                {% else %}
+                                    {% set totalMinutes = 0 %}
+                                {% endif %}
+                                {#<form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">#}
+                                    <div class="cartSection">
+                                        <img src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="{{ "Salle privatisée"|trans }}" title="{{ salle.nomsalle }}" class="itemImg" />
+                                        <p class="itemNumber">
+                                            {{ "Le " ~ panier_salle[salle.idsalle].date|date('d/m/Y') ~ " De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('H:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps: ' ~ panier_salle[salle.idsalle].totalHeures  ~ 'H' ~ totalMinutes ~ 'min' }}
+                                        </p>
+                                        <h3>{{ salle.nomsalle }}</h3>
+
+                                        <p> <input type="text" class="inputPanier qty" placeholder="{{ panier_salle[salle.idsalle].totalHeures ~ 'H' ~ panier_salle[salle.idsalle].totalMinutes ~ 'min' }}"/> x {{ salle.prixsalle }}€</p>
+
+                                        <p class="stockStatus">{{ "Disponible" }}</p>
+                                    </div>
+                                    {% set journeeIllimitee = 0 %}
+                                    {% set offreThirdHour = 0 %}
+                                    <div class="prodTotal cartSection">
+                                        {% if panier_salle[salle.idsalle].totalHeures >= 5 or (panier_salle[salle.idsalle].totalHeures >= 5 and panier_salle[salle.idsalle].totalMinutes >= 30)  %}
+                                            <p>{{ salle.prixsalle * 4 }} €</p>
+                                            {% set journeeIllimitee = 1 %}
+                                            {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 4 %}
+                                            {% set prixSalle =  salle.prixsalle * 4  %}
+                                        {% elseif (panier_salle[salle.idsalle].totalHeures == 3 and panier_salle[salle.idsalle].totalMinutes >= 30) or panier_salle[salle.idsalle].totalHeures >= 4 %}
+                                            <p>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes - (2 * salle.capacitymax) }} €</p>
+                                            {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax)  %}
+                                            {% set prixSalle = salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax) %}
+                                            {% set thirdHourFree =  thirdHourFree + (2 * salle.capacitymax) %}
+                                            {% set offreThirdHour = 1 %}
+                                        {% else %}
+                                            <p>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</p>
+                                            {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
+                                            {% set prixSalle = salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
+                                        {% endif %}
+                                    </div>
+                                    <div class="cartSection removeWrap">
+                                        <a href="{{ path('delete_panier_salle', { 'id' : salle.idsalle }) }}" class="removeItemPanier">x</a>
+                                    </div>
+                                {#</form>#}
+                            {#{% set totalSalleHT = totalSalleHT + (salle.prixsalle * panier_salle[salle.idsalle].) %}#}
+                            {#{% set totalSalleTTC = totalSalleTTC + (salle.prixsalle * panier_salle[salle.idsalle].)|tva(salle.tva.multiplicate) * panier_salle[salle.idsalle]. %}#}
+                            {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : refSalleTva['%' ~ salle.tva.valeur] + prixSalle|TvaFromMontant(salle.tva.multiplicate) }) %}
+
+                            {#{% set totalSalleTTC =  totalSalleTTC +  salle.prixsalle * panier_salle[salle.idsalle]. %}#}
+                            </div>
+                            {% if thirdHourFree == 1 %}
+                                <div class="special"><div class="specialContent">{{ "Vous bénéficiez de la 3ème heure gratuite"|trans }}</div></div>
+                            {% elseif journeeIllimitee  == 1 %}
+                                <div class="special"><div class="specialContent">{{ "Vous bénéficiez de notre offre journée illimité"|trans }}</div></div>
+                            {% endif %}
+                        </li>
+                        {%  endfor %}
+                        {% endif %}
+
+                        {% if places|length > 0 %}
+                            {# @var place \AppBundle\Entity\Place #}
+                            {%  for place in places %}
+                                <li class="items {% if cmpt is odd %}odd{% else %}even{% endif %}">
+                                    {% set cmpt = cmpt + 1 %}
+                                    <div class="infoWrap">
+                                        {% set total30Minutes = panier_place[place.idplace].totalHeures * 2 %}
+                                        {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
+                                        {% if panier_place[place.idplace].totalMinutes >= 30 %}
+                                            {% set totalMinutes =  (2 * place.capacitymax )  %}
+                                            {#{{ panier_place[place.idplace].totalMinutes ~ 'min' }}#}
+                                        {% else %}
+                                            {% set totalMinutes = 0 %}
+                                        {% endif %}
+                                        {#<form action="{{ path('ajout_panier_place', { 'id' : place.idplace }) }}" method="get">#}
+                                        <div class="cartSection">
+                                            <img src="{{ asset('uploads/images/salles/'~ place.imagesalle) }}" alt="{{ "Place privatisée"|trans }}" title="{{ place.nomplace }}" class="itemImg" />
+                                            <p class="itemNumber">
+                                                {{ "Le " ~ panier_place[place.idplace].date|date('d/m/Y') ~ " De " ~ panier_place[place.idplace].heureChoixDebut|date('H:i') ~ " à " ~ panier_place[place.idplace].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_place[place.idplace].totalHeures  ~ 'H' ~ totalMinutes ~ 'min' }}
+                                            </p>
+                                            <h3>{{ place.nomsalle ~ ' Place ' ~ place.nomplace }}</h3>
+
+                                            <p> <input type="text" class="inputPanier qty" placeholder="{{ panier_place[place.idplace].totalHeures ~ 'H' ~ panier_place[place.idplace].totalMinutes ~ 'min' }}"/> x {{ place.prixplace }}€</p>
+
+                                            <p class="stockStatus">{{ "Disponible" }}</p>
+                                        </div>
+                                        {% set journeeIllimitee = 0 %}
+                                        {% set offreThirdHour = 0 %}
+                                        <div class="prodTotal cartSection">
+                                            {% if panier_place[place.idplace].totalHeures >= 5 or (panier_place[place.idplace].totalHeures >= 5 and  panier_place[place.idplace].totalMinutes >= 30)  %}
+                                                <p>{{ place.prixplace * 4 }} €</p>
+                                                {% set journeeIllimitee = 1 %}
+                                                {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace * 4 %}
+                                                {% set prixPlace =  place.prixplace * 4  %}
+                                            {% elseif (panier_place[place.idplace].totalHeures == 3 and panier_place[place.idplace].totalMinutes >= 30) or panier_place[place.idplace].totalHeures  >= 4 %}
+                                                <p>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes - 2 }} €</p>
+                                                {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
+                                                {% set prixPlace = place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
+                                                {% set thirdHourFree = thirdHourFree + 2 %}
+                                                {% set offreThirdHour = 1 %}
+                                            {% else %}
+                                                <p>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes }} €</p>
+                                                {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
+                                                {% set prixPlace = place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
+                                            {% endif %}
+                                        </div>
+                                        <div class="cartSection removeWrap">
+                                            <a href="{{ path('delete_panier_place', { 'id' : place.idplace }) }}" class="removeItemPanier">x</a>
+                                        </div>
+                                        {#</form>#}
+                                        {#{% set totalPlaceHT = totalPlaceHT + (place.prixplace * panier_place[place.idplace].) %}#}
+                                        {#{% set totalPlaceTTC = totalPlaceTTC + (place.prixplace * panier_place[place.idplace].)|tva(place.tva.multiplicate) * panier_place[place.idplace]. %}#}
+                                        {% set refPlaceTva = refPlaceTva|merge({ ('%' ~ place.tva.valeur) : refPlaceTva['%' ~ place.tva.valeur] + prixPlace|TvaFromMontant(place.tva.multiplicate) }) %}
+
+                                        {#{% set totalPlaceTTC =  totalPlaceTTC +  place.prixplace * panier_place[place.idplace]. %}#}
+                                    </div>
+                                    {% if thirdHourFree == 1 %}
+                                        <div class="special"><div class="specialContent">{{ "Vous bénéficiez de la 3ème heure gratuite"|trans }}</div></div>
+                                    {% elseif journeeIllimitee == 1 %}
+                                        <div class="special"><div class="specialContent">{{ "Vous bénéficiez de notre offre journée illimité"|trans }}</div></div>
+                                    {% endif %}
+                                </li>
+                            {%  endfor %}
+                        {% endif %}
+
+                        {% if produits|length > 0 %}
+
+                            {# @var produit \AppBundle\Entity\Place #}
+                            {%  for produit in produits %}
+                                <li class="items {% if cmpt is odd %}odd{% else %}even{% endif %}">
+                                    {% set cmpt = cmpt + 1 %}
+                                    <div class="infoWrap ">
+                                        <div class="cartSection">
+                                            <img src="{{ asset('uploads/images/products/'~ produit.image) }}" alt="{{ "Produit"|trans }}" title="{{ produit.nomproduit }}" class="itemImg" />
+                                            <p class="itemNumber">
+                                                {{ "Catégorie: " ~ produit.nomtypeproduit }}
+                                            </p>
+                                            <h3>{{ produit.nomproduit }}</h3>
+                                            <form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">
+                                            <p><select name="qte" class="qty" onChange="this.form.submit()">
+                                                    {% for i in 1..10 %}
+                                                        <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>
+                                                    {% endfor %}
+                                                </select> x {{ produit.prixproduit }}€
+                                            </p>
+                                                <p class="stockStatus">{{ "Disponible" }}</p>
+                                            </form>
+
+
+                                        </div>
+                                        <div class="prodTotal cartSection">
+                                            <p>{{ produit.prixproduit * panier[produit.idproduit] }} €</p>
+                                        </div>
+                                        <div class="cartSection removeWrap">
+                                            <a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}" class="removeItemPanier">x</a>
+                                        </div>
+                                        {% set totalProduitHT = totalProduitHT + (produit.prixproduit * panier[produit.idproduit]) %}
+                                        {% set totalProduitTTC = totalProduitTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}
+                                        {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + prixPlace|montantTva(produit.tva.multiplicate) }) %}
+                                    </div>
+                                </li>
+                            {%  endfor %}
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+                <div class="promoCode"><label for="promo">{{ "Vous avez un code promo?"|trans }}</label><input class="inputPanier" type="text" name="promo" placeholder="{{ "Entrer votre code"|trans }}" />
+                    <a href="#" class="btnPanier"></a>
+                </div>
+
+                <div class="subtotal cf">
+                    {% if produits|length != 0 or salles|length != 0 or places|length != 0 %}
+                        <ul>
+                            {% if produits|length != 0 %}
+                                <li class="totalRow"> <span class="label">Total Produits HT :</span><span class="value">{{ totalProduitHT|number_format(2, '.', ',')  }}€</span></li>
+                            {% endif %}
+                            {% for key, tva in refTva %}
+                                <li class="totalRow">  <span class="label">TVA {{ key }} :</span><span class="value">{{ tva }} €</span></li>
+                            {% endfor %}
+                            {% if salles|length != 0  %}
+                                <li class="totalRow">   <span class="label">Total Salle TTC :</span><span class="value">{{ totalSalleTTC|number_format(2, '.', ',')  }}€</span></li>
+                            {% endif %}
+                            {% for key, tva in refSalleTva %}
+                                <li class="totalRow">   <span class="label">dont {{ key }} TVA Salle:</span><span class="value">{{ tva }} €</span></li>
+                            {% endfor %}
+                            {% if places|length != 0  %}
+                                <li class="totalRow">   <span class="label">Total Place TTC :</span><span class="value">{{ totalPlaceTTC|number_format(2, '.', ',')  }}€</span></li>
+                            {% endif %}
+                            {% for key, tva in refPlaceTva %}
+                                <li class="totalRow">   <span class="label">dont {{ key }} TVA Place:</span><span class="value">{{ tva }} €</span></li>
+                            {% endfor %}
+                            {% if thirdHourFree is defined and thirdHourFree > 0 %}
+                                <li class="totalRow">   <span class="label reduction-3h">Réduction 3ème heure:</span><span class="value reduction-10">{{ thirdHourFree|number_format(2, '.', ',') }} €</span></li>
+                            {% endif %}
+                            {% if produits|length != 0 and (salles|length != 0 or places|length != 0) %}
+                                <li class="totalRow">   <span class="label">Sous-Total TTC :</span><span class="value">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow">   <span class="label reduction-10">Réduction -10% :</span><span class="value reduction-10">-{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1)|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow final">   <span class="label">Montant Total TTC :</span><span class="value">{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC)  - ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1))|number_format(2, '.', ',') }} €</span></li>
+                            {% else %}
+                                <li class="totalRow final">   <span class="label montant-total">Montant Total TTC :</span><span class="value montant-total">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</span></li>
+                            {% endif %}
+                        </ul>
+                        <div class="clearfix"></div>
+                        <li class="totalRow"><a href="{{ path('livraison_panier') }}" class="btnPanier continue">{{ "Valider mon panier"|trans }}</a></li>
+                    {% endif %}
+                </div>
+            </div>
+            {# End of cart #}
+
+
+            {% if salles|length == 0 or places|length == 0 %}
+                <a href="{{ path('salle_index') }}" class="btn btn-primary">Choisissez une salle</a>
+                {% if places|length == 0 %}
+                    <a href="{{ path('place_index') }}" class="btn btn-primary">Choisissez une place</a>
+                {% endif %}
+            {% else  %}
+                <a href="{{ path('produits_index') }}" class="btn btn-primary">Choisir mes produits</a>
+            {% endif %}
+        </div>
+
+        <div class="col-md-1 hidden-xs hidden-sm"></div>
+    </div>
+
+{% endblock %}

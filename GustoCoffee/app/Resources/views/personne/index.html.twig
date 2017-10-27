@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block firstBlock %}
+    <h1>Personnes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Indentifiant</th>
+                <th>Motdepasse</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Codepostal</th>
+                <th>Ville</th>
+                <th>Statutpersonne</th>
+                <th>Pointscumules</th>
+                <th>Rulepersonne</th>
+                <th>Newsletter</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for personne in personnes %}
+            <tr>
+                <td><a href="{{ path('personne_show', { 'id': personne.id }) }}">{{ personne.indentifiant }}</a></td>
+                <td>{{ personne.motdepasse }}</td>
+                <td>{{ personne.nom }}</td>
+                <td>{{ personne.prenom }}</td>
+                <td>{{ personne.adresse }}</td>
+                <td>{{ personne.codepostal }}</td>
+                <td>{{ personne.ville }}</td>
+                <td>{{ personne.statutpersonne }}</td>
+                <td>{{ personne.pointscumules }}</td>
+                <td>{{ personne.rulepersonne }}</td>
+                <td>{% if personne.newsletter %}Yes{% else %}No{% endif %}</td>
+                <td>{{ personne.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('personne_show', { 'id': personne.id }) }}">{{ 'show'|trans }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('personne_edit', { 'id': personne.id }) }}">{{ 'edit'|trans }}</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('personne_new') }}">{{ "Create a new personne"|trans }}</a>
+        </li>
+    </ul>
+{% endblock %}

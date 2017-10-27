@@ -1,181 +1,140 @@
+{% block head %}
 <!DOCTYPE html>
-<html lang="fr" xmlns="http://www.w3.org/1999/html">
-    {% block head %}
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    {% block title %}
+    {% endblock %}
 
-    <title>GustoCoffee</title>
+    <meta name="description" content="{% trans %}GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. {% endtrans %}">
+    <meta name="KASAgency" content="{% trans %}KASAgency est une jeune agence web.{% endtrans %}">
 
-    <meta name="description" content="GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. ">
-    <meta name="KASAgency" content="KASAgency est une jeune agence web.">
-
-    <link rel="icon" type="image/png" href="{{ asset('img/gc_design.png')}}" />
+    <link rel="icon" type="image/png" href="{{ asset('img/gc_favicon_16x16.ico')}}" />
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.theme.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('build/global.css') }}" rel="stylesheet">
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    {#<script async>#}
+        {#window.cookieconsent_options = {"theme":"dark-bottom",#}
+            {#"message":"{{ "Ce site web utilise des cookies pour améliorer votre expérience de navigation. En poursuivant votre navigation, vous acceptez l'utilisation des cookies."|trans }}",#}
+            {#"dismiss":"{{ "J'accepte!"|trans }}","learnMore":"{{ "En savoir plus"|trans }}"};#}
+    {#</script>#}
+    {{ cookie_consent_render() }}
 
+    <!-- Facebook -->
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '1693020454042033',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v2.10'
+            });
+            FB.AppEvents.logPageView();
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function fb_login() {
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    // connected
+                    //alert('{{ "Already connected, redirect to login page to create token."|trans }}');
+                    document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+                } else {
+                    // not_authorized
+                    FB.login(function(response) {
+                        if (response.authResponse) {
+                            document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+                        } else {
+                            alert('Cancelled.');
+                        }
+                    }, {scope: 'email'});
+                }
+            });
+        }
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108499849-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-108499849-1');
+    </script>
 </head>
 
-    {% endblock %}
-
-<body>
-
-<div class="container-fluid">
-    <div class="row topPage"
-            {% block firstImg %}
-                style='background-image: url({{ asset('img/background-home.jpg') }});'>
-            {% endblock %}
-        <div class="col-md-12">
-                <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
-                    <div class="container">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header page-scroll">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                            </button>
-                            <div class="home"><a class="navbar-brand page-scroll" href="{{ path('gc_home_page') }}">
-                                        <img alt="GustoCoffee" src="{{ asset('img/gc_design.png') }}" />
-                                </a>
-                            </div>
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav navbar-left">
-                                <li class="hidden">
-                                    <a href="#page-top"></a>
-                                </li>
-                                <li>
-                                    <a class="page-scroll" href="{{ path('gc_home_page') }}">Accueil</a>
-                                </li>
-                                <li>
-                                    <a class="page-scroll" href="{{ path('gc_evenement_page') }}">Evénements</a>
-                                </li>
-                                <li>
-                                    <a class="page-scroll" href="{{ path('gc_reservation_page') }}">Réservation</a>
-                                </li>
-                                <li>
-                                    <a class="page-scroll" href="#">Annonces</a>
-                                </li>
-                                <li>
-                                    <a class="page-scroll" href="#">Contact</a>
-                                </li>
-				<li>
-                                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                        <a href="{{ path('fos_user_security_logout') }}">
-                                            {{ 'Déconnexion'|trans({}, 'FOSUserBundle') }}
-                                        </a>
-                                    {% else %}
-                                    <a class="page-scroll" href="login">
-                                            <img src="{{ asset('img/user.png') }}" alt="Connexion">
-                                    </a>
-                                   {% endif %}
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-default userConnexion">
-                                        <img src="{{ asset('img/france.png') }}" alt="France">
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="btn btn-default userConnexion">
-                                        <img src="{{ asset('img/usa.png') }}" alt="Etats-Unis d'Amérique">
-                                    </button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        <div class="sticky-container">
-            <ul class="sticky">
-                <li>
-                    <a href="https://www.facebook.com/GustoCoffeeKASAgency/" target="_blank">
-                        <img width="32" height="32" title="" alt="facebook" src="{{ asset('social/facebook.png') }}" />
-                        <p>Facebook</p>
-                    </a>
-                </li>
-                <li> <img width="32" height="32" title="" alt="twitter" src="{{ asset('social/twitter.png') }}" />
-                    <p>Twitter</p>
-                </li>
-                <li> <img width="30" height="32" title="" alt="instagram" src="{{ asset('social/instagram.png') }}" />
-                    <p>Instagram</p>
-                </li>
-            </ul>
-        </div>
-        <div>
-            {% block firstTitle %}
-            <h2 class="titleHome">Café CoWorking</h2>
-            {% endblock %}
-        </div>
-        </div>
-    <div class="clear"></div>
-    {% block firstBlock %}
-    <div class="row addPadding">
-        <div class="col-md-9">
-            <h2 class="titlePara">GustoCoffee</h2>
-            <p class="textDescription">La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "<strong>Coffee-Shop CoWorking"</strong>.<br>
-            Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.
-            </p>
-        </div>
-        <div class="col-md-3 videoContainer">
-            <iframe class="videoContent" src="https://www.youtube.com/embed/F7va26Wy5bw" frameborder="0" width="560" height="349" allowfullscreen></iframe>
-        </div>
-    </div>
-    <div class="clear"></div>
-    {% endblock %}
-    {% block secondBlock %}
-    <div class="row addPadding">
-        <div class="col-md-9">
-            <h2 class="titlePara">Nos Services</h2>
-            <p class="textDescription">GustoCoffee vous propose des <strong>services bureautiques</strong> comme un espace de stockage privé en ligne, la vented de support numérique, ainsi qu'une impression. De plus, la consommation de <strong>café, thé, crêpes et gaufres sont à volonté !</strong><br>
-            Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner tout en continuant votre travail de la journée.
-            </p>
-        </div>
-        <div class="col-md-3 foodImg">
-            <img alt="Restauration GustoCoffee" src="{{ asset('img/servicesResto.jpg') }}">
-        </div>
-    </div>
-    <div class="clear"></div>
-    {% endblock %}
-    {% block thirdBlock %}
-    <div class="row addPadding">
-        <div class="col-md-12">
-            <p class="textDescription franchiseGroupe">La société <strong>GustoCoffee</strong> est spécialisée dans la <strong>vente de produit autour du café</strong>, machine automatique, machine expresso,
-            moulin à café, café en grains, café en dosette, etc. <br>
-            Monsieur Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des <strong>coffee-shops</strong> en Italie,
-            ainsi qu'en Angleterre et se sont implantés il y a peu sur Paris avec un nouveau concept de "<strong>Coffee-Shop Coworking</strong>".</p>
-        </div>
-        <div class="col-md-2">
-        </div>
-    </div>
-    <div class="clear"></div>
-    {% endblock %}
-    {% block footer %}
-    <footer class="footer">
-        <div class="row">
-            <div class="col-md-12">
-                <p>
-                    <a href="{{ asset('pdf/mentionsLegales.pdf') }}" target="_blank">Mentions Légales</a><br>
-                    <a href="{{ asset('pdf/CGU.pdf') }}" target="_blank">Conditions Générales d'Utilisation</a><br>
-                    <a href="{{ asset('pdf/CGV.pdf') }}" target="_blank">Conditions Générales de Vente</a><br>
-                    FAQ <br>
-                    Newsletter <br>
-                    Recrutement <br>
-                    infos
-                </p>
-            </div>
-        </div>
-    </footer>
-    {% endblock %}
-</div>
-
-{% block script %}
-<script src="{{ asset('js/jquery.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/scripts.js') }}"></script>
 {% endblock %}
+<body>
+{% block body %}
+
+    {% block navbar %}
+    <div id="main" class="container-fluid">
+        <div class="row ">
+
+            <div class="body-wrap {% block firstImg %}{% endblock %}">
+                 {% embed 'menu.html.twig' %}
+                 {% endembed %}
+
+                {% embed 'side-social-networks-.html.twig' %}
+                {% endembed %}
+
+                <div class="titleHome {% block paddingTitle %}{% endblock %}">
+                    {% block titleHome %}{% endblock %}
+                </div>
+            </div>
+
+        </div>
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+        {% block firstBlock %}
+        {% endblock %}
+
+        {% block secondBlock %}
+        {% endblock %}
+
+        {% block thirdBlock %}
+        {% endblock %}
+    </div>
+
+   {% embed "footer.html.twig" %}
+   {% endembed  %}
+
+
+    {% endblock %}
+    {% block script %}
+        <script src="{{ asset('js/jquery.min.js') }}"></script>
+        {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
+        <script async defer src="{{ asset('js/jquery-ui.min.js') }}"></script>
+        {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
+        <script async defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <script async defer type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
+
+        {#<script async src="{{ asset('js/bootstrap.min.js') }}"></script>#}
+        {#<script>#}
+        {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
+        {#</script>#}
+
+        <script async src="{{ asset('build/app.js') }}"></script>
+        {#  Adding ajax script TODO: add specific on each page #}
+        <script async src="{{ asset('build/ajax.js') }}"></script>
+
+    {% endblock %}
 </body>
 </html>
-

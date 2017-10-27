@@ -1,0 +1,18 @@
+easy_admin:
+    entities:
+        Annonce:
+          class: AppBundle\Entity\Annonce
+          label: 'Les dernières Annonces'
+          form:
+              fields:
+                  - 'idannonce'
+                  - 'titre'
+                  - { property: 'corps', type: 'ckeditor' }
+                  - { property: 'idpersonne', label: 'Username' }
+                  - 'categorieannonce'
+
+          list:
+              title: 'Annonces'
+              fields: ['idannonce', 'titre', 'corps', { property: 'idpersonne', label: 'Username' }, { property: 'dateCreation', type: 'datetime'}, 'categorieAnnonce']
+          edit:
+              fields: ['titre', 'corps', 'categorieAnnonce', 'idpersonne']

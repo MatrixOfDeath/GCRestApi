@@ -13,23 +13,23 @@ use Doctrine\ORM\Mapping as ORM;
 class JoursOuvert
 {
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="jours", type="integer", nullable=true)
+     * @ORM\Column(name="jours", type="string", length=25)
      */
     private $jours;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heureDebut", type="date", nullable=true)
+     * @ORM\Column(name="heureDebut", type="datetime")
      */
     private $heuredebut;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heureFin", type="date", nullable=true)
+     * @ORM\Column(name="heureFin", type="datetime")
      */
     private $heurefin;
 
@@ -49,7 +49,29 @@ class JoursOuvert
      */
     private $idouverture;
 
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin", inversedBy="idouverture")
+     * @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
+     */
+    private $idmagasin;
 
+
+    /**
+     * @return mixed
+     */
+    public function getIdmagasin()
+    {
+        return $this->idmagasin;
+    }
+
+    /**
+     * @param mixed $idmagasin
+     */
+    public function setIdmagasin($idmagasin)
+    {
+        $this->idmagasin = $idmagasin;
+    }
 
     /**
      * Set jours
@@ -155,5 +177,12 @@ class JoursOuvert
     public function getIdouverture()
     {
         return $this->idouverture;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return 'Le '. $this->getJours(). ' De ' . $this->getHeuredebut()->format('H:i') . ' à '. $this->getHeurefin()->format('H:i');
     }
 }

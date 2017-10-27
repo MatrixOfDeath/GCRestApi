@@ -3,11 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Magasin
  *
- * @ORM\Table(name="Magasin", uniqueConstraints={@ORM\UniqueConstraint(name="nomMagasin", columns={"nomMagasin"})})
+ * @ORM\Table(name="Magasin", uniqueConstraints={
+ *     @ORM\UniqueConstraint(name="nomMagasin", columns={"nomMagasin"})
+ * })
  * @ORM\Entity
  */
 class Magasin
@@ -22,9 +25,15 @@ class Magasin
     /**
      * @var string
      *
-     * @ORM\Column(name="adresse", type="string", length=25, nullable=true)
+     * @ORM\Column(name="adresse", type="string", length=50, nullable=true)
      */
     private $adresse;
+
+    /**
+     * @var integer
+     * @ORM\Column(name="telephone", type="string", length=25, nullable=true)
+     */
+    private $telephone;
 
     /**
      * @var integer
@@ -36,28 +45,73 @@ class Magasin
     private $idmagasin;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Salle", inversedBy="idmagasin")
-     * @ORM\JoinTable(name="choisir",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idSalle", referencedColumnName="idSalle")
-     *   }
-     * )
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="idmagasin", fetch="EXTRA_LAZY")
+     *
      */
     private $idsalle;
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\GrilleTarifaire", mappedBy="magasin")
+     *
+     */
+    private $grilletarifaire;
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\JoursOuvert", mappedBy="idmagasin")
+     *
+     */
+    private $idouverture;
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FermetureDuCafe", mappedBy="idmagasin")
+     *
+     */
+    private $idfermeture;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->idsalle = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->idsalle = new ArrayCollection();
+        $this->grilletarifaire = new ArrayCollection();
     }
 
+    /**
+     * @return mixed
+     */
+    public function getIdfermeture()
+    {
+        return $this->idfermeture;
+    }
+
+    /**
+     * @param mixed $idfermeture
+     */
+    public function setIdfermeture($idfermeture)
+    {
+        $this->idfermeture = $idfermeture;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGrilletarifaire()
+    {
+        return $this->grilletarifaire;
+    }
+
+    /**
+     * @param mixed $grilletarifaire
+     */
+    public function setGrilletarifaire($grilletarifaire)
+    {
+        $this->grilletarifaire = $grilletarifaire;
+    }
 
     /**
      * Set nommagasin
@@ -150,4 +204,52 @@ class Magasin
     {
         return $this->idsalle;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->getNommagasin();
+    }
+
+    /**
+     * @return int
+     */
+    public function getTelephone()
+    {
+        return $this->telephone;
+    }
+
+    /**
+     * @param int $telephone
+     */
+    public function setTelephone($telephone)
+    {
+        $this->telephone = $telephone;
+    }
+
+    /**
+     * Set idouverture
+     *
+     * @param \AppBundle\Entity\JoursOuvert $idouverture
+     *
+     * @return Magasin
+     */
+    public function setIdouverture(\AppBundle\Entity\JoursOuvert $idouverture = null)
+    {
+        $this->idouverture = $idouverture;
+
+        return $this;
+    }
+
+    /**
+     * Get idouverture
+     *
+     * @return \AppBundle\Entity\JoursOuvert
+     */
+    public function getIdouverture()
+    {
+        return $this->idouverture;
+    }
+
 }

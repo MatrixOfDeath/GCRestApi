@@ -7,11 +7,22 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Tva
  *
- * @ORM\Table(name="TVA")
- * @ORM\Entity
+ * @ORM\Table(name="Tva")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TvaRepository")
  */
 class Tva
 {
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idTva", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idtva;
+
+
     /**
      * @var float
      *
@@ -26,16 +37,135 @@ class Tva
      */
     private $codetva;
 
+
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="idTva", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="nom", type="string", length=125)
      */
-    private $idtva;
+    private $nom;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="valeur", type="float")
+     */
+    private $valeur;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pays", type="string", length=3, nullable=true)
+     */
+    private $pays;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="multiplicate", type="float")
+     */
+    private $multiplicate;
+
+//    /**
+//     *
+//     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="idtva")
+//     *
+//     */
+//    private $salles;
+//
+//    /**
+//     *
+//     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Produit", mappedBy="idtva")
+//     *
+//     */
+//    private $produits;
 
 
+//    /**
+//     * @return mixed
+//     */
+//    public function getTvaSalle()
+//    {
+//        return $this->salles;
+//    }
+//
+//    /**
+//     * @param mixed $salles
+//     */
+//    public function setTvaSalle($salles)
+//    {
+//        $this->salles = $salles;
+//    }
+
+//    /**
+//     * @return mixed
+//     */
+//    public function getTva()
+//    {
+//        return $this->produits;
+//    }
+//
+//    /**
+//     * @param mixed $produits
+//     */
+//    public function setTva($produits)
+//    {
+//        $this->produits = $produits;
+//    }
+
+    /**
+     * Set valeur
+     *
+     * @param float $valeur
+     * @return Tva
+     */
+    public function setValeur($valeur)
+    {
+        $this->valeur = $valeur;
+
+        return $this;
+    }
+
+    /**
+     * Get valeur
+     *
+     * @return float
+     */
+    public function getValeur()
+    {
+        return $this->valeur;
+    }
+
+    /**
+     * Set nom
+     *
+     * @param string $nom
+     * @return Tva
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+
+    /**
+     * Get nom
+     *
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getNom();
+    }
 
     /**
      * Set tauxtva
@@ -76,6 +206,22 @@ class Tva
     }
 
     /**
+     * @return string
+     */
+    public function getPays()
+    {
+        return $this->pays;
+    }
+
+    /**
+     * @param string $pays
+     */
+    public function setPays($pays)
+    {
+        $this->pays = $pays;
+    }
+
+    /**
      * Get codetva
      *
      * @return string
@@ -94,4 +240,38 @@ class Tva
     {
         return $this->idtva;
     }
+
+
+    /**
+     * @param int $idtva
+     */
+    public function setIdtva($idtva)
+    {
+        $this->idtva = $idtva;
+    }
+
+    /**
+     * Set multiplicate
+     *
+     * @param float $multiplicate
+     * @return Tva
+     */
+    public function setMultiplicate($multiplicate)
+    {
+        $this->multiplicate = $multiplicate;
+
+        return $this;
+    }
+
+    /**
+     * Get multiplicate
+     *
+     * @return float
+     */
+    public function getMultiplicate()
+    {
+        return $this->multiplicate;
+    }
+
+
 }

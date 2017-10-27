@@ -7,18 +7,17 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Commande
  *
- * @ORM\Table(name="Commande", indexes={@ORM\Index(name="FK_Commande_idPersonne", columns={"idPersonne"}), @ORM\Index(name="FK_Commande_idModePaiement", columns={"idModePaiement"}), @ORM\Index(name="FK_Commande_idDemandeProduit", columns={"idDemandeProduit"})})
- * @ORM\Entity
+ * @ORM\Table(name="Commande", indexes={
+ * @ORM\Index(name="FK_Commande_idModePaiement", columns={"idModePaiement"}),
+ * @ORM\Index(name="FK_Commande_idDemandeProduit", columns={"idDemandeProduit"}),
+ * @ORM\Index(name="FK_Commande_idReservation", columns={"idReservation"})})
+ *
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CommandeRepository")
+ *
+ * @ORM\HasLifecycleCallbacks()
  */
 class Commande
 {
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateCommande", type="date", nullable=false)
-     */
-    private $datecommande;
-
     /**
      * @var integer
      *
@@ -27,6 +26,67 @@ class Commande
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idcommande;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Reservation", inversedBy="commandes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idReservation", referencedColumnName="idReservation")
+     * })
+     */
+    private $reservation;
+
+    /**
+     * @return mixed
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * @param mixed $reservation
+     */
+    public function setReservation($reservation)
+    {
+        $this->reservation = $reservation;
+    }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne", inversedBy="commandes")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $personnes;
+
+
+    /**
+     * One commande has One transaction.
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Transaction", mappedBy="commande")
+     */
+    private $transaction;
+
+    /**
+     * @return mixed
+     */
+    public function getTransaction()
+    {
+        return $this->transaction;
+    }
+
+    /**
+     * @param mixed $transaction
+     */
+    public function setTransaction($transaction)
+    {
+        $this->transaction = $transaction;
+    }
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateCommande", type="date", nullable=false)
+     */
+    private $datecommande;
 
     /**
      * @var \AppBundle\Entity\DemandeProduit
@@ -49,17 +109,83 @@ class Commande
     private $idmodepaiement;
 
     /**
-     * @var \AppBundle\Entity\Personne
+     * @var array
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="id")
-     * })
+     * @ORM\Column(name="commande", type="array")
      */
-    private $idpersonne;
+    private $commande;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="valider", type="boolean")
+     */
+    private $valider;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="reference", type="integer")
+     */
+    private $reference;
 
 
+//    /**
+//     * @var \AppBundle\Entity\Personne
+//     *
+//     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne")
+//     * @ORM\JoinColumns({
+//     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="id")
+//     * })
+//     */
+//    private $idpersonne;
 
+
+    /**
+     * Set valider
+     *
+     * @param boolean $valider
+     * @return Commande
+     */
+    public function setValider($valider)
+    {
+        $this->valider = $valider;
+
+        return $this;
+    }
+
+    /**
+     * Get valider
+     *
+     * @return boolean
+     */
+    public function getValider()
+    {
+        return $this->valider;
+    }
+
+    /**
+     * Set reference
+     *
+     * @param integer $reference
+     * @return Commande
+     */
+    public function setReference($reference)
+    {
+        $this->reference = $reference;
+
+        return $this;
+    }
+
+    /**
+     * Get reference
+     *
+     * @return integer
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
     /**
      * Set datecommande
      *
@@ -92,6 +218,30 @@ class Commande
     public function getIdcommande()
     {
         return $this->idcommande;
+    }
+
+
+    /**
+     * Set commande
+     *
+     * @param array $commande
+     * @return Commande
+     */
+    public function setCommande($commande)
+    {
+        $this->commande = $commande;
+
+        return $this;
+    }
+
+    /**
+     * Get commande
+     *
+     * @return array
+     */
+    public function getCommande()
+    {
+        return $this->commande;
     }
 
     /**
@@ -142,27 +292,108 @@ class Commande
         return $this->idmodepaiement;
     }
 
+//    /**
+//     * Set idpersonne
+//     *
+//     * @param \AppBundle\Entity\Personne $idpersonne
+//     *
+//     * @return Commande
+//     */
+//    public function setIdpersonne(\AppBundle\Entity\Personne $idpersonne = null)
+//    {
+//        $this->idpersonne = $idpersonne;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get idpersonne
+//     *
+//     * @return \AppBundle\Entity\Personne
+//     */
+//    public function getIdpersonne()
+//    {
+//        return $this->idpersonne;
+//    }
+
     /**
-     * Set idpersonne
+     * Set utilisateur
      *
-     * @param \AppBundle\Entity\Personne $idpersonne
-     *
+     * @param \AppBundle\Entity\Personne $personne
      * @return Commande
      */
-    public function setIdpersonne(\AppBundle\Entity\Personne $idpersonne = null)
+    public function setPersonne(\AppBundle\Entity\Personne $personne = null)
     {
-        $this->idpersonne = $idpersonne;
+        $this->personnes = $personne;
 
         return $this;
     }
 
     /**
-     * Get idpersonne
+     * Get utilisateur
      *
      * @return \AppBundle\Entity\Personne
      */
-    public function getIdpersonne()
+    public function getPersonne()
     {
-        return $this->idpersonne;
+        return $this->personnes;
+    }
+
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+
+    /**
+     * created Time/Date
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
+
+    /**
+     * Set createdAt
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 }

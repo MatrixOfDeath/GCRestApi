@@ -1,0 +1,263 @@
+{% set totalProduitHT = 0 %}
+{% set totalSalleHT = 0 %}
+{% set totalPlaceHT = 0 %}
+{% set totalProduitTTC = 0 %}
+{% set totalSalleTTC = 0 %}
+{% set totalPlaceTTC = 0 %}
+{% set prixPlace = 0 %}
+{% set thirdHourFree = 0 %}
+{% set refTva = {} %}
+{% set refSalleTva = {} %}
+{% set refPlaceTva = {} %}
+{% set thirdHourFree = 0 %}
+{% for produit in produits %}
+    {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : 0 }) %}
+{% endfor %}
+{% for salle in salles %}
+    {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : 0 }) %}
+{% endfor %}
+{% for place in places %}
+    {% set refPlaceTva = refPlaceTva|merge({ ('%' ~ place.tva.valeur) : 0 }) %}
+{% endfor %}
+
+        <div class="col-xs-12">
+            {% for flashMessage in app.session.flashbag.get('success') %}
+                <div class="alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                <div class="alert alert-danger fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            {% for flashMessage in app.session.flashbag.get('notice') %}
+                <div class="alert alert-info fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {{ flashMessage }}
+                </div>
+            {% endfor %}
+            
+            <h2>{{ "Votre panier"|trans }}</h2>
+
+            {% if salles|length == 0 %}
+                <div class="well">
+                    <ul class="nav nav-list">
+                    <li>
+                        <span>{{ "Aucunse salles sélectionner dans votre panier"|trans }}</span>
+                    </li>
+                    </ul>
+                </div>
+            {% else %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{{ "Salle choisie"|trans }}</th>
+                        <th>{{ "Nombre d'heures"|trans }}</th>
+                        <th>{{ "Prix à l'heure"|trans }}</th>
+                        <th>{{ "Total TTC"|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {# @var salle \AppBundle\Entity\Salle #}
+                    {%  for salle in salles %}
+                        <tr>
+                            {% set total30Minutes = panier_salle[salle.idsalle].totalHeures * 2 %}
+                            {#<form action="{{ path('ajout_panier_salle', { 'id' : salle.idsalle }) }}" method="get">#}
+                                <td>{{ salle.nomsalle }}</td>
+                                <td>
+                                    {{  "Le " ~ panier_salle[salle.idsalle].date|date('d/m/Y') ~ " De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('H:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures  ~ 'H' }}
+                                    {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
+                                    {% if panier_salle[salle.idsalle].totalMinutes >= 30 %}
+                                        {% set totalMinutes =  (2 * salle.capacitymax )  %}
+                                        {{ panier_salle[salle.idsalle].totalMinutes ~ 'min' }}
+                                    {% else %}
+                                        {% set totalMinutes = 0 %}
+                                    {% endif %}
+
+                                    {#<a href="{{ path('delete_panier_salle', { 'id' : salle.idsalle }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
+                                    <button type="button" class="buttonDeleteSalle glyphicon glyphicon-trash" value="{{ salle.idsalle }}"></button>
+                                </td>
+
+                                <td>{{ salle.prixsalle }} €</td>
+                                {% if panier_salle[salle.idsalle].totalHeures >= 5 or (panier_salle[salle.idsalle].totalHeures >= 5 and  panier_salle[salle.idsalle].totalMinutes >= 30)  %}
+                                    <td>{{ salle.prixsalle * 4 }} €</td>
+                                    {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 4 %}
+                                    {% set prixSalle =  salle.prixsalle * 4  %}
+                                {% elseif (panier_salle[salle.idsalle].totalHeures == 3 and panier_salle[salle.idsalle].totalMinutes >= 30) or panier_salle[salle.idsalle].totalHeures >= 4 %}
+                                    <td>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes - (2 * salle.capacitymax) }} €</td>
+                                    {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax)  %}
+                                    {% set prixSalle = salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax) %}
+                                    {% set thirdHourFree =  thirdHourFree + (2 * salle.capacitymax) %}
+                                {% else %}
+                                    <td>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</td>
+                                    {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
+                                    {% set prixSalle = salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
+                                {% endif %}
+
+                            {#</form>#}
+                        </tr>
+                        {#{% set totalSalleHT = totalSalleHT + (salle.prixsalle * panier_salle[salle.idsalle].) %}#}
+                        {#{% set totalSalleTTC = totalSalleTTC + (salle.prixsalle * panier_salle[salle.idsalle].)|tva(salle.tva.multiplicate) * panier_salle[salle.idsalle]. %}#}
+                        {% set refSalleTva = refSalleTva|merge({ ('%' ~ salle.tva.valeur) : refSalleTva['%' ~ salle.tva.valeur] + prixSalle|TvaFromMontant(salle.tva.multiplicate) }) %}
+
+                        {#{% set totalSalleTTC =  totalSalleTTC +  salle.prixsalle * panier_salle[salle.idsalle]. %}#}
+                    {%  endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+            {% if places|length == 0 %}
+                <div class="well">
+                    <ul class="nav nav-list">
+                        <li>
+                            <span>{{ "Aucunse places sélectionner dans votre panier"|trans }}</span>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{{ "Place choisie"|trans }}</th>
+                        <th>{{ "Nombre d'heures"|trans }}</th>
+                        <th>{{ "Prix à l'heure"|trans }}</th>
+                        <th>{{ "Total TTC"|trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {# @var place \AppBundle\Entity\Place #}
+                    {%  for place in places %}
+                        <tr>
+                            {% set total30Minutes = panier_place[place.idplace].totalHeures * 2 %}
+                            {#<form action="{{ path('ajout_panier_place', { 'id' : place.idplace }) }}" method="get">#}
+                            <td>{{ place.nomplace }}</td>
+                            <td>
+                                {{  "Le " ~ panier_place[place.idplace].date|date('d/m/Y') ~ " De " ~ panier_place[place.idplace].heureChoixDebut|date('H:i') ~ " à " ~ panier_place[place.idplace].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_place[place.idplace].totalHeures  ~ 'H' }}
+                                {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
+                                {% if panier_place[place.idplace].totalMinutes >= 30 %}
+                                    {% set totalMinutes =  2  %}
+                                    {{ panier_place[place.idplace].totalMinutes ~ 'min' }}
+                                {% else %}
+                                    {% set totalMinutes = 0 %}
+                                {% endif %}
+
+                                {#<a href="{{ path('delete_panier_place', { 'id' : place.idplace }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
+                                <button type="button" class="buttonDeletePlace glyphicon glyphicon-trash" value="{{ place.idplace }}"></button>
+                            </td>
+
+                            <td>{{ place.prixplace }} €</td>
+                            {% if panier_place[place.idplace].totalHeures >= 5 or (panier_place[place.idplace].totalHeures >= 5 and  panier_place[place.idplace].totalMinutes >= 30)  %}
+                                <td>{{ place.prixplace * 4 }} €</td>
+                                {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace * 4 %}
+                                {% set prixPlace =  place.prixplace * 4  %}
+                            {% elseif (panier_place[place.idplace].totalHeures == 3 and panier_place[place.idplace].totalMinutes >= 30) or panier_place[place.idplace].totalHeures  >= 4 %}
+                                <td>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes - 2 }} €</td>
+                                {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
+                                {% set prixPlace = place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
+                                {% set thirdHourFree = thirdHourFree + 2 %}
+                            {% else %}
+                                <td>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes }} €</td>
+                                {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
+                                {% set prixPlace = place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
+                            {% endif %}
+
+                            {#</form>#}
+                        </tr>
+                        {#{% set totalPlaceHT = totalPlaceHT + (place.prixplace * panier_place[place.idplace].) %}#}
+                        {#{% set totalPlaceTTC = totalPlaceTTC + (place.prixplace * panier_place[place.idplace].)|tva(place.tva.multiplicate) * panier_place[place.idplace]. %}#}
+
+                        {% set refPlaceTva = refPlaceTva|merge({ ('%' ~ place.tva.valeur) : refPlaceTva['%' ~ place.tva.valeur] + prixPlace|TvaFromMontant(place.tva.multiplicate) }) %}
+
+
+                        {#{% set totalPlaceTTC =  totalPlaceTTC +  place.prixplace * panier_place[place.idplace]. %}#}
+                    {%  endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+            {% if produits|length == 0 %}
+                <div class="well">
+                    <ul class="nav nav-list">
+                        <li>
+                            <span>{{ "Aucuns articles dans votre panier"|trans }}</span>
+                        </li>
+                    </ul>
+                </div>
+            {% else %}
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Produits</th>
+                            <th>Quantité</th>
+                            <th>Prix unitaire</th>
+                            <th>Total HT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for produit in produits %}
+                            <tr>
+                                {#<form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">#}
+                                    <td>{{ produit.nomproduit }}</td>
+                                    <td>
+                                        <select name="qte" class="span1 select-qte-produit">
+                                            {% for i in 1..10 %}
+                                                <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {#<a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}"><i class="glyphicon glyphicon-trash"></i></a>#}
+                                        <button type="button" class="buttonDeleteProduit glyphicon glyphicon-trash" value="{{ produit.idproduit }}" ></button>
+                                    </td>
+                                    <td>{{ produit.prixproduit }} €</td>
+                                    <td>{{ produit.prixproduit * panier[produit.idproduit] }} €</td>
+                                {#</form>#}
+                            </tr>
+                            {% set totalProduitHT = totalProduitHT + (produit.prixproduit * panier[produit.idproduit]) %}
+                            {% set totalProduitTTC = totalProduitTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}
+                            {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + prixPlace|montantTva(produit.tva.multiplicate) }) %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+            {% if produits|length != 0 or salles|length != 0 or places|length != 0 %}
+            <dl class="dl-horizontal pull-right">
+                {% if produits|length != 0 %}
+                    <dt>{{ "Total Produits HT"|trans }} :</dt><dd>{{ totalProduitHT|number_format(2, '.', ',')  }}€</dd>
+                {% endif %}
+                {% for key, tva in refTva %}
+                    <dt>TVA {{ key }} :</dt><dd>{{ tva }} €</dd>
+                {% endfor %}
+                {% if salles|length != 0  %}
+                    <dt>{{ "Total Salle TTC"|trans }} :</dt><dd>{{ totalSalleTTC|number_format(2, '.', ',')  }}€</dd>
+                {% endif %}
+                {% for key, tva in refSalleTva %}
+                    <dt>dont {{ key }} TVA Salle:</dt><dd>{{ tva }} €</dd>
+                {% endfor %}
+                {% if places|length != 0  %}
+                    <dt>{{ "Total Place TTC"|trans }} :</dt><dd>{{ totalPlaceTTC|number_format(2, '.', ',')  }}€</dd>
+                {% endif %}
+                {% for key, tva in refPlaceTva %}
+                    <dt>dont {{ key }} TVA Place:</dt><dd>{{ tva }} €</dd>
+                {% endfor %}
+                {% if thirdHourFree is defined and thirdHourFree > 0 %}
+                    <dt class="reduction-3h">{{ "Réduction 3ème heure"|trans }}:</dt><dd class="reduction-10">{{ thirdHourFree|number_format(2, '.', ',') }} €</dd>
+                {% endif %}
+                {% if produits|length != 0 and (salles|length != 0 or places|length != 0) %}
+                    <dt>{{ "Sous-Total TTC"|trans }} :</dt><dd>{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</dd>
+                    <dt class="reduction-10">Réduction -10% :</dt><dd class="reduction-10">-{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1)|number_format(2, '.', ',') }} €</dd>
+                    <dt>{{ "Montant Total TTC"|trans }} :</dt><dd>{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC)  - ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1))|number_format(2, '.', ',') }} €</dd>
+                 {% else %}
+                    <dt class="montant-total">{{ "Montant Total TTC"|trans }} :</dt><dd class="montant-total">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</dd>
+                 {% endif %}
+            </dl>
+            <div class="clearfix"></div>
+            <button type="button" class="btn btn-success pull-right validPanier">{{ "Valider mon panier"|trans }}</button>
+            {% endif %}
+       
+        </div>
+

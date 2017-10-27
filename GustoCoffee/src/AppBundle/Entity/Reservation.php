@@ -2,34 +2,69 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Form\ReservationType;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Date;
 
 /**
  * Reservation
  *
- * @ORM\Table(name="Reservation", indexes={@ORM\Index(name="FK_Reservation_idFermeture", columns={"idFermeture"}), @ORM\Index(name="FK_Reservation_idPersonne", columns={"idPersonne"}), @ORM\Index(name="FK_Reservation_idModePaiement", columns={"idModePaiement"}), @ORM\Index(name="FK_Reservation_idMagasin", columns={"idMagasin"}), @ORM\Index(name="FK_Reservation_idOuverture", columns={"idOuverture"})})
+ * @ORM\Table(name="Reservation", indexes={
+ *     @ORM\Index(name="FK_Reservation_idPersonne", columns={"idPersonne"}),
+ *     @ORM\Index(name="FK_Reservation_idModePaiement", columns={"idModePaiement"}),
+ * })
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Reservation
 {
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="idReservation", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idreservation;
+
+    /**
+     * @var \AppBundle\Entity\Salle
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Salle", inversedBy="reservation")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idSalle", referencedColumnName="idSalle")
+     * })
+     */
+    private $idsalle;
+
+
+    /**
+     * @var \AppBundle\Entity\Place
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Place", inversedBy="reservation")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idPlace", referencedColumnName="idPlace")
+     * })
+     */
+    private $idplace;
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateReservation", type="date", nullable=true)
+     * @ORM\Column(name="dateReservation", type="datetime", nullable=true)
      */
     private $datereservation;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heureDebut", type="date", nullable=true)
+     * @ORM\Column(name="heureDebut", type="datetime", nullable=true)
      */
     private $heuredebut;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heureFin", type="date", nullable=true)
+     * @ORM\Column(name="heureFin", type="datetime", nullable=true)
      */
     private $heurefin;
 
@@ -47,34 +82,15 @@ class Reservation
      */
     private $commentaireclient;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="idReservation", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $idreservation;
-
-    /**
-     * @var \AppBundle\Entity\FermetureDuCafe
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FermetureDuCafe")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idFermeture", referencedColumnName="idFermeture")
-     * })
-     */
-    private $idfermeture;
-
-    /**
-     * @var \AppBundle\Entity\Magasin
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
-     * })
-     */
-    private $idmagasin;
+//    /**
+//     * @var \AppBundle\Entity\Magasin
+//     *
+//     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin")
+//     * @ORM\JoinColumns({
+//     *   @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
+//     * })
+//     */
+//    private $idmagasin;
 
     /**
      * @var \AppBundle\Entity\ModeDePaiement
@@ -87,14 +103,47 @@ class Reservation
     private $idmodepaiement;
 
     /**
-     * @var \AppBundle\Entity\JoursOuvert
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\JoursOuvert")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idOuverture", referencedColumnName="idOuverture")
-     * })
+     * @var boolean
+     * @ORM\Column(name="statut", type="boolean", nullable=true)
      */
-    private $idouverture;
+    private $statut;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Commande", mappedBy="reservation")
+     */
+    private $commandes;
+
+    /**
+     * @return mixed
+     */
+    public function getCommandes()
+    {
+        return $this->commandes;
+    }
+
+    /**
+     * @param mixed $commandes
+     */
+    public function setCommandes($commandes)
+    {
+        $this->commandes = $commandes;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @param bool $statut
+     */
+    public function setStatut($statut)
+    {
+        $this->statut = $statut;
+    }
 
     /**
      * @var \AppBundle\Entity\Personne
@@ -107,6 +156,62 @@ class Reservation
     private $idpersonne;
 
 
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+
+    /**
+     * created Time/Date
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
+
+    /**
+     * Set createdAt
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 
     /**
      * Set datereservation
@@ -238,52 +343,45 @@ class Reservation
         return $this->idreservation;
     }
 
-    /**
-     * Set idfermeture
-     *
-     * @param \AppBundle\Entity\FermetureDuCafe $idfermeture
-     *
-     * @return Reservation
-     */
-    public function setIdfermeture(\AppBundle\Entity\FermetureDuCafe $idfermeture = null)
-    {
-        $this->idfermeture = $idfermeture;
 
-        return $this;
+//    /**
+//     * Set idmagasin
+//     *
+//     * @param \AppBundle\Entity\Magasin $idmagasin
+//     *
+//     * @return Reservation
+//     */
+//    public function setIdmagasin(\AppBundle\Entity\Magasin $idmagasin = null)
+//    {
+//        $this->idmagasin = $idmagasin;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Get idmagasin
+//     *
+//     * @return \AppBundle\Entity\Magasin
+//     */
+//    public function getIdmagasin()
+//    {
+//        return $this->idmagasin;
+//    }
+
+    /**
+     * @return Place
+     */
+    public function getIdplace()
+    {
+        return $this->idplace;
     }
 
     /**
-     * Get idfermeture
-     *
-     * @return \AppBundle\Entity\FermetureDuCafe
+     * @param Place $idplace
      */
-    public function getIdfermeture()
+    public function setIdplace($idplace)
     {
-        return $this->idfermeture;
-    }
-
-    /**
-     * Set idmagasin
-     *
-     * @param \AppBundle\Entity\Magasin $idmagasin
-     *
-     * @return Reservation
-     */
-    public function setIdmagasin(\AppBundle\Entity\Magasin $idmagasin = null)
-    {
-        $this->idmagasin = $idmagasin;
-
-        return $this;
-    }
-
-    /**
-     * Get idmagasin
-     *
-     * @return \AppBundle\Entity\Magasin
-     */
-    public function getIdmagasin()
-    {
-        return $this->idmagasin;
+        $this->idplace = $idplace;
     }
 
     /**
@@ -301,6 +399,24 @@ class Reservation
     }
 
     /**
+     * get idsalle
+     * @return \AppBundle\Entity\Salle
+     */
+    public function getIdsalle()
+    {
+        return $this->idsalle;
+    }
+
+    /**
+     * @param Salle $idsalle
+     */
+    public function setIdsalle($idsalle)
+    {
+        $this->idsalle = $idsalle;
+    }
+
+
+    /**
      * Get idmodepaiement
      *
      * @return \AppBundle\Entity\ModeDePaiement
@@ -310,29 +426,6 @@ class Reservation
         return $this->idmodepaiement;
     }
 
-    /**
-     * Set idouverture
-     *
-     * @param \AppBundle\Entity\JoursOuvert $idouverture
-     *
-     * @return Reservation
-     */
-    public function setIdouverture(\AppBundle\Entity\JoursOuvert $idouverture = null)
-    {
-        $this->idouverture = $idouverture;
-
-        return $this;
-    }
-
-    /**
-     * Get idouverture
-     *
-     * @return \AppBundle\Entity\JoursOuvert
-     */
-    public function getIdouverture()
-    {
-        return $this->idouverture;
-    }
 
     /**
      * Set idpersonne
@@ -357,4 +450,5 @@ class Reservation
     {
         return $this->idpersonne;
     }
+
 }

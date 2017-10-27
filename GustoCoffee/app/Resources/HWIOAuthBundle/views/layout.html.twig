@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <title>{{ 'GustoCoffee - Login'|trans }}</title>
+{% endblock %}
+
+{% block firstImg %}
+    topPage topPageLogin
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{% endblock %}
+
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">Espace Client - Connexion</h1>
+        <h3 class="colorWhite"> <i>Rejoignez notre communauté ! </i></h3>
+    </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez ici'|trans }}
+    </button>
+{% endblock %}
+
+{% block firstBlock %}
+    <div class="row addPadding">
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="alert alert-info fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+        <div>
+            {% block hwi_oauth_content %}
+            {% endblock hwi_oauth_content %}
+        </div>
+    </div>
+{% endblock %}
+

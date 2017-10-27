@@ -1,0 +1,87 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}
+    <title>{{ 'GustoCoffee - Factures'|trans }}</title>
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{% endblock %}
+
+{% block firstImg %}
+    topPage topPageFacture
+{% endblock %}
+
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">{{ "Vos Facturations et Réservation"|trans }}</h1>
+        <h3 class="colorWhite"> <i>{{ "Retrouvez ci-desosus toutes vos factures."|trans }}</i><br>
+        </h3>
+    </div>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}
+        </button>
+    {% endif %}
+{% endblock %}
+
+{% block firstBlock %}
+<div class="container">
+    <div class="row">
+
+             <div class="span3">
+                {#{% include 'utilisateursConnecte.html.twig' %}   #}
+                {{ render(controller('AppBundle:Panier:menu')) }}
+            </div>				
+            <div class="span9">
+                
+                {% for flashMessage in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                {% for flashMessage in app.session.flashbag.get('error') %}
+                    <div class="alert alert-danger">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+                
+                <h2>{{ "Vos Factures"|trans }}</h2>
+                <form>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>{{ "Références"|trans }}</th>
+                                <th>{{ "Date"|trans }}</th>
+                                <th>{{ "Prix TTC"|trans }}</th>
+                                <th>{{ "Télécharger votre factur"|trans }}e</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if factures|length == 0 %}
+                                <tr>
+                                    <td colspan="4">{{ "Aucune facture actuellement"|trans }}.</td>
+                                </tr>
+                            {% endif %}
+
+                            {% for facture in factures %}
+                            <tr>
+                                <td>n° ref : {{ facture.reference }}</td>
+                                <td>{{ facture.datecommande|date('d/m/Y') }}</td>
+                                {% if facture.commande.totalTTC is defined %}
+                                    <td>{{ facture.commande.totalTTC }} €</td>
+                                {% else %}
+                                    <td>{{ facture.commande.prixTTC + facture.commande.prixSalleTTC }} €</td>
+                                {% endif %}
+                                    <td><a href="{{ path('facturesPDF', { 'id' : facture.idcommande }) }}" target="_blank"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

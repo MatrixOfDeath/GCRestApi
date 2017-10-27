@@ -1,0 +1,39 @@
+easy_admin:
+    entities:
+        Salle:
+          class: AppBundle\Entity\Salle
+          label: 'Les Salles'
+          form:
+              fields:
+                  - { property: 'nomSalle', type: 'text'}
+                  - { property: 'capacityMax', type: 'text'}
+                  - { property: 'prixsalle',   type: 'money', type_options: { currency: 'EUR' }, help: 'Prix en € TTC (exemple: 3.5 ou 5 sans le symbole €'}
+                  - { property: 'imageFile', type: 'vich_image'}
+                  - 'idtva'
+                  - 'idmagasin'
+          list:
+              title: 'Listes des Salles'
+              actions:
+                  - { name: 'show', label: '', icon: 'search' }
+                  - { name: 'edit', label: '', icon: 'edit' }
+                  - { name: 'delete', label: '', icon: 'trash' }
+              fields:
+                  - 'idsalle'
+                  - { property: 'nomSalle', sortable: true }
+                  - { property: 'capacityMax', sortable: true }
+                  - { property: 'prixsalle', type_options: { currency: 'EUR' }}
+                  - { property: 'image', type: 'image', base_path: '%app.path.salles_images%' }
+                  - 'idmagasin'
+                  - 'idtva'
+              sort: ['idsalle', 'ASC']
+          show:
+              title: 'Détails de la salle'
+              fields:
+                  - 'nomSalle'
+                  - 'capacityMax'
+                  - 'prixsalle'
+                  - { property: 'image', type: 'image', base_path: '%app.path.salles_images%' }
+                  - 'idmagasin'
+                  - 'idtva'
+                  - 'createdAt'
+                  - 'updateAt'

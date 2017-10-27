@@ -2,19 +2,24 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: backoffice/ } #Configuration de notre BackOffice
     - { resource: "@GCHomeBundle/Resources/config/services.yml" }
     - { resource: "@GCEvenementBundle/Resources/config/services.yml" }
     - { resource: "@GCReservationBundle/Resources/config/services.yml" }
     - { resource: "@GCUserBundle/Resources/config/services.yml" }
 
-# Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    locales: [fr, en]
+    app.path.salles_images: /uploads/images/salles
+    app.path.products_images: /uploads/images/products
+    app.path.personnes_images: /uploads/images/avatars
+
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -33,7 +38,8 @@ framework:
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
     fragments: ~
     http_method_override: true
-    assets: ~
+    assets:
+        json_manifest_path: '%kernel.project_dir%/web/build/manifest.json'
     php_errors:
         log: true
 
@@ -41,6 +47,15 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        locales: '%locales%'
+
+# Assetic configuration
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
 
 # Doctrine Configuration
 doctrine:
@@ -72,33 +87,150 @@ swiftmailer:
     password: '%mailer_password%'
     spool: { type: memory }
 
-nelmio_api_doc: ~
 
+jms_i18n_routing:
+    default_locale: fr
+    locales: [fr, en]
+    strategy: prefix
+
+jms_di_extra:
+    locations:
+        all_bundles: false
+        bundles: [AppBundle, UserBundle, HomeBundle, EvenementBundle, ReservationBundle]
+        directories: ["%kernel.root_dir%/../src"]
+
+jms_translation:
+    configs:
+        app:
+            dirs: ["%kernel.root_dir%", "%kernel.root_dir%/../src"]
+            output_dir: "%kernel.root_dir%/Resources/translations"
+            ignored_domains: [routes]
+            excluded_names: ["*TestCase.php", "*Test.php"]
+            excluded_dirs: [cache, data, logs]
+            extractors: [alias_of_the_extractor]
+
+nelmio_api_doc:
+    routes:
+        path_patterns: # an array of regexps
+            - ^/api/
+    documentation:
+        info:
+            title: GustoCoffee Api
+            description: REST Api pour réserver sur GustoCoffee!
+            version: 1.0.2
 fos_rest:
-    routing_loader:
-        default_format: json                           # All responses should be JSON formated
-        include_format: false                           # We do not include format in request, so that all responses
+    param_fetcher_listener: true
+    allowed_methods_listener: true
+    body_listener: true
     format_listener:
         enabled: true
-        rules:
-            # setting fallback_format to json means that instead of considering the next rule in case of a priority mismatch, json will be used
-            #- { path: '^/', host: 'api.%domain%', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
-            # you can specifically target the exception controller
-            - { path: '^/api', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
-            #- { priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
-            - { path: '^/', stop: true }
     view:
         view_response_listener: true
+        formats:
+            xml: false
+            json : true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+    routing_loader:
+        default_format: json
+    access_denied_listener:
+        enabled: true
+        json: true
+    exception:
+        enabled: true
+
+
+#    body_listener: true
+#    routing_loader:
+#        default_format: json                           # All responses should be JSON formated
+#        include_format: false                           # We do not include format in request, so that all responses
+#    format_listener:
+#        enabled: true
+#        rules:
+#            # setting fallback_format to json means that instead of considering the next rule in case of a priority mismatch, json will be used
+#            #- { path: '^/', host: 'api.%domain%', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+#            # you can specifically target the exception controller
+#            - { path: '^/api/*', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+#            #- { priorities: ['json', 'xml'], fallback_format: json, prefer_extension: false }
+#            - { path: '^/', stop: true }
+#    view:
+#        view_response_listener: true
+
+
+sensio_framework_extra:
+    router:      { annotations: true }
+    request:     { converters: true, auto_convert: true }
+    view:        { annotations: true }
+    cache:       { annotations: true }
+    security:    { annotations: true }
+    psr_message: { enabled: false } # Defaults to true if the PSR-7 bridge is installed
+
 
 fos_user:
     db_driver: orm
-    firewall_name: api                                  # Seems to be used when registering user/reseting password,
+    firewall_name: main                                  # Seems to be used when registering user/reseting password,
                                                         # but since there is no "login", as so it seems to be useless in
                                                         # our particular context, but still required by "FOSUserBundle"
     user_class: AppBundle\Entity\Personne
+    service:
+        user_manager: my_user_manager
+    registration:
+        form:
+            type: AppBundle\Form\RegistrationType
+        confirmation:
+            enabled: true
+    profile:
+        form:
+            type: AppBundle\Form\ProfileFormType
+            name: fos_user_profile_form
     from_email:
-        address: boubrit.karim@gmail.com
-        sender_name: Karim BOUBRIT
+        address: "%mailer_user%"
+        sender_name: "L'Équipe Gusto Coffee"
+
+
+hwi_oauth:
+    connect:
+        confirmation: true
+        registration_form: fos_user.registration.form.factory
+    # list of names of the firewalls in which this bundle is active, this setting MUST be set
+    firewall_names: [main]
+    fosub:
+        username_iterations: 30
+        properties:
+            facebook: facebookID
+            google: googleID
+    resource_owners:
+        facebook:
+            type:                facebook
+            client_id:           1693020454042033
+            client_secret:       69812d429f2fbfdfb2caa1db031ce3a4
+            scope:              "email"
+            options:
+                display: popup #dialog is optimized for popup window
+                auth_type: rerequest # Re-asking for Declined Permissions
+        google:
+            type:                google
+            client_id:           355676912323-vth3ibravpaa0f1n091toibna65u8lqg.apps.googleusercontent.com
+            client_secret:       YxNkVtiDc-e8Dfjqb2o8Uwo4
+            scope:               "email profile"
+
+nelmio_cors:
+    defaults:
+        allow_credentials: true
+        allow_origin: []
+        allow_headers: []
+        allow_methods: []
+        expose_headers: []
+        max_age: 0
+        hosts: []
+        origin_regex: false
+    paths:
+        '^/api/':
+            allow_credentials: true
+            allow_origin: ['*']
+            allow_headers: ['*']
+            allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
+            max_age: 3600
 
 fos_oauth_server:
     db_driver:           orm
@@ -107,4 +239,47 @@ fos_oauth_server:
     refresh_token_class: AppBundle\Entity\RefreshToken
     auth_code_class:     AppBundle\Entity\AuthCode
     service:
-        user_provider: fos_user.user_manager             # This property will be used when valid credentials are given to load the user upon access token creation
+        user_provider: fos_user.user_provider.username            # This property will be used when valid credentials are given to load the user upon access token creation
+
+lexik_jwt_authentication:
+    private_key_path: '%kernel.root_dir%/../var/jwt/private.pem'
+    public_key_path:  '%kernel.root_dir%/../var/jwt/public.pem'
+    pass_phrase:      '%jwt_key_pass_phrase%'
+    token_ttl:        3600
+
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+    organize_migrations: false # Version >=1.2 Possible values are: "BY_YEAR", "BY_YEAR_AND_MONTH", false
+
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltopdf
+        options:    []
+    image:
+        enabled:    true
+        binary:     /usr/local/bin/wkhtmltoimage
+        options:    []
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        salles_images:
+            uri_prefix:         '%app.path.salles_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/salles'
+        products_images:
+            uri_prefix:         '%app.path.products_images%'
+            upload_destination: '%kernel.root_dir%/../web/uploads/images/products'
+
+indigo_cookie_consent:
+    options:
+        theme: dark-bottom
+        # any options you would pass to the plugins (except labels: message, dismiss, learnMore)
+        # see https://silktide.com/tools/cookie-consent/docs/installation
+
+cmen_google_charts:
+    version: "current"
+    language: fr

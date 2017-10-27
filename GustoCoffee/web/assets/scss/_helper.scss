@@ -1,0 +1,82 @@
+$color-gc: #6F4E37;
+$color-gc-lighter: #846139;
+$color-gc-brighter: #9b763c;
+
+
+/********
+ TYPO
+*********/
+
+h2{
+  font-size: 45px!important;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+p{
+  font-weight: normal;
+}
+
+/********
+ PADDING & MARGIN
+*********/
+
+.p-0{
+  padding: 0px;
+}
+
+.hp-45{
+  padding: 0 45px;
+	@media (max-width: 992px) { 
+		padding: 0 25px;
+	}
+}
+
+.pt-20{
+  padding-top: 20px;
+}
+
+
+/********
+ COLOR
+*********/
+
+.bg-grey{
+  background-color: #F7F7F6;
+}
+
+/********
+ HEIGHT
+*********/
+
+.h-550{
+  height: 550px;
+}
+
+
+.h-250{
+  height: 250px;
+}
+
+/********
+ HEIGHT VIDEO
+*********/
+
+.videoContainer > iframe{
+	height: 650px;
+	@media (max-width: 992px) { 
+		height: 350px; 
+	}
+}
+
+
+.home-img{
+	height: 550px;
+	@media (max-width: 992px) { 
+		display: none;
+	}	
+}
+
+
+
+

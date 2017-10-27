@@ -4,8 +4,19 @@
     style='background-image: url({{ asset('img/connexion.jpg') }});'>
 {% endblock %}
 
-{% block firstTitle %}
-    <h2 class="titleHome">Connexion CoWorking</h2>
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">Espace Client - Connexion</h1>
+        <h3 class="colorWhite"> <i>Identifiez-vous !</i></h3>
+    </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}
+        </button>
+    {% endif %}
 {% endblock %}
 
 {% block firstBlock %}
@@ -33,7 +44,7 @@
         <h2 class="titlePara">OU</h2>
     </div>
 </div>
-    {{ form_start(form) }}
+    {#{{ form_start(form) }}
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
@@ -45,8 +56,8 @@
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12 form-connexion">
-                        {{ form_errors(form.motdepasse.first) }}
-                        {{ form_widget(form.motdepasse.first, {'attr': {'placeholder': 'Mot de passe'}}) }}
+                        {{ form_errors(form.motdepasse) }}
+                        {{ form_widget(form.motdepasse) }}
                     </div>
                 </div>
         </div>
@@ -55,8 +66,18 @@
         <div class="col-md-4"></div>
         <div class="col-md-4 mdpOublie">Mot de passe oublié</div>
         <div class="col-md-4"></div>
-    </div>
-    <div class="row">
+    </div>#}
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+        <a href="{{ path('fos_user_security_logout') }}">
+            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+        </a>
+    {% else %}
+        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+    {% endif %}
+
+    {#<div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <div class="form-group">
@@ -69,7 +90,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4 sinscrire">Pas encore inscrit ? <a href="{{ path('gc_inscription_page') }}">S'inscrire</a> </div>
         <div class="col-md-4"></div>
-    </div>
+    </div>#}
 
 {% endblock %}
 

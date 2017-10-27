@@ -1,0 +1,38 @@
+.cardProduit {
+  width: 45%;
+}
+
+.containerMontantPayer {
+  margin-top: 10%;
+}
+
+.containerAll{
+  display:flex;
+  flex-flow: row wrap;
+  justify-content:space-between;
+}
+
+@media screen and (max-width: 991px) {
+  .cardProduit {
+    width: inherit;
+    margin-top: 50px;
+  }
+  .thumbnail {
+    //width: 35%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .containerAll {
+    flex-direction:column
+  }
+
+  .containerMontantPayer {
+    margin-top: 0%;
+    order: 2;
+  }
+
+  .containerCardProduit {
+    order: 1;
+  }
+}

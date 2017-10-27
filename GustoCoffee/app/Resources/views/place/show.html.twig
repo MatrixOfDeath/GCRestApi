@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Place</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Nomplace</th>
+                <td>{{ place.nomplace }}</td>
+            </tr>
+            <tr>
+                <th>Statutplace</th>
+                <td>{{ place.statutplace }}</td>
+            </tr>
+            <tr>
+                <th>Idplace</th>
+                <td>{{ place.idplace }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('place_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('place_edit', { 'idplace': place.idplace }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

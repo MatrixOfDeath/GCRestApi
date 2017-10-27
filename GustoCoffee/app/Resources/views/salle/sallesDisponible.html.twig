@@ -1,0 +1,74 @@
+{%  if salles|length == 0 %}
+<h3>{{ "Désolé aucune salles ne semble disponible pour la date et le créneau sélectioner"|trans }}</h3>
+{% else %}
+    <h3>{{ "Voici les salles privés disponibles pour le "|trans ~ dateChoix ~ ' entre ' ~ heureDebutChoix ~ "H et " ~ heureFinChoix ~ "H " }}</h3>
+{% endif %}
+
+{#<div id="reservation-dialog-message"  class="modal" title="Magasin fermé: Il ouvrira demain !" style="display:none;">#}
+  {#<div class="modal-content sizeFont">#}
+        {#<div class="modal-header">#}
+            {#<span class="close">&times;</span>#}
+            {#<h2>{{ "Place individuelle"|trans }}</h2>#}
+        {#</div>#}
+        {#<div class="modal-body">#}
+                {#<p>#}
+                    {#<span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>#}
+                    {#{{  "Le magasin est fermée changé votre date avant de continuer"|trans }}#}
+                {#</p>#}
+        {#</div>#}
+        {#<div class="modal-footer">#}
+            {#<h3>GustoCoffee</h3>#}
+        {#</div>#}
+  {#</div>#}
+{#</div>#}
+
+<div id="reservation2-dialog-message" title="Créneaux incorrectes" style="display:none;">
+    <p>
+        <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+        {{ "Le magasin n'est pas encore ouvert, il ouvrira tout à l'heure"|trans }}
+    </p>
+</div>
+
+<div class="row btn-group">
+    <a href="#" id="list" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-th-list"></span> {{ "Liste"|trans }}
+    </a>
+    <a href="#" id="grid" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-th"></span> {{ "Grille"|trans }}
+    </a>
+</div>
+
+<div class="row list-group">
+{% set count = 1 %}
+    {% for salle in salles %}
+        {% if salle.capacitymax <= 10 %}
+            {% set count = count + 1 %}
+            <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 cardSalle">
+                <div class="thumbnail">
+                        <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
+                            <img class="group list-group-image" src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="{{ "Salle privatisée"|trans }}" title="{{ salle.nomsalle }}">
+                            {#<div class="group list-group-image" style="background-image: url('{{ asset('uploads/images/salles/'~ salle.image) }}');" alt="Salle privatisée"></div>#}
+                        </a>
+                    <div class="caption">
+                        <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}"></a>
+                        <h4 class="group inner list-group-item-heading centerText">
+                            {{ salle.nomsalle }}
+                        </h4>
+                        <p class="group inner list-group-item-text centerText">
+                            {{ "La"|trans }} {{ salle.nomsalle }} {{ "contient"|trans }} {{ salle.capacityMax }} {{ "places"|trans }}.
+                        </p>
+                        <p class="centerText">{{ "Au delà de 5h de réservation, la salle coûtera"|trans }} {{ salle.prixsalle }}€ / {{ "Heure"|trans }}</p>
+                        <p class="centerText">
+                            <button type="button" class="btn btn-success buttonAddSalle" value="{{ salle.idsalle }}">{{ "Choisir"|trans }}</button>
+                        </p>
+                        <div class="row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+    {% endfor %}
+
+</div>

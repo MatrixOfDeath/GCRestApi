@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Transaction
  *
  * @ORM\Table(name="Transaction")
+ * @ORM\HasLifecycleCallbacks()
  * @ORM\Entity
  */
 class Transaction
@@ -18,6 +19,13 @@ class Transaction
      * @ORM\Column(name="dateTrans", type="date", nullable=true)
      */
     private $datetrans;
+
+    /**
+     * @var float
+     * @ORM\Column(name="montantTotal", type="integer", nullable=true)
+     */
+    private $montanttotal;
+
 
     /**
      * @var integer
@@ -43,19 +51,85 @@ class Transaction
     private $idtransaction;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Facture", inversedBy="idtransaction")
-     * @ORM\JoinTable(name="concerne",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="idTransaction", referencedColumnName="idTransaction")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="idFacture", referencedColumnName="idFacture")
-     *   }
-     * )
+     * One Transaction has One commande.
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Commande", inversedBy="transaction")
+     * @ORM\JoinColumn(name="idcommande", referencedColumnName="idCommande")
      */
-    private $idfacture;
+    private $commande;
+
+    /**
+     * @return mixed
+     */
+    public function getCommande()
+    {
+        return $this->commande;
+    }
+
+    /**
+     * @param mixed $commande
+     */
+    public function setCommande($commande)
+    {
+        $this->commande = $commande;
+    }
+
+
+    /**
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
+     * @var \DateTime
+     */
+    private $updatedAt;
+
+
+    /**
+     * created Time/Date
+     *
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
+
+    /**
+     * Set createdAt
+     *
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get createdAt
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAt()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /**
+     * Get updatedAt
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 
     /**
      * Constructor
@@ -63,8 +137,8 @@ class Transaction
     public function __construct()
     {
         $this->idfacture = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->commande = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Set datetrans
@@ -180,5 +254,21 @@ class Transaction
     public function getIdfacture()
     {
         return $this->idfacture;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMontanttotal()
+    {
+        return $this->montanttotal;
+    }
+
+    /**
+     * @param float $montanttotal
+     */
+    public function setMontanttotal($montanttotal)
+    {
+        $this->montanttotal = $montanttotal;
     }
 }

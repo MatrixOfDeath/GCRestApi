@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block firstTitle %}
+    {{ 'Internal server error : error 500'|trans }}
+{% endblock %}
+
+{% block firstImg %}
+    topPage topPageError
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{% endblock %}
+
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorBrown">{{ 'Internal server error : error 500'|trans }}</h1>
+        <h3 class="colorWhite"> <i>{{" The requested page couldn't be located. Checkout for any URL misspelling" |trans}}</i><br>
+            <i>{{ "Ou alors"|trans }} <a href="{{ path('gc_home_page') }}">{{ "retourner à l'accueil"|trans }}</a></i>
+        </h3>
+    </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez ici'|trans }}
+    </button>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}
+        </button>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <div class='coffee-maker'>
+        <div class='coffee-loader-top'></div>
+        <div class='carafe'>
+            <ul>
+                <li>100%</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+                <li>&nbsp;</li>
+            </ul>
+            <div class='contain'>
+                <div class='drip'></div>
+                <div class='coffee-loader'></div>
+            </div>
+            <div class='handle'></div>
+        </div>
+        <div class='side'></div>
+        <div class='base'></div>
+    </div>
+{% endblock %}

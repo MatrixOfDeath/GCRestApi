@@ -1,25 +1,64 @@
 {% extends 'base.html.twig' %}
 
-{% block firstImg %}
-    style='background-image: url({{ asset('img/backReservation.jpeg') }});'>
+{% block title %}
+    <title>GustoCoffee - Réservation</title>
 {% endblock %}
 
-{% block firstTitle %}
-    <h2 class="titleHome">Réservation CoWorking</h2>
+{% block firstImg %}
+   topPage topPageReservation
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{%  endblock %}
+
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">{{"Espace Réservation"|trans}}</h1>
+        <h3 class="colorWhite"> <i>{{"Réservez vite votre place ou votre salle"|trans}}</i></h3>
+    </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('place_index') }}'">
+        {{ 'Réservez votre place'|trans }}
+    </button>
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Connectez-vous ici'|trans }}</a>
+        </button>
+    {% endif %}
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('salle_index') }}'">
+        {{ 'Réservez votre salle'|trans }}
+    </button>
 {% endblock %}
 
 {% block firstBlock %}
     <div class="row customPadding">
         <div class="col-md-12 ">
-            <h2 class="titleReservation">Réservez votre place !!</h2>
+            <h2 class="titleReservation">Réservez votre place !</h2>
             <div class="clearText"></div>
             <p class="textReservation textDescription"><strong>Consommez à volonté, chez GustoCoffee !</strong> Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.<br>
-
             </p>
+            <div class="clearText"></div>
         </div>
-        <div class="col-md-12" >
+        <div class="col-md-6">
+            <div class="slider">
+                <div class="status">
+                    <h3> C'est Ouvert ! </h3>
+                </div>
+                <div class="shop-name centerText">
+                    <h2> GustoCoffee </h2>
+                </div>
+                <div class="shop-address centerText">
+                    <p>17 Rue Dunkerque, 75010 Paris</p>
+                </div>
+                <div class="google-maps">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.8805368187677!2d2.3539111156751145!3d48.879553879289524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e6dbddc4fe1%3A0xcc08be2d420511b!2s17+Rue+de+Dunkerque%2C+75010+Paris!5e0!3m2!1sfr!2sfr!4v1505141708046" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6" >
             <div class="tablePrice">
-                <table>
+                <table class="table">
                     <thead>
                     <tr class="firstLine">
                         <th class="lineRow"> Nos services </th>
@@ -55,8 +94,9 @@
                 </table>
 
             </div>
+            <div class="clearText"></div>
             <p class="textReservation textDescription">
-                <br>Obtenez <strong>10% de réduction</strong> sur la restauration, les services bureautique en réservant directement sur notre site internet !<br>
+                <br>Obtenez <strong>10% de réduction</strong> sur la restauration, les services bureautique en <br>réservant directement sur notre site internet !<br>
                 Les gaufres, les crêpes, le café ainsi que le thé sont <strong>à volonté</strong> !!
             </p>
         </div>
@@ -65,29 +105,56 @@
 
 {% block secondBlock %}
     <div class="row addPadding">
-        <h2 class="col-md-12 placeQuestion">Quelle place souhaitez vous avoir au sein de GustoCoffee ?</h2>
+
+        <h2 class="col-md-12 placeQuestion">{{ "Quelle place souhaitez vous avoir au sein de GustoCoffee ?"|trans }}</h2>
         <div class="clear"></div>
-        <div class="col-md-5 cardReservation">
+        <div class="col-md-5 col-xs-11 cardReservation">
             <div class="card placeIndividuelle">
-                <img src="{{ asset('place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
+
+            {#<div id="myBtn" class="card placeIndividuelle">#}
+                {#<div id="myModal" class="modal">#}
+
+                    {#<!-- Modal content -->#}
+                    {#<div class="modal-content sizeFont">#}
+                        {#<div class="modal-header">#}
+                            {#<span class="close">&times;</span>#}
+                            {#<h2>{{ "Place individuelle"|trans }}</h2>#}
+                        {#</div>#}
+                        {#<div class="modal-body">#}
+                            {#<p>Bonne nouvelle : </p>#}
+                            {#<p>Vous n'avez pas besoin de réserver de places individuelles. Tout se fait sur place.</p>#}
+                            {#<p>Pour les salles privatisées, cela se fait sur réservation ! </p>#}
+                        {#</div>#}
+                        {#<div class="modal-footer">#}
+                            {#<h3>GustoCoffee</h3>#}
+                        {#</div>#}
+                    {#</div>#}
+
+                {#</div>#}
+                <a href="{{ path('place_index') }}">
+                    <img src="{{ asset('img/place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
+                </a>
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Place individuelle</strong></h4>
-                    <p>Choisir une place</p>
+                    <h4 class="cardTitle"><strong>{{ "Place individuelle"|trans }}</strong></h4>
+                    <p>{{ "Choisir une place"|trans }}</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
-        <div class="col-md-5 cardReservation">
+        <div class="col-md-2 col-xs-1"></div>
+        <div class="col-md-5 col-md-offset-3.5 col-xs-11 cardReservation">
             <div class="card">
-                <img src="{{ asset('place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                <a href="{{ path('salle_index') }}">
+                    <img src="{{ asset('img/place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
+                </a>
                 <div class="containerCard">
-                    <h4 class="cardTitle"><strong>Salle privatisée</strong></h4>
-                    <p>Choisir une salle</p>
+                    <h4 class="cardTitle"><strong>{{ "Salle privatisée"|trans }}</strong></h4>
+                    <p>{{ "Choisir une salle"|trans }}</p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="clear"></div>
+    <div class="clearThirty"></div>
+
 {% endblock %}
 
 {% block thirdBlock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    <title>GustoCoffee - Dashboard</title>
+{% endblock %}
+
+{% block firstImg %}
+topPage topPageDashboard
+{% endblock %}
+
+{% block paddingTitle %}
+    paddingTitle
+{%  endblock %}
+
+{% block titleHome %}
+    <div class="banniere">
+        <h1 class="colorWhite">Dashboard</h1>
+        <h3 class="colorWhite"> <i>Retrouvez vos dernières réservations !</i></h3>
+    </div>
+    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+        {{ 'Réservez ici'|trans }}
+    </button>
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+        <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}
+        </button>
+    {% endif %}
+{% endblock %}
+
+
+{% block firstBlock %}
+{% embed 'facture/lastFactures.html.twig' %}
+{% endembed %}
+{% endblock %}
+
+{% block secondBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12" style="font-size: 100px; text-align: center;">TODO : STATISTIQUE ! </div>
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block thirdBlock %}
+    <div class="row addPadding">
+        <div class="col-md-12">
+            <p>Modification profile</p>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{% endblock %}
