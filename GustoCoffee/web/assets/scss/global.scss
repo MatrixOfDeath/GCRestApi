@@ -4,12 +4,12 @@
 html *
 {
   font-family: 'Roboto', sans-serif;
-  font-weight: normal;
 }
 
 i.fa.fa-file-pdf-o{
   color:red;
 }
+
 
 .blueButton
 {
@@ -71,7 +71,7 @@ i.fa.fa-file-pdf-o{
 }
 
 .sizeFont, .textDescription {
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .sizeBigFont {
@@ -351,10 +351,6 @@ padding: 7px;
 }
 
 .ouverture img {
-    width: 100%;
-}
-
-.foodImg img {
     width: 100%;
 }
 

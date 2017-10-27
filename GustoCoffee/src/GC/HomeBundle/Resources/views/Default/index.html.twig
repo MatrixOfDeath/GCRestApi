@@ -30,13 +30,10 @@
 
 {% block firstBlock %}
  {# ---------- First Block ---------- #}
-    <div class="row addPadding">
-        <div class="col-md-9">
+    <div class="row">
+        <div class="col-md-6 hp-45 pt-20">
             <h2 class="centerText">GustoCoffee</h2>
-            <p class="textDescription">{% trans %}
-                « Le coworking est un type d’organisation du travail qui regroupe deux notions : un espace de travail partagé, mais aussi un réseau de travailleurs encourageant l’échange et l’ouverture. »  (Source Wikipédia)
-                {% endtrans %}
-                <br>
+            <p class="textDescription">
                 {% trans %}
                 Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
                 salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,
@@ -47,15 +44,20 @@
                 {% endtrans %}
             </p>
         {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
-        <p class="textDescription centerText"><br>L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.
+        <div class="centerText">
+            <p class="textDescription"><br>L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.
+            </p>
             <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
-                    {{ "Inscrivez-vous ici"|trans }}
-            </button>
-        </p>
+                {{ "Inscrivez-vous ici"|trans }}
+            </button>           
+        </div>
         {% endif %}
         </div>
-        <div class="col-md-3 videoContainer">
-            <iframe class="videoContent" src="https://www.youtube.com/embed/F7va26Wy5bw" frameborder="0" width="560" height="349" allowfullscreen></iframe>
+        <div class="col-md-6 videoContainer p-0">
+            <iframe width="100%"
+                    src="https://www.youtube.com/embed/F7va26Wy5bw?rel=0&amp;controls=0&amp;showinfo=0" style="border:0;" allowfullscreen>
+
+            </iframe>
         </div>
     </div>
 {# ---------- End First Block ---------- #}
@@ -64,8 +66,10 @@
 {% block secondBlock %}
     {# ---------- Second Block ---------- #}
 
-    <div class="row addPadding">
-        <div class="col-md-9">
+    <div class="row bg-grey">
+        <div class="col-md-6 home-img h-550" style="background-image: url('{{ asset('img/servicesResto.jpg') }}'); background-size: cover;">
+        </div>
+        <div class="col-md-6 hp-45 pt-20">
             <h2 class="centerText">{{ 'Nos Services'|trans }}</h2>
             <p class="textDescription">
                 {% trans %}
@@ -77,14 +81,13 @@
                 Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.
 
                 {% endtrans %}
-                <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez
+
+                <div class="centerText">
+                    <p class="textDescription"><br>L'expérience vous tente ? Vous pouvez
+                    </p>
                     <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
-                    {{ "Réservez ici"|trans }}
-                    </button>
-                </p>
-        </div>
-        <div class="col-md-3 foodImg">
-            <img alt="Restauration GustoCoffee" src="{{ asset('img/servicesResto.jpg') }}">
+                    {{ "Réservez ici"|trans }}</button>
+                </div>
         </div>
     </div>
 
@@ -94,19 +97,19 @@
 {% block thirdBlock %}
     {# ---------- Third Block ---------- #}
 
-    <div class="row addPadding">
-        <div class="col-md-12">
-            <p class="textDescription franchiseGroupe">
+    <div class="row">
+        <div class="col-md-6 hp-45 pt-20">
+            <h2 class="centerText">{{ 'À propos'|trans }}</h2>
+            <p class="textDescription">
                 {% trans %}
                 La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc.
                 MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des  coffee-shops  en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de " Coffee-Shop Coworking ".
                 {% endtrans %}
             </p>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-6 home-img h-250" style="background-image: url('{{ asset('img/servicesResto.jpg') }}'); background-size: cover;">
         </div>
     </div>
-    <div class="clearThirty"></div>
 
     {# ---------- End Third Block ---------- #}
 {% endblock %}
