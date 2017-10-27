@@ -25,8 +25,8 @@
                 <li class="dropdown {% if app.request.get('_route') == 'gc_reservation_page' or app.request.get('_route') ==  'salle_index' or app.request.get('_route') =='place_index' %} active {% endif %}">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('gc_reservation_page') }}">{{ 'Réservation'|trans }}</a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('salle_index') }}" title="Salle privée">Salle privée</a></li>
-                        <li><a href="{{ path('place_index') }}" title="Place individuelle">Place individuelle</a></li>
+                        <li><a href="{{ path('salle_index') }}" title="Salle privée">{{ "Salle privée"|trans }}</a></li>
+                        <li><a href="{{ path('place_index') }}" title="Place individuelle">{{ "Place individuelle"|trans }}</a></li>
                     </ul>
                 </li>
                 <li {% if app.request.get('_route') == 'annonce_index' %} class="active" {% endif %}>
@@ -62,8 +62,8 @@
                     {% endif %}
                     <ul class="dropdown-menu">
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <li><a href="{{ path('factures') }}">Vos Factures</a></li>
-                            <li><a href="{{ path('factures') }}">Mes informations</a></li>
+                            <li><a href="{{ path('factures') }}">{{ "Vos Factures"|trans }}</a></li>
+                            <li><a href="{{ path('factures') }}">{{ "Mes informations"|trans }}</a></li>
                             <li class="divider"></li>
                         {% endif %}
                         <li>
@@ -88,7 +88,7 @@
                         {% endif %}
                     </ul>
                 </li>
-                <li id="panier-icon-menu" {% if app.request.get('_route') == 'panier' %} class="active" {% endif %}>
+                <li onclick="location.href='{{ path('panier') }}'" id="panier-icon-menu" {% if app.request.get('_route') == 'panier' %} class="active" {% endif %}>
                     {{ render(controller('AppBundle:Panier:menuIcon')) }}
                 </li>
                 {% if app.request.get('_route_params') is not null %}

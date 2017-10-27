@@ -124,18 +124,18 @@
                                     {% set offreThirdHour = 0 %}
                                     <div class="prodTotal cartSection">
                                         {% if panier_salle[salle.idsalle].totalHeures >= 5 or (panier_salle[salle.idsalle].totalHeures >= 5 and panier_salle[salle.idsalle].totalMinutes >= 30)  %}
-                                            <p>{{ salle.prixsalle * 4 }} €</p>
+                                            <p class="totalprice">{{ salle.prixsalle * 4 }} €</p>
                                             {% set journeeIllimitee = 1 %}
                                             {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 4 %}
                                             {% set prixSalle =  salle.prixsalle * 4  %}
                                         {% elseif (panier_salle[salle.idsalle].totalHeures == 3 and panier_salle[salle.idsalle].totalMinutes >= 30) or panier_salle[salle.idsalle].totalHeures >= 4 %}
-                                            <p>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes - (2 * salle.capacitymax) }} €</p>
+                                            <p class="totalprice">{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes - (2 * salle.capacitymax) }} €</p>
                                             {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax)  %}
                                             {% set prixSalle = salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax) %}
                                             {% set thirdHourFree =  thirdHourFree + (2 * salle.capacitymax) %}
                                             {% set offreThirdHour = 1 %}
                                         {% else %}
-                                            <p>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</p>
+                                            <p class="totalprice">{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</span>
                                             {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
                                             {% set prixSalle = salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
                                         {% endif %}
@@ -189,18 +189,18 @@
                                         {% set offreThirdHour = 0 %}
                                         <div class="prodTotal cartSection">
                                             {% if panier_place[place.idplace].totalHeures >= 5 or (panier_place[place.idplace].totalHeures >= 5 and  panier_place[place.idplace].totalMinutes >= 30)  %}
-                                                <p>{{ place.prixplace * 4 }} €</p>
+                                                <p class="totalprice">{{ place.prixplace * 4 }} €</p>
                                                 {% set journeeIllimitee = 1 %}
                                                 {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace * 4 %}
                                                 {% set prixPlace =  place.prixplace * 4  %}
                                             {% elseif (panier_place[place.idplace].totalHeures == 3 and panier_place[place.idplace].totalMinutes >= 30) or panier_place[place.idplace].totalHeures  >= 4 %}
-                                                <p>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes - 2 }} €</p>
+                                                <p class="totalprice">{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes - 2 }} €</p>
                                                 {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
                                                 {% set prixPlace = place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
                                                 {% set thirdHourFree = thirdHourFree + 2 %}
                                                 {% set offreThirdHour = 1 %}
                                             {% else %}
-                                                <p>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes }} €</p>
+                                                <p class="totalprice">{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes }} €</p>
                                                 {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
                                                 {% set prixPlace = place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
                                             {% endif %}
@@ -250,7 +250,7 @@
 
                                         </div>
                                         <div class="prodTotal cartSection">
-                                            <p>{{ produit.prixproduit * panier[produit.idproduit] }} €</p>
+                                            <p class="totalprice">{{ produit.prixproduit * panier[produit.idproduit] }} €</p>
                                         </div>
                                         <div class="cartSection removeWrap">
                                             <a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}" class="removeItemPanier">x</a>

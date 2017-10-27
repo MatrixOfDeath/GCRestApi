@@ -156,6 +156,7 @@ $fontSerif : 'Droid Serif', serif;
         font-size: .85em;
         color: #777777;
         font-family: $fontSans;
+        margin: 0;
         .quantity {
           font-weight: bold;
           color: #333;
@@ -187,7 +188,7 @@ $fontSerif : 'Droid Serif', serif;
       }
 
       .inputPanier.qty {
-        width: 4em;
+        width: 5em;
         text-align: center;
         font-size: 1em;
         padding: .25em;
@@ -228,7 +229,7 @@ a.removeItemPanier {
   font-family: $fontSans;
   color: #ffffff;
   font-weight: bold;
-  background: #e0e0e0;
+  background: #bebebe;
   padding: .5em;
   font-size: .75em;
   display: inline-block;
