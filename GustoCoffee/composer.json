@@ -32,6 +32,7 @@
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "doctrine/orm": "^2.5",
+        "dpn/xml-sitemap-bundle": "^2.1",
         "egeloen/ckeditor-bundle": "^6.0",
         "friendsofsymfony/jsrouting-bundle": "^1.6",
         "friendsofsymfony/oauth-server-bundle": "^1.5",

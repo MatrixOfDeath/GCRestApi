@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f63e175c543d200c8dcc58d2047bae00",
+    "content-hash": "3f12e74925a0f378e6b96b3bd5cc6ed6",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1489,6 +1489,68 @@
                 "orm"
             ],
             "time": "2017-10-23T18:21:04+00:00"
+        },
+        {
+            "name": "dpn/xml-sitemap-bundle",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bjo3rnf/DpnXmlSitemapBundle.git",
+                "reference": "881d46dea7f67b1aae348327769b8e038a485113"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bjo3rnf/DpnXmlSitemapBundle/zipball/881d46dea7f67b1aae348327769b8e038a485113",
+                "reference": "881d46dea7f67b1aae348327769b8e038a485113",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/asset": "^2.7|^3.0",
+                "symfony/dependency-injection": "^2.7|^3.0",
+                "symfony/framework-bundle": "^2.7|^3.0",
+                "symfony/templating": "^2.7|^3.0",
+                "symfony/twig-bundle": "^2.7|^3.0"
+            },
+            "require-dev": {
+                "matthiasnoback/symfony-dependency-injection-test": "^0.7.4",
+                "mockery/mockery": "^0.9",
+                "symfony/browser-kit": "^2.7|^3.0",
+                "symfony/console": "^2.7|^3.0",
+                "symfony/finder": "^2.7|^3.0",
+                "symfony/yaml": "^2.7|^3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Dpn\\XmlSitemapBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Björn Fromme",
+                    "email": "fromme@dreipunktnull.com",
+                    "homepage": "http://www.dreipunktnull.com"
+                },
+                {
+                    "name": "Kevin Bond",
+                    "email": "kevinbond@gmail.com",
+                    "homepage": "http://zenstruck.com"
+                }
+            ],
+            "description": "Generates XML sitemaps for your favourite search engine by extracting sitemap information out of the site's routes.",
+            "keywords": [
+                "Sitemap"
+            ],
+            "time": "2017-02-06T15:05:55+00:00"
         },
         {
             "name": "egeloen/ckeditor-bundle",
