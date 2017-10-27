@@ -1,7 +1,7 @@
-GustoCoffee Infos by KB
+GustoCoffee Infos by Karim BOUBRIT
 ===========
 
-Projet GustoCoffee  Symfony **3.3.9** -> to be migrated to  3.4LTS 
+Projet GustoCoffee  Symfony **3.3.10** -> to be migrated to  3.4LTS 
 
 #Pre-requirements
 Install composer and launch composer install after git clone of this project

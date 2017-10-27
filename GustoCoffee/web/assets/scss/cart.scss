@@ -174,7 +174,7 @@ $fontSerif : 'Droid Serif', serif;
       }
       .itemImg {
         width: 4em;
-
+        padding-bottom: 20px;
         float: left;
       }
       &.qtyWrap , &.prodTotal {
@@ -387,8 +387,7 @@ a.removeItemPanier {
           display: none;
         }
         .itemImg {
-          padding-bottom:20px;
-          width: 30%;
+          width: 25%;
         }
       }
     }}

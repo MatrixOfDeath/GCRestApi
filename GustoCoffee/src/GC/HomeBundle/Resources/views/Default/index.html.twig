@@ -48,7 +48,7 @@
             </p>
         {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
         <p class="textDescription centerText"><br>L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.
-            <button class="buttonGC blueButton" {{ path('fos_user_registration_register') }}>
+            <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
                     {{ "Inscrivez-vous ici"|trans }}
             </button>
         </p>
@@ -78,8 +78,9 @@
 
                 {% endtrans %}
                 <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez
-                <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
-                    {{ "Réservez ici"|trans }}</button>
+                    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+                    {{ "Réservez ici"|trans }}
+                    </button>
                 </p>
         </div>
         <div class="col-md-3 foodImg">
