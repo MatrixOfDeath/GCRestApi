@@ -4,11 +4,23 @@
 html *
 {
   font-family: 'Roboto', sans-serif;
-  font-weight: normal;
 }
 
 i.fa.fa-file-pdf-o{
   color:red;
+}
+
+//********
+// TYPO
+//*********
+
+h2{
+  font-size: 45px!important;
+  font-weight: 600px;
+}
+
+p{
+  font-weight: normal;
 }
 
 .blueButton
