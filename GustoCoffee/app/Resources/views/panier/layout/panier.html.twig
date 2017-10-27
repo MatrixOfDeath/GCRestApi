@@ -42,7 +42,7 @@
     </div>
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
         <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
-            {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}
         </button>
     {% endif %}
 {% endblock %}
@@ -104,7 +104,7 @@
                                 {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
                                 {% if panier_salle[salle.idsalle].totalMinutes >= 30 %}
                                     {% set totalMinutes =  (2 * salle.capacitymax )  %}
-                                    {{ panier_salle[salle.idsalle].totalMinutes ~ 'min' }}
+                                    {#{{ panier_salle[salle.idsalle].totalMinutes ~ 'min' }}#}
                                 {% else %}
                                     {% set totalMinutes = 0 %}
                                 {% endif %}
@@ -112,7 +112,7 @@
                                     <div class="cartSection">
                                         <img src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="{{ "Salle privatisée"|trans }}" title="{{ salle.nomsalle }}" class="itemImg" />
                                         <p class="itemNumber">
-                                            {{ "Le " ~ panier_salle[salle.idsalle].date|date('d/m/Y') ~ " De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('H:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_salle[salle.idsalle].totalHeures  ~ 'H' }}
+                                            {{ "Le " ~ panier_salle[salle.idsalle].date|date('d/m/Y') ~ " De " ~ panier_salle[salle.idsalle].heureChoixDebut|date('H:i') ~ " à " ~ panier_salle[salle.idsalle].heureChoixFin|date('H:i') ~ ' Temps: ' ~ panier_salle[salle.idsalle].totalHeures  ~ 'H' ~ totalMinutes ~ 'min' }}
                                         </p>
                                         <h3>{{ salle.nomsalle }}</h3>
 
@@ -169,7 +169,7 @@
                                         {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
                                         {% if panier_place[place.idplace].totalMinutes >= 30 %}
                                             {% set totalMinutes =  (2 * place.capacitymax )  %}
-                                            {{ panier_place[place.idplace].totalMinutes ~ 'min' }}
+                                            {#{{ panier_place[place.idplace].totalMinutes ~ 'min' }}#}
                                         {% else %}
                                             {% set totalMinutes = 0 %}
                                         {% endif %}
@@ -177,7 +177,7 @@
                                         <div class="cartSection">
                                             <img src="{{ asset('uploads/images/salles/'~ place.imagesalle) }}" alt="{{ "Place privatisée"|trans }}" title="{{ place.nomplace }}" class="itemImg" />
                                             <p class="itemNumber">
-                                                {{ "Le " ~ panier_place[place.idplace].date|date('d/m/Y') ~ " De " ~ panier_place[place.idplace].heureChoixDebut|date('H:i') ~ " à " ~ panier_place[place.idplace].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_place[place.idplace].totalHeures  ~ 'H' }}
+                                                {{ "Le " ~ panier_place[place.idplace].date|date('d/m/Y') ~ " De " ~ panier_place[place.idplace].heureChoixDebut|date('H:i') ~ " à " ~ panier_place[place.idplace].heureChoixFin|date('H:i') ~ ' Temps:' ~ panier_place[place.idplace].totalHeures  ~ 'H' ~ totalMinutes ~ 'min' }}
                                             </p>
                                             <h3>{{ place.nomsalle ~ ' Place ' ~ place.nomplace }}</h3>
 
@@ -230,23 +230,24 @@
                             {%  for produit in produits %}
                                 <li class="items {% if cmpt is odd %}odd{% else %}even{% endif %}">
                                     {% set cmpt = cmpt + 1 %}
-                                    <div class="infoWrap">
-                                        <form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">
+                                    <div class="infoWrap ">
                                         <div class="cartSection">
                                             <img src="{{ asset('uploads/images/products/'~ produit.image) }}" alt="{{ "Produit"|trans }}" title="{{ produit.nomproduit }}" class="itemImg" />
                                             <p class="itemNumber">
                                                 {{ "Catégorie: " ~ produit.nomtypeproduit }}
                                             </p>
                                             <h3>{{ produit.nomproduit }}</h3>
-
-                                            <p> <select name="qte" class="qty" onChange="this.form.submit()">
+                                            <form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">
+                                            <p><select name="qte" class="qty" onChange="this.form.submit()">
                                                     {% for i in 1..10 %}
                                                         <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>
                                                     {% endfor %}
                                                 </select> x {{ produit.prixproduit }}€
                                             </p>
+                                                <p class="stockStatus">{{ "Disponible" }}</p>
+                                            </form>
 
-                                            <p class="stockStatus">{{ "Disponible" }}</p>
+
                                         </div>
                                         <div class="prodTotal cartSection">
                                             <p>{{ produit.prixproduit * panier[produit.idproduit] }} €</p>
@@ -254,7 +255,6 @@
                                         <div class="cartSection removeWrap">
                                             <a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}" class="removeItemPanier">x</a>
                                         </div>
-                                        </form>
                                         {% set totalProduitHT = totalProduitHT + (produit.prixproduit * panier[produit.idproduit]) %}
                                         {% set totalProduitTTC = totalProduitTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}
                                         {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + prixPlace|montantTva(produit.tva.multiplicate) }) %}

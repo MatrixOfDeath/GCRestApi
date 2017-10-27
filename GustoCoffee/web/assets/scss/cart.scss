@@ -187,12 +187,11 @@ $fontSerif : 'Droid Serif', serif;
       }
 
       .inputPanier.qty {
-        width: 2em;
+        width: 4em;
         text-align: center;
         font-size: 1em;
         padding: .25em;
         margin: 1em .5em 0 0;
-
       }
       .itemImg {
         width: 8em;
@@ -260,6 +259,7 @@ a.removeItemPanier {
     width: 85%;
     font-size: 1em;
     padding: .5em;
+    margin-top: 0;
     float: left;
     border: 1px solid #dadada;
     &:active, &:focus {
@@ -387,7 +387,8 @@ a.removeItemPanier {
           display: none;
         }
         .itemImg {
-          width: 25%;
+          padding-bottom:20px;
+          width: 30%;
         }
       }
     }}

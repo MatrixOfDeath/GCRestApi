@@ -14,7 +14,7 @@
     </button>
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
         <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
-            {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}
         </button>
     {% endif %}
 {% endblock %}

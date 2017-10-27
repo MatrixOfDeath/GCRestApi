@@ -28,7 +28,7 @@
     {{ cookie_consent_render() }}
 
     <!-- Facebook -->
-    <script async>
+    <script>
         window.fbAsyncInit = function() {
             FB.init({
                 appId      : '1693020454042033',
@@ -51,7 +51,7 @@
             FB.getLoginStatus(function(response) {
                 if (response.status === 'connected') {
                     // connected
-                    alert('{{ "Already connected, redirect to login page to create token."|trans }}');
+                    //alert('{{ "Already connected, redirect to login page to create token."|trans }}');
                     document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
                 } else {
                     // not_authorized
@@ -68,7 +68,7 @@
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108499849-1"></script>
-    <script async defer>
+    <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
@@ -121,12 +121,12 @@
     {% block script %}
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
-        <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
+        <script async defer src="{{ asset('js/jquery-ui.min.js') }}"></script>
         {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
-        <script async type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-        <script async type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
+        <script async defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <script async defer type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
 
-        <script async src="{{ asset('js/bootstrap.min.js') }}"></script>
+        {#<script async src="{{ asset('js/bootstrap.min.js') }}"></script>#}
         {#<script>#}
         {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
         {#</script>#}
