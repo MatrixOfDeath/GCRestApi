@@ -157,6 +157,7 @@
     "colors": "^1.1.2",
     "combined-stream": "^1.0.5",
     "commondir": "^1.0.1",
+    "compass-mixins": "^0.12.10",
     "compressible": "^2.0.11",
     "compression": "^1.7.0",
     "concat-map": "0.0.1",

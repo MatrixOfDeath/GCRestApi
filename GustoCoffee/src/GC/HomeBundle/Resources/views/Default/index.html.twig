@@ -22,7 +22,7 @@
     </button>
     {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
         <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
-            {{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+            {{ 'Inscrivez-vous dès maintenant !'|trans }}
         </button>
     {% endif %}
 {% endblock %}
@@ -47,9 +47,11 @@
                 {% endtrans %}
             </p>
         {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
-        <p class="textDescription centerText"><br>L'expérience vous tente ? Profitez de nos avantages en vous inscrivant. <button class="buttonGC blueButton">
-                    <a class="colorWhite" href="{{ path('fos_user_registration_register') }}">{{ "Inscrivez-vous ici"|trans }}</a>
-                </button></p>
+        <p class="textDescription centerText"><br>L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.
+            <button class="buttonGC blueButton" {{ path('fos_user_registration_register') }}>
+                    {{ "Inscrivez-vous ici"|trans }}
+            </button>
+        </p>
         {% endif %}
         </div>
         <div class="col-md-6 videoContainer">
@@ -78,8 +80,9 @@
                 Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.
 
                 {% endtrans %}
-                <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez <button class="buttonGC blueButton">
-                    <a class="colorWhite" href="{{ path('gc_reservation_page') }}">{{ "Réservez ici"|trans }}</a></button></p>
+                <p class="textDescription centerText"><br>L'expérience vous tente ? Vous pouvez
+                <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
+                    {{ "Réservez ici"|trans }}</button>
                 </p>
         </div>
         <div class="col-md-3 foodImg">
