@@ -1,21 +1,21 @@
 $color-gc: #6F4E37;
 $color-gc-lighter: #846139;
 $color-gc-brighter: #9b763c;
-
+$color-gc-darker: #6b5025;
 
 /********
  TYPO
 *********/
 
-h2{
+h2.homepageTitle {
   font-size: 45px!important;
   font-weight: 600;
   margin-bottom: 30px;
 }
 
-p{
-  font-weight: normal;
-}
+//p{
+//  font-weight: normal;
+//}
 
 /********
  PADDING & MARGIN

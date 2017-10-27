@@ -12,7 +12,7 @@ $(document).ready(function() {
         },
         error: function (data) {
             console.log(data);
-            alert('Problème vérifcation de panier');
+            //alert('Problème vérifcation de panier');
             //$("body").css({"opacity": "1", "background-color":"#fff"});
 
         }

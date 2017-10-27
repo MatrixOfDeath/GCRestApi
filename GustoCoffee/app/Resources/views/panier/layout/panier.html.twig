@@ -23,7 +23,7 @@
 {% endfor %}
 
 {% block title %}
-    <title>GustoCoffee - Votre Panier</title>
+    <title>GustoCoffee - {{ "Votre Panier"|trans }}</title>
 {% endblock %}
 
 {% block paddingTitle %}
@@ -81,8 +81,8 @@
             {# Begining of cart #}
             <div class="wrap cf">
                 <div class="heading cf">
-                    <h1>Votre Panier</h1>
-                    <a href="#" class="continue">{{ "Continuer vos achats"|trans }}</a>
+                    <h1>{{ "Votre Panier"|trans }}</h1>
+                    <a href="{{ path('gc_reservation_page') }}" class="continue">{{ "Continuer vos achats"|trans }}</a>
                 </div>
                 <div class="cartPanier">
                     <!--    <ul class="tableHead">
@@ -238,15 +238,13 @@
                                             </p>
                                             <h3>{{ produit.nomproduit }}</h3>
                                             <form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">
-                                            <p><select name="qte" class="qty" onChange="this.form.submit()">
+                                            <select name="qte" class="qty" onChange="this.form.submit()">
                                                     {% for i in 1..10 %}
                                                         <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>
                                                     {% endfor %}
                                                 </select> x {{ produit.prixproduit }}€
-                                            </p>
                                                 <p class="stockStatus">{{ "Disponible" }}</p>
                                             </form>
-
 
                                         </div>
                                         <div class="prodTotal cartSection">
@@ -274,32 +272,32 @@
                     {% if produits|length != 0 or salles|length != 0 or places|length != 0 %}
                         <ul>
                             {% if produits|length != 0 %}
-                                <li class="totalRow"> <span class="label">Total Produits HT :</span><span class="value">{{ totalProduitHT|number_format(2, '.', ',')  }}€</span></li>
+                                <li class="totalRow"> <span class="label">{{ "Total Produits HT"|trans }} :</span><span class="value">{{ totalProduitHT|number_format(2, '.', ',')  }}€</span></li>
                             {% endif %}
                             {% for key, tva in refTva %}
-                                <li class="totalRow">  <span class="label">TVA {{ key }} :</span><span class="value">{{ tva }} €</span></li>
+                                <li class="totalRow">  <span class="label">{{ "TVA"|trans }} {{ key }} :</span><span class="value">{{ tva }} €</span></li>
                             {% endfor %}
                             {% if salles|length != 0  %}
-                                <li class="totalRow">   <span class="label">Total Salle TTC :</span><span class="value">{{ totalSalleTTC|number_format(2, '.', ',')  }}€</span></li>
+                                <li class="totalRow">   <span class="label">{{ "Total Salle TTC"|trans }} :</span><span class="value">{{ totalSalleTTC|number_format(2, '.', ',')  }}€</span></li>
                             {% endif %}
                             {% for key, tva in refSalleTva %}
-                                <li class="totalRow">   <span class="label">dont {{ key }} TVA Salle:</span><span class="value">{{ tva }} €</span></li>
+                                <li class="totalRow">   <span class="label">{{ "dont"|trans }} {{ key }} {{ "TVA Salle"|trans }}:</span><span class="value">{{ tva }} €</span></li>
                             {% endfor %}
                             {% if places|length != 0  %}
-                                <li class="totalRow">   <span class="label">Total Place TTC :</span><span class="value">{{ totalPlaceTTC|number_format(2, '.', ',')  }}€</span></li>
+                                <li class="totalRow">   <span class="label">{{ "Total Place TTC"|trans }} :</span><span class="value">{{ totalPlaceTTC|number_format(2, '.', ',')  }}€</span></li>
                             {% endif %}
                             {% for key, tva in refPlaceTva %}
-                                <li class="totalRow">   <span class="label">dont {{ key }} TVA Place:</span><span class="value">{{ tva }} €</span></li>
+                                <li class="totalRow">   <span class="label">{{ "dont"|trans }} {{ key }} {{ "TVA Place"|trans }}:</span><span class="value">{{ tva }} €</span></li>
                             {% endfor %}
                             {% if thirdHourFree is defined and thirdHourFree > 0 %}
-                                <li class="totalRow">   <span class="label reduction-3h">Réduction 3ème heure:</span><span class="value reduction-10">{{ thirdHourFree|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow">   <span class="label reduction-3h">{{ "Réduction 3ème heure"|trans }}:</span><span class="value reduction-10">{{ thirdHourFree|number_format(2, '.', ',') }} €</span></li>
                             {% endif %}
                             {% if produits|length != 0 and (salles|length != 0 or places|length != 0) %}
-                                <li class="totalRow">   <span class="label">Sous-Total TTC :</span><span class="value">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</span></li>
-                                <li class="totalRow">   <span class="label reduction-10">Réduction -10% :</span><span class="value reduction-10">-{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1)|number_format(2, '.', ',') }} €</span></li>
-                                <li class="totalRow final">   <span class="label">Montant Total TTC :</span><span class="value">{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC)  - ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1))|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow">   <span class="label">{{ 'Sous-Total TTC'|trans }} :</span><span class="value">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow">   <span class="label reduction-10">{{ "Réduction"|trans }} -10% :</span><span class="value reduction-10">-{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1)|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow final">   <span class="label">{{ "Montant Total TTC"|trans }} :</span><span class="value">{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC)  - ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1))|number_format(2, '.', ',') }} €</span></li>
                             {% else %}
-                                <li class="totalRow final">   <span class="label montant-total">Montant Total TTC :</span><span class="value montant-total">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow final">   <span class="label montant-total">{{ "Montant Total TTC"|trans }} :</span><span class="value montant-total">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</span></li>
                             {% endif %}
                         </ul>
                         <div class="clearfix"></div>
@@ -311,12 +309,12 @@
 
 
             {% if salles|length == 0 or places|length == 0 %}
-                <a href="{{ path('salle_index') }}" class="btn btn-primary">Choisissez une salle</a>
-                {% if places|length == 0 %}
-                    <a href="{{ path('place_index') }}" class="btn btn-primary">Choisissez une place</a>
+                <a href="{{ path('salle_index') }}" class="btn btn-primary">{{ "Ajouter une salle"|trans }}</a>
+                {% if places|length == 0 %} {{ "ou"|trans }}
+                    <a href="{{ path('place_index') }}" class="btn btn-primary">{{ "Ajouter une place"|trans }}</a>
                 {% endif %}
             {% else  %}
-                <a href="{{ path('produits_index') }}" class="btn btn-primary">Choisir mes produits</a>
+                <a href="{{ path('produits_index') }}" class="btn btn-primary">{{ "Ajouter des produits"|trans }}</a>
             {% endif %}
         </div>
 

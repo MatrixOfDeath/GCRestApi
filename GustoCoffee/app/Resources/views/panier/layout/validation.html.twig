@@ -23,7 +23,7 @@
             {{ 'Inscrivez-vous dès maintenant !'|trans }}
         </button>
     {% endif %}
-    <button class="buttonGC greenButton" form="paiemnt-commande">
+    <button class="buttonGC greenButton" form="paiement-commande">
         {{ 'Payer directement >'|trans }}
     </button>
 {% endblock %}
@@ -195,10 +195,10 @@
                 <input name="prix" type="hidden" value="{{ commande.commande.prixTTC }}" />
                 <input name="totalTTC" type="hidden" value="{{ commande.commande.totalTTC }}" />
                 <input name="date" type="hidden" value="{{ commande.datecommande|date('dmyhms') }}" />
-                <button type="submit" class="btn btn-success pull-right">Payer</button>
+                <button type="submit" class="btn btn-success pull-right">{{ "Payer"|trans }}</button>
             </form>
             
-            <a href="{{ path('livraison_panier') }}" class="btn btn-primary">retour</a>
+            <a href="{{ path('livraison_panier') }}" class="btn btn-primary">{{ "retour"|trans }}</a>
         </div>
         <div class="col-md-1 hidden-xs hidden-sm"></div>
     </div>

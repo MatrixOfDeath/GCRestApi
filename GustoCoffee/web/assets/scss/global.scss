@@ -29,8 +29,8 @@ i.fa.fa-file-pdf-o{
 {
   border-radius: 3px;
   color: #fff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+  background-color: #316331;
+  border-color: #2e5d2e;
   &:hover
   {
     color: #fff;
@@ -50,6 +50,19 @@ i.fa.fa-file-pdf-o{
     color: #fff;
     background-color: $color-gc-brighter;
     border-color: $color-gc-lighter;
+  }
+}
+.darkBrownButton
+{
+  border-radius: 3px;
+  color: #fff;
+  background-color: $color-gc-darker;
+  border-color: #604820;
+  &:hover
+  {
+    color: #fff;
+    background-color: $color-gc-lighter;
+    border-color: $color-gc-darker;
   }
 }
 
