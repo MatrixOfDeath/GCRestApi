@@ -58,6 +58,7 @@ class AppKernel extends Kernel
 
             #SEO
             new Dpn\XmlSitemapBundle\DpnXmlSitemapBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
 
             # Our Bundles
             new AppBundle\AppBundle(),

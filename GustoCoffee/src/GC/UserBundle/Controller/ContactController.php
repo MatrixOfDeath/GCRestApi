@@ -4,7 +4,11 @@ namespace GC\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
+/**
+ * @Cache(expires="+2 days", public=true)
+ */
 class ContactController extends Controller
 {
     public function indexAction(Request $request)

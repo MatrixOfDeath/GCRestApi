@@ -10,6 +10,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Constraints\DateTime;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
+
+/**
+ * @Cache(expires="tomorrow", public=true)
+ */
 class DefaultController extends Controller
 {
     protected $dateReservation;

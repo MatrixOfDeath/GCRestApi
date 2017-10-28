@@ -115,3 +115,6 @@ fos_js_routing:
 
 DpnXmlSitemapBundle:
     resource: "@DpnXmlSitemapBundle/Resources/config/routing.xml"
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

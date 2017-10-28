@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Payplug\Payplug;
 
 /**
  * Commande controller.
@@ -549,10 +550,10 @@ class CommandeController extends FOSRestController
                        'email'          => $email
                    ),
                    'hosted_payment'   => array(
-                       'return_url'     => $this->container->getParameter('domain_name').'commande/api/banque/'.$commande_id,
-                       'cancel_url'     => $this->container->getParameter('domain_name').'commande/paiement_commande/'.$commande_id
+                       'return_url'     => $this->container->get('router')->getContext()->getBaseUrl().'commande/api/banque/'.$commande_id,
+                       'cancel_url'     => $this->container->get('router')->getContext()->getBaseUrl().'commande/paiement_commande/'.$commande_id
                    ),
-                   'notification_url' =>  $this->container->getParameter('domain_name').'commande/notifications?id='.$commande_id,
+                   'notification_url' =>  $this->container->get('router')->getContext()->getBaseUrl().'commande/notifications?id='.$commande_id,
                    'metadata'         => array(
                        'customer_id'    => (string)$customer_id
                    )
@@ -619,10 +620,10 @@ class CommandeController extends FOSRestController
                         'email'          => $email
                     ),
                     'hosted_payment'   => array(
-                        'return_url'     => $this->container->getParameter('domain_name').'commande/api/banque/'.$commande_id,
-                        'cancel_url'     => $this->container->getParameter('domain_name').'commande/paiement_commande/'.$commande_id
+                        'return_url'     => $this->container->get('router')->getContext()->getBaseUrl().'commande/api/banque/'.$commande_id,
+                        'cancel_url'     => $this->container->get('router')->getContext()->getBaseUrl().'commande/paiement_commande/'.$commande_id
                     ),
-                    'notification_url' =>  $this->container->getParameter('domain_name').'commande/notifications/'.$commande_id,
+                    'notification_url' =>  $this->container->get('router')->getContext()->getBaseUrl().'commande/notifications/'.$commande_id,
                     'metadata'         => array(
                         'customer_id'    => (string)$customer_id
                     )

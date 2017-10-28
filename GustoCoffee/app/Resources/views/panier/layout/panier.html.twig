@@ -135,7 +135,7 @@
                                             {% set thirdHourFree =  thirdHourFree + (2 * salle.capacitymax) %}
                                             {% set offreThirdHour = 1 %}
                                         {% else %}
-                                            <p class="totalprice">{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</span>
+                                            <p class="totalprice">{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</p>
                                             {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
                                             {% set prixSalle = salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
                                         {% endif %}
@@ -255,7 +255,7 @@
                                         </div>
                                         {% set totalProduitHT = totalProduitHT + (produit.prixproduit * panier[produit.idproduit]) %}
                                         {% set totalProduitTTC = totalProduitTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}
-                                        {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + prixPlace|montantTva(produit.tva.multiplicate) }) %}
+                                        {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + ( produit.prixproduit * panier[produit.idproduit])|montantTva(produit.tva.multiplicate) }) %}
                                     </div>
                                 </li>
                             {%  endfor %}
