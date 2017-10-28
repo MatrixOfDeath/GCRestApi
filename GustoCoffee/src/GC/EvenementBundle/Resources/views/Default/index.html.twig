@@ -14,8 +14,8 @@
 
 {% block titleHome %}
     <div class="banniere">
-        <h1 class="colorWhite">Nos évènements</h1>
-        <h3 class="colorWhite"> <i>Si on se rencontrait ? </i></h3>
+        <h1 class="colorWhite">{{ "Nos évènements"|trans }}</h1>
+        <h3 class="colorWhite"> <i>{{ "Si on se rencontrait"|trans }} ?</i></h3>
     </div>
     <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
         {{ 'Réservez votre place'|trans }}
@@ -28,35 +28,38 @@
 {% endblock %}
 
 {% block firstBlock %}
-    <div class="row addPadding">
-        <div class="col-md-9">
-            <h2 class="titlePara">{{ 'Ouverture du nouveau café coworking'|trans }} </h2>
-            <p class="textDescription">{% trans %}Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking !
+    <div class="row ">
+        <div class="col-md-6 home-img h-550" style="background-image: url('{{ asset('img/evenement.jpg') }}'); background-size: cover;">
+        </div>
+        <div class="col-md-6 hp-45 pt-20">
+            <h2 class="homepageTitle centerText">{{ 'Ouverture du nouveau café coworking'|trans }}</h2>
+            <p class="textDescription">
+                {% trans %}Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking !
                 Au programme, musique, danse, visite et consommation à volonté !
                 Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants
                 en quête d'un environnement calme.
                 {% endtrans %}
-            </p>
-        </div>
-        <div class="col-md-3 ouverture">
-            <img alt="GustoCoffee" src="{{ asset('img/evenement.jpg') }}">
+
+
         </div>
     </div>
 {% endblock %}
 
 {% block secondBlock %}
-    <div class="row addPadding">
-        <div class="col-md-9 textDescription">
-            <p>{% trans %}
+    <div class="row">
+        <div class="col-md-6 hp-45 pt-20">
+            <h2 class="homepageTitle  centerText">{{ 'À propos'|trans }}</h2>
+            <p class="textDescription">
+                {% trans %}
                 GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "Coffee-shop Coworking" situé près de Gare du Nord.
-            C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous
+                C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous
                 familiariser avec l'espace que nous vous proposons.
                 {% endtrans %}
             </p>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-6 home-img h-250" style="background-image: url('{{ asset('img/background_events.jpeg') }}'); background-size: cover;">
+        </div>
     </div>
-    <div class="clear"></div>
 {% endblock %}
 
 
@@ -66,16 +69,15 @@
             <h2 class="titleMedia">{{ 'Ils ont parlé de GustoCoffee'|trans }}</h2>
         </div>
         <div class="col-md-12 listMedia">
+            <a target="_blank" class="imgMedia" href="https://www.tf1.fr/"><img alt="TF1" title="TF1" src="{{ asset('img/media/tf1.jpg') }}"/></a>
 
-            <a target="_blank" class="imgMedia" href="https://www.tf1.fr/"><img alt="TF1" src="{{ asset('img/media/tf1.jpg') }}"/></a>
+            <a target="_blank" class="imgMedia" href="http://www.leparisien.fr/"><img alt="Le Parisien" title="Le Parisien" src="{{ asset('img/media/parisien.jpg') }}"/></a>
 
-            <a target="_blank" class="imgMedia" href="http://www.leparisien.fr/"><img alt="Le Parisien" src="{{ asset('img/media/parisien.jpg') }}"/></a>
+            <a target="_blank" class="imgMedia" href="https://www.rtl.fr/"><img alt="RTL" title="RTL" src="{{ asset('img/media/rtl.jpg') }}"/></a>
 
-            <a target="_blank" class="imgMedia" href="https://www.rtl.fr/"><img alt="RTL" src="{{ asset('img/media/rtl.jpg') }}"/></a>
+            <a target="_blank" class="imgMedia" href="http://www.la-croix.com"><img alt="La Croix" title="La Croix" src="{{ asset('img/media/la-croix.jpg') }}"/></a>
 
-            <a target="_blank" class="imgMedia" href="http://www.la-croix.com"><img alt="La Croix" src="{{ asset('img/media/la-croix.jpg') }}"/></a>
-
-            <a target="_blank" class="imgMedia" href="https://www.freshr.fr/"><img alt="Freshr" src="{{ asset('img/media/freshr.jpg') }}"/></a>
+            <a target="_blank" class="imgMedia" href="https://www.freshr.fr/"><img alt="Freshr" title="Freshr" src="{{ asset('img/media/freshr.jpg') }}"/></a>
 
             <a target="_blank" class="imgMedia" href="http://www.francetelevisions.fr/"><img alt="France Télévisions" src="{{ asset('img/media/francetelevisions.jpg') }}"/></a>
 

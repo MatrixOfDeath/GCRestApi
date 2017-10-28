@@ -45,7 +45,7 @@
             </p>
         {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
         <div class="centerText">
-            <p class="textDescription"><br>L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.
+            <p class="textDescription"><br>{{ "L'expérience vous tente ? Profitez de nos avantages en vous inscrivant."|trans }}
             </p>
             <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
                 {{ "Inscrivez-vous ici"|trans }}
@@ -77,11 +77,10 @@
                 <br>
                 {% trans %}
                 Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.
-
                 {% endtrans %}
 
                 <div class="centerText">
-                    <p class="textDescription"><br>L'expérience vous tente ? Vous pouvez
+                    <p class="textDescription"><br>{{ "L'expérience vous tente ? Vous pouvez"|trans }}
                     </p>
                     <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
                     {{ "Réservez ici"|trans }}</button>
