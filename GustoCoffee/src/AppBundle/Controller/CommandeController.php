@@ -220,6 +220,8 @@ class CommandeController extends FOSRestController
 
             $commande['produit'][$produit->getIdproduit()] = array('reference' => $produit->getNomproduit(),
                 'quantite' => $panier[$produit->getIdproduit()],
+                'image' => $produit->getImage(),
+                'nomtypeproduit' => $produit->getNomTypeProduit(),
                 'prixHT' => round($produit->getPrixproduit(),2),
                 'prixTTC' => round($produit->getPrixproduit() / $produit->getTva()->getMultiplicate(),2));
         }
@@ -245,10 +247,13 @@ class CommandeController extends FOSRestController
             if ($totaleHeuresR >= 5 or ($totaleHeuresR >= 5 and  $totaleMinutesR >= 30) ) {
                 $totalSalleTTC = $totalSalleTTC + $salle->getPrixsalle() * 4;
                 $prixSalleTTC = $salle->getPrixsalle() * 4;
+                $commande['salle'][$salle->getIdsalle()]['journeeIllimitee'] = 1;
             }
             else if( ($totaleHeuresR == 3 and $total30Minutes >= 30) or $totaleHeuresR >= 4 ) {
                 $totalSalleTTC =  $totalSalleTTC + $salle->getPrixsalle() + (($total30Minutes - 2 )* 2 * $salle->getCapacitymax()) + $totalMinutes - (2 * $salle->getCapacitymax());
                 $thirdHourFree += (2 * $salle->getCapacitymax());
+                $commande['salle'][$salle->getIdsalle()]['thirdHourFree'] = 1;
+
                 $prixSalleTTC = $salle->getPrixsalle() + (($total30Minutes - 2 )* 2 * $salle->getCapacitymax()) + $totalMinutes - (2 * $salle->getCapacitymax());
             } else{
                 $totalSalleTTC =  $totalSalleTTC + $salle->getPrixsalle() + (($total30Minutes - 2) * 2 * $salle->getCapacitymax()) + $totalMinutes;
@@ -267,6 +272,7 @@ class CommandeController extends FOSRestController
             $totalSalleTVA += round($prixSalleTTC - $prixSalleHT,2);
             $commande['salle'][$salle->getIdsalle()] = array(
                 'reference' => $salle->getNomsalle(),
+                'image' => $salle->getImage(),
                 'heureDebut' => $panier_salle[$salle->getIdsalle()]['heureChoixDebut'],
                 'heureFin' => $panier_salle[$salle->getIdsalle()]['heureChoixFin'],
                 'date' => $panier_salle[$salle->getIdsalle()]['date'],
@@ -292,18 +298,18 @@ class CommandeController extends FOSRestController
             if ($panier_place[$place->getIdplace()]['totalMinutes'] >= 30) {
                 $totalMinutes = 2;
             } else {
-
                 $totalMinutes = 0;
             }
 
             if ($totaleHeuresR >= 5 or ($totaleHeuresR >= 5 and  $totaleMinutesR >= 30) ) {
                 $totalPlaceTTC = $totalPlaceTTC + $place->getPrixplace() * 4;
                 $prixPlaceTTC = $place->getPrixplace() * 4;
-
+                $commande['place'][$place->getIdplace()]['journeeIllimitee'] = 1;
             }
             else if( ($totaleHeuresR == 3 and $total30Minutes >= 30) or $totaleHeuresR >= 4 ) {
                 $totalPlaceTTC =  $totalPlaceTTC + $place->getPrixplace() + (($total30Minutes - 2 ) * 2) + $totalMinutes - 2;
                 $thirdHourFree += 2;
+                $commande['place'][$place->getIdplace()]['thirdHourFree'] = 1;
                 $prixPlaceTTC = $place->getPrixplace() + (($total30Minutes - 2 )* 2) + $totalMinutes - 2;
             } else{
                 $totalPlaceTTC =  $totalPlaceTTC + $place->getPrixplace() + (($total30Minutes - 2) * 2) + $totalMinutes;
@@ -322,6 +328,7 @@ class CommandeController extends FOSRestController
             $totalPlaceTVA += round($prixPlaceTTC - $prixPlaceHT,2);
             $commande['place'][$place->getIdplace()] = array(
                 'reference' => $place->getNomplace(),
+                'image' => $place->getImageSalle(),
                 'heureDebut' => $panier_place[$place->getIdplace()]['heureChoixDebut'],
                 'heureFin' => $panier_place[$place->getIdplace()]['heureChoixFin'],
                 'date' => $panier_place[$place->getIdplace()]['date'],
@@ -518,7 +525,6 @@ class CommandeController extends FOSRestController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function validationPaymentAction(Request $request, SessionInterface $session, $id){
-
         if ($request->getMethod() == 'POST' && $session->has('commande'))
         {
             $em = $this->getDoctrine()->getManager();
@@ -526,6 +532,7 @@ class CommandeController extends FOSRestController
             $co= $commande->getCommande();
 
            if ($request->get('token') == $co['token']){
+               $baseURLPath = $request->getScheme() . '://' . $request->getHttpHost() . $this->container->get('router')->getContext()->getBaseUrl().'/'.$request->getLocale();
                $totalPrix = $request->request->get('totalTTC');
 
                /**
@@ -536,11 +543,12 @@ class CommandeController extends FOSRestController
                    $email = $this->getUser()->getEmail();
                }else{
                    $customer_id = 'anon';
+                   $email = "gustocoffee+official@gmail.com";
                }
                \Payplug\Payplug::setSecretKey('sk_test_44dfjjzLQ6f0S4xqYxGlQR');
 
                $amount = $totalPrix * 100; // En centime cf: la doc de Payplug
-               $email = "gustocoffee+official@gmail.com";
+
                $commande_id = $id;
 
                $payment = \Payplug\Payment::create(array(
@@ -550,10 +558,10 @@ class CommandeController extends FOSRestController
                        'email'          => $email
                    ),
                    'hosted_payment'   => array(
-                       'return_url'     => $this->container->get('router')->getContext()->getBaseUrl().'commande/api/banque/'.$commande_id,
-                       'cancel_url'     => $this->container->get('router')->getContext()->getBaseUrl().'commande/paiement_commande/'.$commande_id
+                       'return_url'     => $baseURLPath.'/commande/api/banque/'.$commande_id,
+                       'cancel_url'     => $baseURLPath.'/commande/paiement_commande/'.$commande_id
                    ),
-                   'notification_url' =>  $this->container->get('router')->getContext()->getBaseUrl().'commande/notifications?id='.$commande_id,
+                   'notification_url' =>  $baseURLPath.'/commande/notifications?id='.$commande_id,
                    'metadata'         => array(
                        'customer_id'    => (string)$customer_id
                    )
@@ -569,13 +577,13 @@ class CommandeController extends FOSRestController
            }else{
                // Token envoyé par l'user invalide !!
                $session->getFlashBag()->add('success','Le token de vérification de formulaire est invalide');
-               return $this->redirect($this->generateUrl('livraison_panier'));
+               return $this->redirect($this->generateUrl('validation_panier'));
 
            }
 
         }else{
             $session->getFlashBag()->add('error',"L'envoi de votre demande de validation a échoué");
-            return $this->redirect($this->generateUrl('livraison_panier'));
+            return $this->redirect($this->generateUrl('validation_panier'));
         }
     }
 
@@ -588,7 +596,6 @@ class CommandeController extends FOSRestController
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function validationAjaxPaymentAction(Request $request, SessionInterface $session, $id){
-
         if ($request->getMethod() == 'POST' && $session->has('commande'))
         {
             $em = $this->getDoctrine()->getManager();
@@ -596,6 +603,8 @@ class CommandeController extends FOSRestController
             $co= $commande->getCommande();
 
             if ($request->request->get('token') == $co['token']){
+                $baseURLPath = $request->getScheme() . '://' . $request->getHttpHost() . $this->container->get('router')->getContext()->getBaseUrl().'/'.$request->getLocale();
+
                 $totalPrix = $request->request->get('totalTTC');
 
                 /**
@@ -620,10 +629,10 @@ class CommandeController extends FOSRestController
                         'email'          => $email
                     ),
                     'hosted_payment'   => array(
-                        'return_url'     => $this->container->get('router')->getContext()->getBaseUrl().'commande/api/banque/'.$commande_id,
-                        'cancel_url'     => $this->container->get('router')->getContext()->getBaseUrl().'commande/paiement_commande/'.$commande_id
+                        'return_url'     =>  $baseURLPath.'/commande/api/banque/'.$commande_id,
+                        'cancel_url'     => $baseURLPath.'/commande/paiement_commande/'.$commande_id
                     ),
-                    'notification_url' =>  $this->container->get('router')->getContext()->getBaseUrl().'commande/notifications/'.$commande_id,
+                    'notification_url' => $baseURLPath.'/commande/notifications?id='.$commande_id,
                     'metadata'         => array(
                         'customer_id'    => (string)$customer_id
                     )
@@ -639,13 +648,13 @@ class CommandeController extends FOSRestController
             }else{
                 // Token envoyé par l'user invalide !!
                 $session->getFlashBag()->add('success','Le token de vérification de formulaire est invalide');
-                return $this->redirect($this->generateUrl('livraison_panier'));
+                return $this->redirect($this->generateUrl('validation_panier'));
 
             }
 
         }else{
             $session->getFlashBag()->add('error',"L'envoi de votre demande de validation a échoué");
-            return $this->redirect($this->generateUrl('livraison_panier'));
+            return $this->redirect($this->generateUrl('validation_panier'));
         }
     }
 

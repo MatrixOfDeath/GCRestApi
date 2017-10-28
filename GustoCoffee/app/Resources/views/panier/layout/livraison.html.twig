@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% block title %}
-    <title>GustoCoffee - Votre Panier</title>
+    <title>GustoCoffee - {{ "Vos adresses"|trans }}</title>
 {% endblock %}
 
 {% block paddingTitle %}
@@ -56,7 +56,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2 class="panel-title">
-                            <a data-toggle="collapse" href="#collapseOne">Adresse et informations personnelles</a>
+                            <a data-toggle="collapse" href="#collapseOne">{{ "Adresse et Informations personnelles"|trans }}</a>
                         </h2>
                     </div>
                     <div id="collapseOne" class="">
@@ -65,7 +65,7 @@
                                 {% if utilisateur.adresses|length != 0 %}
                                 <form id="valid-adresse" action="{{ path('validation_panier') }}" method="POST">
 
-                                    <h3>Adresse personnelle</h3>
+                                    <h3>{{ "Adresse personnelle"|trans }}</h3>
                                     {% for adresse in utilisateur.adresses %}
                                         <label class="radio">
                                             <input type="radio" name="livraison" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
@@ -76,7 +76,7 @@
 
                                     <br><br>
 
-                                    <h3>Adresse de facturation</h3>
+                                    <h3>{{ "Adresse de facturation"|trans }}</h3>
                                     {% for adresse in utilisateur.adresses %}
                                         <label class="radio">
                                             <input type="radio" name="facturation" value="{{ adresse.id }}" {% if loop.index0 == 0 %}checked="checked"{% endif %}>
@@ -95,16 +95,16 @@
 
                     </div>
                     <div class="panel-footer">
-                        <button type="submit" class="btn btn-primary" form="valid-adresse">Valider mes adresses</button>
+                        <button type="submit" class="btn btn-primary" form="valid-adresse">{{ "Valider mes adresses"|trans }}</button>
                     </div>
 
                 </div>
             </div>
             <div class="col-md-5">
-                <button class="btn btn-info" data-toggle="collapse" data-target="#addNewAdresse">Ajouter une nouvelle adresse</button>
+                <button class="btn btn-info" data-toggle="collapse" data-target="#addNewAdresse">{{ "Ajouter une nouvelle adresse"|trans }}</button>
                 <form id="addNewAdresse" class="collapse" action="{{ path('livraison_panier') }}" method="POST">
                     {{ form_widget(form) }}
-                    <button class="btn btn-primary" type="submit">Ajouter</button>
+                    <button class="btn btn-primary" type="submit">{{ "Ajouter"|trans }}</button>
                 </form>
             </div>
         </div>

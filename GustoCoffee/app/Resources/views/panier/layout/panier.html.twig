@@ -226,7 +226,7 @@
 
                         {% if produits|length > 0 %}
 
-                            {# @var produit \AppBundle\Entity\Place #}
+                            {# @var produit \AppBundle\Entity\Produit #}
                             {%  for produit in produits %}
                                 <li class="items {% if cmpt is odd %}odd{% else %}even{% endif %}">
                                     {% set cmpt = cmpt + 1 %}
