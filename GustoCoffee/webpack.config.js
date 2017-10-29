@@ -11,8 +11,51 @@ Encore
     // empty the outputPath dir before each build
     .cleanupOutputBeforeBuild()
 
+    .autoProvideVariables({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery',
+    })
+
+    // .addLoader({
+    //     test: /\.(gif|png|jpe?g|svg)$/i,
+    //     loaders: [
+    //         'file-loader', {
+    //             loader: 'image-webpack-loader',
+    //             options: {
+    //                 gifsicle: {
+    //                     interlaced: false,
+    //                 },
+    //                 optipng: {
+    //                     optimizationLevel: 7,
+    //                 },
+    //                 pngquant: {
+    //                     quality: '65-90',
+    //                     speed: 4
+    //                 },
+    //                 mozjpeg: {
+    //                     progressive: true,
+    //                     quality: 65
+    //                 },
+    //                 // // Specifying webp here will create a WEBP version of your JPG/PNG images
+    //                 // webp: {
+    //                 //     quality: 75
+    //                 // }
+    //             }
+    //         }
+    //     ]
+    // })
+    .createSharedEntry('vendor', [
+        'jquery',
+        'jquery-ui-dist/jquery-ui.js',
+        'bootstrap',
+        './web/bundles/fosjsrouting/js/router.js',
+        // './web/js/fos_js_routes.js',
+    ])
+
     // will output as web/build/app.js
     .addEntry('app', [
+        './web/assets/js/main.js',
         './web/assets/js/scripts.js',
         './web/assets/js/fixdiv.js',
         // './web/assets/js/modal.js',
@@ -36,6 +79,7 @@ Encore
     // will output as web/build/global.css
     .addStyleEntry('global', [
         // './web/assets/scss/_helper.scss',
+        './web/bundles/bmatznerfontawesome/scss/font-awesome.scss',
         './web/assets/scss/global.scss',
         './web/assets/scss/home.scss',
         './web/assets/scss/cart.scss',
@@ -66,12 +110,10 @@ Encore
     .enableSassLoader()
 
     //.enableLessLoader()
+    .enablePostCssLoader()
 
-    //.autoProvidejQuery()
+    //.enableSourceMaps(!Encore.isProduction())
 
-    .enableSourceMaps(!Encore.isProduction())
-
-    // .enableVersioning()
     .enableVersioning(!Encore.isProduction())
 
 ;

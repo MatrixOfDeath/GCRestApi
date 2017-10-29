@@ -13,13 +13,13 @@
     <meta name="KASAgency" content="{% trans %}KASAgency est une jeune agence web.{% endtrans %}">
 
     <link rel="icon" type="image/png" href="{{ asset('img/gc_favicon_16x16.ico')}}" />
-    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    {#<link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">#}
     <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('css/jquery-ui.theme.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    {#<link href="{{ asset('css/jquery-ui.theme.min.css')}}" rel="stylesheet">#}
+    {#<link href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">#}
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
-    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    {#<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>#}
+    {#<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>#}
     {#<script async>#}
         {#window.cookieconsent_options = {"theme":"dark-bottom",#}
             {#"message":"{{ "Ce site web utilise des cookies pour améliorer votre expérience de navigation. En poursuivant votre navigation, vous acceptez l'utilisation des cookies."|trans }}",#}
@@ -81,7 +81,6 @@
 <body>
 {% block body %}
 
-    {% block navbar %}
     <div id="main" class="container-fluid">
         <div class="row ">
 
@@ -98,7 +97,6 @@
             </div>
 
         </div>
-        {% endblock %}
 
         {% block content %}
         {% endblock %}
@@ -116,25 +114,29 @@
    {% embed "footer.html.twig" %}
    {% endembed  %}
 
-
     {% endblock %}
+
     {% block script %}
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
-        {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
-        <script async defer src="{{ asset('js/jquery-ui.min.js') }}"></script>
-        {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
-        <script async defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-        <script async defer type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
+            {#<script src="{{ asset('js/jquery.min.js') }}"></script>#}
+            {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
+            {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
 
-        <script async src="{{ asset('js/bootstrap.min.js') }}"></script>
-        {#<script>#}
-        {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
-        {#</script>#}
+            {#<script async src="{{ asset('js/bootstrap.min.js') }}"></script>#}
+            {#<script>#}
+            {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
+            {#</script>#}
 
-        <script async src="{{ asset('build/app.js') }}"></script>
-        {#  Adding ajax script TODO: add specific on each page #}
-        <script async src="{{ asset('build/ajax.js') }}"></script>
+            <script src="{{ asset('build/manifest.js') }}"></script>
+            <script src="{{ asset('build/vendor.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 
+            <script src="{{ asset('build/app.js') }}"></script>
+
+            {#  Adding ajax script TODO: add specific on each page #}
+            <script src="{{ asset('build/ajax.js') }}"></script>
+            {#<script async defer src="{{ asset('js/jquery-ui.min.js') }}"></script>#}
+            {#<script async defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>#}
     {% endblock %}
+
 </body>
 </html>
