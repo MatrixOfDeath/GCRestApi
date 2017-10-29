@@ -118,8 +118,4 @@ DpnXmlSitemapBundle:
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
-
-JMSTranslationBundle_ui:
-    resource: "@JMSTranslationBundle/Controller/"
-    type:     annotation
-    prefix:   /_trans
+    
