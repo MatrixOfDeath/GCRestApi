@@ -1,30 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>{{ 'GustoCoffee - Home'|trans }}</title>
+    {{ 'GustoCoffee - Home'|trans }}
 {% endblock %}
 
 {% block firstImg %}
-    topPage topPageHome
+    {#topPage #} topPageHome
 {% endblock %}
 
 {% block paddingTitle %}
-    paddingTitle
+    {#paddingTitle#}
 {%  endblock %}
 
 {% block titleHome %}
-    <div class="banniere">
-        <h1 class="colorWhite">Enjoy, Coffee & Work</h1>
-        <h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>
-    </div>
-    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
-        {{ 'Réservez ici'|trans }}
-    </button>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
-        <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
-            {{ 'Inscrivez-vous dès maintenant !'|trans }}
-        </button>
-    {% endif %}
+    {% embed('@GCHome/Default/carousel.html.twig') %}
+    {% endembed %}
+    {#<div class="banniere">#}
+        {#<h1 class="colorWhite">Enjoy, Coffee & Work</h1>#}
+        {#<h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>#}
+    {#</div>#}
+    {#<button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">#}
+        {#{{ 'Réservez ici'|trans }}#}
+    {#</button>#}
+    {#{% if is_granted('IS_AUTHENTICATED_FULLY') == false %}#}
+        {#<button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">#}
+            {#{{ 'Inscrivez-vous dès maintenant !'|trans }}#}
+        {#</button>#}
+    {#{% endif %}#}
 {% endblock %}
 
 
@@ -71,7 +73,7 @@
             <h2 class="homepageTitle centerText">{{ 'Nos Services'|trans }}</h2>
             <p class="textDescription">
                 {% trans %}
-                GustoCoffe vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif. <br>
+                GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif. <br>
                 On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !{% endtrans %}
                 <br>{% trans %}Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner, en réservant une salle privée, tout en continuant votre travail de la journée.{% endtrans %}
                 <br>
@@ -104,7 +106,7 @@
                 {% endtrans %}
             </p>
         </div>
-        <div class="col-md-6 home-img h-250" style="background-image: url('{{ asset('img/servicesResto.jpg') }}'); background-size: cover;">
+        <div class="col-md-6 home-img h-250" style="background-image: url('{{ asset('img/background_events.jpeg.jpg') }}'); background-size: cover;">
         </div>
     </div>
 

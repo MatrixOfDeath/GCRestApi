@@ -1,0 +1,90 @@
+<div id="bootstrap-touch-slider" class="carousel bs-slider control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#bootstrap-touch-slider" data-slide-to="0" class="active"></li>
+        <li data-target="#bootstrap-touch-slider" data-slide-to="1"></li>
+        <li data-target="#bootstrap-touch-slider" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper For Slides -->
+    <div class="carousel-inner" role="listbox">
+
+        <!-- first Slide -->
+        <div class="item active">
+
+            <!-- Slide Background -->
+            <img src="{{ asset('img/background_homepage.jpeg') }}" alt="Bootstrap Touch Slider"  class="slide-image"/>
+            <div class="bs-slider-overlay"></div>
+
+            <div class="container">
+                <div class="row">
+                    <!-- Slide Text Layer -->
+                    <div class="slide-text slide_style_left">
+                        <h1 data-animation="animated zoomInRight">Enjoy, Coffee & Work avec GustoCoffee</h1>
+                        <p data-animation="animated fadeInLeft">{{"Nous mettons à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif."|trans}}</p>
+                        <a href="{{ path('place_index') }}" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">{{ 'Réservez une place'|trans }}</a>
+                        <a href="{{ path('salle_index') }}" target="_blank"  class="btn btn-primary" data-animation="animated fadeInRight">{{ 'Réservez une salle'|trans }}</a>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+                            <a href="{{ path('fos_user_registration_register') }}" target="_blank"  class="btn btn-register" data-animation="animated fadeInUp">{{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Slide -->
+
+        <!-- Second Slide -->
+        <div class="item">
+
+            <!-- Slide Background -->
+            <img src="{{ asset('img/contact-annonce.jpeg') }}" alt="Bootstrap Touch Slider"  class="slide-image"/>
+            <div class="bs-slider-overlay"></div>
+            <!-- Slide Text Layer -->
+            <div class="slide-text slide_style_center">
+                <h1 data-animation="animated flipInX">{{"Profitez de nos nombreux services et produits"|trans}}</h1>
+                <p data-animation="animated lightSpeedIn">{{"Et si on tentait l'expérience"|trans}} ?</p>
+                <a href="{{ path('annonce_index') }}" target="_blank" class="btn btn-default" data-animation="animated fadeInUp">{{ "Mise en relation"|trans }}</a>
+                <a href="{{ path('gc_evenement_page') }}" target="_blank"  class="btn btn-primary" data-animation="animated fadeInDown">{{ 'Nos évenements'|trans }}</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+                    <a href="{{ path('fos_user_registration_register') }}" target="_blank"  class="btn btn-register" data-animation="animated fadeInUp">{{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+                {% endif %}
+            </div>
+        </div>
+        <!-- End of Slide -->
+
+        <!-- Third Slide -->
+        <div class="item">
+
+            <!-- Slide Background -->
+            <img src="{{ asset('img/background_connexion.jpg') }}" alt="Bootstrap Touch Slider"  class="slide-image"/>
+            <div class="bs-slider-overlay"></div>
+            <!-- Slide Text Layer -->
+            <div class="slide-text slide_style_right">
+                <h1 data-animation="animated zoomInLeft">{{ "Nous proposons plusieurs offres et abonnements" }}</h1>
+                <p data-animation="animated fadeInRight">{{"Bénéficiez de points de fidelités et d'autres avantages en vous inscrivant !"|trans}} ?</p>
+                <a href="{{ path('gc_reservation_page') }}" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">{{ "Nos services"|trans }}</a>
+                <a href="{{ path('gc_reservation_page') }}#GrilleTarification" target="_blank" class="btn btn-primary" data-animation="animated fadeInRight">{{ "Nos tarifs"|trans }}</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+                    <a href="{{ path('fos_user_registration_register') }}" target="_blank"  class="btn btn-register" data-animation="animated fadeInUp">{{ 'Inscrivez-vous dès maintenant !'|trans }}</a>
+                {% endif %}
+            </div>
+        </div>
+        <!-- End of Slide -->
+
+
+    </div><!-- End of Wrapper For Slides -->
+
+    <!-- Left Control -->
+    <a class="left carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="prev">
+        <span class="fa fa-angle-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+
+    <!-- Right Control -->
+    <a class="right carousel-control" href="#bootstrap-touch-slider" role="button" data-slide="next">
+        <span class="fa fa-angle-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+
+</div> <!-- End  bootstrap-touch-slider Slider -->

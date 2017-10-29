@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@symfony/webpack-encore": "^0.14.0",
+    "animate-sass": "^0.6.6",
     "bootstrap-sass": "^3.3.7",
     "image-webpack-loader": "^3.4.2",
     "jquery": "^3.2.1",
@@ -361,6 +362,7 @@
     "isexe": "^2.0.0",
     "isobject": "^3.0.1",
     "isstream": "^0.1.2",
+    "jquery-touchswipe": "^1.6.15",
     "jquery-ui-dist": "^1.12.1",
     "js-base64": "^2.1.9",
     "js-tokens": "^3.0.2",

@@ -5,19 +5,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
 
-    {% block title %}
-    {% endblock %}
+    <meta property="og:site_name" content="GustoCoffee">
+    <meta property="og:url" content="{{ app.request.getSchemeAndHttpHost() }}">
+    <meta property="og:image:url" content="{{ app.request.getSchemeAndHttpHost() ~ asset('img/gc_transparent_resize.png') }}">
+    <meta property="og:image" content="{{ app.request.getSchemeAndHttpHost() ~ asset('img/gc_transparent_resize.png') }}">
+    <meta property="og:title" content="{{ block('title') }}">
 
     <meta name="description" content="{% trans %}GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. {% endtrans %}">
     <meta name="KASAgency" content="{% trans %}KASAgency est une jeune agence web.{% endtrans %}">
 
     <link rel="icon" type="image/png" href="{{ asset('img/gc_favicon_16x16.ico')}}" />
     {#<link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">#}
-    <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">
+    {#<link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">#}
     {#<link href="{{ asset('css/jquery-ui.theme.min.css')}}" rel="stylesheet">#}
     {#<link href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">#}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
+
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
+
     {#<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>#}
     {#<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>#}
     {#<script async>#}
@@ -68,13 +75,6 @@
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108499849-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-108499849-1');
-    </script>
 </head>
 
 {% endblock %}
@@ -129,6 +129,7 @@
             <script src="{{ asset('build/manifest.js') }}"></script>
             <script src="{{ asset('build/vendor.js') }}"></script>
             <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        {#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>#}
 
             <script src="{{ asset('build/app.js') }}"></script>
 
@@ -136,6 +137,13 @@
             <script src="{{ asset('build/ajax.js') }}"></script>
             {#<script async defer src="{{ asset('js/jquery-ui.min.js') }}"></script>#}
             {#<script async defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>#}
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'UA-108499849-1');
+            </script>
     {% endblock %}
 
 </body>

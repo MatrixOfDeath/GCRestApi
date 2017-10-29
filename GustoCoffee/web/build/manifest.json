@@ -16,7 +16,6 @@
   "build/images/background_connexion.jpg": "/build/images/background_connexion.b74ac66b.jpg",
   "build/images/background_dashboard.jpg": "/build/images/background_dashboard.876eb8be.jpg",
   "build/images/background_events.jpeg": "/build/images/background_events.658bd1c2.jpeg",
-  "build/images/background_homepage.jpeg": "/build/images/background_homepage.a5e660d6.jpeg",
   "build/images/background_panier.jpg": "/build/images/background_panier.fa31bc3e.jpg",
   "build/images/background_resa-salle.jpg": "/build/images/background_resa-salle.7513d3bf.jpg",
   "build/images/background_resa.jpeg": "/build/images/background_resa.8f73584d.jpeg",
@@ -25,6 +24,13 @@
   "build/images/glyphicons-halflings-regular.svg": "/build/images/glyphicons-halflings-regular.89889688.svg",
   "build/images/loading.gif": "/build/images/loading.140c09dc.gif",
   "build/images/openspace.jpg": "/build/images/openspace.db5f8831.jpg",
+  "build/images/ui-icons_444444_256x240.png": "/build/images/ui-icons_444444_256x240.d10bc070.png",
+  "build/images/ui-icons_555555_256x240.png": "/build/images/ui-icons_555555_256x240.00dd0ec0.png",
+  "build/images/ui-icons_777620_256x240.png": "/build/images/ui-icons_777620_256x240.4e7e3e14.png",
+  "build/images/ui-icons_777777_256x240.png": "/build/images/ui-icons_777777_256x240.40bf2579.png",
+  "build/images/ui-icons_cc0000_256x240.png": "/build/images/ui-icons_cc0000_256x240.093a8191.png",
+  "build/images/ui-icons_ffffff_256x240.png": "/build/images/ui-icons_ffffff_256x240.ea4ebe07.png",
   "build/manifest.js": "/build/manifest.js",
+  "build/vendor.css": "/build/vendor.css",
   "build/vendor.js": "/build/vendor.js"
 }

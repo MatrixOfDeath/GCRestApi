@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
+                <span class="sr-only">{{ "Toggle navigation"|trans }}</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -40,8 +40,8 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="{{ path('fos_user_profile_edit') }}">{{ 'Espace Client'|trans }}</a>
                     {% endif %}
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('factures') }}">Vos Factures</a></li>
-                        <li><a href="{{ path('factures') }}">Mes informations</a></li>
+                        <li><a href="{{ path('factures') }}">{{ "Vos Factures"|trans }}</a></li>
+                        <li><a href="{{ path('factures') }}">{{ "Mes informations"|trans }}</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Separated link</a></li>
                     </ul>

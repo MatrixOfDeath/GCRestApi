@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>{{ 'GustoCoffee - Évènements'|trans }}</title>
+    {{ 'GustoCoffee - Évènements'|trans }}
 {% endblock %}
 
 {% block firstImg %}
@@ -29,7 +29,7 @@
 
 {% block firstBlock %}
     <div class="row ">
-        <div class="col-md-6 home-img h-550" style="background-image: url('{{ asset('img/evenement.jpg') }}'); background-size: cover;">
+        <div class="col-md-6 home-img h-550" style="background-image: url('{{ asset('img/evenement.jpg') }}'); background-size: cover; background-position:top;">
         </div>
         <div class="col-md-6 hp-45 pt-20">
             <h2 class="homepageTitle centerText">{{ 'Ouverture du nouveau café coworking'|trans }}</h2>
@@ -57,7 +57,7 @@
                 {% endtrans %}
             </p>
         </div>
-        <div class="col-md-6 home-img h-250" style="background-image: url('{{ asset('img/background_events.jpeg') }}'); background-size: cover;">
+        <div class="col-md-6 home-img h-250" style="background-image: url('{{ asset('img/worktogether.jpg') }}'); background-size: cover;">
         </div>
     </div>
 {% endblock %}
