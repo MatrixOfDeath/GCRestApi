@@ -24,7 +24,6 @@ class AnnonceType extends AbstractType
                     "Demande d'informations" => "Demande d'informations",
                 ),
             ));
-            //->add('idpersonne');
     }
 
     /**

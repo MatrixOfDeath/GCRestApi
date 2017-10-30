@@ -23,7 +23,6 @@ use Nelmio\ApiDocBundle\Annotation\Operation;
  */
 class RestRegistrationController extends BaseController
 {
-
     use \AppBundle\Helper\ControllerHelper;
     /**
      * @Route("/register", name="user_register")
@@ -41,15 +40,12 @@ class RestRegistrationController extends BaseController
      */
     public function registerAction(Request $request)
     {
-
         /** @var \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
         /** @var \FOS\UserBundle\Model\UserManagerInterface */
         $userManager = $this->get('fos_user.user_manager');
         /** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface */
-        //$container = new ContainerBuilder();
         $dispatcher = new EventDispatcher();
-        //$dispatcher = $this->get('event_dispatcher');
 
         $user = $userManager->createUser();
         $event = new GetResponseUserEvent($user, $request);

@@ -82,16 +82,6 @@ class Reservation
      */
     private $commentaireclient;
 
-//    /**
-//     * @var \AppBundle\Entity\Magasin
-//     *
-//     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Magasin")
-//     * @ORM\JoinColumns({
-//     *   @ORM\JoinColumn(name="idMagasin", referencedColumnName="idMagasin")
-//     * })
-//     */
-//    private $idmagasin;
-
     /**
      * @var \AppBundle\Entity\ModeDePaiement
      *
@@ -342,31 +332,6 @@ class Reservation
     {
         return $this->idreservation;
     }
-
-
-//    /**
-//     * Set idmagasin
-//     *
-//     * @param \AppBundle\Entity\Magasin $idmagasin
-//     *
-//     * @return Reservation
-//     */
-//    public function setIdmagasin(\AppBundle\Entity\Magasin $idmagasin = null)
-//    {
-//        $this->idmagasin = $idmagasin;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get idmagasin
-//     *
-//     * @return \AppBundle\Entity\Magasin
-//     */
-//    public function getIdmagasin()
-//    {
-//        return $this->idmagasin;
-//    }
 
     /**
      * @return Place

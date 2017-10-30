@@ -6,8 +6,6 @@
  * Time: 15:34
  */
 
-// src/AppBundle/Entity/AuthCode.php
-
 namespace AppBundle\Entity;
 
 use FOS\OAuthServerBundle\Entity\AuthCode as BaseAuthCode;

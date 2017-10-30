@@ -248,8 +248,6 @@ class PanierController extends Controller
             $this->get('session')->getFlashBag()->add('nodfound','Article déjà supprimé');
             return new Response(json_encode("Produit not found"));
         }
-
-        //return $this->redirect($this->generateUrl('panier'));
     }
 
 
@@ -431,7 +429,7 @@ class PanierController extends Controller
             $heureChoixFin = $request->request->get('heureChoixFin');
             $id = $request->request->get('id');
             $date = $request->request->get('date');
-            if ($date or $date == ""){
+            if ($date || $date == ""){
                 $date = new \Datetime();
             }
             $d1 = new \DateTime($heureChoixDebut);
@@ -447,8 +445,7 @@ class PanierController extends Controller
                     'totalHeures' => $interval->h,
                     'totalMinutes' => $interval->i,
                     'idReservation' => $panier_salle[$id]['idReservation'],
-//                  'idReservation' => null,
-//                  'idCommande' => null
+
                 );
                 $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');
             } else {
@@ -459,7 +456,6 @@ class PanierController extends Controller
                     'totalHeures' => $interval->h,
                     'totalMinutes' => $interval->i,
                     'idReservation' => null,
-//                  'idCommande' => null
                 );
                 $session->getFlashBag()->add('success', 'Salle ajouté avec succès');
 
@@ -496,7 +492,7 @@ class PanierController extends Controller
             $heureChoixFin = $request->request->get('heureChoixFin');
             $id = $request->request->get('id');
             $date = $request->request->get('date');
-            if ($date or $date == ""){
+            if ($date || $date == ""){
                 $date = new \Datetime();
             }
             $d1 = new \DateTime($heureChoixDebut);
@@ -524,7 +520,6 @@ class PanierController extends Controller
                     'totalHeures' => $interval->h,
                     'totalMinutes' => $interval->i,
                     'idReservation' => null,
-//                  'idCommande' => null
                 );
                 $session->getFlashBag()->add('success', 'Salle ajouté avec succès');
 

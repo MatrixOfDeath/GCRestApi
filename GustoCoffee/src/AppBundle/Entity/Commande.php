@@ -129,18 +129,6 @@ class Commande
      */
     private $reference;
 
-
-//    /**
-//     * @var \AppBundle\Entity\Personne
-//     *
-//     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Personne")
-//     * @ORM\JoinColumns({
-//     *   @ORM\JoinColumn(name="idPersonne", referencedColumnName="id")
-//     * })
-//     */
-//    private $idpersonne;
-
-
     /**
      * Set valider
      *
@@ -291,30 +279,6 @@ class Commande
     {
         return $this->idmodepaiement;
     }
-
-//    /**
-//     * Set idpersonne
-//     *
-//     * @param \AppBundle\Entity\Personne $idpersonne
-//     *
-//     * @return Commande
-//     */
-//    public function setIdpersonne(\AppBundle\Entity\Personne $idpersonne = null)
-//    {
-//        $this->idpersonne = $idpersonne;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get idpersonne
-//     *
-//     * @return \AppBundle\Entity\Personne
-//     */
-//    public function getIdpersonne()
-//    {
-//        return $this->idpersonne;
-//    }
 
     /**
      * Set utilisateur

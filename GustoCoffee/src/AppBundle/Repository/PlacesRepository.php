@@ -22,7 +22,6 @@ class PlacesRepository extends EntityRepository
             ->Select('p.position, p.idplace, p.nomplace')
             ->where('p.idsalle = :idsalle')
             ->setParameter('idsalle', $idsalle);
-//            ->orderBy('u.ligne', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
@@ -39,7 +38,6 @@ class PlacesRepository extends EntityRepository
             ->andWhere('u.position = :position')
             ->setParameter('position', $idposition)
             ->setParameter('idsalle', $idsalle);
-//            ->orderBy('u.ligne', 'ASC');
 
         return $qb->getQuery()->getResult();
     }
@@ -64,14 +62,11 @@ class PlacesRepository extends EntityRepository
 
         $query = $queryBuilder
             ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
-//            ->andWhere(':heureChoixDebut < :datenow')
-            //->setParameter('datenow', date("Y-m-d H:i:s"))
             ->setParameter('heureChoixDebut', $heureChoixDebut)
             ->setParameter('heureChoixFin', $heureChoixFin);
 
         return $query->getQuery()->getResult();
     }
-
 
     /**
      * Retourne toutes les places disponibles selons un créneau horaire donné
@@ -94,8 +89,6 @@ class PlacesRepository extends EntityRepository
         $query = $queryBuilder
             ->select('p.position, p.idplace, p.nomplace')
             ->where($queryBuilder->expr()->in('p.idplace', $subQuery->getDQL()))
-//            ->andWhere(':heureChoixDebut < :datenow')
-            //->setParameter('datenow', date("Y-m-d H:i:s"))
             ->setParameter('heureChoixDebut', $heureChoixDebut)
             ->setParameter('heureChoixFin', $heureChoixFin);
 
@@ -123,8 +116,6 @@ class PlacesRepository extends EntityRepository
         $query = $queryBuilder
             ->select('p.position, p.idplace, p.nomplace')
             ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
-//            ->andWhere(':heureChoixDebut < :datenow')
-            //->setParameter('datenow', date("Y-m-d H:i:s"))
             ->setParameter('heureChoixDebut', $heureChoixDebut)
             ->setParameter('heureChoixFin', $heureChoixFin);
 

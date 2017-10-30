@@ -2,7 +2,6 @@
 namespace AppBundle\Services;
 
 use Doctrine\ORM\EntityManager;
-//use Symfony\Component\Security\Core\SecurityContextInterface;
 
 class GetReference 
 {

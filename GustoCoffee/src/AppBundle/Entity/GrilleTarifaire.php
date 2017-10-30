@@ -52,12 +52,6 @@ class GrilleTarifaire
         $this->magasin = $magasin;
     }
 
-//    /**
-//     * @var integer
-//     * @ORM\Column(name="idMagasin", type="integer")
-//     */
-//    private $idmagasin;
-
     /**
      * Heure correspondant au prix
      * @var integer

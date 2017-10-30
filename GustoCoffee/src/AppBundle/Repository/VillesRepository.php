@@ -16,7 +16,6 @@ class VillesRepository extends EntityRepository
     {
         $query = $this->createQueryBuilder('v')
             ->where('v.villeCodePostal LIKE :cp')
-            //->andWhere('LENGTH(:cp) = 5')
             ->setParameter('cp', '%'.(string)$cp.'%')
             ->distinct(true);
 

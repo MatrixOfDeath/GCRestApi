@@ -43,7 +43,6 @@ class UtilisateursAdressesType extends AbstractType
             ->add('pays')
             ->add('vatNumber')
             ->add('complement',null,array('required' => false))
-            //->add('utilisateur')
         ;
 
         $city = function(FormInterface $form, $cp) {

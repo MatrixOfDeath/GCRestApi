@@ -3,7 +3,6 @@ namespace AppBundle\Services;
 
 
 use Spipu\Html2Pdf\Html2Pdf;
-//use Symfony\Component\Security\Core\Authentication\Authorization;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class GetFacture 

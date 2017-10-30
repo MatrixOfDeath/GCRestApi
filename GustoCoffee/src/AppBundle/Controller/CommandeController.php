@@ -244,12 +244,12 @@ class CommandeController extends FOSRestController
                 $totalMinutes = 0;
             }
 
-            if ($totaleHeuresR >= 5 or ($totaleHeuresR >= 5 and  $totaleMinutesR >= 30) ) {
+            if ($totaleHeuresR >= 5 || ($totaleHeuresR >= 5 && $totaleMinutesR >= 30) ) {
                 $totalSalleTTC = $totalSalleTTC + $salle->getPrixsalle() * 4;
                 $prixSalleTTC = $salle->getPrixsalle() * 4;
                 $commande['salle'][$salle->getIdsalle()]['journeeIllimitee'] = 1;
             }
-            else if( ($totaleHeuresR == 3 and $total30Minutes >= 30) or $totaleHeuresR >= 4 ) {
+            else if( ($totaleHeuresR == 3 && $total30Minutes >= 30) || $totaleHeuresR >= 4 ) {
                 $totalSalleTTC =  $totalSalleTTC + $salle->getPrixsalle() + (($total30Minutes - 2 )* 2 * $salle->getCapacitymax()) + $totalMinutes - (2 * $salle->getCapacitymax());
                 $thirdHourFree += (2 * $salle->getCapacitymax());
                 $commande['salle'][$salle->getIdsalle()]['thirdHourFree'] = 1;
@@ -301,12 +301,12 @@ class CommandeController extends FOSRestController
                 $totalMinutes = 0;
             }
 
-            if ($totaleHeuresR >= 5 or ($totaleHeuresR >= 5 and  $totaleMinutesR >= 30) ) {
+            if ($totaleHeuresR >= 5 || ($totaleHeuresR >= 5 && $totaleMinutesR >= 30) ) {
                 $totalPlaceTTC = $totalPlaceTTC + $place->getPrixplace() * 4;
                 $prixPlaceTTC = $place->getPrixplace() * 4;
                 $commande['place'][$place->getIdplace()]['journeeIllimitee'] = 1;
             }
-            else if( ($totaleHeuresR == 3 and $total30Minutes >= 30) or $totaleHeuresR >= 4 ) {
+            else if( ($totaleHeuresR == 3 && $total30Minutes >= 30) || $totaleHeuresR >= 4 ) {
                 $totalPlaceTTC =  $totalPlaceTTC + $place->getPrixplace() + (($total30Minutes - 2 ) * 2) + $totalMinutes - 2;
                 $thirdHourFree += 2;
                 $commande['place'][$place->getIdplace()]['thirdHourFree'] = 1;

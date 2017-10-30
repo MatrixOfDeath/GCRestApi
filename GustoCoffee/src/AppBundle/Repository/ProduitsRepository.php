@@ -25,10 +25,8 @@ class ProduitsRepository extends EntityRepository
     {
          $qb = $this->createQueryBuilder('u')
                     ->select('u')
-                   // ->where('u.categorie = :categorie')
                     ->andWhere('u.quantiteenstock > 0')
                     ->orderBy('u.idproduit');
-                   // ->setParameter('categorie', $categorie);
         return $qb->getQuery()->getResult();
     }
     
