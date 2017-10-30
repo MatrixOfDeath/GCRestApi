@@ -177,12 +177,12 @@ fos_user:
         user_manager: my_user_manager
     registration:
         form:
-            type: AppBundle\Form\RegistrationType
+            type: AppBundle\Form\Type\RegistrationType
         confirmation:
             enabled: true
     profile:
         form:
-            type: AppBundle\Form\ProfileFormType
+            type: AppBundle\Form\Type\ProfileFormType
             name: fos_user_profile_form
     from_email:
         address: "%mailer_user%"

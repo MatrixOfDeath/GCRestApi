@@ -54,7 +54,7 @@ services:
         public: true
 
     adresse_type_form:
-        class: AppBundle\Form\UtilisateursAdressesType
+        class: AppBundle\Form\Type\UtilisateursAdressesType
         arguments: [ '@doctrine.orm.entity_manager']
 
     redirectionListener:
