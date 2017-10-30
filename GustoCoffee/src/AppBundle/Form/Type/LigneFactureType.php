@@ -1,19 +1,19 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TransactionType extends AbstractType
+class LigneFactureType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('datetrans')->add('statuttransaction')->add('commentairetransaction')->add('idfacture');
+        $builder->add('idfacture')->add('idtva');
     }
     
     /**
@@ -22,7 +22,7 @@ class TransactionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Transaction'
+            'data_class' => 'AppBundle\Entity\LigneFacture'
         ));
     }
 
@@ -31,7 +31,7 @@ class TransactionType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_transaction';
+        return 'appbundle_lignefacture';
     }
 
 

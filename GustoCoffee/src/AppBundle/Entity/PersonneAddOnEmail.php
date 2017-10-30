@@ -37,7 +37,7 @@ class PersonneAddOnEmail
 
     public function __construct()
     {
-        if ($this->getCreatedAt() == null) {
+        if ($this->getCreatedAt() === null) {
             $this->setCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
         }
     }

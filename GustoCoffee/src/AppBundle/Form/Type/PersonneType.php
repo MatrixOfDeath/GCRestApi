@@ -1,19 +1,26 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MagasinType extends AbstractType
+class PersonneType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nommagasin')->add('adresse')->add('idsalle');
+        $builder
+            ->add('indentifiant')
+            ->add('email')
+            ->add('nom')
+            ->add('prenom')
+            ->add('adresse')
+            ->add('codepostal')
+            ->add('ville');
     }
     
     /**
@@ -22,7 +29,7 @@ class MagasinType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Magasin'
+            'data_class' => 'AppBundle\Entity\Personne'
         ));
     }
 
@@ -31,7 +38,7 @@ class MagasinType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_magasin';
+        return 'appbundle_personne';
     }
 
 

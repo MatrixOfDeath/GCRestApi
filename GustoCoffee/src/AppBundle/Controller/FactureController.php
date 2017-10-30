@@ -51,7 +51,7 @@ class FactureController extends FOSRestController
     public function newAction(Request $request)
     {
         $facture = new Facture();
-        $form = $this->createForm('AppBundle\Form\FactureType', $facture);
+        $form = $this->createForm('AppBundle\Form\Type\FactureType', $facture);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -93,7 +93,7 @@ class FactureController extends FOSRestController
     public function editAction(Request $request, Facture $facture)
     {
         $deleteForm = $this->createDeleteForm($facture);
-        $editForm = $this->createForm('AppBundle\Form\FactureType', $facture);
+        $editForm = $this->createForm('AppBundle\Form\Type\FactureType', $facture);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -194,3 +194,4 @@ class FactureController extends FOSRestController
     }
 
 }
+

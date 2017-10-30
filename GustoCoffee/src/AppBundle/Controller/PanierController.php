@@ -362,10 +362,10 @@ class PanierController extends Controller
         $panier = $session->get('panier');
 
         if (array_key_exists($id, $panier)) {
-            if ($request->query->get('qte') != null) $panier[$id] = $request->query->get('qte');
+            if ($request->query->get('qte') !== null) $panier[$id] = $request->query->get('qte');
             $session->getFlashBag()->add('success','Quantité modifié avec succès');
         } else {
-            if ($request->query->get('qte') != null)
+            if ($request->query->get('qte') !== null)
                 $panier[$id] = $request->query->get('qte');
             else
                 $panier[$id] = 1;
@@ -758,7 +758,7 @@ class PanierController extends Controller
         $utilisateur = $this->getUser();
 
         $entity = new UtilisateursAdresses();
-        $form = $this->createForm('AppBundle\Form\UtilisateursAdressesType', $entity);
+        $form = $this->createForm('AppBundle\Form\Type\UtilisateursAdressesType', $entity);
 
         
         if ($request->getMethod() == 'POST')
@@ -791,7 +791,7 @@ class PanierController extends Controller
         $utilisateur = $this->getUser();
 
         $entity = new UtilisateursAdresses();
-        $form = $this->createForm('AppBundle\Form\UtilisateursAdressesType', $entity);
+        $form = $this->createForm('AppBundle\Form\Type\UtilisateursAdressesType', $entity);
 
 
         if ($request->getMethod() == 'POST')
@@ -825,7 +825,7 @@ class PanierController extends Controller
         if (!$session->has('adresse')) $session->set('adresse', array());
         $adresse = $session->get('adresse');
         
-        if ($request->request->get('livraison') != null && $request->request->get('facturation') != null)
+        if ($request->request->get('livraison') !== null && $request->request->get('facturation') != null)
         {
             $adresse['livraison'] = $request->request->get('livraison');
             $adresse['facturation'] = $request->request->get('facturation');
@@ -850,7 +850,7 @@ class PanierController extends Controller
         if (!$session->has('adresse')) $session->set('adresse', array());
         $adresse = $session->get('adresse');
 
-        if ($request->request->get('livraison') != null && $request->request->get('facturation') != null)
+        if ($request->request->get('livraison') !== null && $request->request->get('facturation') != null)
         {
             $adresse['livraison'] = $request->request->get('livraison');
             $adresse['facturation'] = $request->request->get('facturation');

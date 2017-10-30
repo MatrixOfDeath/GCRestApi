@@ -42,7 +42,7 @@ class TransactionController extends FOSRestController
     public function newAction(Request $request)
     {
         $transaction = new Transaction();
-        $form = $this->createForm('AppBundle\Form\TransactionType', $transaction);
+        $form = $this->createForm('AppBundle\Form\Type\TransactionType', $transaction);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -84,7 +84,7 @@ class TransactionController extends FOSRestController
     public function editAction(Request $request, Transaction $transaction)
     {
         $deleteForm = $this->createDeleteForm($transaction);
-        $editForm = $this->createForm('AppBundle\Form\TransactionType', $transaction);
+        $editForm = $this->createForm('AppBundle\Form\Type\TransactionType', $transaction);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

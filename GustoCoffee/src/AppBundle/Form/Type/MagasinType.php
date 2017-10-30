@@ -1,19 +1,19 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PlaceType extends AbstractType
+class MagasinType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomplace')->add('statutplace')->add('idsalle');
+        $builder->add('nommagasin')->add('adresse')->add('idsalle');
     }
     
     /**
@@ -22,7 +22,7 @@ class PlaceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Place'
+            'data_class' => 'AppBundle\Entity\Magasin'
         ));
     }
 
@@ -31,7 +31,7 @@ class PlaceType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_place';
+        return 'appbundle_magasin';
     }
 
 

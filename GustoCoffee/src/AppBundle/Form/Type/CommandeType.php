@@ -1,19 +1,23 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SalleType extends AbstractType
+class CommandeType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nomsalle')->add('capacitymax')->add('idmagasin');
+        $builder
+            ->add('datecommande')
+            ->add('iddemandeproduit')
+            ->add('idmodepaiement')
+            ->add('idpersonne');
     }
     
     /**
@@ -22,7 +26,7 @@ class SalleType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Salle'
+            'data_class' => 'AppBundle\Entity\Commande'
         ));
     }
 
@@ -31,7 +35,7 @@ class SalleType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_salle';
+        return 'appbundle_commande';
     }
 
 

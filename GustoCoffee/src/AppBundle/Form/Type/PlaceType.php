@@ -1,19 +1,19 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FactureType extends AbstractType
+class PlaceType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('datefacturation')->add('nomfichierfacture')->add('idcommande')->add('idreservation')->add('idtransaction')->add('idmodepaiement');
+        $builder->add('nomplace')->add('statutplace')->add('idsalle');
     }
     
     /**
@@ -22,7 +22,7 @@ class FactureType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Facture'
+            'data_class' => 'AppBundle\Entity\Place'
         ));
     }
 
@@ -31,7 +31,7 @@ class FactureType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_facture';
+        return 'appbundle_place';
     }
 
 

@@ -98,7 +98,7 @@ class ProduitController extends FOSRestController
     public function newAction(Request $request)
     {
         $produit = new Produit();
-        $form = $this->createForm('AppBundle\Form\ProduitType', $produit);
+        $form = $this->createForm('AppBundle\Form\Type\ProduitType', $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -140,7 +140,7 @@ class ProduitController extends FOSRestController
     public function editAction(Request $request, Produit $produit)
     {
         $deleteForm = $this->createDeleteForm($produit);
-        $editForm = $this->createForm('AppBundle\Form\ProduitType', $produit);
+        $editForm = $this->createForm('AppBundle\Form\Type\ProduitType', $produit);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -202,7 +202,7 @@ class ProduitController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
 
-        if ($categorie != null)
+        if ($categorie !== null)
             $findProduits = $em->getRepository('AppBundle:Produit')->byCategorie($categorie);
         else
             //Todo: Géré le statut produit après !
@@ -252,7 +252,7 @@ class ProduitController extends FOSRestController
      */
     public function rechercheAction()
     {
-        $form = $this->createForm('AppBundle\Form\RechercheType');
+        $form = $this->createForm('AppBundle\Form\Type\RechercheType');
         return $this->render('produit/recherche.html.twig', array('form' => $form->createView()));
     }
 
@@ -263,7 +263,7 @@ class ProduitController extends FOSRestController
      */
     public function rechercheTraitementAction(Request $request)
     {
-        $form = $this->createForm('AppBundle\Form\RechercheType');
+        $form = $this->createForm('AppBundle\Form\Type\RechercheType');
 
         if ($request->getMethod() == 'POST')
         {

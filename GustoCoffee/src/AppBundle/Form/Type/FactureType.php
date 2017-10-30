@@ -1,19 +1,19 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class LigneFactureType extends AbstractType
+class FactureType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('idfacture')->add('idtva');
+        $builder->add('datefacturation')->add('nomfichierfacture')->add('idcommande')->add('idreservation')->add('idtransaction')->add('idmodepaiement');
     }
     
     /**
@@ -22,7 +22,7 @@ class LigneFactureType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\LigneFacture'
+            'data_class' => 'AppBundle\Entity\Facture'
         ));
     }
 
@@ -31,7 +31,7 @@ class LigneFactureType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_lignefacture';
+        return 'appbundle_facture';
     }
 
 

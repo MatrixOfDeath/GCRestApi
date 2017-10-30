@@ -194,7 +194,7 @@ class PlaceController extends FOSRestController
             return new Response(json_encode('Incorrect parameters'));
         }
     }
-    
+
     /**
      * Creates a new place entity.
      * @Security("has_role('ROLE_ADMIN')")
@@ -204,7 +204,7 @@ class PlaceController extends FOSRestController
     public function newAction(Request $request)
     {
         $place = new Place();
-        $form = $this->createForm('AppBundle\Form\PlaceType', $place);
+        $form = $this->createForm('AppBundle\Form\Type\PlaceType', $place);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -246,7 +246,7 @@ class PlaceController extends FOSRestController
     public function editAction(Request $request, Place $place)
     {
         $deleteForm = $this->createDeleteForm($place);
-        $editForm = $this->createForm('AppBundle\Form\PlaceType', $place);
+        $editForm = $this->createForm('AppBundle\Form\Type\PlaceType', $place);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -322,12 +322,6 @@ class PlaceController extends FOSRestController
 
         }
         $places = $em->getRepository('AppBundle:Place')->checkUnavailablePlace($heureChoixDebut,  $heureChoixFin);
-
-//        $places = $em->getRepository('AppBundle:Place')->checkUnavailablePlace($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
-        //$idplaces = array_column($places, 'idplace');
-
-        //var_dump($idplaces);
-        $map = array();
 
         return new  Response(json_encode($places, JSON_NUMERIC_CHECK, 32));
     }

@@ -1,26 +1,19 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PersonneType extends AbstractType
+class ModeDePaiementType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('indentifiant')
-            ->add('email')
-            ->add('nom')
-            ->add('prenom')
-            ->add('adresse')
-            ->add('codepostal')
-            ->add('ville');
+        $builder->add('modepaiement')->add('description')->add('idfacture');
     }
     
     /**
@@ -29,7 +22,7 @@ class PersonneType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Personne'
+            'data_class' => 'AppBundle\Entity\ModeDePaiement'
         ));
     }
 
@@ -38,7 +31,7 @@ class PersonneType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_personne';
+        return 'appbundle_modedepaiement';
     }
 
 

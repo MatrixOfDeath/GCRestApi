@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 
 use Symfony\Component\Form\AbstractType;
@@ -12,7 +12,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class ProfileFormType extends AbstractType
+class RegistrationType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -26,18 +26,25 @@ class ProfileFormType extends AbstractType
             ->add('adresse', TextType::class, array('attr' => array('placeholder' => '  Adresse', 'style' => 'width: 100%')))
             ->add('codepostal', NumberType::class, array('attr' => array('placeholder' => '  Code Postal', 'style' => 'width: 100%')))
             ->add('ville', TextType::class, array('attr' => array('placeholder' => '  Ville', 'style' => 'width: 100%')))
-            ->add('newsletter')
+            ->add('newsletter');
         ;
     }
 
     public function getParent()
 
     {
-        return 'FOS\UserBundle\Form\Type\ProfileFormType';
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
     }
 
     public function getBlockPrefix()
+
     {
-        return 'fos_user_profile_edit';
+        return 'app_user_registration';
     }
+
+    /*    public function getName()
+
+        {
+            return $this->getBlockPrefix();
+        }*/
 }

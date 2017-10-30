@@ -196,7 +196,7 @@ class SalleController extends FOSRestController
     public function newAction(Request $request)
     {
         $salle = new Salle();
-        $form = $this->createForm('AppBundle\Form\SalleType', $salle);
+        $form = $this->createForm('AppBundle\Form\Type\SalleType', $salle);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -244,7 +244,7 @@ class SalleController extends FOSRestController
     public function editAction(Request $request, Salle $salle)
     {
         $deleteForm = $this->createDeleteForm($salle);
-        $editForm = $this->createForm('AppBundle\Form\SalleType', $salle);
+        $editForm = $this->createForm('AppBundle\Form\Type\SalleType', $salle);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -295,18 +295,10 @@ class SalleController extends FOSRestController
         $subQuery = $repository->createQueryBuilder('s_sub')
             ->select('s_sub.idsalle')
             ->leftJoin('s_sub.reservation', 'r')
-            //   ->where('r.heuredebut <= :heureChoixDebut')
-            //   ->andWhere('r.heurefin >= :heureChoixFin');
-            //   ->andwhere('r.heuredebut BETWEEN :heureChoixDebut AND :heureChoixFin')
-            //   ->orWhere('r.heurefin BETWEEN :heureChoixDebut AND :heureChoixFin');
-
             ->andwhere('r.heuredebut < :heureChoixDebut')
             ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-
-//            ->getQuery()
-//            ->getArrayResult();
 
         $queryBuilder = $repository->createQueryBuilder('s');
 
@@ -314,15 +306,11 @@ class SalleController extends FOSRestController
             ->select('count(s.idsalle)')
             ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
             ->andWhere('s.idsalle = :idsalle')
-//            ->andWhere(':heureChoixDebut < :datenow')
-//            ->setParameter('datenow', date("Y-m-d H:i:s"))
+
             ->setParameter('idsalle', $idsalle)
             ->setParameter('heureChoixDebut', $heureChoixDebut)
             ->setParameter('heureChoixFin', $heureChoixFin);
-        //->setParameter('subQuery', $subQuery)
-        //->getQuery();
 
-        //var_dump($query->getQuery()->getSingleScalarResult()) ;
         return $query->getQuery()->getSingleScalarResult();
     }
 
@@ -343,8 +331,7 @@ class SalleController extends FOSRestController
             ->andWhere('r.heurefin > :heureChoixDebut OR r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
             ->orWhere('r.heuredebut > :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-            //->getQuery();
-            //->getArrayResult();
+
 
         $queryBuilder = $repository->createQueryBuilder('s');
 
@@ -354,8 +341,7 @@ class SalleController extends FOSRestController
             //->setParameter('datenow', date("Y-m-d H:i:s"))
             ->setParameter('heureChoixDebut', $heureChoixDebut)
             ->setParameter('heureChoixFin', $heureChoixFin);
-            //->setParameter('subQuery', $subQuery)
-            //->getQuery();
+
         return $query->getQuery()->getResult();
     }
     /**
@@ -382,7 +368,7 @@ class SalleController extends FOSRestController
      */
     public function sallesAction(SessionInterface $session, Request $request)
     {
-        //$session = $this->getRequest()->getSession();
+
         $em = $this->getDoctrine()->getManager();
 
             //Todo: Géré le statut salle après !
@@ -411,7 +397,7 @@ class SalleController extends FOSRestController
      */
     public function presentationAction(SessionInterface $session, $id)
     {
-        //$session = $this->getRequest()->getSession();
+
         $em = $this->getDoctrine()->getManager();
         $salle= $em->getRepository('AppBundle:Salle')->find($id);
 

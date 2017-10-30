@@ -1,23 +1,19 @@
 <?php
 
-namespace AppBundle\Form;
+namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CommandeType extends AbstractType
+class TransactionType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('datecommande')
-            ->add('iddemandeproduit')
-            ->add('idmodepaiement')
-            ->add('idpersonne');
+        $builder->add('datetrans')->add('statuttransaction')->add('commentairetransaction')->add('idfacture');
     }
     
     /**
@@ -26,7 +22,7 @@ class CommandeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Commande'
+            'data_class' => 'AppBundle\Entity\Transaction'
         ));
     }
 
@@ -35,7 +31,7 @@ class CommandeType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_commande';
+        return 'appbundle_transaction';
     }
 
 

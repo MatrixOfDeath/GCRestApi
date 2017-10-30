@@ -77,7 +77,7 @@ class ModeDePaiementController extends FOSRestController
     public function newAction(Request $request)
     {
         $modeDePaiement = new Modedepaiement();
-        $form = $this->createForm('AppBundle\Form\ModeDePaiementType', $modeDePaiement);
+        $form = $this->createForm('AppBundle\Form\Type\ModeDePaiementType', $modeDePaiement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -119,7 +119,7 @@ class ModeDePaiementController extends FOSRestController
     public function editAction(Request $request, ModeDePaiement $modeDePaiement)
     {
         $deleteForm = $this->createDeleteForm($modeDePaiement);
-        $editForm = $this->createForm('AppBundle\Form\ModeDePaiementType', $modeDePaiement);
+        $editForm = $this->createForm('AppBundle\Form\Type\ModeDePaiementType', $modeDePaiement);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -171,3 +171,4 @@ class ModeDePaiementController extends FOSRestController
         ;
     }
 }
+

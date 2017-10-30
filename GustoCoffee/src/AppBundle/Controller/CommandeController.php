@@ -74,7 +74,7 @@ class CommandeController extends FOSRestController
     public function newAction(Request $request)
     {
         $commande = new Commande();
-        $form = $this->createForm('AppBundle\Form\CommandeType', $commande);
+        $form = $this->createForm('AppBundle\Form\Type\CommandeType', $commande);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -116,7 +116,7 @@ class CommandeController extends FOSRestController
     public function editAction(Request $request, Commande $commande)
     {
         $deleteForm = $this->createDeleteForm($commande);
-        $editForm = $this->createForm('AppBundle\Form\CommandeType', $commande);
+        $editForm = $this->createForm('AppBundle\Form\Type\CommandeType', $commande);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -397,7 +397,7 @@ class CommandeController extends FOSRestController
      */
     public function prepareCommandeAction(SessionInterface $session)
     {
-        //$session = $this->getRequest()->getSession();
+
         $em = $this->getDoctrine()->getManager();
 
         if (!$session->has('commande'))
@@ -405,17 +405,11 @@ class CommandeController extends FOSRestController
         else
             $commande = $em->getRepository('AppBundle:Commande')->find($session->get('commande'));
 
-        $salle = $session->get('panier_salle');
-
         $commande->setDatecommande(new \DateTime());
         $commande->setPersonne($this->container->get('security.token_storage')->getToken()->getUser());
-        // TODO : Urgently need to manage this even if ....
-        // $commande->setReservation();
         $commande->setValider(0);
         $commande->setReference(0);
-        //var_dump('test...'.$commande->getCommande()['token']);
         $commande->setCommande($this->facture($session));
-       //todo récupéré l'id reservation ! $commande->setReservation();
 
         if (!$session->has('commande')) {
             $em->persist($commande);
@@ -479,7 +473,6 @@ class CommandeController extends FOSRestController
         $this->setStockProduits($session);
 
         $retrieveCommande = $commande->getCommande();
-//        var_dump($commande->getCommande()->totalTTC);
         $personne = $em->getRepository('AppBundle:Personne')->find($this->getUser());
         $personne->setPointscumules($personne->getPointscumules()+(int)($retrieveCommande['totalTTC']/10) );
 
@@ -570,8 +563,7 @@ class CommandeController extends FOSRestController
                $payment_url = $payment->hosted_payment->payment_url;
 
                //Todo: envoyer l'id payment ! somewhere
-               $payment_id = $payment->id;
-               // echo "payment_id return: ".$payment->id;
+               //$payment_id = $payment->id;
                return $this->redirect($payment_url);
 
            }else{
@@ -641,8 +633,7 @@ class CommandeController extends FOSRestController
                 $payment_url = $payment->hosted_payment->payment_url;
 
                 //Todo: envoyer l'id payment ! somewhere
-                $payment_id = $payment->id;
-                // echo "payment_id return: ".$payment->id;
+                //$payment_id = $payment->id;
                 return new Response ($payment_url);
 
             }else{

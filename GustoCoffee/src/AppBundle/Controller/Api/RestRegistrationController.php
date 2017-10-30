@@ -95,3 +95,4 @@ class RestRegistrationController extends BaseController
     }
 
 }
+
