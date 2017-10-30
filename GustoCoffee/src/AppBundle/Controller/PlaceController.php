@@ -141,7 +141,7 @@ class PlaceController extends FOSRestController
      * @Route("/disponible-ajax", options={"expose"=true}, name="places_disponible_ajax")
      * @Method({"GET", "POST"})
      */
-    public function ajaxCheckDispoPlace(Request $request)
+    public function ajaxCheckDispoPlaceAction(Request $request)
     {
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('idPlace') ) {
             $heureChoixDebut = $request->request->get('heureChoixDebut');
@@ -157,32 +157,6 @@ class PlaceController extends FOSRestController
         }else{
             return new Response(json_encode('Incorrect parameters'));
         }
-    }
-
-    /**
-     * Creates a new place entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/new", name="place_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $place = new Place();
-        $form = $this->createForm('AppBundle\Form\Type\PlaceType', $place);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($place);
-            $em->flush();
-
-            return $this->redirectToRoute('place_show', array('idplace' => $place->getIdplace()));
-        }
-
-        return $this->render('place/new.html.twig', array(
-            'place' => $place,
-            'form' => $form->createView(),
-        ));
     }
 
     /**
@@ -202,72 +176,11 @@ class PlaceController extends FOSRestController
     }
 
     /**
-     * Displays a form to edit an existing place entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{idplace}/edit", name="place_edit", requirements={"idplace": "\d+"})
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Place $place)
-    {
-        $deleteForm = $this->createDeleteForm($place);
-        $editForm = $this->createForm('AppBundle\Form\Type\PlaceType', $place);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('place_edit', array('idplace' => $place->getIdplace()));
-        }
-
-        return $this->render('place/edit.html.twig', array(
-            'place' => $place,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a place entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{idplace}", name="place_delete", requirements={"idplace": "\d+"})
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Place $place)
-    {
-        $form = $this->createDeleteForm($place);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($place);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('place_index');
-    }
-
-    /**
-     * Creates a form to delete a place entity.
-     *
-     * @param Place $place The place entity
-     * @Security("has_role('ROLE_ADMIN')")
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Place $place)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('place_delete', array('idplace' => $place->getIdplace())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
-
-    /**
      * @Route("/unavailable", options={"expose"=true}, name="ajax_places_unavailable")
      * @Method({"GET", "POST"})
      * @return Response
      */
-    public function ajaxGetUnavailablePlaces(Request $request)
+    public function ajaxGetUnavailablePlacesAction(Request $request)
     {
         $idsalle = 4; //get id openspace
         $em = $this->getDoctrine()->getManager();

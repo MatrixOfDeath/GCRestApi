@@ -89,7 +89,7 @@
                     </ul>
                 </li>
                 <li {# onclick="location.href='{{ path('panier') }}'"#} id="panier-icon-menu" {% if app.request.get('_route') == 'panier' %} class="active" {% endif %}>
-                     {{ render(controller('AppBundle:Panier:menuIcon')) }}
+                     {{ render(controller('AppBundle:Panier:ajaxMenuIcon')) }}
                 </li>
                 {% if app.request.get('_route_params') is not null %}
                     {% for locale in locales %}

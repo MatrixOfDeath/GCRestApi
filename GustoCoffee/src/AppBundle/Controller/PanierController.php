@@ -22,61 +22,61 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class PanierController extends Controller
 {
-    /**
-     * @param SessionInterface $session
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function menuAction(SessionInterface $session)
-    {
-        if (!$session->has('panier'))
-            $articles = 0;
-        else
-            $articles = count($session->get('panier'));
-
-        if (!$session->has('panier_salle'))
-            $nbsalles = 0;
-        else
-            $nbsalles = count($session->get('panier_salle'));
-
-        if (!$session->has('totalTTC'))
-            $totalTTC = 0;
-        else
-            $totalTTC = $session->get('totalTTC');
-
-        return $this->render('panier/panier.html.twig', array(
-            'articles' => $articles,
-            'salles' => $nbsalles,
-            'totalTTC' => $totalTTC
-        ));
-    }
-
-    /**
-     * @param SessionInterface $session
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function menuIconAction(SessionInterface $session)
-    {
-        if (!$session->has('panier'))
-            $articles = 0;
-        else
-            $articles = count($session->get('panier'));
-
-        if (!$session->has('panier_salle'))
-            $nbsalles = 0;
-        else
-            $nbsalles = count($session->get('panier_salle'));
-
-        if (!$session->has('totalTTC'))
-            $totalTTC = 0;
-        else
-            $totalTTC = $session->get('totalTTC');
-
-        $numberItems = $articles + $nbsalles;
-        return $this->render('panier/ajaxIconPanier.html.twig', array(
-            'numberItems' => $numberItems,
-            'totalTTC' => $totalTTC
-        ));
-    }
+//    /**
+//     * @param SessionInterface $session
+//     * @return \Symfony\Component\HttpFoundation\Response
+//     */
+//    public function menuAction(SessionInterface $session)
+//    {
+//        if (!$session->has('panier'))
+//            $articles = 0;
+//        else
+//            $articles = count($session->get('panier'));
+//
+//        if (!$session->has('panier_salle'))
+//            $nbsalles = 0;
+//        else
+//            $nbsalles = count($session->get('panier_salle'));
+//
+//        if (!$session->has('totalTTC'))
+//            $totalTTC = 0;
+//        else
+//            $totalTTC = $session->get('totalTTC');
+//
+//        return $this->render('panier/panier.html.twig', array(
+//            'articles' => $articles,
+//            'salles' => $nbsalles,
+//            'totalTTC' => $totalTTC
+//        ));
+//    }
+//
+//    /**
+//     * @param SessionInterface $session
+//     * @return \Symfony\Component\HttpFoundation\Response
+//     */
+//    public function menuIconAction(SessionInterface $session)
+//    {
+//        if (!$session->has('panier'))
+//            $articles = 0;
+//        else
+//            $articles = count($session->get('panier'));
+//
+//        if (!$session->has('panier_salle'))
+//            $nbsalles = 0;
+//        else
+//            $nbsalles = count($session->get('panier_salle'));
+//
+//        if (!$session->has('totalTTC'))
+//            $totalTTC = 0;
+//        else
+//            $totalTTC = $session->get('totalTTC');
+//
+//        $numberItems = $articles + $nbsalles;
+//        return $this->render('panier/ajaxIconPanier.html.twig', array(
+//            'numberItems' => $numberItems,
+//            'totalTTC' => $totalTTC
+//        ));
+//    }
 
     /**
      * @Route("/ajaxIconPanier", options={"expose"=true}, name="ajax_panier_icon_menu")
@@ -463,7 +463,9 @@ class PanierController extends Controller
             $session->set('panier_salle', $panier_salle);
 
             $responseResa = $this->addReservationFromSession($request, $session, $id);
-
+            if(!$responseResa){
+                $session->getFlashBag()->add('error','problème lors de l\'ajout de votre réservation');
+            }
             return new Response(json_encode("Success"));
 
         }else {
@@ -508,8 +510,6 @@ class PanierController extends Controller
                     'totalHeures' => $interval->h,
                     'totalMinutes' => $interval->i,
                     'idReservation' => $panier_place[$id]['idReservation'],
-//                  'idReservation' => null,
-//                  'idCommande' => null
                 );
                 $session->getFlashBag()->add('success', 'Nombre d\'heure modifié avec succès');
             } else {
@@ -527,7 +527,9 @@ class PanierController extends Controller
             $session->set('panier_place', $panier_place);
 
             $responseResa = $this->addPlaceReservationFromSession($request, $session, $id);
-
+            if(!$responseResa){
+                $session->getFlashBag()->add('error','');
+            }
             return new Response(json_encode("Success"));
 
         }else {
@@ -598,7 +600,6 @@ class PanierController extends Controller
         }
     }
 
-
     /**
      * @param Request $request
      * @param SessionInterface $session
@@ -654,69 +655,6 @@ class PanierController extends Controller
             }
             else{
                 return "idPlace doesn't exist";
-            }
-        }else{
-            return "Not enough information in session to add reservation";
-        }
-    }
-    /**
-     * TODO : Remove this and do it in CommandController after validation
-     * Ajout de la commmande en bdd à partir de la session
-     * @param Request $request
-     * @param SessionInterface $session
-     * @param $idProduit
-     * @return string
-     */
-    private function addCommandeFromSession(Request $request, SessionInterface $session, $idProduit){
-
-        if (!$session->has('panier_salle')) $session->set('panier_salle',array());
-        $panier_salle = $session->get('panier_salle');
-        if (!$session->has('panier')) $session->set('panier',array());
-        $panier = $session->get('panier');
-
-        if( $panier_salle[$idProduit] && $panier_salle[$idProduit]['heureChoixDebut'] && $panier_salle[$idProduit]['heureChoixFin'] && $panier_salle[$idProduit]['date'] ) {
-
-            $heureChoixDebut = $panier_salle[$idProduit]['heureChoixDebut'];
-            $heureChoixFin = $panier_salle[$idProduit]['heureChoixFin'];
-            $dateReservation = $panier_salle[$idProduit]['date'];
-
-            if (array_key_exists($idProduit, $panier_salle)) {
-
-                $em = $this->getDoctrine()->getManager();
-
-                if (!$panier_salle[$idProduit]['idReservation']) {
-                    $reservation = new Reservation();
-                    $reservation->setHeuredebut(new \DateTime($heureChoixDebut));
-                    $reservation->setHeurefin(new \DateTime($heureChoixFin));
-                    $reservation->setDatereservation(new \DateTime($dateReservation));
-                    $reservation->setIdsalle($em->getRepository('AppBundle:Salle')->find((int)$idProduit));
-                    $reservation->setIdpersonne($this->getUser());
-                    $reservation->setRemarquereservation('Reservation auto session :test admin');
-                    $reservation->setStatut(0); // Reservation non confirmé statut : Draft
-
-                    $em->persist($reservation);
-                    $em->flush();
-                    $panier_salle[$idProduit]['idReservation'] = $reservation->getIdreservation();
-
-                    $session->getFlashBag()->add('notice', 'Votre réservation sera validé uniquement après le paiement');
-                    $session->set('panier_salle', $panier_salle);
-
-                } else {
-
-                    $reservation = $em->getRepository('AppBundle:Reservation')->find((int)$panier_salle[$idProduit]['idReservation']);
-                    $reservation->setHeuredebut($heureChoixDebut);
-                    $reservation->setHeurefin($heureChoixFin);
-                    $reservation->setDatereservation($dateReservation);
-                    $reservation->setRemarquereservation('Modification réservation auto session : test admin');
-                    $em->persist($reservation);
-                    $em->flush();
-                }
-
-                // On retourne l'id de la reservation
-                return "Reservation enregistré";
-            }
-            else{
-                return "idSalle doesn't exist";
             }
         }else{
             return "Not enough information in session to add reservation";
@@ -905,32 +843,5 @@ class PanierController extends Controller
 
         return new Response ($htmlToRender);
     }
-    /**
-     * @Route("/villes/{cp}", options={"expose"=true}, name="villes", requirements={"cp": "\d+"})
-     * @Method({"POST", "GET"})
-     * @param Request $request
-     * @return mixed
-     * @throws \Exception
-     */
-    public function villesAction(Request $request, $cp)
-    {
-        if ($request->isXmlHttpRequest()) {
-            $em = $this->getDoctrine()->getManager();
-            $villeCodePostal =$em->getRepository('AppBundle:Villes')->findCp($cp);
 
-            if ($villeCodePostal) {
-                $villes = array();
-                foreach($villeCodePostal as $ville) {
-                    $villes[] = $ville->getVilleNom();
-                }
-            } else {
-                $villes = null;
-            }
-
-            $response = new JsonResponse();
-            return $response->setData(array('ville' => $villes));
-        } else {
-            throw new \Exception('Erreur');
-        }
-    }
 }

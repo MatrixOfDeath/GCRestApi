@@ -90,32 +90,6 @@ class ProduitController extends FOSRestController
     }
 
     /**
-     * Creates a new produit entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/new", name="produit_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $produit = new Produit();
-        $form = $this->createForm('AppBundle\Form\Type\ProduitType', $produit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($produit);
-            $em->flush();
-
-            return $this->redirectToRoute('produit_show', array('idproduit' => $produit->getIdproduit()));
-        }
-
-        return $this->render('produit/new.html.twig', array(
-            'produit' => $produit,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
      * Finds and displays a produit entity.
      *
      * @Route("/{idproduit}", name="produit_show", requirements={"idproduit": "\d+"})
@@ -131,66 +105,6 @@ class ProduitController extends FOSRestController
         ));
     }
 
-    /**
-     * Displays a form to edit an existing produit entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{idproduit}/edit", name="produit_edit", requirements={"idproduit": "\d+"})
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Produit $produit)
-    {
-        $deleteForm = $this->createDeleteForm($produit);
-        $editForm = $this->createForm('AppBundle\Form\Type\ProduitType', $produit);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('produit_edit', array('idproduit' => $produit->getIdproduit()));
-        }
-
-        return $this->render('produit/edit.html.twig', array(
-            'produit' => $produit,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a produit entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{idproduit}", name="produit_delete", requirements={"idproduit": "\d+"})
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Produit $produit)
-    {
-        $form = $this->createDeleteForm($produit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($produit);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('produit_index');
-    }
-
-    /**
-     * Creates a form to delete a produit entity.
-     *
-     * @param Produit $produit The produit entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Produit $produit)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('produit_delete', array('idproduit' => $produit->getIdproduit())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
 
     /**
      * @Route("/produits", name="produits_index")

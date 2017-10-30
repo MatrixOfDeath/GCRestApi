@@ -60,21 +60,6 @@ class SalleController extends FOSRestController
         return $view;
     }
 
-    /**
-     * Lists all salles entities.
-     *
-     * @Route("/list-salles", name="salles_list")
-     * @Method("GET")
-     */
-    public function listAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $salles = $em->getRepository('AppBundle:Salle')->findAll();
-        return $this->render('salle/list.html.twig', array(
-            'salles' => $salles,
-        ));
-    }
 
     /**
      * Lists all salles that are available from now to 1hour
@@ -155,7 +140,7 @@ class SalleController extends FOSRestController
      * @Route("/disponible-ajax", options={"expose"=true}, name="salles_disponible_ajax")
      * @Method({"GET", "POST"})
      */
-    public function ajaxCheckDispoSalle(Request $request)
+    public function ajaxCheckDispoSalleAction(Request $request)
     {
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('idSalle') ) {
             $heureChoixDebut = $request->request->get('heureChoixDebut');
@@ -168,32 +153,6 @@ class SalleController extends FOSRestController
         }else{
             return new Response(json_encode('Incorrect parameters'));
         }
-    }
-
-    /**
-     * Creates a new salle entity.
-     * @Security("is_granted('ROLE_ADMIN')")
-     * @Route("/new", name="salle_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $salle = new Salle();
-        $form = $this->createForm('AppBundle\Form\Type\SalleType', $salle);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($salle);
-            $em->flush();
-
-            return $this->redirectToRoute('salle_show', array('idsalle' => $salle->getIdsalle()));
-        }
-
-        return $this->render('salle/new.html.twig', array(
-            'salle' => $salle,
-            'form' => $form->createView(),
-        ));
     }
 
     /**
@@ -216,51 +175,6 @@ class SalleController extends FOSRestController
             'delete_form' => $deleteForm->createView(),
             'produits' => $produits,
         ));
-    }
-
-    /**
-     * Displays a form to edit an existing salle entity.
-     * @Security("is_granted('ROLE_ADMIN')")
-     * @Route("/{idsalle}/edit", name="salle_edit", requirements={"idsalle": "\d+"})
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Salle $salle)
-    {
-        $deleteForm = $this->createDeleteForm($salle);
-        $editForm = $this->createForm('AppBundle\Form\Type\SalleType', $salle);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('salle_edit', array('idsalle' => $salle->getIdsalle()));
-        }
-
-        return $this->render('salle/edit.html.twig', array(
-            'salle' => $salle,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a salle entity.
-     * @Security("is_granted('ROLE_ADMIN')")
-     * @Route("/{idsalle}", name="salle_delete", requirements={"idsalle": "\d+"})
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Salle $salle)
-    {
-        $form = $this->createDeleteForm($salle);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($salle);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('salle_index');
     }
 
     /**
@@ -326,21 +240,6 @@ class SalleController extends FOSRestController
             ->setParameter('heureChoixFin', $heureChoixFin);
 
         return $query->getQuery()->getResult();
-    }
-    /**
-     * Creates a form to delete a salle entity.
-     *
-     * @param Salle $salle The salle entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Salle $salle)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('salle_delete', array('idsalle' => $salle->getIdsalle())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 
     /**
