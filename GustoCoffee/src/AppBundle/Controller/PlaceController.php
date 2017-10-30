@@ -136,37 +136,6 @@ class PlaceController extends FOSRestController
             ));
         }
     }
-//    /**
-//     * Todo: Remove here because in repository
-//     * @param $heureChoixDebut
-//     * @param $heureChoixFin
-//     * @return mixed
-//     */
-//    public function checkDisponibilitePlace($heureChoixDebut, $heureChoixFin)
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//        $repository = $em->getRepository('AppBundle:Place');
-//
-//        $subQuery = $repository->createQueryBuilder('p_sub')
-//            ->select('p_sub.idplace')
-//            ->leftJoin('p_sub.reservation', 'r')
-//            ->andwhere('r.heuredebut < :heureChoixDebut')
-//            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
-//            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
-//            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-//
-//        $queryBuilder = $repository->createQueryBuilder('p');
-//
-//        $query = $queryBuilder
-//            ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
-////            ->andWhere(':heureChoixDebut < :datenow')
-//            //->setParameter('datenow', date("Y-m-d H:i:s"))
-//            ->setParameter('heureChoixDebut', $heureChoixDebut)
-//            ->setParameter('heureChoixFin', $heureChoixFin);
-//        //->setParameter('subQuery', $subQuery)
-//        //->getQuery();
-//        return $query->getQuery()->getResult();
-//    }
 
     /**
      * @Route("/disponible-ajax", options={"expose"=true}, name="places_disponible_ajax")
@@ -179,11 +148,6 @@ class PlaceController extends FOSRestController
             $heureChoixFin = $request->request->get('heureChoixFin');
 
             $idPlace= $request->request->get('idPlace');
-
-//             Todo: remove this don't need anymore we're using ids now :)
-//            $em = $this->getDoctrine()->getManager();
-//            $repository = $em->getRepository('AppBundle:Place');
-//            $idPlace = $repository->getByPosition($idPosition);
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('AppBundle:Place');
             $isDispo = $repository->checkIfPlaceDispo($heureChoixDebut, $heureChoixFin, $idPlace);
@@ -307,7 +271,6 @@ class PlaceController extends FOSRestController
     {
         $idsalle = 4; //get id openspace
         $em = $this->getDoctrine()->getManager();
-        //$allPlaces = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') &&
             (new \DateTime($request->request->get('heureChoixDebut')))->format('Y-m-d H')  >= (new \DateTime())->format('Y-m-d H') ) {
             // On vérifie bien que la date et heure est inférieur à la date du jour en cas d'injection ou modificz

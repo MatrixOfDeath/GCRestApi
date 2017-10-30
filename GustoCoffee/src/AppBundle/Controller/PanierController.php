@@ -394,10 +394,10 @@ class PanierController extends Controller
         if($request->request->get('id')){
             $id = $request->request->get('id');
             if (array_key_exists($id, $panier)) {
-                if ($request->request->get('qte') != null) $panier[$id] = $request->request->get('qte');
+                if ($request->request->get('qte') !== null) $panier[$id] = $request->request->get('qte');
                 $session->getFlashBag()->add('success','Quantité modifié avec succès');
             } else {
-                if ($request->request->get('qte') != null)
+                if ($request->request->get('qte') !== null)
                     $panier[$id] = $request->request->get('qte');
                 else
                     $panier[$id] = 1;
@@ -825,7 +825,7 @@ class PanierController extends Controller
         if (!$session->has('adresse')) $session->set('adresse', array());
         $adresse = $session->get('adresse');
         
-        if ($request->request->get('livraison') !== null && $request->request->get('facturation') != null)
+        if ($request->request->get('livraison') !== null && $request->request->get('facturation') !== null)
         {
             $adresse['livraison'] = $request->request->get('livraison');
             $adresse['facturation'] = $request->request->get('facturation');
@@ -850,7 +850,7 @@ class PanierController extends Controller
         if (!$session->has('adresse')) $session->set('adresse', array());
         $adresse = $session->get('adresse');
 
-        if ($request->request->get('livraison') !== null && $request->request->get('facturation') != null)
+        if ($request->request->get('livraison') !== null && $request->request->get('facturation') !== null)
         {
             $adresse['livraison'] = $request->request->get('livraison');
             $adresse['facturation'] = $request->request->get('facturation');
@@ -922,7 +922,7 @@ class PanierController extends Controller
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager();
             $villeCodePostal =$em->getRepository('AppBundle:Villes')->findCp($cp);
-            //$villeCodePostal = $em->getRepository('AppBundle:Villes')->findBy(array('villeCodePostal' => $cp));
+
             if ($villeCodePostal) {
                 $villes = array();
                 foreach($villeCodePostal as $ville) {

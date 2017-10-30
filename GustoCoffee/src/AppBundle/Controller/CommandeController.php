@@ -563,7 +563,6 @@ class CommandeController extends FOSRestController
                $payment_url = $payment->hosted_payment->payment_url;
 
                //Todo: envoyer l'id payment ! somewhere
-               //$payment_id = $payment->id;
                return $this->redirect($payment_url);
 
            }else{
@@ -633,7 +632,6 @@ class CommandeController extends FOSRestController
                 $payment_url = $payment->hosted_payment->payment_url;
 
                 //Todo: envoyer l'id payment ! somewhere
-                //$payment_id = $payment->id;
                 return new Response ($payment_url);
 
             }else{

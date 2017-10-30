@@ -107,23 +107,6 @@ class SalleController extends FOSRestController
             $sallesDispoNow = $this->checkDisponibiliteSalle($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
         }
 
-       // echo $horaire->getHeuredebut()->format('H:i')."".$horaire->getHeurefin()->format('H:i');
-//
-//        $queryBuilder = $repository->createQueryBuilder('s');
-//        $query = $queryBuilder
-//            ->where($queryBuilder->expr()->notIn('s.idsalle', $subQuery->getDQL()))
-////            ->andWhere(':heureChoixDebut < :datenow')
-//            //->setParameter('datenow', date("Y-m-d H:i:s"))
-//            ->setParameter('heureChoixDebut', $heureChoixDebut)
-//            ->setParameter('heureChoixFin', $heureChoixFin);
-//            //->setParameter('subQuery', $subQuery)
-//            //->getQuery();
-
-//        return $query->getQuery()->getResult();
-//
-        //$actualDateAndHourMore = new \DateTime(date('H:m', strtotime('+1 hour')));
-
-
         return $this->render('salle/index.html.twig', array(
             'salles' => $sallesDispoNow,
             'heureDebutChoix' => $actualDate->format('H'),
@@ -371,8 +354,6 @@ class SalleController extends FOSRestController
 
         $em = $this->getDoctrine()->getManager();
 
-            //Todo: Géré le statut salle après !
-            // $findProduits = $em->getRepository('AppBundle:Salle')->findBy(array('disponible' => 1));
         $salles = $em->getRepository('AppBundle:Salle')->findAll();
 
         if ($session->has('panier_salle'))
@@ -380,7 +361,6 @@ class SalleController extends FOSRestController
         else
             $panier_salle = false;
 
-        //$produits = $this->get('knp_paginator')->paginate($findProduits,$this->get('request')->query->get('page', 1),3);
         $salles = $em->getRepository('AppBundle:Salle')->findAll();
 
         return $this->render('produit/produits.html.twig', array(

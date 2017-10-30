@@ -214,7 +214,6 @@ class ProduitController extends FOSRestController
         else
             $panier = false;
 
-        //$produits = $this->get('knp_paginator')->paginate($findProduits,$this->get('request')->query->get('page', 1),3);
         $produits = $em->getRepository('AppBundle:Produit')->findAll();
 
         return $this->render('produit/produits.html.twig', array(
