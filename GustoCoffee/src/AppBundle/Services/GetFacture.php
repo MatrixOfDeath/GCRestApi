@@ -9,11 +9,19 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class GetFacture 
 {
 
+    /**
+     * GetFacture constructor.
+     * @param ContainerInterface $container
+     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
-    
+
+    /**
+     * @param $facture
+     * @return Html2Pdf
+     */
     public function facture($facture)
     {
         $html = $this->container->get('templating')->render('facture/facturePDF.html.twig', array('facture' => $facture));

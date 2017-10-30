@@ -194,43 +194,7 @@ class PlaceController extends FOSRestController
             return new Response(json_encode('Incorrect parameters'));
         }
     }
-
-    /**
-     * Todo: Remove because its in repo Place
-     * Verification si une place est disponible selon un creneau horaire
-     * @param $heureChoixDebut
-     * @param $heureChoixFin
-     * @param $idplace
-     * @return mixed
-     */
-    public function checkIfPlaceDispo($heureChoixDebut, $heureChoixFin, $idplace)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('AppBundle:Place');
-
-        $subQuery = $repository->createQueryBuilder('p_sub')
-            ->select('p_sub.idplace')
-            ->leftJoin('p_sub.reservation', 'r')
-            ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-
-        $queryBuilder = $repository->createQueryBuilder('p');
-
-        $query = $queryBuilder
-            ->select('count(p.idplace)')
-            ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
-            ->andWhere('p.idplace = :idplace')
-//            ->andWhere(':heureChoixDebut < :datenow')
-//            ->setParameter('datenow', date("Y-m-d H:i:s"))
-            ->setParameter('idplace', $idplace)
-            ->setParameter('heureChoixDebut', $heureChoixDebut)
-            ->setParameter('heureChoixFin', $heureChoixFin);
-
-        return $query->getQuery()->getSingleScalarResult();
-    }
-
+    
     /**
      * Creates a new place entity.
      * @Security("has_role('ROLE_ADMIN')")

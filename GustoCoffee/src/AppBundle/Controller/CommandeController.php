@@ -175,7 +175,7 @@ class CommandeController extends FOSRestController
      * @param SessionInterface $session
      * @return array
      */
-    public function facture(SessionInterface $session)
+    private function facture(SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
 

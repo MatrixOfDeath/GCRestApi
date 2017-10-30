@@ -13,15 +13,15 @@
     <meta property="og:image" content="{{ app.request.getSchemeAndHttpHost() ~ asset('img/gc_transparent_resize.png') }}">
     <meta property="og:title" content="{{ block('title') }}">
 
-    <meta name="description" content="{% trans %}GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. {% endtrans %}">
-    <meta name="KASAgency" content="{% trans %}KASAgency est une jeune agence web.{% endtrans %}">
+    <meta name="description" content="{% trans %}GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'{% endtrans %}">
+    <meta name="KASAgency" content="{% trans %}KASAgency est une jeune agence web{% endtrans %}">
 
     <link rel="icon" type="image/png" href="{{ asset('img/gc_favicon_16x16.ico')}}" />
     {#<link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">#}
     {#<link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">#}
     {#<link href="{{ asset('css/jquery-ui.theme.min.css')}}" rel="stylesheet">#}
     {#<link href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">#}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="all">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="print">
 
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
 
@@ -131,7 +131,7 @@
             <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
         {#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>#}
 
-            <script src="{{ asset('build/app.js') }}"></script>
+            <script async src="{{ asset('build/app.js') }}"></script>
 
             {#  Adding ajax script TODO: add specific on each page #}
             <script src="{{ asset('build/ajax.js') }}"></script>

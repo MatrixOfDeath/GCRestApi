@@ -5,10 +5,10 @@ class TvaFromMontantExtension extends \Twig_Extension
 {
     public function getFilters()
     {
-        return array(new \Twig_SimpleFilter('TvaFromMontant', array($this,'TvaFromMontant')));
+        return array(new \Twig_SimpleFilter('TvaFromMontant', array($this,'tvaFromMontant')));
     }
 
-    function TvaFromMontant($prixTTC,$tva)
+    public function tvaFromMontant($prixTTC,$tva)
     {
         return round( ($prixTTC - ($prixTTC / (2 - $tva)) ),2);
     }

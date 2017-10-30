@@ -31,10 +31,10 @@
 *****Slide effect
 **********************/
 
-.myfade {
+.fade {
   opacity: 1;
 }
-.myfade .item {
+.fade .item {
   top: 0;
   z-index: 1;
   opacity: 0;
@@ -48,11 +48,11 @@
   -o-transition: opacity ease-in-out 1s;
   transition: opacity ease-in-out 1s;
 }
-.myfade .item:first-child {
+.fade .item:first-child {
   top: auto;
   position: relative;
 }
-.myfade .item.active {
+.fade .item.active {
   opacity: 1;
   z-index: 2;
   -webkit-transition: opacity ease-in-out 1s;

@@ -25,7 +25,7 @@ class ContactController extends Controller
                 if($this->sendEmail($form->getData())){
                     return $this->redirectToRoute('gc_contact_page');
                 } else {
-                    var_dump("error");
+                    $this->addFlash('notice', $this->get('translator')->trans('Erreur d\'envoie de mail'));
                 }
             }
         }

@@ -132,7 +132,7 @@
                                 {% set total30Minutes = panier_place[place.idplace].totalHeures * 2 %}
                                 {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
                                 {% if panier_place[place.idplace].totalMinutes >= 30 %}
-                                    {% set totalMinutes =  (2 * place.capacitymax )  %}
+                                    {% set totalMinutes =  2  %}
                                     {#{{ panier_place[place.idplace].totalMinutes ~ 'min' }}#}
                                 {% else %}
                                     {% set totalMinutes = 0 %}

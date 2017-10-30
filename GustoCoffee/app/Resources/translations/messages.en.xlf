@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-10-29T22:42:56Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2017-10-29T23:45:56Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -42,7 +42,7 @@
         <source xml:space="preserve">                La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking".
                 Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.
                 </source>
-        <target xml:space="preserve">                ustoCoffee specializes in the sale of products around coffee, automatic machine, espresso machine, coffee grinder, coffee beans, coffee pods, etc. Today, GustoCoffee offers a new concept of "Coffee Shop CoWorking".
+        <target xml:space="preserve">                GustoCoffee specializes in the sale of products around coffee, automatic machine, espresso machine, coffee grinder, coffee beans, coffee pods, etc. Today, GustoCoffee offers a new concept of "Coffee Shop CoWorking".
                  Thus, we offer a specially designed space for individual or group work within Paris, near the Gare du Nord accessible via the RER B or RER D.</target>
       </trans-unit>
       <trans-unit id="44ed99ca0c816461a55cd76178542b9d3a48e088" resname="                Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,&#10;                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,&#10;                collaborateurs, clients et sous-traitant. ">

@@ -48,17 +48,14 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             $this->dateReservation = $reservation->getDatereservation();
-            print_r($this->dateReservation);
             $this->dateReservation->date;
             $this->dateReservationTimestamp = $this->dateReservation->getTimestamp();
 
             $this->heureDebut = $reservation->getHeuredebut();
-            print_r($this->heureDebut);
             $this->heureDebut->date;
             $this->heureDebutTimestamp = $this->heureDebut->getTimestamp();
 
             $this->heureFin = $reservation->getHeurefin();
-            print_r($this->heureFin);
             $this->heureFin->date;
             $this->heureFinTimestamp = $this->heureFin->getTimestamp();
 
@@ -77,7 +74,6 @@ class DefaultController extends Controller
 
     public function pdfAction()
     {
-        print_r($this->tempsReservation);
         $temps = $this->tempsReservation;
         $data = array(
             'tempsReservation'=>$temps

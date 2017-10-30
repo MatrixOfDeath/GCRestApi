@@ -68,7 +68,7 @@ class RestLoginController extends Controller
      *
      * @return array
      */
-    public function getToken(Personne $user)
+    private function getToken(Personne $user)
     {
         return $this->container->get('lexik_jwt_authentication.encoder.default')
             ->encode([

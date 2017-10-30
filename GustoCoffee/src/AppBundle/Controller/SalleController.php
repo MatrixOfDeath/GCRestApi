@@ -287,7 +287,7 @@ class SalleController extends FOSRestController
      * @param $idsalle
      * @return mixed
      */
-    public function checkIfSalleDispo($heureChoixDebut, $heureChoixFin, $idsalle)
+    private function checkIfSalleDispo($heureChoixDebut, $heureChoixFin, $idsalle)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Salle');
@@ -331,7 +331,7 @@ class SalleController extends FOSRestController
      * @param $heureChoixFin
      * @return mixed
      */
-    public function checkDisponibiliteSalle($heureChoixDebut, $heureChoixFin)
+    private function checkDisponibiliteSalle($heureChoixDebut, $heureChoixFin)
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Salle');

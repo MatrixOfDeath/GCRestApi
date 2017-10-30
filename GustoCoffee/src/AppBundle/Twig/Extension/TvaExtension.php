@@ -8,7 +8,7 @@ class TvaExtension extends \Twig_Extension
         return array(new \Twig_SimpleFilter('tva', array($this,'calculTva')));
     }
     
-    function calculTva($prixHT,$tva)
+    public function calculTva($prixHT,$tva)
     {
         return round($prixHT / $tva,2);
     }
