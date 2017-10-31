@@ -6,7 +6,6 @@
  * Time: 22:03
  */
 
-//TODO: Clean and modify for our entity Personne
 namespace AppBundle\EventSubscriber;
 
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;

@@ -1,58 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-10-29T23:45:56Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2017-10-31T17:53:06Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
-      <trans-unit id="da39a3ee5e6b4b0d3255bfef95601890afd80709" resname="">
-        <source></source>
-        <target></target>
-      </trans-unit>
-      <trans-unit id="b9403c70c846a216a24a033e4fd3e73506fdfeb5" resname="                Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.&#10;                ">
-        <source xml:space="preserve">                Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.
-                </source>
-        <target xml:space="preserve">                Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.
-                </target>
-      </trans-unit>
-      <trans-unit id="f59d75192f1cb3c928b6312c1c8ae2498a3d81ef" resname="                GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du &quot;Coffee-shop Coworking&quot; situé près de Gare du Nord.&#10;                C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous&#10;                familiariser avec l'espace que nous vous proposons.&#10;                ">
-        <source xml:space="preserve">                GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "Coffee-shop Coworking" situé près de Gare du Nord.
-                C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous
-                familiariser avec l'espace que nous vous proposons.
-                </source>
-        <target xml:space="preserve">GustoCoffee decided to set up an evening each year to celebrate the anniversary of the "Coworking Coffee Shop" located near Gare du Nord.
-                 Therefore, we invite you every October 21 to come to GustoCoffee to consume at will, free of charge and to you
-                 familiar with the space we offer.</target>
-      </trans-unit>
-      <trans-unit id="417dc8457be09ba2f6d33d7dbd428a398209dfb6" resname="                GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif. &lt;br&gt;&#10;                On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !">
-        <source><![CDATA[                GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif. <br>
-                On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !]]></source>
-        <target><![CDATA[GustoCoffee offers you individual places in a large open space or private meeting rooms. <br>
-                 We offer office services such as a private online storage space, the sale of digital media, as well as printing. In addition, the consumption of coffee, tea, pancakes and waffles are at will!]]></target>
-      </trans-unit>
-      <trans-unit id="b59de2076109399442eac7bcdc79a5898292233d" resname="                La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc.&#10;                MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des  coffee-shops  en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de &quot; Coffee-Shop Coworking &quot;.&#10;                ">
-        <source xml:space="preserve">                La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc.
-                MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des  coffee-shops  en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de " Coffee-Shop Coworking ".
-                </source>
-        <target xml:space="preserve">              GustoCoffee specializes in the sale of coffee products, automatic machines, espresso machines, coffee grinders, coffee beans, pod coffee, etc.
-                 Messrs. Philippe Landemaine Director and Alain Bellucci Associate Director, have for the past ten years established coffee shops in Italy, as well as in England and have recently established in Paris, with a new concept of "Coffee Shop Coworking"</target>
-      </trans-unit>
-      <trans-unit id="d141546acb9e5329ca9c19e368e4aeff06837779" resname="                La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de &quot;Coffee-Shop CoWorking&quot;.&#10;                Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.&#10;                ">
-        <source xml:space="preserve">                La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking".
-                Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.
-                </source>
-        <target xml:space="preserve">                GustoCoffee specializes in the sale of products around coffee, automatic machine, espresso machine, coffee grinder, coffee beans, coffee pods, etc. Today, GustoCoffee offers a new concept of "Coffee Shop CoWorking".
-                 Thus, we offer a specially designed space for individual or group work within Paris, near the Gare du Nord accessible via the RER B or RER D.</target>
-      </trans-unit>
-      <trans-unit id="44ed99ca0c816461a55cd76178542b9d3a48e088" resname="                Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,&#10;                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,&#10;                collaborateurs, clients et sous-traitant. ">
-        <source xml:space="preserve">                Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
-                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,
-                collaborateurs, clients et sous-traitant. </source>
-        <target xml:space="preserve">              Coworking is simple: these are spaces that bring together multiple services for the digital self-employed: what to connect your computer, printers, coffee machines,
-                 meeting rooms all in a more or less temporary way. These spaces especially favor the integration into a community of coworkers and offer the possibility of forming a network of partners,
-                 collaborators, customers and subcontractors.</target>
-      </trans-unit>
       <trans-unit id="83499490cf5aaab746865ab2b5942b626251050b" resname="  Adresse">
         <source>  Adresse</source>
         <target>  Address</target>
@@ -81,6 +34,10 @@
         <source> The requested page couldn't be located. Checkout for any URL misspelling</source>
         <target> The requested page couldn't be located. Checkout for any URL misspelling</target>
       </trans-unit>
+      <trans-unit id="cd3ee815139bd13c83838bda5c9dd4e197256c3e" resname=" sur la restauration, les services bureautique en réservant directement sur notre site internet ! Les gaufres, les crêpes, le café ainsi que le thé sont ">
+        <source> sur la restauration, les services bureautique en réservant directement sur notre site internet ! Les gaufres, les crêpes, le café ainsi que le thé sont </source>
+        <target>on catering, office services by booking directly on our website! Waffles, pancakes, coffee and tea are</target>
+      </trans-unit>
       <trans-unit id="b6589fc6ab0dc82cf12099d1c2d40ab994e8410c" resname="0">
         <source>0</source>
         <target>0</target>
@@ -92,6 +49,10 @@
       <trans-unit id="f34a9d2d7095343bff3619998aba4ea94b8c57de" resname="1 article dans votre panier">
         <source>1 article dans votre panier</source>
         <target>1 item in your cart</target>
+      </trans-unit>
+      <trans-unit id="b83b2cc056c1fb20d8aefde08c39cf628045cd43" resname="10% de réduction">
+        <source>10% de réduction</source>
+        <target>10% off</target>
       </trans-unit>
       <trans-unit id="da4b9237bacccdf19c0760cab7aec4a8359010b0" resname="2">
         <source>2</source>
@@ -213,6 +174,10 @@
         <source>Bénéficiez de points de fidelités et d'autres avantages en vous inscrivant !</source>
         <target>Get loyalty points and other benefits by signing up!</target>
       </trans-unit>
+      <trans-unit id="ea42eb683becd6baba7414db83ae25e8c861f5cb" resname="C'est Ouvert">
+        <source>C'est Ouvert</source>
+        <target>It's Open</target>
+      </trans-unit>
       <trans-unit id="40e4aec2f3ef2294e067666f08fc9984a7c25c4d" resname="Cannot connect already registered account.">
         <source>Cannot connect already registered account.</source>
         <target>Cannot connect already registered account.</target>
@@ -232,6 +197,10 @@
       <trans-unit id="13b888949659af0c79b95c383fe8c1697291df91" resname="Chez GustoCoffee, le compte n'est pas obligatoire. Vous pouvez réserver sans compte. Cependant, nous vous conseillons de vous créer un compte afin d'obtenir des points et avoir une réduction.">
         <source>Chez GustoCoffee, le compte n'est pas obligatoire. Vous pouvez réserver sans compte. Cependant, nous vous conseillons de vous créer un compte afin d'obtenir des points et avoir une réduction.</source>
         <target>At GustoCoffee, the account is not required. You can book without an account. However, we advise you to create an account to get points and have a discount.</target>
+      </trans-unit>
+      <trans-unit id="63c39673f17d6dcf913508349a676bc794ed0aed" resname="Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.">
+        <source>Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.</source>
+        <target>At GustoCoffee, you have the choice to settle in OpenSpace or, if you wish, in a private room. Reservations are made directly on our website.</target>
       </trans-unit>
       <trans-unit id="b030d590c21c95efe2ba71da1d0f1198a7e655b4" resname="Choisir">
         <source>Choisir</source>
@@ -321,6 +290,10 @@
         <source>Demande d'informations</source>
         <target>Information request</target>
       </trans-unit>
+      <trans-unit id="4eef8c97512936c5847ac4ed83a7c86152260594" resname="Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.">
+        <source>Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.</source>
+        <target>Ask for breakfast, lunch or dinner if you wish.</target>
+      </trans-unit>
       <trans-unit id="4eafb4722ad9303115f4aa429d8010b541b0d392" resname="Déposez votre annonce">
         <source>Déposez votre annonce</source>
         <target>Post your ad</target>
@@ -336,6 +309,10 @@
       <trans-unit id="acfda037a8856c3447252e5e5ef8be112689717e" resname="Entrer votre code">
         <source>Entrer votre code</source>
         <target>Enter your code</target>
+      </trans-unit>
+      <trans-unit id="f69847a0566554035c2b5c0cd9299d30a57ae620" resname="Erreur d'envoie de mail">
+        <source>Erreur d'envoie de mail</source>
+        <target>Erreur sending email</target>
       </trans-unit>
       <trans-unit id="0b90b1a7e76280c693d985597fb911fc36b4b6c1" resname="Error 403 : Forbidden">
         <source>Error 403 : Forbidden</source>
@@ -359,7 +336,7 @@
       </trans-unit>
       <trans-unit id="25756dd622e6c8c2d602afdd412dbc7270e034ae" resname="Et si on tentait l'expérience">
         <source>Et si on tentait l'expérience</source>
-        <target>What if we tried the experiment ?</target>
+        <target>What if we tried the experiment</target>
       </trans-unit>
       <trans-unit id="daf11c1ae3471e3deefab9861a137b27d3622588" resname="Et si on travaillait ensemble ?">
         <source>Et si on travaillait ensemble ?</source>
@@ -417,13 +394,21 @@
         <source>GustoCoffee - Évènements</source>
         <target>GustoCoffee - Events</target>
       </trans-unit>
+      <trans-unit id="3169fc6d8d8390044a14eef4799a63b4ebf963fb" resname="GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du &quot;Coffee-shop Coworking&quot; situé près de Gare du Nord. C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous familiariser avec l'espace que nous vous proposons.">
+        <source>GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "Coffee-shop Coworking" situé près de Gare du Nord. C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous familiariser avec l'espace que nous vous proposons.</source>
+        <target>GustoCoffee decided to set up an evening each year to celebrate the anniversary of the "Coworking Coffee Shop" located near Gare du Nord. Therefore, we invite you every October 21 to come to GustoCoffee to consume at will, free of charge and to you familiar with the space we offer.</target>
+      </trans-unit>
       <trans-unit id="087cb10c831e2083fd4845e4e215c9c87de4f0cd" resname="GustoCoffee dispose de 5 salles de 4 places ainsi que de 5 salle de 6 places. Soit 50 places privées.">
         <source>GustoCoffee dispose de 5 salles de 4 places ainsi que de 5 salle de 6 places. Soit 50 places privées.</source>
         <target>GustoCoffee has 5 rooms for 4 people and 5 rooms for 6 people. 50 private places.</target>
       </trans-unit>
-      <trans-unit id="cb6dae57e5c88b4de0deea9db086a34753980971" resname="GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. ">
-        <source>GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. </source>
+      <trans-unit id="d4c9f14942cb213e69c21d71e1204443a0858338" resname="GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'">
+        <source>GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'</source>
         <target>GustoCoffee is a company offering collaborative spaces, known as 'co-working'.</target>
+      </trans-unit>
+      <trans-unit id="3f3764b15152d0c07d3fb4a89c1cb40c17129cf1" resname="GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.">
+        <source>GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.</source>
+        <target>GustoCoffee offers you individual places in a large open space or private meeting rooms.</target>
       </trans-unit>
       <trans-unit id="5073129fadb854bd181e25aad27849d3b5fc93ac" resname="Heure">
         <source>Heure</source>
@@ -440,6 +425,30 @@
       <trans-unit id="bd36713ec5cba9c52a81dbd67c6ed37e224fe8c7" resname="Ils ont parlé de GustoCoffee">
         <source>Ils ont parlé de GustoCoffee</source>
         <target>They talked about GustoCoffee</target>
+      </trans-unit>
+      <trans-unit id="619fe1aefeb5abfcdabe830056adb42c5b937df2" resname="Image ">
+        <source>Image </source>
+        <target>Image </target>
+      </trans-unit>
+      <trans-unit id="438e7458d12074695e9849ea01d8f51e9500fb56" resname="Image inscription du carousel l'accueil">
+        <source>Image inscription du carousel l'accueil</source>
+        <target>Register image in homepage carousel</target>
+      </trans-unit>
+      <trans-unit id="ec430d98e2a6fc6754c193e8596bbb2d6d5cc12f" resname="Image mise en relation du carousel l'accueil">
+        <source>Image mise en relation du carousel l'accueil</source>
+        <target>Contact image in homepage carousel</target>
+      </trans-unit>
+      <trans-unit id="55a91526e3e97fde4672f0faa8325dfae14998ee" resname="Image principale du carousel l'accueil">
+        <source>Image principale du carousel l'accueil</source>
+        <target>Main image of Gustocoffee in homepage carousel</target>
+      </trans-unit>
+      <trans-unit id="9dccb0454d90a2869e1df7f2656f8fe8e36da691" resname="Image produits">
+        <source>Image produits</source>
+        <target>Image produits</target>
+      </trans-unit>
+      <trans-unit id="5ee312b93afb52f9273d0e223d7e8795c08110b4" resname="Image salle privatisée">
+        <source>Image salle privatisée</source>
+        <target>Image salle privatisée</target>
       </trans-unit>
       <trans-unit id="9be51f96ff02e94d1a5108f14de0b373ef3dd675" resname="Inscription">
         <source>Inscription</source>
@@ -461,9 +470,13 @@
         <source>Je suis tout seul, puis-je réserver une salle privée ?</source>
         <target>I'm all alone, can I book a private room?</target>
       </trans-unit>
-      <trans-unit id="1c08a9530d683101d448ef8059087b40511ff53d" resname="KASAgency est une jeune agence web.">
-        <source>KASAgency est une jeune agence web.</source>
-        <target>KASAgency is a young web agency.</target>
+      <trans-unit id="04342708056d1ecff2089cbdd8649d70fbee2a63" resname="Journée">
+        <source>Journée</source>
+        <target>Full day</target>
+      </trans-unit>
+      <trans-unit id="15ffa70f9cdac16fa93fc4310aee47518943fc4c" resname="KASAgency est une jeune agence web">
+        <source>KASAgency est une jeune agence web</source>
+        <target>KASAgency is a young web agency</target>
       </trans-unit>
       <trans-unit id="de98df8905bdec2949c0346ba501d06c6082c15c" resname="L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.">
         <source>L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.</source>
@@ -479,15 +492,30 @@
       </trans-unit>
       <trans-unit id="e86efc4bc65b868708b3bb95c9ee6c506ae43b8f" resname="La différence se fait au niveau des services. Dans une salle privée, vous avez le droit à un petit-déjeuner, déjeuner, dîner et à des services bureautiques. Le tarif reste le même que celui de l'Open Space. Seuls les différents services s'ajoutent au paiement.">
         <source>La différence se fait au niveau des services. Dans une salle privée, vous avez le droit à un petit-déjeuner, déjeuner, dîner et à des services bureautiques. Le tarif reste le même que celui de l'Open Space. Seuls les différents services s'ajoutent au paiement.</source>
-        <target>Lthe difference is in services. In a private room, you have the right to breakfast, lunch, dinner and office services. The price remains the same as that of the Open Space. Only the different services are added to the payment.</target>
+        <target>The difference is in services. In a private room, you have the right to breakfast, lunch, dinner and office services. The price remains the same as that of the Open Space. Only the different services are added to the payment.</target>
       </trans-unit>
       <trans-unit id="e5c5c95a26135b70c9cefc58c4691737f6574744" resname="La première heure vous coûte 5 euros. Ensuite, vous paierez 2€ par demi heure. Nous vous offrons la 3 heure. Au delà  de 5 heures, la facture sera fixée à 20 euros. Ces tarifs s'appliquent à l'Open Space ainsi qu'aux salles privées.">
         <source>La première heure vous coûte 5 euros. Ensuite, vous paierez 2€ par demi heure. Nous vous offrons la 3 heure. Au delà  de 5 heures, la facture sera fixée à 20 euros. Ces tarifs s'appliquent à l'Open Space ainsi qu'aux salles privées.</source>
         <target>The first hour costs you 5 euros. Then you will pay € 2 per half hour. We offer you the 3 hour. Beyond 5 hours, the bill will be set at 20 euros. These rates apply to Open Space as well as private rooms.</target>
       </trans-unit>
+      <trans-unit id="c45e9c4ec4a446b861fdcb7c8d8591b971ca17c5" resname="La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc. MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des coffee-shops en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de &quot; Coffee-Shop Coworking &quot;.">
+        <source>La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc. MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des coffee-shops en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de " Coffee-Shop Coworking ".</source>
+        <target xml:space="preserve">GustoCoffee specializes in the sale of coffee products, automatic machines, espresso machines, coffee grinders, coffee beans, pod coffee, etc.
+M. Philippe Landemaine Director and Alain Bellucci Associate Director, have for the past ten years established coffee shops in Italy, as well as in England and have recently established in Paris, with a new concept of "Coffee Shop Coworking"</target>
+      </trans-unit>
+      <trans-unit id="949e039eaa0b6637fc97ce8a6e335ac15f5ad0ee" resname="La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de &quot;Coffee-Shop CoWorking&quot;. Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.">
+        <source>La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking". Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.</source>
+        <target>GustoCoffee specializes in the sale of products around coffee, automatic machine, espresso machine, coffee grinder, coffee beans, coffee pods, etc. Today, GustoCoffee offers a new concept of "Coffee Shop CoWorking". Thus, we offer a specially designed space for individual or group work within Paris, near the Gare du Nord accessible via the RER B or RER D.</target>
+      </trans-unit>
       <trans-unit id="8ed073b4b41841efe988b1f490fcc93403e8c16f" resname="La transaction se fait par Paypal.">
         <source>La transaction se fait par Paypal.</source>
         <target>The transaction is done by Paypal.</target>
+      </trans-unit>
+      <trans-unit id="d89abddfe5960688e4282cee28ca9f499c642583" resname="Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,&#10;                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,&#10;                collaborateurs, clients et sous-traitant.">
+        <source xml:space="preserve">Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
+                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,
+                collaborateurs, clients et sous-traitant.</source>
+        <target>Coworking is simple: these are spaces that bring together multiple services for the digital self-employed: what to connect your computer, printers, coffee machines, meeting rooms all in a more or less temporary way. These spaces especially favor the integration into a community of coworkers and offer the possibility of forming a network of partners, collaborators, customers and subcontractors.</target>
       </trans-unit>
       <trans-unit id="36f42f5d01b33134e5d753018ae3be079fe6d284" resname="Le coworking, cotravail ou parfois bureaux partagés est un type d'organisation du travail qui regroupe deux notions : un espace de travail partagé, mais aussi un réseau de travailleurs encourageant l'échange et l'ouverture. Il est un des domaines de l'économie collaborative.">
         <source>Le coworking, cotravail ou parfois bureaux partagés est un type d'organisation du travail qui regroupe deux notions : un espace de travail partagé, mais aussi un réseau de travailleurs encourageant l'échange et l'ouverture. Il est un des domaines de l'économie collaborative.</source>
@@ -581,9 +609,29 @@
         <source>Nous mettons à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.</source>
         <target>We provide individual places in a large open space or private meeting rooms.</target>
       </trans-unit>
+      <trans-unit id="10b1fd0a202e1bbaaf200d91a72806a0f39dc9cf" resname="Nous proposons plusieurs offres et abonnements">
+        <source>Nous proposons plusieurs offres et abonnements</source>
+        <target>We offer several offers and subscriptions</target>
+      </trans-unit>
       <trans-unit id="f3e9a2477181b2c7d7021760ac99226de9881653" resname="Nous sommes ouverts tous les jours de 7h à 22h. Cependant, les salles sont accessibles de 9h à 21h.">
         <source>Nous sommes ouverts tous les jours de 7h à 22h. Cependant, les salles sont accessibles de 9h à 21h.</source>
         <target>We are open every day from 7h to 22h. However, the rooms are accessible from 9h to 21h.</target>
+      </trans-unit>
+      <trans-unit id="d29a663de815adfb49ac20b6f2994284c409fd2c" resname="OU">
+        <source>OU</source>
+        <target>OR</target>
+      </trans-unit>
+      <trans-unit id="61905b5183f03182649d8294f42048d89aa53d88" resname="Obtenez ">
+        <source>Obtenez </source>
+        <target>Get</target>
+      </trans-unit>
+      <trans-unit id="f7f3a890d99c6ab89cb9726fa5ad14073837b2a1" resname="Offerte">
+        <source>Offerte</source>
+        <target>Offered</target>
+      </trans-unit>
+      <trans-unit id="3ea7ab774cac3d46f40e337b010064a249f632bf" resname="On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !">
+        <source>On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !</source>
+        <target> We offer office services such as a private online storage space, the sale of digital media, as well as printing. In addition, the consumption of coffee, tea, pancakes and waffles are at will!</target>
       </trans-unit>
       <trans-unit id="0ebf4c64bc3ebfc977db3cbf684d9057cd7a8995" resname="Ou alors">
         <source>Ou alors</source>
@@ -613,6 +661,10 @@
         <source><![CDATA[Payer directement >]]></source>
         <target>Pay directly</target>
       </trans-unit>
+      <trans-unit id="717a0bea3fa79beb3e1490bcb1a4098a1ab03871" resname="Petit déjeuner, déjeuner &amp; dîner">
+        <source><![CDATA[Petit déjeuner, déjeuner & dîner]]></source>
+        <target><![CDATA[Breakfast, lunch & dinner]]></target>
+      </trans-unit>
       <trans-unit id="8089c4e213d6a9ac2c500094ad7eacdbfeea26e4" resname="Place individuelle">
         <source>Place individuelle</source>
         <target>Individual place</target>
@@ -636,6 +688,14 @@
       <trans-unit id="299b64c620ab46b4cefd34c9595e9e04d7fcf2a9" resname="Postez votre annonce">
         <source>Postez votre annonce</source>
         <target>Post your ad</target>
+      </trans-unit>
+      <trans-unit id="3ac28e16834f40275603d9da8cc598c69689cb05" resname="Première heure ">
+        <source>Première heure </source>
+        <target>First hour</target>
+      </trans-unit>
+      <trans-unit id="2d5eddef33c653b7ff8974e4f9942ec9c34f07e4" resname="Prix">
+        <source>Prix</source>
+        <target>Price</target>
       </trans-unit>
       <trans-unit id="c48d80e8283e2123e2b5b9d677104b55f8cc4bd3" resname="Prix TTC">
         <source>Prix TTC</source>
@@ -691,7 +751,7 @@
       </trans-unit>
       <trans-unit id="929ac655bbd8a6f8ed6b9d2738b9accdd045785e" resname="Recherche de partenariat(s)">
         <source>Recherche de partenariat(s)</source>
-        <target>Partnership search (s)</target>
+        <target>Partnership(s) search</target>
       </trans-unit>
       <trans-unit id="91f7d3e9dc3d2d5dc14d7e5166efb31053866d21" resname="Rechercher">
         <source>Rechercher</source>
@@ -713,17 +773,10 @@
         <source>Retrouvez ci-desosus toutes vos factures.</source>
         <target>Find below all your bills.</target>
       </trans-unit>
-      <trans-unit id="e3e3c8b320f83e50fe0abd3ca89e6507a5c168e2" resname="Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking !&#10;                Au programme, musique, danse, visite et consommation à volonté !&#10;                Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants&#10;                en quête d'un environnement calme.&#10;                ">
-        <source xml:space="preserve">Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking !
-                Au programme, musique, danse, visite et consommation à volonté !
-                Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants
-                en quête d'un environnement calme.
-                </source>
-        <target xml:space="preserve">Recently, GustoCoffee organized a big event to celebrate the opening of the Coffee Shop CoWorking!
-                 On the program, music, dance, visit and consumption at will!
-                 This was the opportunity for GustoCoffee to become known to large companies such as Societe Generale wishing to work in a more relaxed setting but also for students
-                 in search of a calm environment.
-                </target>
+      <trans-unit id="fc92a92f83716cb90262165f7bc06a52b865f6e2" resname="Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking ! Au programme, musique, danse, visite et consommation à volonté ! Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants en quête d'un environnement calme.">
+        <source>Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking ! Au programme, musique, danse, visite et consommation à volonté ! Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants en quête d'un environnement calme.</source>
+        <target xml:space="preserve">Recently, GustoCoffee organized a big event to celebrate the opening of the Coffee Shop CoWorking! On the program, music, dance, visit and consumption at will!
+This was the opportunity for GustoCoffee to become known to large companies such as Societe Generale wishing to work in a more relaxed setting but also for students in search of a calm environment.</target>
       </trans-unit>
       <trans-unit id="0126ff40b00d5884ded2a277fd6f008a00253a37" resname="Réduction">
         <source>Réduction</source>
@@ -783,7 +836,7 @@
       </trans-unit>
       <trans-unit id="68b8ee57fb7197db40060dea6b4a8d7f6ee5c9b9" resname="S'inscrire">
         <source>S'inscrire</source>
-        <target>register</target>
+        <target>Register</target>
       </trans-unit>
       <trans-unit id="1f27982cc023f266aa81699ef2e973696e1e23c5" resname="Salle privatisée">
         <source>Salle privatisée</source>
@@ -796,6 +849,10 @@
       <trans-unit id="7852ef65233de6383c2d58e90375be9bf17804af" resname="Se Connecter">
         <source>Se Connecter</source>
         <target>To log in</target>
+      </trans-unit>
+      <trans-unit id="ffd2b3849acc34101510dfbcd4e0cc7e824a6a6e" resname="Service bureautique">
+        <source>Service bureautique</source>
+        <target>Office service</target>
       </trans-unit>
       <trans-unit id="85ee94e1653a6da91f8f9e02ad34ff8f2ad7fe79" resname="Si on se rencontrait">
         <source>Si on se rencontrait</source>
@@ -861,6 +918,10 @@
         <source>Tout le monde ! Que vous venez en entreprise, en freelance, en groupe ou en tant qu'étudiant, GustoCoffee accueille absolument tout le monde. Le but étant aussi de vous faire changer d'environnement de travail.</source>
         <target>Everybody ! Whether you come in business, freelance, group or as a student, GustoCoffee welcomes everyone. The goal is also to make you change work environment.</target>
       </trans-unit>
+      <trans-unit id="41f1434cb581a6c7f9bc85b045611c646f0ea27d" resname="Troisième heures">
+        <source>Troisième heures</source>
+        <target>Third hour</target>
+      </trans-unit>
       <trans-unit id="83eb29e0ad26d5dde694843192f171525fa74d4d" resname="Télécharger votre factur">
         <source>Télécharger votre factur</source>
         <target>Download your bill</target>
@@ -893,6 +954,10 @@
         <source>Voici ce que contient votre panier</source>
         <target>Here is what's in your cart</target>
       </trans-unit>
+      <trans-unit id="9b6e6e49c81d1bf9ec892fda963c5b6de8895014" resname="Voici ce que vous avez dans votre panier">
+        <source>Voici ce que vous avez dans votre panier</source>
+        <target>This is what you've actually have in your cart</target>
+      </trans-unit>
       <trans-unit id="9dec896556cbf2e8467f1a298c86c0fc23bcb25b" resname="Voici les places individuelle disponibles pour le ">
         <source>Voici les places individuelle disponibles pour le </source>
         <target>Here are the individual places available for the</target>
@@ -911,11 +976,11 @@
       </trans-unit>
       <trans-unit id="db186b590f65054feefbb848bae338aab273afa8" resname="Vos Factures">
         <source>Vos Factures</source>
-        <target>your bills</target>
+        <target>Your bills</target>
       </trans-unit>
       <trans-unit id="1618fdb1e008627913021f9f7543f2c7ac569904" resname="Vos adresses">
         <source>Vos adresses</source>
-        <target>your addresses</target>
+        <target>Your addresses</target>
       </trans-unit>
       <trans-unit id="71606ef3c4e9f59397e39a9fe98d428634839fee" resname="Vos adresses de facturations">
         <source>Vos adresses de facturations</source>
@@ -961,6 +1026,10 @@
         <source>articles dans votre panier</source>
         <target>items in your cart</target>
       </trans-unit>
+      <trans-unit id="84c87a11e6df5abd06759ffff90321dee9a595fb" resname="avec">
+        <source>avec</source>
+        <target>with</target>
+      </trans-unit>
       <trans-unit id="207c5ba49d730ff3729b323046ce197b2b97292a" resname="contient">
         <source>contient</source>
         <target>contains</target>
@@ -973,9 +1042,21 @@
         <source>edit</source>
         <target>edit</target>
       </trans-unit>
+      <trans-unit id="0c52dc77f8a5b2ae6e7c7938521ed5fd26ebb8a8" resname="groupe">
+        <source>groupe</source>
+        <target>group</target>
+      </trans-unit>
+      <trans-unit id="70e5b132c5aaa0aa4c39fd5085610688a2eb2c34" resname="heure supplémentaires">
+        <source>heure supplémentaires</source>
+        <target>hour ouvertime</target>
+      </trans-unit>
       <trans-unit id="d5f10c9bc8370694a415ccbaabcb062e36948c5a" resname="ou">
         <source>ou</source>
         <target>or</target>
+      </trans-unit>
+      <trans-unit id="d3101676be409f2777c6f2cf997acb07ba5dd919" resname="personne">
+        <source>personne</source>
+        <target>person</target>
       </trans-unit>
       <trans-unit id="324d2c4f8c42abc418bde82c7fea830b4d70309c" resname="places">
         <source>places</source>
@@ -1020,6 +1101,10 @@
       <trans-unit id="82ddfd0b69fba11c62e6ee80d5771f2cbf01465f" resname="Éditez votre annonce">
         <source>Éditez votre annonce</source>
         <target>Edit your announce</target>
+      </trans-unit>
+      <trans-unit id="eb41c0689e87aed3bddb33d22d5d793ae62e7754" resname="à volonté">
+        <source>à volonté</source>
+        <target>at will</target>
       </trans-unit>
     </body>
   </file>

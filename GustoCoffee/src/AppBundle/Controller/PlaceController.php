@@ -167,11 +167,11 @@ class PlaceController extends FOSRestController
      */
     public function showAction(Place $place)
     {
-        $deleteForm = $this->createDeleteForm($place);
+        //$deleteForm = $this->createDeleteForm($place);
 
         return $this->render('place/show.html.twig', array(
             'place' => $place,
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 

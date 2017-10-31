@@ -1,6 +1,6 @@
 {
-  "build/ajax.js": "/build/ajax.2ff95d5f1995d2b3bd43.js",
-  "build/app.js": "/build/app.e919edf2f6a7883a2010.js",
+  "build/ajax.js": "/build/ajax.js",
+  "build/app.js": "/build/app.js",
   "build/fonts/fontawesome-webfont.eot": "/build/fonts/fontawesome-webfont.674f50d2.eot",
   "build/fonts/fontawesome-webfont.ttf": "/build/fonts/fontawesome-webfont.b06871f2.ttf",
   "build/fonts/fontawesome-webfont.woff": "/build/fonts/fontawesome-webfont.fee66e71.woff",
@@ -9,7 +9,7 @@
   "build/fonts/glyphicons-halflings-regular.ttf": "/build/fonts/glyphicons-halflings-regular.e18bbf61.ttf",
   "build/fonts/glyphicons-halflings-regular.woff": "/build/fonts/glyphicons-halflings-regular.fa277232.woff",
   "build/fonts/glyphicons-halflings-regular.woff2": "/build/fonts/glyphicons-halflings-regular.448c34a5.woff2",
-  "build/global.css": "/build/global.ffdd5362361252958a37616323f50ec5.css",
+  "build/global.css": "/build/global.css",
   "build/images/backContact.jpeg": "/build/images/backContact.78de4675.jpeg",
   "build/images/background-error-broken-glass.jpg": "/build/images/background-error-broken-glass.1a10ebbb.jpg",
   "build/images/background_annonce.jpeg": "/build/images/background_annonce.a192672d.jpeg",
@@ -30,7 +30,7 @@
   "build/images/ui-icons_777777_256x240.png": "/build/images/ui-icons_777777_256x240.40bf2579.png",
   "build/images/ui-icons_cc0000_256x240.png": "/build/images/ui-icons_cc0000_256x240.093a8191.png",
   "build/images/ui-icons_ffffff_256x240.png": "/build/images/ui-icons_ffffff_256x240.ea4ebe07.png",
-  "build/manifest.js": "/build/manifest.d41d8cd98f00b204e980.js",
-  "build/vendor.css": "/build/vendor.cd3a1b569c9c06555d2b8d55b843db65.css",
-  "build/vendor.js": "/build/vendor.f7e8d6287450040b4bae.js"
+  "build/manifest.js": "/build/manifest.js",
+  "build/vendor.css": "/build/vendor.css",
+  "build/vendor.js": "/build/vendor.js"
 }

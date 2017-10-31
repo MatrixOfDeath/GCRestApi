@@ -36,14 +36,14 @@
         <div class="col-md-12 ">
             <h2 class="titleReservation">{{ "Réservez votre place"|trans }} !</h2>
             <div class="clearText"></div>
-            <p class="textReservation textDescription"><strong>{{ "Consommez à volonté, chez GustoCoffee"|trans }} !</strong>{{ ""|trans }} Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.<br>
+            <p class="textReservation textDescription"><strong>{{ "Consommez à volonté, chez GustoCoffee"|trans }} !</strong> {{ "Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez."|trans }}<br>
             </p>
             <div class="clearText"></div>
         </div>
         <div class="col-md-6">
             <div class="sliderMap">
                 <div class="status">
-                    <h3> C'est Ouvert ! </h3>
+                    <h3> {{ "C'est Ouvert"|trans }} ! </h3>
                 </div>
                 <div class="shop-name centerText">
                     <h2> GustoCoffee </h2>
@@ -61,33 +61,33 @@
                 <table class="table-striped">
                     <thead>
                     <tr class="firstLine">
-                        <th class="lineRow"> Nos services </th>
-                        <th class="tablePriceSecondRow lineRow"> Prix / personne</th>
+                        <th class="lineRow"> {{ "Nos services"|trans }} </th>
+                        <th class="tablePriceSecondRow lineRow"> {{ 'Prix'|trans }} / {{ 'personne'|trans }}</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="lineRow"> Première heure </td>
+                        <td class="lineRow"> {{ 'Première heure '|trans }}</td>
                         <td class="tablePriceSecondRow lineRow"> 5€ </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> 1/2 heure supplémentaires </td>
+                        <td class="lineRow"> 1/2 {{ 'heure supplémentaires'|trans }} </td>
                         <td class="tablePriceSecondRow lineRow"> 2€ </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> Troisième heures </td>
-                        <td class="tablePriceSecondRow lineRow"> Offerte </td>
+                        <td class="lineRow"> {{ 'Troisième heures'|trans }} </td>
+                        <td class="tablePriceSecondRow lineRow"> {{ 'Offerte'|trans }} </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> Journée </td>
+                        <td class="lineRow"> {{ 'Journée'|trans }} </td>
                         <td class="tablePriceSecondRow lineRow"> 20€ </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> Service bureautique </td>
-                        <td class="tablePriceSecondRow lineRow"> 10€ / groupe </td>
+                        <td class="lineRow"> {{ 'Service bureautique'|trans }} </td>
+                        <td class="tablePriceSecondRow lineRow"> 10€ / {{ 'groupe'|trans }} </td>
                     </tr>
                     <tr>
-                        <td class="lineRow"> Petit déjeuner, déjeuner & dîner </td>
+                        <td class="lineRow"> {{ 'Petit déjeuner, déjeuner & dîner'|trans }} </td>
                         <td class="tablePriceSecondRow lineRow"> 5€ </td>
                     </tr>
                     </tbody>
@@ -96,8 +96,7 @@
             </div>
             <div class="clearText"></div>
             <p class="textReservation textDescription">
-                <br>Obtenez <strong>10% de réduction</strong> sur la restauration, les services bureautique en <br>réservant directement sur notre site internet !<br>
-                Les gaufres, les crêpes, le café ainsi que le thé sont <strong>à volonté</strong> !!
+                {{ 'Obtenez '|trans }}<strong>{{ '10% de réduction'|trans|raw }}</strong>{% trans %} sur la restauration, les services bureautique en réservant directement sur notre site internet ! Les gaufres, les crêpes, le café ainsi que le thé sont {% endtrans %} <strong>{{ 'à volonté'|trans }}</strong> !!
             </p>
         </div>
     </div>
@@ -131,9 +130,13 @@
                     {#</div>#}
 
                 {#</div>#}
-                <a href="{{ path('place_index') }}">
-                    <img src="{{ asset('img/place/individuelPlace.jpg') }}" alt="Place individuelle" style="width:100%">
-                </a>
+                <picture>
+                    {{ 'img/place/individuelPlace.jpg' | responsive_image_source([750, 380, 504, 252], {'filterset': 'responsive_article_image'}) }}
+                    <a href="{{ path('place_index') }}">
+                        <img srcset="{{ asset('img/place/individuelPlace.jpg')| imagine_filter('responsive_article_image', {"thumbnail": {"size": [420, 420] }}) }}" class="img-responsive" alt="{{ 'Place individuelle'|trans }}" title="{{ 'Place individuelle'|trans }}" >
+                    </a>
+                </picture>
+
                 <div class="containerCard">
                     <h4 class="cardTitle"><strong>{{ "Place individuelle"|trans }}</strong></h4>
                     <p>{{ "Choisir une place"|trans }}</p>
@@ -143,9 +146,12 @@
         <div class="col-md-2 col-xs-1"></div>
         <div class="col-md-5 col-md-offset-3.5 col-xs-11 cardReservation">
             <div class="card">
-                <a href="{{ path('salle_index') }}">
-                    <img src="{{ asset('img/place/groupPlace.jpg') }}" alt="Salle privatisée" style="width:100%">
-                </a>
+                <picture>
+                    {{ 'img/place/groupPlace.jpg' | responsive_image_source([750, 380, 504, 252], {'filterset': 'responsive_article_image'}) }}
+                    <a href="{{ path('place_index') }}">
+                        <img srcset="{{ asset('img/place/groupPlace.jpg')| imagine_filter('responsive_article_image', {"thumbnail": {"size": [420, 420] }}) }}" class="img-responsive" alt="{{ 'Salle privatisée'|trans }}" title="{{ 'Salle privatisée'|trans }}">
+                    </a>
+                </picture>
                 <div class="containerCard">
                     <h4 class="cardTitle"><strong>{{ "Salle privatisée"|trans }}</strong></h4>
                     <p>{{ "Choisir une salle"|trans }}</p>

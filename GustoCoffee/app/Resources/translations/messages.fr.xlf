@@ -1,103 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-10-29T18:54:22Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+  <file date="2017-10-31T16:47:41Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
-      <trans-unit id="da39a3ee5e6b4b0d3255bfef95601890afd80709" resname="">
-        <source></source>
-        <target></target>
-        <jms:reference-file line="39">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="b9403c70c846a216a24a033e4fd3e73506fdfeb5" resname="                Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.&#10;                ">
-        <source xml:space="preserve">                Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.
-                </source>
-        <target xml:space="preserve" state="new">                Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.
-                </target>
-        <jms:reference-file line="80">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="f59d75192f1cb3c928b6312c1c8ae2498a3d81ef" resname="                GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du &quot;Coffee-shop Coworking&quot; situé près de Gare du Nord.&#10;                C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous&#10;                familiariser avec l'espace que nous vous proposons.&#10;                ">
-        <source xml:space="preserve">                GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "Coffee-shop Coworking" situé près de Gare du Nord.
-                C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous
-                familiariser avec l'espace que nous vous proposons.
-                </source>
-        <target xml:space="preserve" state="new">                GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "Coffee-shop Coworking" situé près de Gare du Nord.
-                C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous
-                familiariser avec l'espace que nous vous proposons.
-                </target>
-        <jms:reference-file line="53">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="417dc8457be09ba2f6d33d7dbd428a398209dfb6" resname="                GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif. &lt;br&gt;&#10;                On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !">
-        <source><![CDATA[                GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif. <br>
-                On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !]]></source>
-        <target state="new"><![CDATA[                GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif. <br>
-                On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !]]></target>
-        <jms:reference-file line="75">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="b59de2076109399442eac7bcdc79a5898292233d" resname="                La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc.&#10;                MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des  coffee-shops  en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de &quot; Coffee-Shop Coworking &quot;.&#10;                ">
-        <source xml:space="preserve">                La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc.
-                MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des  coffee-shops  en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de " Coffee-Shop Coworking ".
-                </source>
-        <target xml:space="preserve">                La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc.
-                MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des  coffee-shops  en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de " Coffee-Shop Coworking ".
-                </target>
-        <jms:reference-file line="103">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="d141546acb9e5329ca9c19e368e4aeff06837779" resname="                La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de &quot;Coffee-Shop CoWorking&quot;.&#10;                Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.&#10;                ">
-        <source xml:space="preserve">                La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking".
-                Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.
-                </source>
-        <target xml:space="preserve">                La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking".
-                Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.
-                </target>
-        <jms:reference-file line="43">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
-      </trans-unit>
-      <trans-unit id="44ed99ca0c816461a55cd76178542b9d3a48e088" resname="                Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,&#10;                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,&#10;                collaborateurs, clients et sous-traitant. ">
-        <source xml:space="preserve">                Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
-                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,
-                collaborateurs, clients et sous-traitant. </source>
-        <target xml:space="preserve">                Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
-                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,
-                collaborateurs, clients et sous-traitant. </target>
-        <jms:reference-file line="39">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
-      </trans-unit>
       <trans-unit id="83499490cf5aaab746865ab2b5942b626251050b" resname="  Adresse">
         <source>  Adresse</source>
         <target>  Adresse</target>
-        <jms:reference-file line="26">/../src/AppBundle/Form/ProfileFormType.php</jms:reference-file>
-        <jms:reference-file line="26">/../src/AppBundle/Form/RegistrationType.php</jms:reference-file>
+        <jms:reference-file line="22">/../src/AppBundle/Form/Type/ProfileFormType.php</jms:reference-file>
+        <jms:reference-file line="22">/../src/AppBundle/Form/Type/RegistrationType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="29c4f2a6caa878a7651ade1f2904b424577829a2" resname="  Code Postal">
         <source>  Code Postal</source>
         <target>  Code Postal</target>
-        <jms:reference-file line="27">/../src/AppBundle/Form/ProfileFormType.php</jms:reference-file>
-        <jms:reference-file line="27">/../src/AppBundle/Form/RegistrationType.php</jms:reference-file>
+        <jms:reference-file line="23">/../src/AppBundle/Form/Type/ProfileFormType.php</jms:reference-file>
+        <jms:reference-file line="23">/../src/AppBundle/Form/Type/RegistrationType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="53f4daf841d01d90c71f6f823ca42df7bf0e75a3" resname="  Email">
         <source>  Email</source>
         <target>  Email</target>
-        <jms:reference-file line="25">/../src/AppBundle/Form/ProfileFormType.php</jms:reference-file>
-        <jms:reference-file line="25">/../src/AppBundle/Form/RegistrationType.php</jms:reference-file>
+        <jms:reference-file line="21">/../src/AppBundle/Form/Type/ProfileFormType.php</jms:reference-file>
+        <jms:reference-file line="21">/../src/AppBundle/Form/Type/RegistrationType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c1dd21bf02cd6b43456a402914205660098b6563" resname="  Nom">
         <source>  Nom</source>
         <target>  Nom</target>
-        <jms:reference-file line="23">/../src/AppBundle/Form/ProfileFormType.php</jms:reference-file>
-        <jms:reference-file line="23">/../src/AppBundle/Form/RegistrationType.php</jms:reference-file>
+        <jms:reference-file line="19">/../src/AppBundle/Form/Type/ProfileFormType.php</jms:reference-file>
+        <jms:reference-file line="19">/../src/AppBundle/Form/Type/RegistrationType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="5ab9f1da46279859a4d2cdda091af6125e543170" resname="  Prénom">
         <source>  Prénom</source>
         <target>  Prénom</target>
-        <jms:reference-file line="24">/../src/AppBundle/Form/ProfileFormType.php</jms:reference-file>
-        <jms:reference-file line="24">/../src/AppBundle/Form/RegistrationType.php</jms:reference-file>
+        <jms:reference-file line="20">/../src/AppBundle/Form/Type/ProfileFormType.php</jms:reference-file>
+        <jms:reference-file line="20">/../src/AppBundle/Form/Type/RegistrationType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="66e26f720550b091858e246c018a113d5cbb88cf" resname="  Ville">
         <source>  Ville</source>
         <target>  Ville</target>
-        <jms:reference-file line="28">/../src/AppBundle/Form/ProfileFormType.php</jms:reference-file>
-        <jms:reference-file line="28">/../src/AppBundle/Form/RegistrationType.php</jms:reference-file>
+        <jms:reference-file line="24">/../src/AppBundle/Form/Type/ProfileFormType.php</jms:reference-file>
+        <jms:reference-file line="24">/../src/AppBundle/Form/Type/RegistrationType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="519b946969f2d950f50ae0bd815125f29e424b37" resname=" The requested page couldn't be located. Checkout for any URL misspelling">
         <source> The requested page couldn't be located. Checkout for any URL misspelling</source>
@@ -106,15 +49,20 @@
         <jms:reference-file line="18">/Resources/TwigBundle/views/Exception/error404.html.twig</jms:reference-file>
         <jms:reference-file line="18">/Resources/TwigBundle/views/Exception/error500.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="cd3ee815139bd13c83838bda5c9dd4e197256c3e" resname=" sur la restauration, les services bureautique en réservant directement sur notre site internet ! Les gaufres, les crêpes, le café ainsi que le thé sont ">
+        <source> sur la restauration, les services bureautique en réservant directement sur notre site internet ! Les gaufres, les crêpes, le café ainsi que le thé sont </source>
+        <target> sur la restauration, les services bureautique en réservant directement sur notre site internet ! Les gaufres, les crêpes, le café ainsi que le thé sont </target>
+        <jms:reference-file line="99">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="b6589fc6ab0dc82cf12099d1c2d40ab994e8410c" resname="0">
         <source>0</source>
         <target>0</target>
-        <jms:reference-file line="27">/../src/AppBundle/Form/ProduitType.php</jms:reference-file>
+        <jms:reference-file line="27">/../src/AppBundle/Form/Type/ProduitType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="356a192b7913b04c54574d18c28d46e6395428ab" resname="1">
         <source>1</source>
         <target>1</target>
-        <jms:reference-file line="28">/../src/AppBundle/Form/ProduitType.php</jms:reference-file>
+        <jms:reference-file line="28">/../src/AppBundle/Form/Type/ProduitType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="f34a9d2d7095343bff3619998aba4ea94b8c57de" resname="1 article dans votre panier">
         <source>1 article dans votre panier</source>
@@ -122,30 +70,35 @@
         <jms:reference-file line="9">/Resources/views/panier/ajaxpaniermenu.html.twig</jms:reference-file>
         <jms:reference-file line="10">/Resources/views/panier/panier.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="b83b2cc056c1fb20d8aefde08c39cf628045cd43" resname="10% de réduction">
+        <source>10% de réduction</source>
+        <target>10% de réduction</target>
+        <jms:reference-file line="99">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="da4b9237bacccdf19c0760cab7aec4a8359010b0" resname="2">
         <source>2</source>
         <target>2</target>
-        <jms:reference-file line="29">/../src/AppBundle/Form/ProduitType.php</jms:reference-file>
+        <jms:reference-file line="29">/../src/AppBundle/Form/Type/ProduitType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="77de68daecd823babbb58edb1c8e14d7106e83bb" resname="3">
         <source>3</source>
         <target>3</target>
-        <jms:reference-file line="30">/../src/AppBundle/Form/ProduitType.php</jms:reference-file>
+        <jms:reference-file line="30">/../src/AppBundle/Form/Type/ProduitType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="1b6453892473a467d07372d45eb05abc2031647a" resname="4">
         <source>4</source>
         <target>4</target>
-        <jms:reference-file line="31">/../src/AppBundle/Form/ProduitType.php</jms:reference-file>
+        <jms:reference-file line="31">/../src/AppBundle/Form/Type/ProduitType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="ac3478d69a3c81fa62e60f5c3696165a4e5e6ac4" resname="5">
         <source>5</source>
         <target>5</target>
-        <jms:reference-file line="32">/../src/AppBundle/Form/ProduitType.php</jms:reference-file>
+        <jms:reference-file line="32">/../src/AppBundle/Form/Type/ProduitType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c1dfd96eea8cc2b62785275bca38ac261256e278" resname="6">
         <source>6</source>
         <target>6</target>
-        <jms:reference-file line="33">/../src/AppBundle/Form/ProduitType.php</jms:reference-file>
+        <jms:reference-file line="33">/../src/AppBundle/Form/Type/ProduitType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="a8ff8fd207898612a41280ecd69fb6c8d6f6ad11" resname="Accueil">
         <source>Accueil</source>
@@ -154,36 +107,36 @@
       </trans-unit>
       <trans-unit id="be88d655ab3b08ddb06ff6638f653e098f00fe00" resname="Adresse de facturation">
         <source>Adresse de facturation</source>
-        <target state="new">Adresse de facturation</target>
+        <target>Adresse de facturation</target>
         <jms:reference-file line="184">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
         <jms:reference-file line="79">/Resources/views/panier/layout/livraison.html.twig</jms:reference-file>
         <jms:reference-file line="254">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="35affff93678a9961f50a56f76256e20a6d51ec2" resname="Adresse et Informations personnelles">
         <source>Adresse et Informations personnelles</source>
-        <target state="new">Adresse et Informations personnelles</target>
+        <target>Adresse et Informations personnelles</target>
         <jms:reference-file line="59">/Resources/views/panier/layout/livraison.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="86336ed256c14b163f73c648aefabf514ba1e306" resname="Adresse personnel">
         <source>Adresse personnel</source>
-        <target state="new">Adresse personnel</target>
+        <target>Adresse personnel</target>
         <jms:reference-file line="174">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
         <jms:reference-file line="244">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="64f82661e2871b51a0332392744d8e7b1ade3503" resname="Adresse personnelle">
         <source>Adresse personnelle</source>
-        <target state="new">Adresse personnelle</target>
+        <target>Adresse personnelle</target>
         <jms:reference-file line="68">/Resources/views/panier/layout/livraison.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="87c57ed173ea17c02ec96ec099ee6a81d79dabc2" resname="Ajouter">
         <source>Ajouter</source>
-        <target state="new">Ajouter</target>
+        <target>Ajouter</target>
         <jms:reference-file line="107">/Resources/views/panier/layout/livraison.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b6799d9a25e425d3e88175a2d229806d107eda9f" resname="Ajouter au panier">
         <source>Ajouter au panier</source>
         <target>Ajouter au panier</target>
-        <jms:reference-file line="25">/Resources/views/produit/ajaxproduits.html.twig</jms:reference-file>
+        <jms:reference-file line="26">/Resources/views/produit/ajaxproduits.html.twig</jms:reference-file>
         <jms:reference-file line="53">/Resources/views/produit/produits.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="50e6b2234aba910c0caceb4a8f90d3dbd3a39b08" resname="Ajouter des produits">
@@ -193,7 +146,7 @@
       </trans-unit>
       <trans-unit id="dc0ff611c369dd9d3785c4360c9004121a467c9d" resname="Ajouter une nouvelle adresse">
         <source>Ajouter une nouvelle adresse</source>
-        <target state="new">Ajouter une nouvelle adresse</target>
+        <target>Ajouter une nouvelle adresse</target>
         <jms:reference-file line="104">/Resources/views/panier/layout/livraison.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e5ae276a16c5ce5beaa20a04f42bc42933e2435b" resname="Ajouter une place">
@@ -209,7 +162,7 @@
       <trans-unit id="0b41e23d8f0dc5a4227e064852336a96a06303b6" resname="Already connected, redirect to login page to create token.">
         <source>Already connected, redirect to login page to create token.</source>
         <target>Already connected, redirect to login page to create token.</target>
-        <jms:reference-file line="61">/Resources/views/base.html.twig</jms:reference-file>
+        <jms:reference-file line="78">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="981019a82d9cf133f47398a592e51fae5d0b6c89" resname="Annonces">
         <source>Annonces</source>
@@ -224,7 +177,7 @@
       <trans-unit id="4d9b459dea18834aba816f19f85a9544bfde552b" resname="Au delà de 5h de réservation, la salle coûtera">
         <source>Au delà de 5h de réservation, la salle coûtera</source>
         <target>Au delà de 5h de réservation, la salle coûtera</target>
-        <jms:reference-file line="60">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="61">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1afb47395075872b0da51ecdade3fa1d55287eae" resname="Aucune facture actuellement">
         <source>Aucune facture actuellement</source>
@@ -275,8 +228,13 @@
       </trans-unit>
       <trans-unit id="49286f94f486985eaa57bff592784fa375ae8968" resname="Bénéficiez de points de fidelités et d'autres avantages en vous inscrivant !">
         <source>Bénéficiez de points de fidelités et d'autres avantages en vous inscrivant !</source>
-        <target state="new">Bénéficiez de points de fidelités et d'autres avantages en vous inscrivant !</target>
+        <target>Bénéficiez de points de fidelités et d'autres avantages en vous inscrivant !</target>
         <jms:reference-file line="65">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="ea42eb683becd6baba7414db83ae25e8c861f5cb" resname="C'est Ouvert">
+        <source>C'est Ouvert</source>
+        <target>C'est Ouvert</target>
+        <jms:reference-file line="46">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="40e4aec2f3ef2294e067666f08fc9984a7c25c4d" resname="Cannot connect already registered account.">
         <source>Cannot connect already registered account.</source>
@@ -304,20 +262,25 @@
         <target>Chez GustoCoffee, le compte n'est pas obligatoire. Vous pouvez réserver sans compte. Cependant, nous vous conseillons de vous créer un compte afin d'obtenir des points et avoir une réduction.</target>
         <jms:reference-file line="71">/../src/GC/UserBundle/Resources/views/Default/faq.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="63c39673f17d6dcf913508349a676bc794ed0aed" resname="Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.">
+        <source>Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.</source>
+        <target state="new">Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.</target>
+        <jms:reference-file line="74">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="b030d590c21c95efe2ba71da1d0f1198a7e655b4" resname="Choisir">
         <source>Choisir</source>
         <target>Choisir</target>
-        <jms:reference-file line="62">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="63">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ce5ed5d5bedbdc03869900b2f8bda97af5026182" resname="Choisir une place">
         <source>Choisir une place</source>
         <target>Choisir une place</target>
-        <jms:reference-file line="139">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="142">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c2b737047bef65b919f3a3fcaf63081390e99edb" resname="Choisir une salle">
         <source>Choisir une salle</source>
         <target>Choisir une salle</target>
-        <jms:reference-file line="151">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="157">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="00d9e9c6cd900cb6cb064ad104f365f15f654b25" resname="Choisir votre date">
         <source>Choisir votre date</source>
@@ -370,6 +333,9 @@
       <trans-unit id="a33c58f5ec51e3c4c33c216b1b9149b5826c3ad8" resname="Connexion">
         <source>Connexion</source>
         <target>Connexion</target>
+        <jms:reference-file line="17">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
+        <jms:reference-file line="17">/Resources/HWIOAuthBundle/views/Connect/login.html.twig</jms:reference-file>
+        <jms:reference-file line="17">/Resources/HWIOAuthBundle/views/layout.html.twig</jms:reference-file>
         <jms:reference-file line="58">/Resources/views/menu.html.twig</jms:reference-file>
         <jms:reference-file line="75">/Resources/views/menu.html.twig</jms:reference-file>
         <jms:reference-file line="76">/Resources/views/menu.html.twig</jms:reference-file>
@@ -423,7 +389,12 @@
       <trans-unit id="11f72410e26c5a8cef665864db18eddccddc151f" resname="Demande d'informations">
         <source>Demande d'informations</source>
         <target>Demande d'informations</target>
-        <jms:reference-file line="24">/../src/AppBundle/Form/AnnonceType.php</jms:reference-file>
+        <jms:reference-file line="24">/../src/AppBundle/Form/Type/AnnonceType.php</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4eef8c97512936c5847ac4ed83a7c86152260594" resname="Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.">
+        <source>Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.</source>
+        <target>Demandez à avoir un petit déjeuner, déjeuner ou encore à dîner si vous le souhaitez.</target>
+        <jms:reference-file line="39">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4eafb4722ad9303115f4aa429d8010b541b0d392" resname="Déposez votre annonce">
         <source>Déposez votre annonce</source>
@@ -433,7 +404,7 @@
       <trans-unit id="a9d1ea7fd8ee4c4e7da721ca77c1b523faa2d28c" resname="Désolé aucune salles ne semble disponible pour la date et le créneau sélectioner">
         <source>Désolé aucune salles ne semble disponible pour la date et le créneau sélectioner</source>
         <target>Désolé aucune salles ne semble disponible pour la date et le créneau sélectioner</target>
-        <jms:reference-file line="2">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="4">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="2a945921280748d8d38184221fef75ed9772526a" resname="Enregistrer les modifications">
         <source>Enregistrer les modifications</source>
@@ -445,6 +416,11 @@
         <source>Entrer votre code</source>
         <target>Entrer votre code</target>
         <jms:reference-file line="267">/Resources/views/panier/layout/panier.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f69847a0566554035c2b5c0cd9299d30a57ae620" resname="Erreur d'envoie de mail">
+        <source>Erreur d'envoie de mail</source>
+        <target>Erreur d'envoie de mail</target>
+        <jms:reference-file line="28">/../src/GC/UserBundle/Controller/ContactController.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="0b90b1a7e76280c693d985597fb911fc36b4b6c1" resname="Error 403 : Forbidden">
         <source>Error 403 : Forbidden</source>
@@ -460,6 +436,9 @@
         <source>Espace Client</source>
         <target>Espace Client</target>
         <jms:reference-file line="17">/Resources/FOSUserBundle/views/ChangePassword/change_password.html.twig</jms:reference-file>
+        <jms:reference-file line="17">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
+        <jms:reference-file line="17">/Resources/HWIOAuthBundle/views/Connect/login.html.twig</jms:reference-file>
+        <jms:reference-file line="17">/Resources/HWIOAuthBundle/views/layout.html.twig</jms:reference-file>
         <jms:reference-file line="40">/Resources/views/menu.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d98e42ab7df8fdadde334dca8981416554245f44" resname="Espace Réservation">
@@ -514,7 +493,7 @@
         <jms:reference-file line="113">/Resources/views/annonce/index.html.twig</jms:reference-file>
         <jms:reference-file line="6">/Resources/views/produit/ajaxproduits.html.twig</jms:reference-file>
         <jms:reference-file line="34">/Resources/views/produit/produits.html.twig</jms:reference-file>
-        <jms:reference-file line="37">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="39">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eed502c38a7b5ff6f392b9094a00ebd389c4ad04" resname="GustoCoffee - Annonces">
         <source>GustoCoffee - Annonces</source>
@@ -564,20 +543,30 @@
         <target>GustoCoffee - Évènements</target>
         <jms:reference-file line="4">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="3169fc6d8d8390044a14eef4799a63b4ebf963fb" resname="GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du &quot;Coffee-shop Coworking&quot; situé près de Gare du Nord. C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous familiariser avec l'espace que nous vous proposons.">
+        <source>GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "Coffee-shop Coworking" situé près de Gare du Nord. C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous familiariser avec l'espace que nous vous proposons.</source>
+        <target>GustoCoffee a décidé d'instaurer une soirée chaque année pour fêter l'anniversaire du "Coffee-shop Coworking" situé près de Gare du Nord. C'est pourquoi, nous vous invitons tous les 21 Octobre à venir chez GustoCoffee afin de consommer à volonté, gratuitement et à vous familiariser avec l'espace que nous vous proposons.</target>
+        <jms:reference-file line="47">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="087cb10c831e2083fd4845e4e215c9c87de4f0cd" resname="GustoCoffee dispose de 5 salles de 4 places ainsi que de 5 salle de 6 places. Soit 50 places privées.">
         <source>GustoCoffee dispose de 5 salles de 4 places ainsi que de 5 salle de 6 places. Soit 50 places privées.</source>
         <target>GustoCoffee dispose de 5 salles de 4 places ainsi que de 5 salle de 6 places. Soit 50 places privées.</target>
         <jms:reference-file line="150">/../src/GC/UserBundle/Resources/views/Default/faq.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="cb6dae57e5c88b4de0deea9db086a34753980971" resname="GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. ">
-        <source>GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. </source>
-        <target>GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. </target>
+      <trans-unit id="d4c9f14942cb213e69c21d71e1204443a0858338" resname="GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'">
+        <source>GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'</source>
+        <target>GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'</target>
         <jms:reference-file line="16">/Resources/views/base.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3f3764b15152d0c07d3fb4a89c1cb40c17129cf1" resname="GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.">
+        <source>GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.</source>
+        <target>GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.</target>
+        <jms:reference-file line="71">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5073129fadb854bd181e25aad27849d3b5fc93ac" resname="Heure">
         <source>Heure</source>
         <target>Heure</target>
-        <jms:reference-file line="60">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="61">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c7c018f884aa5f873e4c6a6c60e72856d1fa5c6f" resname="IDPERSONNE">
         <source>IDPERSONNE</source>
@@ -587,12 +576,42 @@
       <trans-unit id="98d9d0654cf818110912d31d3abb9f110cd42130" resname="Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner, en réservant une salle privée, tout en continuant votre travail de la journée.">
         <source>Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner, en réservant une salle privée, tout en continuant votre travail de la journée.</source>
         <target>Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner, en réservant une salle privée, tout en continuant votre travail de la journée.</target>
-        <jms:reference-file line="78">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="73">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="bd36713ec5cba9c52a81dbd67c6ed37e224fe8c7" resname="Ils ont parlé de GustoCoffee">
         <source>Ils ont parlé de GustoCoffee</source>
         <target>Ils ont parlé de GustoCoffee</target>
-        <jms:reference-file line="69">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="59">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="619fe1aefeb5abfcdabe830056adb42c5b937df2" resname="Image ">
+        <source>Image </source>
+        <target>Image </target>
+        <jms:reference-file line="51">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="438e7458d12074695e9849ea01d8f51e9500fb56" resname="Image inscription du carousel l'accueil">
+        <source>Image inscription du carousel l'accueil</source>
+        <target>Image inscription du carousel l'accueil</target>
+        <jms:reference-file line="60">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="ec430d98e2a6fc6754c193e8596bbb2d6d5cc12f" resname="Image mise en relation du carousel l'accueil">
+        <source>Image mise en relation du carousel l'accueil</source>
+        <target>Image mise en relation du carousel l'accueil</target>
+        <jms:reference-file line="41">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="55a91526e3e97fde4672f0faa8325dfae14998ee" resname="Image principale du carousel l'accueil">
+        <source>Image principale du carousel l'accueil</source>
+        <target>Image principale du carousel l'accueil</target>
+        <jms:reference-file line="17">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9dccb0454d90a2869e1df7f2656f8fe8e36da691" resname="Image produits">
+        <source>Image produits</source>
+        <target>Image produits</target>
+        <jms:reference-file line="14">/Resources/views/produit/ajaxproduits.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="5ee312b93afb52f9273d0e223d7e8795c08110b4" resname="Image salle privatisée">
+        <source>Image salle privatisée</source>
+        <target>Image salle privatisée</target>
+        <jms:reference-file line="51">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9be51f96ff02e94d1a5108f14de0b373ef3dd675" resname="Inscription">
         <source>Inscription</source>
@@ -633,7 +652,7 @@
       <trans-unit id="82afdb10565b15b6e90c92a5025fcf28d047ca5e" resname="Inscrivez-vous ici">
         <source>Inscrivez-vous ici</source>
         <target>Inscrivez-vous ici</target>
-        <jms:reference-file line="53">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="49">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8b595326034f707527fe95896414233d64eb077f" resname="Internal server error : error 500">
         <source>Internal server error : error 500</source>
@@ -646,25 +665,30 @@
         <target>Je suis tout seul, puis-je réserver une salle privée ?</target>
         <jms:reference-file line="120">/../src/GC/UserBundle/Resources/views/Default/faq.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="1c08a9530d683101d448ef8059087b40511ff53d" resname="KASAgency est une jeune agence web.">
-        <source>KASAgency est une jeune agence web.</source>
-        <target>KASAgency est une jeune agence web.</target>
+      <trans-unit id="04342708056d1ecff2089cbdd8649d70fbee2a63" resname="Journée">
+        <source>Journée</source>
+        <target>Journée</target>
+        <jms:reference-file line="82">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="15ffa70f9cdac16fa93fc4310aee47518943fc4c" resname="KASAgency est une jeune agence web">
+        <source>KASAgency est une jeune agence web</source>
+        <target>KASAgency est une jeune agence web</target>
         <jms:reference-file line="17">/Resources/views/base.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="de98df8905bdec2949c0346ba501d06c6082c15c" resname="L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.">
         <source>L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.</source>
-        <target state="new">L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.</target>
-        <jms:reference-file line="50">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <target>L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.</target>
+        <jms:reference-file line="46">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fbc7e7089126def6d0ffaea83bbd185fdc2733b2" resname="L'expérience vous tente ? Vous pouvez">
         <source>L'expérience vous tente ? Vous pouvez</source>
-        <target state="new">L'expérience vous tente ? Vous pouvez</target>
-        <jms:reference-file line="85">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <target>L'expérience vous tente ? Vous pouvez</target>
+        <jms:reference-file line="77">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a87a0117539cf86d2b2db14dca267c9914ee5c05" resname="La">
         <source>La</source>
         <target>La</target>
-        <jms:reference-file line="58">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="59">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e86efc4bc65b868708b3bb95c9ee6c506ae43b8f" resname="La différence se fait au niveau des services. Dans une salle privée, vous avez le droit à un petit-déjeuner, déjeuner, dîner et à des services bureautiques. Le tarif reste le même que celui de l'Open Space. Seuls les différents services s'ajoutent au paiement.">
         <source>La différence se fait au niveau des services. Dans une salle privée, vous avez le droit à un petit-déjeuner, déjeuner, dîner et à des services bureautiques. Le tarif reste le même que celui de l'Open Space. Seuls les différents services s'ajoutent au paiement.</source>
@@ -676,10 +700,29 @@
         <target>La première heure vous coûte 5 euros. Ensuite, vous paierez 2€ par demi heure. Nous vous offrons la 3 heure. Au delà  de 5 heures, la facture sera fixée à 20 euros. Ces tarifs s'appliquent à l'Open Space ainsi qu'aux salles privées.</target>
         <jms:reference-file line="84">/../src/GC/UserBundle/Resources/views/Default/faq.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="c45e9c4ec4a446b861fdcb7c8d8591b971ca17c5" resname="La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc. MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des coffee-shops en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de &quot; Coffee-Shop Coworking &quot;.">
+        <source>La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc. MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des coffee-shops en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de " Coffee-Shop Coworking ".</source>
+        <target>La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc. MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des coffee-shops en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de " Coffee-Shop Coworking ".</target>
+        <jms:reference-file line="95">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="949e039eaa0b6637fc97ce8a6e335ac15f5ad0ee" resname="La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de &quot;Coffee-Shop CoWorking&quot;. Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.">
+        <source>La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking". Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.</source>
+        <target>La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking". Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.</target>
+        <jms:reference-file line="42">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="8ed073b4b41841efe988b1f490fcc93403e8c16f" resname="La transaction se fait par Paypal.">
         <source>La transaction se fait par Paypal.</source>
         <target>La transaction se fait par Paypal.</target>
         <jms:reference-file line="97">/../src/GC/UserBundle/Resources/views/Default/faq.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d89abddfe5960688e4282cee28ca9f499c642583" resname="Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,&#10;                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,&#10;                collaborateurs, clients et sous-traitant.">
+        <source xml:space="preserve">Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
+                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,
+                collaborateurs, clients et sous-traitant.</source>
+        <target xml:space="preserve">Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
+                salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,
+                collaborateurs, clients et sous-traitant.</target>
+        <jms:reference-file line="39">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="36f42f5d01b33134e5d753018ae3be079fe6d284" resname="Le coworking, cotravail ou parfois bureaux partagés est un type d'organisation du travail qui regroupe deux notions : un espace de travail partagé, mais aussi un réseau de travailleurs encourageant l'échange et l'ouverture. Il est un des domaines de l'économie collaborative.">
         <source>Le coworking, cotravail ou parfois bureaux partagés est un type d'organisation du travail qui regroupe deux notions : un espace de travail partagé, mais aussi un réseau de travailleurs encourageant l'échange et l'ouverture. Il est un des domaines de l'économie collaborative.</source>
@@ -695,7 +738,7 @@
         <source>Le magasin n'est pas encore ouvert, il ouvrira tout à l'heure</source>
         <target>Le magasin n'est pas encore ouvert, il ouvrira tout à l'heure</target>
         <jms:reference-file line="11">/Resources/views/place/placesDisponible.html.twig</jms:reference-file>
-        <jms:reference-file line="28">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="30">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="4231be1747285e4a3497f48d5fdd22b59dd75e83" resname="Liste">
         <source>Liste</source>
@@ -703,7 +746,7 @@
         <jms:reference-file line="110">/Resources/views/annonce/index.html.twig</jms:reference-file>
         <jms:reference-file line="3">/Resources/views/produit/ajaxproduits.html.twig</jms:reference-file>
         <jms:reference-file line="31">/Resources/views/produit/produits.html.twig</jms:reference-file>
-        <jms:reference-file line="34">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="36">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="226555df15108ee76f4821b1addb09562dd956a7" resname="Liste des Annonces">
         <source>Liste des Annonces</source>
@@ -741,7 +784,7 @@
       </trans-unit>
       <trans-unit id="ef9ed3e0cb5e8e951e37bdcdeed06f04f5462cd5" resname="Mise en relation">
         <source>Mise en relation</source>
-        <target state="new">Mise en relation</target>
+        <target>Mise en relation</target>
         <jms:reference-file line="47">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="29f5b97107a8389456320273859abe1ec3be5d67" resname="Modifier mot de passe">
@@ -773,14 +816,14 @@
       </trans-unit>
       <trans-unit id="cf01d707966a8744286b5b8902283ad27680844e" resname="Non assujetti à la tva">
         <source>Non assujetti à la tva</source>
-        <target state="new">Non assujetti à la tva</target>
+        <target>Non assujetti à la tva</target>
         <jms:reference-file line="157">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
         <jms:reference-file line="191">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="39132cff2046baca368e494f9ec5bd1b654ede7c" resname="Nos Services">
         <source>Nos Services</source>
         <target>Nos Services</target>
-        <jms:reference-file line="73">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="69">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8741661f8bf0870f04fed771fd041fc9631574bd" resname="Nos produits">
         <source>Nos produits</source>
@@ -793,33 +836,59 @@
       </trans-unit>
       <trans-unit id="00d71e7c8eb52a1c86e8ffeb901aed7eee2c3d51" resname="Nos services">
         <source>Nos services</source>
-        <target state="new">Nos services</target>
+        <target>Nos services</target>
         <jms:reference-file line="66">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
+        <jms:reference-file line="64">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9ba72a5a1c9a45b3e6ab0ece738ccea365563f67" resname="Nos tarifs">
         <source>Nos tarifs</source>
-        <target state="new">Nos tarifs</target>
+        <target>Nos tarifs</target>
         <jms:reference-file line="67">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a9577eaa631b34c293ee1ff19aa72b1699920ce8" resname="Nos évenements">
         <source>Nos évenements</source>
-        <target state="new">Nos évenements</target>
+        <target>Nos évenements</target>
         <jms:reference-file line="48">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="fab46b656f71628d6a0d201f3cf99775e41af041" resname="Nos évènements">
         <source>Nos évènements</source>
-        <target state="new">Nos évènements</target>
+        <target>Nos évènements</target>
         <jms:reference-file line="17">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="750d8472e50f802b0fe34ab324a8c54ce4bbbb5f" resname="Nous mettons à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.">
         <source>Nous mettons à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.</source>
-        <target state="new">Nous mettons à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.</target>
+        <target>Nous mettons à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.</target>
         <jms:reference-file line="25">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="10b1fd0a202e1bbaaf200d91a72806a0f39dc9cf" resname="Nous proposons plusieurs offres et abonnements">
+        <source>Nous proposons plusieurs offres et abonnements</source>
+        <target>Nous proposons plusieurs offres et abonnements</target>
+        <jms:reference-file line="64">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="f3e9a2477181b2c7d7021760ac99226de9881653" resname="Nous sommes ouverts tous les jours de 7h à 22h. Cependant, les salles sont accessibles de 9h à 21h.">
         <source>Nous sommes ouverts tous les jours de 7h à 22h. Cependant, les salles sont accessibles de 9h à 21h.</source>
         <target>Nous sommes ouverts tous les jours de 7h à 22h. Cependant, les salles sont accessibles de 9h à 21h.</target>
         <jms:reference-file line="110">/../src/GC/UserBundle/Resources/views/Default/faq.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="d29a663de815adfb49ac20b6f2994284c409fd2c" resname="OU">
+        <source>OU</source>
+        <target>OU</target>
+        <jms:reference-file line="55">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="61905b5183f03182649d8294f42048d89aa53d88" resname="Obtenez ">
+        <source>Obtenez </source>
+        <target>Obtenez </target>
+        <jms:reference-file line="99">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="f7f3a890d99c6ab89cb9726fa5ad14073837b2a1" resname="Offerte">
+        <source>Offerte</source>
+        <target>Offerte</target>
+        <jms:reference-file line="79">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3ea7ab774cac3d46f40e337b010064a249f632bf" resname="On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !">
+        <source>On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !</source>
+        <target>On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !</target>
+        <jms:reference-file line="72">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0ebf4c64bc3ebfc977db3cbf684d9057cd7a8995" resname="Ou alors">
         <source>Ou alors</source>
@@ -863,10 +932,16 @@
         <target><![CDATA[Payer directement >]]></target>
         <jms:reference-file line="27">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="717a0bea3fa79beb3e1490bcb1a4098a1ab03871" resname="Petit déjeuner, déjeuner &amp; dîner">
+        <source><![CDATA[Petit déjeuner, déjeuner & dîner]]></source>
+        <target><![CDATA[Petit déjeuner, déjeuner & dîner]]></target>
+        <jms:reference-file line="90">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="8089c4e213d6a9ac2c500094ad7eacdbfeea26e4" resname="Place individuelle">
         <source>Place individuelle</source>
         <target>Place individuelle</target>
-        <jms:reference-file line="138">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="136">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="141">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
         <jms:reference-file line="29">/Resources/views/menu.html.twig</jms:reference-file>
         <jms:reference-file line="17">/Resources/views/place/index.html.twig</jms:reference-file>
         <jms:reference-file line="21">/Resources/views/salle/index.html.twig</jms:reference-file>
@@ -888,7 +963,7 @@
       </trans-unit>
       <trans-unit id="f8e60dbabcffd0e29c821aaa11438eb6829d935a" resname="Plus de détails">
         <source>Plus de détails</source>
-        <target state="new">Plus de détails</target>
+        <target>Plus de détails</target>
         <jms:reference-file line="235">/Resources/views/panier/layout/ajaxpanier.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e1b92229f680a4685eca56bebc922c11c94b22f0" resname="Poster une annonce">
@@ -901,6 +976,16 @@
         <target>Postez votre annonce</target>
         <jms:reference-file line="88">/Resources/views/annonce/index.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="3ac28e16834f40275603d9da8cc598c69689cb05" resname="Première heure ">
+        <source>Première heure </source>
+        <target>Première heure </target>
+        <jms:reference-file line="70">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2d5eddef33c653b7ff8974e4f9942ec9c34f07e4" resname="Prix">
+        <source>Prix</source>
+        <target>Prix</target>
+        <jms:reference-file line="65">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="c48d80e8283e2123e2b5b9d677104b55f8cc4bd3" resname="Prix TTC">
         <source>Prix TTC</source>
         <target>Prix TTC</target>
@@ -909,7 +994,7 @@
       <trans-unit id="c7a9eb6f84de3cd60c334fc1509fe191df51ea7f" resname="Prix du service">
         <source>Prix du service</source>
         <target>Prix du service</target>
-        <jms:reference-file line="22">/Resources/views/produit/ajaxproduits.html.twig</jms:reference-file>
+        <jms:reference-file line="23">/Resources/views/produit/ajaxproduits.html.twig</jms:reference-file>
         <jms:reference-file line="50">/Resources/views/produit/produits.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ff673dc28e8991815b8c206897ef3df1ccf100d2" resname="Produit">
@@ -925,7 +1010,7 @@
       </trans-unit>
       <trans-unit id="657d906cce7e77338868ebad32cf7346d26a72a4" resname="Profitez de nos nombreux services et produits">
         <source>Profitez de nos nombreux services et produits</source>
-        <target state="new">Profitez de nos nombreux services et produits</target>
+        <target>Profitez de nos nombreux services et produits</target>
         <jms:reference-file line="45">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="77ae8176097c5bc43b26d3e448bffd48c1e624d6" resname="Qu'est ce que le Co-Working ?">
@@ -946,7 +1031,7 @@
       <trans-unit id="d335980d5b9f3e99636c47ac3916d9a4674d64ce" resname="Quelle place souhaitez vous avoir au sein de GustoCoffee ?">
         <source>Quelle place souhaitez vous avoir au sein de GustoCoffee ?</source>
         <target>Quelle place souhaitez vous avoir au sein de GustoCoffee ?</target>
-        <jms:reference-file line="109">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="108">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="23bd3830932dae79a30c3d4ac8dc7db8bd3f7369" resname="Quels sont les tarifs ?">
         <source>Quels sont les tarifs ?</source>
@@ -971,7 +1056,7 @@
       <trans-unit id="929ac655bbd8a6f8ed6b9d2738b9accdd045785e" resname="Recherche de partenariat(s)">
         <source>Recherche de partenariat(s)</source>
         <target>Recherche de partenariat(s)</target>
-        <jms:reference-file line="23">/../src/AppBundle/Form/AnnonceType.php</jms:reference-file>
+        <jms:reference-file line="23">/../src/AppBundle/Form/Type/AnnonceType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="91f7d3e9dc3d2d5dc14d7e5166efb31053866d21" resname="Rechercher">
         <source>Rechercher</source>
@@ -991,6 +1076,9 @@
         <source>Rejoignez notre communauté</source>
         <target>Rejoignez notre communauté</target>
         <jms:reference-file line="18">/Resources/FOSUserBundle/views/Registration/register.html.twig</jms:reference-file>
+        <jms:reference-file line="18">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
+        <jms:reference-file line="18">/Resources/HWIOAuthBundle/views/Connect/login.html.twig</jms:reference-file>
+        <jms:reference-file line="18">/Resources/HWIOAuthBundle/views/layout.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="44ac835afcf058a82afd38f2367038fd99e19e9f" resname="Retour à la liste des annonces">
         <source>Retour à la liste des annonces</source>
@@ -1003,17 +1091,9 @@
         <target>Retrouvez ci-desosus toutes vos factures.</target>
         <jms:reference-file line="18">/Resources/views/facture/facture.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="e3e3c8b320f83e50fe0abd3ca89e6507a5c168e2" resname="Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking !&#10;                Au programme, musique, danse, visite et consommation à volonté !&#10;                Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants&#10;                en quête d'un environnement calme.&#10;                ">
-        <source xml:space="preserve">Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking !
-                Au programme, musique, danse, visite et consommation à volonté !
-                Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants
-                en quête d'un environnement calme.
-                </source>
-        <target xml:space="preserve">Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking !
-                Au programme, musique, danse, visite et consommation à volonté !
-                Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants
-                en quête d'un environnement calme.
-                </target>
+      <trans-unit id="fc92a92f83716cb90262165f7bc06a52b865f6e2" resname="Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking ! Au programme, musique, danse, visite et consommation à volonté ! Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants en quête d'un environnement calme.">
+        <source>Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking ! Au programme, musique, danse, visite et consommation à volonté ! Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants en quête d'un environnement calme.</source>
+        <target>Récemment, GustoCoffee a organisé un grand évènement afin de fêter l'ouverture du Coffee-Shop CoWorking ! Au programme, musique, danse, visite et consommation à volonté ! Ce fut l'occasion pour GustoCoffee de se faire connaître auprès de grandes sociétes comme la Société Générale souhaitant travailler dans un cadre plus détendu mais aussi pour les étudiants en quête d'un environnement calme.</target>
         <jms:reference-file line="37">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0126ff40b00d5884ded2a277fd6f008a00253a37" resname="Réduction">
@@ -1044,12 +1124,12 @@
       </trans-unit>
       <trans-unit id="c3cdbaa560763d4571927f45e075945cdd8b2b6d" resname="Réservation Salle">
         <source>Réservation Salle</source>
-        <target state="new">Réservation Salle</target>
+        <target>Réservation Salle</target>
         <jms:reference-file line="4">/Resources/views/salle/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ce24819c5ba7c0d7a0dab3e0f7479a2c84b4ed4d" resname="Réservation de Places">
         <source>Réservation de Places</source>
-        <target state="new">Réservation de Places</target>
+        <target>Réservation de Places</target>
         <jms:reference-file line="4">/Resources/views/place/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5918ec82c28259951999babd8ed7d4fd86950c4b" resname="Réservation de salles privées">
@@ -1060,7 +1140,7 @@
       <trans-unit id="1f02ac811907ce727118acb77f1d54ae886341b3" resname="Réservez ici">
         <source>Réservez ici</source>
         <target>Réservez ici</target>
-        <jms:reference-file line="88">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="80">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
         <jms:reference-file line="21">/../src/GC/UserBundle/Resources/views/Default/dashboard.html.twig</jms:reference-file>
         <jms:reference-file line="21">/Resources/FOSUserBundle/views/Registration/register.html.twig</jms:reference-file>
         <jms:reference-file line="21">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
@@ -1073,12 +1153,12 @@
       </trans-unit>
       <trans-unit id="f13150c0aa720f44a1406fca86b483961f93f0b9" resname="Réservez une place">
         <source>Réservez une place</source>
-        <target state="new">Réservez une place</target>
+        <target>Réservez une place</target>
         <jms:reference-file line="26">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="28d66c373a6c877e1bc9fe291af10201418dc719" resname="Réservez une salle">
         <source>Réservez une salle</source>
-        <target state="new">Réservez une salle</target>
+        <target>Réservez une salle</target>
         <jms:reference-file line="27">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="609c423446cd9cffce953f864f3fe108940ae2cd" resname="Réservez vite votre place ou votre salle">
@@ -1126,12 +1206,12 @@
       <trans-unit id="1f27982cc023f266aa81699ef2e973696e1e23c5" resname="Salle privatisée">
         <source>Salle privatisée</source>
         <target>Salle privatisée</target>
-        <jms:reference-file line="150">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="152">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="156">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
         <jms:reference-file line="33">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
         <jms:reference-file line="75">/Resources/views/panier/layout/ajaxpanier.html.twig</jms:reference-file>
         <jms:reference-file line="113">/Resources/views/panier/layout/panier.html.twig</jms:reference-file>
         <jms:reference-file line="67">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
-        <jms:reference-file line="49">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d88c89e10128e7c4cc7e64ba776cc4a12cc5be44" resname="Salle privée">
         <source>Salle privée</source>
@@ -1144,9 +1224,14 @@
         <target>Se Connecter</target>
         <jms:reference-file line="36">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="ffd2b3849acc34101510dfbcd4e0cc7e824a6a6e" resname="Service bureautique">
+        <source>Service bureautique</source>
+        <target>Service bureautique</target>
+        <jms:reference-file line="86">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="85ee94e1653a6da91f8f9e02ad34ff8f2ad7fe79" resname="Si on se rencontrait">
         <source>Si on se rencontrait</source>
-        <target state="new">Si on se rencontrait</target>
+        <target>Si on se rencontrait</target>
         <jms:reference-file line="18">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="68a541410e4d94b15ee16aaaccdd166dc26d79b7" resname="Souhaitez-vous montrer votre prénom ?">
@@ -1170,7 +1255,7 @@
       <trans-unit id="0485ee768d1f91061dc26924d36346d3a0d5f607" resname="Sujet du mail *">
         <source>Sujet du mail *</source>
         <target>Sujet du mail *</target>
-        <jms:reference-file line="24">/../src/AppBundle/Form/ContactType.php</jms:reference-file>
+        <jms:reference-file line="24">/../src/AppBundle/Form/Type/ContactType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="8e156a45e4a563c7ef9c49aac2424dba7e09a583" resname="Supprimer votre annonce">
         <source>Supprimer votre annonce</source>
@@ -1209,7 +1294,7 @@
       </trans-unit>
       <trans-unit id="1ec0b00d7e4a7ebd7e91c21e91a99ece12fa858a" resname="Toggle navigation">
         <source>Toggle navigation</source>
-        <target state="new">Toggle navigation</target>
+        <target>Toggle navigation</target>
         <jms:reference-file line="5">/Resources/views/menu.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="e03bb6748eb118487f7671287e7c1224da7e85e8" resname="Total Place TTC">
@@ -1246,6 +1331,11 @@
         <target>Tout le monde ! Que vous venez en entreprise, en freelance, en groupe ou en tant qu'étudiant, GustoCoffee accueille absolument tout le monde. Le but étant aussi de vous faire changer d'environnement de travail.</target>
         <jms:reference-file line="58">/../src/GC/UserBundle/Resources/views/Default/faq.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="41f1434cb581a6c7f9bc85b045611c646f0ea27d" resname="Troisième heures">
+        <source>Troisième heures</source>
+        <target>Troisième heures</target>
+        <jms:reference-file line="78">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="83eb29e0ad26d5dde694843192f171525fa74d4d" resname="Télécharger votre factur">
         <source>Télécharger votre factur</source>
         <target>Télécharger votre factur</target>
@@ -1274,7 +1364,7 @@
       </trans-unit>
       <trans-unit id="52769210267c7fe780f02ab542c6cd00922c8f16" resname="Valider mes adresses">
         <source>Valider mes adresses</source>
-        <target state="new">Valider mes adresses</target>
+        <target>Valider mes adresses</target>
         <jms:reference-file line="98">/Resources/views/panier/layout/livraison.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9a4ed25f338e2a25e30e3944ccc8f5702eec9794" resname="Valider mon panier">
@@ -1291,6 +1381,11 @@
         <jms:reference-file line="41">/Resources/views/panier/layout/panier.html.twig</jms:reference-file>
         <jms:reference-file line="41">/Resources/views/panier/layout/paniergood.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="9b6e6e49c81d1bf9ec892fda963c5b6de8895014" resname="Voici ce que vous avez dans votre panier">
+        <source>Voici ce que vous avez dans votre panier</source>
+        <target>Voici ce que vous avez dans votre panier</target>
+        <jms:reference-file line="3">/Resources/views/panier/panier.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="9dec896556cbf2e8467f1a298c86c0fc23bcb25b" resname="Voici les places individuelle disponibles pour le ">
         <source>Voici les places individuelle disponibles pour le </source>
         <target>Voici les places individuelle disponibles pour le </target>
@@ -1299,7 +1394,7 @@
       <trans-unit id="a64191cc3799d7e27762c1bbe34156d844b4dde6" resname="Voici les salles privés disponibles pour le ">
         <source>Voici les salles privés disponibles pour le </source>
         <target>Voici les salles privés disponibles pour le </target>
-        <jms:reference-file line="4">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="6">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3788626c65cad70f7d39c5d3dcf2f4887b4151d4" resname="Voici votre annonce">
         <source>Voici votre annonce</source>
@@ -1320,7 +1415,7 @@
       </trans-unit>
       <trans-unit id="1618fdb1e008627913021f9f7543f2c7ac569904" resname="Vos adresses">
         <source>Vos adresses</source>
-        <target state="new">Vos adresses</target>
+        <target>Vos adresses</target>
         <jms:reference-file line="4">/Resources/views/panier/layout/livraison.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="71606ef3c4e9f59397e39a9fe98d428634839fee" resname="Vos adresses de facturations">
@@ -1331,17 +1426,17 @@
       <trans-unit id="da8c183f8fb7af5bf752e77cd3cd580df7605551" resname="Votre Email *">
         <source>Votre Email *</source>
         <target>Votre Email *</target>
-        <jms:reference-file line="29">/../src/AppBundle/Form/ContactType.php</jms:reference-file>
+        <jms:reference-file line="29">/../src/AppBundle/Form/Type/ContactType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="4bf6184c506d17d09995c5fea6528872dd9db48c" resname="Votre Message *">
         <source>Votre Message *</source>
         <target>Votre Message *</target>
-        <jms:reference-file line="35">/../src/AppBundle/Form/ContactType.php</jms:reference-file>
+        <jms:reference-file line="35">/../src/AppBundle/Form/Type/ContactType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="c6b14de875497e3e938f06fd4d26bb27cc8cd865" resname="Votre Nom et Prénom *">
         <source>Votre Nom et Prénom *</source>
         <target>Votre Nom et Prénom *</target>
-        <jms:reference-file line="19">/../src/AppBundle/Form/ContactType.php</jms:reference-file>
+        <jms:reference-file line="19">/../src/AppBundle/Form/Type/ContactType.php</jms:reference-file>
       </trans-unit>
       <trans-unit id="037ffcd082e88658ec1fff536136347ad210a694" resname="Votre Panier">
         <source>Votre Panier</source>
@@ -1397,10 +1492,15 @@
         <jms:reference-file line="11">/Resources/views/panier/ajaxpaniermenu.html.twig</jms:reference-file>
         <jms:reference-file line="12">/Resources/views/panier/panier.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="84c87a11e6df5abd06759ffff90321dee9a595fb" resname="avec">
+        <source>avec</source>
+        <target>avec</target>
+        <jms:reference-file line="24">/../src/GC/HomeBundle/Resources/views/Default/carousel.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="207c5ba49d730ff3729b323046ce197b2b97292a" resname="contient">
         <source>contient</source>
         <target>contient</target>
-        <jms:reference-file line="58">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="59">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="74ba1c7f8c5b4ce91b30dc6c07798fbffa795277" resname="dont">
         <source>dont</source>
@@ -1419,15 +1519,30 @@
         <target>edit</target>
         <jms:reference-file line="45">/Resources/views/personne/index.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="0c52dc77f8a5b2ae6e7c7938521ed5fd26ebb8a8" resname="groupe">
+        <source>groupe</source>
+        <target>groupe</target>
+        <jms:reference-file line="87">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="70e5b132c5aaa0aa4c39fd5085610688a2eb2c34" resname="heure supplémentaires">
+        <source>heure supplémentaires</source>
+        <target>heure supplémentaires</target>
+        <jms:reference-file line="74">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="d5f10c9bc8370694a415ccbaabcb062e36948c5a" resname="ou">
         <source>ou</source>
         <target>ou</target>
         <jms:reference-file line="313">/Resources/views/panier/layout/panier.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="d3101676be409f2777c6f2cf997acb07ba5dd919" resname="personne">
+        <source>personne</source>
+        <target>personne</target>
+        <jms:reference-file line="65">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="324d2c4f8c42abc418bde82c7fea830b4d70309c" resname="places">
         <source>places</source>
         <target>places</target>
-        <jms:reference-file line="58">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
+        <jms:reference-file line="59">/Resources/views/salle/sallesDisponible.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="5b002bff2948944fbbad3a746d95ea1ddd06c271" resname="places choisies">
         <source>places choisies</source>
@@ -1461,8 +1576,8 @@
       <trans-unit id="5345add5aa49ce20a1863a6d778591b5551f9c63" resname="À propos">
         <source>À propos</source>
         <target>À propos</target>
-        <jms:reference-file line="51">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
-        <jms:reference-file line="101">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="45">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="93">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3066662416986e155f4a896c3b71534d12688d70" resname="À propos de GustoCoffee">
         <source>À propos de GustoCoffee</source>
@@ -1486,6 +1601,11 @@
         <target>Éditez votre annonce</target>
         <jms:reference-file line="79">/Resources/views/annonce/edit.html.twig</jms:reference-file>
         <jms:reference-file line="69">/Resources/views/annonce/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="eb41c0689e87aed3bddb33d22d5d793ae62e7754" resname="à volonté">
+        <source>à volonté</source>
+        <target>à volonté</target>
+        <jms:reference-file line="99">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>

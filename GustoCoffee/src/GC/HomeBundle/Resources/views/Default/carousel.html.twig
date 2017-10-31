@@ -14,14 +14,14 @@
         <div class="item active">
 
             <!-- Slide Background -->
-            <img src="{{ asset('img/background_homepage.jpeg') }}" alt="Bootstrap Touch Slider"  class="slide-image"/>
+            <img src="{{ asset('img/background_homepage.jpeg') }}" alt="{{ "Image principale du carousel l'accueil"|trans }}" class="slide-image"/>
             <div class="bs-slider-overlay"></div>
 
             <div class="container">
                 <div class="row">
                     <!-- Slide Text Layer -->
                     <div class="slide-text slide_style_left">
-                        <h1 data-animation="animated zoomInRight">Enjoy, Coffee & Work avec GustoCoffee</h1>
+                        <h1 data-animation="animated zoomInRight">Enjoy, Coffee & Work {{ 'avec'|trans }} GustoCoffee</h1>
                         <p data-animation="animated fadeInLeft">{{"Nous mettons à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif."|trans}}</p>
                         <a href="{{ path('place_index') }}" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">{{ 'Réservez une place'|trans }}</a>
                         <a href="{{ path('salle_index') }}" target="_blank"  class="btn btn-primary" data-animation="animated fadeInRight">{{ 'Réservez une salle'|trans }}</a>
@@ -38,7 +38,7 @@
         <div class="item">
 
             <!-- Slide Background -->
-            <img src="{{ asset('img/contact-annonce.jpeg') }}" alt="Bootstrap Touch Slider"  class="slide-image"/>
+            <img src="{{ asset('img/contact-annonce.jpeg') }}" alt="{{ "Image mise en relation du carousel l'accueil"|trans }}"  class="slide-image"/>
             <div class="bs-slider-overlay"></div>
             <!-- Slide Text Layer -->
             <div class="slide-text slide_style_center">
@@ -57,12 +57,12 @@
         <div class="item">
 
             <!-- Slide Background -->
-            <img src="{{ asset('img/background_connexion.jpg') }}" alt="Bootstrap Touch Slider"  class="slide-image"/>
+            <img src="{{ asset('img/background_connexion.jpg') }}" alt="{{ "Image inscription du carousel l'accueil"|trans }}" class="slide-image"/>
             <div class="bs-slider-overlay"></div>
             <!-- Slide Text Layer -->
             <div class="slide-text slide_style_right">
                 <h1 data-animation="animated zoomInLeft">{{ "Nous proposons plusieurs offres et abonnements"|trans }}</h1>
-                <p data-animation="animated fadeInRight">{{"Bénéficiez de points de fidelités et d'autres avantages en vous inscrivant !"|trans}} ?</p>
+                <p data-animation="animated fadeInRight">{{"Bénéficiez de points de fidelités et d'autres avantages en vous inscrivant !"|trans}}</p>
                 <a href="{{ path('gc_reservation_page') }}" target="_blank" class="btn btn-default" data-animation="animated fadeInLeft">{{ "Nos services"|trans }}</a>
                 <a href="{{ path('gc_reservation_page') }}#GrilleTarification" target="_blank" class="btn btn-primary" data-animation="animated fadeInRight">{{ "Nos tarifs"|trans }}</a>
                 {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}

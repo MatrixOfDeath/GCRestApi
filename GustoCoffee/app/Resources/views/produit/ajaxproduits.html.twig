@@ -10,7 +10,8 @@
 {% for produit in produits %}
     <div class="col-md-6 col-xs-12 col-sm-6 col-lg-4 cardSalle">
         <div class="thumbnail">
-            <a href="{{ path('produit_show', { 'idproduit': produit.idproduit }) }}"><img class="group list-group-image" src="{{ asset('uploads/images/products/'~ produit.image) }}" alt="Salle privatisée"></a>
+            <a href="{{ path('produit_show', { 'idproduit': produit.idproduit }) }}">
+                <img class="group list-group-image" src="{{ asset('uploads/images/products/'~ produit.image) | imagine_filter('produit_downscale') }}" alt="{{ 'Image produits'|trans }}" title="{{ 'Image produits'|trans }}"></a>
             <div class="caption">
                 <h4 class="group inner list-group-item-heading centerText">
                     {{ produit.nomproduit }}
@@ -25,29 +26,7 @@
                     <button type="button" class="btn btn-success buttonAddProductPanier" value="{{ produit.idproduit }}" >{{ "Ajouter au panier"|trans }}</button>
                 </p>
                 <div class="row">
-                    {#Quantité <span>#}
-                                {#<select name="selectQuantite" id="qte{{ produit.idproduit }}" onchange="ajaxAjoutProduiPanier()">#}
-                                    {#{% for salle in salles | slice(0,1) %}#}
-                                        {#{% if salle.capacitymax == 4 %}#}
-                                            {#<option value="0">0</option>#}
-                                            {#<option selected value="1">1</option>#}
-                                            {#<option value="2">2</option>#}
-                                            {#<option value="3">3</option>#}
-                                            {#<option value="4">4</option>#}
-                                        {#{% endif %}#}
-                                        {#{% if salle.capacitymax == 6 %}#}
-                                        {#<option value="0">0</option>#}
-                                        {#<option selected value="1">1</option>#}
-                                        {#<option value="2">2</option>#}
-                                        {#<option value="3">3</option>#}
-                                        {#<option value="4">4</option>#}
-                                        {#<option value="5">5</option>#}
-                                        {#<option value="6">6</option>#}
-                                    {#{% endif %}#}
-                                    {#{% endfor %}#}
-                                {#</select>#}
-                            {#</span>#}
-                {#</p>#}
+
                 </div>
             </div>
         </div>

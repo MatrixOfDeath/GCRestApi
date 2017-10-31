@@ -14,8 +14,8 @@
 
 {% block titleHome %}
     <div class="banniere">
-        <h1 class="colorWhite">Espace Client - Connexion</h1>
-        <h3 class="colorWhite"> <i>Rejoignez notre communauté ! </i></h3>
+        <h1 class="colorWhite">{{ 'Espace Client'|trans }} - {{ 'Connexion'|trans }}</h1>
+        <h3 class="colorWhite"> <i>{{ 'Rejoignez notre communauté'|trans }} ! </i></h3>
     </div>
     <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
         {{ 'Réservez ici'|trans }}
@@ -52,7 +52,7 @@
 {% block secondBlock %}
     <div class="row">
         <div class="col-md-12">
-            <h2 class="centerText">OU</h2>
+            <h2 class="centerText">{{ 'OU'|trans }}</h2>
         </div>
     </div>
 {% endblock %}

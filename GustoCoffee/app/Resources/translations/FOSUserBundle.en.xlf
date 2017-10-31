@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-10-29T18:54:42Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2017-10-31T16:47:43Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -14,57 +14,57 @@
       </trans-unit>
       <trans-unit id="8d1bd72c41852e37cffaebd3e8e025b73c44d431" resname="Inscrivez-vous dès maintenant !">
         <source>Inscrivez-vous dès maintenant !</source>
-        <target>Inscrivez-vous dès maintenant !</target>
+        <target>Register now !</target>
         <jms:reference-file line="23">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
         <jms:reference-file line="23">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a9f26e783be32e23c5c97451f505877b06618c7c" resname="Modification de mot de Passe">
         <source>Modification de mot de Passe</source>
-        <target>Modification de mot de Passe</target>
+        <target>Change your password</target>
         <jms:reference-file line="18">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
         <jms:reference-file line="18">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="0925210fc1d0bf2401bb8d792e1c571ceea4927f" resname="Modification de mot de passe">
         <source>Modification de mot de passe</source>
-        <target>Modification de mot de passe</target>
+        <target>Change your password</target>
         <jms:reference-file line="5">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
         <jms:reference-file line="5">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="806ef9d44ae7239954b63f80869a36ed021ad9bb" resname="Mot de passe oublié">
         <source>Mot de passe oublié</source>
-        <target>Mot de passe oublié</target>
+        <target>Forgot your password</target>
         <jms:reference-file line="40">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="8e6badfb30ad62a780f2097558dad5ab4245a5c3" resname="Mot de passe oublié ? On vous en renvoie un !">
         <source>Mot de passe oublié ? On vous en renvoie un !</source>
-        <target>Mot de passe oublié ? On vous en renvoie un !</target>
+        <target>Forgot your password ? We send you a new one !</target>
         <jms:reference-file line="19">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
         <jms:reference-file line="19">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="9643780fd90ec7efb599929ec4e02765b7596deb" resname="Pas encore inscrit">
         <source>Pas encore inscrit</source>
-        <target>Pas encore inscrit</target>
+        <target>Not registered yet</target>
         <jms:reference-file line="76">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a04b65c7dad340d448a41899fca10dab4885cd0c" resname="Réinitialiser le mot de passe">
         <source>Réinitialiser le mot de passe</source>
-        <target>Réinitialiser le mot de passe</target>
+        <target>Reinitialize your password</target>
         <jms:reference-file line="31">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
         <jms:reference-file line="31">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="68b8ee57fb7197db40060dea6b4a8d7f6ee5c9b9" resname="S'inscrire">
         <source>S'inscrire</source>
-        <target>S'inscrire</target>
+        <target>Register</target>
         <jms:reference-file line="78">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="528b9ff75969b549c086f7911dbafbb312598eb6" resname="Se connecter ">
         <source>Se connecter </source>
-        <target>Se connecter </target>
+        <target>Log in</target>
         <jms:reference-file line="65">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="021ad65ab78096a81669b652af5b3430512d1575" resname="Se rappeler de moi">
         <source>Se rappeler de moi</source>
-        <target>Se rappeler de moi</target>
+        <target>Remember me</target>
         <jms:reference-file line="53">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a5eba05921c11add89e9b68570149da22499c604" resname="change_password.submit">

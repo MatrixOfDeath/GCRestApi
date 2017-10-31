@@ -163,7 +163,7 @@ class SalleController extends FOSRestController
      */
     public function showAction(Salle $salle, Request $request)
     {
-        $deleteForm = $this->createDeleteForm($salle);
+        //$deleteForm = $this->createDeleteForm($salle);
 
         $em = $this->getDoctrine()->getManager();
 
@@ -172,7 +172,7 @@ class SalleController extends FOSRestController
 
         return $this->render('salle/show.html.twig', array(
             'salle' => $salle,
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
             'produits' => $produits,
         ));
     }

@@ -4,6 +4,10 @@ liip_imagine:
             web_path: ~
     filter_sets:
         cache: ~
+        responsive_article_image:
+            quality: 75
+            filters:
+                thumbnail: { size: [640, 384], mode: inset }
 
         #THUMBNAILS
         my_thumb:
@@ -40,13 +44,11 @@ liip_imagine:
                     widen: 32                    # given 50x40px, output 32x26px using "widen" option
 
         my_increase_filter:        # name our second filter set "my_increase_filter"
-
             filters:
                 relative_resize:
                     increase: 10                    # given 50x40px, output 60x50px, using "increase" option
 
         my_scale_filter:        # name our second filter set "my_scale_filter"
-
             filters:
                 relative_resize:
                     scale: 2.5                    # given 50x40px, output 125x100px using "scale" option
@@ -57,27 +59,20 @@ liip_imagine:
                 scale:
                     to: 0.5                    # given 1920x1600px -> output 960x800px (relative down-scale)
 
-
         my_ratio_up_scale_filter:        # name our first filter set "my_ratio_up_scale_filter"
-
             filters:
                 scale:
                     to: 2                 # given 1920x1600px -> output 5760x3200px (relative up-scale)
 
-        # name our third filter set "my_dim_down_scale_filter"
         my_dim_down_scale_filter:
             filters:
                 scale:
                     dim: [ 800, 1000 ]                     # input 1200x1600px -> output 750x1000px (relative down-scale)
 
-
-        # name our fourth filter set "my_dim_up_scale_filter"
         my_dim_up_scale_filter:
             filters:
                 scale:
                     dim: [ 1200, 2700 ]                    # input 300x900px -> output 900x2700px (relative up-scale)
-
-
 
         # DOWNSCALE name our first filter set "my_max_down_scale_filter"
         my_max_down_scale_filter:
@@ -85,6 +80,17 @@ liip_imagine:
                 downscale:
                     max: [1980, 1280]                     # input 3960x2560px -> output 1980x1280px
 
+        salle_downscale:
+            filters:
+                downscale:
+                    quality: 80
+                    max: [320, 240]
+
+        produit_downscale:
+            filters:
+                downscale:
+                    quality: 80
+                    max: [320, 213]
 
         # name our second filter set "my_by_down_scale_filter"
         my_by_down_scale_filter:

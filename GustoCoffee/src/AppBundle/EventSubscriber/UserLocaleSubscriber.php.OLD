@@ -6,8 +6,6 @@
  * Time: 22:04
  */
 
-//TODO: Clean and modify for our entity Personne
-
 namespace AppBundle\EventSubscriber;
 
 use Symfony\Component\HttpFoundation\Session\SessionInterface;

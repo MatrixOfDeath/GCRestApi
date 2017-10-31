@@ -21,16 +21,25 @@ gc_reservation:
     prefix:   /
     options:
         sitemap: true
+        maxAge: 86400
+        sharedMaxAge: 86400
+        private: false
 gc_evenement:
     resource: "@GCEvenementBundle/Resources/config/routing.yml"
     prefix:   /
     options:
         sitemap: true
+        maxAge: 86400
+        sharedMaxAge: 86400
+        private: false
 gc_home:
     resource: "@GCHomeBundle/Resources/config/routing.yml"
     prefix:   /
     options:
         sitemap: true
+        maxAge: 86400
+        sharedMaxAge: 86400
+        private: false
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix: /
