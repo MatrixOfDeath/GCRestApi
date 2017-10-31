@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
- * @Cache(expires="tomorrow", public=true)
+ * @Cache(expires="+2 days", public=true)
  */
 class DefaultController extends Controller
 {

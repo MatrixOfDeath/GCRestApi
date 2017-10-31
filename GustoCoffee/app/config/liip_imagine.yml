@@ -19,6 +19,10 @@ liip_imagine:
                 # create a 2px black border: center the thumbnail on a black background
                 # 4px larger to create a 2px border around the final image
                 background: { size: [124, 94], position: center, color: '#000000' }
+        miniature_media:
+            quality: 75
+            filters:
+                thumbnail: { size: [150, 75], mode: outbond }
 
         my_thumb_filter:
             filters:
@@ -83,13 +87,13 @@ liip_imagine:
         salle_downscale:
             filters:
                 downscale:
-                    quality: 80
+                    quality: 75
                     max: [320, 240]
 
         produit_downscale:
             filters:
                 downscale:
-                    quality: 80
+                    quality: 75
                     max: [320, 213]
 
         # name our second filter set "my_by_down_scale_filter"
