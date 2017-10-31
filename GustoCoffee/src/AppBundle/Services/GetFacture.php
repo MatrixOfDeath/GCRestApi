@@ -2,6 +2,7 @@
 namespace AppBundle\Services;
 
 
+use AppBundle\Entity\Commande;
 use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -21,7 +22,7 @@ class GetFacture
      * @param $facture
      * @return Html2Pdf
      */
-    public function facture($facture)
+    public function facture(Commande $facture)
     {
         $html = $this->container->get('templating')->render('facture/facturePDF.html.twig', array('facture' => $facture));
         
