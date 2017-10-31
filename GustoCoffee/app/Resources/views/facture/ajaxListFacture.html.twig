@@ -11,21 +11,21 @@
         </div>
     {% endfor %}
 
-    <h2>Factures</h2>
+    <h2>{{ 'Factures'|trans }}</h2>
     <form>
         <table class="table table-striped table-hover">
             <thead>
             <tr>
-                <th>Références</th>
-                <th>Date</th>
-                <th>Prix TTC</th>
+                <th>{{ 'Références'|trans }}</th>
+                <th>{{ 'Date'|trans }}</th>
+                <th>{{ 'Prix'|trans }} TTC</th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             {% if factures|length == 0 %}
                 <tr>
-                    <td colspan="4">Aucunne factures actuellement.</td>
+                    <td colspan="4">{{ 'Aucune facture actuellement'|trans }}.</td>
                 </tr>
             {% endif %}
 

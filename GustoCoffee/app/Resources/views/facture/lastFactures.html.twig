@@ -1,8 +1,8 @@
 <div class="row addPadding">
     <div class="col-md-12">
-        <h2 class="centerText">Vos dernières réservations</h2>
-        <p class="textDescription textFacture">Vous trouverez ci-dessous vos 3 dernières réservations effectuées chez GustoCoffee.<br>
-            Ils sont téléchargeables en cliquant sous le bouton en dessous.
+        <h2 class="centerText">{{ 'Vos dernières réservations'|trans }}</h2>
+        <p class="textDescription textFacture">{{ 'Vous trouverez ci-dessous vos 3 dernières réservations effectuées chez GustoCoffee'|trans }}.<br>
+            {{ 'Ils sont téléchargeables en cliquant sous le bouton en dessous.'|trans }}
         </p>
     </div>
 </div>
@@ -10,16 +10,16 @@
 <div class="row">
     {% if factures|length == 0 %}
         <tr>
-            <td colspan="4"><center>Ancunne facture actuellement.</center></td>
+            <td colspan="4" class="centerText">{{ 'Aucune facture actuellement.'|trans }}</td>
         </tr>
     {% endif %}
 
     {% for facture in factures %}
         <div class="col-md-7">
-            <p class="textDescription textDlFacture">Réservation n° {{ facture.reference }} a été effectuée le {{ facture.datecommande|date('d/m/Y') }} pour un total de {{ facture.commande.prixTTC + facture.commande.prixSalleTTC }} €</p>
+            <p class="textDescription textDlFacture">{{ 'Réservation'|trans }} n° {{ facture.reference }} {{ 'a été effectuée le'|trans }} {{ facture.datecommande|date('d/m/Y') }} {{ 'pour un total de'|trans }} {{ facture.commande.prixTTC + facture.commande.prixSalleTTC }} €</p>
         </div>
         <div class="col-md-5">
-            <button class="buttonGC brownButton" onclick="location.href='{{ path('facturesPDF', { 'id' : facture.idcommande }) }}' "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i> Télécharger la facture </button>
+            <button class="buttonGC brownButton" onclick="location.href='{{ path('facturesPDF', { 'id' : facture.idcommande }) }}' "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i> {{ 'Télécharger la facture'|trans }} </button>
         </div>
     {% endfor %}
     <div class="clear"></div>

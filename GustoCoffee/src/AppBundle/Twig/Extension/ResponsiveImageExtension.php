@@ -17,7 +17,7 @@ class ResponsiveImageExtension extends \Twig_Extension
     /**
      * @param $cacheManager
      */
-    public function __construct(CacheManager $cacheManager)
+    public function __construct(\Liip\ImagineBundle\Imagine\Cache\CacheManager $cacheManager)
     {
         $this->cacheManager = $cacheManager;
     }
