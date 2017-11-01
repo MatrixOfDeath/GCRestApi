@@ -1,0 +1,9 @@
+{% if options is not empty %}
+    <script>
+        window.cookieconsent_options = {{ options|json_encode|raw }};
+    </script>
+{% endif %}
+
+{% if script %}
+    <script async defer src="{{ script }}"></script>
+{% endif %}

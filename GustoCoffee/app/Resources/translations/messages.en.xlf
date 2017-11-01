@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-10-31T17:53:06Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2017-11-01T17:43:00Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -137,6 +137,10 @@
       <trans-unit id="1afb47395075872b0da51ecdade3fa1d55287eae" resname="Aucune facture actuellement">
         <source>Aucune facture actuellement</source>
         <target>No bill currently</target>
+      </trans-unit>
+      <trans-unit id="b45297a652c887cecff71cc0e166643ef760aedf" resname="Aucune facture actuellement.">
+        <source>Aucune facture actuellement.</source>
+        <target>Aucune facture actuellement.</target>
       </trans-unit>
       <trans-unit id="3fa3a057e81ad1b75ef66d00118acbcc5e857b03" resname="Aucuns article dans votre panier">
         <source>Aucuns article dans votre panier</source>
@@ -350,6 +354,10 @@
         <source>FAQ</source>
         <target>FAQ</target>
       </trans-unit>
+      <trans-unit id="da35e4f29223fa8e423793d9f80e8b6a74df63aa" resname="Factures">
+        <source>Factures</source>
+        <target>Factures</target>
+      </trans-unit>
       <trans-unit id="cdc5ed40580da86ae644700f95f78ef2ca5e7f89" resname="Faut-il obligatoirement un compte ?">
         <source>Faut-il obligatoirement un compte ?</source>
         <target>Is it necessary to have an account?</target>
@@ -425,6 +433,10 @@
       <trans-unit id="bd36713ec5cba9c52a81dbd67c6ed37e224fe8c7" resname="Ils ont parlé de GustoCoffee">
         <source>Ils ont parlé de GustoCoffee</source>
         <target>They talked about GustoCoffee</target>
+      </trans-unit>
+      <trans-unit id="922e94a82df57e955ae0f2b04dcb46e63e6ca917" resname="Ils sont téléchargeables en cliquant sous le bouton en dessous.">
+        <source>Ils sont téléchargeables en cliquant sous le bouton en dessous.</source>
+        <target>Ils sont téléchargeables en cliquant sous le bouton en dessous.</target>
       </trans-unit>
       <trans-unit id="619fe1aefeb5abfcdabe830056adb42c5b937df2" resname="Image ">
         <source>Image </source>
@@ -922,8 +934,12 @@ This was the opportunity for GustoCoffee to become known to large companies such
         <source>Troisième heures</source>
         <target>Third hour</target>
       </trans-unit>
-      <trans-unit id="83eb29e0ad26d5dde694843192f171525fa74d4d" resname="Télécharger votre factur">
-        <source>Télécharger votre factur</source>
+      <trans-unit id="528f4a2fd8a517d537af4c92f94ee5eca2f931e6" resname="Télécharger la facture">
+        <source>Télécharger la facture</source>
+        <target>Download the bill</target>
+      </trans-unit>
+      <trans-unit id="c3a7e1f9ee10c65ec4237fdaba3a5a4fb1f943de" resname="Télécharger votre facture">
+        <source>Télécharger votre facture</source>
         <target>Download your bill</target>
       </trans-unit>
       <trans-unit id="aa820c75a54f58424ee368f3baf67e388c7841c6" resname="Téléphonez-nous">
@@ -986,6 +1002,10 @@ This was the opportunity for GustoCoffee to become known to large companies such
         <source>Vos adresses de facturations</source>
         <target>Your billing addresses</target>
       </trans-unit>
+      <trans-unit id="ad290dae2c9b09325ec1e8f0f2a34800496aee3c" resname="Vos dernières réservations">
+        <source>Vos dernières réservations</source>
+        <target>Vos dernières réservations</target>
+      </trans-unit>
       <trans-unit id="da8c183f8fb7af5bf752e77cd3cd580df7605551" resname="Votre Email *">
         <source>Votre Email *</source>
         <target>Your email *</target>
@@ -1018,9 +1038,17 @@ This was the opportunity for GustoCoffee to become known to large companies such
         <source>Vous bénéficiez de notre offre journée illimité</source>
         <target>You benefit from our unlimited day offer</target>
       </trans-unit>
+      <trans-unit id="a9c2bbbd0a544f3de5a1568f4a1fc02dde772bc1" resname="Vous trouverez ci-dessous vos 3 dernières réservations effectuées chez GustoCoffee">
+        <source>Vous trouverez ci-dessous vos 3 dernières réservations effectuées chez GustoCoffee</source>
+        <target>Vous trouverez ci-dessous vos 3 dernières réservations effectuées chez GustoCoffee</target>
+      </trans-unit>
       <trans-unit id="555f56ad29454dc110a803204ef71b1cabf01904" resname="Vous êtes un professionnel ? Ajoutez votre n°TVA Intracommunautaire.">
         <source>Vous êtes un professionnel ? Ajoutez votre n°TVA Intracommunautaire.</source>
         <target>Are you a professional ? Add your intracommunity VAT number.</target>
+      </trans-unit>
+      <trans-unit id="8f805dc410317853b0522d7f919325cbbc7b2d02" resname="a été effectuée le">
+        <source>a été effectuée le</source>
+        <target>a été effectuée le</target>
       </trans-unit>
       <trans-unit id="b2af24f280543fd5632ec99234fc68c5b6141f74" resname="articles dans votre panier">
         <source>articles dans votre panier</source>
@@ -1065,6 +1093,10 @@ This was the opportunity for GustoCoffee to become known to large companies such
       <trans-unit id="5b002bff2948944fbbad3a746d95ea1ddd06c271" resname="places choisies">
         <source>places choisies</source>
         <target>places selected</target>
+      </trans-unit>
+      <trans-unit id="e02f484bceea2c6ae6b78763ae4b9aa38543caad" resname="pour un total de">
+        <source>pour un total de</source>
+        <target>pour un total de</target>
       </trans-unit>
       <trans-unit id="eeb795de8a7c4f5b013684b5d95b4e1cdda60fcf" resname="retour">
         <source>retour</source>

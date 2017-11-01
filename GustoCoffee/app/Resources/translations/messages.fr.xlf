@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-10-31T16:47:41Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+  <file date="2017-11-01T12:50:17Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -108,7 +108,7 @@
       <trans-unit id="be88d655ab3b08ddb06ff6638f653e098f00fe00" resname="Adresse de facturation">
         <source>Adresse de facturation</source>
         <target>Adresse de facturation</target>
-        <jms:reference-file line="184">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
+        <jms:reference-file line="185">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
         <jms:reference-file line="79">/Resources/views/panier/layout/livraison.html.twig</jms:reference-file>
         <jms:reference-file line="254">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
       </trans-unit>
@@ -120,7 +120,7 @@
       <trans-unit id="86336ed256c14b163f73c648aefabf514ba1e306" resname="Adresse personnel">
         <source>Adresse personnel</source>
         <target>Adresse personnel</target>
-        <jms:reference-file line="174">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
+        <jms:reference-file line="175">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
         <jms:reference-file line="244">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="64f82661e2871b51a0332392744d8e7b1ade3503" resname="Adresse personnelle">
@@ -182,7 +182,13 @@
       <trans-unit id="1afb47395075872b0da51ecdade3fa1d55287eae" resname="Aucune facture actuellement">
         <source>Aucune facture actuellement</source>
         <target>Aucune facture actuellement</target>
+        <jms:reference-file line="28">/Resources/views/facture/ajaxListFacture.html.twig</jms:reference-file>
         <jms:reference-file line="63">/Resources/views/facture/facture.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="b45297a652c887cecff71cc0e166643ef760aedf" resname="Aucune facture actuellement.">
+        <source>Aucune facture actuellement.</source>
+        <target state="new">Aucune facture actuellement.</target>
+        <jms:reference-file line="13">/Resources/views/facture/lastFactures.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="3fa3a057e81ad1b75ef66d00118acbcc5e857b03" resname="Aucuns article dans votre panier">
         <source>Aucuns article dans votre panier</source>
@@ -264,7 +270,7 @@
       </trans-unit>
       <trans-unit id="63c39673f17d6dcf913508349a676bc794ed0aed" resname="Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.">
         <source>Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.</source>
-        <target state="new">Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.</target>
+        <target>Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.</target>
         <jms:reference-file line="74">/../src/GC/HomeBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b030d590c21c95efe2ba71da1d0f1198a7e655b4" resname="Choisir">
@@ -286,8 +292,8 @@
         <source>Choisir votre date</source>
         <target>Choisir votre date</target>
         <jms:reference-file line="37">/../src/GC/ReservationBundle/Resources/views/Default/reservation-private.html.twig</jms:reference-file>
-        <jms:reference-file line="41">/Resources/views/place/index.html.twig</jms:reference-file>
-        <jms:reference-file line="40">/Resources/views/salle/index.html.twig</jms:reference-file>
+        <jms:reference-file line="42">/Resources/views/place/index.html.twig</jms:reference-file>
+        <jms:reference-file line="42">/Resources/views/salle/index.html.twig</jms:reference-file>
         <jms:reference-file line="35">/Resources/views/salle/list.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="1b7b01c8874a155046f58afc56cb4f65afbb896d" resname="Choisissez votre moyen de réglement">
@@ -371,14 +377,15 @@
         <source>Créneau horaire</source>
         <target>Créneau horaire</target>
         <jms:reference-file line="59">/../src/GC/ReservationBundle/Resources/views/Default/reservation-private.html.twig</jms:reference-file>
-        <jms:reference-file line="67">/Resources/views/place/index.html.twig</jms:reference-file>
-        <jms:reference-file line="66">/Resources/views/salle/index.html.twig</jms:reference-file>
+        <jms:reference-file line="68">/Resources/views/place/index.html.twig</jms:reference-file>
+        <jms:reference-file line="68">/Resources/views/salle/index.html.twig</jms:reference-file>
         <jms:reference-file line="73">/Resources/views/salle/list.html.twig</jms:reference-file>
         <jms:reference-file line="38">/Resources/views/salle/show.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="eb9a4bc1c0c153e4e4b042a79113b815b7e3021d" resname="Date">
         <source>Date</source>
         <target>Date</target>
+        <jms:reference-file line="20">/Resources/views/facture/ajaxListFacture.html.twig</jms:reference-file>
         <jms:reference-file line="55">/Resources/views/facture/facture.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="d5e8d1af5f3c137fb998b7afa347eeea683a7229" resname="Date de création">
@@ -482,6 +489,11 @@
         <target>FAQ</target>
         <jms:reference-file line="21">/Resources/views/footer.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="da35e4f29223fa8e423793d9f80e8b6a74df63aa" resname="Factures">
+        <source>Factures</source>
+        <target state="new">Factures</target>
+        <jms:reference-file line="14">/Resources/views/facture/ajaxListFacture.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="cdc5ed40580da86ae644700f95f78ef2ca5e7f89" resname="Faut-il obligatoirement un compte ?">
         <source>Faut-il obligatoirement un compte ?</source>
         <target>Faut-il obligatoirement un compte ?</target>
@@ -582,6 +594,11 @@
         <source>Ils ont parlé de GustoCoffee</source>
         <target>Ils ont parlé de GustoCoffee</target>
         <jms:reference-file line="59">/../src/GC/EvenementBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="922e94a82df57e955ae0f2b04dcb46e63e6ca917" resname="Ils sont téléchargeables en cliquant sous le bouton en dessous.">
+        <source>Ils sont téléchargeables en cliquant sous le bouton en dessous.</source>
+        <target state="new">Ils sont téléchargeables en cliquant sous le bouton en dessous.</target>
+        <jms:reference-file line="5">/Resources/views/facture/lastFactures.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="619fe1aefeb5abfcdabe830056adb42c5b937df2" resname="Image ">
         <source>Image </source>
@@ -924,7 +941,7 @@
       <trans-unit id="9b33e083f7a40171b773d68eec2c2293739d7774" resname="Payer">
         <source>Payer</source>
         <target>Payer</target>
-        <jms:reference-file line="168">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
+        <jms:reference-file line="169">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
         <jms:reference-file line="238">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="ad7a400811e07f310137559819552b52c9adf07b" resname="Payer directement &gt;">
@@ -985,6 +1002,7 @@
         <source>Prix</source>
         <target>Prix</target>
         <jms:reference-file line="65">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="21">/Resources/views/facture/ajaxListFacture.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c48d80e8283e2123e2b5b9d677104b55f8cc4bd3" resname="Prix TTC">
         <source>Prix TTC</source>
@@ -1062,9 +1080,9 @@
         <source>Rechercher</source>
         <target>Rechercher</target>
         <jms:reference-file line="45">/../src/GC/ReservationBundle/Resources/views/Default/reservation-private.html.twig</jms:reference-file>
-        <jms:reference-file line="48">/Resources/views/place/index.html.twig</jms:reference-file>
+        <jms:reference-file line="49">/Resources/views/place/index.html.twig</jms:reference-file>
         <jms:reference-file line="3">/Resources/views/produit/recherche.html.twig</jms:reference-file>
-        <jms:reference-file line="47">/Resources/views/salle/index.html.twig</jms:reference-file>
+        <jms:reference-file line="49">/Resources/views/salle/index.html.twig</jms:reference-file>
         <jms:reference-file line="45">/Resources/views/salle/list.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="77b73ea8c3098bef8a24ad67a01ee1935dec93c2" resname="Recrutement">
@@ -1115,11 +1133,13 @@
       <trans-unit id="b5b97dc4e3a8ff7d21e364b5bd755d453dbc19be" resname="Références">
         <source>Références</source>
         <target>Références</target>
+        <jms:reference-file line="19">/Resources/views/facture/ajaxListFacture.html.twig</jms:reference-file>
         <jms:reference-file line="54">/Resources/views/facture/facture.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="a3deb6de93678632a8946cd8caee9c93a748251e" resname="Réservation">
         <source>Réservation</source>
         <target>Réservation</target>
+        <jms:reference-file line="19">/Resources/views/facture/lastFactures.html.twig</jms:reference-file>
         <jms:reference-file line="26">/Resources/views/menu.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="c3cdbaa560763d4571927f45e075945cdd8b2b6d" resname="Réservation Salle">
@@ -1336,9 +1356,14 @@
         <target>Troisième heures</target>
         <jms:reference-file line="78">/../src/GC/ReservationBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
-      <trans-unit id="83eb29e0ad26d5dde694843192f171525fa74d4d" resname="Télécharger votre factur">
-        <source>Télécharger votre factur</source>
-        <target>Télécharger votre factur</target>
+      <trans-unit id="528f4a2fd8a517d537af4c92f94ee5eca2f931e6" resname="Télécharger la facture">
+        <source>Télécharger la facture</source>
+        <target state="new">Télécharger la facture</target>
+        <jms:reference-file line="22">/Resources/views/facture/lastFactures.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="c3a7e1f9ee10c65ec4237fdaba3a5a4fb1f943de" resname="Télécharger votre facture">
+        <source>Télécharger votre facture</source>
+        <target state="new">Télécharger votre facture</target>
         <jms:reference-file line="57">/Resources/views/facture/facture.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="aa820c75a54f58424ee368f3baf67e388c7841c6" resname="Téléphonez-nous">
@@ -1423,6 +1448,11 @@
         <target>Vos adresses de facturations</target>
         <jms:reference-file line="18">/Resources/views/panier/layout/livraison.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="ad290dae2c9b09325ec1e8f0f2a34800496aee3c" resname="Vos dernières réservations">
+        <source>Vos dernières réservations</source>
+        <target state="new">Vos dernières réservations</target>
+        <jms:reference-file line="3">/Resources/views/facture/lastFactures.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="da8c183f8fb7af5bf752e77cd3cd580df7605551" resname="Votre Email *">
         <source>Votre Email *</source>
         <target>Votre Email *</target>
@@ -1481,10 +1511,20 @@
         <jms:reference-file line="116">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
         <jms:reference-file line="84">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="a9c2bbbd0a544f3de5a1568f4a1fc02dde772bc1" resname="Vous trouverez ci-dessous vos 3 dernières réservations effectuées chez GustoCoffee">
+        <source>Vous trouverez ci-dessous vos 3 dernières réservations effectuées chez GustoCoffee</source>
+        <target state="new">Vous trouverez ci-dessous vos 3 dernières réservations effectuées chez GustoCoffee</target>
+        <jms:reference-file line="4">/Resources/views/facture/lastFactures.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="555f56ad29454dc110a803204ef71b1cabf01904" resname="Vous êtes un professionnel ? Ajoutez votre n°TVA Intracommunautaire.">
         <source>Vous êtes un professionnel ? Ajoutez votre n°TVA Intracommunautaire.</source>
         <target>Vous êtes un professionnel ? Ajoutez votre n°TVA Intracommunautaire.</target>
         <jms:reference-file line="19">/Resources/views/panier/layout/livraison.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="8f805dc410317853b0522d7f919325cbbc7b2d02" resname="a été effectuée le">
+        <source>a été effectuée le</source>
+        <target state="new">a été effectuée le</target>
+        <jms:reference-file line="19">/Resources/views/facture/lastFactures.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="b2af24f280543fd5632ec99234fc68c5b6141f74" resname="articles dans votre panier">
         <source>articles dans votre panier</source>
@@ -1549,10 +1589,14 @@
         <target>places choisies</target>
         <jms:reference-file line="33">/Resources/views/panier/ajaxpaniermenu.html.twig</jms:reference-file>
       </trans-unit>
+      <trans-unit id="e02f484bceea2c6ae6b78763ae4b9aa38543caad" resname="pour un total de">
+        <source>pour un total de</source>
+        <target state="new">pour un total de</target>
+        <jms:reference-file line="19">/Resources/views/facture/lastFactures.html.twig</jms:reference-file>
+      </trans-unit>
       <trans-unit id="eeb795de8a7c4f5b013684b5d95b4e1cdda60fcf" resname="retour">
         <source>retour</source>
         <target>retour</target>
-        <jms:reference-file line="192">/Resources/views/panier/layout/ajaxValidation.html.twig</jms:reference-file>
         <jms:reference-file line="262">/Resources/views/panier/layout/validation.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="37ce6f6c13a55abd44fb7a143716c31b77f7ec7f" resname="retourner à l'accueil">
