@@ -66,53 +66,6 @@ class Tva
      */
     private $multiplicate;
 
-//    /**
-//     *
-//     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="idtva")
-//     *
-//     */
-//    private $salles;
-//
-//    /**
-//     *
-//     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Produit", mappedBy="idtva")
-//     *
-//     */
-//    private $produits;
-
-
-//    /**
-//     * @return mixed
-//     */
-//    public function getTvaSalle()
-//    {
-//        return $this->salles;
-//    }
-//
-//    /**
-//     * @param mixed $salles
-//     */
-//    public function setTvaSalle($salles)
-//    {
-//        $this->salles = $salles;
-//    }
-
-//    /**
-//     * @return mixed
-//     */
-//    public function getTva()
-//    {
-//        return $this->produits;
-//    }
-//
-//    /**
-//     * @param mixed $produits
-//     */
-//    public function setTva($produits)
-//    {
-//        $this->produits = $produits;
-//    }
-
     /**
      * Set valeur
      *

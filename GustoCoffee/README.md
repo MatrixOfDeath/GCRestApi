@@ -1,7 +1,7 @@
-GustoCoffee Infos by KB
+GustoCoffee Infos by Karim BOUBRIT
 ===========
 
-Projet GustoCoffee  Symfony **3.3.9** -> to be migrated to  3.4LTS 
+Projet GustoCoffee  Symfony **3.3.10** -> to be migrated to  3.4LTS 
 
 #Pre-requirements
 Install composer and launch composer install after git clone of this project
@@ -40,6 +40,11 @@ php bin/console doctrine:database:drop --force --env=test
 php bin/console doctrine:database:create
 php bin/console doctrine:schema:update --force
 
+#Clearing Doctrine Cache
+bin/console doctrine:cache:clear-metadata 
+bin/console doctrine:cache:clear-query  
+bin/console doctrine:cache:clear-result
+
 #Doctrine migration
 php bin/console doctrine:migrations:status
 php bin/console doctrine:migrations:generate
@@ -50,6 +55,9 @@ php bin/console doctrine:migrations:migrate
 php bin/console assetic:dump --env=prod --no-debug
 
 #Translations all at once
+php bin/console translation:extract fr en --config=app --enable-extractor=jms_i18n_routing --output-format=xlf
+php bin/console translation:update 
+
 php bin/console translation:extract en fr --dir=./src/ --output-dir=./app/Resources/translations --enable-extractor=jms_i18n_routing
 php bin/console translation:extract en fr --dir=./app/Resources/views --output-dir=./app/Resources/translations --enable-extractor=jms_i18n_routing --output-format=xlf
 

@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Authentication;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Payplug\Payplug;
 
 /**
  * Commande controller.
@@ -48,133 +49,13 @@ class CommandeController extends FOSRestController
     }
 
     /**
-     * Lists all commande entities.
-     *
-     * @Route("/", name="commande_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $commandes = $em->getRepository('AppBundle:Commande')->findAll();
-
-        return $this->render('commande/index.html.twig', array(
-            'commandes' => $commandes,
-        ));
-    }
-
-    /**
-     * Creates a new commande entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/new", name="commande_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $commande = new Commande();
-        $form = $this->createForm('AppBundle\Form\CommandeType', $commande);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($commande);
-            $em->flush();
-
-            return $this->redirectToRoute('commande_show', array('idcommande' => $commande->getIdcommande()));
-        }
-
-        return $this->render('commande/new.html.twig', array(
-            'commande' => $commande,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a commande entity.
-     *
-     * @Route("/{idcommande}", name="commande_show", requirements={"idcommande": "\d+"})
-     * @Method("GET")
-     */
-    public function showAction(Commande $commande)
-    {
-        $deleteForm = $this->createDeleteForm($commande);
-
-        return $this->render('commande/show.html.twig', array(
-            'commande' => $commande,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Displays a form to edit an existing commande entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{idcommande}/edit", name="commande_edit", requirements={"idcommande": "\d+"})
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Commande $commande)
-    {
-        $deleteForm = $this->createDeleteForm($commande);
-        $editForm = $this->createForm('AppBundle\Form\CommandeType', $commande);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('commande_edit', array('idcommande' => $commande->getIdcommande()));
-        }
-
-        return $this->render('commande/edit.html.twig', array(
-            'commande' => $commande,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a commande entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{idcommande}", name="commande_delete", requirements={"idcommande": "\d+"})
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Commande $commande)
-    {
-        $form = $this->createDeleteForm($commande);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($commande);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('commande_index');
-    }
-
-    /**
-     * Creates a form to delete a commande entity.
-     *
-     * @param Commande $commande The commande entity
-     * @Security("has_role('ROLE_ADMIN')")
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Commande $commande)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('commande_delete', array('idcommande' => $commande->getIdcommande())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
-
-    /**
      *
      * @Route("/facture", name="facture")
      * @Method("GET")
      * @param SessionInterface $session
      * @return array
      */
-    public function facture(SessionInterface $session)
+    private function facture(SessionInterface $session)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -219,6 +100,8 @@ class CommandeController extends FOSRestController
 
             $commande['produit'][$produit->getIdproduit()] = array('reference' => $produit->getNomproduit(),
                 'quantite' => $panier[$produit->getIdproduit()],
+                'image' => $produit->getImage(),
+                'nomtypeproduit' => $produit->getNomTypeProduit(),
                 'prixHT' => round($produit->getPrixproduit(),2),
                 'prixTTC' => round($produit->getPrixproduit() / $produit->getTva()->getMultiplicate(),2));
         }
@@ -241,13 +124,16 @@ class CommandeController extends FOSRestController
                 $totalMinutes = 0;
             }
 
-            if ($totaleHeuresR >= 5 or ($totaleHeuresR >= 5 and  $totaleMinutesR >= 30) ) {
+            if ($totaleHeuresR >= 5 || ($totaleHeuresR >= 5 && $totaleMinutesR >= 30) ) {
                 $totalSalleTTC = $totalSalleTTC + $salle->getPrixsalle() * 4;
                 $prixSalleTTC = $salle->getPrixsalle() * 4;
+                $commande['salle'][$salle->getIdsalle()]['journeeIllimitee'] = 1;
             }
-            else if( ($totaleHeuresR == 3 and $total30Minutes >= 30) or $totaleHeuresR >= 4 ) {
+            else if( ($totaleHeuresR == 3 && $total30Minutes >= 30) || $totaleHeuresR >= 4 ) {
                 $totalSalleTTC =  $totalSalleTTC + $salle->getPrixsalle() + (($total30Minutes - 2 )* 2 * $salle->getCapacitymax()) + $totalMinutes - (2 * $salle->getCapacitymax());
                 $thirdHourFree += (2 * $salle->getCapacitymax());
+                $commande['salle'][$salle->getIdsalle()]['thirdHourFree'] = 1;
+
                 $prixSalleTTC = $salle->getPrixsalle() + (($total30Minutes - 2 )* 2 * $salle->getCapacitymax()) + $totalMinutes - (2 * $salle->getCapacitymax());
             } else{
                 $totalSalleTTC =  $totalSalleTTC + $salle->getPrixsalle() + (($total30Minutes - 2) * 2 * $salle->getCapacitymax()) + $totalMinutes;
@@ -266,6 +152,7 @@ class CommandeController extends FOSRestController
             $totalSalleTVA += round($prixSalleTTC - $prixSalleHT,2);
             $commande['salle'][$salle->getIdsalle()] = array(
                 'reference' => $salle->getNomsalle(),
+                'image' => $salle->getImage(),
                 'heureDebut' => $panier_salle[$salle->getIdsalle()]['heureChoixDebut'],
                 'heureFin' => $panier_salle[$salle->getIdsalle()]['heureChoixFin'],
                 'date' => $panier_salle[$salle->getIdsalle()]['date'],
@@ -291,18 +178,18 @@ class CommandeController extends FOSRestController
             if ($panier_place[$place->getIdplace()]['totalMinutes'] >= 30) {
                 $totalMinutes = 2;
             } else {
-
                 $totalMinutes = 0;
             }
 
-            if ($totaleHeuresR >= 5 or ($totaleHeuresR >= 5 and  $totaleMinutesR >= 30) ) {
+            if ($totaleHeuresR >= 5 || ($totaleHeuresR >= 5 && $totaleMinutesR >= 30) ) {
                 $totalPlaceTTC = $totalPlaceTTC + $place->getPrixplace() * 4;
                 $prixPlaceTTC = $place->getPrixplace() * 4;
-
+                $commande['place'][$place->getIdplace()]['journeeIllimitee'] = 1;
             }
-            else if( ($totaleHeuresR == 3 and $total30Minutes >= 30) or $totaleHeuresR >= 4 ) {
+            else if( ($totaleHeuresR == 3 && $total30Minutes >= 30) || $totaleHeuresR >= 4 ) {
                 $totalPlaceTTC =  $totalPlaceTTC + $place->getPrixplace() + (($total30Minutes - 2 ) * 2) + $totalMinutes - 2;
                 $thirdHourFree += 2;
+                $commande['place'][$place->getIdplace()]['thirdHourFree'] = 1;
                 $prixPlaceTTC = $place->getPrixplace() + (($total30Minutes - 2 )* 2) + $totalMinutes - 2;
             } else{
                 $totalPlaceTTC =  $totalPlaceTTC + $place->getPrixplace() + (($total30Minutes - 2) * 2) + $totalMinutes;
@@ -321,6 +208,7 @@ class CommandeController extends FOSRestController
             $totalPlaceTVA += round($prixPlaceTTC - $prixPlaceHT,2);
             $commande['place'][$place->getIdplace()] = array(
                 'reference' => $place->getNomplace(),
+                'image' => $place->getImageSalle(),
                 'heureDebut' => $panier_place[$place->getIdplace()]['heureChoixDebut'],
                 'heureFin' => $panier_place[$place->getIdplace()]['heureChoixFin'],
                 'date' => $panier_place[$place->getIdplace()]['date'],
@@ -389,7 +277,7 @@ class CommandeController extends FOSRestController
      */
     public function prepareCommandeAction(SessionInterface $session)
     {
-        //$session = $this->getRequest()->getSession();
+
         $em = $this->getDoctrine()->getManager();
 
         if (!$session->has('commande'))
@@ -397,17 +285,11 @@ class CommandeController extends FOSRestController
         else
             $commande = $em->getRepository('AppBundle:Commande')->find($session->get('commande'));
 
-        $salle = $session->get('panier_salle');
-
         $commande->setDatecommande(new \DateTime());
         $commande->setPersonne($this->container->get('security.token_storage')->getToken()->getUser());
-        // TODO : Urgently need to manage this even if ....
-        // $commande->setReservation();
         $commande->setValider(0);
         $commande->setReference(0);
-        //var_dump('test...'.$commande->getCommande()['token']);
         $commande->setCommande($this->facture($session));
-       //todo récupéré l'id reservation ! $commande->setReservation();
 
         if (!$session->has('commande')) {
             $em->persist($commande);
@@ -471,7 +353,6 @@ class CommandeController extends FOSRestController
         $this->setStockProduits($session);
 
         $retrieveCommande = $commande->getCommande();
-//        var_dump($commande->getCommande()->totalTTC);
         $personne = $em->getRepository('AppBundle:Personne')->find($this->getUser());
         $personne->setPointscumules($personne->getPointscumules()+(int)($retrieveCommande['totalTTC']/10) );
 
@@ -517,7 +398,6 @@ class CommandeController extends FOSRestController
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function validationPaymentAction(Request $request, SessionInterface $session, $id){
-
         if ($request->getMethod() == 'POST' && $session->has('commande'))
         {
             $em = $this->getDoctrine()->getManager();
@@ -525,6 +405,7 @@ class CommandeController extends FOSRestController
             $co= $commande->getCommande();
 
            if ($request->get('token') == $co['token']){
+               $baseURLPath = $request->getScheme() . '://' . $request->getHttpHost() . $this->container->get('router')->getContext()->getBaseUrl().'/'.$request->getLocale();
                $totalPrix = $request->request->get('totalTTC');
 
                /**
@@ -535,11 +416,12 @@ class CommandeController extends FOSRestController
                    $email = $this->getUser()->getEmail();
                }else{
                    $customer_id = 'anon';
+                   $email = "gustocoffee+official@gmail.com";
                }
                \Payplug\Payplug::setSecretKey('sk_test_44dfjjzLQ6f0S4xqYxGlQR');
 
                $amount = $totalPrix * 100; // En centime cf: la doc de Payplug
-               $email = "gustocoffee+official@gmail.com";
+
                $commande_id = $id;
 
                $payment = \Payplug\Payment::create(array(
@@ -549,10 +431,10 @@ class CommandeController extends FOSRestController
                        'email'          => $email
                    ),
                    'hosted_payment'   => array(
-                       'return_url'     => $this->container->getParameter('domain_name').'commande/api/banque/'.$commande_id,
-                       'cancel_url'     => $this->container->getParameter('domain_name').'commande/paiement_commande/'.$commande_id
+                       'return_url'     => $baseURLPath.'/commande/api/banque/'.$commande_id,
+                       'cancel_url'     => $baseURLPath.'/commande/paiement_commande/'.$commande_id
                    ),
-                   'notification_url' =>  $this->container->getParameter('domain_name').'commande/notifications?id='.$commande_id,
+                   'notification_url' =>  $baseURLPath.'/commande/notifications?id='.$commande_id,
                    'metadata'         => array(
                        'customer_id'    => (string)$customer_id
                    )
@@ -561,20 +443,18 @@ class CommandeController extends FOSRestController
                $payment_url = $payment->hosted_payment->payment_url;
 
                //Todo: envoyer l'id payment ! somewhere
-               $payment_id = $payment->id;
-               // echo "payment_id return: ".$payment->id;
                return $this->redirect($payment_url);
 
            }else{
                // Token envoyé par l'user invalide !!
                $session->getFlashBag()->add('success','Le token de vérification de formulaire est invalide');
-               return $this->redirect($this->generateUrl('livraison_panier'));
+               return $this->redirect($this->generateUrl('validation_panier'));
 
            }
 
         }else{
             $session->getFlashBag()->add('error',"L'envoi de votre demande de validation a échoué");
-            return $this->redirect($this->generateUrl('livraison_panier'));
+            return $this->redirect($this->generateUrl('validation_panier'));
         }
     }
 
@@ -587,7 +467,6 @@ class CommandeController extends FOSRestController
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function validationAjaxPaymentAction(Request $request, SessionInterface $session, $id){
-
         if ($request->getMethod() == 'POST' && $session->has('commande'))
         {
             $em = $this->getDoctrine()->getManager();
@@ -595,6 +474,8 @@ class CommandeController extends FOSRestController
             $co= $commande->getCommande();
 
             if ($request->request->get('token') == $co['token']){
+                $baseURLPath = $request->getScheme() . '://' . $request->getHttpHost() . $this->container->get('router')->getContext()->getBaseUrl().'/'.$request->getLocale();
+
                 $totalPrix = $request->request->get('totalTTC');
 
                 /**
@@ -619,10 +500,10 @@ class CommandeController extends FOSRestController
                         'email'          => $email
                     ),
                     'hosted_payment'   => array(
-                        'return_url'     => $this->container->getParameter('domain_name').'commande/api/banque/'.$commande_id,
-                        'cancel_url'     => $this->container->getParameter('domain_name').'commande/paiement_commande/'.$commande_id
+                        'return_url'     =>  $baseURLPath.'/commande/api/banque/'.$commande_id,
+                        'cancel_url'     => $baseURLPath.'/commande/paiement_commande/'.$commande_id
                     ),
-                    'notification_url' =>  $this->container->getParameter('domain_name').'commande/notifications/'.$commande_id,
+                    'notification_url' => $baseURLPath.'/commande/notifications?id='.$commande_id,
                     'metadata'         => array(
                         'customer_id'    => (string)$customer_id
                     )
@@ -631,20 +512,18 @@ class CommandeController extends FOSRestController
                 $payment_url = $payment->hosted_payment->payment_url;
 
                 //Todo: envoyer l'id payment ! somewhere
-                $payment_id = $payment->id;
-                // echo "payment_id return: ".$payment->id;
                 return new Response ($payment_url);
 
             }else{
                 // Token envoyé par l'user invalide !!
                 $session->getFlashBag()->add('success','Le token de vérification de formulaire est invalide');
-                return $this->redirect($this->generateUrl('livraison_panier'));
+                return $this->redirect($this->generateUrl('validation_panier'));
 
             }
 
         }else{
             $session->getFlashBag()->add('error',"L'envoi de votre demande de validation a échoué");
-            return $this->redirect($this->generateUrl('livraison_panier'));
+            return $this->redirect($this->generateUrl('validation_panier'));
         }
     }
 

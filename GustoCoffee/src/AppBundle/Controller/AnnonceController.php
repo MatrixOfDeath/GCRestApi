@@ -73,7 +73,7 @@ class AnnonceController extends FOSRestController
         $annonces = $em->getRepository('AppBundle:Annonce')->findAll();
 
         $annonce = new Annonce();
-        $form = $this->createForm('AppBundle\Form\AnnonceType', $annonce);
+        $form = $this->createForm('AppBundle\Form\Type\AnnonceType', $annonce);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -104,18 +104,10 @@ class AnnonceController extends FOSRestController
     public function newAction(Request $request)
     {
         $annonce = new Annonce();
-        $form = $this->createForm('AppBundle\Form\AnnonceType', $annonce);
+        $form = $this->createForm('AppBundle\Form\Type\AnnonceType', $annonce);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-
-            //Je set la date à la création de l'entité todo: edit date si on a le temps
-            //$annonce->setDatecreation(new \DateTime(date('d-m-Y H:m:s')));
-            //$annonce->setIdpersonne($this->getUser()->getId());
-//            $currentId = $this->getUser()->getP;
-//
-//            var_dump($this->getUser()); die();
-//            $annonce->setIdpersonne($currentId);
 
             $em->persist($annonce);
             $em->flush();
@@ -159,7 +151,7 @@ class AnnonceController extends FOSRestController
     public function editAction(Request $request, Annonce $annonce)
     {
         $deleteForm = $this->createDeleteForm($annonce);
-        $editForm = $this->createForm('AppBundle\Form\AnnonceType', $annonce);
+        $editForm = $this->createForm('AppBundle\Form\Type\AnnonceType', $annonce);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

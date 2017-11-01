@@ -31,7 +31,7 @@ class RestWelcomeControllerTest extends ApiTestCaseBase
         );
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertEquals('Bonjour utilisateur.', json_decode($this->client->getResponse()->getContent(), true));
+        $this->assertEquals('Bonjour kboubrit', json_decode($this->client->getResponse()->getContent(), true));
     }
 
     public function testGETWelocmeMessageAsUnauthorizedUser()

@@ -32,18 +32,6 @@ class LigneFacture
      */
     private $idfacture;
 
-//    /**
-//     * @var \AppBundle\Entity\Tva
-//     *
-//     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tva")
-//     * @ORM\JoinColumns({
-//     *   @ORM\JoinColumn(name="idTva", referencedColumnName="idTva")
-//     * })
-//     */
-//    private $idtva;
-
-
-
     /**
      * Get idlignefacture
      *
@@ -78,27 +66,4 @@ class LigneFacture
         return $this->idfacture;
     }
 
-//    /**
-//     * Set idtva
-//     *
-//     * @param \AppBundle\Entity\Tva $idtva
-//     *
-//     * @return LigneFacture
-//     */
-//    public function setIdtva(\AppBundle\Entity\Tva $idtva = null)
-//    {
-//        $this->idtva = $idtva;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get idtva
-//     *
-//     * @return \AppBundle\Entity\Tva
-//     */
-//    public function getIdtva()
-//    {
-//        return $this->idtva;
-//    }
 }

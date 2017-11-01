@@ -68,7 +68,7 @@ class MagasinController extends FOSRestController
     public function newAction(Request $request)
     {
         $magasin = new Magasin();
-        $form = $this->createForm('AppBundle\Form\MagasinType', $magasin);
+        $form = $this->createForm('AppBundle\Form\Type\MagasinType', $magasin);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -110,7 +110,7 @@ class MagasinController extends FOSRestController
     public function editAction(Request $request, Magasin $magasin)
     {
         $deleteForm = $this->createDeleteForm($magasin);
-        $editForm = $this->createForm('AppBundle\Form\MagasinType', $magasin);
+        $editForm = $this->createForm('AppBundle\Form\Type\MagasinType', $magasin);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -162,3 +162,4 @@ class MagasinController extends FOSRestController
         ;
     }
 }
+

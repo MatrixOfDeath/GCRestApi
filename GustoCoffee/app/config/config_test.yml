@@ -12,9 +12,9 @@ doctrine:
     # ...
     dbal:
         host:     127.0.0.1
-        dbname:   Gusto_Test
-        user:     root
-        password: root
+        dbname:   '%database_test_name%'
+        user:     '%database_test_user%'
+        password: '%database_test_password%'
 
 web_profiler:
     toolbar: false

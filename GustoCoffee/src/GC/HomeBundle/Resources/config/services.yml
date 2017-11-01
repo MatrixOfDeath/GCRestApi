@@ -1,4 +1,4 @@
 services:
-#    gc_home.example:
-#        class: GC\HomeBundle\Example
+#    gc_reservation.example:
+#        class: GC\ReservationBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]

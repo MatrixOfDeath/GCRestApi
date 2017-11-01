@@ -1,6 +1,4 @@
 <?php
-// src/AppBundle/Entity/Client.php
-
 namespace AppBundle\Entity;
 
 use FOS\OAuthServerBundle\Entity\Client as BaseClient;

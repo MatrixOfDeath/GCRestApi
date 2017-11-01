@@ -41,7 +41,7 @@ class LigneFactureController extends Controller
     public function newAction(Request $request)
     {
         $ligneFacture = new Lignefacture();
-        $form = $this->createForm('AppBundle\Form\LigneFactureType', $ligneFacture);
+        $form = $this->createForm('AppBundle\Form\Type\LigneFactureType', $ligneFacture);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -83,7 +83,7 @@ class LigneFactureController extends Controller
     public function editAction(Request $request, LigneFacture $ligneFacture)
     {
         $deleteForm = $this->createDeleteForm($ligneFacture);
-        $editForm = $this->createForm('AppBundle\Form\LigneFactureType', $ligneFacture);
+        $editForm = $this->createForm('AppBundle\Form\Type\LigneFactureType', $ligneFacture);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -135,3 +135,4 @@ class LigneFactureController extends Controller
         ;
     }
 }
+

@@ -56,6 +56,10 @@ class AppKernel extends Kernel
             #Charts based on google
             new CMEN\GoogleChartsBundle\CMENGoogleChartsBundle(),
 
+            #SEO
+            new Dpn\XmlSitemapBundle\DpnXmlSitemapBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
+
             # Our Bundles
             new AppBundle\AppBundle(),
             new GC\HomeBundle\GCHomeBundle(),

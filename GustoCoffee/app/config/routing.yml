@@ -1,30 +1,50 @@
 app_type_de_produit:
     resource: "@AppBundle/Controller/TypeDeProduitController.php"
     type:     annotation
+    options:
+        sitemap: true
 
 app_ligne_facture:
     resource: "@AppBundle/Controller/LigneFactureController.php"
     type:     annotation
+    options:
+        sitemap: true
 
 gc_user:
     resource: "@GCUserBundle/Resources/config/routing.yml"
     prefix:   /
+    options:
+        sitemap: true
 
 gc_reservation:
     resource: "@GCReservationBundle/Resources/config/routing.yml"
     prefix:   /
-
+    options:
+        sitemap: true
+        maxAge: 86400
+        sharedMaxAge: 86400
+        private: false
 gc_evenement:
     resource: "@GCEvenementBundle/Resources/config/routing.yml"
     prefix:   /
-
+    options:
+        sitemap: true
+        maxAge: 86400
+        sharedMaxAge: 86400
+        private: false
 gc_home:
     resource: "@GCHomeBundle/Resources/config/routing.yml"
     prefix:   /
-
+    options:
+        sitemap: true
+        maxAge: 86400
+        sharedMaxAge: 86400
+        private: false
 app:
     resource: "@AppBundle/Resources/config/routing.yml"
     prefix: /
+    options:
+        sitemap: true
 #app:
 #    resource: '@AppBundle/Controller/'
 #    type: annotation
@@ -101,3 +121,9 @@ fos_user_profile:
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+DpnXmlSitemapBundle:
+    resource: "@DpnXmlSitemapBundle/Resources/config/routing.xml"
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

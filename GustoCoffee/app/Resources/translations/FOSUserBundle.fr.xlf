@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-09-20T11:53:08Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
+  <file date="2017-10-31T16:47:41Z" source-language="en" target-language="fr" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
@@ -8,17 +8,181 @@
     <body>
       <trans-unit id="903dca17a1c9328c3aa66e5adfffecc642d66713" resname="Déconnexion">
         <source>Déconnexion</source>
-        <target state="new">Déconnexion</target>
-        <jms:reference-file line="73">/../../../../../../../../.././app/Resources/views/base.html.twig</jms:reference-file>
+        <target>Déconnexion</target>
+        <jms:reference-file line="55">/Resources/views/menu.html.twig</jms:reference-file>
+        <jms:reference-file line="72">/Resources/views/menu.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="8d1bd72c41852e37cffaebd3e8e025b73c44d431" resname="Inscrivez-vous dès maintenant !">
+        <source>Inscrivez-vous dès maintenant !</source>
+        <target>Inscrivez-vous dès maintenant !</target>
+        <jms:reference-file line="23">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
+        <jms:reference-file line="23">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a9f26e783be32e23c5c97451f505877b06618c7c" resname="Modification de mot de Passe">
+        <source>Modification de mot de Passe</source>
+        <target>Modification de mot de Passe</target>
+        <jms:reference-file line="18">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
+        <jms:reference-file line="18">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0925210fc1d0bf2401bb8d792e1c571ceea4927f" resname="Modification de mot de passe">
+        <source>Modification de mot de passe</source>
+        <target>Modification de mot de passe</target>
+        <jms:reference-file line="5">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
+        <jms:reference-file line="5">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="806ef9d44ae7239954b63f80869a36ed021ad9bb" resname="Mot de passe oublié">
+        <source>Mot de passe oublié</source>
+        <target>Mot de passe oublié</target>
+        <jms:reference-file line="40">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="8e6badfb30ad62a780f2097558dad5ab4245a5c3" resname="Mot de passe oublié ? On vous en renvoie un !">
+        <source>Mot de passe oublié ? On vous en renvoie un !</source>
+        <target>Mot de passe oublié ? On vous en renvoie un !</target>
+        <jms:reference-file line="19">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
+        <jms:reference-file line="19">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9643780fd90ec7efb599929ec4e02765b7596deb" resname="Pas encore inscrit">
+        <source>Pas encore inscrit</source>
+        <target>Pas encore inscrit</target>
+        <jms:reference-file line="76">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a04b65c7dad340d448a41899fca10dab4885cd0c" resname="Réinitialiser le mot de passe">
+        <source>Réinitialiser le mot de passe</source>
+        <target>Réinitialiser le mot de passe</target>
+        <jms:reference-file line="31">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
+        <jms:reference-file line="31">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="68b8ee57fb7197db40060dea6b4a8d7f6ee5c9b9" resname="S'inscrire">
+        <source>S'inscrire</source>
+        <target>S'inscrire</target>
+        <jms:reference-file line="78">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="528b9ff75969b549c086f7911dbafbb312598eb6" resname="Se connecter ">
+        <source>Se connecter </source>
+        <target>Se connecter </target>
+        <jms:reference-file line="65">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="021ad65ab78096a81669b652af5b3430512d1575" resname="Se rappeler de moi">
+        <source>Se rappeler de moi</source>
+        <target>Se rappeler de moi</target>
+        <jms:reference-file line="53">/Resources/FOSUserBundle/views/Security/login_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="a5eba05921c11add89e9b68570149da22499c604" resname="change_password.submit">
+        <source>change_password.submit</source>
+        <target>change_password.submit</target>
+        <jms:reference-file line="6">/Resources/FOSUserBundle/views/ChangePassword/change_password_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4e0b1d3f135337a4f6615d13711fed97e3d92080" resname="group.edit.submit">
+        <source>group.edit.submit</source>
+        <target>group.edit.submit</target>
+        <jms:reference-file line="6">/Resources/FOSUserBundle/views/Group/edit_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="2d2e27384f5da5d1cf49104ef74d80de2d989e3c" resname="group.new.submit">
+        <source>group.new.submit</source>
+        <target>group.new.submit</target>
+        <jms:reference-file line="6">/Resources/FOSUserBundle/views/Group/new_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="aff7ccb3f34b577634ce0be987c2b84674fb1085" resname="group.show.name">
+        <source>group.show.name</source>
+        <target>group.show.name</target>
+        <jms:reference-file line="4">/Resources/FOSUserBundle/views/Group/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="3ed6a1235bf3e6337f499ec08dd3a1d6768b0c57" resname="layout.logged_in_as">
+        <source>layout.logged_in_as</source>
+        <target>layout.logged_in_as</target>
+        <jms:reference-file line="72">/../src/GC/UserBundle/Resources/views/Default/index.html.twig</jms:reference-file>
       </trans-unit>
       <trans-unit id="360d5f783c46f5e90f1b24010cb6bf03626ec35b" resname="layout.login">
         <source>layout.login</source>
         <target>layout.login</target>
-        <jms:reference-file line="69">/../../../../../../../../.././app/Resources/views/annonce/edit.html.twig</jms:reference-file>
-        <jms:reference-file line="126">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
-        <jms:reference-file line="77">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
-        <jms:reference-file line="98">/../../../../../../../../.././app/Resources/views/annonce/index.html.twig</jms:reference-file>
-        <jms:reference-file line="55">/../../../../../../../../.././app/Resources/views/annonce/show.html.twig</jms:reference-file>
+        <jms:reference-file line="77">/../src/GC/UserBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+        <jms:reference-file line="66">/Resources/FOSUserBundle/views/layout.html.twig</jms:reference-file>
+        <jms:reference-file line="88">/Resources/views/annonce/edit.html.twig</jms:reference-file>
+        <jms:reference-file line="95">/Resources/views/annonce/index.html.twig</jms:reference-file>
+        <jms:reference-file line="74">/Resources/views/annonce/show.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="80a0b95340202d0b8c88ba8bd10b315ecdd1feba" resname="layout.logout">
+        <source>layout.logout</source>
+        <target>layout.logout</target>
+        <jms:reference-file line="74">/../src/GC/UserBundle/Resources/views/Default/index.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="9741ffbcf8dbb31e1a2d32bd25cb0ccc5a6dea54" resname="profile.edit.submit">
+        <source>profile.edit.submit</source>
+        <target>profile.edit.submit</target>
+        <jms:reference-file line="6">/Resources/FOSUserBundle/views/Profile/edit_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6f2b87ab0da336a9cb633f397ff7f86ab7ea522b" resname="profile.show.email">
+        <source>profile.show.email</source>
+        <target>profile.show.email</target>
+        <jms:reference-file line="5">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="0d6307def2ec4ecb26978118bb2deca9d566945c" resname="profile.show.username">
+        <source>profile.show.username</source>
+        <target>profile.show.username</target>
+        <jms:reference-file line="4">/Resources/FOSUserBundle/views/Profile/show_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="1fa5b2873fe30be026b854f6a51503b86c6ac81a" resname="registration.back">
+        <source>registration.back</source>
+        <target>registration.back</target>
+        <jms:reference-file line="28">/Resources/FOSUserBundle/views/Registration/confirmed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="85a4eff0132a6f92eae3057837f285b3aedf38b8" resname="registration.check_email">
+        <source>registration.check_email</source>
+        <target>registration.check_email</target>
+        <jms:reference-file line="6">/Resources/FOSUserBundle/views/Registration/check_email.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7a0a8fbc70fe82997f8a2ff89090f523ee63f72a" resname="registration.confirmed">
+        <source>registration.confirmed</source>
+        <target>registration.confirmed</target>
+        <jms:reference-file line="26">/Resources/FOSUserBundle/views/Registration/confirmed.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="6362bc7b7a8f72b782ffd590744ab069327bbe4a" resname="registration.email.message">
+        <source>registration.email.message</source>
+        <target>registration.email.message</target>
+        <jms:reference-file line="10">/Resources/FOSUserBundle/views/Registration/email.txt.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="10df4e23ec43b671aafea0a3a9ebc8dcc92b1bd0" resname="registration.email.subject">
+        <source>registration.email.subject</source>
+        <target>registration.email.subject</target>
+        <jms:reference-file line="4">/Resources/FOSUserBundle/views/Registration/email.txt.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="4ef79d57e94b4b74349d6533a231e09dc5be0ce2" resname="registration.submit">
+        <source>registration.submit</source>
+        <target>registration.submit</target>
+        <jms:reference-file line="6">/Resources/FOSUserBundle/views/Registration/register_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="40c1a483571045e24d606bf00361cfd4d021ba05" resname="resetting.check_email">
+        <source>resetting.check_email</source>
+        <target>resetting.check_email</target>
+        <jms:reference-file line="7">/Resources/FOSUserBundle/views/Resetting/check_email.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="70c8836a0e3b8dadb494b8de56ebed18939359b5" resname="resetting.email.message">
+        <source>resetting.email.message</source>
+        <target>resetting.email.message</target>
+        <jms:reference-file line="10">/Resources/FOSUserBundle/views/Resetting/email.txt.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="126cf13058808d8948cc673c7933c6c1ce27841d" resname="resetting.email.subject">
+        <source>resetting.email.subject</source>
+        <target>resetting.email.subject</target>
+        <jms:reference-file line="4">/Resources/FOSUserBundle/views/Resetting/email.txt.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="e1470b3c202d9a4fa8e1afa7ed8695917f060ccd" resname="resetting.request.submit">
+        <source>resetting.request.submit</source>
+        <target>resetting.request.submit</target>
+        <jms:reference-file line="44">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
+        <jms:reference-file line="9">/Resources/FOSUserBundle/views/Resetting/request_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="7ad41bf8fb30013eb0f31ca027ca8d1dc7a3d96f" resname="resetting.request.username">
+        <source>resetting.request.username</source>
+        <target>resetting.request.username</target>
+        <jms:reference-file line="39">/Resources/FOSUserBundle/views/Resetting/request.html.twig</jms:reference-file>
+        <jms:reference-file line="5">/Resources/FOSUserBundle/views/Resetting/request_content.html.twig</jms:reference-file>
+      </trans-unit>
+      <trans-unit id="921fd7a5cc7f9e46eab31822855a22d9808b0477" resname="resetting.reset.submit">
+        <source>resetting.reset.submit</source>
+        <target>resetting.reset.submit</target>
+        <jms:reference-file line="60">/Resources/FOSUserBundle/views/Resetting/reset.html.twig</jms:reference-file>
+        <jms:reference-file line="6">/Resources/FOSUserBundle/views/Resetting/reset_content.html.twig</jms:reference-file>
       </trans-unit>
     </body>
   </file>

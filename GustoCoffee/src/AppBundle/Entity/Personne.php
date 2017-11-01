@@ -67,20 +67,13 @@ class Personne extends BaseUser
     private $prenom;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=25, nullable=true)
-     */
-    //protected $email;
-
-    /**
      * @Vich\UploadableField(mapping="personnes_images", fileNameProperty="image")
      * @var File
      */
     private $imageFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image;

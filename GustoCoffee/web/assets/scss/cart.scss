@@ -156,6 +156,7 @@ $fontSerif : 'Droid Serif', serif;
         font-size: .85em;
         color: #777777;
         font-family: $fontSans;
+        margin: 0;
         .quantity {
           font-weight: bold;
           color: #333;
@@ -173,8 +174,8 @@ $fontSerif : 'Droid Serif', serif;
 
       }
       .itemImg {
-        width: 4em;
-
+        width: 5em;
+        padding-bottom: 20px;
         float: left;
       }
       &.qtyWrap , &.prodTotal {
@@ -187,7 +188,7 @@ $fontSerif : 'Droid Serif', serif;
       }
 
       .inputPanier.qty {
-        width: 4em;
+        width: 5em;
         text-align: center;
         font-size: 1em;
         padding: .25em;
@@ -228,7 +229,24 @@ a.removeItemPanier {
   font-family: $fontSans;
   color: #ffffff;
   font-weight: bold;
-  background: #e0e0e0;
+  background: #bebebe;
+  padding: .5em;
+  font-size: .75em;
+  display: inline-block;
+  border-radius: 100%;
+  line-height: .85;
+  @include transition(all, .25s, linear);
+  &:hover {
+    background: #f30;
+  }
+}
+button.removeItemPanier {
+  border: none;
+  text-decoration: none;
+  font-family: $fontSans;
+  color: #ffffff;
+  font-weight: bold;
+  background: #bebebe;
   padding: .5em;
   font-size: .75em;
   display: inline-block;
@@ -316,7 +334,37 @@ a.removeItemPanier {
     padding: .5em 2em;
   }
 }
+.subtotalAjax{
+  list-style: none;
+  float: right;
+  width: 100%;
+  .totalRow {
+    list-style: none;
+    padding: .5em;
+    text-align: right;
 
+    &.final {
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+    span {
+      display: inline-block;
+      padding: 0 0 0 1em;
+      text-align: right;
+
+    }
+    .label {
+      font-family: $fontSans;
+      font-size: .85em;
+      text-transform: uppercase;
+      color: #777;
+    }
+    .value {
+      letter-spacing: -.025em;
+      width: 35%;
+    }
+  }
+}
 /* TOTAL AND CHECKOUT  */
 .subtotal {
   list-style: none;
@@ -387,8 +435,7 @@ a.removeItemPanier {
           display: none;
         }
         .itemImg {
-          padding-bottom:20px;
-          width: 30%;
+          width: 25%;
         }
       }
     }}

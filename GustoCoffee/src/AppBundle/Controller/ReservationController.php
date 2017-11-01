@@ -44,7 +44,7 @@ class ReservationController extends FOSRestController
     public function newAction(Request $request)
     {
         $reservation = new Reservation();
-        $form = $this->createForm('AppBundle\Form\ReservationType', $reservation);
+        $form = $this->createForm('AppBundle\Form\Type\ReservationType', $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -86,7 +86,7 @@ class ReservationController extends FOSRestController
     public function editAction(Request $request, Reservation $reservation)
     {
         $deleteForm = $this->createDeleteForm($reservation);
-        $editForm = $this->createForm('AppBundle\Form\ReservationType', $reservation);
+        $editForm = $this->createForm('AppBundle\Form\Type\ReservationType', $reservation);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

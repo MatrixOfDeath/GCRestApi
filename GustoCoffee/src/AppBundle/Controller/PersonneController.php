@@ -21,48 +21,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class PersonneController extends Controller
 {
-    /**
-     * Lists all personne entities.
-     *
-     * @Route("/", name="personne_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
 
-        $personnes = $em->getRepository('AppBundle:Personne')->findAll();
 
-        return $this->render('personne/index.html.twig', array(
-            'personnes' => $personnes,
-        ));
-    }
-
-    /**
-     * Creates a new personne entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/new", name="personne_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $personne = new Personne();
-        $form = $this->createForm('AppBundle\Form\PersonneType', $personne);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($personne);
-            $em->flush();
-
-            return $this->redirectToRoute('personne_show', array('id' => $personne->getId()));
-        }
-
-        return $this->render('personne/new.html.twig', array(
-            'personne' => $personne,
-            'form' => $form->createView(),
-        ));
-    }
 
     /**
      * Finds and displays a personne entity.
@@ -81,51 +41,6 @@ class PersonneController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing personne entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{id}/edit", name="personne_edit")
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Personne $personne)
-    {
-        $deleteForm = $this->createDeleteForm($personne);
-        $editForm = $this->createForm('AppBundle\Form\PersonneType', $personne);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('personne_edit', array('id' => $personne->getId()));
-        }
-
-        return $this->render('personne/edit.html.twig', array(
-            'personne' => $personne,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a personne entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{id}", name="personne_delete")
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Personne $personne)
-    {
-        $form = $this->createDeleteForm($personne);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($personne);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('personne_index');
-    }
-
-    /**
      * Creates a form to delete a personne entity.
      *
      * @param Personne $personne The personne entity
@@ -139,6 +54,35 @@ class PersonneController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * @Route("/villes/{cp}", options={"expose"=true}, name="villes", requirements={"cp": "\d+"})
+     * @Method({"POST", "GET"})
+     * @param Request $request
+     * @return mixed
+     * @throws \Exception
+     */
+    public function villesAction(Request $request, $cp)
+    {
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $villeCodePostal =$em->getRepository('AppBundle:Villes')->findCp($cp);
+
+            if ($villeCodePostal) {
+                $villes = array();
+                foreach($villeCodePostal as $ville) {
+                    $villes[] = $ville->getVilleNom();
+                }
+            } else {
+                $villes = null;
+            }
+
+            $response = new JsonResponse();
+            return $response->setData(array('ville' => $villes));
+        } else {
+            throw new \Exception('Erreur');
+        }
     }
 
 }

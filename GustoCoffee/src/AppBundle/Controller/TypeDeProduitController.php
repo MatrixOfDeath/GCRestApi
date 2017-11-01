@@ -58,7 +58,7 @@ class TypeDeProduitController extends Controller
     public function newAction(Request $request)
     {
         $typeDeProduit = new Typedeproduit();
-        $form = $this->createForm('AppBundle\Form\TypeDeProduitType', $typeDeProduit);
+        $form = $this->createForm('AppBundle\Form\Type\TypeDeProduitType', $typeDeProduit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -100,7 +100,7 @@ class TypeDeProduitController extends Controller
     public function editAction(Request $request, TypeDeProduit $typeDeProduit)
     {
         $deleteForm = $this->createDeleteForm($typeDeProduit);
-        $editForm = $this->createForm('AppBundle\Form\TypeDeProduitType', $typeDeProduit);
+        $editForm = $this->createForm('AppBundle\Form\Type\TypeDeProduitType', $typeDeProduit);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

@@ -5,21 +5,45 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
 
-    {% block title %}
-    {% endblock %}
+    <meta property="og:site_name" content="GustoCoffee">
+    <meta property="og:url" content="{{ app.request.getSchemeAndHttpHost() }}">
+    <meta property="og:image:url" content="{{ app.request.getSchemeAndHttpHost() ~ asset('img/gc_transparent_resize.png') }}">
+    <meta property="og:image" content="{{ app.request.getSchemeAndHttpHost() ~ asset('img/gc_transparent_resize.png') }}">
+    <meta property="og:title" content="{{ block('title') }}">
 
-    <meta name="description" content="{% trans %}GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'. {% endtrans %}">
-    <meta name="KASAgency" content="{% trans %}KASAgency est une jeune agence web.{% endtrans %}">
+    <meta name="description" content="{% trans %}GustoCoffee est une société proposant des espaces collaboratifs, dits 'co-working'{% endtrans %}">
+    <meta name="KASAgency" content="{% trans %}KASAgency est une jeune agence web{% endtrans %}">
 
-    <link rel="icon" type="image/png" href="{{ asset('img/gc_favicon_16x16.ico')}}" />
-    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('css/jquery-ui.theme.min.css')}}" rel="stylesheet">
-    <link href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    {#<link rel="icon" type="image/png" href="{{ asset('img/gc_favicon_16x16.ico') }}"/>#}
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('apple-icon-57x57.png')}}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('apple-icon-60x60.png')}}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('apple-icon-72x72.png')}}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('apple-icon-76x76.png')}}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('apple-icon-114x114.png')}}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('apple-icon-120x120.png')}}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('apple-icon-144x144.png')}}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('apple-icon-152x152.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-icon-180x180.png')}}">
+    <link rel="icon" type="image/png" sizes="192x192"  href="{{ asset('android-icon-192x192.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('favicon-96x96.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon-16x16.png')}}">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ asset('ms-icon-144x144.png')}}">
+    <meta name="theme-color" content="#ffffff">
+    {#<link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">#}
+    {#<link href="{{ asset('css/jquery-ui.min.css')}}" rel="stylesheet">#}
+    {#<link href="{{ asset('css/jquery-ui.theme.min.css')}}" rel="stylesheet">#}
+    {#<link href="{{ asset('bundles/bmatznerfontawesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">#}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" rel="stylesheet" media="print">
+
     <link href="{{ asset('build/global.css') }}" rel="stylesheet">
-    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+
+    {#<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>#}
+    {#<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>#}
     {#<script async>#}
         {#window.cookieconsent_options = {"theme":"dark-bottom",#}
             {#"message":"{{ "Ce site web utilise des cookies pour améliorer votre expérience de navigation. En poursuivant votre navigation, vous acceptez l'utilisation des cookies."|trans }}",#}
@@ -68,20 +92,12 @@
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108499849-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-108499849-1');
-    </script>
 </head>
 
 {% endblock %}
 <body>
 {% block body %}
 
-    {% block navbar %}
     <div id="main" class="container-fluid">
         <div class="row ">
 
@@ -98,7 +114,6 @@
             </div>
 
         </div>
-        {% endblock %}
 
         {% block content %}
         {% endblock %}
@@ -116,25 +131,37 @@
    {% embed "footer.html.twig" %}
    {% endembed  %}
 
-
     {% endblock %}
+
     {% block script %}
-        <script src="{{ asset('js/jquery.min.js') }}"></script>
-        {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
-        <script async defer src="{{ asset('js/jquery-ui.min.js') }}"></script>
-        {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
-        <script async defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
-        <script async defer type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
+            {#<script src="{{ asset('js/jquery.min.js') }}"></script>#}
+            {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
+            {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
 
-        {#<script async src="{{ asset('js/bootstrap.min.js') }}"></script>#}
-        {#<script>#}
-        {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
-        {#</script>#}
+            {#<script async src="{{ asset('js/bootstrap.min.js') }}"></script>#}
+            {#<script>#}
+            {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
+            {#</script>#}
 
-        <script async src="{{ asset('build/app.js') }}"></script>
-        {#  Adding ajax script TODO: add specific on each page #}
-        <script async src="{{ asset('build/ajax.js') }}"></script>
+            <script src="{{ asset('build/manifest.js') }}"></script>
+            <script src="{{ asset('build/vendor.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+        {#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>#}
 
+            <script async src="{{ asset('build/app.js') }}"></script>
+
+            {#  Adding ajax script TODO: add specific on each page #}
+            <script src="{{ asset('build/ajax.js') }}"></script>
+            {#<script async defer src="{{ asset('js/jquery-ui.min.js') }}"></script>#}
+            {#<script async defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>#}
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', 'UA-108499849-1');
+            </script>
     {% endblock %}
+
 </body>
 </html>

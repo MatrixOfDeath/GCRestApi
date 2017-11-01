@@ -1,30 +1,32 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>{{ 'GustoCoffee - Home'|trans }}</title>
+    {{ 'GustoCoffee - Home'|trans }}
 {% endblock %}
 
 {% block firstImg %}
-    topPage topPageHome
+    {#topPage #} topPageHome
 {% endblock %}
 
 {% block paddingTitle %}
-    paddingTitle
+    {#paddingTitle#}
 {%  endblock %}
 
 {% block titleHome %}
-    <div class="banniere">
-        <h1 class="colorWhite">Enjoy, Coffee & Work</h1>
-        <h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>
-    </div>
-    <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
-        {{ 'Réservez ici'|trans }}
-    </button>
-    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
-        <button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
-            {{ 'Inscrivez-vous dès maintenant !'|trans }}
-        </button>
-    {% endif %}
+    {% embed('@GCHome/Default/carousel.html.twig') %}
+    {% endembed %}
+    {#<div class="banniere">#}
+        {#<h1 class="colorWhite">Enjoy, Coffee & Work</h1>#}
+        {#<h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>#}
+    {#</div>#}
+    {#<button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">#}
+        {#{{ 'Réservez ici'|trans }}#}
+    {#</button>#}
+    {#{% if is_granted('IS_AUTHENTICATED_FULLY') == false %}#}
+        {#<button class="buttonGC greenButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">#}
+            {#{{ 'Inscrivez-vous dès maintenant !'|trans }}#}
+        {#</button>#}
+    {#{% endif %}#}
 {% endblock %}
 
 
@@ -32,31 +34,25 @@
  {# ---------- First Block ---------- #}
     <div class="row">
         <div class="col-md-6 hp-45 pt-20">
-            <h2 class="centerText">GustoCoffee</h2>
+            <h2 class="homepageTitle centerText">GustoCoffee</h2>
             <p class="textDescription">
-                {% trans %}
-                Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
+                {% trans %}Le coworking c’est tout simple : ce sont des espaces qui regroupent des services multiples pour les travailleurs indépendants du numérique : de quoi brancher son ordinateur, des imprimantes, machines à café,
                 salles de réunion le tout de manière plus ou moins temporaire. Ces espaces favorisent surtout l’intégration dans une communauté de coworkers et offrent la possibilité de constituer un réseau de partenaires,
-                collaborateurs, clients et sous-traitant. {% endtrans %}<br><br>
-                {% trans %}
-                La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking".
-                Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.
-                {% endtrans %}
+                collaborateurs, clients et sous-traitant.{% endtrans %}<br><br>
+                {% trans %}La société GustoCoffee est spécialisée dans la vente de produits autour du café, machine automatique, machine expresso, moulin à café, café en grains, café en dosettes, etc. Aujourd'hui, GustoCoffee propose un nouveau concept de "Coffee-Shop CoWorking". Ainsi, nous vous proposons un espace spécialement aménagé pour le travail individuel ou en groupe au sein de Paris, près de la Gare du Nord accessible via le RER B ou RER D.{% endtrans %}
             </p>
         {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
         <div class="centerText">
-            <p class="textDescription"><br>L'expérience vous tente ? Profitez de nos avantages en vous inscrivant.
-            </p> 
-            <button class="buttonGC blueButton" {{ path('fos_user_registration_register') }}>
+            <p class="textDescription"><br>{{ "L'expérience vous tente ? Profitez de nos avantages en vous inscrivant."|trans }}
+            </p>
+            <button class="buttonGC blueButton" onclick="location.href='{{ path('fos_user_registration_register') }}'">
                 {{ "Inscrivez-vous ici"|trans }}
             </button>           
         </div>
         {% endif %}
         </div>
         <div class="col-md-6 videoContainer p-0">
-            <iframe width="100%"
-                    src="https://www.youtube.com/embed/F7va26Wy5bw?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen>
-
+            <iframe src="https://www.youtube.com/embed/F7va26Wy5bw?rel=0&amp;controls=0&amp;showinfo=0" style="border:0;width:100%;" allowfullscreen>
             </iframe>
         </div>
     </div>
@@ -70,22 +66,18 @@
         <div class="col-md-6 home-img h-550" style="background-image: url('{{ asset('img/servicesResto.jpg') }}'); background-size: cover;">
         </div>
         <div class="col-md-6 hp-45 pt-20">
-            <h2 class="centerText">{{ 'Nos Services'|trans }}</h2>
+            <h2 class="homepageTitle centerText">{{ 'Nos Services'|trans }}</h2>
             <p class="textDescription">
-                {% trans %}
-                GustoCoffe vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif. <br>
-                On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !{% endtrans %}
-                <br>{% trans %}Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner, en réservant une salle privée, tout en continuant votre travail de la journée.{% endtrans %}
-                <br>
-                {% trans %}
-                Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.
+                {% trans %}GustoCoffee vous mets à disposition des places individuelles dans un grand openspace ou des salles de réunion privatif.{% endtrans %} <br>
+                {% trans %}On vous propose des services bureautiques comme un espace de stockage privé en ligne, la vente de supports numériques, ainsi qu'une impression. De plus, la consommation de  café, thé, crêpes et gaufres sont à volonté !{% endtrans %}<br>
+                {% trans %}Il est aussi possible d'y avoir un petit déjeuner, déjeuner ou encore un dîner, en réservant une salle privée, tout en continuant votre travail de la journée.{% endtrans %}<br>
+                {% trans %}Chez GustoCoffee, vous avez le choix de vous installer soit en OpenSpace ou, si vous le souhaitez, en groupe dans une salle privée. Les réservations se font directement sur notre site internet.{% endtrans %}
 
-                {% endtrans %}
                 <div class="centerText">
-                    <p class="textDescription"><br>L'expérience vous tente ? Vous pouvez
-                    </p> 
+                    <p class="textDescription"><br>{{ "L'expérience vous tente ? Vous pouvez"|trans }}
+                    </p>
                     <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
-                    {{ "Réservez ici"|trans }}</button>          
+                    {{ "Réservez ici"|trans }}</button>
                 </div>
         </div>
     </div>
@@ -98,15 +90,12 @@
 
     <div class="row">
         <div class="col-md-6 hp-45 pt-20">
-            <h2 class="centerText">{{ 'À propos'|trans }}</h2>
+            <h2 class="homepageTitle  centerText">{{ 'À propos'|trans }}</h2>
             <p class="textDescription">
-                {% trans %}
-                La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc.
-                MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des  coffee-shops  en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de " Coffee-Shop Coworking ".
-                {% endtrans %}
+                {% trans %}La société  GustoCoffee  est spécialisée dans la  vente de produit autour du café , machine automatique, machine expresso, moulin à café, café en grains, café en dosette, etc. MM. Philippe Landemaine directeur et Alain Bellucci directeur associé, ont depuis une dizaine d'années implanté des coffee-shops en Italie, ainsi qu'en Angleterre et se sont implantés depuis peu sur Paris, avec un nouveau concept de " Coffee-Shop Coworking ".{% endtrans %}
             </p>
         </div>
-        <div class="col-md-6 home-img h-250" style="background-image: url('{{ asset('img/servicesResto.jpg') }}'); background-size: cover;">
+        <div class="col-md-6 home-img h-250" style="background-image: url('{{ asset('img/background_events.jpeg') }}'); background-size: cover;">
         </div>
     </div>
 

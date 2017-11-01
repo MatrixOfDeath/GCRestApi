@@ -1,3 +1,5 @@
+{% set runtimeConfig = {"thumbnail": {"size": [320, 240] }} %}
+
 {%  if salles|length == 0 %}
 <h3>{{ "Désolé aucune salles ne semble disponible pour la date et le créneau sélectioner"|trans }}</h3>
 {% else %}
@@ -46,11 +48,10 @@
             <div class="col-md-4 col-xs-12 col-sm-6 col-lg-4 cardSalle">
                 <div class="thumbnail">
                         <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}">
-                            <img class="group list-group-image" src="{{ asset('uploads/images/salles/'~ salle.image) }}" alt="{{ "Salle privatisée"|trans }}" title="{{ salle.nomsalle }}">
+                            <img class="group list-group-image" src="{{ asset('uploads/images/salles/'~ salle.image) | imagine_filter('salle_downscale') }}" alt="{{ "Image salle privatisée"|trans }}" title="{{ 'Image '|trans ~ salle.nomsalle }}">
                             {#<div class="group list-group-image" style="background-image: url('{{ asset('uploads/images/salles/'~ salle.image) }}');" alt="Salle privatisée"></div>#}
                         </a>
                     <div class="caption">
-                        <a href="{{ path('salle_show', { 'idsalle': salle.idsalle }) }}"></a>
                         <h4 class="group inner list-group-item-heading centerText">
                             {{ salle.nomsalle }}
                         </h4>

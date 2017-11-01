@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>{{ 'GustoCoffee - Inscription'|trans }}</title>
+    {{ 'GustoCoffee - Inscription'|trans }}
 {% endblock %}
 
 {% block firstImg %}
@@ -14,8 +14,8 @@
 
 {% block titleHome %}
     <div class="banniere">
-        <h1 class="colorWhite">Espace Client - Inscription</h1>
-        <h3 class="colorWhite"> <i>Rejoignez notre communauté ! </i></h3>
+        <h1 class="colorWhite">Espace Client - {{ "Inscription"|trans }}</h1>
+        <h3 class="colorWhite"> <i>{{ "Rejoignez notre communauté"|trans }} ! </i></h3>
     </div>
     <button class="buttonGC blueButton" onclick="location.href='{{ path('gc_reservation_page') }}'">
         {{ 'Réservez ici'|trans }}
@@ -26,7 +26,7 @@
 {% block firstBlock %}
     <div class="row addPadding">
         <div class="col-md-12">
-            <h2 class="centerText">Inscription</h2>
+            <h2 class="centerText">{{ "Inscription"|trans }}</h2>
         </div>
     </div>
     {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
@@ -105,7 +105,6 @@
             <input class="buttonGC brownButton" type="submit" value="{{ "S'inscrire"|trans }}" />
         </div>
         <div class="col-md-3"></div>
-    </div>
     </div>
     {{ form_end(form) }}
 

@@ -47,19 +47,6 @@ class LigneDeCommande
      */
     private $idcommande;
 
-//    /**
-//     * @var \AppBundle\Entity\Reservation
-//     *
-//     * @ORM\Id
-//     * @ORM\GeneratedValue(strategy="IDENTITY")
-//     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Reservation")
-//     * @ORM\JoinColumns({
-//     *   @ORM\JoinColumn(name="idReservation", referencedColumnName="idReservation")
-//     * })
-//     */
-//    private $idreservation;
-
-
     /**
      * Set quantite
      *
@@ -155,28 +142,4 @@ class LigneDeCommande
     {
         return $this->idcommande;
     }
-
-//    /**
-//     * Set idreservation
-//     *
-//     * @param \AppBundle\Entity\Reservation $idreservation
-//     *
-//     * @return LigneDeCommande
-//     */
-//    public function setIdreservation(\AppBundle\Entity\Reservation $idreservation)
-//    {
-//        $this->idreservation = $idreservation;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get idreservation
-//     *
-//     * @return \AppBundle\Entity\Reservation
-//     */
-//    public function getIdreservation()
-//    {
-//        return $this->idreservation;
-//    }
 }

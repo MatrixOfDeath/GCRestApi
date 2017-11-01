@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Api;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\EventDispatcher\ContainerAwareEventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +23,6 @@ use Nelmio\ApiDocBundle\Annotation\Operation;
  */
 class RestRegistrationController extends BaseController
 {
-
     use \AppBundle\Helper\ControllerHelper;
     /**
      * @Route("/register", name="user_register")
@@ -40,15 +40,12 @@ class RestRegistrationController extends BaseController
      */
     public function registerAction(Request $request)
     {
-
         /** @var \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
         /** @var \FOS\UserBundle\Model\UserManagerInterface */
         $userManager = $this->get('fos_user.user_manager');
         /** @var \Symfony\Component\EventDispatcher\EventDispatcherInterface */
-        $container = new ContainerBuilder();
-        $dispatcher = new ContainerAwareEventDispatcher($container);
-        //$dispatcher = $this->get('event_dispatcher');
+        $dispatcher = new EventDispatcher();
 
         $user = $userManager->createUser();
         $event = new GetResponseUserEvent($user, $request);
@@ -95,3 +92,4 @@ class RestRegistrationController extends BaseController
     }
 
 }
+

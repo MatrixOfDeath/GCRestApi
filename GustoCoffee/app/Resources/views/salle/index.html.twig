@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>GustoCoffee - Réservation</title>
+    GustoCoffee - {{ "Réservation Salle"|trans }}
 {% endblock %}
 
 {% block firstImg %}
@@ -47,8 +47,8 @@
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span> {{  "Rechercher"|trans }}
                     </button>
                 </div>
-                    <div class="col-xs-2">
-                    </div>
+                <div class="col-xs-2">
+                </div>
             </div>
             <div class="row panier-menu hidden-xs hidden-sm">
                 {{ render(controller('AppBundle:Panier:ajaxPanier')) }}
@@ -91,4 +91,8 @@
             </div>
         </div>
     </div>
+    <script async type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
+
 {% endblock %}
+
+

@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
-                        <h3> À propos de GustoCoffee </h3>
+                        <h3> {{ "À propos de GustoCoffee"|trans }} </h3>
                         <ul>
                             <li><a href="{{ asset('img/pdf/mentionsLegales.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Mentions Légales"|trans }}</a></li>
                             <li><a href="{{ asset('img/pdf/CGU.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Conditions Générales d'Utilisation"|trans }}</a></li>
@@ -15,26 +15,26 @@
                         </ul>
                     </div>
                     <div class="col-lg-4  col-md-2 col-sm-4 col-xs-6">
-                        <h3> Besoin d'aide ? </h3>
+                        <h3> {{ "Besoin d'aide"|trans }} ? </h3>
                         <ul>
-                            <li><a href="{{ path('gc_contact_page') }}" class="generic-anchor footer-list-anchor">Contact</a></li>
+                            <li><a href="{{ path('gc_contact_page') }}" class="generic-anchor footer-list-anchor">{{ "Contact"|trans }}</a></li>
                             <li><a href='{{ path('gc_faq_page') }}' class="generic-anchor footer-list-anchor">{{ "FAQ"|trans }}</a></li>
                         </ul>
                     </div>
                     <div class="col-lg-4  col-md-3 col-sm-4 col-xs-6 ">
-                        <h3> Suivez-nous ! </h3>
+                        <h3> {{ "Suivez-nous"|trans }} ! </h3>
                         <ul>
                             <li>
                                 <div class="input-append newsletter-box text-center">
-                                    <input type="text" class="full text-center" placeholder="Email ">
-                                    <button class="btn brownButton" type="button" onclick="location.href='mailto:boubrit.karim@gmail.com'"> Newsletter <i class="fa fa-long-arrow-right"> </i> </button>
+                                    <label class="sr-only" aria-hidden="true" for="email-newsletter">Email</label><input type="text" id="email-newsletter" name="email-newsletter" class="full text-center" placeholder="Email"/>
+                                    <button class="btn darkBrownButton" type="submit" onclick="location.href='mailto:boubrit.karim@gmail.com'"> Newsletter <i class="fa fa-long-arrow-right"> </i> </button>
                                 </div>
                             </li>
                         </ul>
                         <ul class="social">
-                            <li> <a href="https://www.facebook.com/GustoCoffeeKASAgency/"> <i class=" fa fa-facebook">   </i> </a> </li>
-                            <li> <a href="https://twitter.com/"> <i class="fa fa-twitter">   </i> </a> </li>
-                            <li> <a href="https://www.instagram.com/"> <i class="fa fa-instagram">   </i> </a> </li>
+                            <li class="reseaux-sociaux-footer" onclick="location.href='https://www.facebook.com/GustoCoffeeKASAgency/'"><i class=" fa fa-facebook"></i></li>
+                            <li class="reseaux-sociaux-footer" onclick="location.href='https://twitter.com/'"> <i class="fa fa-twitter"></i> </li>
+                            <li class="reseaux-sociaux-footer" onclick="location.href='https://www.instagram.com/'"> <i class="fa fa-instagram"></i> </li>
                         </ul>
                     </div>
                 </div>
@@ -55,46 +55,6 @@
         </div>
         <!--/.footer-bottom-->
     </footer>
-    {#</footer>#}
-    {#<div class="clearThirty"></div>#}
-    {#<footer class="footer flex-rw addPadding">#}
-        {#<ul class="footer-list-top">#}
-            {#<li><h4 class="footer-list-header">A Propos de GustoCoffee</h4></li>#}
-            {#<li><a href="{{ asset('img/pdf/mentionsLegales.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Mentions Légales"|trans }}</a></li>#}
-            {#<li><a href="{{ asset('img/pdf/CGU.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Conditions Générales d'Utilisation"|trans }}</a></li>#}
-            {#<li><a href="{{ asset('img/pdf/CGV.pdf') }}" class="generic-anchor footer-list-anchor" target="_blank">{{ "Conditions Générales de Vente"|trans }}</a></li>#}
-            {#<li><a href='https://www.indeed.fr/emplois?q=Serveur+caf%C3%A9&l=Paris' target="_blank" class="generic-anchor footer-list-anchor">{{ "Recrutement"|trans }}</a></li>#}
-        {#</ul>#}
-        {#<ul class="footer-list-top">#}
-            {#<li><h4 class="footer-list-header">Nos réseaux sociaux</h4></li>#}
-            {#<li>#}
-                {#<a href="https://www.facebook.com/GustoCoffeeKASAgency/" target="_blank">#}
-                    {#<img width="32" height="32" title="" alt="facebook" src="{{ asset('img/social/facebook.png') }}" />#}
-                {#</a>#}
-            {#</li>#}
-            {#<li>#}
-                {#<a href="https://twitter.com/?lang=fr">#}
-                    {#<img width="32" height="32" title="" alt="twitter" src="{{ asset('img/social/twitter.png') }}" />#}
-                {#</a>#}
-            {#</li>#}
-            {#<li>#}
-                {#<a href="https://www.instagram.com/">#}
-                    {#<img width="30" height="32" title="" alt="instagram" src="{{ asset('img/social/instagram.png') }}" />#}
-                {#</a>#}
-            {#</li>#}
-        {#</ul>#}
-        {#<ul class="footer-list-top">#}
-            {#<li id='help'><h4 class="footer-list-header">Besoin d'aide ?</h4></li>#}
-            {#<li><a href="{{ path('gc_contact_page') }}" class="generic-anchor footer-list-anchor">Contact</a></li>#}
-            {#<li><a href='{{ path('gc_faq_page') }}' class="generic-anchor footer-list-anchor">{{ "FAQ"|trans }}</a></li>#}
-        {#</ul>#}
 
-        {#<section class="footer-bottom-section flex-rw">#}
-            {#<div class="footer-bottom-wrapper">#}
-                {#<i class="fa fa-copyright" role="copyright">#}
-                {#</i> 2017 GustoCoffee <address class="footer-address" role="company address">Paris, France</address><span class="footer-bottom-rights"> - Tous droits réservés - </span>#}
-            {#</div>#}
-        {#</section>#}
-    {#</footer>#}
 
 {% endblock %}

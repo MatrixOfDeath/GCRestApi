@@ -23,7 +23,7 @@
 {% endfor %}
 
 {% block title %}
-    <title>GustoCoffee - Votre Panier</title>
+    GustoCoffee - {{ "Votre Panier"|trans }}
 {% endblock %}
 
 {% block paddingTitle %}
@@ -81,8 +81,8 @@
             {# Begining of cart #}
             <div class="wrap cf">
                 <div class="heading cf">
-                    <h1>Votre Panier</h1>
-                    <a href="#" class="continue">{{ "Continuer vos achats"|trans }}</a>
+                    <h1>{{ "Votre Panier"|trans }}</h1>
+                    <a href="{{ path('gc_reservation_page') }}" class="continue">{{ "Continuer vos achats"|trans }}</a>
                 </div>
                 <div class="cartPanier">
                     <!--    <ul class="tableHead">
@@ -124,18 +124,18 @@
                                     {% set offreThirdHour = 0 %}
                                     <div class="prodTotal cartSection">
                                         {% if panier_salle[salle.idsalle].totalHeures >= 5 or (panier_salle[salle.idsalle].totalHeures >= 5 and panier_salle[salle.idsalle].totalMinutes >= 30)  %}
-                                            <p>{{ salle.prixsalle * 4 }} €</p>
+                                            <p class="totalprice">{{ salle.prixsalle * 4 }} €</p>
                                             {% set journeeIllimitee = 1 %}
                                             {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle * 4 %}
                                             {% set prixSalle =  salle.prixsalle * 4  %}
                                         {% elseif (panier_salle[salle.idsalle].totalHeures == 3 and panier_salle[salle.idsalle].totalMinutes >= 30) or panier_salle[salle.idsalle].totalHeures >= 4 %}
-                                            <p>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes - (2 * salle.capacitymax) }} €</p>
+                                            <p class="totalprice">{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes - (2 * salle.capacitymax) }} €</p>
                                             {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax)  %}
                                             {% set prixSalle = salle.prixsalle + ((total30Minutes - 2 )* 2 * salle.capacitymax) + totalMinutes  - (2 * salle.capacitymax) %}
                                             {% set thirdHourFree =  thirdHourFree + (2 * salle.capacitymax) %}
                                             {% set offreThirdHour = 1 %}
                                         {% else %}
-                                            <p>{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</p>
+                                            <p class="totalprice">{{ salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes }} €</p>
                                             {% set totalSalleTTC =  totalSalleTTC + salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
                                             {% set prixSalle = salle.prixsalle + ((total30Minutes - 2) * 2 * salle.capacitymax) + totalMinutes %}
                                         {% endif %}
@@ -168,7 +168,7 @@
                                         {% set total30Minutes = panier_place[place.idplace].totalHeures * 2 %}
                                         {#On ajoute 2e par personne pour la demi-heure supplémentaire#}
                                         {% if panier_place[place.idplace].totalMinutes >= 30 %}
-                                            {% set totalMinutes =  (2 * place.capacitymax )  %}
+                                            {% set totalMinutes = 2  %}
                                             {#{{ panier_place[place.idplace].totalMinutes ~ 'min' }}#}
                                         {% else %}
                                             {% set totalMinutes = 0 %}
@@ -189,18 +189,18 @@
                                         {% set offreThirdHour = 0 %}
                                         <div class="prodTotal cartSection">
                                             {% if panier_place[place.idplace].totalHeures >= 5 or (panier_place[place.idplace].totalHeures >= 5 and  panier_place[place.idplace].totalMinutes >= 30)  %}
-                                                <p>{{ place.prixplace * 4 }} €</p>
+                                                <p class="totalprice">{{ place.prixplace * 4 }} €</p>
                                                 {% set journeeIllimitee = 1 %}
                                                 {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace * 4 %}
                                                 {% set prixPlace =  place.prixplace * 4  %}
                                             {% elseif (panier_place[place.idplace].totalHeures == 3 and panier_place[place.idplace].totalMinutes >= 30) or panier_place[place.idplace].totalHeures  >= 4 %}
-                                                <p>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes - 2 }} €</p>
+                                                <p class="totalprice">{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes - 2 }} €</p>
                                                 {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
                                                 {% set prixPlace = place.prixplace + ((total30Minutes - 2 )* 2) + totalMinutes  - 2  %}
                                                 {% set thirdHourFree = thirdHourFree + 2 %}
                                                 {% set offreThirdHour = 1 %}
                                             {% else %}
-                                                <p>{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes }} €</p>
+                                                <p class="totalprice">{{ place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes }} €</p>
                                                 {% set totalPlaceTTC =  totalPlaceTTC + place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
                                                 {% set prixPlace = place.prixplace + ((total30Minutes - 2) * 2) + totalMinutes %}
                                             {% endif %}
@@ -226,7 +226,7 @@
 
                         {% if produits|length > 0 %}
 
-                            {# @var produit \AppBundle\Entity\Place #}
+                            {# @var produit \AppBundle\Entity\Produit #}
                             {%  for produit in produits %}
                                 <li class="items {% if cmpt is odd %}odd{% else %}even{% endif %}">
                                     {% set cmpt = cmpt + 1 %}
@@ -238,26 +238,24 @@
                                             </p>
                                             <h3>{{ produit.nomproduit }}</h3>
                                             <form action="{{ path('ajout_panier', { 'id' : produit.idproduit }) }}" method="get">
-                                            <p><select name="qte" class="qty" onChange="this.form.submit()">
+                                            <select name="qte" class="qty" onChange="this.form.submit()">
                                                     {% for i in 1..10 %}
                                                         <option value="{{ i }}" {% if i == panier[produit.idproduit] %} selected="selected" {% endif %}>{{ i }}</option>
                                                     {% endfor %}
                                                 </select> x {{ produit.prixproduit }}€
-                                            </p>
                                                 <p class="stockStatus">{{ "Disponible" }}</p>
                                             </form>
 
-
                                         </div>
                                         <div class="prodTotal cartSection">
-                                            <p>{{ produit.prixproduit * panier[produit.idproduit] }} €</p>
+                                            <p class="totalprice">{{ produit.prixproduit * panier[produit.idproduit] }} €</p>
                                         </div>
                                         <div class="cartSection removeWrap">
                                             <a href="{{ path('delete_panier', { 'id' : produit.idproduit }) }}" class="removeItemPanier">x</a>
                                         </div>
                                         {% set totalProduitHT = totalProduitHT + (produit.prixproduit * panier[produit.idproduit]) %}
                                         {% set totalProduitTTC = totalProduitTTC + (produit.prixproduit * panier[produit.idproduit])|tva(produit.tva.multiplicate) %}
-                                        {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + prixPlace|montantTva(produit.tva.multiplicate) }) %}
+                                        {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + ( produit.prixproduit * panier[produit.idproduit])|montantTva(produit.tva.multiplicate) }) %}
                                     </div>
                                 </li>
                             {%  endfor %}
@@ -266,7 +264,7 @@
                     </ul>
                 </div>
 
-                <div class="promoCode"><label for="promo">{{ "Vous avez un code promo?"|trans }}</label><input class="inputPanier" type="text" name="promo" placeholder="{{ "Entrer votre code"|trans }}" />
+                <div class="promoCode"><label for="promocode">{{ "Vous avez un code promo?"|trans }}</label><input class="inputPanier" type="text" name="promocode" placeholder="{{ "Entrer votre code"|trans }}" />
                     <a href="#" class="btnPanier"></a>
                 </div>
 
@@ -274,32 +272,32 @@
                     {% if produits|length != 0 or salles|length != 0 or places|length != 0 %}
                         <ul>
                             {% if produits|length != 0 %}
-                                <li class="totalRow"> <span class="label">Total Produits HT :</span><span class="value">{{ totalProduitHT|number_format(2, '.', ',')  }}€</span></li>
+                                <li class="totalRow"> <span class="label">{{ "Total Produits HT"|trans }} :</span><span class="value">{{ totalProduitHT|number_format(2, '.', ',')  }}€</span></li>
                             {% endif %}
                             {% for key, tva in refTva %}
-                                <li class="totalRow">  <span class="label">TVA {{ key }} :</span><span class="value">{{ tva }} €</span></li>
+                                <li class="totalRow">  <span class="label">{{ "TVA"|trans }} {{ key }} :</span><span class="value">{{ tva }} €</span></li>
                             {% endfor %}
                             {% if salles|length != 0  %}
-                                <li class="totalRow">   <span class="label">Total Salle TTC :</span><span class="value">{{ totalSalleTTC|number_format(2, '.', ',')  }}€</span></li>
+                                <li class="totalRow">   <span class="label">{{ "Total Salle TTC"|trans }} :</span><span class="value">{{ totalSalleTTC|number_format(2, '.', ',')  }}€</span></li>
                             {% endif %}
                             {% for key, tva in refSalleTva %}
-                                <li class="totalRow">   <span class="label">dont {{ key }} TVA Salle:</span><span class="value">{{ tva }} €</span></li>
+                                <li class="totalRow">   <span class="label">{{ "dont"|trans }} {{ key }} {{ "TVA Salle"|trans }}:</span><span class="value">{{ tva }} €</span></li>
                             {% endfor %}
                             {% if places|length != 0  %}
-                                <li class="totalRow">   <span class="label">Total Place TTC :</span><span class="value">{{ totalPlaceTTC|number_format(2, '.', ',')  }}€</span></li>
+                                <li class="totalRow">   <span class="label">{{ "Total Place TTC"|trans }} :</span><span class="value">{{ totalPlaceTTC|number_format(2, '.', ',')  }}€</span></li>
                             {% endif %}
                             {% for key, tva in refPlaceTva %}
-                                <li class="totalRow">   <span class="label">dont {{ key }} TVA Place:</span><span class="value">{{ tva }} €</span></li>
+                                <li class="totalRow">   <span class="label">{{ "dont"|trans }} {{ key }} {{ "TVA Place"|trans }}:</span><span class="value">{{ tva }} €</span></li>
                             {% endfor %}
                             {% if thirdHourFree is defined and thirdHourFree > 0 %}
-                                <li class="totalRow">   <span class="label reduction-3h">Réduction 3ème heure:</span><span class="value reduction-10">{{ thirdHourFree|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow">   <span class="label reduction-3h">{{ "Réduction 3ème heure"|trans }}:</span><span class="value reduction-10">{{ thirdHourFree|number_format(2, '.', ',') }} €</span></li>
                             {% endif %}
                             {% if produits|length != 0 and (salles|length != 0 or places|length != 0) %}
-                                <li class="totalRow">   <span class="label">Sous-Total TTC :</span><span class="value">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</span></li>
-                                <li class="totalRow">   <span class="label reduction-10">Réduction -10% :</span><span class="value reduction-10">-{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1)|number_format(2, '.', ',') }} €</span></li>
-                                <li class="totalRow final">   <span class="label">Montant Total TTC :</span><span class="value">{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC)  - ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1))|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow">   <span class="label">{{ 'Sous-Total TTC'|trans }} :</span><span class="value">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow">   <span class="label reduction-10">{{ "Réduction"|trans }} -10% :</span><span class="value reduction-10">-{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1)|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow final">   <span class="label">{{ "Montant Total TTC"|trans }} :</span><span class="value">{{ ((totalProduitTTC + totalSalleTTC + totalPlaceTTC)  - ((totalProduitTTC + totalSalleTTC + totalPlaceTTC) * 0.1))|number_format(2, '.', ',') }} €</span></li>
                             {% else %}
-                                <li class="totalRow final">   <span class="label montant-total">Montant Total TTC :</span><span class="value montant-total">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</span></li>
+                                <li class="totalRow final">   <span class="label montant-total">{{ "Montant Total TTC"|trans }} :</span><span class="value montant-total">{{ (totalProduitTTC + totalSalleTTC + totalPlaceTTC)|number_format(2, '.', ',') }} €</span></li>
                             {% endif %}
                         </ul>
                         <div class="clearfix"></div>
@@ -311,12 +309,12 @@
 
 
             {% if salles|length == 0 or places|length == 0 %}
-                <a href="{{ path('salle_index') }}" class="btn btn-primary">Choisissez une salle</a>
-                {% if places|length == 0 %}
-                    <a href="{{ path('place_index') }}" class="btn btn-primary">Choisissez une place</a>
+                <a href="{{ path('salle_index') }}" class="btn btn-primary">{{ "Ajouter une salle"|trans }}</a>
+                {% if places|length == 0 %} {{ "ou"|trans }}
+                    <a href="{{ path('place_index') }}" class="btn btn-primary">{{ "Ajouter une place"|trans }}</a>
                 {% endif %}
             {% else  %}
-                <a href="{{ path('produits_index') }}" class="btn btn-primary">Choisir mes produits</a>
+                <a href="{{ path('produits_index') }}" class="btn btn-primary">{{ "Ajouter des produits"|trans }}</a>
             {% endif %}
         </div>
 

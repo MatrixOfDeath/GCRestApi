@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: backoffice/ } #Configuration de notre BackOffice
+    - { resource: liip_imagine.yml }
     - { resource: "@GCHomeBundle/Resources/config/services.yml" }
     - { resource: "@GCEvenementBundle/Resources/config/services.yml" }
     - { resource: "@GCReservationBundle/Resources/config/services.yml" }
@@ -78,6 +79,7 @@ doctrine:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        #metadata_cache_driver: apcu
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -107,7 +109,7 @@ jms_translation:
             ignored_domains: [routes]
             excluded_names: ["*TestCase.php", "*Test.php"]
             excluded_dirs: [cache, data, logs]
-            extractors: [alias_of_the_extractor]
+            extractors: [jms_i18n_routing]
 
 nelmio_api_doc:
     routes:
@@ -176,12 +178,12 @@ fos_user:
         user_manager: my_user_manager
     registration:
         form:
-            type: AppBundle\Form\RegistrationType
+            type: AppBundle\Form\Type\RegistrationType
         confirmation:
             enabled: true
     profile:
         form:
-            type: AppBundle\Form\ProfileFormType
+            type: AppBundle\Form\Type\ProfileFormType
             name: fos_user_profile_form
     from_email:
         address: "%mailer_user%"

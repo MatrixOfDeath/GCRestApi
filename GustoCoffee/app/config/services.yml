@@ -1,7 +1,9 @@
+
 # Learn more about services, parameters and containers at
 # https://symfony.com/doc/current/service_container.html
 parameters:
     #parameter_name: value
+
 
 services:
     # default configuration for services in *this* file
@@ -54,7 +56,7 @@ services:
         public: true
 
     adresse_type_form:
-        class: AppBundle\Form\UtilisateursAdressesType
+        class: AppBundle\Form\Type\UtilisateursAdressesType
         arguments: [ '@doctrine.orm.entity_manager']
 
     redirectionListener:

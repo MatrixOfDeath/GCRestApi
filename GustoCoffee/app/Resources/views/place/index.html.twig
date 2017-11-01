@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    <title>GustoCoffee - Réservation de Places</title>
+    GustoCoffee - {{ "Réservation de Places"|trans }}
 {% endblock %}
 
 {% block firstImg %}
@@ -14,7 +14,7 @@
 
 {% block titleHome %}
     <div class="banniere">
-        <h1 class="colorWhite">{{"Espace Réservation"|trans}} - Place individuelle</h1>
+        <h1 class="colorWhite">{{"Espace Réservation"|trans}} - {{ "Place individuelle"|trans }}</h1>
         <h3 class="colorWhite"> <i>{{"Et si on tentait l'expérience"|trans}} ? </i></h3>
     </div>
     <button class="buttonGC blueButton" onclick="location.href='{{ path('salle_index') }}'">
@@ -30,7 +30,7 @@
 {% block firstBlock %}
 
 <div class="row">
-    <div class="col-md-3" id="" role="navigation">
+    <div class="col-md-3" role="navigation">
         <div class="row recherche-horaire">
             <div class="col-xs-2">
             </div>
@@ -83,5 +83,6 @@
         </div>
     </div>
 </div>
+    <script async type="text/javascript" src="https://api.payplug.com/js/1.0/form.js"></script>
 
 {% endblock %}

@@ -43,7 +43,7 @@ class ServiceController extends FOSRestController
     public function newAction(Request $request)
     {
         $service = new Service();
-        $form = $this->createForm('AppBundle\Form\ServiceType', $service);
+        $form = $this->createForm('AppBundle\Form\Type\ServiceType', $service);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -85,7 +85,7 @@ class ServiceController extends FOSRestController
     public function editAction(Request $request, Service $service)
     {
         $deleteForm = $this->createDeleteForm($service);
-        $editForm = $this->createForm('AppBundle\Form\ServiceType', $service);
+        $editForm = $this->createForm('AppBundle\Form\Type\ServiceType', $service);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

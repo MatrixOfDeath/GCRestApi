@@ -1,4 +1,5 @@
 easy_admin:
+    translation_domain: 'backoffice'
     site_name: '<img alt="GustoCoffee" width="70px" src="/img/gc_transparent_resize.png" /> BackOffice'
     assets:
         css:

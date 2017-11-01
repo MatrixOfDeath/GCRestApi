@@ -90,32 +90,6 @@ class ProduitController extends FOSRestController
     }
 
     /**
-     * Creates a new produit entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/new", name="produit_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $produit = new Produit();
-        $form = $this->createForm('AppBundle\Form\ProduitType', $produit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($produit);
-            $em->flush();
-
-            return $this->redirectToRoute('produit_show', array('idproduit' => $produit->getIdproduit()));
-        }
-
-        return $this->render('produit/new.html.twig', array(
-            'produit' => $produit,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
      * Finds and displays a produit entity.
      *
      * @Route("/{idproduit}", name="produit_show", requirements={"idproduit": "\d+"})
@@ -123,74 +97,14 @@ class ProduitController extends FOSRestController
      */
     public function showAction(Produit $produit)
     {
-        $deleteForm = $this->createDeleteForm($produit);
+        //$deleteForm = $this->createDeleteForm($produit);
 
         return $this->render('produit/show.html.twig', array(
             'produit' => $produit,
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
-    /**
-     * Displays a form to edit an existing produit entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{idproduit}/edit", name="produit_edit", requirements={"idproduit": "\d+"})
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Produit $produit)
-    {
-        $deleteForm = $this->createDeleteForm($produit);
-        $editForm = $this->createForm('AppBundle\Form\ProduitType', $produit);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('produit_edit', array('idproduit' => $produit->getIdproduit()));
-        }
-
-        return $this->render('produit/edit.html.twig', array(
-            'produit' => $produit,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a produit entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{idproduit}", name="produit_delete", requirements={"idproduit": "\d+"})
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Produit $produit)
-    {
-        $form = $this->createDeleteForm($produit);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($produit);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('produit_index');
-    }
-
-    /**
-     * Creates a form to delete a produit entity.
-     *
-     * @param Produit $produit The produit entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Produit $produit)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('produit_delete', array('idproduit' => $produit->getIdproduit())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
-    }
 
     /**
      * @Route("/produits", name="produits_index")
@@ -202,7 +116,7 @@ class ProduitController extends FOSRestController
     {
         $em = $this->getDoctrine()->getManager();
 
-        if ($categorie != null)
+        if ($categorie !== null)
             $findProduits = $em->getRepository('AppBundle:Produit')->byCategorie($categorie);
         else
             //Todo: Géré le statut produit après !
@@ -214,7 +128,6 @@ class ProduitController extends FOSRestController
         else
             $panier = false;
 
-        //$produits = $this->get('knp_paginator')->paginate($findProduits,$this->get('request')->query->get('page', 1),3);
         $produits = $em->getRepository('AppBundle:Produit')->findAll();
 
         return $this->render('produit/produits.html.twig', array(
@@ -252,7 +165,7 @@ class ProduitController extends FOSRestController
      */
     public function rechercheAction()
     {
-        $form = $this->createForm('AppBundle\Form\RechercheType');
+        $form = $this->createForm('AppBundle\Form\Type\RechercheType');
         return $this->render('produit/recherche.html.twig', array('form' => $form->createView()));
     }
 
@@ -263,7 +176,7 @@ class ProduitController extends FOSRestController
      */
     public function rechercheTraitementAction(Request $request)
     {
-        $form = $this->createForm('AppBundle\Form\RechercheType');
+        $form = $this->createForm('AppBundle\Form\Type\RechercheType');
 
         if ($request->getMethod() == 'POST')
         {

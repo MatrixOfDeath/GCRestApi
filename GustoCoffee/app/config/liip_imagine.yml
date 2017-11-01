@@ -1,0 +1,111 @@
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache: ~
+        responsive_article_image:
+            quality: 75
+            filters:
+                thumbnail: { size: [640, 384], mode: inset }
+
+        #THUMBNAILS
+        my_thumb:
+            quality: 75            # adjust the image quality to 75%
+            filters:            # list of transformations to apply (the "filters")
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [120, 90], mode: outbound }
+                # create a 2px black border: center the thumbnail on a black background
+                # 4px larger to create a 2px border around the final image
+                background: { size: [124, 94], position: center, color: '#000000' }
+
+        my_thumb_filter:
+            filters:
+                thumbnail:
+                    size: [32, 32]                    # set the thumbnail size to "32x32" pixels
+                    mode: outbound                    # crop the input image, if required
+        # CROP
+        my_crop_filter:
+            filters:
+                crop:
+                    size: [ 300, 600 ]                    # set the size of the cropping area
+                    start: [ 040, 160 ]                    # set the starting coordinates of the crop
+
+        # RELATIVE SIZE
+        my_heighten_filter:                   #name our first filter set "my_heighten_filter"
+            filters:
+                relative_resize:
+                    heighten: 60                    # given 50x40px, output 75x60px using "heighten" option
+
+        my_widen_filter:        # name our second filter set "my_widen_filter"
+            filters:
+                relative_resize:
+                    widen: 32                    # given 50x40px, output 32x26px using "widen" option
+
+        my_increase_filter:        # name our second filter set "my_increase_filter"
+            filters:
+                relative_resize:
+                    increase: 10                    # given 50x40px, output 60x50px, using "increase" option
+
+        my_scale_filter:        # name our second filter set "my_scale_filter"
+            filters:
+                relative_resize:
+                    scale: 2.5                    # given 50x40px, output 125x100px using "scale" option
+
+        # SCALE
+        my_ratio_down_scale_filter: #name our first filter set "my_ratio_down_scale_filter"
+            filters:
+                scale:
+                    to: 0.5                    # given 1920x1600px -> output 960x800px (relative down-scale)
+
+        my_ratio_up_scale_filter:        # name our first filter set "my_ratio_up_scale_filter"
+            filters:
+                scale:
+                    to: 2                 # given 1920x1600px -> output 5760x3200px (relative up-scale)
+
+        my_dim_down_scale_filter:
+            filters:
+                scale:
+                    dim: [ 800, 1000 ]                     # input 1200x1600px -> output 750x1000px (relative down-scale)
+
+        my_dim_up_scale_filter:
+            filters:
+                scale:
+                    dim: [ 1200, 2700 ]                    # input 300x900px -> output 900x2700px (relative up-scale)
+
+        # DOWNSCALE name our first filter set "my_max_down_scale_filter"
+        my_max_down_scale_filter:
+            filters:
+                downscale:
+                    max: [1980, 1280]                     # input 3960x2560px -> output 1980x1280px
+
+        salle_downscale:
+            filters:
+                downscale:
+                    quality: 80
+                    max: [320, 240]
+
+        produit_downscale:
+            filters:
+                downscale:
+                    quality: 80
+                    max: [320, 213]
+
+        # name our second filter set "my_by_down_scale_filter"
+        my_by_down_scale_filter:
+            filters:
+                downscale:
+                    by: 0.6                    # input 1980x1280px -> output 792x512px
+
+        # UPSCALE name our first filter set "my_min_up_scale_filter"
+        my_min_up_scale_filter:
+            filters:
+                upscale:
+                    min: [3960, 2560]                    # input 1980x1280px -> output 3960x2560px
+
+        # name our second filter set "my_by_up_scale_filter"
+        my_by_up_scale_filter:
+            filters:
+                upscale:
+                    by: 0.7                                   # input 800x600px -> output 1360x1020px

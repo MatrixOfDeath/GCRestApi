@@ -136,54 +136,18 @@ class PlaceController extends FOSRestController
             ));
         }
     }
-//    /**
-//     * Todo: Remove here because in repository
-//     * @param $heureChoixDebut
-//     * @param $heureChoixFin
-//     * @return mixed
-//     */
-//    public function checkDisponibilitePlace($heureChoixDebut, $heureChoixFin)
-//    {
-//        $em = $this->getDoctrine()->getManager();
-//        $repository = $em->getRepository('AppBundle:Place');
-//
-//        $subQuery = $repository->createQueryBuilder('p_sub')
-//            ->select('p_sub.idplace')
-//            ->leftJoin('p_sub.reservation', 'r')
-//            ->andwhere('r.heuredebut < :heureChoixDebut')
-//            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
-//            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
-//            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-//
-//        $queryBuilder = $repository->createQueryBuilder('p');
-//
-//        $query = $queryBuilder
-//            ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
-////            ->andWhere(':heureChoixDebut < :datenow')
-//            //->setParameter('datenow', date("Y-m-d H:i:s"))
-//            ->setParameter('heureChoixDebut', $heureChoixDebut)
-//            ->setParameter('heureChoixFin', $heureChoixFin);
-//        //->setParameter('subQuery', $subQuery)
-//        //->getQuery();
-//        return $query->getQuery()->getResult();
-//    }
 
     /**
      * @Route("/disponible-ajax", options={"expose"=true}, name="places_disponible_ajax")
      * @Method({"GET", "POST"})
      */
-    public function ajaxCheckDispoPlace(Request $request)
+    public function ajaxCheckDispoPlaceAction(Request $request)
     {
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') && $request->request->get('idPlace') ) {
             $heureChoixDebut = $request->request->get('heureChoixDebut');
             $heureChoixFin = $request->request->get('heureChoixFin');
 
             $idPlace= $request->request->get('idPlace');
-
-//             Todo: remove this don't need anymore we're using ids now :)
-//            $em = $this->getDoctrine()->getManager();
-//            $repository = $em->getRepository('AppBundle:Place');
-//            $idPlace = $repository->getByPosition($idPosition);
             $em = $this->getDoctrine()->getManager();
             $repository = $em->getRepository('AppBundle:Place');
             $isDispo = $repository->checkIfPlaceDispo($heureChoixDebut, $heureChoixFin, $idPlace);
@@ -196,68 +160,6 @@ class PlaceController extends FOSRestController
     }
 
     /**
-     * Todo: Remove because its in repo Place
-     * Verification si une place est disponible selon un creneau horaire
-     * @param $heureChoixDebut
-     * @param $heureChoixFin
-     * @param $idplace
-     * @return mixed
-     */
-    public function checkIfPlaceDispo($heureChoixDebut, $heureChoixFin, $idplace)
-    {
-        $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('AppBundle:Place');
-
-        $subQuery = $repository->createQueryBuilder('p_sub')
-            ->select('p_sub.idplace')
-            ->leftJoin('p_sub.reservation', 'r')
-            ->andwhere('r.heuredebut < :heureChoixDebut')
-            ->andWhere('r.heurefin >= :heureChoixDebut OR r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut < :heureChoixFin AND r.heurefin >= :heureChoixFin')
-            ->orWhere('r.heuredebut >= :heureChoixDebut AND r.heurefin <= :heureChoixFin');
-
-        $queryBuilder = $repository->createQueryBuilder('p');
-
-        $query = $queryBuilder
-            ->select('count(p.idplace)')
-            ->where($queryBuilder->expr()->notIn('p.idplace', $subQuery->getDQL()))
-            ->andWhere('p.idplace = :idplace')
-//            ->andWhere(':heureChoixDebut < :datenow')
-//            ->setParameter('datenow', date("Y-m-d H:i:s"))
-            ->setParameter('idplace', $idplace)
-            ->setParameter('heureChoixDebut', $heureChoixDebut)
-            ->setParameter('heureChoixFin', $heureChoixFin);
-
-        return $query->getQuery()->getSingleScalarResult();
-    }
-
-    /**
-     * Creates a new place entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/new", name="place_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request)
-    {
-        $place = new Place();
-        $form = $this->createForm('AppBundle\Form\PlaceType', $place);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($place);
-            $em->flush();
-
-            return $this->redirectToRoute('place_show', array('idplace' => $place->getIdplace()));
-        }
-
-        return $this->render('place/new.html.twig', array(
-            'place' => $place,
-            'form' => $form->createView(),
-        ));
-    }
-
-    /**
      * Finds and displays a place entity.
      *
      * @Route("/{idplace}", name="place_show", requirements={"idplace": "\d+"})
@@ -265,73 +167,12 @@ class PlaceController extends FOSRestController
      */
     public function showAction(Place $place)
     {
-        $deleteForm = $this->createDeleteForm($place);
+        //$deleteForm = $this->createDeleteForm($place);
 
         return $this->render('place/show.html.twig', array(
             'place' => $place,
-            'delete_form' => $deleteForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
-    }
-
-    /**
-     * Displays a form to edit an existing place entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{idplace}/edit", name="place_edit", requirements={"idplace": "\d+"})
-     * @Method({"GET", "POST"})
-     */
-    public function editAction(Request $request, Place $place)
-    {
-        $deleteForm = $this->createDeleteForm($place);
-        $editForm = $this->createForm('AppBundle\Form\PlaceType', $place);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('place_edit', array('idplace' => $place->getIdplace()));
-        }
-
-        return $this->render('place/edit.html.twig', array(
-            'place' => $place,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
-     * Deletes a place entity.
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/{idplace}", name="place_delete", requirements={"idplace": "\d+"})
-     * @Method("DELETE")
-     */
-    public function deleteAction(Request $request, Place $place)
-    {
-        $form = $this->createDeleteForm($place);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($place);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('place_index');
-    }
-
-    /**
-     * Creates a form to delete a place entity.
-     *
-     * @param Place $place The place entity
-     * @Security("has_role('ROLE_ADMIN')")
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createDeleteForm(Place $place)
-    {
-        return $this->createFormBuilder()
-            ->setAction($this->generateUrl('place_delete', array('idplace' => $place->getIdplace())))
-            ->setMethod('DELETE')
-            ->getForm()
-        ;
     }
 
     /**
@@ -339,11 +180,10 @@ class PlaceController extends FOSRestController
      * @Method({"GET", "POST"})
      * @return Response
      */
-    public function ajaxGetUnavailablePlaces(Request $request)
+    public function ajaxGetUnavailablePlacesAction(Request $request)
     {
         $idsalle = 4; //get id openspace
         $em = $this->getDoctrine()->getManager();
-        //$allPlaces = $em->getRepository('AppBundle:Place')->getAllPositions($idsalle);
         if($request->request->get('heureChoixDebut') && $request->request->get('heureChoixFin') &&
             (new \DateTime($request->request->get('heureChoixDebut')))->format('Y-m-d H')  >= (new \DateTime())->format('Y-m-d H') ) {
             // On vérifie bien que la date et heure est inférieur à la date du jour en cas d'injection ou modificz
@@ -358,12 +198,6 @@ class PlaceController extends FOSRestController
 
         }
         $places = $em->getRepository('AppBundle:Place')->checkUnavailablePlace($heureChoixDebut,  $heureChoixFin);
-
-//        $places = $em->getRepository('AppBundle:Place')->checkUnavailablePlace($actualDate->format('y-m-d H:i:s'), $plusOneHour->format('y-m-d H:i:s'));
-        //$idplaces = array_column($places, 'idplace');
-
-        //var_dump($idplaces);
-        $map = array();
 
         return new  Response(json_encode($places, JSON_NUMERIC_CHECK, 32));
     }
