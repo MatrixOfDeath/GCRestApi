@@ -4,20 +4,38 @@ namespace AppBundle\Services;
 
 use AppBundle\Entity\Commande;
 use Spipu\Html2Pdf\Html2Pdf;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class GetFacture 
+class GetFacture implements ContainerAwareInterface
 {
 
-    /**
-     * GetFacture constructor.
-     * @param ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
+    use ContainerAwareTrait;
 
+//    /**
+//     * @var ContainerInterface
+//     */
+//    protected $container;
+//
+//    /**
+//     * GetFacture constructor.
+//     * @param ContainerInterface $container
+//     */
+//    public function __construct(ContainerInterface $container)
+//    {
+//        $this->container = $container;
+//    }
+
+//    /**
+//     * @var ContainerInterface
+//     */
+//    private $container;
+//
+//    public function setContainer(ContainerInterface $container = null)
+//    {
+//        $this->container = $container;
+//    }
     /**
      * @param $facture
      * @return Html2Pdf

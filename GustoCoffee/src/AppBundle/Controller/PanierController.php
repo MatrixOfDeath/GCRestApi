@@ -22,62 +22,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class PanierController extends Controller
 {
-//    /**
-//     * @param SessionInterface $session
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function menuAction(SessionInterface $session)
-//    {
-//        if (!$session->has('panier'))
-//            $articles = 0;
-//        else
-//            $articles = count($session->get('panier'));
-//
-//        if (!$session->has('panier_salle'))
-//            $nbsalles = 0;
-//        else
-//            $nbsalles = count($session->get('panier_salle'));
-//
-//        if (!$session->has('totalTTC'))
-//            $totalTTC = 0;
-//        else
-//            $totalTTC = $session->get('totalTTC');
-//
-//        return $this->render('panier/panier.html.twig', array(
-//            'articles' => $articles,
-//            'salles' => $nbsalles,
-//            'totalTTC' => $totalTTC
-//        ));
-//    }
-//
-//    /**
-//     * @param SessionInterface $session
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function menuIconAction(SessionInterface $session)
-//    {
-//        if (!$session->has('panier'))
-//            $articles = 0;
-//        else
-//            $articles = count($session->get('panier'));
-//
-//        if (!$session->has('panier_salle'))
-//            $nbsalles = 0;
-//        else
-//            $nbsalles = count($session->get('panier_salle'));
-//
-//        if (!$session->has('totalTTC'))
-//            $totalTTC = 0;
-//        else
-//            $totalTTC = $session->get('totalTTC');
-//
-//        $numberItems = $articles + $nbsalles;
-//        return $this->render('panier/ajaxIconPanier.html.twig', array(
-//            'numberItems' => $numberItems,
-//            'totalTTC' => $totalTTC
-//        ));
-//    }
-
     /**
      * @Route("/ajaxIconPanier", options={"expose"=true}, name="ajax_panier_icon_menu")
      * @Method("GET")

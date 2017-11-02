@@ -5,17 +5,15 @@ namespace AppBundle\Listener;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 class DoctrineExtensionListener implements ContainerAwareInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    protected $container;
+    use ContainerAwareTrait;
 
-    public function setContainer(ContainerInterface $container = null)
+
+    public function qerserr()
     {
-        $this->container = $container;
+        $this->container;
     }
-
 }
