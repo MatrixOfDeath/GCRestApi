@@ -17,7 +17,6 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 
 class RedirectionListener implements ContainerAwareInterface
 {
-
     use ContainerAwareTrait;
 //    /**
 //     * @var ContainerInterface
@@ -29,11 +28,11 @@ class RedirectionListener implements ContainerAwareInterface
 //        $this->container = $container;
 //    }
 
-    public function __construct(SessionInterface $session)
+    public function __construct(ContainerInterface $container, SessionInterface $session)
     {
         $this->session = $session;
-        $this->router = $this->container->get('router');
-        $this->securityContext = $this->container->get('security.token_storage');
+        $this->router = $container->get('router');
+        $this->securityContext = $container->get('security.token_storage');
     }
 
     public function onKernelRequest(GetResponseEvent $event)

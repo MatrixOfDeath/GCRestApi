@@ -11,9 +11,13 @@ class DoctrineExtensionListener implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
+    /**
+     * @var ContainerInterface
+     */
+    protected $container;
 
-    public function qerserr()
+    public function setContainer(ContainerInterface $container = null)
     {
-        $this->container;
+        $this->container = $container;
     }
 }

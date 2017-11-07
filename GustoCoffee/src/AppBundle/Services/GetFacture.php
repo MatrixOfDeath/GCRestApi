@@ -13,19 +13,19 @@ class GetFacture implements ContainerAwareInterface
 
     use ContainerAwareTrait;
 
-//    /**
-//     * @var ContainerInterface
-//     */
-//    protected $container;
-//
-//    /**
-//     * GetFacture constructor.
-//     * @param ContainerInterface $container
-//     */
-//    public function __construct(ContainerInterface $container)
-//    {
-//        $this->container = $container;
-//    }
+    /**
+     * @var ContainerInterface
+     */
+    protected $container;
+
+    /**
+     * GetFacture constructor.
+     * @param ContainerInterface $container
+     */
+    public function __construct(ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
 
 //    /**
 //     * @var ContainerInterface
