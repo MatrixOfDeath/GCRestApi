@@ -41,7 +41,7 @@ class DefaultController extends Controller
     public function salleaAction(Request $request)
     {
         $reservation = new Reservation();
-        $form = $this->createForm('AppBundle\Form\ReservationType', $reservation);
+        $form = $this->createForm('AppBundle\Form\Type\ReservationType', $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

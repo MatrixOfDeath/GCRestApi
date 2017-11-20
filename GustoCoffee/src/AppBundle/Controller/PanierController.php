@@ -9,11 +9,8 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use AppBundle\Form\UtilisateursAdressesType;
-use AppBundle\Entity\Personne;
 use AppBundle\Entity\Reservation;
 use AppBundle\Entity\UtilisateursAdresses;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Panier controller.

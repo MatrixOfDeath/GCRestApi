@@ -136,4 +136,38 @@ class TransactionController extends FOSRestController
         ;
     }
 
+    /**
+     * @Route("/statisticProfile", name="statistic_dashboard")
+     * Display some statistics on the profile page
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     */
+    public function statisticsTransactionAction()
+    {
+        $chart = $this->get('app.chart');
+
+        // TODO: Add more graphics
+        return $this->render('transaction/statistics.html.twig', array(
+            'amountByYear' => $chart->amountByYear()
+
+        ));
+    }
+
+    /**
+     * @Route("/pointsCumulesProfile", name="statistic_dashboard")
+     * Display some statistics on the profile page
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     */
+    public function pointCumulesAction()
+    {
+        $chart = $this->get('app.chart');
+
+        // TODO: Add more graphics
+        return $this->render('transaction/points-cumules.html.twig', array(
+            'amountByYear' => $chart->amountByYear()
+
+        ));
+    }
+
 }

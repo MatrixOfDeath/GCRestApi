@@ -13,7 +13,7 @@ class ContactController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $form = $this->createForm('AppBundle\Form\ContactType', null, array(
+        $form = $this->createForm('AppBundle\Form\Type\ContactType', null, array(
             'action' => $this->generateUrl('gc_contact_page'),
             'method' => 'POST'
         ));

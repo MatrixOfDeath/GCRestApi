@@ -38,22 +38,24 @@ class ChartData
      */
     public function dataAmountByYear()
     {
-        $stats = $this->em->getRepository('AppBundle:Transaction')->amountByYear();
+        $stats = $this->em->getRepository('AppBundle:Commande')->amountByYear();
 
         $arrayToDataTable[] = ['Année', 'Montant', ['role' => 'tooltip'], 'Evolution', ['role' => 'tooltip']];
         $previousAmount = 0;
+       // var_dump($stats);
         foreach ($stats as $stat) {
+//            var_dump($stat);die();
             if ($previousAmount != 0) {
-                $evolution = round((($stat['amount'] * 100) / $previousAmount) - 100, 2);
+                $evolution = round((($stat['commande']['prixTTC'] * 100) / $previousAmount) - 100, 2);
             } else {
                 $evolution = 0;
             }
-            $previousAmount = $stat['amount'];
+            $previousAmount = $stat['commande']['prixTTC'];
 
-            $tooltipAmount = $this->formatMoney($stat['amount']) . '€';
+            $tooltipAmount = $this->formatMoney($stat['commande']['prixTTC']) . '€';
             $tooltipEvol = "$evolution %";
 
-            $arrayToDataTable[] = [$stat['date'], floatval($stat['amount']), $tooltipAmount, $evolution, $tooltipEvol];
+            $arrayToDataTable[] = [$stat['datecommande'], floatval($stat['commande']['prixTTC']), $tooltipAmount, $evolution, $tooltipEvol];
         }
 
         return $arrayToDataTable;
