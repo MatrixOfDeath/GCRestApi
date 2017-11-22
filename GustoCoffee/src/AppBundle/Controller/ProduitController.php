@@ -97,11 +97,8 @@ class ProduitController extends FOSRestController
      */
     public function showAction(Produit $produit)
     {
-        //$deleteForm = $this->createDeleteForm($produit);
-
         return $this->render('produit/show.html.twig', array(
             'produit' => $produit,
-            //'delete_form' => $deleteForm->createView(),
         ));
     }
 

@@ -5,13 +5,13 @@ liip_imagine:
     filter_sets:
         cache: ~
         responsive_article_image:
-            quality: 75
             filters:
                 thumbnail: { size: [640, 384], mode: inset }
+            post_processors:
+                jpegoptim: { strip_all: true, max: 75, progressive: true }
 
         #THUMBNAILS
         my_thumb:
-            quality: 75            # adjust the image quality to 75%
             filters:            # list of transformations to apply (the "filters")
                 # create a thumbnail: set size to 120x90 and use the "outbound" mode
                 # to crop the image when the size ratio of the input differs
@@ -19,6 +19,14 @@ liip_imagine:
                 # create a 2px black border: center the thumbnail on a black background
                 # 4px larger to create a 2px border around the final image
                 background: { size: [124, 94], position: center, color: '#000000' }
+            post_processors:
+                jpegoptim: { strip_all: true, max: 70, progressive: true }
+        miniature_media:
+            quality: 75
+            filters:
+                thumbnail: { size: [150, 75], mode: outbond }
+            post_processors:
+                jpegoptim: { strip_all: true, max: 75, progressive: true }
 
         my_thumb_filter:
             filters:
@@ -83,14 +91,18 @@ liip_imagine:
         salle_downscale:
             filters:
                 downscale:
-                    quality: 80
+                    quality: 75
                     max: [320, 240]
+            post_processors:
+                jpegoptim: { strip_all: true, max: 75, progressive: true }
 
         produit_downscale:
             filters:
                 downscale:
-                    quality: 80
+                    quality: 75
                     max: [320, 213]
+            post_processors:
+                jpegoptim: { strip_all: true, max: 75, progressive: true }
 
         # name our second filter set "my_by_down_scale_filter"
         my_by_down_scale_filter:

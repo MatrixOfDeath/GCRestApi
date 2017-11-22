@@ -108,7 +108,6 @@ class CommandeController extends FOSRestController
 
 
         /**
-         * fin de s'y retrouver IDE
          * @var $salle \AppBundle\Entity\Salle
          */
         foreach($salles as $salle) {
@@ -166,7 +165,6 @@ class CommandeController extends FOSRestController
         }
 
         /**
-         * fin de s'y retrouver IDE
          * @var $place \AppBundle\Entity\Place
          */
         foreach($places as $place) {
@@ -434,7 +432,7 @@ class CommandeController extends FOSRestController
                        'return_url'     => $baseURLPath.'/commande/api/banque/'.$commande_id,
                        'cancel_url'     => $baseURLPath.'/commande/paiement_commande/'.$commande_id
                    ),
-                   'notification_url' =>  $baseURLPath.'/commande/notifications?id='.$commande_id,
+                   'notification_url' =>  $baseURLPath.'/commande/notifications/'.$commande_id,
                    'metadata'         => array(
                        'customer_id'    => (string)$customer_id
                    )
@@ -503,7 +501,7 @@ class CommandeController extends FOSRestController
                         'return_url'     =>  $baseURLPath.'/commande/api/banque/'.$commande_id,
                         'cancel_url'     => $baseURLPath.'/commande/paiement_commande/'.$commande_id
                     ),
-                    'notification_url' => $baseURLPath.'/commande/notifications?id='.$commande_id,
+                    'notification_url' => $baseURLPath.'/commande/notifications/'.$commande_id,
                     'metadata'         => array(
                         'customer_id'    => (string)$customer_id
                     )
@@ -518,7 +516,6 @@ class CommandeController extends FOSRestController
                 // Token envoyé par l'user invalide !!
                 $session->getFlashBag()->add('success','Le token de vérification de formulaire est invalide');
                 return $this->redirect($this->generateUrl('validation_panier'));
-
             }
 
         }else{
@@ -556,17 +553,17 @@ class CommandeController extends FOSRestController
      * @return int
      */
     private function sendEmail($data){
-        $myappContactMail = $this->container->getParameter('mailer_user');
-        $myappContactPassword = $this->container->getParameter('mailer_password');
+        $contactMail = $this->container->getParameter('mailer_user');
+        $contactPassword = $this->container->getParameter('mailer_password');
 
 
-        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')->setUsername($myappContactMail)->setPassword($myappContactPassword);
+        $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')->setUsername($contactMail)->setPassword($contactPassword);
 
         $mailer = \Swift_Mailer::newInstance($transport);
         $message = \Swift_Message::newInstance($data["subject"])
-            ->setFrom(array($myappContactMail => "Message by Automated Quantité des stocks"))
+            ->setFrom(array($contactMail => "Message by Automated Quantité des stocks"))
             ->setTo(array(
-                $myappContactMail => $myappContactMail
+                $contactMail => $contactMail
             ))
             ->setBody($data["message"]."\n\n");
 

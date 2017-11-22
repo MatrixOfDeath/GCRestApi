@@ -38,7 +38,6 @@ class CommandeRepository extends EntityRepository
         return $qb->getQuery()->getResult();
     }
 
-    
     public function byDateCommand($date)
     {
         $qb = $this->createQueryBuilder('u')
@@ -49,5 +48,16 @@ class CommandeRepository extends EntityRepository
                 ->setParameter('date', $date);
         
         return $qb->getQuery()->getResult();
+    }
+
+    public function amountByYear()
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->select('u.datecommande, u.commande')
+            ->andWhere('u.valider = 1')
+            ->orderBy('u.idcommande');
+
+        return $qb->getQuery()->getResult();
+
     }
 }

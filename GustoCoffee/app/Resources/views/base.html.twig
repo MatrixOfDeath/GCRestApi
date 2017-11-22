@@ -1,6 +1,6 @@
 {% block head %}
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{{ app.request.getLocale() }}">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,11 +45,10 @@
     {#<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>#}
     {#<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>#}
     {#<script async>#}
-        {#window.cookieconsent_options = {"theme":"dark-bottom",#}
-            {#"message":"{{ "Ce site web utilise des cookies pour améliorer votre expérience de navigation. En poursuivant votre navigation, vous acceptez l'utilisation des cookies."|trans }}",#}
-            {#"dismiss":"{{ "J'accepte!"|trans }}","learnMore":"{{ "En savoir plus"|trans }}"};#}
+    {#window.cookieconsent_options = {"theme":"dark-bottom",#}
+    {#"message":"{{ "Ce site web utilise des cookies pour améliorer votre expérience de navigation. En poursuivant votre navigation, vous acceptez l'utilisation des cookies."|trans }}",#}
+    {#"dismiss":"{{ "J'accepte!"|trans }}","learnMore":"{{ "En savoir plus"|trans }}"};#}
     {#</script>#}
-    {{ cookie_consent_render() }}
 
     <!-- Facebook -->
     <script>
@@ -102,8 +101,8 @@
         <div class="row ">
 
             <div class="body-wrap {% block firstImg %}{% endblock %}">
-                 {% embed 'menu.html.twig' %}
-                 {% endembed %}
+                {% embed 'menu.html.twig' %}
+                {% endembed %}
 
                 {% embed 'side-social-networks-.html.twig' %}
                 {% endembed %}
@@ -128,40 +127,42 @@
         {% endblock %}
     </div>
 
-   {% embed "footer.html.twig" %}
-   {% endembed  %}
+    {% embed "footer.html.twig" %}
+    {% endembed  %}
 
-    {% endblock %}
+{% endblock %}
 
-    {% block script %}
-            {#<script src="{{ asset('js/jquery.min.js') }}"></script>#}
-            {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
-            {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
+{% block script %}
+    {#<script src="{{ asset('js/jquery.min.js') }}"></script>#}
+    {#<script src="{{ asset('js/jquery.onepage-scroll.min.js') }}"></script>#}
+    {# TODO: Remove this useless thing <script src="{{ asset('js/jquery.form.min.js') }}" ></script>#}
 
-            {#<script async src="{{ asset('js/bootstrap.min.js') }}"></script>#}
-            {#<script>#}
-            {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
-            {#</script>#}
+    {#<script async src="{{ asset('js/bootstrap.min.js') }}"></script>#}
+    {#<script>#}
+    {#$.datepicker.setDefaults( $.datepicker.regional[ "{{ app.request.getLocale() }}" ] );#}
+    {#</script>#}
 
-            <script src="{{ asset('build/manifest.js') }}"></script>
-            <script src="{{ asset('build/vendor.js') }}"></script>
-            <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
-        {#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>#}
+    <script src="{{ asset('build/manifest.js') }}"></script>
+    <script src="{{ asset('build/vendor.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    {#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.18/jquery.touchSwipe.min.js"></script>#}
 
-            <script async src="{{ asset('build/app.js') }}"></script>
+    <script async src="{{ asset('build/app.js') }}"></script>
 
-            {#  Adding ajax script TODO: add specific on each page #}
-            <script src="{{ asset('build/ajax.js') }}"></script>
-            {#<script async defer src="{{ asset('js/jquery-ui.min.js') }}"></script>#}
-            {#<script async defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>#}
-            <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
+    {#  Adding ajax script TODO: add specific on each page #}
+    <script src="{{ asset('build/ajax.js') }}"></script>
+    {{ cookie_consent_render() }}
 
-                gtag('config', 'UA-108499849-1');
-            </script>
-    {% endblock %}
+    {#<script async defer src="{{ asset('js/jquery-ui.min.js') }}"></script>#}
+    {#<script async defer type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>#}
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-108499849-1');
+    </script>
+{% endblock %}
 
 </body>
 </html>

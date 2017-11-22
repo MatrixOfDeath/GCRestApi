@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 
 /**
- * @Cache(expires="tomorrow", public=true)
+ * @Cache(expires="+2 days", public=true)
  */
 class DefaultController extends Controller
 {
@@ -41,7 +41,7 @@ class DefaultController extends Controller
     public function salleaAction(Request $request)
     {
         $reservation = new Reservation();
-        $form = $this->createForm('AppBundle\Form\ReservationType', $reservation);
+        $form = $this->createForm('AppBundle\Form\Type\ReservationType', $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

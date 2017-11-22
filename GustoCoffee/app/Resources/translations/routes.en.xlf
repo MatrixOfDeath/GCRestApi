@@ -1,586 +1,586 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
-  <file date="2017-10-27T19:30:36Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
+  <file date="2017-11-01T17:55:13Z" source-language="en" target-language="en" datatype="plaintext" original="not.available">
     <header>
       <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
       <trans-unit id="d033e22ae348aeb5660fc2140aec35850c4da997" resname="admin">
-        <source>/backoffice/</source>
+        <source>admin</source>
         <target>/backoffice/</target>
       </trans-unit>
       <trans-unit id="f88b97e0aa28a0cd12cf60db7d43e5996389f555" resname="ajax_adresses_panier">
-        <source>/panier/addresses</source>
-        <target>/panier/addresses</target>
+        <source>ajax_adresses_panier</source>
+        <target>/cart/addresses</target>
       </trans-unit>
       <trans-unit id="65cca7a8b254b919c4e7bc01d65106e81b39a4bd" resname="ajax_ajout_produit_panier">
-        <source>/panier/ajouter-produit</source>
-        <target>/panier/ajouter-produit</target>
+        <source>ajax_ajout_produit_panier</source>
+        <target>/cart/add-product</target>
       </trans-unit>
       <trans-unit id="fb8e78cd9c0cbe053539d60ef92b5df140dacce3" resname="ajax_delete_panier">
-        <source>/panier/ajax-delete</source>
-        <target>/panier/ajax-delete</target>
+        <source>ajax_delete_panier</source>
+        <target>/cart/ajax-delete</target>
       </trans-unit>
       <trans-unit id="ff5cd32921d841476e2370b39253f8c7fd8da004" resname="ajax_delete_panier_place">
-        <source>/panier/ajax-delete-place</source>
-        <target>/panier/ajax-delete-place</target>
+        <source>ajax_delete_panier_place</source>
+        <target>/cart/ajax-delete-seat</target>
       </trans-unit>
       <trans-unit id="3570bd8e37610dc92146e7c9204eb9f244ac5ef7" resname="ajax_delete_panier_salle">
-        <source>/panier/ajax-delete-salle</source>
-        <target>/panier/ajax-delete-salle</target>
+        <source>ajax_delete_panier_salle</source>
+        <target>/cart/ajax-delete-room</target>
       </trans-unit>
       <trans-unit id="6aa5b023fb030b7dcc37c1d768c729211aafe330" resname="ajax_paiement_commande">
-        <source>/commande/ajaxpaiement/{id}</source>
-        <target>/commande/ajaxpaiement/{id}</target>
+        <source>ajax_paiement_commande</source>
+        <target>/command/ajaxpayment/{id}</target>
       </trans-unit>
       <trans-unit id="4efa7d4d86bebd83084ff5fe0f525d5686770824" resname="ajax_panier_icon_menu">
-        <source>/panier/ajaxIconPanier</source>
-        <target>/panier/ajaxIconPanier</target>
+        <source>ajax_panier_icon_menu</source>
+        <target>/cart/ajaxIconCart</target>
       </trans-unit>
       <trans-unit id="45bf10c172282991e3e5cad6f4d39fdea449b715" resname="ajax_panier_is_not_empty">
-        <source>/panier/isNotEmpty</source>
-        <target>/panier/isNotEmpty</target>
+        <source>ajax_panier_is_not_empty</source>
+        <target>/cart/isNotEmpty</target>
       </trans-unit>
       <trans-unit id="0c1de8b9b9d8d8063d341e49af7fb3508a574bf1" resname="ajax_places_map">
-        <source>/place/map</source>
-        <target>/place/map</target>
+        <source>ajax_places_map</source>
+        <target>/seat/map</target>
       </trans-unit>
       <trans-unit id="9d40b0483c4eac2b41cc85f27d2099c52d3075c2" resname="ajax_places_unavailable">
-        <source>/place/unavailable</source>
-        <target>/place/unavailable</target>
+        <source>ajax_places_unavailable</source>
+        <target>/seat/unavailable</target>
       </trans-unit>
       <trans-unit id="d802187a08ef42ea5be9f8becfc1986eda8d5321" resname="ajax_validation_panier">
-        <source>/panier/validationAjax</source>
-        <target>/panier/validationAjax</target>
+        <source>ajax_validation_panier</source>
+        <target>/cart/validationAjax</target>
       </trans-unit>
       <trans-unit id="f389da6ddf17fa55354b118da7fca316dc82eeb3" resname="ajout_panier">
-        <source>/panier/ajouter/{id}</source>
-        <target>/panier/ajouter/{id}</target>
+        <source>ajout_panier</source>
+        <target>/cart/ajouter/{id}</target>
       </trans-unit>
       <trans-unit id="39077dcaff9c8f430e88ced81a50f17fe3ca98ce" resname="ajout_panier_place">
-        <source>/panier/ajouter-place</source>
-        <target>/panier/ajouter-place</target>
+        <source>ajout_panier_place</source>
+        <target>/cart/ajouter-place</target>
       </trans-unit>
       <trans-unit id="08f960f02f81169557d158b99f9703a73bb7d9ae" resname="ajout_panier_salle">
-        <source>/panier/ajouter-salle</source>
-        <target>/panier/ajouter-salle</target>
+        <source>ajout_panier_salle</source>
+        <target>/cart/ajouter-salle</target>
       </trans-unit>
       <trans-unit id="180e49989d61e4a775052a3993d443acbe36c35e" resname="annonce_delete">
-        <source>/annonce/{idannonce}</source>
-        <target>/annonce/{idannonce}</target>
+        <source>annonce_delete</source>
+        <target>/announce/{idannounce}</target>
       </trans-unit>
       <trans-unit id="7352228ea837aa97722f355653224721aeaa86df" resname="annonce_edit">
-        <source>/annonce/{idannonce}/edit</source>
-        <target>/annonce/{idannonce}/edit</target>
+        <source>annonce_edit</source>
+        <target>/announce/{idannounce}/edit</target>
       </trans-unit>
       <trans-unit id="11d58342382c9c04019c9c730208f9bba97575a0" resname="annonce_index">
-        <source>/annonce/</source>
-        <target>/annonce/</target>
+        <source>annonce_index</source>
+        <target>/announce/</target>
       </trans-unit>
       <trans-unit id="7f80cf99882ed3d94bb9e3e93561c60bb7802934" resname="annonce_new">
-        <source>/annonce/new</source>
-        <target>/annonce/new</target>
+        <source>annonce_new</source>
+        <target>/announce/new</target>
       </trans-unit>
       <trans-unit id="6dceefa5d6245d3c0b7f7bb553a9ef8ee40094c5" resname="annonce_show">
-        <source>/annonce/{idannonce}</source>
-        <target>/annonce/{idannonce}</target>
+        <source>annonce_show</source>
+        <target>/announce/{idannounce}</target>
       </trans-unit>
       <trans-unit id="db8d9d7c39095b13121f24f2a3ec6d7c9c226896" resname="commande_delete">
-        <source>/commande/{idcommande}</source>
-        <target>/commande/{idcommande}</target>
+        <source>commande_delete</source>
+        <target>/command/{idcommande}</target>
       </trans-unit>
       <trans-unit id="7e074bd2170cd4ef16a4bd330d0eb6f555d34379" resname="commande_edit">
-        <source>/commande/{idcommande}/edit</source>
-        <target>/commande/{idcommande}/edit</target>
+        <source>commande_edit</source>
+        <target>/command/{idcommande}/edit</target>
       </trans-unit>
       <trans-unit id="7a99c25efbb3661c903a07ad2c0b3eb14843d2b9" resname="commande_index">
-        <source>/commande/</source>
-        <target>/commande/</target>
+        <source>commande_index</source>
+        <target>/command/</target>
       </trans-unit>
       <trans-unit id="3f8f40c74152696aa7bb6fc54fe71ff4d3a588d7" resname="commande_new">
-        <source>/commande/new</source>
-        <target>/commande/new</target>
+        <source>commande_new</source>
+        <target>/command/new</target>
       </trans-unit>
       <trans-unit id="4ffa89e2322d455a94b4f9f9037df8a21ca96c61" resname="commande_show">
-        <source>/commande/{idcommande}</source>
-        <target>/commande/{idcommande}</target>
+        <source>commande_show</source>
+        <target>/command/{idcommande}</target>
       </trans-unit>
       <trans-unit id="2fca538b4f06ba0118a33b8dcba424940f9490a0" resname="delete_adresse_panier">
-        <source>/panier/livraison/adresse/delete/{id}</source>
-        <target>/panier/livraison/adresse/delete/{id}</target>
+        <source>delete_adresse_panier</source>
+        <target>/cart/livraison/adresse/delete/{id}</target>
       </trans-unit>
       <trans-unit id="694f63cd8473aa91f50094ab35695d0ad4ff4063" resname="delete_panier">
-        <source>/panier/delete/{id}</source>
-        <target>/panier/delete/{id}</target>
+        <source>delete_panier</source>
+        <target>/cart/delete/{id}</target>
       </trans-unit>
       <trans-unit id="31a7b92325f95b63623ab856cc14dbed9fa55d80" resname="delete_panier_place">
-        <source>/panier/delete-place/{id}</source>
-        <target>/panier/delete-place/{id}</target>
+        <source>delete_panier_place</source>
+        <target>/cart/delete-place/{id}</target>
       </trans-unit>
       <trans-unit id="705b1da08da63b671487b496fc894cfc7290378a" resname="delete_panier_salle">
-        <source>/panier/delete-salle/{id}</source>
-        <target>/panier/delete-salle/{id}</target>
+        <source>delete_panier_salle</source>
+        <target>/cart/delete-salle/{id}</target>
       </trans-unit>
       <trans-unit id="550f2268fea5176dd6f4d70db4039da9d2f7662f" resname="dpn_xml_sitemap">
-        <source>/sitemap.xml</source>
+        <source>dpn_xml_sitemap</source>
         <target>/sitemap.xml</target>
       </trans-unit>
       <trans-unit id="33ea10dee1d21dfc7fbb38bdebbdb6afd882f4ed" resname="dpn_xml_sitemap_index">
-        <source>/sitemap_index.xml</source>
+        <source>dpn_xml_sitemap_index</source>
         <target>/sitemap_index.xml</target>
       </trans-unit>
       <trans-unit id="1696002b8da9fdcabdd5fd9fccbfee584dde5c76" resname="dpn_xml_sitemap_number">
-        <source>/sitemap{number}.xml</source>
+        <source>dpn_xml_sitemap_number</source>
         <target>/sitemap{number}.xml</target>
       </trans-unit>
       <trans-unit id="7c67bb5767d93378c2ad10ef33814b323302fe56" resname="easyadmin">
-        <source>/backoffice/</source>
+        <source>easyadmin</source>
         <target>/backoffice/</target>
       </trans-unit>
       <trans-unit id="55b6b113b6f85f56bffdff02aeea46607eb51153" resname="facture">
-        <source>/commande/facture</source>
-        <target>/commande/facture</target>
+        <source>facture</source>
+        <target>/command/bill</target>
       </trans-unit>
       <trans-unit id="da37d11b4340a2cf2390103ebe8bdfb865da7ac2" resname="facture_delete">
-        <source>/facture/{idfacture}</source>
-        <target>/facture/{idfacture}</target>
+        <source>facture_delete</source>
+        <target>/bill/{/idbill}</target>
       </trans-unit>
       <trans-unit id="6867a947e394f819f0f16814ac77a0aa7090ef1a" resname="facture_edit">
-        <source>/facture/{idfacture}/edit</source>
-        <target>/facture/{idfacture}/edit</target>
+        <source>facture_edit</source>
+        <target>/bill/{/idbill}/edit</target>
       </trans-unit>
       <trans-unit id="88d4eb91c50e7f07b2281d9249540f3cfe5a501a" resname="facture_index">
-        <source>/facture/</source>
-        <target>/facture/</target>
+        <source>facture_index</source>
+        <target>/bill/</target>
       </trans-unit>
       <trans-unit id="47d5deeab0fb35851880697c4fb02eab1f77cb7e" resname="facture_new">
-        <source>/facture/new</source>
-        <target>/facture/new</target>
+        <source>facture_new</source>
+        <target>/bill/new</target>
       </trans-unit>
       <trans-unit id="165e32bdbd5227cc82763730f7f747e5cfcb4b2d" resname="facture_show">
-        <source>/facture/{idfacture}</source>
-        <target>/facture/{idfacture}</target>
+        <source>facture_show</source>
+        <target>/bill/{/idbill}</target>
       </trans-unit>
       <trans-unit id="472ff06d71a2282f0dff6b54f2048fe2da0f14ff" resname="factures">
-        <source>/facture/factures</source>
-        <target>/facture/factures</target>
+        <source>factures</source>
+        <target>/bill/bills</target>
       </trans-unit>
       <trans-unit id="54f5b3f02481c85f6f8a1e2cbd278a183594c9d9" resname="facturesPDF">
-        <source>/facture/PDF/{id}</source>
-        <target>/facture/PDF/{id}</target>
+        <source>facturesPDF</source>
+        <target>/bill/PDF/{id}</target>
       </trans-unit>
       <trans-unit id="a140144aecaa71d68517e12910c275748f88b512" resname="fos_js_routing_js">
-        <source>/js/routing.{_format}</source>
+        <source>fos_js_routing_js</source>
         <target>/js/routing.{_format}</target>
       </trans-unit>
       <trans-unit id="bcbfde1786968dd342a9c571d698c1f0b41ac29c" resname="fos_oauth_server_authorize">
-        <source>/oauth/v2/auth</source>
+        <source>fos_oauth_server_authorize</source>
         <target>/oauth/v2/auth</target>
       </trans-unit>
       <trans-unit id="1a7cfbeff8ab22a124083f4786cf38b2f10202b1" resname="fos_oauth_server_token">
-        <source>/oauth/v2/token</source>
+        <source>fos_oauth_server_token</source>
         <target>/oauth/v2/token</target>
       </trans-unit>
       <trans-unit id="3e7a1eb65964daab6c8503cea70e628e3f933ce0" resname="fos_user_change_password">
-        <source>/change-password</source>
+        <source>fos_user_change_password</source>
         <target>/profile/change-password</target>
       </trans-unit>
       <trans-unit id="89d9f90f552727a161575b47336d827555229023" resname="fos_user_profile_edit">
-        <source>/dashboard</source>
+        <source>fos_user_profile_edit</source>
         <target>/profile/edit</target>
       </trans-unit>
       <trans-unit id="a5c247e0ed2953f5e091126240a417a30fe47c12" resname="fos_user_profile_show">
-        <source>/</source>
+        <source>fos_user_profile_show</source>
         <target>/profile/</target>
       </trans-unit>
       <trans-unit id="a7796b4f4f42c56769357a8303569fc003731e87" resname="fos_user_registration_check_email">
-        <source>/register/check-email</source>
+        <source>fos_user_registration_check_email</source>
         <target>/register/check-email</target>
       </trans-unit>
       <trans-unit id="22ca20e7a4ac37652a84e45daaf1e68e388eca26" resname="fos_user_registration_confirm">
-        <source>/register/confirm/{token}</source>
+        <source>fos_user_registration_confirm</source>
         <target>/register/confirm/{token}</target>
       </trans-unit>
       <trans-unit id="43816e069e01819401d9822574dad6c50d82d2d7" resname="fos_user_registration_confirmed">
-        <source>/register/confirmed</source>
+        <source>fos_user_registration_confirmed</source>
         <target>/register/confirmed</target>
       </trans-unit>
       <trans-unit id="693eeded1b8403ebe14463be5de2a9a1ecefbf14" resname="fos_user_registration_register">
-        <source>/register/</source>
+        <source>fos_user_registration_register</source>
         <target>/register/</target>
       </trans-unit>
       <trans-unit id="031c418d91c7b50426906ae4ad5b80194b7e153e" resname="fos_user_resetting_check_email">
-        <source>/resetting/check-email</source>
+        <source>fos_user_resetting_check_email</source>
         <target>/resetting/check-email</target>
       </trans-unit>
       <trans-unit id="57721581c69f4c8163632a830f07d82ee0d719f3" resname="fos_user_resetting_request">
-        <source>/resetting/request</source>
+        <source>fos_user_resetting_request</source>
         <target>/resetting/request</target>
       </trans-unit>
       <trans-unit id="3631be6fbf01f3e1ac7ed153ed4648c6469fe0e2" resname="fos_user_resetting_reset">
-        <source>/resetting/reset/{token}</source>
+        <source>fos_user_resetting_reset</source>
         <target>/resetting/reset/{token}</target>
       </trans-unit>
       <trans-unit id="b68f7e5fae30e8373429c4abe045ae50b8f5f762" resname="fos_user_resetting_send_email">
-        <source>/resetting/send-email</source>
+        <source>fos_user_resetting_send_email</source>
         <target>/resetting/send-email</target>
       </trans-unit>
       <trans-unit id="33d36422431d1bc6e64296b7b849a049c426bfb1" resname="fos_user_security_check">
-        <source>/login_check</source>
+        <source>fos_user_security_check</source>
         <target>/login_check</target>
       </trans-unit>
       <trans-unit id="e33cc56c226adb625998728b77c6d7989d693f61" resname="fos_user_security_login">
-        <source>/login</source>
+        <source>fos_user_security_login</source>
         <target>/login</target>
       </trans-unit>
       <trans-unit id="00fb021cee4fd738a7b66a0f5deb9f30bf059593" resname="fos_user_security_logout">
-        <source>/logout</source>
+        <source>fos_user_security_logout</source>
         <target>/logout</target>
       </trans-unit>
       <trans-unit id="f8b83dbd4c93c1730a868e0ac7863070536e1602" resname="gc_contact_page">
-        <source>/contact</source>
+        <source>gc_contact_page</source>
         <target>/contact</target>
       </trans-unit>
       <trans-unit id="8205a13e9718f02bbae0dbb17197fab82f22c251" resname="gc_dashboard_page">
-        <source>/test</source>
+        <source>gc_dashboard_page</source>
         <target>/test</target>
       </trans-unit>
       <trans-unit id="563a7421a5e318c78186dbf364cf4fd3a49eaeae" resname="gc_evenement_page">
-        <source>/evenement</source>
+        <source>gc_evenement_page</source>
         <target>/evenement</target>
       </trans-unit>
       <trans-unit id="b810bec17137e34fa3b348aca3f2507b8b1f1a3d" resname="gc_facture_page">
-        <source>/pdf</source>
+        <source>gc_facture_page</source>
         <target>/pdf</target>
       </trans-unit>
       <trans-unit id="52e60d655e6b281869d188d9d5403d4a6e80d184" resname="gc_faq_page">
-        <source>/faq</source>
-        <target>/faq</target>
+        <source>gc_faq_page</source>
+        <target>/Q-A</target>
       </trans-unit>
       <trans-unit id="a0bd9de306a1df210818a9e60dd7e7773fd8ac81" resname="gc_home_page">
-        <source>/</source>
+        <source>gc_home_page</source>
         <target>/</target>
       </trans-unit>
       <trans-unit id="c1b41910e89c1c090eca400aa5ea389be6e5b574" resname="gc_inscription_page">
-        <source>/inscription</source>
+        <source>gc_inscription_page</source>
         <target>/inscription</target>
       </trans-unit>
       <trans-unit id="7d5391f6fd240448b7ea82434bdd7d79e8e79101" resname="gc_login_page">
-        <source>/connexion</source>
+        <source>gc_login_page</source>
         <target>/connexion</target>
       </trans-unit>
       <trans-unit id="ee88527b1c72927531b5246a6bef25d290ee6a42" resname="gc_reservation_page">
-        <source>/reservation</source>
-        <target>/reservation</target>
+        <source>gc_reservation_page</source>
+        <target>/booking</target>
       </trans-unit>
       <trans-unit id="ec6d1b8a2ee48bbf9ea4a727e99ab4f9ed7c61bd" resname="gc_sallea_page">
-        <source>/reservation-private-a</source>
-        <target>/reservation-private-a</target>
+        <source>gc_sallea_page</source>
+        <target>/booking-private-a</target>
       </trans-unit>
       <trans-unit id="9e4bc00e06328a9172845516e098efee1b634fb9" resname="lastFactures">
-        <source>/facture/lastfactures</source>
-        <target>/facture/lastfactures</target>
+        <source>lastFactures</source>
+        <target>/bill/lastfactures</target>
       </trans-unit>
       <trans-unit id="949480cd788fd3133fad160ce6c5aa4ecebd4f2a" resname="lignefacture_delete">
-        <source>/lignefacture/{idlignefacture}</source>
-        <target>/lignefacture/{idlignefacture}</target>
+        <source>lignefacture_delete</source>
+        <target>/bill-line/{idbill-line}</target>
       </trans-unit>
       <trans-unit id="00bdc8e87da9b3f9e86d52485b0de42f271d8cac" resname="lignefacture_edit">
-        <source>/lignefacture/{idlignefacture}/edit</source>
-        <target>/lignefacture/{idlignefacture}/edit</target>
+        <source>lignefacture_edit</source>
+        <target>/bill-line/{idbill-line}/edit</target>
       </trans-unit>
       <trans-unit id="01e767c8d4510d36701552faea3a9b6bfd5e1bd8" resname="lignefacture_index">
-        <source>/lignefacture/</source>
-        <target>/lignefacture/</target>
+        <source>lignefacture_index</source>
+        <target>/bill-line/</target>
       </trans-unit>
       <trans-unit id="89dc38e701afab10c5260386af6e6198fb277901" resname="lignefacture_new">
-        <source>/lignefacture/new</source>
-        <target>/lignefacture/new</target>
+        <source>lignefacture_new</source>
+        <target>/bill-line/new</target>
       </trans-unit>
       <trans-unit id="876ce0d2d8839330a222c30873acef16014fc5d6" resname="lignefacture_show">
-        <source>/lignefacture/{idlignefacture}</source>
-        <target>/lignefacture/{idlignefacture}</target>
+        <source>lignefacture_show</source>
+        <target>/bill-line/{idbill-line}</target>
       </trans-unit>
       <trans-unit id="a70522aab6490169b19605ae4aa041fef3b63253" resname="livraison_panier">
-        <source>/panier/livraison</source>
-        <target>/panier/livraison</target>
+        <source>livraison_panier</source>
+        <target>/cart/livraison</target>
       </trans-unit>
       <trans-unit id="a15b12ae967f6f556301cb84f793b4ae8adddd90" resname="magasin_delete">
-        <source>/magasin/{idmagasin}</source>
-        <target>/magasin/{idmagasin}</target>
+        <source>magasin_delete</source>
+        <target>/shop/{idshop}</target>
       </trans-unit>
       <trans-unit id="852ee5d9a36be2ebbf1976811bd03dde93ce7f05" resname="magasin_edit">
-        <source>/magasin/{idmagasin}/edit</source>
-        <target>/magasin/{idmagasin}/edit</target>
+        <source>magasin_edit</source>
+        <target>/shop/{idshop}/edit</target>
       </trans-unit>
       <trans-unit id="37a7c002e837628b02a0e277fd6f6a1e6732c806" resname="magasin_index">
-        <source>/magasin/</source>
-        <target>/magasin/</target>
+        <source>magasin_index</source>
+        <target>/shop/</target>
       </trans-unit>
       <trans-unit id="d23b867c9fc2e3498fb68212d117fbdd36214f4b" resname="magasin_new">
-        <source>/magasin/new</source>
-        <target>/magasin/new</target>
+        <source>magasin_new</source>
+        <target>/shop/new</target>
       </trans-unit>
       <trans-unit id="070d0ec7730d70229505247c62c94f6869ce1bbe" resname="magasin_show">
-        <source>/magasin/{idmagasin}</source>
-        <target>/magasin/{idmagasin}</target>
+        <source>magasin_show</source>
+        <target>/shop/{idshop}</target>
       </trans-unit>
       <trans-unit id="3bd189d5b94999d1d71eb29ccbb96320d0766bde" resname="modedepaiement_delete">
-        <source>/modedepaiement/{idmodepaiement}</source>
-        <target>/modedepaiement/{idmodepaiement}</target>
+        <source>modedepaiement_delete</source>
+        <target>/modeofpayment/{idmodeofpayment}</target>
       </trans-unit>
       <trans-unit id="c6b1bfd262e72e278726e7c5993d785803782809" resname="modedepaiement_edit">
-        <source>/modedepaiement/{idmodepaiement}/edit</source>
-        <target>/modedepaiement/{idmodepaiement}/edit</target>
+        <source>modedepaiement_edit</source>
+        <target>/modeofpayment/{idmodeofpayment}/edit</target>
       </trans-unit>
       <trans-unit id="ea6c76e5aec53539b58d2c752afa9bbe26df220a" resname="modedepaiement_index">
-        <source>/modedepaiement/</source>
-        <target>/modedepaiement/</target>
+        <source>modedepaiement_index</source>
+        <target>/modeofpayment/</target>
       </trans-unit>
       <trans-unit id="5ae096ca02089f7f723b55aef3b62421b337a990" resname="modedepaiement_new">
-        <source>/modedepaiement/new</source>
-        <target>/modedepaiement/new</target>
+        <source>modedepaiement_new</source>
+        <target>/modeofpayment/new</target>
       </trans-unit>
       <trans-unit id="679b7ef8a7c4797a9a3603c2c707cf458e7d6db9" resname="modedepaiement_show">
-        <source>/modedepaiement/{idmodepaiement}</source>
-        <target>/modedepaiement/{idmodepaiement}</target>
+        <source>modedepaiement_show</source>
+        <target>/modeofpayment/{idmodeofpayment}</target>
       </trans-unit>
       <trans-unit id="a5b27e4cf1a0c5213187e08afa8c150eb4b1786b" resname="notifications_commande">
-        <source>/commande/notifications/{id}</source>
-        <target>/commande/notifications/{id}</target>
+        <source>notifications_commande</source>
+        <target>/command/notifications/{id}</target>
       </trans-unit>
       <trans-unit id="8494bfabed962b47e2e882e6c8826aa89837a127" resname="paiement_commande">
-        <source>/commande/paiement/{id}</source>
-        <target>/commande/paiement/{id}</target>
+        <source>paiement_commande</source>
+        <target>/command/paiement/{id}</target>
       </trans-unit>
       <trans-unit id="debe3420619bd9e18bee2a972d8efbce256cc36d" resname="panier">
-        <source>/panier/</source>
-        <target>/panier/</target>
+        <source>panier</source>
+        <target>/cart/</target>
       </trans-unit>
       <trans-unit id="29f8139a2f4cc8543b68ae9c99246b16ab48f541" resname="panier_ajax">
-        <source>/panier/ajax-panier</source>
-        <target>/panier/ajax-panier</target>
+        <source>panier_ajax</source>
+        <target>/cart/ajax-panier</target>
       </trans-unit>
       <trans-unit id="699ce1e621ea77b44c9757aff0f57e1033015e42" resname="personne_delete">
-        <source>/personne/{id}</source>
+        <source>personne_delete</source>
         <target>/personne/{id}</target>
       </trans-unit>
       <trans-unit id="e743185b08c8b5972dbf6b1744ab728853c01b2c" resname="personne_edit">
-        <source>/personne/{id}/edit</source>
+        <source>personne_edit</source>
         <target>/personne/{id}/edit</target>
       </trans-unit>
       <trans-unit id="02e487d8f2a27c0aa8004b26cf02d40394e6abf1" resname="personne_index">
-        <source>/personne/</source>
+        <source>personne_index</source>
         <target>/personne/</target>
       </trans-unit>
       <trans-unit id="ba7736223467bbc3e1571cc07bd4da9e3f2b45b4" resname="personne_new">
-        <source>/personne/new</source>
+        <source>personne_new</source>
         <target>/personne/new</target>
       </trans-unit>
       <trans-unit id="33a67875bafaf22869d6f3b4b765592e50c49b22" resname="personne_show">
-        <source>/personne/{id}</source>
+        <source>personne_show</source>
         <target>/personne/{id}</target>
       </trans-unit>
       <trans-unit id="3a1eb3b8ca1a881466613e3d02a95b5d79ef81db" resname="place_delete">
-        <source>/place/{idplace}</source>
-        <target>/place/{idplace}</target>
+        <source>place_delete</source>
+        <target>/seat/{idseat}</target>
       </trans-unit>
       <trans-unit id="8d3120f5812b027fcb0aac5738aaa6df8fb0f0de" resname="place_edit">
-        <source>/place/{idplace}/edit</source>
-        <target>/place/{idplace}/edit</target>
+        <source>place_edit</source>
+        <target>/seat/{idseat}/edit</target>
       </trans-unit>
       <trans-unit id="a91facd81d563ddceb49c127a82e4da68589a66a" resname="place_index">
-        <source>/place/</source>
-        <target>/place/</target>
+        <source>place_index</source>
+        <target>/seat/</target>
       </trans-unit>
       <trans-unit id="ab9a0374e3a1b4a0a3dd5e030bfd0b611ba6eafc" resname="place_new">
-        <source>/place/new</source>
-        <target>/place/new</target>
+        <source>place_new</source>
+        <target>/seat/new</target>
       </trans-unit>
       <trans-unit id="a98345811b3afb9fff3fb070200c1ec7dae5313f" resname="place_show">
-        <source>/place/{idplace}</source>
-        <target>/place/{idplace}</target>
+        <source>place_show</source>
+        <target>/seat/{idseat}</target>
       </trans-unit>
       <trans-unit id="29ac5edc784a778f5675eb6825aefeec4376f46c" resname="places_disponible">
-        <source>/place/disponible</source>
-        <target>/place/disponible</target>
+        <source>places_disponible</source>
+        <target>/seat/disponible</target>
       </trans-unit>
       <trans-unit id="87082abf72cf40a8bd460976d83a69c4868cd7f3" resname="places_disponible_ajax">
-        <source>/place/disponible-ajax</source>
-        <target>/place/disponible-ajax</target>
+        <source>places_disponible_ajax</source>
+        <target>/seat/available-ajax</target>
       </trans-unit>
       <trans-unit id="e1d2ef2e41eb8c788ef0f8c4405cf5b32baad0ed" resname="presentation_produit">
-        <source>/produit/presentation/{id}</source>
-        <target>/produit/presentation/{id}</target>
+        <source>presentation_produit</source>
+        <target>/product/presentation/{id}</target>
       </trans-unit>
       <trans-unit id="b563dc85176bdef6cae7b4e199e3fc9ebc65a49f" resname="presentation_salle">
-        <source>/salle/presentation/{id}</source>
-        <target>/salle/presentation/{id}</target>
+        <source>presentation_salle</source>
+        <target>/room/presentation/{id}</target>
       </trans-unit>
       <trans-unit id="da5a8dd7189683d7060f70e3a7db48540314f98d" resname="produit_delete">
-        <source>/produit/{idproduit}</source>
-        <target>/produit/{idproduit}</target>
+        <source>produit_delete</source>
+        <target>/product/{idproduct}</target>
       </trans-unit>
       <trans-unit id="2f0a4d4d1b7ce13eb020ec3a1f95af336c7289b1" resname="produit_edit">
-        <source>/produit/{idproduit}/edit</source>
-        <target>/produit/{idproduit}/edit</target>
+        <source>produit_edit</source>
+        <target>/product/{idproduct}/edit</target>
       </trans-unit>
       <trans-unit id="3531bc738b11ff88cb58aa2e04d49666d9a81987" resname="produit_index">
-        <source>/produit/produit</source>
-        <target>/produit/</target>
+        <source>produit_index</source>
+        <target>/product/</target>
       </trans-unit>
       <trans-unit id="27d1ca16579b1ba8ae90e50e27a6235770a57710" resname="produit_new">
-        <source>/produit/new</source>
-        <target>/produit/new</target>
+        <source>produit_new</source>
+        <target>/product/new</target>
       </trans-unit>
       <trans-unit id="d8c0f691795df7ee023b0426b9afe360ef68899a" resname="produit_show">
-        <source>/produit/{idproduit}</source>
-        <target>/produit/{idproduit}</target>
+        <source>produit_show</source>
+        <target>/product/{idproduct}</target>
       </trans-unit>
       <trans-unit id="060ed8a4f4c91d44d3864f45a6bee0e33f7f79bf" resname="produits_ajax">
-        <source>/produit/ajax-produit</source>
-        <target>/produit/ajax-produit</target>
+        <source>produits_ajax</source>
+        <target>/product/ajax-produit</target>
       </trans-unit>
       <trans-unit id="18f6ae2a572d689f7db368daa2c48802fe11d048" resname="produits_index">
-        <source>/produit/produits</source>
-        <target>/produit/produits</target>
+        <source>produits_index</source>
+        <target>/product/products</target>
       </trans-unit>
       <trans-unit id="c7c3a89c77d37b76208d4f8ee1a5ef4cc06c7377" resname="recherche">
-        <source>/produit/recherche</source>
-        <target>/produit/recherche</target>
+        <source>recherche</source>
+        <target>/product/search</target>
       </trans-unit>
       <trans-unit id="53523bd99f01edccbd788715579e354a2b0c0cb5" resname="rechercheProduits">
-        <source>/produit/rechercheProduits</source>
-        <target>/produit/rechercheProduits</target>
+        <source>rechercheProduits</source>
+        <target>/product/searchProduits</target>
       </trans-unit>
       <trans-unit id="90edebf55532b50e76c710836eda5a7e32a79828" resname="reservation_delete">
-        <source>/reservation/{idreservation}</source>
-        <target>/reservation/{idreservation}</target>
+        <source>reservation_delete</source>
+        <target>/booking/{idbooking}</target>
       </trans-unit>
       <trans-unit id="a60b3ab807330e230fe127e9e4059f3fe45dfaa8" resname="reservation_edit">
-        <source>/reservation/{idreservation}/edit</source>
-        <target>/reservation/{idreservation}/edit</target>
+        <source>reservation_edit</source>
+        <target>/booking/{idbooking}/edit</target>
       </trans-unit>
       <trans-unit id="06c5b6186cf33f120f3b8e103c9c451cfb88a324" resname="reservation_index">
-        <source>/reservation/</source>
-        <target>/reservation/</target>
+        <source>reservation_index</source>
+        <target>/booking/</target>
       </trans-unit>
       <trans-unit id="e6e290ba54f7488bafdb04dc872dad8668a17f27" resname="reservation_new">
-        <source>/reservation/new</source>
-        <target>/reservation/new</target>
+        <source>reservation_new</source>
+        <target>/booking/new</target>
       </trans-unit>
       <trans-unit id="c91236f247c6a43ee464e67325f562f22a5c26e6" resname="reservation_show">
-        <source>/reservation/{idreservation}</source>
-        <target>/reservation/{idreservation}</target>
+        <source>reservation_show</source>
+        <target>/booking/{idbooking}</target>
       </trans-unit>
       <trans-unit id="28deb111c976e915b2ccaec38b826917b9db3071" resname="salle_delete">
-        <source>/salle/{idsalle}</source>
-        <target>/salle/{idsalle}</target>
+        <source>salle_delete</source>
+        <target>/room/{idsalle}</target>
       </trans-unit>
       <trans-unit id="ae363fe611ebed5d79fe1c7f76b6417e53760ece" resname="salle_edit">
-        <source>/salle/{idsalle}/edit</source>
-        <target>/salle/{idsalle}/edit</target>
+        <source>salle_edit</source>
+        <target>/room/{idsalle}/edit</target>
       </trans-unit>
       <trans-unit id="f0d3386c10dc0f61abf68f07df0536a1e2f3d365" resname="salle_index">
-        <source>/salle/reservation-private</source>
-        <target>/salle/</target>
+        <source>salle_index</source>
+        <target>/room/</target>
       </trans-unit>
       <trans-unit id="c2aec2404c3bc1122b5cfffe69870dab30da896a" resname="salle_new">
-        <source>/salle/new</source>
-        <target>/salle/new</target>
+        <source>salle_new</source>
+        <target>/room/new</target>
       </trans-unit>
       <trans-unit id="ea2a4d9dedef02c2e5bd1bc162707aee0749fa0f" resname="salle_show">
-        <source>/salle/{idsalle}</source>
-        <target>/salle/{idsalle}</target>
+        <source>salle_show</source>
+        <target>/room/{idsalle}</target>
       </trans-unit>
       <trans-unit id="a20565e47edb6b6aebd0a79e8054666cce8852c7" resname="salles_disponible">
-        <source>/salle/disponible</source>
-        <target>/salle/disponible</target>
+        <source>salles_disponible</source>
+        <target>/room/available</target>
       </trans-unit>
       <trans-unit id="782f6b7013aa379062fec3ef31b4be41690bce28" resname="salles_disponible_ajax">
-        <source>/salle/disponible-ajax</source>
-        <target>/salle/disponible-ajax</target>
+        <source>salles_disponible_ajax</source>
+        <target>/room/available-ajax</target>
       </trans-unit>
       <trans-unit id="21537954ec1c59e5915d5de8c40ba5ba70b9fdc1" resname="salles_index">
-        <source>/salle/salles</source>
-        <target>/salle/salles</target>
+        <source>salles_index</source>
+        <target>/room/rooms</target>
       </trans-unit>
       <trans-unit id="7ee680102a9ca126ef50c86e68d482ba59bfc20d" resname="salles_list">
-        <source>/salle/list-salles</source>
-        <target>/salle/list-salles</target>
+        <source>salles_list</source>
+        <target>/room/list-salles</target>
       </trans-unit>
       <trans-unit id="51fdaa465ee397517ebcab9395185e80951db9ce" resname="service_delete">
-        <source>/service/{idservice}</source>
+        <source>service_delete</source>
         <target>/service/{idservice}</target>
       </trans-unit>
       <trans-unit id="9d81a7887f40cfc36fe7616dc8d7b0cdfacbde76" resname="service_edit">
-        <source>/service/{idservice}/edit</source>
+        <source>service_edit</source>
         <target>/service/{idservice}/edit</target>
       </trans-unit>
       <trans-unit id="8ba23bc7d359f9d1b1d542c8ad67a425c54bd473" resname="service_index">
-        <source>/service/</source>
+        <source>service_index</source>
         <target>/service/</target>
       </trans-unit>
       <trans-unit id="d4b123cecf1bb96d471296695e197f16256a0883" resname="service_new">
-        <source>/service/new</source>
+        <source>service_new</source>
         <target>/service/new</target>
       </trans-unit>
       <trans-unit id="2af90c510004d399b14737e9266a58f1572485cc" resname="service_show">
-        <source>/service/{idservice}</source>
+        <source>service_show</source>
         <target>/service/{idservice}</target>
       </trans-unit>
       <trans-unit id="e1f798367035502572831d45802bdac9bb75da77" resname="transaction_delete">
-        <source>/transaction/{idtransaction}</source>
+        <source>transaction_delete</source>
         <target>/transaction/{idtransaction}</target>
       </trans-unit>
       <trans-unit id="7bc1af93fce79cb5688740c9021eecbc154417e7" resname="transaction_edit">
-        <source>/transaction/{idtransaction}/edit</source>
+        <source>transaction_edit</source>
         <target>/transaction/{idtransaction}/edit</target>
       </trans-unit>
       <trans-unit id="ee699a3d0a33c55b5eabe2500f3372629646cfe6" resname="transaction_index">
-        <source>/transaction/</source>
+        <source>transaction_index</source>
         <target>/transaction/</target>
       </trans-unit>
       <trans-unit id="a343593e303f1509ed10c8fbe9cbd5261773d5aa" resname="transaction_new">
-        <source>/transaction/new</source>
+        <source>transaction_new</source>
         <target>/transaction/new</target>
       </trans-unit>
       <trans-unit id="bf5e0a9a972699bb3518515a6dfaebf32f03d479" resname="transaction_show">
-        <source>/transaction/{idtransaction}</source>
+        <source>transaction_show</source>
         <target>/transaction/{idtransaction}</target>
       </trans-unit>
       <trans-unit id="13ef691a127324583d1048cb14ffd50d7701c97e" resname="typedeproduit_delete">
-        <source>/typedeproduit/{idtypeproduit}</source>
-        <target>/typedeproduit/{idtypeproduit}</target>
+        <source>typedeproduit_delete</source>
+        <target>/typeofproduct/{idtypeproduit}</target>
       </trans-unit>
       <trans-unit id="95aa4827b180a2f2c5bdf34c91221e8af7e6f6f3" resname="typedeproduit_edit">
-        <source>/typedeproduit/{idtypeproduit}/edit</source>
-        <target>/typedeproduit/{idtypeproduit}/edit</target>
+        <source>typedeproduit_edit</source>
+        <target>/typeofproduct/{idtypeproduit}/edit</target>
       </trans-unit>
       <trans-unit id="7c1dd0cb73efa58e5da965ec6d8601b57bb17db8" resname="typedeproduit_index">
-        <source>/typedeproduit/</source>
-        <target>/typedeproduit/</target>
+        <source>typedeproduit_index</source>
+        <target>/typeofproduct/</target>
       </trans-unit>
       <trans-unit id="d77c69e043ba8f7df5ce7c0eb63638b6c1bf231b" resname="typedeproduit_new">
-        <source>/typedeproduit/new</source>
-        <target>/typedeproduit/new</target>
+        <source>typedeproduit_new</source>
+        <target>/typeofproduct/new</target>
       </trans-unit>
       <trans-unit id="266d4c0f0726298b9c41b7579bb8ca526c5fc717" resname="typedeproduit_show">
-        <source>/typedeproduit/{idtypeproduit}</source>
-        <target>/typedeproduit/{idtypeproduit}</target>
+        <source>typedeproduit_show</source>
+        <target>/typeofproduct/{idtypeproduit}</target>
       </trans-unit>
       <trans-unit id="62ae841e9d450f2b6565140cc2a10e1f24a8f227" resname="validationCommande">
-        <source>/commande/api/banque/{id}</source>
-        <target>/commande/api/banque/{id}</target>
+        <source>validationCommande</source>
+        <target>/command/api/bank/{id}</target>
       </trans-unit>
       <trans-unit id="798364d230dccba43d3cd9f49a3198fa1f73a0b5" resname="validation_panier">
-        <source>/panier/validation</source>
-        <target>/panier/validation</target>
+        <source>validation_panier</source>
+        <target>/cart/validation</target>
       </trans-unit>
       <trans-unit id="db92a8bca93ba930cab276b1f13592fa746536bf" resname="villes">
-        <source>/panier/villes/{cp}</source>
-        <target>/panier/villes/{cp}</target>
+        <source>villes</source>
+        <target>/cart/cities/{cp}</target>
       </trans-unit>
     </body>
   </file>
