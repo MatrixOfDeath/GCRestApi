@@ -1,7 +1,7 @@
 GustoCoffee Infos by Karim BOUBRIT
 ===========
 
-Projet GustoCoffee  Symfony **3.3.10** -> to be migrated to  3.4LTS 
+Projet GustoCoffee  Symfony **3.4** -> to be migrated to SF4.x with Flex 
 
 #Pre-requirements
 Install composer and launch composer install after git clone of this project
