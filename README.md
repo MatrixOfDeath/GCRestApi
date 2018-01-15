@@ -1,6 +1,11 @@
-GustoCoffee Infos by Karim BOUBRIT
+# GustoCoffee Infos by Karim BOUBRIT
+Symfony 3.4.3 Project website
 
-Projet GustoCoffee  Symfony **3.4.3** -> to be migrated to SF4.x with Flex 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/ec6246cd-a0d0-45ac-972b-961c5e999ac3/big.png)](https://insight.sensiolabs.com/projects/ec6246cd-a0d0-45ac-972b-961c5e999ac3)
+
+===========
+
+Projet GustoCoffee  Symfony **3.4.3** -> to be migrated to 4.0.3
 
 #Pre-requirements
 Install composer and launch composer install after git clone of this project
