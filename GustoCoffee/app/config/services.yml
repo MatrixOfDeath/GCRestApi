@@ -53,7 +53,7 @@ services:
 
     set_new_facture:
         class: AppBundle\Services\GetFacture
-        arguments: ['@service_container']
+        arguments: ['@service_container', '@twig']
         public: true
 
     set_new_reference:
@@ -64,10 +64,11 @@ services:
     adresse_type_form:
         class: AppBundle\Form\Type\UtilisateursAdressesType
         arguments: [ '@doctrine.orm.entity_manager']
+        public: true
 
     redirectionListener:
         class: AppBundle\Listener\RedirectionListener
-        arguments: ['@session','@router', '@security.authorization_checker']
+        arguments: ['@session','@router', '@security.token_storage']
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
