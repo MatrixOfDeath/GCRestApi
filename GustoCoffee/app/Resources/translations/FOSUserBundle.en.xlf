@@ -8,7 +8,7 @@
     <body>
       <trans-unit id="903dca17a1c9328c3aa66e5adfffecc642d66713" resname="Déconnexion">
         <source>Déconnexion</source>
-        <target>Déconnexion</target>
+        <target>Logout</target>
         <jms:reference-file line="55">/Resources/views/menu.html.twig</jms:reference-file>
         <jms:reference-file line="72">/Resources/views/menu.html.twig</jms:reference-file>
       </trans-unit>

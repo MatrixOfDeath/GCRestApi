@@ -14,6 +14,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\Routing\RouterInterface;
 
 class RedirectionListener implements ContainerAwareInterface
 {
@@ -28,7 +29,7 @@ class RedirectionListener implements ContainerAwareInterface
 //        $this->container = $container;
 //    }
 
-    public function __construct(ContainerInterface $container, SessionInterface $session)
+    public function __construct( ContainerInterface $container, SessionInterface $session)
     {
         $this->session = $session;
         $this->router = $container->get('router');
