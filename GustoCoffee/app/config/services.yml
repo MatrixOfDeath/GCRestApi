@@ -67,7 +67,7 @@ services:
 
     redirectionListener:
         class: AppBundle\Listener\RedirectionListener
-        arguments: ['@service_container', '@session']
+        arguments: ['@session','@router', '@security.authorization_checker']
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 

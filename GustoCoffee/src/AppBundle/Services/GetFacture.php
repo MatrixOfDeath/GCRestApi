@@ -27,15 +27,6 @@ class GetFacture implements ContainerAwareInterface
         $this->container = $container;
     }
 
-//    /**
-//     * @var ContainerInterface
-//     */
-//    private $container;
-//
-//    public function setContainer(ContainerInterface $container = null)
-//    {
-//        $this->container = $container;
-//    }
     /**
      * @param $facture
      * @return Html2Pdf
