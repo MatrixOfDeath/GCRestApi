@@ -158,8 +158,8 @@ class FactureController extends FOSRestController
     public function lastFacturesAction(){
         $em = $this->getDoctrine()->getManager();
         $factures = $em->getRepository('AppBundle:Commande')->byLastFacture($this->getUser());
-        return $this->render('facture/lastFactures.html.twig', array('factures' => $factures));
 
+        return $this->render('facture/lastFactures.html.twig', array('factures' => $factures));
     }
 
     /**

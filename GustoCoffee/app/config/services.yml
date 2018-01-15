@@ -22,7 +22,7 @@ services:
         resource: '../../src/AppBundle/*'
         # you can exclude directories or files
         # but if a service is unused, it's removed anyway
-        exclude: '../../src/AppBundle/{Entity,Repository,Tests}'
+        exclude: '../../src/AppBundle/{Entity, Repository,Tests}'
 
     # controllers are imported separately to make sure they're public
     # and have a tag that allows actions to type-hint services
@@ -53,7 +53,7 @@ services:
 
     set_new_facture:
         class: AppBundle\Services\GetFacture
-        arguments: ['@service_container']
+        arguments: ['@service_container', '@twig']
         public: true
 
     set_new_reference:
@@ -64,10 +64,11 @@ services:
     adresse_type_form:
         class: AppBundle\Form\Type\UtilisateursAdressesType
         arguments: [ '@doctrine.orm.entity_manager']
+        public: true
 
     redirectionListener:
         class: AppBundle\Listener\RedirectionListener
-        arguments: ['@service_container','@session']
+        arguments: ['@session','@router', '@security.token_storage']
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 

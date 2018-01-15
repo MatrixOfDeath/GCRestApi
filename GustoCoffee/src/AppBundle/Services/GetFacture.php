@@ -7,6 +7,7 @@ use Spipu\Html2Pdf\Html2Pdf;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Twig\Template;
 
 class GetFacture implements ContainerAwareInterface
 {
@@ -16,33 +17,24 @@ class GetFacture implements ContainerAwareInterface
     /**
      * @var ContainerInterface
      */
-    protected $container;
+    protected $templating;
 
     /**
      * GetFacture constructor.
      * @param ContainerInterface $container
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct($twig)
     {
-        $this->container = $container;
+        $this->templating = $twig;
     }
 
-//    /**
-//     * @var ContainerInterface
-//     */
-//    private $container;
-//
-//    public function setContainer(ContainerInterface $container = null)
-//    {
-//        $this->container = $container;
-//    }
     /**
      * @param $facture
      * @return Html2Pdf
      */
     public function facture(Commande $facture)
     {
-        $html = $this->container->get('templating')->render('facture/facturePDF.html.twig', array('facture' => $facture));
+        $html = $this->templating->get('templating')->render('facture/facturePDF.html.twig', array('facture' => $facture));
         
         $html2pdf = new Html2Pdf('P','A4','fr');
         $html2pdf->pdf->SetAuthor('GustoCoffee');

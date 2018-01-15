@@ -119,7 +119,7 @@ class SalleController extends FOSRestController
             $heureChoixFin = $request->request->get('heureChoixFin');
 
             $sallesDispo = $this->checkDisponibiliteSalle($heureChoixDebut, $heureChoixFin);
-            //return new JsonResponse($sallesDispo);
+
             $htmlToRender = $this->renderView('salle/sallesDisponible.html.twig', array(
                 'salles' => $sallesDispo,
                 'heureDebutChoix' => (new \DateTime($heureChoixDebut))->format('H'),
