@@ -8,31 +8,28 @@
 
 namespace AppBundle\Listener;
 
+use AppBundle\Security\TokenAuthenticator;
+use SensioLabs\Security\SecurityChecker;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
+use Symfony\Component\Routing\RouterInterface;
 
 class RedirectionListener implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
-//    /**
-//     * @var ContainerInterface
-//     */
-//    private $container;
-//
-//    public function setContainer(ContainerInterface $container = null)
-//    {
-//        $this->container = $container;
-//    }
 
-    public function __construct(ContainerInterface $container, SessionInterface $session)
+    private $session;
+    private $securityContext;
+
+    public function __construct(SessionInterface $session, RouterInterface $router, $securityContext)
     {
         $this->session = $session;
-        $this->router = $container->get('router');
-        $this->securityContext = $container->get('security.token_storage');
+        $this->router = $router;
+        $this->securityContext = $securityContext;
     }
 
     public function onKernelRequest(GetResponseEvent $event)

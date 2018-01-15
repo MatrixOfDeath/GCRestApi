@@ -18,7 +18,7 @@ class ChartData
         $this->em = $em;
     }
 
-
+    
     /**
      * Formate un montant dans le format français.
      *
@@ -42,9 +42,7 @@ class ChartData
 
         $arrayToDataTable[] = ['Année', 'Montant', ['role' => 'tooltip'], 'Evolution', ['role' => 'tooltip']];
         $previousAmount = 0;
-       // var_dump($stats);
         foreach ($stats as $stat) {
-//            var_dump($stat);die();
             if ($previousAmount != 0) {
                 $evolution = round((($stat['commande']['prixTTC'] * 100) / $previousAmount) - 100, 2);
             } else {

@@ -16,7 +16,7 @@
 
     {% for facture in factures %}
         <div class="col-md-7">
-            <p class="textDescription textDlFacture">{{ 'Réservation'|trans }} n° {{ facture.reference }} {{ 'a été effectuée le'|trans }} {{ facture.datecommande|date('d/m/Y') }} {{ 'pour un total de'|trans }} {{ facture.commande.prixTTC + facture.commande.prixSalleTTC }} €</p>
+            <p class="textDescription textDlFacture">{{ 'Réservation'|trans }} n° {{ facture.reference }} {{ 'a été effectuée le'|trans }} {{ facture.datecommande|date('d/m/Y') }} {{ 'pour un total de'|trans }} {{ facture.commande.totalTTC }} €</p>
         </div>
         <div class="col-md-5">
             <button class="buttonGC brownButton" onclick="location.href='{{ path('facturesPDF', { 'id' : facture.idcommande }) }}' "><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i> {{ 'Télécharger la facture'|trans }} </button>

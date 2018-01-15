@@ -41,9 +41,11 @@
                     {% endif %}
                     <ul class="dropdown-menu">
                         <li><a href="{{ path('factures') }}">{{ "Vos Factures"|trans }}</a></li>
-                        <li><a href="{{ path('factures') }}">{{ "Mes informations"|trans }}</a></li>
+                        <li><a href="{{ path('fos_user_profile_edit') }}">{{ "Mes informations"|trans }}</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                        <li><a href="#">{{ "Managements/Statistiques"|trans }}</a></li>
+                        {% endif %}
                     </ul>
                 </li>
             </ul>
